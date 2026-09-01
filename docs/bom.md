@@ -4,8 +4,10 @@ Two halves: **bought** parts (below) and **printed** parts (generated from the
 CAD, so it cannot drift from the geometry). Prices are UK, inc VAT, ~2026.
 Full sourcing rationale and alternatives: [`sourcing.md`](sourcing.md).
 
-**Status:** V1 electronics and actuators are **ordered** (2026-09-01); fasteners
-and filament are **not yet ordered**; nothing is printed yet.
+**Status:** V1 electronics and actuators are **ordered** (2026-09-01). Of the
+fasteners, only the **heat-set inserts and an insert tip** are outstanding —
+they gate `coupon_seam`, and through it every DEC-23 seam in the design.
+First coupon printing 2026-09-01; no structural part printed yet.
 
 ## Bought — drive & balance base *(purchased 2026-09-01, Pi Hut, ~£159.50)*
 
