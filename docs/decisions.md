@@ -40,3 +40,11 @@ Committed decisions with rationale. Unresolved items live in
   parallel torso/neck (URDF can't hold closed loops); Gazebo/PyBullet for physics.
 - **DEC-14 - Prototyping fab:** the maintainer's calibrated Creality Ender-5 S1 running
   Klipper + a headless PrusaSlicer pipeline is the reference printer.
+- **DEC-15 - Size: ~40-50 cm tall; audience is young children (grandkids, 2-5).** A "big
+  toy" *smaller than the child* - approachable, non-intimidating. Cascades: lighter robot
+  (~1.5-3 kg) so limb/drive torque headroom is generous; a shorter inverted pendulum is
+  slightly twitchier to balance, mitigated by the koala's high CoM. Makes **child-safety a
+  hard requirement** (concept.md principle 7; OQ-10). Resolves OQ-01.
+- **DEC-16 - Motor driver: Pololu Dual TB9051FTG** (resolves OQ-07). At the ~1.5-3 kg mass
+  from DEC-15, its 2.6 A cont / 5 A peak per channel is comfortable and the current-sense
+  output is a bonus. Wired to the Teensy as a breakout (form factor moot; soldering fine).

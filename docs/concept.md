@@ -15,8 +15,7 @@ bodies**. The defining split between members is **wheel-vs-gripper limb-ends**
 
 ## Koala V1 — the first member
 
-A **self-balancing, wheel-footed, ground-based** companion, koala-shaped (koala
-scale; exact size open — [`open-questions.md`](open-questions.md)), printable in
+A **self-balancing, wheel-footed, ground-based** companion, koala-shaped (~40-50 cm tall - a 'big toy' *smaller than a toddler*; DEC-15), printable in
 **PETG** with **every part <= 200x200 mm** (designing to the commonest bed
 maximises who can build it, even though the reference printer is 220 mm).
 
@@ -62,3 +61,7 @@ Closest prior art: **Swiss-Mile / ANYmal-on-wheels** ([`references.md`](referenc
    threads; real bearings, rotary-servo + pushrod linkages, or metal leadscrews;
    low-friction spherical bearings; a *virtual* pivot via a parallel mechanism where
    it earns its keep.
+7. **Child-safe by design.** The audience is young children (2-5). No pinch points at
+   joints/linkages; software speed & torque caps + e-stop; graceful (gentle) falls; a
+   protected/enclosed LiPo; no small detachable / choke-hazard parts; rounded edges; no
+   hot exposed surfaces. Specifics tracked in [`open-questions.md`](open-questions.md) (OQ-10).
