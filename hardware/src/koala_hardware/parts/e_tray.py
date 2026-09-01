@@ -42,6 +42,7 @@ def build() -> dict:
 
     return {
         "name": "e_tray",
+        "qty": 1,
         "part": part,
         "orientation": Rot(),  # prints as-is, flat
         "notes": "Sits on M3 standoffs above the pelvis. IMU hard-mount "

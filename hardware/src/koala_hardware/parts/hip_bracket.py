@@ -68,9 +68,10 @@ def build() -> dict:
             align=(Align.CENTER, Align.CENTER, Align.MAX))
 
     return {
-        "name": "hip_bracket_right",
+        "name": "hip_bracket",
+        "qty": 2,  # symmetric in Y - same part both sides
         "part": part,
         "orientation": Rot(X=180),  # flange on the bed, cavity opening up
-        "notes": "Servo slides in fore/aft, sits on the floor, retained by "
-                 "2x M3 through the rear tabs. Mirror in Y for the left.",
+        "notes": "Servo slides in fore/aft and is retained by 2x M3 through "
+                 "its rear tabs. Same part both sides.",
     }

@@ -41,6 +41,7 @@ def build() -> dict:
 
     return {
         "name": "pelvis_plate",
+        "qty": 1,
         "part": part,
         "orientation": Rot(),  # flat, top face up; either face works
         "notes": "Flat deck (DEC-24). Hip brackets bolt underneath; tray "

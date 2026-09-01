@@ -25,7 +25,7 @@ member. Full intent, morphology, and principles: [`docs/concept.md`](docs/concep
 
 | Path | Contents |
 |------|----------|
-| [`docs/`](docs/) | The design record — concept, architecture, decisions, roadmap, sourcing (**start here**) |
+| [`docs/`](docs/) | The design record — concept, architecture, decisions, roadmap, BOM, sourcing (**start here**) |
 | [`hardware/`](hardware/) | CAD / printable parts (parametric code-CAD — draft v0 lower body) |
 | `firmware/` | Real-time MCU code — balance loop, servo bus (planned) |
 | `software/` | Pi / ROS2 high-level brain + tooling (planned) |

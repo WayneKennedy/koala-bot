@@ -67,7 +67,8 @@ def build_upper() -> dict:
             align=(Align.CENTER, Align.CENTER, Align.MIN))
 
     return {
-        "name": "thigh_upper_right",
+        "name": "thigh_upper",
+        "handed": True,
         "part": part,
         "orientation": Rot(Y=90),  # lies on its side face; plates on edge
         "notes": "Draft v1. Mirror in Y for the left thigh.",
@@ -108,7 +109,8 @@ def build_clamp() -> dict:
             FLANGE_Z[1] - FLANGE_Z[0] + 0.2)
 
     return {
-        "name": "motor_clamp_right",
+        "name": "motor_clamp",
+        "handed": True,
         "part": part,
         "orientation": Rot(X=-90),  # motor axis vertical, face ring down
         "notes": "Draft v1. Verify MOTOR_LEN and the face boss before "

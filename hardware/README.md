@@ -27,6 +27,11 @@ uv run python -m koala_hardware.export thigh   # name filter
 uv run python -m koala_hardware.assembly   # assembly sanity render
 ```
 
+A full run also regenerates the printed-parts table in
+[`../docs/bom.md`](../docs/bom.md) and prunes outputs for renamed parts. Parts
+marked `handed` export **both** `_right` and `_left` STLs — mirroring in the
+slicer is too easy to forget.
+
 The export **fails** if any part exceeds 200x200 mm in its declared print
 orientation (DEC-09/DEC-23), or if that orientation needs support (DEC-24):
 bed contact under 300 mm2, or overhang area over 800 mm2. On failure it prints

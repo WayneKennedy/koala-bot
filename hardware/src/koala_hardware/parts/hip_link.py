@@ -72,7 +72,8 @@ def build() -> dict:
         align=(Align.CENTER, Align.CENTER, Align.MIN))
 
     return {
-        "name": "hip_link_right",
+        "name": "hip_link",
+        "handed": True,
         "part": part,
         "orientation": Rot(),  # stands on the cradle bottom
         "notes": "Draft v1. Pitch-servo retention screws after the cradle "
