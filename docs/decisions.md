@@ -39,7 +39,9 @@ Committed decisions with rationale. Unresolved items live in
 - **DEC-13 - Modelling split:** URDF+RViz for serial chains; CAD motion study for the
   parallel torso/neck (URDF can't hold closed loops); Gazebo/PyBullet for physics.
 - **DEC-14 - Prototyping fab:** the maintainer's calibrated Creality Ender-5 S1 running
-  Klipper + a headless PrusaSlicer pipeline is the reference printer.
+  Klipper is the reference printer, driven headlessly - PrusaSlicer CLI on the printer's
+  Pi over Tailscale (OrcaSlicer on the desktop only when a print needs tuning). The BOM's
+  filament and time figures are measured through that pipeline, not estimated.
 - **DEC-15 - Size: ~40-50 cm tall; audience is young children (grandkids, 2-5).** A "big
   toy" *smaller than the child* - approachable, non-intimidating. Cascades: lighter robot
   (~1.5-3 kg) so limb/drive torque headroom is generous; a shorter inverted pendulum is
