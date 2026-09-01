@@ -43,14 +43,23 @@ Of the STS3215s, the **lower body uses 4**: 2 hip-roll + 2 hip-pitch.
 Bench power for bring-up (12 V source) is still outstanding — a 3S LiPo is the
 DEC-20 answer, not a bench PSU.
 
-## Print profile
+## Print settings
 
-Parts are **not** printed solid. Strength here comes from perimeters and from
-printing in the declared orientation (DEC-24), not from filling the part.
+What the **design** requires is short, and it is all koala-bot asserts:
 
-The reference machine (DEC-14) is a Klipper Ender-5 S1 driven headlessly —
-PrusaSlicer CLI on the printer's Pi with one fixed PETG profile, which is what
-the measured figures below come from:
+- **PETG** (DEC-09), printed in each part's **declared orientation**, with
+  **supports off** — every part is support-free by design (DEC-24). If a slicer
+  wants support, the part or its orientation is wrong.
+- A **brim** on tall, small-footprint parts — flagged per part in the table.
+
+Parts are **not** printed solid; strength comes from perimeters and orientation,
+not from filling the part.
+
+### The profile the figures were measured with
+
+Not a koala-bot decision — this is the reference printer's (DEC-14) standing
+**general-purpose** PETG profile, and the numbers below are what it produced.
+Recorded so the measurements are reproducible, not as a recommendation:
 
 | Setting | Value |
 |---------|-------|
@@ -59,16 +68,15 @@ the measured figures below come from:
 | Perimeters | 3 |
 | Top / bottom layers | 4 / 4 |
 | Infill | 15 %, grid |
-| Supports | **off** — every part is support-free by design (DEC-24). If a slicer wants support, the part or its orientation is wrong. |
-| Brim | for tall, small-footprint parts — flagged per part below |
 
-**Open point, untested:** this is a general-purpose profile. Load-bearing
-parts (hip link, thigh, brackets) may want 4–5 perimeters, since perimeters
-are cheaper strength than infill. Decide it on evidence from the first
-structural print rather than assuming — and record the result here.
+**Whether load-bearing parts need more than this is open — see
+[OQ-11](open-questions.md).** Do not read the table as settled: it is a general
+profile that happens to be what measured these parts, and the perimeter count
+for structural parts is to be decided on evidence from the first structural
+print. Filament and time totals will move when it is.
 
 Anyone reproducing the build can use any slicer; nothing in the design depends
-on this profile beyond PETG and the declared orientations.
+on this profile beyond the requirements above.
 
 ## Printed parts
 

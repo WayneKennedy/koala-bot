@@ -6,11 +6,18 @@ headlessly: PrusaSlicer CLI on the Pi with a fixed profile, reachable over
 Tailscale. This asks that pipeline what each part *actually* costs, rather
 than estimating from solid volume.
 
-    uv run python -m koala_hardware.slice_remote [host]
+    uv run python -m koala_hardware.slice_remote [host] [--force]
 
 Writes build/slice-cache.json, which `export` folds into docs/bom.md. It is
 optional: with no cache the BOM simply omits the measured columns, so the CAD
 build never depends on the printer being reachable.
+
+**Never slice while the printer is printing.** Slicing is CPU-heavy and runs on
+the same Pi as Klipper; starving that host mid-print risks stutter, blobs or a
+"Timer too close" abort — and this tool slices a dozen parts back to back. It
+therefore asks Moonraker for the print state first and refuses unless idle.
+`--force` overrides, which is for when you know the host is not the machine's
+Klipper host, not for impatience.
 """
 import json
 import pathlib
@@ -42,11 +49,38 @@ done
 '''.replace("PROFILE", PROFILE)
 
 
+BUSY_STATES = {"printing", "paused"}
+
+
+def print_state(host: str) -> str | None:
+    """Ask Moonraker what the printer is doing. None if it cannot be reached
+    (not every slicing host is a printer host)."""
+    try:
+        out = subprocess.run(
+            ["ssh", host, 'curl -s --max-time 5 '
+             '"localhost:7125/printer/objects/query?print_stats"'],
+            capture_output=True, text=True, timeout=30).stdout
+        return json.loads(out)["result"]["status"]["print_stats"]["state"]
+    except Exception:
+        return None
+
+
 def main():
-    host = sys.argv[1] if len(sys.argv) > 1 else DEFAULT_HOST
+    args = [a for a in sys.argv[1:] if not a.startswith("--")]
+    force = "--force" in sys.argv
+    host = args[0] if args else DEFAULT_HOST
     stls = sorted(STL.glob("*.stl"))
     if not stls:
         sys.exit("no STLs in build/stl - run the export first")
+
+    state = print_state(host)
+    if state in BUSY_STATES and not force:
+        sys.exit(f"REFUSING: {host} is {state}. Slicing loads the same Pi that "
+                 f"runs Klipper, and starving it mid-print risks stutter, blobs "
+                 f"or a 'Timer too close' abort. Wait for the job to finish "
+                 f"(--force only if this host is not the Klipper host).")
+    if state:
+        print(f"{host} print state: {state}")
 
     print(f"copying {len(stls)} STLs to {host} ...")
     subprocess.run(["ssh", host, "mkdir -p /tmp/koala-slice && rm -f /tmp/koala-slice/*.stl"],

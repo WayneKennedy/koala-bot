@@ -55,6 +55,11 @@ Every `[VERIFY]` constant in `params.py` has a matching test coupon
 (`coupon_*` in the build output). **Print and fit-check the coupons before
 any structural part**, adjust the constants, regenerate. Material: PETG.
 
+*("Coupon" is the materials-engineering term — from French *couper*, to cut —
+for a small sample made alongside the real thing and tested in its place. Here:
+a cheap print that answers one dimensional question before you commit filament
+and hours to a structural part.)*
+
 ### Reading a coupon result
 
 A coupon measures **the design's clearance and the printer's error together**,
