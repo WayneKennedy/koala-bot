@@ -5,7 +5,7 @@ Each coupon verifies one [VERIFY] constant in params.py against the real
 hardware; adjust the constant, regenerate, reprint until it fits.
 """
 import math
-from build123d import Box, Cylinder, Part, Pos, Rot, Align
+from build123d import Box, Cylinder, Part, Pos, Rot, Align, Text, extrude
 from .. import params as P
 from .. import fasteners as F
 from .. import servo_iface as S
@@ -43,26 +43,57 @@ def build_motor_ring() -> dict:
         part -= Pos(P.MOTOR_BCD / 2 * math.cos(a),
                     P.MOTOR_BCD / 2 * math.sin(a), 5.1) * F.m3_clear(5.2)
     return {"name": "coupon_motor_ring", "part": part,
-            "orientation": Rot(), "notes": "Also drop the motor body through a "
-            "37.5 bore test - see coupon_ladder."}
+            "orientation": Rot(), "notes": "Face-boss + BCD only; the body "
+            "bore is coupon_motor_bore."}
+
+
+def _label(txt: str, x: float, y: float, size: float = 5.0,
+           depth: float = 0.6) -> Part:
+    """Engraved size label, cut into the top face at Z=6."""
+    sketch = Pos(x, y, 6 - depth) * Text(txt, font_size=size)
+    return extrude(sketch, amount=depth + 0.1)
 
 
 def build_ladder() -> dict:
-    """Hole/pocket ladder: M3 holes 3.2/3.4/3.6, insert bores 3.8/4.0/4.2,
-    motor bores 37.3/37.5/37.7 marked by position (small->large, +X)."""
-    part = Part() + Pos(0, 0, 0) * Box(150, 60, 6,
-                                       align=(Align.CENTER, Align.CENTER, Align.MIN))
+    """Hole ladder: M3 clearance 3.2/3.4/3.6 and insert bores 3.8/4.0/4.2,
+    each engraved with its nominal size. Deliberately a large flat slab - it
+    doubles as the bed-adhesion / corner-lift test for a big footprint.
+
+    Motor bores live on their own coupon: at Ø37+ they cannot be enclosed in
+    this slab alongside these rows.
+    """
+    part = Part() + Box(150, 60, 6,
+                        align=(Align.CENTER, Align.CENTER, Align.MIN))
     for i, d in enumerate((3.2, 3.4, 3.6)):
-        part -= Pos(-60 + i * 12, 22, 6.1) * Cylinder(
+        x = -60 + i * 18
+        part -= Pos(x, 18, 6.1) * Cylinder(
             d / 2, 6.2, align=(Align.CENTER, Align.CENTER, Align.MAX))
+        part -= _label(f"{d}", x - 5, 6)
     for i, d in enumerate((3.8, 4.0, 4.2)):
-        part -= Pos(-60 + i * 12, 8, 6.1) * Cylinder(
+        x = -60 + i * 18
+        part -= Pos(x, -8, 6.1) * Cylinder(
             d / 2, 6.2, align=(Align.CENTER, Align.CENTER, Align.MAX))
+        part -= _label(f"{d}", x - 5, -20)
+    part -= _label("M3 CLEAR", 5, 16, size=6)
+    part -= _label("INSERT", 5, -10, size=6)
+    return {"name": "coupon_ladder", "part": part, "orientation": Rot(),
+            "notes": "Smallest that ACCEPTS the real screw/insert wins - fit, "
+                     "not calipers. Outer 150.0 x 60.0 x 6.0 is the machine's "
+                     "dimensional-accuracy datum."}
+
+
+def build_motor_bore() -> dict:
+    """Motor body-bore ladder, 37.3/37.5/37.7 - print when the 37D is in hand.
+    Sized so every bore is fully enclosed with a real wall around it."""
+    part = Part() + Box(135, 50, 6,
+                        align=(Align.CENTER, Align.CENTER, Align.MIN))
     for i, d in enumerate((37.3, 37.5, 37.7)):
-        part -= Pos(-25 + i * 46, -12, 6.1) * Cylinder(
+        x = -42 + i * 42
+        part -= Pos(x, 0, 6.1) * Cylinder(
             d / 2, 6.2, align=(Align.CENTER, Align.CENTER, Align.MAX))
-    return {"name": "coupon_ladder", "part": part,
-            "orientation": Rot(), "notes": "Smallest that fits wins; update params."}
+        part -= _label(f"{d}", x - 7, 20, size=4.5)
+    return {"name": "coupon_motor_bore", "part": part, "orientation": Rot(),
+            "notes": "Smallest bore the 37D gearbox slides into wins."}
 
 
 def build_seam() -> dict:
@@ -84,4 +115,5 @@ def build_seam() -> dict:
 
 
 BUILDERS = [build_servo_cradle, build_horn_plate, build_motor_ring,
+            build_motor_bore,
             build_ladder, build_seam]

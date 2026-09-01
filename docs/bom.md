@@ -121,6 +121,7 @@ Filament and time are **measured**, by slicing each STL with the standing PETG p
 | `thigh_upper_right` | 1 | 107 x 50 x 30 | 47 g | 3h 46m 5s | 434 mm2 self-supporting overhang |
 | `coupon_horn_plate` | 1 | 30 x 30 x 4 | 3 g | 17m 15s | clean |
 | `coupon_ladder` | 1 | 150 x 60 x 6 | 23 g | 2h 15m 38s | clean |
+| `coupon_motor_bore` | 1 | 135 x 50 x 6 | ~26 g (solid max) | - | clean |
 | `coupon_motor_ring` | 1 | 47 x 47 x 5 | 6 g | 39m 25s | clean |
 | `coupon_seam` | 1 | 60 x 75 x 13 | 13 g | 1h 24m 22s | 38 mm2 self-supporting overhang |
 | `coupon_servo_cradle` | 1 | 64 x 40 x 30 | 28 g | 2h 17m 39s | clean |
