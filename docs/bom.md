@@ -7,7 +7,7 @@ Full sourcing rationale and alternatives: [`sourcing.md`](sourcing.md).
 **Status:** V1 electronics and actuators are **ordered** (2026-09-01). Of the
 fasteners, only the **heat-set inserts and an insert tip** are outstanding —
 they gate `coupon_seam`, and through it every DEC-23 seam in the design.
-First coupon printing 2026-09-01; no structural part printed yet.
+First coupon printed 2026-09-01 and passed (see [`test-log.md`](test-log.md)); no structural part printed yet.
 
 ## Bought — drive & balance base *(purchased 2026-09-01, Pi Hut, ~£159.50)*
 

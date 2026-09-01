@@ -31,6 +31,8 @@ and morphology: [`docs/concept.md`](docs/concept.md).
 - [`docs/open-questions.md`](docs/open-questions.md) — **pending decisions** (unresolved).
 - [`docs/roadmap.md`](docs/roadmap.md) — phases from V1 to the family.
 - [`docs/backlog.md`](docs/backlog.md) — deferred features & sibling robots.
+- [`docs/test-log.md`](docs/test-log.md) — what printed parts actually showed
+  (coupon results, incl. "no change needed"); constants live in `params.py`.
 - [`docs/bom.md`](docs/bom.md) — **the BOM**: bought parts + printed parts
   (printed table is *generated* by the CAD build; never hand-edit it).
 - [`docs/sourcing.md`](docs/sourcing.md) — parts, suppliers, UK landed-cost notes.

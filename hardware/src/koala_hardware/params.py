@@ -7,6 +7,8 @@ Provenance tags:
   [STD]     published standard (Arduino Uno drawing, insert catalogues)
   [VERIFY]  best-available figure - confirm against the physical part before
             printing anything that depends on it (see parts/coupons.py)
+  [MEASURED] confirmed by a printed coupon on the reference printer, dated;
+            results and their caveats live in docs/test-log.md
 """
 
 # --- Printer / process -------------------------------------------------------
@@ -21,8 +23,9 @@ BED_Z = 200.0
 # they absorb that machine's error. See hardware/README "Reading a coupon
 # result".
 CLEAR_POCKET = 0.25   # [VERIFY] snug component pocket, per side
-CLEAR_HOLE_M3 = 3.4   # clearance hole dia for M3
-CLEAR_HOLE_M2_5 = 2.9 # clearance hole dia for M2.5
+CLEAR_HOLE_M3 = 3.4   # [MEASURED 2026-09-01] coupon_ladder: 3.4 slides free,
+                      # 3.2 threads in by hand (too tight for a clearance hole)
+CLEAR_HOLE_M2_5 = 2.9 # [VERIFY] not yet coupon-tested; scaled from M3
 INSERT_M3_DIA = 4.0   # [VERIFY] M3 brass heat-set: nominal boss hole
 INSERT_M3_LEN = 5.7
 CAP_M3_DIA = 5.5      # [STD] M3 socket cap head across the flats' circle

@@ -81,8 +81,9 @@ so keep them apart:
   truths. That is exactly why the coupons ship with the design: another builder
   re-runs them on their own machine and re-derives their own numbers.
 
-Record what a coupon actually showed — including "no change needed" — so the
-next person knows the constant was tested rather than guessed.
+Record what a coupon actually showed — including "no change needed" — in
+[`../docs/test-log.md`](../docs/test-log.md), so the next person knows the
+constant was tested rather than guessed.
 
 ## Status
 
