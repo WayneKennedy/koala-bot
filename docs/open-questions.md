@@ -9,8 +9,6 @@ Unresolved. Resolve -> move to [`decisions.md`](decisions.md).
 - **OQ-06 - Servo sourcing.** AliExpress SO-ARM100 kit (servos + brackets + FE-URT-1
   board, ~£16 landed) vs Seeed genuine (~£25 landed). Voltage settled: **12 V**. See
   [`sourcing.md`](sourcing.md).
-- **OQ-08 - Arm-joint standard.** Align arm joints to the SO-ARM100 servo+bracket
-  standard to inherit its ecosystem, or stay fully custom?
 - **OQ-09 - Swappable limb-ends in V1.** Design the quick-swap wrist/ankle mount into V1,
   or defer to the climber sibling?
 - **OQ-10 - Child-safety spec** (audience 2-5; DEC-15). Resolve during design: pinch-point

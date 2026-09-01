@@ -64,3 +64,9 @@ Committed decisions with rationale. Unresolved items live in
   LiPo (not a bench PSU); isolate the logic rail from the servo/motor rail; bulk caps on the
   servo bus; **3S only** (4S would exceed the 12V servo rating); fuse the pack. Detail in
   [`architecture.md`](architecture.md) "Power integrity".
+- **DEC-21 - Keep servo mounting SO-ARM100 compatible** (resolves OQ-08). The STS3215 limb
+  joints adopt the SO-ARM100 servo + bracket mounting standard, so off-the-shelf SO-ARM100
+  kits (servos + metal brackets + FE-URT-1) drop straight in and we inherit the LeRobot
+  software / community ecosystem. Body and personality stay custom; the joint skeleton
+  borrows a proven, cheap, supported standard - and it makes the AliExpress SO-ARM100 kit
+  brackets useful rather than spare (see [`sourcing.md`](sourcing.md)).
