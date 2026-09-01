@@ -54,3 +54,9 @@ Committed decisions with rationale. Unresolved items live in
   **expansion interface** to later accept a lower leg + foot + servo - but this is
   **deferred and gated on need**: pure wheeled locomotion may prove sufficient, weighed
   against the complexity of an articulated foot. So V2 walking is *conditional, not assumed*.
+- **DEC-18 - MCU: Teensy 4.0** (resolves OQ-05). Ordered; a 600 MHz Cortex-M7 gives ample
+  headroom for the balance loop. ESP32 / RP2040 remain valid cheaper/wireless variants.
+- **DEC-19 - Drive/balance base parts confirmed; wheel diameter locked.** Pololu 80x10 mm
+  wheels + Pololu 6 mm universal hubs (matched set for the 37D 6 mm D-shaft), Adafruit BNO085
+  IMU (fusion, I2C), TB9051FTG driver, 2x 37D motors, Teensy 4.0. **Wheel diameter = 80 mm is
+  a fixed control constant** (odometry + balance). Full BOM in [`sourcing.md`](sourcing.md).

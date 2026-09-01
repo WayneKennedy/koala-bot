@@ -6,7 +6,6 @@ Unresolved. Resolve -> move to [`decisions.md`](decisions.md).
   pitch + roll + **heave** (breathing bob). Can't have all four from 3 actuators.
 - **OQ-04 - Head eyes & mass.** Screen/OLED eyes (light, expressive) vs mechanical eye
   servos (mass). Confirm the < ~250-300 g head budget that keeps micro servos viable.
-- **OQ-05 - MCU.** Teensy 4.0 (raw control) vs ESP32 (wireless) vs RP2040 (cheapest).
 - **OQ-06 - Servo sourcing.** AliExpress SO-ARM100 kit (servos + brackets + FE-URT-1
   board, ~£16 landed) vs Seeed genuine (~£25 landed). Voltage settled: **12 V**. See
   [`sourcing.md`](sourcing.md).

@@ -5,6 +5,23 @@ value, excl. shipping) decides *how* - under it the seller charges VAT at checko
 fee); over it the courier collects VAT + a ~£8-12 handling fee. Keeping a China order
 under ~£135 of goods avoids the fee.
 
+## Confirmed order - drive/balance base (Pi Hut, ~£159.50 inc VAT)
+
+The self-balancing base subsystem (limb/head servos are a separate import order):
+
+| Part | Qty | £ inc VAT |
+|------|-----|-----------|
+| Pololu Dual TB9051FTG motor driver (DEC-16) | 1 | 30.70 |
+| Pi Hut 37D 12V 122RPM 38 kg.cm geared motor + encoder | 2 | 55.80 |
+| Pololu Wheel 80x10 mm pair (Ø80 mm = control constant, DEC-19) | 1 | 8.40 |
+| Pololu 6 mm universal mounting hub (2-pack) | 1 | 12.50 |
+| Adafruit BNO085 9-DOF IMU (fusion, I2C/Qwiic) | 1 | 27.00 |
+| Teensy 4.0 (DEC-18) + header kit | 1 | 25.10 |
+| **Total** | | **~159.50** |
+
+Not in this order (bench-power for bring-up): a **12 V source** (bench PSU or 3S LiPo);
+optional STEMMA QT cable for the BNO085.
+
 ## Servos - Feetech STS3215, **12 V / 30 kg.cm** (limbs)
 Genuine sources, landed cost for ~8 (of ~10-12) servos:
 
