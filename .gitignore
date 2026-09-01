@@ -1,0 +1,16 @@
+# Build / CAD / slicer artefacts
+*.stl.gcode
+/build/
+/out/
+__pycache__/
+*.pyc
+.venv/
+# CAD scratch
+*.FCStd1
+*.f3d~
+# OS / editor
+.DS_Store
+Thumbs.db
+*.swp
+.idea/
+.vscode/
