@@ -15,7 +15,7 @@ bodies**. The defining split between members is **wheel-vs-gripper limb-ends**
 
 ## Koala V1 — the first member
 
-A **self-balancing, wheel-footed, ground-based** companion, koala-shaped (~40-50 cm tall - a 'big toy' *smaller than a toddler*; DEC-15), printable in
+A **self-balancing, knee-wheeled, ground-based** companion, koala-shaped (~40-50 cm tall - a 'big toy' *smaller than a toddler*; DEC-15), printable in
 **PETG** with **every part <= 200x200 mm** (designing to the commonest bed
 maximises who can build it, even though the reference printer is 220 mm).
 

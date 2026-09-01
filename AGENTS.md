@@ -20,7 +20,7 @@ gaps; and none of the other three count if the content is wrong.
 ## What this project is
 
 An open-source family of small, printable, affordable companion robots. The first
-is **Koala V1** — a self-balancing, wheel-footed, gesturing companion. Full intent
+is **Koala V1** — a self-balancing, knee-wheeled, gesturing companion. Full intent
 and morphology: [`docs/concept.md`](docs/concept.md).
 
 ## Where things live

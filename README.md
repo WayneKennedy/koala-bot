@@ -10,7 +10,7 @@ record**. See [`docs/roadmap.md`](docs/roadmap.md) for direction and
 
 ## What it is
 
-The first family member, **Koala (V1)**, is a **self-balancing, wheel-footed
+The first family member, **Koala (V1)**, is a **self-balancing, knee-wheeled
 companion** roughly the size and shape of a koala, printable in **PETG on a
 200×200 mm bed**. It sits between *locomotion showpiece* and *desk companion*:
 - rolls and balances on two knee-wheels (rear legs);

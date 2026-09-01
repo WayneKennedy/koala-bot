@@ -1,5 +1,6 @@
 # Build / CAD / slicer artefacts
-*.stl.gcode
+*.stl
+*.gcode
 /build/
 /out/
 __pycache__/

@@ -25,5 +25,5 @@ resolved enough to start CAD.
 ## Phase 3 - the Family
 - **Climber sibling** - all-gripper limbs; winch / clutch / passive-latch hybrid
   actuation; front-arm winch-haul -> four-limb climb.
-- **Swappable limb-ends** - common wrist/ankle mount: wheel-foot <-> gripper.
+- **Swappable limb-ends** - common wrist/ankle mount: wheel <-> gripper.
 - Additional bodies on the shared brain.
