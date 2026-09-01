@@ -37,9 +37,25 @@ expression to **screen/OLED "eyes"** rather than eye-servos where possible.
 ## Power
 
 - Single **~12 V rail (3S LiPo)** feeds both the 12V motors and the 12V servos
-  (unified - no separate 7.4V servo buck).
+  (unified - no separate 7.4V servo buck). **3S only**: a full 3S is 12.6 V (within the
+  STS3215 12V rating); a 4S (16.8 V) would destroy the servos.
 - **5 V buck** for the Pi 5, sized generously; the Pi 5 is power-hungry and brown-outs
   are a known failure mode. Keep motor/servo current off the Pi rail.
+
+### Power integrity (lesson banked from an InMoov build; DEC-20)
+
+A fully-loaded servo/motor robot is a spiky, inductive load. Bench PSUs have slow transient
+response and, on a shared rail, dump that noise onto the logic - causing brownouts, servo
+jitter, MCU/IMU resets, and I2C corruption. This was a real part of why the earlier InMoov
+build stalled. Rules:
+- **Prototype from a stiff, low-impedance source** - a LiPo pack, not a bench PSU (it's also
+  the eventual onboard power, so no bench->battery surprises).
+- **Isolate the logic rail** - MCU/Pi/IMU on their own regulator with local decoupling;
+  never share the servo/motor feed points.
+- **Bulk capacitance** (~1000-2200 uF) across the servo/motor bus to absorb transients and
+  tame lead inductance.
+- **Fuse the main pack lead** - LiPos deliver enormous fault current; pair with the
+  child-safe enclosure (OQ-10).
 
 ## Compute placement
 

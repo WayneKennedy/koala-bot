@@ -60,3 +60,7 @@ Committed decisions with rationale. Unresolved items live in
   wheels + Pololu 6 mm universal hubs (matched set for the 37D 6 mm D-shaft), Adafruit BNO085
   IMU (fusion, I2C), TB9051FTG driver, 2x 37D motors, Teensy 4.0. **Wheel diameter = 80 mm is
   a fixed control constant** (odometry + balance). Full BOM in [`sourcing.md`](sourcing.md).
+- **DEC-20 - Power integrity is first-class (banked from InMoov).** Prototype from a stiff
+  LiPo (not a bench PSU); isolate the logic rail from the servo/motor rail; bulk caps on the
+  servo bus; **3S only** (4S would exceed the 12V servo rating); fuse the pack. Detail in
+  [`architecture.md`](architecture.md) "Power integrity".
