@@ -47,14 +47,32 @@ def render(mesh: trimesh.Trimesh, path: pathlib.Path, title: str):
     plt.close(fig)
 
 
+def prune(current: set[str]) -> list[str]:
+    """Delete outputs for parts that no longer exist under that name.
+
+    A renamed part otherwise leaves its old STL sitting beside the new one,
+    and a stale file slices just as happily as a current one.
+    """
+    keep = current | {"assembly"}
+    removed = []
+    for folder, ext in ((STL, ".stl"), (REN, ".png")):
+        for f in folder.glob(f"*{ext}"):
+            if f.stem not in keep:
+                f.unlink()
+                removed.append(f.name)
+    return removed
+
+
 def main():
     name_filter = sys.argv[1] if len(sys.argv) > 1 else ""
     STL.mkdir(parents=True, exist_ok=True)
     REN.mkdir(parents=True, exist_ok=True)
     failures, lines = [], []
 
+    built = []
     for builder in all_builders():
         spec = builder()
+        built.append(spec["name"])
         if name_filter and name_filter not in spec["name"]:
             continue
         name, part = spec["name"], spec["part"]
@@ -82,6 +100,11 @@ def main():
         lines.append(line + "\n    " + spec["notes"])
         if not ok:
             failures.append(name)
+
+    orphans = prune(set(built))
+    if orphans:
+        print(f"\npruned stale output for renamed/removed parts: "
+              f"{', '.join(sorted(orphans))}")
 
     (ROOT / "build" / "manifest.txt").write_text("\n".join(lines) + "\n")
     if failures:
