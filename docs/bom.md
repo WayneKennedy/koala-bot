@@ -28,17 +28,33 @@ and filament are **not yet ordered**; nothing is printed yet.
 
 Of the STS3215s, the **lower body uses 4**: 2 hip-roll + 2 hip-pitch.
 
-## Bought — fasteners & consumables *(NOT yet ordered, ~£12–18 + filament)*
+## Bought — fasteners & consumables *(NOT yet ordered, ~£15–25 + filament)*
 
-| Part | Qty | Role |
-|------|-----|------|
-| M3 brass heat-set inserts (M3 x 5.7) | ~30 | every DEC-23 seam |
-| M3 socket screws 8 / 12 / 16 mm | ~30 | seams, brackets, tray |
-| M3 screws 50 mm | 4 | through the hip brackets' servo tabs |
-| M3 standoffs 10 mm (M/F) | 4 | pelvis deck → electronics tray |
-| M2.5 screws 6 mm | ~16 | servo horn drive plates |
-| Soldering-iron insert tip | 1 | setting heat-set inserts |
-| PETG filament, 1 kg | 1 | see printed total below |
+Counts are **derived from the current CAD** (v1 lower body), not estimated —
+each row names where its quantity comes from. Order spares: these are pennies
+each and a missing M3×55 stops an assembly dead.
+
+| Part | Need | Buy | Role — where the count comes from |
+|------|------|-----|-----------------------------------|
+| M3 heat-set inserts, **5.7 mm long × 4.6 mm OD** | 20 | 50–100 | 4 pelvis deck + 8 hip-bracket flanges + 8 thigh seams |
+| M3 socket screws 8 mm | 8 | assortment | 4 tray→standoff + 4 driver shield into printed standoffs |
+| M3 socket screws 12 mm | 8 | assortment | pelvis deck → hip-bracket flange inserts (4 per side) |
+| M3 socket screws 16 mm | 8 | assortment | motor clamp → thigh seam inserts (4 per leg) |
+| **M3 socket screws 55 mm** | 4 | 10 | through the hip brackets' end walls **and the servo's rear tabs** — the span is 47.2 mm, so 50 mm is too short for a nyloc |
+| M3 nyloc nuts | 4 | assortment | far side of those tab screws |
+| M3 standoffs 10 mm, male/female | 4 | 4–10 | pelvis deck → electronics tray, sets the wiring gap |
+| M2.5 socket screws 6 mm | 16 | 20 | servo horn drive plates (4 per driven joint × 4 joints) — **check the servo box first**, Feetech usually includes horn screws |
+| Soldering-iron insert tip | 1 | 1 | setting the heat-set inserts |
+| PETG filament, 1 kg | 1 | 1 | 355 g for the lower body — see the printed total below |
+
+**Insert geometry is a design constant.** `INSERT_M3_DIA` / `INSERT_M3_LEN` in
+`params.py` are written to the common **5.7 × 4.6 mm** M3 insert (Ruthex and
+equivalents). A different insert profile means re-deriving those constants and
+reprinting `coupon_seam` — so match the geometry rather than the brand.
+
+A mixed M3 screw/nut/washer assortment box covers the 8/12/16 mm rows and the
+nyloc nuts in one purchase; the M3×55 almost never appears in assortments and
+needs buying separately.
 
 Bench power for bring-up (12 V source) is still outstanding — a 3S LiPo is the
 DEC-20 answer, not a bench PSU.
