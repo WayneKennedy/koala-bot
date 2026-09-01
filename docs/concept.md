@@ -52,7 +52,8 @@ Closest prior art: **Swiss-Mile / ANYmal-on-wheels** ([`references.md`](referenc
    only where body weight and balance flow through (limbs). Head/ears/fingers -> micro
    servos; drive -> geared DC. Exploit passive dynamics where possible.
 3. **Every part <= 200x200 mm.** Segment large structures into printable modules; hide
-   seams under paneling.
+   seams under paneling. Seams are *designed* screw-joints derived from one master model,
+   and the limit is enforced by an automated check (DEC-23).
 4. **Body-as-source-code.** Parametric code-CAD (`build123d` / `CadQuery`) so `bed_size`
    and `scale` are parameters, geometry lives in-repo, and it can export URDF.
 5. **Finish V1 end-to-end before the family** — design -> print -> BOM -> firmware ->

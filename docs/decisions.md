@@ -76,3 +76,11 @@ Committed decisions with rationale. Unresolved items live in
   (metal case, 4.5 kg.cm, magnetic feedback, STS protocol - one software stack with the limbs,
   but 6V, so on its own 6V bus segment via a second Teensy UART). SCS0009 was the cheaper,
   different-protocol alternative. Drive/balance base (DEC-19) ordered from Pi Hut the same day.
+- **DEC-23 - Part decomposition: one master model, screw-joined designed seams.** The body
+  is modelled as a single parametric assembly; printable parts are *derived* by explicit
+  split operations. Every seam is a designed joint: registration features (pins/keys) for
+  alignment + **M3 screws into brass heat-set inserts** (captive nuts on thin parts; no
+  printed threads, per DEC-12). Screws loaded in shear, never across layers; seams placed
+  off load paths and hidden under paneling; each part declares its print orientation. The
+  CAD pipeline *enforces* the <= 200x200 mm rule (DEC-09) with an automated bounding-box +
+  assembly-interference check, so a parameter change that breaks printability fails the build.
