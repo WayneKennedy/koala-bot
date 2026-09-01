@@ -15,7 +15,11 @@ BED_Y = 200.0
 BED_Z = 200.0
 
 # Fit constants - calibrate once with the coupon prints on the Ender-5 S1,
-# then they hold for every part (DEC-23).
+# then they hold for every part (DEC-23). These are REFERENCE-PRINTER values:
+# derive them from a coupon *fit* (smallest size that accepts the real part),
+# on a printer whose flow and XY accuracy are already calibrated - otherwise
+# they absorb that machine's error. See hardware/README "Reading a coupon
+# result".
 CLEAR_POCKET = 0.25   # [VERIFY] snug component pocket, per side
 CLEAR_HOLE_M3 = 3.4   # clearance hole dia for M3
 CLEAR_HOLE_M2_5 = 2.9 # clearance hole dia for M2.5

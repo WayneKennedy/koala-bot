@@ -55,6 +55,27 @@ Every `[VERIFY]` constant in `params.py` has a matching test coupon
 (`coupon_*` in the build output). **Print and fit-check the coupons before
 any structural part**, adjust the constants, regenerate. Material: PETG.
 
+### Reading a coupon result
+
+A coupon measures **the design's clearance and the printer's error together**,
+so keep them apart:
+
+- **Fit tests, not measurements.** Each coupon offers a ladder of sizes and the
+  answer is *the smallest that accepts the real part* — an M3 screw, the servo,
+  the 37D's face boss. Judge it by fit, not by calipers against nominal; a
+  caliper reading only tells you your printer's shrinkage, which is not what
+  the constant is for.
+- **Calibrate the printer first.** Flow / extrusion multiplier and XY
+  dimensional accuracy must be settled *before* a coupon result is folded into
+  `params.py`. Otherwise the design silently absorbs one machine's error and
+  every other builder inherits it.
+- **Constants here are reference-printer values** (DEC-14), not universal
+  truths. That is exactly why the coupons ship with the design: another builder
+  re-runs them on their own machine and re-derives their own numbers.
+
+Record what a coupon actually showed — including "no change needed" — so the
+next person knows the constant was tested rather than guessed.
+
 ## Status
 
 Draft **v1** lower body: pelvis deck, hip brackets + hip links (2-DOF hips),
