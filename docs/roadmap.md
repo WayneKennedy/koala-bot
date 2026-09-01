@@ -2,12 +2,14 @@
 
 Vertical-slice first (DEC-11): one complete, documented Koala before the family.
 
-## Phase 0 - Design record *(current)*
-Repo seeded; concept, architecture, decisions captured. **Exit:** open questions
-resolved enough to start CAD.
+## Phase 0 - Design record *(done 2026-09-01)*
+Repo seeded; concept, architecture, decisions captured. **Exit met:** open
+questions resolved enough to start CAD (hardware ordered; OQ-03/04/09/10 remain
+but don't block the lower body).
 
-## Phase 1 - Koala V1 (the vertical slice)
+## Phase 1 - Koala V1 (the vertical slice) *(current)*
 1. **CAD** - parametric body in code-CAD; parts <= 200 mm; export URDF.
+   *Started:* draft v0 lower body (pelvis/hips/thighs/e-tray) in `hardware/`.
 2. **Prototype prints** - structural test of limbs, knee-wheels, neck.
 3. **Electronics bring-up** - MCU balance loop (2-wheel inverted pendulum, IMU +
    encoders); STS3215 bus + IDs; motor driver; power rail.

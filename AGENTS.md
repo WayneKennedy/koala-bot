@@ -45,6 +45,7 @@ and morphology: [`docs/concept.md`](docs/concept.md).
 
 ## Status
 
-**Design phase — nothing built yet.** This repo is the design record. Current
-frontier: resolve the open questions, then begin the V1 vertical slice
-([`docs/roadmap.md`](docs/roadmap.md)).
+**Phase 1 (V1 vertical slice) — CAD started, nothing printed yet.** V1 hardware
+is ordered (DEC-19/22); a draft v0 lower body lives in `hardware/`
+(see its README). Frontier: test-fit coupons -> prototype prints -> electronics
+bring-up ([`docs/roadmap.md`](docs/roadmap.md)).

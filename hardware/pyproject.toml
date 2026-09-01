@@ -1,0 +1,22 @@
+[project]
+name = "koala-hardware"
+version = "0.1.0"
+description = "koala-bot parametric code-CAD (build123d): printable parts, DEC-23 joints, bed-fit checks"
+readme = "README.md"
+authors = [
+    { name = "Wayne Kennedy", email = "wayne@zappfyre.com" }
+]
+requires-python = ">=3.12"
+dependencies = [
+    "build123d>=0.11.1",
+    "matplotlib>=3.11.1",
+    "numpy>=2.5.2",
+    "trimesh>=5.1.0",
+]
+
+[project.scripts]
+koala-hardware = "koala_hardware:main"
+
+[build-system]
+requires = ["uv_build>=0.12.7,<0.13.0"]
+build-backend = "uv_build"

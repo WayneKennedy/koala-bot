@@ -1,8 +1,42 @@
 # hardware/
 
-Parametric CAD and printable parts (planned - Phase 1).
+Parametric code-CAD (DEC-09: `build123d`, body-as-source-code) for the printable
+parts. Licence: `CERN-OHL-S-2.0` (see [`../LICENSING.md`](../LICENSING.md));
+`vendor/` contains third-party Apache-2.0 reference CAD (see its README).
 
-- Authored in **code-CAD** (`build123d` / `CadQuery`, Python) so `bed_size` and `scale`
-  are parameters and geometry is version-controlled and URDF-exportable (DEC-09).
-- **Every part <= 200x200 mm.** Segment large structures; hide seams under paneling.
-- Licence: `CERN-OHL-S-2.0` (see [`../LICENSING.md`](../LICENSING.md)).
+## Layout
+
+| Path | What |
+|------|------|
+| `src/koala_hardware/params.py` | **All dimensions** (mm), tagged by provenance (`[STEP]`/`[VENDOR]`/`[STD]`/`[VERIFY]`) |
+| `src/koala_hardware/fasteners.py` | DEC-23 joint primitives (M3 insert bosses, clearance holes, registration keys) |
+| `src/koala_hardware/servo_iface.py` | STS3215 pocket / horn-drive / retention geometry (measured from vendor STEP) |
+| `src/koala_hardware/parts/` | One module per part: `pelvis`, `hip_link`, `thigh`, `e_tray`, `coupons` |
+| `src/koala_hardware/export.py` | Build pipeline: STL + 4-view renders + **DEC-09 bed-fit check** |
+| `src/koala_hardware/assembly.py` | Posed lower-body render for proportion/collision eyeballing |
+| `vendor/so-arm100/` | SO-ARM100 STEP reference models (Apache-2.0) |
+| `build/` | Outputs (gitignored): `stl/`, `renders/`, `manifest.txt` |
+
+## Build
+
+```sh
+cd hardware
+uv run python -m koala_hardware.export     # all parts -> build/
+uv run python -m koala_hardware.export thigh   # name filter
+uv run python -m koala_hardware.assembly   # assembly sanity render
+```
+
+The export **fails** if any part exceeds 200x200 mm in its declared print
+orientation (DEC-09/DEC-23).
+
+## Print order — coupons first
+
+Every `[VERIFY]` constant in `params.py` has a matching test coupon
+(`coupon_*` in the build output). **Print and fit-check the coupons before
+any structural part**, adjust the constants, regenerate. Material: PETG.
+
+## Status
+
+Draft **v0** lower body: pelvis, hip links (2-DOF hips), thighs
+(motor-in-thigh, wheel-at-knee, DEC-17), electronics tray (first torso
+element). Geometry reviewed in renders; not yet test-printed.

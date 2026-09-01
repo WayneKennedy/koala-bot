@@ -48,3 +48,6 @@ Neck servos are 6V -> a separate 6V bus segment from the 12V limb bus (same STS 
   RP2040 / ESP32 (~£4-8) are cheaper micro-ROS-capable variants; ESP32 adds wireless.
 - **Power:** 3S LiPo (~11.1 V nominal) -> motors + 12 V servos direct; **5 V buck**
   (generous) for the Pi 5.
+- **Fasteners (DEC-23, not yet ordered):** M3 screws (8/12/16 mm), M3 brass
+  heat-set inserts, M2.5 screws (servo horns), insert tip for a soldering iron —
+  ~£10-15 total.
