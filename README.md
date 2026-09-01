@@ -40,5 +40,4 @@ cross-referenced, greppable — and every artefact meets the **4Cs**
 ## License
 
 Tri-licensed — `CERN-OHL-S-2.0` (hardware) · `MIT` (software) · `CC-BY-SA-4.0`
-(docs). See [`LICENSING.md`](LICENSING.md). *(Full CERN-OHL-S / CC-BY-SA texts to
-be added before first public release.)*
+(docs). See [`LICENSING.md`](LICENSING.md). Full licence texts are in `LICENSES/`.

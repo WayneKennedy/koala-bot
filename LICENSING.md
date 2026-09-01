@@ -11,6 +11,4 @@ koala-bot is a mixed hardware / software / documentation project and uses a
 
 Each source file SHOULD carry an `SPDX-License-Identifier:` header naming its licence.
 
-> **Pre-publish TODO:** `LICENSES/CERN-OHL-S-2.0.txt` and `LICENSES/CC-BY-SA-4.0.txt`
-> hold pointers only. Drop in the **official full texts** (from the canonical URLs
-> in those files) before the first public GitHub release. `LICENSES/MIT.txt` is complete.
+All three full licence texts are included verbatim in `LICENSES/` (fetched from their canonical sources).
