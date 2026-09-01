@@ -48,6 +48,9 @@ the better orientations it measured.
   leaves the far tine bridging air.
 - **When two features want different orientations, add a seam** (DEC-23) — the
   thigh splits into `thigh_upper` + `motor_clamp` for exactly this reason.
+- **Cap heads stand proud; never countersink printed plastic** (DEC-25). Reach
+  for `fasteners.m3_counterbore` only where a proud head fouls a mating face or
+  a moving part, and put that face up so the pocket prints as open air.
 
 ## Print order — coupons first
 

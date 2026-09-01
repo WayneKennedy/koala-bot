@@ -30,6 +30,21 @@ def m2_5_clear(depth: float) -> Part:
                     align=(Align.CENTER, Align.CENTER, Align.MAX))
 
 
+def m3_counterbore(depth: float, sink: float = P.CAP_M3_H + 0.2) -> Part:
+    """M3 clearance hole with a flat-bottomed pocket for a cap head (DEC-25).
+
+    Use only where a proud head would foul something; the default is a plain
+    `m3_clear` with the head standing on the surface. The pocket keeps a FLAT
+    bearing face - unlike a countersink, which wedges printed layers apart.
+
+    Cut from Z=0 downward, so the pocket is at the top: print that face UP and
+    the pocket is open air, never a bridge.
+    """
+    return (Cylinder(P.CAP_M3_DIA / 2 + 0.3, sink,
+                     align=(Align.CENTER, Align.CENTER, Align.MAX))
+            + m3_clear(depth))
+
+
 def registration_key(length: float = 8.0, w: float = 4.0, h: float = 2.0,
                      clearance: float = 0.0) -> Part:
     """Rectangular alignment key; male (clearance=0) or female pocket cutter

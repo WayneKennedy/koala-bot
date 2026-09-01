@@ -92,6 +92,18 @@ Committed decisions with rationale. Unresolved items live in
   the area of down-facing surfaces steeper than the 45 deg self-support limit, and **fails the
   build** on either (bed < 300 mm2 = standing on pinpoints; overhang > 800 mm2 = real support).
   It also ranks the principal orientations, so orientation is measured rather than guessed.
+- **DEC-25 - Socket cap heads, standing proud by default; no countersinks in plastic.**
+  Three reasons. **Countersunk heads are a wedge**: the cone bears against the layer
+  lines and, under load or over-tightening, splits or creeps the print apart - a flat
+  seat spreads the same load across a face. **Cap heads take more torque** (full hex
+  engagement, no cam-out) which matters when a joint is opened repeatedly during
+  bring-up. **A proud head costs nothing** on an internal joint: 3 mm of clearance is
+  free where nothing mates or sweeps. Counterbore (`fasteners.m3_counterbore`, flat
+  pocket - never a cone) **only** where a proud head would foul a mating face or a
+  moving part, and orient that face upward so the pocket prints as open air rather
+  than a bridge. Heads on **exposed outer surfaces** must be recessed or covered by
+  paneling, per the child-safety principle (concept.md 7; OQ-10) - proud fasteners on
+  a surface a child touches are a snag point, and that is where the exception bites.
   Design consequences, learned by failing them: **features on one face only** (a plate with
   bosses up *and* structure down cannot print - split it, DEC-23); **no closed cavity floors**
   (they become bridged ceilings when flipped); **a fork prints axis-horizontal** so both tines

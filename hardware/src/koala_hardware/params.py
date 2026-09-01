@@ -25,6 +25,8 @@ CLEAR_HOLE_M3 = 3.4   # clearance hole dia for M3
 CLEAR_HOLE_M2_5 = 2.9 # clearance hole dia for M2.5
 INSERT_M3_DIA = 4.0   # [VERIFY] M3 brass heat-set: nominal boss hole
 INSERT_M3_LEN = 5.7
+CAP_M3_DIA = 5.5      # [STD] M3 socket cap head across the flats' circle
+CAP_M3_H = 3.0        # [STD] cap head height - what stands proud (DEC-25)
 WALL = 3.0            # default structural wall
 PLATE = 5.0           # default structural plate thickness
 
