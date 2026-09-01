@@ -2,9 +2,6 @@
 
 Unresolved. Resolve -> move to [`decisions.md`](decisions.md).
 
-- **OQ-02 - Rear knee.** Fixed strut vs 1-DOF, and *how the wheel engages* for smooth
-  terrain (fold the knee to drop/lift the wheel -> needs a knee DOF; or wheels always
-  down and the hip lifts them -> knee can be fixed).
 - **OQ-03 - Torso platform's 3 DOF.** pitch + roll + **yaw** (twist, very lifelike) vs
   pitch + roll + **heave** (breathing bob). Can't have all four from 3 actuators.
 - **OQ-04 - Head eyes & mass.** Screen/OLED eyes (light, expressive) vs mechanical eye

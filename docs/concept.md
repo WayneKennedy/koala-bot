@@ -25,8 +25,8 @@ maximises who can build it, even though the reference printer is 220 mm).
 |---------|-----|----------|-------|
 | Front limbs x2 (arms *and* forelegs) | 3 each | STS3215 bus servo | shoulder pitch + roll + elbow; gesture + balance-assist; grippers optional |
 | Rear leg hips x2 | 2 each | STS3215 bus servo | **active in V1** — provide *lean-into-turns* while the torso is rigid |
-| Rear feet x2 | - | 12V geared DC + encoder | **wheel-feet**: drive + balance |
-| Rear knees x2 | 0 or 1 | STS3215 if 1-DOF | **open**: fixed strut vs 1-DOF (wheel-engage) |
+| Rear thigh + knee-wheel x2 | - | 12V geared DC + encoder (in thigh) | drive **wheel at the outer knee**, constant ground contact; leg ends here in V1 |
+| Rear knee (expansion iface) x2 | 0 (V1) | future STS3215 | designed to accept a lower leg + foot later; **deferred, gated on need** (DEC-17) |
 | Head / neck | 3 | micro servo + CF pushrod | **3-RPS parallel** (pitch/roll/heave); *yaw delegated to the base* |
 | Torso | 0 (V1) | - | **rigid strut** in V1; interfaces pre-designed for a single 3-DOF platform later |
 
@@ -34,7 +34,7 @@ V1 actuator count: ~**10-12 STS3215** (limbs) + **3 micro** (head) + **2 DC** (d
 
 ### Locomotion
 
-- **Roll / balance:** dynamic two-wheel (rear wheel-feet) inverted pendulum; mass
+- **Roll / balance:** dynamic two-wheel (rear knee-wheels) inverted pendulum; mass
   carried high (koala posture) makes a forgiving pendulum. Yaw (turn to look) is
   done by the base spinning in place.
 - **Lean:** 2-DOF leg hips bank into turns (V1); the torso platform adds torso lean

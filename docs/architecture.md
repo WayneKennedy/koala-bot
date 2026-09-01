@@ -28,7 +28,7 @@ output closes on the MCU; the Pi only sends setpoints and reads telemetry.
 |-------------|----------|-----|
 | Limbs (hip, knee, shoulder, elbow) | Feetech **STS3215** 12V bus servo (~30 kg.cm, feedback) | load-bearing; feedback for coordinated/balance motion; one serial bus |
 | Head / neck (3-RPS) | **micro servo** (MG90S-class or small Feetech SCS bus) + CF pushrods | light load; keep mass off the top of the pendulum |
-| Drive wheel-feet | **12V geared DC** (37D-class) + encoder | continuous rotation + torque |
+| Drive knee-wheels | **12V geared DC** (37D-class) + encoder | continuous rotation + torque |
 | *(climber, later)* grippers / winch / clutch | mixed (see backlog) | passive-latch hang, ballistic swing, winch haul |
 
 Head mass is a hard budget (< ~250-300 g) so micro servos suffice; offload eye

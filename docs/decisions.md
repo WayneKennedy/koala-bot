@@ -21,7 +21,7 @@ Committed decisions with rationale. Unresolved items live in
   Power integrity is treated as first-class.
 - **DEC-07 - V1 morphology:** front limbs 3-DOF x2 (dual-purpose arms/forelegs); rear leg
   **hips 2-DOF x2, active in V1** (lean-into-turns while the torso is rigid); rear
-  **wheel-feet** (2x DC); **3-RPS head** (3 micro servos + CF pushrods) with **yaw
+  **knee-wheels** (2x DC); **3-RPS head** (3 micro servos + CF pushrods) with **yaw
   delegated to the mobile base**.
 - **DEC-08 - Torso: a single 3-DOF parallel platform** (not two stacked, not 6-DOF). Cuts
   actuators 6->3 (cost + mass, and mass sits high on the pendulum). **Rigid struts in V1**;
@@ -48,3 +48,9 @@ Committed decisions with rationale. Unresolved items live in
 - **DEC-16 - Motor driver: Pololu Dual TB9051FTG** (resolves OQ-07). At the ~1.5-3 kg mass
   from DEC-15, its 2.6 A cont / 5 A peak per channel is comfortable and the current-sense
   output is a bonus. Wired to the Teensy as a breakout (form factor moot; soldering fine).
+- **DEC-17 - Rear leg architecture** (resolves OQ-02). 2-DOF hip-to-pelvis; the 12V drive
+  motor sits **in the thigh** with the **wheel at the outer knee**, in constant ground
+  contact. The V1 leg **ends at the knee** (no shin/foot). The knee is designed as an
+  **expansion interface** to later accept a lower leg + foot + servo - but this is
+  **deferred and gated on need**: pure wheeled locomotion may prove sufficient, weighed
+  against the complexity of an articulated foot. So V2 walking is *conditional, not assumed*.

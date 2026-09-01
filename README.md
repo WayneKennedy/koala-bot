@@ -13,7 +13,7 @@ record**. See [`docs/roadmap.md`](docs/roadmap.md) for direction and
 The first family member, **Koala (V1)**, is a **self-balancing, wheel-footed
 companion** roughly the size and shape of a koala, printable in **PETG on a
 200×200 mm bed**. It sits between *locomotion showpiece* and *desk companion*:
-- rolls and balances on two wheel-feet (rear legs);
+- rolls and balances on two knee-wheels (rear legs);
 - leans into turns via 2-DOF leg hips;
 - gestures with 3-DOF dual-purpose front limbs (arms *and* forelegs);
 - looks at you with a 3-RPS parallel neck (yaw delegated to the mobile base).

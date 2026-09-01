@@ -19,7 +19,7 @@ SO-ARM100 kits). Order **one voltage** (12 V) across all servos.
 
 ## Drive motors - The Pi Hut (confirmed UK stock)
 - **Metal DC Geared Motor w/Encoder - 12V 122RPM 38 kg.cm** (37D class) x2 - the drive
-  wheel-feet. N20+encoder is too weak for the main drive (fine for small joints).
+  knee-wheels. N20+encoder is too weak for the main drive (fine for small joints).
 
 ## Motor driver
 - **Pololu Dual TB9051FTG** - 4.5-28 V, **2.6 A cont / 5 A peak per channel**, current

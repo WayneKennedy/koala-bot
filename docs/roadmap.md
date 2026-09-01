@@ -18,7 +18,8 @@ resolved enough to start CAD.
 
 ## Phase 2 - Koala V1.x upgrades
 - Activate the **3-DOF torso platform** (drop actuators into the pre-built interfaces).
-- **Leg articulation** for walking gait; **wheel-engage** mechanism (knee).
+- **Optional walking** (gated on need - DEC-17): add a lower leg + foot + knee servo
+  *if* pure wheeled locomotion proves insufficient. Not assumed.
 - Optional **animatronic ears**; screen-eyes polish.
 
 ## Phase 3 - the Family
