@@ -36,17 +36,14 @@ def build() -> dict:
                 ZIP_SLOT[0], ZIP_SLOT[1], tt + 0.2,
                 align=(Align.CENTER, Align.CENTER, Align.MAX))
 
-    # corner screw-downs into the pelvis bosses + registration key pockets
+    # corner screw-downs: M3 through the tray into the standoffs below
     for (cx, cy) in TRAY_BOSS_XY:
         part -= Pos(cx, cy, tt + 0.1) * F.m3_clear(tt + 0.2)
-    for ky in (40, -40):
-        part -= Pos(0, ky, P.CLEAR_POCKET) * Rot(X=180) * F.registration_key(
-            clearance=P.CLEAR_POCKET)
 
     return {
         "name": "e_tray",
         "part": part,
         "orientation": Rot(),  # prints as-is, flat
-        "notes": "Wire pass-throughs and the IMU hard-mount come after "
-                 "BNO085 hole positions are verified against the board.",
+        "notes": "Sits on M3 standoffs above the pelvis. IMU hard-mount "
+                 "after BNO085 hole positions are verified.",
     }

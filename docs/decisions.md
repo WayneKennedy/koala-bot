@@ -84,3 +84,14 @@ Committed decisions with rationale. Unresolved items live in
   off load paths and hidden under paneling; each part declares its print orientation. The
   CAD pipeline *enforces* the <= 200x200 mm rule (DEC-09) with an automated bounding-box +
   assembly-interference check, so a parameter change that breaks printability fails the build.
+- **DEC-24 - Every part prints support-free, and the build proves it.** Bed *fit* is not
+  printability: a part is only done when it has a declared orientation needing no support.
+  Enforced by `hardware/.../printability.py`, which measures, per part, bed-contact area and
+  the area of down-facing surfaces steeper than the 45 deg self-support limit, and **fails the
+  build** on either (bed < 300 mm2 = standing on pinpoints; overhang > 800 mm2 = real support).
+  It also ranks the principal orientations, so orientation is measured rather than guessed.
+  Design consequences, learned by failing them: **features on one face only** (a plate with
+  bosses up *and* structure down cannot print - split it, DEC-23); **no closed cavity floors**
+  (they become bridged ceilings when flipped); **a fork prints axis-horizontal** so both tines
+  stand, never axis-vertical with the far tine bridging air; and where two features disagree
+  (fork + cross-axis motor tube) **split at a seam** rather than accepting support.

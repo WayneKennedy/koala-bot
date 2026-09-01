@@ -10,6 +10,19 @@ from . import params as P
 from . import fasteners as F
 
 
+def on_axis(*rot) -> Pos:
+    """Compose a servo placement whose OUTPUT AXIS lands on the local origin.
+
+    The servo's output axis is offset SERVO_AXIS_X from its body centre, so a
+    bare rotation leaves the axis 12.5 mm off where you meant it. Always place
+    servos with this helper: `on_axis(Rot(Y=90))` etc.
+    """
+    tf = Pos(0, 0, 0)
+    for r in rot:
+        tf = tf * r
+    return tf * Pos(-P.SERVO_AXIS_X, 0, 0)
+
+
 def servo_envelope(clearance: float = P.CLEAR_POCKET) -> Part:
     """Simplified servo keep-out solid (body + tabs + horn/idler cylinders).
     Subtract from a printed part to make a cradle pocket."""

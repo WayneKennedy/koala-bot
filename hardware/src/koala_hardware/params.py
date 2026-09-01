@@ -66,9 +66,18 @@ UNO_HOLES = [(13.97, 2.54), (15.24, 50.8),
              (66.04, 17.78), (66.04, 45.72)]     # [STD]
 TEENSY_BOARD = (35.56, 17.78)                    # [STD] no mounting holes
 BNO085_BOARD = (25.4, 19.5)                      # [VERIFY] Adafruit 4754
-STANDOFF_H = 5.0
+STANDOFF_H = 5.0        # printed standoffs under the driver shield
+TRAY_GAP = 10.0         # bought M3 standoffs, pelvis top -> tray underside
 
 # --- Assembly layout (v0 draft) ----------------------------------------------
-TRACK_HALF = 66.0       # pelvis centre -> wheel mid-plane (ROLL_Y 33 + 33)
+TRACK_HALF = 66.0       # pelvis centre -> wheel mid-plane (HIP_ROLL_Y + 33)
 THIGH_DROP = 120.0      # hip-pitch axis -> wheel axis
 PELVIS_PLATE = (150.0, 100.0, PLATE)
+HIP_ROLL_Y = 33.0       # pelvis centre -> hip-roll axis (Y)
+HIP_ROLL_DROP = 50.0    # pelvis top -> hip-roll axis (Z); clears SERVO_ABOVE
+HIP_PITCH_DROP = 60.0   # hip-roll axis -> hip-pitch axis
+
+# Servo extents measured from its OUTPUT AXIS (not its body centre): the axis
+# is offset SERVO_AXIS_X from centre, so the body reaches much further one way.
+SERVO_ABOVE = SERVO_AXIS_X + SERVO_L / 2   # 35.2 - axis to far (tab) end
+SERVO_BELOW = SERVO_L / 2 - SERVO_AXIS_X   # 10.2 - axis to output end

@@ -16,6 +16,7 @@ import numpy as np
 import trimesh
 from build123d import export_stl
 from . import params as P
+from . import printability as PR
 from .parts import all_builders
 
 ROOT = pathlib.Path(__file__).resolve().parents[2]
@@ -65,18 +66,26 @@ def main():
         export_stl(oriented, str(stl_path))
         mesh = trimesh.load(stl_path)
         render(mesh, REN / f"{name}.png", name)
-        status = "OK " if fits else "FAIL"
-        line = (f"[{status}] {name:24s} {size[0]:6.1f} x {size[1]:6.1f} x "
-                f"{size[2]:6.1f} mm  vol {mesh.volume / 1000:7.1f} cm3  "
-                f"watertight={mesh.is_watertight}")
+        printable, verdict, m = PR.check(mesh)
+        ok = fits and printable
+        status = "OK  " if ok else "FAIL"
+        line = (f"[{status}] {name:22s} {size[0]:6.1f} x {size[1]:6.1f} x "
+                f"{size[2]:6.1f} mm  {mesh.volume / 1000:6.1f} cm3  "
+                f"bed {m['bed_area']:7.0f}  overhang {m['overhang_area']:7.0f}"
+                f"  {'' if fits else 'EXCEEDS BED; '}{verdict}")
         print(line)
+        if not printable:
+            alts = ", ".join(f"{n}(oh {o:.0f}, bed {b:.0f})"
+                             for n, o, b in PR.best_orientations(mesh))
+            print(f"         better orientations: {alts}")
+            line += f"\n    better orientations: {alts}"
         lines.append(line + "\n    " + spec["notes"])
-        if not fits:
+        if not ok:
             failures.append(name)
 
     (ROOT / "build" / "manifest.txt").write_text("\n".join(lines) + "\n")
     if failures:
-        print(f"\nBED-FIT FAILURES (DEC-09): {failures}")
+        print(f"\nFAILURES (DEC-09 bed fit / DEC-24 support-free): {failures}")
         sys.exit(1)
 
 
