@@ -8,7 +8,7 @@ resolved enough to start CAD.
 
 ## Phase 1 - Koala V1 (the vertical slice)
 1. **CAD** - parametric body in code-CAD; parts <= 200 mm; export URDF.
-2. **Prototype prints** - structural test of limbs, wheel-feet, neck.
+2. **Prototype prints** - structural test of limbs, knee-wheels, neck.
 3. **Electronics bring-up** - MCU balance loop (2-wheel inverted pendulum, IMU +
    encoders); STS3215 bus + IDs; motor driver; power rail.
 4. **Brain** - Pi 5 + ROS2; micro-ROS bridge; vision (camera-eyes); LLM personality.
