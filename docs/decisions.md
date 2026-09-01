@@ -69,4 +69,10 @@ Committed decisions with rationale. Unresolved items live in
   kits (servos + metal brackets + FE-URT-1) drop straight in and we inherit the LeRobot
   software / community ecosystem. Body and personality stay custom; the joint skeleton
   borrows a proven, cheap, supported standard - and it makes the AliExpress SO-ARM100 kit
-  brackets useful rather than spare (see [`sourcing.md`](sourcing.md)).
+  brackets useful rather than spare (see [`sourcing.md`](sourcing.md)). **Brackets are printed** - the SO-ARM100 servo/horn geometry is built into each printed limb part (from the open SO-ARM100 CAD); one metal bracket set is kept only as a dimensional reference. Go metal on a joint only if it flexes in testing (unlikely at ~2 kg).
+- **DEC-22 - Servo sourcing & neck actuator confirmed** (resolves OQ-06). Both orders placed
+  2026-09-01. **Limbs:** 12x Feetech STS3215 12V 30 kg from RCmall (AliExpress), 2x 6-pack
+  (~£17.3/servo landed), FE-URT-1 setup adapter included. **Neck:** 4x Feetech STS3032M
+  (metal case, 4.5 kg.cm, magnetic feedback, STS protocol - one software stack with the limbs,
+  but 6V, so on its own 6V bus segment via a second Teensy UART). SCS0009 was the cheaper,
+  different-protocol alternative. Drive/balance base (DEC-19) ordered from Pi Hut the same day.

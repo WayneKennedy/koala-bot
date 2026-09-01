@@ -27,7 +27,7 @@ output closes on the MCU; the Pi only sends setpoints and reads telemetry.
 | Joint group | Actuator | Why |
 |-------------|----------|-----|
 | Limbs (hip, knee, shoulder, elbow) | Feetech **STS3215** 12V bus servo (~30 kg.cm, feedback) | load-bearing; feedback for coordinated/balance motion; one serial bus |
-| Head / neck (3-RPS) | **micro servo** (MG90S-class or small Feetech SCS bus) + CF pushrods | light load; keep mass off the top of the pendulum |
+| Head / neck (3-RPS) | **Feetech STS3032M** (6V, 4.5 kg.cm, STS-protocol bus, feedback) + CF pushrods | small feedback servo on its own 6V bus; servos mount at the shoulder girdle, head stays light |
 | Drive knee-wheels | **12V geared DC** (37D-class) + encoder | continuous rotation + torque |
 | *(climber, later)* grippers / winch / clutch | mixed (see backlog) | passive-latch hang, ballistic swing, winch haul |
 

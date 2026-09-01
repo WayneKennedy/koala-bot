@@ -5,7 +5,7 @@ value, excl. shipping) decides *how* - under it the seller charges VAT at checko
 fee); over it the courier collects VAT + a ~£8-12 handling fee. Keeping a China order
 under ~£135 of goods avoids the fee.
 
-## Confirmed order - drive/balance base (Pi Hut, ~£159.50 inc VAT)
+## Confirmed order - drive/balance base (Pi Hut, ~£159.50 inc VAT) [PURCHASED 2026-09-01]
 
 The self-balancing base subsystem (limb/head servos are a separate import order):
 
@@ -21,6 +21,16 @@ The self-balancing base subsystem (limb/head servos are a separate import order)
 
 Not in this order (bench-power for bring-up): a **12 V source** (bench PSU or 3S LiPo);
 optional STEMMA QT cable for the BNO085.
+
+## Confirmed order - servos (RCmall on AliExpress, ~£302 inc VAT) [PURCHASED 2026-09-01]
+
+| Part | Qty | £ inc VAT | Role |
+|------|-----|-----------|------|
+| Feetech STS3215 12V 30 kg 6-pack (FE-URT-1 included each) | 2 | ~101 ea | 10 limb joints + 2 spare |
+| Feetech STS3032M 6V 4.5 kg metal-case 4-pack (DEC-22) | 1 | 93.19 | 3 neck (3-RPS) + 1 spare |
+| STS3215 metal bracket set | 1 | 7.14 | dimensional reference - **brackets are printed** (DEC-21) |
+
+Neck servos are 6V -> a separate 6V bus segment from the 12V limb bus (same STS protocol).
 
 ## Servos - Feetech STS3215, **12 V / 30 kg.cm** (limbs)
 Genuine sources, landed cost for ~8 (of ~10-12) servos:

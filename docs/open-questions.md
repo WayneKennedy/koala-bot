@@ -6,9 +6,6 @@ Unresolved. Resolve -> move to [`decisions.md`](decisions.md).
   pitch + roll + **heave** (breathing bob). Can't have all four from 3 actuators.
 - **OQ-04 - Head eyes & mass.** Screen/OLED eyes (light, expressive) vs mechanical eye
   servos (mass). Confirm the < ~250-300 g head budget that keeps micro servos viable.
-- **OQ-06 - Servo sourcing.** AliExpress SO-ARM100 kit (servos + brackets + FE-URT-1
-  board, ~£16 landed) vs Seeed genuine (~£25 landed). Voltage settled: **12 V**. See
-  [`sourcing.md`](sourcing.md).
 - **OQ-09 - Swappable limb-ends in V1.** Design the quick-swap wrist/ankle mount into V1,
   or defer to the climber sibling?
 - **OQ-10 - Child-safety spec** (audience 2-5; DEC-15). Resolve during design: pinch-point
