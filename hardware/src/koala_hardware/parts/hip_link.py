@@ -66,10 +66,11 @@ def build() -> dict:
 
     # Roll drive: bolts to the roll servo's horn through the forward plate.
     part -= Pos(x_horn, 0, 0) * Rot(Y=90) * S.drive_hole_cutters(FORK_T)
-    # Idler bore in the aft plate.
-    part -= Pos(x_idler - FORK_T - 0.1, 0, 0) * Rot(Y=90) * Cylinder(
-        P.SERVO_HORN_DIA / 2 + 0.25, FORK_T + 0.2,
-        align=(Align.CENTER, Align.CENTER, Align.MIN))
+    # Idler side: BOLT to it, don't clear it. The idler is a second metal
+    # horn with the same 4-hole square, free-spinning about the output axis.
+    # Bolting both plates makes this a properly supported clevis; a plain bore
+    # here left the joint a cantilever hanging off one horn.
+    part -= Pos(x_idler, 0, 0) * Rot(Y=-90) * S.drive_hole_cutters(FORK_T)
 
     # NO pitch-servo retention yet (OQ-12). Screw cutters were tried here and
     # removed: they cut nothing. The servo's Ø4 case bores land at

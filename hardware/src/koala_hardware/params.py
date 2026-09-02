@@ -92,7 +92,14 @@ SELFTAP_CLEAR = 2.8     # [VERIFY] clearance for the same screw
 SERVO_AXIS_X = 12.5     # [STEP][SPEC-dimensioned] axis offset from body centre
 SERVO_HORN_TOP = 20.2   # [STEP] top face of the fitted metal horn disc
 SERVO_HORN_DIA = 20.0   # [STEP] horn / idler disc - matches assembly photos
-SERVO_IDLER_BOT = -19.4 # [STEP] idler disc bottom = case bottom plane
+SERVO_IDLER_BOT = -19.4 # [VERIFY] idler disc outer face. The idler is a
+                        # SECOND metal horn carrying the SAME 4-hole square,
+                        # free-spinning, there for axial alignment - so a fork
+                        # BOLTS to it rather than clearing it. How far it
+                        # stands proud of the case is NOT measured: the STEP
+                        # models it recessed, servo_envelope() models it 2 mm
+                        # proud, and they cannot both be right. If it stands
+                        # proud, the aft fork plate must move out. OQ-12.
 SERVO_HORN_BOSS_DIA = 9.0   # [STEP] centre boss under the horn - keep clear
 SERVO_HORN_SCREW = "M3x6"   # [SPEC 6-13] the single CENTRE screw fixing the
                             # horn to the 25T spline. Says nothing about the

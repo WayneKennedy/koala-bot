@@ -56,10 +56,9 @@ def build_upper() -> dict:
 
     # Pitch drive: bolts to the pitch servo's horn through the outboard plate.
     part -= Pos(0, y_horn, 0) * Rot(X=-90) * S.drive_hole_cutters(FORK_T)
-    # Idler bore in the inboard plate.
-    part -= Pos(0, y_idler - FORK_T - 0.1, 0) * Rot(X=-90) * Cylinder(
-        P.SERVO_HORN_DIA / 2 + 0.25, FORK_T + 0.2,
-        align=(Align.CENTER, Align.CENTER, Align.MIN))
+    # Idler side: BOLT to it (second metal horn, same 4-hole square, free-
+    # spinning). A plain bore here made the knee a single-sided cantilever.
+    part -= Pos(0, y_idler, 0) * Rot(X=90) * S.drive_hole_cutters(FORK_T)
     # Seam: M3 inserts in the bottom face (screws come up from the clamp).
     for (sx, sy) in SEAM_BOLTS:
         part -= Pos(sx, sy, SEAM_Z - 0.1) * Cylinder(

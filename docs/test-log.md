@@ -41,6 +41,26 @@ turn this session was a swap between those two columns.
 | Retention is **pocket + 4 self-tapping screws**, 2 front + 2 back | [SO-ARM101 assembly video](https://www.youtube.com/watch?v=rVP1XQ0PeM4) | `hip_bracket`'s architecture is right in kind. `hip_link` has none at all |
 | A **wrap-around bracket** is fitted to the **base servo only** | same video, later frames | Optional reinforcement for the highest-load joint — not the standard mount. Koala's **hips are the direct analogue**, so it likely applies there and nowhere else |
 
+### The idler is a second horn, not a bearing surface
+
+From the assembly video: the idler face carries **another metal horn with the
+same 4-hole square**, free-spinning about the output axis, there to give the
+joint axial alignment. Three sources agree once you look: the STEP shows the
+9.9 mm square at **both** Z ends, upstream's bracket carries the pattern on
+**two walls 36.4 mm apart**, and `drive_hole_cutters()`'s own docstring already
+said *"bolts onto the horn (or idler)"*.
+
+**No part used it that way.** `hip_link` and `thigh_upper` both put a plain
+Ø20.5 clearance bore through the aft plate — removing exactly the material that
+should bolt to the idler horn, and leaving every driven joint a **cantilever
+hanging off one horn** where upstream builds a supported clevis. Fixed: both
+forks now bolt 4 × M3 on each plate, 8 per joint.
+
+This sits in the *horn* family, which is settled, so it did not need to wait for
+measurement. What does: **how far the idler horn stands proud of the case.** The
+STEP models it recessed, `servo_envelope()` models it 2 mm proud, and they
+cannot both be right. If it stands proud, the aft fork plate must move outboard.
+
 ### Why the STEP misled us
 
 `STS3215_03a.step` models the servo **with horn and idler fitted**; the Feetech
@@ -64,8 +84,13 @@ The file is not wrong; it depicts a different object. Its author is **unknown**
 4. **Drive-square radius.** 6.93 mm (9.8 square) or 9.8 mm (bolt circle)?
    *Measure: spline centre to one hole.* Also turn the horn and watch whether
    the rear square turns with it.
-5. **Screw sizes** for the four body screws, and **whether a horn is included**
-   in the Waveshare package — the BOM has no line for horns.
+5. **Screw sizes** for the four body screws.
+6. **Idler horn stand-off** — how far the aft disc sits proud of the case face.
+   *Measure: case rear face to idler horn outer face.* The aft fork plate
+   position (`SERVO_IDLER_BOT`) depends on it.
+7. **How many horns are in the box.** Each driven joint needs **two** — drive
+   and idler — so the lower body needs **8**, and Feetech supplies none
+   ([SPEC 11]). The BOM has no line for them.
 
 ## 2026-09-01 — `coupon_ladder` (pre-fix revision)
 
