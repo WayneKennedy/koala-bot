@@ -30,7 +30,12 @@ END_WALL_X = 23.6        # retention walls, outboard of the fork discs
 FORK_CLEAR_R = 27.0      # fork discs sweep to r=FORK_R; walls start above it
 
 FLANGE_TOP = P.HIP_ROLL_DROP - P.PELVIS_PLATE[2]     # 44.0
-BOTTOM = -(P.SERVO_BELOW + FLOOR)                    # -15.2
+# Grip the servo's REAR third only, where its mount bores are, and leave the
+# output end open - upstream's cradle does the same, and the hip_link fork
+# already grips the horn and idler faces down there. Wrapping all 45.4 mm was
+# material spent supporting a part that is supported at the other end anyway.
+SADDLE_BOTTOM = 20.0                                 # [VERIFY] grip depth
+BOTTOM = SADDLE_BOTTOM
 TAB_Z = P.SERVO_AXIS_X - P.SERVO_TAB_X               # 33.2 above the axis
 
 
@@ -51,14 +56,26 @@ def build() -> dict:
         2 * END_WALL_X, 2 * FLANGE_Y, FLANGE_T,
         align=(Align.CENTER, Align.CENTER, Align.MIN))
 
-    # Servo cavity: open fore/aft and downward, closed by the floor.
+    # Servo cavity: open fore/aft and downward - no floor (see FLOOR).
     part -= S.on_axis(Rot(Y=90)) * S.servo_envelope()
 
-    # Retention screws: M3 through both end walls and the servo's rear tabs.
+    # Retention (OQ-12): 4 screws - 2 into the FRONT wall, 2 into the BACK -
+    # matching the SO-ARM101 build. The servo's two Ø4 bores run parallel to
+    # its output axis and open on both end faces.
+    #
+    # The PRINT gets CLEARANCE, not a pilot: the mechanical hold has to be
+    # made against the servo, so a screw that only threads the print achieves
+    # nothing (a 2.5 mm screw in a Ø4 bore has 1.5 mm of slop and just
+    # rattles). Clearance also leaves the better option open - a through-bolt
+    # with a nut on the far side clamps both walls onto the servo's end faces
+    # and threads nothing at all, which suits a load-bearing hip better than
+    # cutting a thread into a PA+GF case that wears with every reassembly.
     for sy in (-P.SERVO_TAB_Y, P.SERVO_TAB_Y):
-        part -= Pos(-END_WALL_X - 1, sy, TAB_Z) * Rot(Y=90) * Cylinder(
-            P.CLEAR_HOLE_M3 / 2, 2 * END_WALL_X + 2,
-            align=(Align.CENTER, Align.CENTER, Align.MIN))
+        for sx in (-1, 1):
+            start = -END_WALL_X - 1 if sx < 0 else END_WALL_X + 1
+            part -= Pos(start, sy, TAB_Z) * Rot(Y=-90 * sx) * Cylinder(
+                P.SELFTAP_CLEAR / 2, (END_WALL_X - SADDLE_X) + 2.5,
+                align=(Align.CENTER, Align.CENTER, Align.MIN))
 
     # Flange inserts (through-holes; screws come down from the pelvis).
     from .pelvis import BRACKET_BOLTS

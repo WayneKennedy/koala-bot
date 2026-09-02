@@ -23,12 +23,12 @@ def build_servo_cradle() -> dict:
 
 
 def build_horn_plate() -> dict:
-    """Bolts to the servo horn: 4x M2.5 + centre clearance. Verifies the
-    drive-square measurement."""
+    """Bolts to the servo horn: 4x M3 + centre clearance. Verifies the
+    drive-square measurement AND that M3x6 is the right screw ([SPEC 6-13])."""
     plate = Box(30, 30, 4, align=(Align.CENTER, Align.CENTER, Align.MIN))
     part = plate - S.drive_hole_cutters(4.0)
     return {"name": "coupon_horn_plate", "part": part,
-            "orientation": Rot(), "notes": "All 4 screws should start without force."}
+            "orientation": Rot(), "notes": "All 4 M3x6 should start without force."}
 
 
 def build_motor_ring() -> dict:

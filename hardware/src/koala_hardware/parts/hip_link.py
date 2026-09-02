@@ -71,11 +71,19 @@ def build() -> dict:
         P.SERVO_HORN_DIA / 2 + 0.25, FORK_T + 0.2,
         align=(Align.CENTER, Align.CENTER, Align.MIN))
 
+    # NO pitch-servo retention yet (OQ-12). Screw cutters were tried here and
+    # removed: they cut nothing. The servo's Ø4 case bores land at
+    # x = +/-SERVO_TAB_Y, z = -PITCH_DROP + (SERVO_AXIS_X - SERVO_TAB_X),
+    # running along Y - but the servo's 43.6 mm axial extent is wider than the
+    # LEG_W = 30 cradle, so at that line there is no material either side to
+    # screw into. Fixing it means widening the cradle, which moves the
+    # assembly. Deliberately left undone until the servo is measured.
+
     return {
         "name": "hip_link",
         "handed": True,
         "part": part,
         "orientation": Rot(),  # stands on the cradle bottom
-        "notes": "Draft v1. Pitch-servo retention screws after the cradle "
-                 "fit coupon. Mirror in Y for the left.",
+        "notes": "Draft v1. NO pitch-servo retention - the cradle is "
+                 "narrower than the servo (OQ-12). Mirror in Y for the left.",
     }

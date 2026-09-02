@@ -46,16 +46,20 @@ def servo_envelope(clearance: float = P.CLEAR_POCKET) -> Part:
 
 
 def drive_hole_cutters(plate_t: float) -> Part:
-    """Cutter for a plate that bolts onto the horn (or idler): 4x M2.5
+    """Cutter for a plate that bolts onto the horn (or idler): 4x M3
     clearance on the DRIVE_SQ square + centre boss clearance. Plate lies on
-    Z=0..plate_t with the drive axis at the local origin."""
+    Z=0..plate_t with the drive axis at the local origin.
+
+    M3, not M2.5: the servo spec item 6-13 gives the output-shaft screw as
+    M3x6, and none are supplied ([SPEC 11] "No Accessories").
+    """
     s = P.SERVO_DRIVE_SQ / 2
     cut = Pos(0, 0, plate_t + 0.1) * Cylinder(
         P.SERVO_HORN_BOSS_DIA / 2 + 0.5, plate_t + 0.2,
         align=(Align.CENTER, Align.CENTER, Align.MAX))
     for sx in (-s, s):
         for sy in (-s, s):
-            cut += Pos(sx, sy, plate_t + 0.1) * F.m2_5_clear(plate_t + 0.2)
+            cut += Pos(sx, sy, plate_t + 0.1) * F.m3_clear(plate_t + 0.2)
     return cut
 
 
