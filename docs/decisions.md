@@ -66,12 +66,19 @@ Committed decisions with rationale. Unresolved items live in
   LiPo (not a bench PSU); isolate the logic rail from the servo/motor rail; bulk caps on the
   servo bus; **3S only** (4S would exceed the 12V servo rating); fuse the pack. Detail in
   [`architecture.md`](architecture.md) "Power integrity".
-- **DEC-21 - Keep servo mounting SO-ARM100 compatible** (resolves OQ-08). The STS3215 limb
-  joints adopt the SO-ARM100 servo + bracket mounting standard, so off-the-shelf SO-ARM100
+- **DEC-21 - Keep servo mounting SO-ARM compatible** (resolves OQ-08). The STS3215 limb
+  joints adopt the Standard Open Arm servo + bracket mounting standard, so off-the-shelf
   kits (servos + metal brackets + FE-URT-1) drop straight in and we inherit the LeRobot
   software / community ecosystem. Body and personality stay custom; the joint skeleton
-  borrows a proven, cheap, supported standard - and it makes the AliExpress SO-ARM100 kit
-  brackets useful rather than spare (see [`sourcing.md`](sourcing.md)). **Brackets are printed** - the SO-ARM100 servo/horn geometry is built into each printed limb part (from the open SO-ARM100 CAD); one metal bracket set is kept only as a dimensional reference. Go metal on a joint only if it flexes in testing (unlikely at ~2 kg).
+  borrows a proven, cheap, supported standard - and it makes the AliExpress kit brackets
+  useful rather than spare (see [`sourcing.md`](sourcing.md)). **Brackets are printed** - the servo/horn geometry is built into each printed limb part (from the open SO-ARM CAD); one metal bracket set is kept only as a dimensional reference. Go metal on a joint only if it flexes in testing (unlikely at ~2 kg).
+  **Track SO-101, not SO-100** (checked 2026-09-02): upstream deprecates SO-100 and directs
+  new builds to SO-101. Both live in the [SO-ARM100 repo](https://github.com/TheRobotStudio/SO-ARM100),
+  which kept its original name - so the repo name is not the revision. The 100->101 changes
+  (wiring routing, assembly, *leader*-arm motors) do not touch the servo itself, so every
+  `[STEP]` constant taken from `STS3215_03a.step` stands. **Unverified:** whether the bracket
+  geometry in `Rotation_Pitch_08i.step` is identical across the two revisions - re-check it
+  against SO-101 CAD before trusting it for a new joint.
 - **DEC-22 - Servo sourcing & neck actuator confirmed** (resolves OQ-06). Both orders placed
   2026-09-01. **Limbs:** 12x Feetech STS3215 12V 30 kg from RCmall (AliExpress), 2x 6-pack
   (~£17.3/servo landed), FE-URT-1 setup adapter included. **Neck:** 4x Feetech STS3032M

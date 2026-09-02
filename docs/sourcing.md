@@ -34,10 +34,15 @@ Neck servos are 6V -> a separate 6V bus segment from the 12V limb bus (same STS 
 
 ## Part notes & alternatives (pre-purchase research, kept for reference)
 
-- **STS3215 (limbs):** chosen route was RCmall/AliExpress (SO-ARM100-style listing,
+- **STS3215 (limbs):** chosen route was RCmall/AliExpress (SO-ARM-style listing,
   ~£17.3 landed). Alternatives: Seeed Studio ~£25 (guaranteed genuine), Amazon UK ~£28
   (instant). One voltage (**12 V**) across all limb servos; the **FE-URT-1** USB
   serial-bus adapter (sets servo IDs) is bundled in many kits.
+  What we bought maps exactly onto the **SO-101 "Pro" follower** spec - 12 V, 1:345 gear
+  ratio, 30 kg.cm - the official upgraded variant, not an off-standard part, which is what
+  makes DEC-21 compatibility concrete rather than assumed. (The SO-101 *leader* arm is 7.4 V
+  with three mixed gear ratios; koala-bot has no leader, so all 12 limb servos are a single
+  uniform part number and share one spares pool.)
 - **Drive motors:** Pi Hut 37D-class 12V 122RPM 38 kg.cm w/encoder (chosen).
   N20+encoder is too weak for the main drive (fine for small joints).
 - **Motor driver:** Pololu Dual TB9051FTG (chosen; DEC-16) - 4.5-28 V, current sense
