@@ -76,9 +76,11 @@ Committed decisions with rationale. Unresolved items live in
   new builds to SO-101. Both live in the [SO-ARM100 repo](https://github.com/TheRobotStudio/SO-ARM100),
   which kept its original name - so the repo name is not the revision. The 100->101 changes
   (wiring routing, assembly, *leader*-arm motors) do not touch the servo itself, so every
-  `[STEP]` constant taken from `STS3215_03a.step` stands. **Unverified:** whether the bracket
-  geometry in `Rotation_Pitch_08i.step` is identical across the two revisions - re-check it
-  against SO-101 CAD before trusting it for a new joint.
+  `[STEP]` constant taken from `STS3215_03a.step` stands - upstream ships no SO-101 servo
+  model precisely because the servo is unchanged. The *bracket* did change (SO-101 renames it
+  and trims 1.7 mm in Y), but nothing in `params.py` derives from it, so V1 geometry is
+  unaffected. Verified against upstream `7629d2a`; measurements in
+  [`../hardware/vendor/so-arm100/README.md`](../hardware/vendor/so-arm100/README.md).
 - **DEC-22 - Servo sourcing & neck actuator confirmed** (resolves OQ-06). Both orders placed
   2026-09-01. **Limbs:** 12x Feetech STS3215 12V 30 kg from RCmall (AliExpress), 2x 6-pack
   (~£17.3/servo landed), FE-URT-1 setup adapter included. **Neck:** 4x Feetech STS3032M
