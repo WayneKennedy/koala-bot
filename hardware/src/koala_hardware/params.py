@@ -147,11 +147,29 @@ TRAY_GAP = 10.0         # bought M3 standoffs, pelvis top -> tray underside
 
 # --- Assembly layout (v0 draft) ----------------------------------------------
 TRACK_HALF = 66.0       # pelvis centre -> wheel mid-plane (HIP_ROLL_Y + 33)
-THIGH_DROP = 120.0      # hip-pitch axis -> wheel axis
+THIGH_DROP = 154.0      # hip-pitch axis -> wheel axis. Absorbs the 34 mm
+                        # the hip gave back, so the stance height is unchanged
+                        # at 270 mm: the leg reads as thigh, not thigh+knee.
 PELVIS_PLATE = (150.0, 100.0, PLATE)
 HIP_ROLL_Y = 33.0       # pelvis centre -> hip-roll axis (Y)
 HIP_ROLL_DROP = 50.0    # pelvis top -> hip-roll axis (Z); clears SERVO_ABOVE
-HIP_PITCH_DROP = 60.0   # hip-roll axis -> hip-pitch axis
+
+# --- compact hip: the two axes sit close, as a hip should -------------------
+# The pitch servo's axis runs along Y, so sliding the servo ALONG Y is free -
+# it does not move the axis at all. Using that, the pitch servo is pointed AFT
+# and slid OUTBOARD, instead of sitting under the roll joint pointing up.
+#
+# The old 60 mm was not a choice: BRACKET_CLEAR_R (24) + SERVO_ABOVE (35.2)
+# = 59.2. The pitch servo was standing on the roll servo's head, which read as
+# a second knee halfway down the thigh rather than as a hip.
+#
+# Pointing it aft, the binding clearance is the roll servo's own body reaching
+# SERVO_BELOW (10.2) under its axis, against the pitch servo's half-WIDTH
+# (12.4) rather than its half-length:  10.2 + 12.4 + 3 margin = 25.6.
+HIP_PITCH_DROP = 26.0   # hip-roll axis -> hip-pitch axis (was 60)
+HIP_PITCH_Y = 22.0      # pitch servo slid outboard along its own axis, so the
+                        # thigh fork straddles the wheel plane (TRACK_HALF)
+                        # instead of reaching out to it. Free in kinematics.
 
 # Servo extents measured from its OUTPUT AXIS (not its body centre): the axis
 # is offset SERVO_AXIS_X from centre, so the body reaches much further one way.

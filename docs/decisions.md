@@ -81,6 +81,25 @@ Committed decisions with rationale. Unresolved items live in
   and trims 1.7 mm in Y), but nothing in `params.py` derives from it, so V1 geometry is
   unaffected. Verified against upstream `7629d2a`; measurements in
   [`../hardware/vendor/so-arm100/README.md`](../hardware/vendor/so-arm100/README.md).
+- **DEC-26 - Compact hip: pitch servo aft and outboard** (supersedes the stacked
+  layout inside DEC-07, not DEC-07 itself). The roll and pitch axes sat **60 mm**
+  apart, which read as a hip *plus a knee halfway down the thigh* rather than as a
+  hip. That gap was never chosen: `BRACKET_CLEAR_R` (24) + `SERVO_ABOVE` (35.2) =
+  59.2 - the pitch servo was standing on the roll servo's head, pointing up.
+  **The fix uses a free degree of freedom.** A servo's output axis runs through
+  its body, so *sliding it along that axis does not move the axis at all*. Point
+  the pitch servo **aft** and slide it **outboard**, and the binding clearance
+  becomes the roll servo's half-body below its axis (10.2) against the pitch
+  servo's half-**width** (12.4) rather than its half-length: **26 mm**.
+  Pattern borrowed from hexapod coxa/femur hips, which sit servos side by side
+  rotated 90 deg rather than stacking them.
+  `THIGH_DROP` absorbs the 34 mm (120 -> 154) so the stance stays 270 mm - the
+  leg now reads as one long thigh. Outboard rather than inboard was chosen so the
+  thigh fork straddles the wheel plane instead of reaching out to it; the cost is
+  ~30 mm more roll moment, small against 30 kg.cm. **Verified by a collision
+  sweep** (`hip_link` + pitch servo against `hip_bracket` + roll servo): clear
+  through +/-30 deg, with the only residual being the fork plates sitting inside
+  the keep-out's padded horn discs, which is where they bolt.
 - **DEC-22 - Servo sourcing & neck actuator confirmed** (resolves OQ-06). Both orders placed
   2026-09-01. **Limbs:** 12x Feetech STS3215 12V 30 kg from RCmall (AliExpress), 2x 6-pack
   (~£17.3/servo landed), FE-URT-1 setup adapter included. **Neck:** 4x Feetech STS3032M

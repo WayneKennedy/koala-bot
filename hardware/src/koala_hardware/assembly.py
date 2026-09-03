@@ -46,11 +46,13 @@ def build_scene():
             (Pos(0, y, PITCH_Z) * s(tu), "#c98fd9"),
             (Pos(0, y, WHEEL_Z) * s(mc), "#8fd9c9"),
             (Pos(0, side * P.TRACK_HALF, WHEEL_Z) * wheel, "#555555"),
-            # servo keep-out ghosts
+            # servo keep-out ghosts. The pitch servo lies AFT and OUTBOARD
+            # (params: sliding along its own axis is free), not stacked under
+            # the roll joint - that is what collapses the hip to 26 mm.
             (Pos(0, y, ROLL_Z) * s(S.on_axis(Rot(Y=90)) * S.servo_envelope(0)),
              "#e8d44d"),
-            (Pos(0, y, PITCH_Z) *
-             s(S.on_axis(Rot(Y=90), Rot(X=-90)) * S.servo_envelope(0)), "#e8d44d"),
+            (Pos(0, y, ROLL_Z) * s(Pos(0, P.HIP_PITCH_Y, -P.HIP_PITCH_DROP)
+             * S.on_axis(Rot(X=-90)) * S.servo_envelope(0)), "#e8d44d"),
         ]
     return items
 

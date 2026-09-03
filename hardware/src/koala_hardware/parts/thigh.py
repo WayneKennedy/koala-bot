@@ -25,7 +25,8 @@ FORK_R = 15.0
 FORK_T = 5.0
 HORN_GAP = 0.2
 THICK = 30.0            # slab thickness in X - the thigh's structural depth
-FILL_TOP = -12.0        # full-width fill starts below the servo (bottom -10.2)
+FILL_TOP = -P.SERVO_W / 2 - 2   # fill starts below the servo (half-WIDTH
+                        # now, since the pitch servo lies aft, not upright)
 SEAM_Z = -92.0          # thigh-local; 28 mm above the wheel axis
 SEAM_BOLTS = [(-10.0, -14.0), (10.0, -14.0), (-10.0, 8.0), (10.0, 8.0)]
 
@@ -38,16 +39,22 @@ FLANGE_Z = (18.0, 28.0)                         # wheel-local; top = seam
 
 
 def build_upper() -> dict:
-    y_horn = P.SERVO_HORN_TOP + HORN_GAP        # +20.4 (drive side)
-    y_idler = P.SERVO_IDLER_BOT - HORN_GAP      # -19.6 (idler side)
+    # The pitch servo is slid OUTBOARD by HIP_PITCH_Y (see params: sliding a
+    # servo along its own output axis is free), so the fork follows it out.
+    # The beam still has to reach the motor clamp inboard, so the thigh is a
+    # shallow dogleg: fork outboard at the hip, beam spanning down to the seam.
+    y_horn = P.HIP_PITCH_Y + P.SERVO_HORN_TOP + HORN_GAP
+    y_idler = P.HIP_PITCH_Y + P.SERVO_IDLER_BOT - HORN_GAP
 
     horn_plate = Pos(0, y_horn, 0) * Rot(X=-90) * Cylinder(
         FORK_R, FORK_T, align=(Align.CENTER, Align.CENTER, Align.MIN))
     idler_plate = Pos(0, y_idler, 0) * Rot(X=90) * Cylinder(
         FORK_R, FORK_T, align=(Align.CENTER, Align.CENTER, Align.MIN))
 
-    # Full-width beam from below the servo down to the seam.
-    y0, y1 = y_idler - FORK_T, y_horn + FORK_T
+    # Full-width beam from below the servo down to the seam. It must span both
+    # the fork (outboard) and the motor clamp's seam flange (inboard).
+    y0 = min(y_idler - FORK_T, TUBE_END_Y)
+    y1 = max(y_horn + FORK_T, MOTOR_FACE_Y)
     beam = Pos(0, (y0 + y1) / 2, SEAM_Z) * Box(
         THICK, y1 - y0, FILL_TOP - SEAM_Z,
         align=(Align.CENTER, Align.CENTER, Align.MIN))
