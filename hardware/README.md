@@ -26,7 +26,19 @@ cd hardware
 uv run python -m koala_hardware.export     # all parts -> build/
 uv run python -m koala_hardware.export thigh   # name filter
 uv run python -m koala_hardware.assembly   # assembly sanity render
+uv run python -m koala_hardware.viewer     # interactive 3D viewer on :8017
 ```
+
+`koala_hardware.viewer` rebuilds `build/viewer/scene.json` from the current
+CAD, copies the checked-in `viewer.html` beside it, and serves both on
+`http://localhost:8017`. `--build` regenerates the data without serving,
+`--serve` serves without rebuilding, `--port N` moves it. Any harness can
+refresh the geometry and the browser tab picks it up on reload. It shows the
+posed assembly (printed parts, bought parts, servo keep-out ghosts) and every
+printed part in its declared print orientation. Click a row to isolate a part,
+shift-click to hide it. **The viewer is an eyeball check on proportion and
+packaging only** - `printability.py` and `validation.py` are what actually
+pass or fail a design.
 
 A full run also regenerates the printed-parts table in
 [`../docs/bom.md`](../docs/bom.md) and prunes outputs for renamed parts. Parts

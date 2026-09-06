@@ -25,8 +25,9 @@ GROUND_Z = WHEEL_Z - P.WHEEL_DIA / 2
 
 
 def build_scene():
-    items = [(pelvis.build()["part"], "#8fb4d9"),
-             (Pos(0, 0, P.TRAY_GAP) * e_tray.build()["part"], "#b4d98f")]
+    items = [("pelvis_plate", pelvis.build()["part"], "#8fb4d9"),
+             ("e_tray", Pos(0, 0, P.TRAY_GAP) * e_tray.build()["part"],
+              "#b4d98f")]
 
     br = hip_bracket.build()["part"]
     hl = hip_link.build()["part"]
@@ -49,21 +50,25 @@ def build_scene():
             return solid if side == 1 else mirror(solid, Plane.XZ)
 
         y = side * P.HIP_ROLL_Y
+        sfx = "_right" if side == 1 else "_left"
         items += [
-            (Pos(0, y, ROLL_Z) * s(br), "#d9d08f"),
-            (Pos(0, y, ROLL_Z) * s(hl), "#d9a48f"),
-            (Pos(0, y, PITCH_Z) * s(tu), "#c98fd9"),
-            (Pos(0, y, WHEEL_Z) * s(mc), "#8fd9c9"),
-            (Pos(0, y, WHEEL_Z) * s(motor), "#777777"),
-            (Pos(0, y, WHEEL_Z) * s(shaft), "#aaaaaa"),
-            (Pos(0, y, WHEEL_Z) * s(hub), "#bbbbbb"),
-            (Pos(0, side * P.TRACK_HALF, WHEEL_Z) * wheel, "#555555"),
+            (f"hip_bracket{sfx}", Pos(0, y, ROLL_Z) * s(br), "#d9d08f"),
+            (f"hip_link{sfx}", Pos(0, y, ROLL_Z) * s(hl), "#d9a48f"),
+            (f"thigh_upper{sfx}", Pos(0, y, PITCH_Z) * s(tu), "#c98fd9"),
+            (f"motor_clamp{sfx}", Pos(0, y, WHEEL_Z) * s(mc), "#8fd9c9"),
+            (f"motor{sfx}", Pos(0, y, WHEEL_Z) * s(motor), "#777777"),
+            (f"shaft{sfx}", Pos(0, y, WHEEL_Z) * s(shaft), "#aaaaaa"),
+            (f"hub{sfx}", Pos(0, y, WHEEL_Z) * s(hub), "#bbbbbb"),
+            (f"wheel{sfx}",
+             Pos(0, side * P.TRACK_HALF, WHEEL_Z) * wheel, "#555555"),
             # servo keep-out ghosts. The pitch servo lies AFT and OUTBOARD
             # (params: sliding along its own axis is free), not stacked under
             # the roll joint - that is what collapses the hip to 26 mm.
-            (Pos(0, y, ROLL_Z) * s(S.on_axis(Rot(Y=90)) * S.servo_envelope(0)),
+            (f"keepout_roll_servo{sfx}",
+             Pos(0, y, ROLL_Z) * s(S.on_axis(Rot(Y=90)) * S.servo_envelope(0)),
              "#e8d44d"),
-            (Pos(0, y, ROLL_Z) * s(Pos(0, P.HIP_PITCH_Y, -P.HIP_PITCH_DROP)
+            (f"keepout_pitch_servo{sfx}",
+             Pos(0, y, ROLL_Z) * s(Pos(0, P.HIP_PITCH_Y, -P.HIP_PITCH_DROP)
              * S.on_axis(Rot(X=-90)) * S.servo_envelope(0)), "#e8d44d"),
         ]
     return items
@@ -73,7 +78,7 @@ def main():
     tmp = ROOT / "build" / "_asm"
     tmp.mkdir(parents=True, exist_ok=True)
     meshes = []
-    for i, (solid, colour) in enumerate(build_scene()):
+    for i, (_name, solid, colour) in enumerate(build_scene()):
         p = tmp / f"{i}.stl"
         export_stl(solid, str(p))
         meshes.append((trimesh.load(p), colour))
