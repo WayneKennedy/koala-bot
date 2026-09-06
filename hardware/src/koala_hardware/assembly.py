@@ -34,6 +34,15 @@ def build_scene():
     mc = thigh.build_clamp()["part"]
     wheel = Rot(X=90) * Cylinder(P.WHEEL_DIA / 2, P.WHEEL_W,
                                  align=(Align.CENTER, Align.CENTER, Align.CENTER))
+    motor = (Pos(0, thigh.MOTOR_FACE_Y, 0) * Rot(X=90)
+             * Cylinder(P.MOTOR_DIA / 2, P.MOTOR_BODY_LEN,
+                        align=(Align.CENTER, Align.CENTER, Align.MIN)))
+    shaft = (Pos(0, thigh.MOTOR_FACE_Y, 0) * Rot(X=-90)
+             * Cylinder(P.MOTOR_SHAFT_DIA / 2, P.MOTOR_SHAFT_LEN,
+                        align=(Align.CENTER, Align.CENTER, Align.MIN)))
+    hub = (Pos(0, thigh.MOTOR_FACE_Y + P.HUB_STACK - P.HUB_T, 0) * Rot(X=-90)
+           * Cylinder(P.HUB_DIA / 2, P.HUB_T,
+                      align=(Align.CENTER, Align.CENTER, Align.MIN)))
 
     for side in (1, -1):
         def s(solid):
@@ -45,6 +54,9 @@ def build_scene():
             (Pos(0, y, ROLL_Z) * s(hl), "#d9a48f"),
             (Pos(0, y, PITCH_Z) * s(tu), "#c98fd9"),
             (Pos(0, y, WHEEL_Z) * s(mc), "#8fd9c9"),
+            (Pos(0, y, WHEEL_Z) * s(motor), "#777777"),
+            (Pos(0, y, WHEEL_Z) * s(shaft), "#aaaaaa"),
+            (Pos(0, y, WHEEL_Z) * s(hub), "#bbbbbb"),
             (Pos(0, side * P.TRACK_HALF, WHEEL_Z) * wheel, "#555555"),
             # servo keep-out ghosts. The pitch servo lies AFT and OUTBOARD
             # (params: sliding along its own axis is free), not stacked under

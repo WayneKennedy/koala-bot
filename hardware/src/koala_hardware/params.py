@@ -120,18 +120,24 @@ SERVO_DRIVE_SCREW = CLEAR_HOLE_M3
 SERVO_TAB_TOP = 17.0    # [STEP] tab top face height (approx; tab is proud of case)
 
 # --- Drive motor - DFRobot FIT0403 37D 12V 122rpm w/encoder (Pi Hut) ---------
+# Manufacturer drawing:
+# https://dfimg.dfrobot.com/wiki/17480/FIT0403_gb37y3530-12v-90en_dimension_1.0.jpg
 MOTOR_DIA = 37.0        # [VENDOR] gearbox diameter
-MOTOR_LEN = 90.0        # [VERIFY] overall incl. encoder; envelope only
+MOTOR_BODY_LEN = 69.0   # [VENDOR] mounting face -> encoder cap: 6+24+29+10
+MOTOR_LEN = 90.0        # [VENDOR] overall envelope: 69 body + 21 shaft
 MOTOR_FACE_BOSS_DIA = 12.0  # [VERIFY] centre boss on faceplate
 MOTOR_FACE_BOSS_H = 2.0     # [VERIFY]
 MOTOR_BCD = 31.0        # [VENDOR] 6x M3, adjacent spacing 15.5 => hex on d31
 MOTOR_FACE_SCREWS = 6
 MOTOR_SHAFT_DIA = 6.0   # [VENDOR] D-shaft
-MOTOR_SHAFT_LEN = 15.5  # [VENDOR]
+MOTOR_SHAFT_LEN = 21.0  # [VENDOR] mounting face -> shaft tip
+MOTOR_D_LEN = 15.5      # [VENDOR] length of the D-shaped portion
 
 # --- Wheel & hub (Pololu 80x10 + 6mm universal hub) --------------------------
 WHEEL_DIA = 80.0        # [VENDOR] DEC-19 fixed control constant
 WHEEL_W = 10.0          # [VENDOR]
+HUB_DIA = 25.4          # [VENDOR] Pololu 1999 mechanical drawing
+HUB_T = 9.5             # [VENDOR] axial thickness
 HUB_STACK = 14.0        # [VERIFY] motor face -> wheel inner face (hub + margin)
 WHEEL_CLEAR = 4.0       # radial/axial clearance kept around the tyre
 
@@ -145,13 +151,15 @@ BNO085_BOARD = (25.4, 19.5)                      # [VERIFY] Adafruit 4754
 STANDOFF_H = 5.0        # printed standoffs under the driver shield
 TRAY_GAP = 10.0         # bought M3 standoffs, pelvis top -> tray underside
 
-# --- Assembly layout (v0 draft) ----------------------------------------------
-TRACK_HALF = 66.0       # pelvis centre -> wheel mid-plane (HIP_ROLL_Y + 33)
+# --- Assembly layout (v1 draft) ----------------------------------------------
 THIGH_DROP = 154.0      # hip-pitch axis -> wheel axis. Absorbs the 34 mm
                         # the hip gave back, so the stance height is unchanged
                         # at 270 mm: the leg reads as thigh, not thigh+knee.
-PELVIS_PLATE = (150.0, 100.0, PLATE)
-HIP_ROLL_Y = 33.0       # pelvis centre -> hip-roll axis (Y)
+PELVIS_PLATE = (150.0, 170.0, PLATE)
+# DEC-27: the two 69 mm motor bodies point inward. At +/-57 mm, their inboard
+# caps finish at +/-2 mm: a real 4 mm centre gap rather than a hidden overlap.
+HIP_ROLL_Y = 57.0       # pelvis centre -> hip-roll axis (Y)
+TRACK_HALF = HIP_ROLL_Y + 33.0  # motor face + hub stack + half wheel = 33
 HIP_ROLL_DROP = 50.0    # pelvis top -> hip-roll axis (Z); clears SERVO_ABOVE
 
 # --- compact hip: the two axes sit close, as a hip should -------------------

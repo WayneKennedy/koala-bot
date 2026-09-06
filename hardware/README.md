@@ -13,6 +13,7 @@ parts. Licence: `CERN-OHL-S-2.0` (see [`../LICENSING.md`](../LICENSING.md));
 | `src/koala_hardware/servo_iface.py` | STS3215 pocket / horn-drive / retention geometry (measured from vendor STEP) |
 | `src/koala_hardware/parts/` | One module per part: `pelvis`, `hip_bracket`, `hip_link`, `thigh`, `e_tray`, `coupons` |
 | `src/koala_hardware/printability.py` | **DEC-24 support-free check**: bed contact, overhang area, orientation ranking |
+| `src/koala_hardware/validation.py` | Assembly-datum checks: hip mounting-hole edge, motor clearance, wheel track |
 | `src/koala_hardware/export.py` | Build pipeline: STL + 4-view renders + **DEC-09 bed-fit + DEC-24 checks** |
 | `src/koala_hardware/assembly.py` | Posed lower-body render for proportion/collision eyeballing |
 | `vendor/so-arm100/` | SO-ARM100 STEP reference models (Apache-2.0) |
@@ -32,10 +33,17 @@ A full run also regenerates the printed-parts table in
 marked `handed` export **both** `_right` and `_left` STLs — mirroring in the
 slicer is too easy to forget.
 
+Measured slice figures are accepted only when their cached SHA-256 matches the
+current STL. A geometry change therefore falls back to a clearly labelled
+solid-volume upper bound until `koala_hardware.slice_remote` is run again.
+
 The export **fails** if any part exceeds 200x200 mm in its declared print
 orientation (DEC-09/DEC-23), or if that orientation needs support (DEC-24):
 bed contact under 300 mm2, or overhang area over 800 mm2. On failure it prints
-the better orientations it measured.
+the better orientations it measured. It also fails on critical assembly-layout
+errors that part-local checks cannot see, including overlapping drive motors or
+hip-bracket holes outside the pelvis. Printable parts must also be one connected
+solid unless explicitly declared as a multi-piece coupon.
 
 ### Designing a part that passes
 

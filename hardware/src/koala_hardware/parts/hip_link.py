@@ -62,9 +62,21 @@ def build() -> dict:
             LEG_T, LEG_W, -SRV_Z1,
             align=(Align.MIN, Align.MIN, Align.MIN))
         # outboard run, from the leg across to the far cradle wall
+        # The horn-side leg sits beyond the cradle in X, so extend its bed-side
+        # foot back to the cradle instead of leaving that whole fork tine as a
+        # disconnected solid.
         part += Pos(x0, -LEG_W / 2, SRV_Z0 - CRADLE_WALL) * Box(
-            LEG_T, SRV_Y1 + CRADLE_WALL + LEG_W / 2, SRV_Z1 - SRV_Z0 + CRADLE_WALL,
+            LEG_T, SRV_Y1 + CRADLE_WALL + LEG_W / 2,
+            SRV_Z1 - SRV_Z0 + CRADLE_WALL,
             align=(Align.MIN, Align.MIN, Align.MIN))
+        if x0 > SRV_X1 + CRADLE_WALL:
+            cradle_face = SRV_X1 + CRADLE_WALL
+            part += Pos(cradle_face - 0.1, -LEG_W / 2,
+                        SRV_Z0 - CRADLE_WALL) * Box(
+                x0 - cradle_face + 0.2,
+                SRV_Y1 + CRADLE_WALL + LEG_W / 2,
+                CRADLE_WALL,
+                align=(Align.MIN, Align.MIN, Align.MIN))
 
     # Cradle: wraps the pitch servo, open on the outboard face so it slides in.
     part += Pos(SRV_X0 - CRADLE_WALL, SRV_Y0 - CRADLE_WALL, SRV_Z0 - CRADLE_WALL) * Box(
@@ -82,16 +94,11 @@ def build() -> dict:
     # Idler side: BOLT to it, don't clear it (second metal horn, same square).
     part -= Pos(x_idler, 0, 0) * Rot(Y=-90) * S.drive_hole_cutters(FORK_T)
 
-    # Pitch-servo retention (OQ-12): 2 screws into the front cradle wall, 2
-    # into the back, through the servo's case bores. Clearance in the print.
-    tab_x = P.SERVO_AXIS_X - P.SERVO_TAB_X
-    for sy in (-P.SERVO_TAB_Y, P.SERVO_TAB_Y):
-        for sgn in (-1, 1):
-            y = PITCH_Y + sy
-            start = SRV_X0 - CRADLE_WALL - 1 if sgn < 0 else SRV_X1 + CRADLE_WALL + 1
-            part -= Pos(start, y, -PITCH_DROP) * Rot(Y=-90 * sgn) * Cylinder(
-                P.SELFTAP_CLEAR / 2, CRADLE_WALL + 2.5,
-                align=(Align.CENTER, Align.CENTER, Align.MIN))
+    # No pitch-servo retention cutters yet (OQ-12). An earlier compact-hip
+    # revision added four holes along X, but the case bores run along the
+    # servo's output axis (+Y in this frame), so those holes could not retain
+    # the body and risked intersecting the case instead. The pocket stays snug;
+    # add the through-bolt pattern only after the physical servo measurements.
 
     return {
         "name": "hip_link",
@@ -99,5 +106,5 @@ def build() -> dict:
         "part": part,
         "orientation": Rot(),  # stands on the cradle floor; fork plates on edge
         "notes": "Compact hip: pitch servo aft and outboard, axes 26 mm apart. "
-                 "Retention screw size unverified (OQ-12). Mirror in Y.",
+                 "No pitch-servo body retention pending OQ-12. Mirror in Y.",
     }

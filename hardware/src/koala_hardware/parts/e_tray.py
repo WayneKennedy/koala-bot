@@ -6,18 +6,21 @@ Teensy 4.0 (no holes -> zip-tie zone), BNO085 IMU (near the roll axis,
 zip/velcro zone until its holes are verified). M3 screws drop through the
 tray corners into the pelvis heat-set inserts (DEC-23).
 """
-from build123d import Box, Cylinder, Part, Pos, Rot, Align
+from build123d import Axis, Box, Cylinder, Part, Pos, Rot, Align, fillet
 from .. import params as P
 from .. import fasteners as F
 from .pelvis import TRAY_BOSS_XY
 
-TRAY = (150.0, 100.0, 4.0)
+TRAY = (140.0, 90.0, 4.0)
+CORNER_R = 12.0
 ZIP_SLOT = (4.0, 10.0)
 
 
 def build() -> dict:
     tx, ty, tt = TRAY
-    part = Part() + Box(tx, ty, tt, align=(Align.CENTER, Align.CENTER, Align.MIN))
+    deck = Box(tx, ty, tt, align=(Align.CENTER, Align.CENTER, Align.MIN))
+    deck = fillet(deck.edges().filter_by(Axis.Z), CORNER_R)
+    part = Part() + deck
 
     # Uno-pattern standoffs for the TB9051FTG shield, board centred forward
     bx, by = P.UNO_BOARD
@@ -45,6 +48,6 @@ def build() -> dict:
         "qty": 1,
         "part": part,
         "orientation": Rot(),  # prints as-is, flat
-        "notes": "Sits on M3 standoffs above the pelvis. IMU hard-mount "
+        "notes": "Rounded torso deck, inset from the pelvis. IMU hard-mount "
                  "after BNO085 hole positions are verified.",
     }

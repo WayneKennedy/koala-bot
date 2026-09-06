@@ -19,6 +19,7 @@ therefore asks Moonraker for the print state first and refuses unless idle.
 `--force` overrides, which is for when you know the host is not the machine's
 Klipper host, not for impatience.
 """
+import hashlib
 import json
 import pathlib
 import subprocess
@@ -98,7 +99,9 @@ def main():
         if vol == "FAILED" or not vol:
             print(f"  {name}: SLICE FAILED")
             continue
-        data[name] = {"cm3": float(vol), "time": time.strip()}
+        stl = STL / f"{name}.stl"
+        data[name] = {"cm3": float(vol), "time": time.strip(),
+                      "sha256": hashlib.sha256(stl.read_bytes()).hexdigest()}
         print(f"  {name}: {float(vol):.1f} cm3, {time.strip()}")
 
     CACHE.write_text(json.dumps(data, indent=2, sort_keys=True) + "\n")

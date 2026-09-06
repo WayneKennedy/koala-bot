@@ -8,7 +8,7 @@ from the top face. Result: prints flat on the bed, zero support.
 
 Local frame: plate top face = Z=0, robot centre at origin, +X forward.
 """
-from build123d import Box, Cylinder, Part, Pos, Rot, Align
+from build123d import Axis, Box, Cylinder, Part, Pos, Rot, Align, fillet
 from .. import params as P
 from .. import fasteners as F
 
@@ -16,11 +16,14 @@ from .. import fasteners as F
 BRACKET_BOLTS = [(bx, by) for bx in (-12.0, 12.0) for by in (-21.0, 21.0)]
 TRAY_BOSS_XY = [(60.0, 35.0), (60.0, -35.0), (-60.0, 35.0), (-60.0, -35.0)]
 CABLE_SLOT = (30.0, 8.0)
+CORNER_R = 15.0
 
 
 def build() -> dict:
     px, py, pt = P.PELVIS_PLATE
-    part = Part() + Box(px, py, pt, align=(Align.CENTER, Align.CENTER, Align.MAX))
+    deck = Box(px, py, pt, align=(Align.CENTER, Align.CENTER, Align.MAX))
+    deck = fillet(deck.edges().filter_by(Axis.Z), CORNER_R)
+    part = Part() + deck
 
     # Tray standoff mounts: M3 heat-set inserts, through-holes (no ceiling).
     for (bx, by) in TRAY_BOSS_XY:
@@ -44,6 +47,6 @@ def build() -> dict:
         "qty": 1,
         "part": part,
         "orientation": Rot(),  # flat, top face up; either face works
-        "notes": "Flat deck (DEC-24). Hip brackets bolt underneath; tray "
-                 "stands off above on M3 standoffs.",
+        "notes": "Rounded flat deck (DEC-24/28). Hip brackets bolt "
+                 "underneath; tray stands off above on M3 standoffs.",
     }

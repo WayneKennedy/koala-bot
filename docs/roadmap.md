@@ -9,7 +9,8 @@ but don't block the lower body).
 
 ## Phase 1 - Koala V1 (the vertical slice) *(current)*
 1. **CAD** - parametric body in code-CAD; parts <= 200 mm; export URDF.
-   *Started:* draft v0 lower body (pelvis/hips/thighs/e-tray) in `hardware/`.
+   *Started:* draft v1 lower body (pelvis/hips/thighs/e-tray) in `hardware/`;
+   assembly packaging and support-free checks pass, structural prints remain next.
 2. **Prototype prints** - structural test of limbs, knee-wheels, neck.
 3. **Electronics bring-up** - MCU balance loop (2-wheel inverted pendulum, IMU +
    encoders); STS3215 bus + IDs; motor driver; power rail.

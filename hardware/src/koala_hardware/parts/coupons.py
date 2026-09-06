@@ -110,7 +110,7 @@ def build_seam() -> dict:
         - Pos(20, 0, 4.1) * F.m3_clear(4.2)
         - Pos(0, 8, P.CLEAR_POCKET) * Rot(X=180) * F.registration_key(
             clearance=P.CLEAR_POCKET))
-    return {"name": "coupon_seam", "part": base + lid,
+    return {"name": "coupon_seam", "part": base + lid, "multi_body": True,
             "orientation": Rot(), "notes": "Set inserts, screw the lid down flat."}
 
 

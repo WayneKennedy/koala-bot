@@ -100,6 +100,21 @@ Committed decisions with rationale. Unresolved items live in
   sweep** (`hip_link` + pitch servo against `hip_bracket` + roll servo): clear
   through +/-30 deg, with the only residual being the fork plates sitting inside
   the keep-out's padded horn discs, which is where they bolt.
+- **DEC-27 - Real motor envelopes set the stance width.** The first lower-body
+  render omitted the bought 37D motors, hiding a 44 mm centreline overlap; the
+  100 mm pelvis also left each bracket's outer bolt pair beyond the plate. The
+  DFRobot FIT0403 drawing gives 69 mm from mounting face to encoder cap (90 mm
+  overall including the 21 mm shaft). Moving each hip axis from +/-33 to +/-57
+  mm leaves 4 mm between encoder caps; wheel centres become +/-90 mm and a
+  150 x 170 mm pelvis contains every bracket hole with a 5.3 mm edge. These
+  packaging datums are now checked by the CAD build. The same check binds the
+  motor-clamp flange to the thigh's shared seam datum; DEC-26 had lengthened the
+  thigh without moving that flange, leaving an otherwise silent 34 mm gap.
+- **DEC-28 - Soft form follows the structure, not a cosmetic shell.** The V1
+  lower body uses rounded deck corners and a tapered, radiused thigh beam while
+  preserving flat joint/seam datums, constant-thickness support-free prints,
+  and purchased-part clearances. This establishes an organic visual language
+  without adding non-functional panels before the structural prototype works.
 - **DEC-22 - Servo sourcing & neck actuator confirmed** (resolves OQ-06). Both orders placed
   2026-09-01. **Limbs:** 12x Feetech STS3215 12V 30 kg from RCmall (AliExpress), 2x 6-pack
   (~£17.3/servo landed), FE-URT-1 setup adapter included. **Neck:** 4x Feetech STS3032M
@@ -112,8 +127,10 @@ Committed decisions with rationale. Unresolved items live in
   alignment + **M3 screws into brass heat-set inserts** (captive nuts on thin parts; no
   printed threads, per DEC-12). Screws loaded in shear, never across layers; seams placed
   off load paths and hidden under paneling; each part declares its print orientation. The
-  CAD pipeline *enforces* the <= 200x200 mm rule (DEC-09) with an automated bounding-box +
-  assembly-interference check, so a parameter change that breaks printability fails the build.
+  CAD pipeline *enforces* the <= 200x200 mm rule (DEC-09) with automated bounding-box,
+  connected-solid, and critical assembly-datum checks, so a parameter change that breaks
+  printability or known packaging constraints fails the build. General collision sweeps
+  remain explicit motion-study work rather than a claim made by the export pipeline.
 - **DEC-24 - Every part prints support-free, and the build proves it.** Bed *fit* is not
   printability: a part is only done when it has a declared orientation needing no support.
   Enforced by `hardware/.../printability.py`, which measures, per part, bed-contact area and
