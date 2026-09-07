@@ -32,6 +32,16 @@ optional STEMMA QT cable for the BNO085.
 
 Neck servos are 6V -> a separate 6V bus segment from the 12V limb bus (same STS protocol).
 
+## Test-fit pair (Amazon, in hand 2026-09-07)
+
+Two **Waveshare ST3215 12V** servos, bought outside the plan to have real cases on
+the bench while printed parts are still being fitted. Amazon is the instant-but-dear
+route already noted below (~£28 each at the time of that research; this purchase's
+price is not recorded). Its value was **what came in the box** - M2x5 self-tapping
+case screws and M3 horn screws, which is a BOM fact, recorded in
+[`bom.md`](bom.md) and [`test-log.md`](test-log.md). Whether the RCmall Feetech
+6-packs ship the same accessories is unverified.
+
 ## Part notes & alternatives (pre-purchase research, kept for reference)
 
 - **STS3215 (limbs):** chosen route was RCmall/AliExpress (SO-ARM-style listing,
@@ -55,4 +65,7 @@ Neck servos are 6V -> a separate 6V bus segment from the 12V limb bus (same STS 
   (generous) for the Pi 5.
 - **Fasteners (DEC-23/24, not yet ordered):** M3 screws (8/12/16/50 mm — the 50s pass
   through the hip brackets' servo tabs), M3 brass heat-set inserts, M3 standoffs (10 mm,
-  pelvis-to-tray), M2.5 screws (servo horns), insert tip for a soldering iron — ~£12-18.
+  pelvis-to-tray), **M2 self-tapping screws** (servo case retention — the horn drive
+  square is M3, not M2.5; see [`test-log.md`](test-log.md) 2026-09-02 and 2026-09-07),
+  insert tip for a soldering iron — ~£12-18. Counts and lengths live in
+  [`bom.md`](bom.md), which derives them from the CAD.

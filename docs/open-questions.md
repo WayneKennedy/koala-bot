@@ -45,11 +45,20 @@ Unresolved. Resolve -> move to [`decisions.md`](decisions.md).
   through-bolt with a nut would serve the same end while cutting no thread in a
   PA+GF case (a wear item on the expensive half of the joint).
   **Blocked on measurement** - seven checks are listed in `test-log.md`, all
-  answerable with calipers on the physical servos; their current arrival status
-  is unverified. **DEC-29 authorization supersedes the former geometry freeze:**
+  answerable with calipers on the physical servos; two 12 V ST3215 units are in
+  hand since 2026-09-07, so the checks are now doable, not merely listed.
+  **The screw is settled: M2 self-tapping**, supplied as M2x5 in that box
+  (`SELFTAP_DIA` = 2.0, clearance 2.4). **Its length is not**, and neither are
+  the hole locations. Length = printed wall + engagement, and the current CAD
+  offers two different walls at the four holes - 3.95 mm and 6.35 mm in
+  `hip_bracket.build_root()` - so either those walls are equalised to one
+  flange thickness (~4 mm, giving M2x8 throughout) or the thick side is
+  counterbored; and the case bore depth that bounds engagement is unmeasured.
+  **DEC-29 authorization supersedes the former geometry freeze:**
   the pitch servo now has a removable external case clamp, not invented case
   screw locations. Its preload, creep, cable exit and real-case fit remain
-  unverified. Roll retention and idler spacing still require measurement.
+  unverified. Roll retention geometry and idler spacing still require
+  measurement.
 - **OQ-10 - Child-safety spec** (audience 2-5; DEC-15). Resolve during design: pinch-point
   guarding at every joint/linkage; software speed & torque limits + e-stop; graceful-fall
   behaviour; protected/enclosed LiPo; no small detachable parts; rounded edges; no hot

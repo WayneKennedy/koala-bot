@@ -7,6 +7,24 @@ in `hardware/src/koala_hardware/params.py`, tagged with their provenance.
 Reference printer per DEC-14 (Ender-5 S1 / Klipper), PETG, the standing
 general-purpose profile recorded in [`bom.md`](bom.md).
 
+## 2026-09-07 — servo box contents (Waveshare ST3215 12V ×2, Amazon; nothing printed)
+
+Two 12 V ST3215 servos bought from Amazon as test-fit hardware — real cases to
+try printed parts against before the RCmall order is committed. **The box, not
+the servo, is the finding.**
+
+| Finding | Source | Consequence |
+|---------|--------|-------------|
+| **The case fixing screws are M2 self-tapping, supplied as M2×5** | in the box | Answers open check 5. `SELFTAP_DIA` 2.5 → **2.0**, `SELFTAP_CLEAR` 2.8 → **2.4**, `SELFTAP_PILOT` 2.1 → 1.7. The 2.5 was a guess and it was wrong |
+| **M3 horn screws are in the box** | in the box | [SPEC 11] "No Accessories" describes the bare Feetech part, not this retail box. Treat kit contents as a per-vendor fact from here on; the RCmall 6-packs are still unknown |
+| M2×5 is **too short for our walls** | CAD measurement, this session | The screw crosses **3.95 mm** at one end wall of `hip_bracket.build_root()` and **6.35 mm** at the horn-side wall, leaving ~1 mm and ~0 mm of engagement. Buy longer (M2×8 suits the thin wall); better, equalise the walls to one flange thickness first |
+| An M2 screw does not thread a Ø4 hole | above + `SERVO_TAB_HOLE` | Reinforces open check 2: the STEP's Ø4 is a recess, a boss OD, or wrong — it is not the thread the supplied screw forms |
+
+**Still unmeasured, and these servos can answer all of it with calipers:** open
+checks 1, 2, 3, 4, 6 below, plus the case bore depth the screw length depends
+on, and whether the horns themselves were in the box (check 7). Nothing here
+came off a caliper yet — it is a screw packet read at face value.
+
 ## 2026-09-02 — servo interface review (desk study, nothing printed)
 
 A design review in the 3D viewer asked why nothing in `hip_link` retains the
@@ -35,7 +53,7 @@ turn this session was a swap between those two columns.
 |---------|--------|-------------|
 | **Drive-square screws are M3, not M2.5** | upstream's bracket drills Ø3.2 (M3 clearance) on the 9.8 mm square, and their arms assemble | `SERVO_DRIVE_SCREW` was 2.9. **An M3 will not pass 2.9.** Fixed. The STEP models these at 2.5 — the M3 *tapping drill* — which read as M2.5 |
 | Spec 6-13 M3×6 is the **horn centre screw** | [SPEC 6-13] 出力轴螺丝, singular; drawing leader points at the spline | It is *not* evidence about the drive square. An earlier claim that "three independent sources agree" was wrong — two were TheRobotStudio files with a common author, the third was this |
-| **No screws are supplied** | [SPEC 11] "No Accessories" | Buy M3×6. Also: no horn ships with the servo, so **horn geometry is not servo geometry** |
+| **No screws are supplied** | [SPEC 11] "No Accessories" | Buy M3×6. Also: no horn ships with the servo, so **horn geometry is not servo geometry**. *Superseded in part 2026-09-07: the Waveshare retail box does ship screws* |
 | Case is PA+GF, 55 g, 45.23 × 24.73 × 35 | [SPEC 6-1/6-3/6-8] | Recorded `[SPEC]`. Pocket constants stay on the STEP's 45.4 × 24.8 — 0.2 mm generous is the safe error |
 | `SERVO_AXIS_X` = 12.5 and `SERVO_TAB_Y` = ±10.4 | dimensioned on / corroborated by the Feetech drawing | The two numbers that were in doubt are now the two that are solid |
 | Retention is **pocket + 4 self-tapping screws**, 2 front + 2 back | [SO-ARM101 assembly video](https://www.youtube.com/watch?v=rVP1XQ0PeM4) | `hip_bracket`'s architecture is right in kind. `hip_link` has none at all |
@@ -84,13 +102,15 @@ The file is not wrong; it depicts a different object. Its author is **unknown**
 4. **Drive-square radius.** 6.93 mm (9.8 square) or 9.8 mm (bolt circle)?
    *Measure: spline centre to one hole.* Also turn the horn and watch whether
    the rear square turns with it.
-5. **Screw sizes** for the four body screws.
+5. **Screw sizes** for the four body screws. *Answered 2026-09-07: M2
+   self-tapping, supplied as M2×5. The bore depth they thread into is not.*
 6. **Idler horn stand-off** — how far the aft disc sits proud of the case face.
    *Measure: case rear face to idler horn outer face.* The aft fork plate
    position (`SERVO_IDLER_BOT`) depends on it.
 7. **How many horns are in the box.** Each driven joint needs **two** — drive
    and idler — so the lower body needs **8**, and Feetech supplies none
-   ([SPEC 11]). The BOM has no line for them.
+   ([SPEC 11]). The BOM now has a line for them. *Still open 2026-09-07: the
+   Waveshare box held horn screws; the horn count in it was not recorded.*
 
 ## 2026-09-01 — `coupon_ladder` (pre-fix revision)
 

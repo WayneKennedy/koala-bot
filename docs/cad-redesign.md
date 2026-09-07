@@ -39,9 +39,11 @@ that is a design rationale, not strength evidence for these parts.
    envelopes. The old servo-cradle coupon does **not** validate the new saddle.
    Use one saddle/cap and one cheek of each kind as joint fit samples.
 2. Fit the roll servos into the integrated roots. Rear retention-hole locations
-   and screw choice remain **OQ-12**; the CAD does not authorize driving screws
-   into an unmeasured case. Roots have at least 3 mm nominal wall beside the
-   conservative tab keep-out.
+   remain **OQ-12**; the CAD does not authorize driving screws into an
+   unmeasured case. The screw is now known to be **M2 self-tapping** (supplied
+   with the servos, 2026-09-07); its length is not, because the wall it crosses
+   is 3.95 mm at one end and 6.35 mm at the horn-side end. Roots have at least
+   3 mm nominal wall beside the conservative tab keep-out.
 3. Fit roll cheeks to drive and idler horns. Each has four full-depth M3
    clearances and a centre access opening. Determine horn screw lengths from
    the **5 mm plate plus measured thread engagement**; do not reuse the old

@@ -11,6 +11,8 @@ Provenance tags:
             printing anything that depends on it (see parts/coupons.py)
   [MEASURED] confirmed by a printed coupon on the reference printer, dated;
             results and their caveats live in docs/test-log.md
+  [SUPPLIED] read off hardware that arrived in the box, dated; what the vendor
+            actually ships, which is not always what the spec sheet says
 """
 
 # --- Printer / process -------------------------------------------------------
@@ -80,10 +82,19 @@ SERVO_TAB_X = -20.7     # [STEP] ONLY. The drawing carries no X dimension for
 SERVO_TAB_HOLE = 4.0    # [STEP] ONLY, and an INTERPRETATION: a STEP cylinder
                         # says nothing about which side is material, so this
                         # may be a bore or a clamshell pillar. OQ-12.
-# Self-tapping retention screws. Sizes are working assumptions.
-SELFTAP_DIA = 2.5       # [VERIFY] screw major dia
-SELFTAP_PILOT = 2.1     # [VERIFY] thread-forming pilot in PETG, ~0.85 x major
-SELFTAP_CLEAR = 2.8     # [VERIFY] clearance for the same screw
+                        # The supplied screw is M2 (below), which no Ø4 hole
+                        # threads - so 4.0 is a recess, a boss OD or wrong.
+                        # Unresolved either way; measure it.
+# Self-tapping retention screws. Size is now known, length is not.
+# [SUPPLIED 2026-09-07] Two Waveshare-branded ST3215 12V units bought from
+# Amazon as test-fit hardware each shipped M2x5 self-tapping screws for these
+# holes (plus the M3 horn screws). So the screw is M2, not the 2.5 guessed
+# here before. LENGTH stays open (OQ-12): it is the printed wall at each hole
+# - currently 3.95 mm on one end wall and 6.35 mm on the horn-side wall of
+# hip_bracket.build_root() - plus a case bore depth nobody has measured.
+SELFTAP_DIA = 2.0       # [SUPPLIED 2026-09-07] M2 major dia
+SELFTAP_PILOT = 1.7     # [VERIFY] thread-forming pilot in PETG, ~0.85 x major
+SELFTAP_CLEAR = 2.4     # [VERIFY] clearance, on the M3 coupon's +0.4 convention
 
 # --- family 2: the HORN (output-axis datum) - THIS ROTATES ---
 # NOT servo geometry. [SPEC 11] "No Accessories": Feetech ships the servo bare,
@@ -103,7 +114,12 @@ SERVO_IDLER_BOT = -19.4 # [VERIFY] idler disc outer face. The idler is a
 SERVO_HORN_BOSS_DIA = 9.0   # [STEP] centre boss under the horn - keep clear
 SERVO_HORN_SCREW = "M3x6"   # [SPEC 6-13] the single CENTRE screw fixing the
                             # horn to the 25T spline. Says nothing about the
-                            # 4-hole drive square below. Not supplied.
+                            # 4-hole drive square below. [SUPPLIED 2026-09-07]
+                            # the Waveshare retail box does include M3 horn
+                            # screws - length not recorded - so [SPEC 11]
+                            # "No Accessories" describes the bare Feetech
+                            # part, not every box. Unverified for the RCmall
+                            # 6-packs.
 SERVO_DRIVE_SQ = 9.9    # [STEP] 4x drive holes on a 9.9 mm square
 SERVO_DRIVE_SCREW = CLEAR_HOLE_M3
 # M3, not M2.5. The STEP models these at 2.5 - the M3 TAPPING DRILL - which an

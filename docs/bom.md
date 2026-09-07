@@ -4,9 +4,11 @@ Two halves: **bought** parts (below) and **printed** parts (generated from the
 CAD, so it cannot drift from the geometry). Prices are UK, inc VAT, ~2026.
 Full sourcing rationale and alternatives: [`sourcing.md`](sourcing.md).
 
-**Status:** V1 electronics and actuators are **ordered** (2026-09-01). Of the
-fasteners, the earlier stock/order statements have not been reverified against
-the DEC-29 redesign; check quantities and provisional lengths below.
+**Status:** V1 electronics and actuators are **ordered** (2026-09-01), and two
+test-fit servos are **in hand** (2026-09-07, below) — their box contents settle
+the servo screw *sizes*, not the lengths. Of the fasteners, the earlier
+stock/order statements have not been reverified against the DEC-29 redesign;
+check quantities and provisional lengths below.
 First coupon printed 2026-09-01 and passed (see [`test-log.md`](test-log.md)); no structural part printed yet.
 
 ## Bought — drive & balance base *(purchased 2026-09-01, Pi Hut, ~£159.50)*
@@ -30,6 +32,21 @@ First coupon printed 2026-09-01 and passed (see [`test-log.md`](test-log.md)); n
 
 Of the STS3215s, the **lower body uses 4**: 2 hip-roll + 2 hip-pitch.
 
+### Bought separately — test-fit servos *(Amazon, in hand 2026-09-07)*
+
+| Part | Qty | £ | Role |
+|------|-----|---|------|
+| Waveshare **ST3215 12V** bus servo | 2 | not recorded | something to test-fit printed parts against, ahead of the RCmall order |
+
+Bought to have real cases on the bench. **What was in the box is a BOM fact:**
+M3 servo horn screws **and M2×5 self-tapping screws** for the case fixing
+holes — so the retention screw is **M2**, not the M2.5 previously assumed
+(`SELFTAP_DIA`, and see [`test-log.md`](test-log.md) 2026-09-07). Whether the
+RCmall Feetech 6-packs ship the same accessories is **unverified**; [SPEC 11]
+says the bare servo ships with *No Accessories*, which evidently describes the
+part, not a retail box. Waveshare's ST3215 is a rebadge of the same Feetech
+servo; that its dimensions match `params.py` is assumed, not yet measured.
+
 ## Bought — fasteners & consumables *(NOT yet ordered, ~£15–25 + filament)*
 
 Counts are **derived from the current CAD** (v1 lower body), not estimated —
@@ -45,22 +62,33 @@ each and a missing M3×55 stops an assembly dead.
 | M3 nuts | 8 | assortment | through-bolts; use thin nuts fitting the 3 mm audit envelope or repeat clearance checks |
 | M3 washers | 16 | assortment | one under each through-bolt head and nut; verify chosen thickness |
 | M3 standoffs 10 mm, male/female | 4 | 4–10 | pelvis deck → electronics tray, sets the wiring gap |
-| **Servo horns, metal, 25T, 4-hole 9.9 mm square** | 8 | 8 | **2 per driven joint** — drive *and* idler. The idler horn is what makes the joint a supported clevis rather than a cantilever. **None supplied** ([SPEC 11]); check the servo package |
+| **Servo horns, metal, 25T, 4-hole 9.9 mm square** | 8 | 8 | **2 per driven joint** — drive *and* idler. The idler horn is what makes the joint a supported clevis rather than a cantilever. [SPEC 11] says none are supplied; the Waveshare retail box does ship M3 **horn screws**, so what else it holds is worth counting before ordering |
 | M3 horn-square screws, **length TBD** | 32 | after measurement | 8 per joint × 4 joints; 5 mm printed cheeks plus measured horn engagement, NOT blanket M3×6 |
 | Motor face M3 screws, **length TBD** | 12 | after measurement | 6 per motor; M3×8 candidate gives 3 mm engagement through 5 mm plate; verify motor thread depth |
-| Roll-servo case-retention screws, **size TBD** | 8 provisional | after measurement | 4 per servo, OQ-12; modeled clearance remains 2.8 mm, not an approved M3 through-hole |
+| Roll-servo case-retention screws, **M2 self-tapping, length TBD** | 8 | M2 assortment, 5–10 mm | 4 per servo, OQ-12. **M2 is settled** — supplied with the Waveshare servos (2026-09-07); the CAD clearance is now 2.4 mm. The supplied M2×5 is too short here: the walls the screw crosses are **3.95 mm and 6.35 mm** in `hip_bracket.build_root()`, so no single length yet serves all 8, and case bore depth is unmeasured |
 | Soldering-iron insert tip | 1 | 1 | setting the heat-set inserts |
 | PETG filament, 1 kg | 1 | 1 | one spool; current quantity is pending a fresh slice — see the generated total below |
 
 **Do not order unverified lengths from this draft.** The M3×55 bolts now join
-printed components, not servo case bores. Roll retention, idler stand-off,
-horn engagement and motor thread depth remain measurement gates (OQ-12).
-Horn centre/axle fixings and wheel/hub fixings must be checked against the
-supplied kits; their exact lengths/counts are not yet established here.
+printed components, not servo case bores. Roll retention *length*, idler
+stand-off, horn engagement and motor thread depth remain measurement gates
+(OQ-12). Horn centre/axle fixings and wheel/hub fixings must be checked
+against the supplied kits; their exact lengths/counts are not yet established
+here.
 
-**Servo horns are included above but may already be in the kit.** [SPEC 11]
-says the bare servo ships with *No Accessories*, and the 4-hole drive square
-lives on the horn, not the servo. Check the actual package before ordering.
+**How to choose the M2 length**, once the case bore depth is measured: it is
+printed wall + engagement, and the wall is not one number. The current CAD
+gives 3.95 mm at one end wall and 6.35 mm at the horn-side wall, so an M2×8
+suits the thin side (~4 mm engagement) and leaves ~1.7 mm on the thick one.
+Either equalise those walls to a single flange thickness — a ~4 mm flange with
+M2×8 throughout is the tidy version, and is the reason to fix it in CAD before
+ordering — or counterbore the thick side. Both walls sit on the unverified
+`SERVO_TAB_X`/rear-ear geometry, so the numbers move if measurement does.
+
+**Servo horns are included above but may already be in the kit.** The 4-hole
+drive square lives on the horn, not the servo. Check the actual package before
+ordering — the Waveshare box's contents already contradicted the "no
+accessories" reading once.
 
 **Insert geometry is a design constant.** `INSERT_M3_DIA` / `INSERT_M3_LEN` in
 `params.py` target the **5.7 × 4.6 mm** M3 insert at the pitch-cap posts (Ruthex and
@@ -127,7 +155,7 @@ No current hash-matched slice results, so filament is the **solid-geometry upper
 | `hip_pitch_saddle_right` | 1 | 72 x 64 x 34 | ~45 g (solid max) | - | 217 mm2 flagged overhang; inspect slice |
 | `hip_roll_drive` | 2 | 64 x 40 x 5 | ~15 g (solid max) | - | clean |
 | `hip_roll_idler` | 2 | 64 x 40 x 5 | ~15 g (solid max) | - | clean |
-| `pelvis` | 1 | 150 x 170 x 24 | ~188 g (solid max) | - | 573 mm2 flagged overhang; inspect slice |
+| `pelvis` | 1 | 150 x 170 x 24 | ~188 g (solid max) | - | 560 mm2 flagged overhang; inspect slice |
 | `thigh_inner` | 2 | 48 x 193 x 5 | ~65 g (solid max) | - | clean |
 | `thigh_outer` | 2 | 48 x 193 x 5 | ~77 g (solid max) | - | clean |
 | `thigh_spacer` | 4 | 24 x 24 x 40 | ~90 g (solid max) | - | clean |
