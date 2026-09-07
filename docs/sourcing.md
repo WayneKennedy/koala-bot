@@ -11,7 +11,7 @@ The self-balancing base subsystem (limb/head servos are a separate import order)
 
 | Part | Qty | £ inc VAT |
 |------|-----|-----------|
-| Pololu Dual TB9051FTG motor driver (DEC-16) | 1 | 30.70 |
+| Pololu Dual TB9051FTG motor driver (DEC-16) — **lent to wk-devastator, OQ-15** | 1 | 30.70 |
 | Pi Hut 37D 12V 122RPM 38 kg.cm geared motor + encoder | 2 | 55.80 |
 | Pololu Wheel 80x10 mm pair (Ø80 mm = control constant, DEC-19) | 1 | 8.40 |
 | Pololu 6 mm universal mounting hub (2-pack) | 1 | 12.50 |

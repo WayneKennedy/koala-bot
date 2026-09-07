@@ -2,6 +2,18 @@
 
 Unresolved. Resolve -> move to [`decisions.md`](decisions.md).
 
+- **OQ-15 - Whether to buy a second TB9051FTG.** The driver bought under DEC-16
+  (qty 1, purchased 2026-09-01) has been **lent to wk-devastator**, which settled its
+  own driver question by borrowing rather than buying
+  ([its DEC-13](https://github.com/WayneKennedy/wk-devastator/blob/main/docs/decisions.md)).
+  One board cannot be in two robots, so **koala-bot and the tank cannot both be in drive
+  bring-up at the same time.**
+  **Not urgent, and the trigger is knowable.** koala-bot is in CAD and printing with no
+  structural part printed yet; the tank's motors arrive around 26 September. This becomes
+  live the moment koala-bot's drive bring-up is scheduled - either buy a second (~£30.70)
+  or agree the tank returns it. **Until then, do not plan koala-bot's drive bring-up
+  against a board that is in another robot.**
+
 - **OQ-13 - Lower-body mechanical redesign and FDM validation.** The
   [review of revision a3f265c](cad-review.md) confirms printed hip/thigh
   interference at neutral, blind roll-horn holes and an unassemblable

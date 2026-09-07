@@ -15,7 +15,7 @@ First coupon printed 2026-09-01 and passed (see [`test-log.md`](test-log.md)); n
 
 | Part | Qty | £ | Role |
 |------|-----|---|------|
-| Pololu Dual TB9051FTG motor driver | 1 | 30.70 | drive motors (DEC-16) |
+| Pololu Dual TB9051FTG motor driver | 1 | 30.70 | drive motors (DEC-16) — **lent to wk-devastator 2026-09-07; see OQ-15** |
 | 37D 12V 122RPM 38 kg.cm geared motor + encoder | 2 | 55.80 | knee-wheel drive |
 | Pololu 80x10 mm wheel pair | 1 | 8.40 | Ø80 mm control constant (DEC-19) |
 | Pololu 6 mm universal mounting hub (2-pack) | 1 | 12.50 | wheel to 6 mm D-shaft |
