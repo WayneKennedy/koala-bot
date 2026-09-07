@@ -41,6 +41,31 @@ and morphology: [`docs/concept.md`](docs/concept.md).
   a3f265c lower body; [`docs/cad-redesign.md`](docs/cad-redesign.md) — the DEC-29
   replacement, its checks, and what is still unverified. **Read both before printing.**
 
+## The family, and what does not live here
+
+koala-bot is one robot among several. **Facts true of more than one of them live in
+[wk-robotics](https://github.com/WayneKennedy/wk-robotics), not here.** Link to them;
+never copy them, because two copies of a fact drift. What is up there and load-bearing
+for this repo:
+
+- [Printing](https://github.com/WayneKennedy/wk-robotics/blob/main/docs/common.md#printing)
+  — the machine, the material profiles, the press-fit and support findings, the
+  ≤ 200 × 200 mm design rule.
+- [Actuators](https://github.com/WayneKennedy/wk-robotics/blob/main/docs/common.md#actuators)
+  — the STS3215 / STS3032M family, the 3S ceiling, and
+  [how to configure a servo](https://github.com/WayneKennedy/wk-robotics/blob/main/docs/common.md#configuring-a-servo--true-for-every-sts-project):
+  the FE-URT-1 adapter (bundled with the 6-packs, so already owned), one servo at a time
+  because every unit ships as ID 1, the 6 V/12 V rail distinction, and the FTDI latency
+  trap. **Read that before configuring the twelve limb servos.**
+- [Compute and micro-ROS](https://github.com/WayneKennedy/wk-robotics/blob/main/docs/common.md#compute-the-two-tier-split)
+  — the two-tier split this project defined, and the micro-ROS mechanics.
+- [Power integrity](https://github.com/WayneKennedy/wk-robotics/blob/main/docs/common.md#power-integrity).
+
+**Sibling repos that inherit decisions made here:**
+[wk-devastator](https://github.com/WayneKennedy/wk-devastator) takes this project's
+two-tier architecture, its motor-driver selection and its MCU choice as starting points.
+Changing DEC-16 or DEC-18 has consequences beyond this repo.
+
 ## Working conventions
 
 - **No project fact lives only in chat.** Record durable decisions in `decisions.md`;
@@ -59,3 +84,8 @@ DEC-29 rebuilt it after [`docs/cad-review.md`](docs/cad-review.md), and physical
 fits, sliced layers and strength remain unverified (OQ-13). Frontier: test-fit
 coupons -> prototype prints -> electronics bring-up
 ([`docs/roadmap.md`](docs/roadmap.md)).
+
+**One cheap check is worth doing before firmware:** micro-ROS upstream lists the
+**Teensy 4.0 as "Not tested"** while the 4.1 is Supported, and DEC-18 bought the 4.0.
+Expected to work, unverified — see
+[`docs/architecture.md`](docs/architecture.md#bridge--contract).

@@ -17,7 +17,19 @@ output closes on the MCU; the Pi only sends setpoints and reads telemetry.
 
 ### Bridge & contract
 
-- **micro-ROS** on the MCU makes it a native ROS2 node (DDS-XRCE over serial).
+- **micro-ROS** on the MCU makes it a native ROS2 node (DDS-XRCE over serial). It runs
+  against a **micro-ROS Agent** process on the Pi, which bridges XRCE into the real DDS
+  graph; the MCU then appears in `ros2 topic list` like any other node. Full explanation,
+  shared with the rest of the family:
+  [wk-robotics/docs/common.md](https://github.com/WayneKennedy/wk-robotics/blob/main/docs/common.md#micro-ros-how-the-mcu-joins-the-graph).
+- **Board support caveat, checked 2026-09-07 — not yet an OQ.**
+  [`micro-ROS/micro_ros_arduino`](https://github.com/micro-ROS/micro_ros_arduino) lists
+  **Teensy 4.1 as *Supported*** and **Teensy 4.0 as *"Not tested"***. DEC-18 selected the
+  4.0 and it is bought. The two share the i.MX RT1062 core and the same Teensyduino
+  support, so it is **expected** to work — but that expectation is **unverified**, and
+  DEC-04 makes the bridge load-bearing for the whole family. **Close it cheaply:** flash a
+  micro-ROS example to the 4.0 before firmware is written around it. If it fails, the
+  fallback is a 4.1 or the ESP32 already named above, not a redesign.
 - The **topic contract is the shared-brain backbone** of the family - fix it once and
   every member inherits it: `/cmd_vel`, `/joint_commands`, `/imu`, `/joint_states`,
   `/wheel_odom`, `/telemetry`. Bodies change; the spinal-cord protocol does not.
