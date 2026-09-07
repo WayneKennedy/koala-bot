@@ -37,6 +37,9 @@ and morphology: [`docs/concept.md`](docs/concept.md).
   (printed table is *generated* by the CAD build; never hand-edit it).
 - [`docs/sourcing.md`](docs/sourcing.md) — parts, suppliers, UK landed-cost notes.
 - [`docs/references.md`](docs/references.md) — prior art & inspirations.
+- [`docs/cad-review.md`](docs/cad-review.md) — the review that condemned the
+  a3f265c lower body; [`docs/cad-redesign.md`](docs/cad-redesign.md) — the DEC-29
+  replacement, its checks, and what is still unverified. **Read both before printing.**
 
 ## Working conventions
 
@@ -51,5 +54,8 @@ and morphology: [`docs/concept.md`](docs/concept.md).
 
 **Phase 1 (V1 vertical slice) — CAD started, coupons only printed.** V1 hardware
 is ordered (DEC-19/22); a draft v1 lower body lives in `hardware/`
-(see its README). Frontier: test-fit coupons -> prototype prints -> electronics
-bring-up ([`docs/roadmap.md`](docs/roadmap.md)).
+(see its README). It is **not ready for structural printing or assembly** —
+DEC-29 rebuilt it after [`docs/cad-review.md`](docs/cad-review.md), and physical
+fits, sliced layers and strength remain unverified (OQ-13). Frontier: test-fit
+coupons -> prototype prints -> electronics bring-up
+([`docs/roadmap.md`](docs/roadmap.md)).
