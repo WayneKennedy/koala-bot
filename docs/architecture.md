@@ -22,14 +22,14 @@ output closes on the MCU; the Pi only sends setpoints and reads telemetry.
   graph; the MCU then appears in `ros2 topic list` like any other node. Full explanation,
   shared with the rest of the family:
   [wk-robotics/docs/common.md](https://github.com/WayneKennedy/wk-robotics/blob/main/docs/common.md#micro-ros-how-the-mcu-joins-the-graph).
-- **Board support caveat, checked 2026-09-07 — not yet an OQ.**
-  [`micro-ROS/micro_ros_arduino`](https://github.com/micro-ROS/micro_ros_arduino) lists
-  **Teensy 4.1 as *Supported*** and **Teensy 4.0 as *"Not tested"***. DEC-18 selected the
-  4.0 and it is bought. The two share the i.MX RT1062 core and the same Teensyduino
-  support, so it is **expected** to work — but that expectation is **unverified**, and
-  DEC-04 makes the bridge load-bearing for the whole family. **Close it cheaply:** flash a
-  micro-ROS example to the 4.0 before firmware is written around it. If it fails, the
-  fallback is a 4.1 or the ESP32 already named above, not a redesign.
+- **Board support caveat — [OQ-14](open-questions.md).** micro-ROS upstream has **not
+  tested the Teensy 4.0** that DEC-18 selected and bought, while listing the 4.1 as
+  Supported. The board table, the checked date and the reason it is nonetheless expected
+  to work are family facts and live once, upstream:
+  [wk-robotics/docs/common.md](https://github.com/WayneKennedy/wk-robotics/blob/main/docs/common.md#micro-ros-how-the-mcu-joins-the-graph).
+  What is koala's alone: **DEC-04 makes this bridge load-bearing**, so close it cheaply
+  — flash a micro-ROS example to the 4.0 before firmware is written around it. If it
+  fails, the fallback is a 4.1 or the ESP32 already named above, not a redesign.
 - The **topic contract is the shared-brain backbone** of the family - fix it once and
   every member inherits it: `/cmd_vel`, `/joint_commands`, `/imu`, `/joint_states`,
   `/wheel_odom`, `/telemetry`. Bodies change; the spinal-cord protocol does not.

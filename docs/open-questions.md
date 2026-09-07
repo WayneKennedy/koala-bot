@@ -14,6 +14,19 @@ Unresolved. Resolve -> move to [`decisions.md`](decisions.md).
   checks from open physical acceptance. Retention dimensions and structural
   profile remain OQ-12 and OQ-11.
 
+- **OQ-14 - micro-ROS on the bought Teensy 4.0.** Upstream lists the 4.0 as
+  "Not tested" where the 4.1 is Supported. DEC-18 bought the 4.0, and DEC-04 makes
+  the bridge load-bearing for the whole family, so an untested board is a family
+  risk rather than a koala inconvenience. The board table and the shared reasoning
+  live in
+  [wk-robotics](https://github.com/WayneKennedy/wk-robotics/blob/main/docs/common.md#micro-ros-how-the-mcu-joins-the-graph),
+  not here.
+  **Cheap to close, and worth closing before firmware:** flash a micro-ROS example
+  to the 4.0, then log the result in [`test-log.md`](test-log.md). If it fails the
+  fallback is a Teensy 4.1 or the ESP32 named in
+  [`architecture.md`](architecture.md#bridge--contract) - not a redesign.
+  wk-devastator tracks the same question as its OQ-03, having bought no MCU yet.
+
 - **OQ-03 - Torso platform's 3 DOF.** pitch + roll + **yaw** (twist, very lifelike) vs
   pitch + roll + **heave** (breathing bob). Can't have all four from 3 actuators.
 - **OQ-04 - Head eyes & mass.** Screen/OLED eyes (light, expressive) vs mechanical eye

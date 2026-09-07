@@ -56,7 +56,8 @@ for this repo:
   [how to configure a servo](https://github.com/WayneKennedy/wk-robotics/blob/main/docs/common.md#configuring-a-servo--true-for-every-sts-project):
   the FE-URT-1 adapter (bundled with the 6-packs, so already owned), one servo at a time
   because every unit ships as ID 1, the 6 V/12 V rail distinction, and the FTDI latency
-  trap. **Read that before configuring the twelve limb servos.**
+  trap. **Read that before configuring the limb servos** — ten V1 joints, twelve units
+  bought (`docs/bom.md`), each shipped as ID 1.
 - [Compute and micro-ROS](https://github.com/WayneKennedy/wk-robotics/blob/main/docs/common.md#compute-the-two-tier-split)
   — the two-tier split this project defined, and the micro-ROS mechanics.
 - [Power integrity](https://github.com/WayneKennedy/wk-robotics/blob/main/docs/common.md#power-integrity).
@@ -85,7 +86,7 @@ fits, sliced layers and strength remain unverified (OQ-13). Frontier: test-fit
 coupons -> prototype prints -> electronics bring-up
 ([`docs/roadmap.md`](docs/roadmap.md)).
 
-**One cheap check is worth doing before firmware:** micro-ROS upstream lists the
-**Teensy 4.0 as "Not tested"** while the 4.1 is Supported, and DEC-18 bought the 4.0.
-Expected to work, unverified — see
+**One cheap check is worth doing before firmware:** micro-ROS upstream has not tested
+the Teensy 4.0 that DEC-18 bought — **[OQ-14](docs/open-questions.md)**, with the
+consequence for the bridge in
 [`docs/architecture.md`](docs/architecture.md#bridge--contract).
