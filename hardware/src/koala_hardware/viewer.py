@@ -7,8 +7,8 @@
 
 Writes build/viewer/scene.json next to the checked-in viewer.html, so any
 harness can refresh the geometry and just reload the browser tab. The viewer
-is an eyeball check on proportion and packaging; the build-time gates in
-printability.py and validation.py are what actually pass or fail a part.
+is an inspection aid. Build/audit checks have limited scope; no combination
+of these establishes hardware fit, continuous clearance or printed strength.
 """
 import argparse
 import base64
@@ -26,6 +26,7 @@ from build123d import export_stl
 from . import assembly
 from . import params as P
 from .parts import all_builders
+from .printability import metrics
 
 ROOT = pathlib.Path(__file__).resolve().parents[2]
 OUT = ROOT / "build" / "viewer"
@@ -63,12 +64,17 @@ def _item(name: str, mesh: trimesh.Trimesh, colour: str, **extra) -> dict:
 def _assembly_items(tmp: pathlib.Path) -> list[dict]:
     items = []
     for i, (name, solid, colour) in enumerate(assembly.build_scene()):
-        ghost = name.startswith("keepout")
+        ghost = name.startswith("reference")
         bought = name.split("_right")[0].split("_left")[0] in (
             "motor", "shaft", "hub", "wheel")
         items.append(_item(name, _mesh(solid, tmp, i), colour,
                            ghost=ghost,
-                           kind="keep-out" if ghost
+                           side=1 if name.endswith("_right") else -1,
+                           joint=("fixed" if name in ("pelvis", "e_tray")
+                                  or name.startswith("reference_roll")
+                                  else "roll" if name.startswith(("hip_", "reference_pitch"))
+                                  else "pitch"),
+                           kind="reference" if ghost
                            else "bought" if bought else "printed"))
     return items
 
@@ -95,6 +101,7 @@ def _part_items(tmp: pathlib.Path) -> list[dict]:
         items.append(_item(spec["name"], mesh, PART_COLOURS[n % len(PART_COLOURS)],
                            ghost=False, kind=kind,
                            notes=spec.get("notes", ""),
+                           print_metrics=metrics(mesh),
                            qty=spec.get("qty", 2 if spec.get("handed") else 1)))
         x += w + PART_GAP
         row_h = max(row_h, d)
@@ -118,6 +125,11 @@ def build() -> pathlib.Path:
                 "track": 2 * P.TRACK_HALF,
                 "stance": -assembly.GROUND_Z,
                 "hip_axes": P.HIP_PITCH_DROP,
+                "pitch_x": P.HIP_PITCH_X,
+                "roll_y": P.HIP_ROLL_Y,
+                "pitch_test": P.PITCH_TEST_DEG,
+                "roll_test": P.ROLL_TEST_DEG,
+                "status": "DEC-29 prototype — nominal geometry, hardware fit and strength unverified",
             },
         }
     data = OUT / "scene.json"

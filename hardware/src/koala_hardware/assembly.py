@@ -1,9 +1,5 @@
 # SPDX-License-Identifier: CERN-OHL-S-2.0
-"""Assembly sanity render: lower body posed at neutral, with servo keep-out
-ghosts. Eyeball check for proportion and collision - not an export artefact.
-
-Usage: uv run python -m koala_hardware.assembly  -> build/renders/assembly.png
-"""
+"""Lower-body geometry. Angles are CAD inspection poses, not control limits."""
 import pathlib
 import matplotlib
 matplotlib.use("Agg")
@@ -14,63 +10,66 @@ import trimesh
 from build123d import Pos, Rot, Cylinder, Align, mirror, Plane, export_stl
 from . import params as P
 from . import servo_iface as S
-from .parts import pelvis, hip_bracket, hip_link, thigh, e_tray
+from .parts import pelvis, hip_link, thigh, e_tray
 
 ROOT = pathlib.Path(__file__).resolve().parents[2]
-
 ROLL_Z = -P.HIP_ROLL_DROP
 PITCH_Z = ROLL_Z - P.HIP_PITCH_DROP
 WHEEL_Z = PITCH_Z - P.THIGH_DROP
 GROUND_Z = WHEEL_Z - P.WHEEL_DIA / 2
 
 
-def build_scene():
-    items = [("pelvis_plate", pelvis.build()["part"], "#8fb4d9"),
-             ("e_tray", Pos(0, 0, P.TRAY_GAP) * e_tray.build()["part"],
-              "#b4d98f")]
+def leg_parts():
+    """One right leg in roll-local frame, with kinematic group labels."""
+    pitch = Pos(P.HIP_PITCH_X, 0, -P.HIP_PITCH_DROP)
+    knee = pitch * Pos(0, 0, -P.THIGH_DROP)
+    items = []
+    for b in (hip_link.build_drive, hip_link.build_idler,
+              hip_link.build_saddle, hip_link.build_cap):
+        s = b()
+        items.append((s["name"], s["part"], "#d9a48f", "roll"))
+    for b in (thigh.build_outer, thigh.build_inner):
+        s = b()
+        items.append((s["name"], pitch * s["part"], "#c98fd9", "pitch"))
+    for i, spacer in enumerate(thigh.placed_spacers()):
+        items.append((f"thigh_spacer_{i+1}", pitch * spacer, "#8fd9c9", "pitch"))
+    def cyl(r, h):
+        return Cylinder(r, h, align=(Align.CENTER, Align.CENTER, Align.MIN))
+    face = thigh.MOTOR_FACE_Y
+    items += [
+        ("motor", knee * Pos(0, face, 0) * Rot(X=90) *
+         cyl(P.MOTOR_DIA / 2, P.MOTOR_BODY_LEN), "#777777", "pitch"),
+        ("shaft", knee * Pos(0, face, 0) * Rot(X=-90) *
+         cyl(P.MOTOR_SHAFT_DIA / 2, P.MOTOR_SHAFT_LEN), "#aaaaaa", "pitch"),
+        ("hub", knee * Pos(0, face + P.HUB_STACK - P.HUB_T, 0) * Rot(X=-90) *
+         cyl(P.HUB_DIA / 2, P.HUB_T), "#bbbbbb", "pitch"),
+        ("wheel", knee * Pos(0, face + P.HUB_STACK, 0) * Rot(X=-90) *
+         cyl(P.WHEEL_DIA / 2, P.WHEEL_W), "#555555", "pitch"),
+        ("reference_roll_servo", S.on_axis(Rot(Y=90)) * S.servo_reference(),
+         "#e8d44d", "fixed"),
+        ("reference_pitch_servo", pitch * Pos(0, P.HIP_PITCH_Y, 0) *
+         S.on_axis(Rot(X=-90)) * S.servo_reference(), "#e8d44d", "roll"),
+    ]
+    return items
 
-    br = hip_bracket.build()["part"]
-    hl = hip_link.build()["part"]
-    tu = thigh.build_upper()["part"]
-    mc = thigh.build_clamp()["part"]
-    wheel = Rot(X=90) * Cylinder(P.WHEEL_DIA / 2, P.WHEEL_W,
-                                 align=(Align.CENTER, Align.CENTER, Align.CENTER))
-    motor = (Pos(0, thigh.MOTOR_FACE_Y, 0) * Rot(X=90)
-             * Cylinder(P.MOTOR_DIA / 2, P.MOTOR_BODY_LEN,
-                        align=(Align.CENTER, Align.CENTER, Align.MIN)))
-    shaft = (Pos(0, thigh.MOTOR_FACE_Y, 0) * Rot(X=-90)
-             * Cylinder(P.MOTOR_SHAFT_DIA / 2, P.MOTOR_SHAFT_LEN,
-                        align=(Align.CENTER, Align.CENTER, Align.MIN)))
-    hub = (Pos(0, thigh.MOTOR_FACE_Y + P.HUB_STACK - P.HUB_T, 0) * Rot(X=-90)
-           * Cylinder(P.HUB_DIA / 2, P.HUB_T,
-                      align=(Align.CENTER, Align.CENTER, Align.MIN)))
 
+def build_scene(roll=0.0, pitch=0.0):
+    """Symmetric local roll (positive = splay), common fore/aft pitch."""
+    items = [("pelvis", pelvis.build()["part"], "#8fb4d9"),
+             ("e_tray", Pos(0, 0, P.TRAY_GAP) * e_tray.build()["part"], "#b4d98f")]
+    local = leg_parts()
+    pitch_tf = (Pos(P.HIP_PITCH_X, 0, -P.HIP_PITCH_DROP) * Rot(Y=pitch) *
+                Pos(-P.HIP_PITCH_X, 0, P.HIP_PITCH_DROP))
     for side in (1, -1):
-        def s(solid):
-            return solid if side == 1 else mirror(solid, Plane.XZ)
-
-        y = side * P.HIP_ROLL_Y
-        sfx = "_right" if side == 1 else "_left"
-        items += [
-            (f"hip_bracket{sfx}", Pos(0, y, ROLL_Z) * s(br), "#d9d08f"),
-            (f"hip_link{sfx}", Pos(0, y, ROLL_Z) * s(hl), "#d9a48f"),
-            (f"thigh_upper{sfx}", Pos(0, y, PITCH_Z) * s(tu), "#c98fd9"),
-            (f"motor_clamp{sfx}", Pos(0, y, WHEEL_Z) * s(mc), "#8fd9c9"),
-            (f"motor{sfx}", Pos(0, y, WHEEL_Z) * s(motor), "#777777"),
-            (f"shaft{sfx}", Pos(0, y, WHEEL_Z) * s(shaft), "#aaaaaa"),
-            (f"hub{sfx}", Pos(0, y, WHEEL_Z) * s(hub), "#bbbbbb"),
-            (f"wheel{sfx}",
-             Pos(0, side * P.TRACK_HALF, WHEEL_Z) * wheel, "#555555"),
-            # servo keep-out ghosts. The pitch servo lies AFT and OUTBOARD
-            # (params: sliding along its own axis is free), not stacked under
-            # the roll joint - that is what collapses the hip to 26 mm.
-            (f"keepout_roll_servo{sfx}",
-             Pos(0, y, ROLL_Z) * s(S.on_axis(Rot(Y=90)) * S.servo_envelope(0)),
-             "#e8d44d"),
-            (f"keepout_pitch_servo{sfx}",
-             Pos(0, y, ROLL_Z) * s(Pos(0, P.HIP_PITCH_Y, -P.HIP_PITCH_DROP)
-             * S.on_axis(Rot(X=-90)) * S.servo_envelope(0)), "#e8d44d"),
-        ]
+        for name, solid, colour, group in local:
+            if group == "pitch":
+                solid = pitch_tf * solid
+            if group != "fixed":
+                solid = Rot(X=roll) * solid
+            if side == -1:
+                solid = mirror(solid, Plane.XZ)
+            items.append((name + ("_right" if side == 1 else "_left"),
+                          Pos(0, side * P.HIP_ROLL_Y, ROLL_Z) * solid, colour))
     return items
 
 

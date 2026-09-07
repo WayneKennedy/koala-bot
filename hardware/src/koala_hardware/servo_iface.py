@@ -23,6 +23,21 @@ def on_axis(*rot) -> Pos:
     return tf * Pos(-P.SERVO_AXIS_X, 0, 0)
 
 
+def servo_reference() -> Part:
+    """Nominal case and drive horn only, NOT vendor-complete hardware.
+
+    No invented tab block or padded horn. Idler is unresolved (OQ-12), so no
+    solid is invented for it. Collision checks cannot certify its clearance.
+    """
+    body = Pos(0, 0, P.SERVO_BODY_BOT) * Box(
+        P.SERVO_L, P.SERVO_W, P.SERVO_BODY_TOP - P.SERVO_BODY_BOT,
+        align=(Align.CENTER, Align.CENTER, Align.MIN))
+    horn = Pos(P.SERVO_AXIS_X, 0, P.SERVO_BODY_TOP) * Cylinder(
+        P.SERVO_HORN_DIA / 2, P.SERVO_HORN_TOP - P.SERVO_BODY_TOP,
+        align=(Align.CENTER, Align.CENTER, Align.MIN))
+    return body + horn
+
+
 def servo_envelope(clearance: float = P.CLEAR_POCKET) -> Part:
     """Simplified servo keep-out solid (body + tabs + horn/idler cylinders).
     Subtract from a printed part to make a cradle pocket."""

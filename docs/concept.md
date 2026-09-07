@@ -53,8 +53,10 @@ Closest prior art: **Swiss-Mile / ANYmal-on-wheels** ([`references.md`](referenc
    servos; drive -> geared DC. Exploit passive dynamics where possible.
 3. **Every part <= 200x200 mm.** Segment large structures into printable modules; hide
    seams under paneling. Seams are *designed* screw-joints derived from one master model
-   (DEC-23), and every part must print **support-free** in a declared orientation - both
-   rules enforced by automated checks in the CAD build (DEC-24).
+   (DEC-23), with an explicit print orientation for each part.
+   Bed fit is enforced by the CAD build. Support-free manufacture remains a
+   target requiring sliced-layer and physical validation; the surface-area
+   screen alone does not prove it (DEC-29).
 4. **Body-as-source-code.** Parametric code-CAD (`build123d` / `CadQuery`) so `bed_size`
    and `scale` are parameters, geometry lives in-repo, and it can export URDF.
 5. **Finish V1 end-to-end before the family** — design -> print -> BOM -> firmware ->

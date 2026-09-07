@@ -5,8 +5,8 @@ CAD, so it cannot drift from the geometry). Prices are UK, inc VAT, ~2026.
 Full sourcing rationale and alternatives: [`sourcing.md`](sourcing.md).
 
 **Status:** V1 electronics and actuators are **ordered** (2026-09-01). Of the
-fasteners, only the **heat-set inserts and an insert tip** are outstanding —
-they gate `coupon_seam`, and through it every DEC-23 seam in the design.
+fasteners, the earlier stock/order statements have not been reverified against
+the DEC-29 redesign; check quantities and provisional lengths below.
 First coupon printed 2026-09-01 and passed (see [`test-log.md`](test-log.md)); no structural part printed yet.
 
 ## Bought — drive & balance base *(purchased 2026-09-01, Pi Hut, ~£159.50)*
@@ -38,36 +38,36 @@ each and a missing M3×55 stops an assembly dead.
 
 | Part | Need | Buy | Role — where the count comes from |
 |------|------|-----|-----------------------------------|
-| M3 heat-set inserts, **5.7 mm long × 4.6 mm OD** | 20 | 50–100 | 4 pelvis deck + 8 hip-bracket flanges + 8 thigh seams |
-| M3 socket screws 8 mm | 8 | assortment | 4 tray→standoff + 4 driver shield into printed standoffs |
-| M3 socket screws 12 mm | 8 | assortment | pelvis deck → hip-bracket flange inserts (4 per side) |
-| M3 socket screws 16 mm | 8 | assortment | motor clamp → thigh seam inserts (4 per leg) |
-| **M3 socket screws 55 mm** | 4 | 10 | through the hip brackets' end walls as a wrap-around clamp — upstream fits one only to the **base** servo, its highest-load joint, and Koala's hips are the analogue. A through-bolt + nut cuts no thread in the servo. ⚠️ **Provisional** — [OQ-12](open-questions.md) |
-| M3 nyloc nuts | 4 | assortment | far side of those tab screws (same caveat) |
+| M3 heat-set inserts, **5.7 mm long × 4.6 mm OD** | 4 | with spares | 2 pitch-cap posts per hip; fit unverified |
+| M3 short inserts, **≤4 mm long** | 4 | after fit test | pelvis tray mounts in 5 mm deck; selected insert OD/bore must match |
+| M3 socket screws 8 mm | 12 | assortment | 4 tray→standoff + 4 driver shield mounts + 4 pitch-cap screws; shield mounting remains provisional |
+| **M3 socket screws 55 mm** | 8 | 10 | 4 roll-cheek/carrier bolts + 4 thigh/spacer bolts; 50 mm nominal grip, verify washer/nut stack |
+| M3 nuts | 8 | assortment | through-bolts; use thin nuts fitting the 3 mm audit envelope or repeat clearance checks |
+| M3 washers | 16 | assortment | one under each through-bolt head and nut; verify chosen thickness |
 | M3 standoffs 10 mm, male/female | 4 | 4–10 | pelvis deck → electronics tray, sets the wiring gap |
 | **Servo horns, metal, 25T, 4-hole 9.9 mm square** | 8 | 8 | **2 per driven joint** — drive *and* idler. The idler horn is what makes the joint a supported clevis rather than a cantilever. **None supplied** ([SPEC 11]); check the servo package |
-| **M3×6 socket screws** | 32 | 40 | servo horn squares — **8 per driven joint** (4 drive + 4 idler) × 4 joints. **M3, not M2.5**: upstream drills Ø3.2 on this square and their arms assemble; the STEP's Ø2.5 is the M3 tapping drill. **None supplied** ([SPEC 11]) |
+| M3 horn-square screws, **length TBD** | 32 | after measurement | 8 per joint × 4 joints; 5 mm printed cheeks plus measured horn engagement, NOT blanket M3×6 |
+| Motor face M3 screws, **length TBD** | 12 | after measurement | 6 per motor; M3×8 candidate gives 3 mm engagement through 5 mm plate; verify motor thread depth |
+| Roll-servo case-retention screws, **size TBD** | 8 provisional | after measurement | 4 per servo, OQ-12; modeled clearance remains 2.8 mm, not an approved M3 through-hole |
 | Soldering-iron insert tip | 1 | 1 | setting the heat-set inserts |
 | PETG filament, 1 kg | 1 | 1 | one spool; current quantity is pending a fresh slice — see the generated total below |
 
-**Two rows above are provisional.** The STS3215 is retained by a snug pocket
-plus 4 self-tapping screws (2 front, 2 back); the M3×55 is for an *optional*
-wrap-around clamp at the highest-load joint. Sizes and positions are blocked on
-measuring a physical servo — see [OQ-12](open-questions.md). **Buy the M3×6
-with confidence; hold the M3×55 and the self-tappers.**
+**Do not order unverified lengths from this draft.** The M3×55 bolts now join
+printed components, not servo case bores. Roll retention, idler stand-off,
+horn engagement and motor thread depth remain measurement gates (OQ-12).
+Horn centre/axle fixings and wheel/hub fixings must be checked against the
+supplied kits; their exact lengths/counts are not yet established here.
 
 **Servo horns are included above but may already be in the kit.** [SPEC 11]
 says the bare servo ships with *No Accessories*, and the 4-hole drive square
 lives on the horn, not the servo. Check the actual package before ordering.
 
 **Insert geometry is a design constant.** `INSERT_M3_DIA` / `INSERT_M3_LEN` in
-`params.py` are written to the common **5.7 × 4.6 mm** M3 insert (Ruthex and
+`params.py` target the **5.7 × 4.6 mm** M3 insert at the pitch-cap posts (Ruthex and
 equivalents). A different insert profile means re-deriving those constants and
-reprinting `coupon_seam` — so match the geometry rather than the brand.
+reprinting a fit coupon. The short pelvis inserts need their own bore fit check.
 
-A mixed M3 screw/nut/washer assortment box covers the 8/12/16 mm rows and the
-nyloc nuts in one purchase; the M3×55 almost never appears in assortments and
-needs buying separately.
+Check existing fastener stock against the revised joints before buying spares.
 
 Bench power for bring-up (12 V source) is still outstanding — a 3S LiPo is the
 DEC-20 answer, not a bench PSU.
@@ -77,8 +77,8 @@ DEC-20 answer, not a bench PSU.
 What the **design** requires is short, and it is all koala-bot asserts:
 
 - **PETG** (DEC-09), printed in each part's **declared orientation**, with
-  **supports off** — every part is support-free by design (DEC-24). If a slicer
-  wants support, the part or its orientation is wrong.
+  support-free manufacture as a **target**, not a verified property. Inspect
+  sliced layers first, especially pelvis/root bores and saddle posts (DEC-29).
 - A **brim** on tall, small-footprint parts — flagged per part in the table.
 
 Parts are **not** printed solid; strength comes from perimeters and orientation,
@@ -109,34 +109,35 @@ on this profile beyond the requirements above.
 
 ## Printed parts
 
-Every part ≤ 200×200 mm and support-free in its declared orientation
-(DEC-09 / DEC-24). Regenerate with
+Every part fits ≤ 200×200 mm in its declared orientation. Surface metrics do
+not certify support-free printing or strength (DEC-29). Regenerate with
 `cd hardware && uv run python -m koala_hardware.export`.
 
 <!-- BEGIN GENERATED: printed parts -->
 
 *Generated by `koala_hardware.export` - do not hand-edit. Coupons are excluded from the total.*
 
-No current hash-matched slice results, so filament is the **solid-geometry upper bound**, not a setting — real use is roughly half. Run `koala_hardware.slice_remote` for measured figures.
+No current hash-matched slice results, so filament is the **solid-geometry upper bound**, not a print setting. Run `koala_hardware.slice_remote` for measured figures.
 
 | Part | Qty | Size (mm) | Filament | Print time | Print notes |
 |------|-----|-----------|----------|-----------|-------------|
 | `e_tray` | 1 | 140 x 90 x 9 | ~61 g (solid max) | - | clean |
-| `hip_bracket` | 2 | 47 x 52 x 25 | ~54 g (solid max) | - | 287 mm2 self-supporting overhang |
-| `hip_link_left` | 1 | 66 x 61 x 57 | ~58 g (solid max) | - | 371 mm2 self-supporting overhang |
-| `hip_link_right` | 1 | 66 x 61 x 57 | ~58 g (solid max) | - | 371 mm2 self-supporting overhang |
-| `motor_clamp_left` | 1 | 48 x 86 x 39 | ~74 g (solid max) | - | 467 mm2 self-supporting overhang |
-| `motor_clamp_right` | 1 | 48 x 86 x 39 | ~74 g (solid max) | - | 467 mm2 self-supporting overhang |
-| `pelvis_plate` | 1 | 150 x 170 x 5 | ~157 g (solid max) | - | clean |
-| `thigh_upper_left` | 1 | 107 x 71 x 30 | ~141 g (solid max) | - | 467 mm2 self-supporting overhang |
-| `thigh_upper_right` | 1 | 107 x 71 x 30 | ~141 g (solid max) | - | 467 mm2 self-supporting overhang |
+| `hip_pitch_cap` | 2 | 70 x 12 x 4 | ~8 g (solid max) | - | clean |
+| `hip_pitch_saddle_left` | 1 | 72 x 64 x 34 | ~45 g (solid max) | - | 217 mm2 flagged overhang; inspect slice |
+| `hip_pitch_saddle_right` | 1 | 72 x 64 x 34 | ~45 g (solid max) | - | 217 mm2 flagged overhang; inspect slice |
+| `hip_roll_drive` | 2 | 64 x 40 x 5 | ~15 g (solid max) | - | clean |
+| `hip_roll_idler` | 2 | 64 x 40 x 5 | ~15 g (solid max) | - | clean |
+| `pelvis` | 1 | 150 x 170 x 24 | ~188 g (solid max) | - | 573 mm2 flagged overhang; inspect slice |
+| `thigh_inner` | 2 | 48 x 193 x 5 | ~65 g (solid max) | - | clean |
+| `thigh_outer` | 2 | 48 x 193 x 5 | ~77 g (solid max) | - | clean |
+| `thigh_spacer` | 4 | 24 x 24 x 40 | ~90 g (solid max) | - | clean |
 | `coupon_horn_plate` | 1 | 30 x 30 x 4 | ~4 g (solid max) | - | clean |
 | `coupon_ladder` | 1 | 150 x 60 x 6 | ~68 g (solid max) | - | clean |
 | `coupon_motor_bore` | 1 | 135 x 50 x 6 | ~26 g (solid max) | - | clean |
 | `coupon_motor_ring` | 1 | 47 x 47 x 5 | ~10 g (solid max) | - | clean |
-| `coupon_seam` | 1 | 60 x 75 x 13 | ~22 g (solid max) | - | 38 mm2 self-supporting overhang |
+| `coupon_seam` | 1 | 60 x 75 x 13 | ~22 g (solid max) | - | 38 mm2 flagged overhang; inspect slice |
 | `coupon_servo_cradle` | 1 | 64 x 40 x 30 | ~55 g (solid max) | - | clean |
-| **Structural total** | **10** | | **~818 g (solid max)** | **-** | |
+| **Structural total** | **18** | | **~609 g (solid max)** | **-** | |
 
 <!-- END GENERATED -->
 

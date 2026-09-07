@@ -111,6 +111,13 @@ canvas { display: block; }
   text-transform: uppercase; color: var(--ink-faint); }
 #hud span { font-variant-numeric: tabular-nums; }
 #sel { color: var(--accent); }
+#pose, #detail { padding: 8px 16px; font-size: 11px; border-top: 1px solid var(--line); }
+#pose label { display: block; }
+#pose input { width: 100%; accent-color: var(--accent); }
+#neutral { background: var(--panel-2); color: var(--ink); border: 1px solid var(--line);
+  border-radius: 4px; padding: 4px 10px; cursor: pointer; }
+#detail { max-height: 150px; overflow-y: auto; color: var(--ink-dim); }
+.warning { color: var(--warn); font-size: 10px; margin-top: 6px; }
 #loading {
   position: absolute; inset: 0; display: grid; place-items: center;
   color: var(--ink-faint); font-family: var(--mono); font-size: 12px;
@@ -128,9 +135,18 @@ canvas { display: block; }
       <button role="tab" id="tab-assembly" aria-selected="true">Assembly</button>
       <button role="tab" id="tab-parts" aria-selected="false">Parts</button>
     </div>
+    <div id="pose">
+      <label>Hip pitch <output id="pitch-value">0°</output>
+        <input id="pitch" type="range" min="-20" max="20" value="0" step="1"></label>
+      <label>Symmetric roll / splay <output id="roll-value">0°</output>
+        <input id="roll" type="range" min="-10" max="10" value="0" step="1"></label>
+      <button id="neutral">Neutral</button>
+      <div class="warning">Inspection poses, not safe operating limits. Servo reference omits unresolved idler and cable geometry.</div>
+    </div>
     <div id="list"></div>
+    <div id="detail">Prototype geometry. Select a print for its orientation and assembly notes.</div>
     <footer>
-      <button class="opt" id="opt-ghost" aria-pressed="true"><i class="box"></i>Servo keep-outs</button>
+      <button class="opt" id="opt-ghost" aria-pressed="true"><i class="box"></i>Nominal servo references</button>
       <button class="opt" id="opt-wire" aria-pressed="false"><i class="box"></i>Wireframe</button>
       <button class="opt" id="opt-grid" aria-pressed="true"><i class="box"></i>Ground grid</button>
     </footer>
@@ -242,6 +258,7 @@ function gridLines(x0, x1, y0, y1, step, z) {
 
 function load(which) {
   mode = which;
+  $("#pose").hidden = which !== "assembly";
   for (const m of meshes) { m.geometry.dispose(); m.material.dispose(); }
   root.clear(); helpers.clear(); meshes = []; solo = null;
   const box = new THREE.Box3();
@@ -278,9 +295,40 @@ function load(which) {
   }
 
   box.getCenter(cam.t);
-  cam.r = box.getBoundingSphere(new THREE.Sphere()).radius * 2.6;
-  place(); applyVisibility(); buildList(); setHud(null);
+  const halfFov = Math.atan(Math.tan(camera.fov * Math.PI / 360) *
+                           Math.min(1, camera.aspect));
+  cam.r = box.getBoundingSphere(new THREE.Sphere()).radius / Math.sin(halfFov) * 1.08;
+  place(); applyPose(); applyVisibility(); buildList(); setHud(null);
 }
+
+function pivotRotation(x, y, z, axis, angle) {
+  return new THREE.Matrix4().makeTranslation(x, y, z)
+    .multiply(new THREE.Matrix4().makeRotationAxis(axis, angle))
+    .multiply(new THREE.Matrix4().makeTranslation(-x, -y, -z));
+}
+function applyPose() {
+  const pitch = Number($("#pitch").value), roll = Number($("#roll").value);
+  $("#pitch-value").textContent = pitch + "°";
+  $("#roll-value").textContent = roll + "°";
+  if (mode !== "assembly") return;
+  const d = DATA.meta, rad = Math.PI / 180;
+  for (const mesh of meshes) {
+    const it = mesh.userData;
+    mesh.matrixAutoUpdate = false;
+    mesh.matrix.identity();
+    if (it.joint === "fixed") continue;
+    mesh.matrix.copy(pivotRotation(0, it.side * d.roll_y, d.roll_z,
+      new THREE.Vector3(1, 0, 0), it.side * roll * rad));
+    if (it.joint === "pitch")
+      mesh.matrix.multiply(pivotRotation(d.pitch_x, it.side * d.roll_y, d.pitch_z,
+        new THREE.Vector3(0, 1, 0), pitch * rad));
+    mesh.matrixWorldNeedsUpdate = true;
+  }
+}
+for (const id of ["#pitch", "#roll"]) $(id).oninput = applyPose;
+$("#neutral").onclick = () => {
+  $("#pitch").value = $("#roll").value = 0; applyPose();
+};
 
 function applyVisibility() {
   for (const m of meshes) {
@@ -294,7 +342,7 @@ function applyVisibility() {
 }
 
 const KINDS = [["printed", "Printed"], ["bought", "Bought"],
-               ["keep-out", "Keep-out"], ["coupon", "Test coupons"]];
+               ["reference", "Nominal hardware"], ["coupon", "Test coupons"]];
 
 function buildList() {
   const list = $("#list"); list.innerHTML = "";
@@ -311,7 +359,7 @@ function buildList() {
       b.setAttribute("aria-pressed", it.hidden ? "false" : "true");
       b.innerHTML = `<i class="dot" style="background:${it.colour}"></i>` +
         `<span>${it.name}</span>` +
-        `<span class="qty">${it.qty ? "×" + it.qty : it.size.join("×")}</span>`;
+        `<span class="qty">${it.qty ? "×" + it.qty : ""}</span>`;
       b.onclick = (e) => {
         if (e.shiftKey) { it.hidden = !it.hidden; }
         else { solo = solo === it.name ? null : it.name; }
@@ -327,8 +375,8 @@ function buildList() {
 function setHud(it) {
   const m = DATA.meta;
   const stats = mode === "assembly"
-    ? [["Stance", `${m.stance.toFixed(0)} mm`],
-       ["Track", `${m.track.toFixed(0)} mm`],
+    ? [["Neutral stance", `${m.stance.toFixed(0)} mm`],
+       ["Neutral track", `${m.track.toFixed(0)} mm`],
        ["Hip axes", `${m.hip_axes.toFixed(0)} mm`]]
     : [["Bed ref", `${m.bed[0]}×${m.bed[1]} mm`],
        ["Parts", String(DATA.parts.length)]];
@@ -337,6 +385,11 @@ function setHud(it) {
     : `<div><b>Selection</b><span id="sel">click to solo · shift-click to hide</span></div>`;
   $("#hud").innerHTML = sel + stats.map(
     ([k, v]) => `<div><b>${k}</b><span>${v}</span></div>`).join("");
+  $("#detail").textContent = it && it.notes ? it.notes +
+    (it.print_metrics ? " Bed contact " + it.print_metrics.bed_area.toFixed(0) +
+     " mm²; flagged overhang " + it.print_metrics.overhang_area.toFixed(0) +
+     " mm². Layout is a comparison, not one printable plate. Layers are horizontal." : "")
+    : m.status;
 }
 
 /* ---- controls ---- */
@@ -366,9 +419,13 @@ function switchTab(which) {
 
 fetch("scene.json?" + Date.now()).then((r) => r.json()).then((d) => {
   DATA = d;
+  for (const [id, range] of [["#pitch", d.meta.pitch_test], ["#roll", d.meta.roll_test]]) {
+    $(id).min = -range; $(id).max = range;
+  }
   const tris = d.assembly.concat(d.parts).reduce((a, i) => a + i.tris, 0);
   $("#stamp").textContent =
-    `${d.parts.length} printed parts · ${tris.toLocaleString()} tris`;
+    `${d.parts.filter(i => i.kind === "printed").length} print designs · ` +
+    `${d.parts.filter(i => i.kind === "coupon").length} coupons`;
   $("#loading").remove();
   resize(); load("assembly");
 }).catch((e) => {

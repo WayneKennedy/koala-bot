@@ -3,6 +3,27 @@
 Committed decisions with rationale. Unresolved items live in
 [`open-questions.md`](open-questions.md). Format: `DEC-nn - decision - why`.
 
+**CAD implementation caveat:** the [review of revision a3f265c](cad-review.md)
+finds unresolved assembly defects and insufficient manufacturing/strength
+validation. In particular, DEC-24's historical claim that the build proves
+support-free printing is not established by its area heuristic. DEC-23/26/28
+describe intent and prior work, not acceptance of the current mechanism.
+DEC-29 now replaces that geometry; structural acceptance remains open as OQ-13.
+
+- **DEC-29 — FDM-oriented lower-body prototype** (2026-09-06, authorized after
+  the CAD review). Integrate pelvis and roll roots; remove bracket mounting
+  flanges. Replace enclosing hip links with flat roll cheeks, an open pitch
+  saddle and removable case cap. Replace thigh/motor-clamp seams with flat
+  twin cheeks and through-bolted compression spacers; the outer cheek mounts
+  the motor face directly. Keep rounded, tapered profiles without sacrificing
+  flat bed faces. Supersedes DEC-23's universal insert/key prescription for
+  these joints, DEC-24's proof claim, DEC-25's upright-fork print prescription,
+  and DEC-26/27's old packaging numbers. Track increases to 258.8 mm, stance
+  becomes 268 mm; this width/motion tradeoff remains prototype evidence, not an
+  optimum. [Design, assembly and validation record](cad-redesign.md).
+  Physical fit, clamp friction, fastener engagement, sliced layers and strength
+  remain unverified; sampled nominal collision tests are not motion limits.
+
 - **DEC-01 - Koala-inspired family; V1 = self-balancing wheeled companion.** The
   koala/primate body plan serves both "companion with personality" and "locomotion
   showpiece"; a lovable mascot suits an open-source / video audience.

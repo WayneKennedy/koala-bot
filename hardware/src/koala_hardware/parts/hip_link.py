@@ -1,110 +1,98 @@
 # SPDX-License-Identifier: CERN-OHL-S-2.0
-"""Hip link: driven by the roll servo, carries the pitch servo that drives the
-thigh. The 2-DOF hip of DEC-07.
-
-Local frame: origin ON THE ROLL AXIS; roll axis = X, +X forward, +Y outboard.
-The pitch axis is HIP_PITCH_DROP below, running along Y.
-
-COMPACT LAYOUT. The pitch servo points AFT (-X) and is slid OUTBOARD along its
-own axis. Sliding a servo along its output axis does not move that axis, so
-this is free in kinematics and buys the whole compaction: the two hip axes sit
-26 mm apart instead of 60, and the leg reads as a hip rather than a hip plus a
-knee halfway down the thigh.
-
-Clearances that set the shape:
-  - The link rotates about the roll axis carrying everything below it, so it
-    must clear the ROLL SERVO body (X -19.4..20.2, Y +/-12.4, Z -10.2..35.2)
-    and the hip bracket (which now starts at Z=20, well clear).
-  - The legs therefore drop at X = +/-20, just outboard of the servo's ends,
-    where the field below the axis is open.
-
-DEC-24 print strategy: stands on the cradle's flat outboard face with the roll
-axis horizontal, so both fork plates stand on edge - a clevis printed
-axis-vertical always leaves its far tine bridging air.
+"""Open, bolted hip carrier. Coordinates relative to the roll axis.
+Cheeks print flat; saddle prints on its floor. All hardware fits provisional.
 """
-from build123d import Box, Cylinder, Part, Pos, Rot, Align
+from build123d import Align, Axis, Box, Cylinder, Plane, Polygon, Pos, Rot, extrude, fillet
 from .. import params as P
-from .. import servo_iface as S
 
-FORK_R = 15.0        # just covers the drive square + idler bore
-FORK_T = 5.0
-HORN_GAP = 0.2
-LEG_W = 26.0         # leg width in Y
-LEG_T = 6.0          # leg thickness along X
-CRADLE_WALL = 4.0
-PITCH_DROP = P.HIP_PITCH_DROP
-PITCH_Y = P.HIP_PITCH_Y
-
-# pitch servo extents in this frame, from its own constants
-SRV_X0 = -P.SERVO_ABOVE                      # -35.2, body points aft
-SRV_X1 = P.SERVO_BELOW                       # +10.2
-SRV_Y0 = PITCH_Y + P.SERVO_IDLER_BOT         # inboard face
-SRV_Y1 = PITCH_Y + P.SERVO_HORN_TOP          # outboard face
-SRV_Z0 = -PITCH_DROP - P.SERVO_W / 2
-SRV_Z1 = -PITCH_DROP + P.SERVO_W / 2
+T = 5.0
+DRIVE_X = P.SERVO_HORN_TOP + 0.2
+IDLER_X = P.SERVO_IDLER_BOT - 0.2
+BASE_Z = -52.0
+SEAT_Z = -P.HIP_PITCH_DROP - P.SERVO_W / 2
+TOP_Z = -P.HIP_PITCH_DROP + P.SERVO_W / 2
+BOLTS = [(-20.0, -47.0), (-12.0, -47.0)]  # Y,Z; M3 through X
+POST_X = (P.HIP_PITCH_X - P.SERVO_ABOVE - 6.8,
+          P.HIP_PITCH_X + P.SERVO_BELOW + 6.8)
 
 
-def build() -> dict:
-    x_horn = P.SERVO_HORN_TOP + HORN_GAP        # +20.4 (drive side)
-    x_idler = P.SERVO_IDLER_BOT - HORN_GAP      # -19.6 (idler side)
+def hole(r, h):
+    return Pos(0, 0, -0.1) * Cylinder(r, h + 0.2,
+        align=(Align.CENTER, Align.CENTER, Align.MIN))
 
-    horn_plate = Pos(x_horn, 0, 0) * Rot(Y=90) * Cylinder(
-        FORK_R, FORK_T, align=(Align.CENTER, Align.CENTER, Align.MIN))
-    idler_plate = Pos(x_idler, 0, 0) * Rot(Y=-90) * Cylinder(
-        FORK_R, FORK_T, align=(Align.CENTER, Align.CENTER, Align.MIN))
 
-    part = horn_plate + idler_plate
+def horn_plate(profile, radius=15):
+    part = extrude(Polygon(*profile, align=Align.NONE), amount=T, dir=(0, 0, 1))
+    part = fillet(part.edges().filter_by(Axis.Z), 3)
+    part += Cylinder(radius, T, align=(Align.CENTER, Align.CENTER, Align.MIN))
+    part -= hole(P.SERVO_HORN_BOSS_DIA / 2 + 0.5, T)
+    for a in (-P.SERVO_DRIVE_SQ / 2, P.SERVO_DRIVE_SQ / 2):
+        for b in (-P.SERVO_DRIVE_SQ / 2, P.SERVO_DRIVE_SQ / 2):
+            part -= Pos(a, b) * hole(P.SERVO_DRIVE_SCREW / 2, T)
+    return part
 
-    # Legs: drop from each disc, then run outboard to meet the cradle. They sit
-    # at X = +/-20, clear of the roll servo body which ends at X 20.2 / -19.4.
-    for x0 in (x_horn, x_idler - LEG_T):
-        part += Pos(x0, -LEG_W / 2, SRV_Z1) * Box(
-            LEG_T, LEG_W, -SRV_Z1,
-            align=(Align.MIN, Align.MIN, Align.MIN))
-        # outboard run, from the leg across to the far cradle wall
-        # The horn-side leg sits beyond the cradle in X, so extend its bed-side
-        # foot back to the cradle instead of leaving that whole fork tine as a
-        # disconnected solid.
-        part += Pos(x0, -LEG_W / 2, SRV_Z0 - CRADLE_WALL) * Box(
-            LEG_T, SRV_Y1 + CRADLE_WALL + LEG_W / 2,
-            SRV_Z1 - SRV_Z0 + CRADLE_WALL,
-            align=(Align.MIN, Align.MIN, Align.MIN))
-        if x0 > SRV_X1 + CRADLE_WALL:
-            cradle_face = SRV_X1 + CRADLE_WALL
-            part += Pos(cradle_face - 0.1, -LEG_W / 2,
-                        SRV_Z0 - CRADLE_WALL) * Box(
-                x0 - cradle_face + 0.2,
-                SRV_Y1 + CRADLE_WALL + LEG_W / 2,
-                CRADLE_WALL,
-                align=(Align.MIN, Align.MIN, Align.MIN))
 
-    # Cradle: wraps the pitch servo, open on the outboard face so it slides in.
-    part += Pos(SRV_X0 - CRADLE_WALL, SRV_Y0 - CRADLE_WALL, SRV_Z0 - CRADLE_WALL) * Box(
-        (SRV_X1 - SRV_X0) + 2 * CRADLE_WALL,
-        (SRV_Y1 - SRV_Y0) + 2 * CRADLE_WALL,
-        (SRV_Z1 - SRV_Z0) + CRADLE_WALL,
+def cheek(drive):
+    # Flat XY design: drawing X=assembly Y, drawing Y=assembly Z.
+    part = horn_plate([(-10, 0), (8, 0), (-8, -14),
+                       (-8, BASE_Z), (-28, BASE_Z), (-28, -18)], radius=12)
+    for y, z in BOLTS:
+        part -= Pos(y, z) * hole(P.CLEAR_HOLE_M3 / 2, T)
+    # Plane.YZ maps the drawing into YZ and the extrusion into +X.
+    part = Pos(DRIVE_X if drive else IDLER_X - T, 0, 0) * Plane.YZ.location * part
+    return dict(name="hip_roll_drive" if drive else "hip_roll_idler",
+                part=part, qty=2, orientation=Rot(Y=-90),
+                notes="Flat cheek face on bed; layers in YZ load plane. "
+                      "Four unobstructed through-holes per horn. M3x55 carrier bolts; "
+                      "horn screw length and idler spacing require physical fit.")
+
+
+def build_drive():
+    return cheek(True)
+
+
+def build_idler():
+    return cheek(False)
+
+
+def build_saddle():
+    # An aft web joins two rails around an OPEN lane for the inner thigh.
+    h = SEAT_Z - BASE_Z
+    part = Pos(3.2, 4, BASE_Z) * Box(66.4, 64, h,
+        align=(Align.CENTER, Align.CENTER, Align.MIN))
+    part = fillet(part.edges().filter_by(Axis.Z), 3)
+    # Lane extends forward to free space, no enclosing crossbar.
+    part -= Pos(-6, -5, BASE_Z - 0.1) * Box(60, 10, h + 0.2,
         align=(Align.MIN, Align.MIN, Align.MIN))
+    # Roll plates bound the inboard rail; the aft connecting web remains.
+    part -= Pos(-60, -40, BASE_Z - .1) * Box(60 + IDLER_X, 35, h + .2,
+        align=(Align.MIN, Align.MIN, Align.MIN))
+    part -= Pos(DRIVE_X, -40, BASE_Z - .1) * Box(40, 35, h + .2,
+        align=(Align.MIN, Align.MIN, Align.MIN))
+    for x in POST_X:
+        part += Pos(x, P.HIP_PITCH_Y, BASE_Z) * Cylinder(5.5, TOP_Z - BASE_Z,
+            align=(Align.CENTER, Align.CENTER, Align.MIN))
+        part -= Pos(x, P.HIP_PITCH_Y, TOP_Z + .1) * Cylinder(
+            P.INSERT_M3_DIA / 2, P.INSERT_M3_LEN + .1,
+            align=(Align.CENTER, Align.CENTER, Align.MAX))
+    for y, z in BOLTS:
+        part -= Pos(IDLER_X - .1, y, z) * Rot(Y=90) * Cylinder(
+            P.CLEAR_HOLE_M3 / 2, DRIVE_X - IDLER_X + .2,
+            align=(Align.CENTER, Align.CENTER, Align.MIN))
+    return dict(name="hip_pitch_saddle", part=part, handed=True, orientation=Rot(),
+                notes="Floor on bed. Open inner-thigh sweep lane. Two M3x8 clamp "
+                      "screws into inserts; two M3x55 cheek through-bolts with nuts. "
+                      "Horizontal 3.4 mm bores require a fit/bridge test; case clamp "
+                      "friction and creep are unvalidated.")
 
-    # Pitch servo pocket: axis along +Y, body aft, slid outboard.
-    pitch_tf = Pos(0, PITCH_Y, -PITCH_DROP) * S.on_axis(Rot(X=-90))
-    part -= pitch_tf * S.servo_envelope()
 
-    # Roll drive: bolts to the roll servo's horn through the forward plate.
-    part -= Pos(x_horn, 0, 0) * Rot(Y=90) * S.drive_hole_cutters(FORK_T)
-    # Idler side: BOLT to it, don't clear it (second metal horn, same square).
-    part -= Pos(x_idler, 0, 0) * Rot(Y=-90) * S.drive_hole_cutters(FORK_T)
-
-    # No pitch-servo retention cutters yet (OQ-12). An earlier compact-hip
-    # revision added four holes along X, but the case bores run along the
-    # servo's output axis (+Y in this frame), so those holes could not retain
-    # the body and risked intersecting the case instead. The pocket stays snug;
-    # add the through-bolt pattern only after the physical servo measurements.
-
-    return {
-        "name": "hip_link",
-        "handed": True,
-        "part": part,
-        "orientation": Rot(),  # stands on the cradle floor; fork plates on edge
-        "notes": "Compact hip: pitch servo aft and outboard, axes 26 mm apart. "
-                 "No pitch-servo body retention pending OQ-12. Mirror in Y.",
-    }
+def build_cap():
+    part = Pos(sum(POST_X) / 2, P.HIP_PITCH_Y, TOP_Z) * Box(
+        POST_X[1] - POST_X[0] + 11, 12, 4,
+        align=(Align.CENTER, Align.CENTER, Align.MIN))
+    part = fillet(part.edges().filter_by(Axis.Z), 3)
+    for x in POST_X:
+        part -= Pos(x, P.HIP_PITCH_Y, TOP_Z) * hole(P.CLEAR_HOLE_M3 / 2, 4)
+    return dict(name="hip_pitch_cap", part=part, qty=2, orientation=Rot(),
+                notes="Broad face on bed. Removable case clamp, no assumed case "
+                      "screw pattern. Fit/preload and cable exit require hardware test.")

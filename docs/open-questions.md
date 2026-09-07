@@ -2,6 +2,18 @@
 
 Unresolved. Resolve -> move to [`decisions.md`](decisions.md).
 
+- **OQ-13 - Lower-body mechanical redesign and FDM validation.** The
+  [review of revision a3f265c](cad-review.md) confirms printed hip/thigh
+  interference at neutral, blind roll-horn holes and an unassemblable
+  motor-clamp fastener arrangement. The existing gates do not establish
+  support-free manufacture or layer strength. Reassess the pelvis split
+  (the joined geometry fits flat on the bed), design the hip carrier and
+  driven fork together, then validate access, motion, load paths and sliced
+  layers before structural printing. Replacement geometry is implemented in
+  DEC-29; [its validation record](cad-redesign.md) distinguishes passed sampled
+  checks from open physical acceptance. Retention dimensions and structural
+  profile remain OQ-12 and OQ-11.
+
 - **OQ-03 - Torso platform's 3 DOF.** pitch + roll + **yaw** (twist, very lifelike) vs
   pitch + roll + **heave** (breathing bob). Can't have all four from 3 actuators.
 - **OQ-04 - Head eyes & mass.** Screen/OLED eyes (light, expressive) vs mechanical eye
@@ -21,7 +33,8 @@ Unresolved. Resolve -> move to [`decisions.md`](decisions.md).
   - per the SO-ARM101 assembly video. Its body mount and its horn drive are
   **separate feature families on separate datums**; see
   [`test-log.md`](test-log.md) for why that distinction matters.
-  `hip_bracket` follows that architecture. **`hip_link` has no body retention.**
+  The integral pelvis roots retain a provisional version of that architecture.
+  **Historical a3f265c state:** `hip_link` had no body retention.
   DEC-26 widened its cradle around the full pitch-servo envelope, so material
   now exists for a through-bolt pattern, but the physical bore locations and
   idler stand-off remain unverified. A later attempt put four cutters along X;
@@ -33,8 +46,10 @@ Unresolved. Resolve -> move to [`decisions.md`](decisions.md).
   PA+GF case (a wear item on the expensive half of the joint).
   **Blocked on measurement** - seven checks are listed in `test-log.md`, all
   answerable with calipers on the physical servos; their current arrival status
-  is unverified. Do not add or reshape the body-retention geometry in
-  `hip_bracket` or `hip_link` before then.
+  is unverified. **DEC-29 authorization supersedes the former geometry freeze:**
+  the pitch servo now has a removable external case clamp, not invented case
+  screw locations. Its preload, creep, cable exit and real-case fit remain
+  unverified. Roll retention and idler spacing still require measurement.
 - **OQ-10 - Child-safety spec** (audience 2-5; DEC-15). Resolve during design: pinch-point
   guarding at every joint/linkage; software speed & torque limits + e-stop; graceful-fall
   behaviour; protected/enclosed LiPo; no small detachable parts; rounded edges; no hot

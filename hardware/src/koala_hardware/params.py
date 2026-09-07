@@ -138,7 +138,7 @@ WHEEL_DIA = 80.0        # [VENDOR] DEC-19 fixed control constant
 WHEEL_W = 10.0          # [VENDOR]
 HUB_DIA = 25.4          # [VENDOR] Pololu 1999 mechanical drawing
 HUB_T = 9.5             # [VENDOR] axial thickness
-HUB_STACK = 14.0        # [VERIFY] motor face -> wheel inner face (hub + margin)
+HUB_STACK = 18.0        # [VERIFY] clears 5 mm cheek + 3 mm heads + 9.5 mm hub
 WHEEL_CLEAR = 4.0       # radial/axial clearance kept around the tyre
 
 # --- Electronics (tray patterns) --------------------------------------------
@@ -152,15 +152,14 @@ STANDOFF_H = 5.0        # printed standoffs under the driver shield
 TRAY_GAP = 10.0         # bought M3 standoffs, pelvis top -> tray underside
 
 # --- Assembly layout (v1 draft) ----------------------------------------------
-THIGH_DROP = 154.0      # hip-pitch axis -> wheel axis. Absorbs the 34 mm
-                        # the hip gave back, so the stance height is unchanged
-                        # at 270 mm: the leg reads as thigh, not thigh+knee.
+THIGH_DROP = 154.0      # hip-pitch axis -> wheel axis; DEC-29 stance = 268 mm
 PELVIS_PLATE = (150.0, 170.0, PLATE)
-# DEC-27: the two 69 mm motor bodies point inward. At +/-57 mm, their inboard
-# caps finish at +/-2 mm: a real 4 mm centre gap rather than a hidden overlap.
-HIP_ROLL_Y = 57.0       # pelvis centre -> hip-roll axis (Y)
-TRACK_HALF = HIP_ROLL_Y + 33.0  # motor face + hub stack + half wheel = 33
-HIP_ROLL_DROP = 50.0    # pelvis top -> hip-roll axis (Z); clears SERVO_ABOVE
+# DEC-29: wider pitch fork puts the motor face at Y=42.4 in each leg frame.
+HIP_ROLL_Y = 64.0       # DEC-29: wider roots allow inward motor sweep
+HIP_ROLL_DROP = 44.0    # integrated pelvis removes the 6 mm mounting flange
+HIP_PITCH_X = 20.0      # forward offset opens a thigh sweep lane behind its axis
+PITCH_TEST_DEG = 20.0   # geometric test target, NOT a commissioned motion limit
+ROLL_TEST_DEG = 10.0    # geometric test target, NOT a commissioned motion limit
 
 # --- compact hip: the two axes sit close, as a hip should -------------------
 # The pitch servo's axis runs along Y, so sliding the servo ALONG Y is free -
@@ -174,10 +173,9 @@ HIP_ROLL_DROP = 50.0    # pelvis top -> hip-roll axis (Z); clears SERVO_ABOVE
 # Pointing it aft, the binding clearance is the roll servo's own body reaching
 # SERVO_BELOW (10.2) under its axis, against the pitch servo's half-WIDTH
 # (12.4) rather than its half-length:  10.2 + 12.4 + 3 margin = 25.6.
-HIP_PITCH_DROP = 26.0   # hip-roll axis -> hip-pitch axis (was 60)
-HIP_PITCH_Y = 22.0      # pitch servo slid outboard along its own axis, so the
-                        # thigh fork straddles the wheel plane (TRACK_HALF)
-                        # instead of reaching out to it. Free in kinematics.
+HIP_PITCH_DROP = 30.0   # DEC-29: clears flat roll and pitch cheeks
+HIP_PITCH_Y = 22.0      # pitch servo shifted outboard along its output axis
+TRACK_HALF = HIP_ROLL_Y + HIP_PITCH_Y + SERVO_HORN_TOP + .2 + HUB_STACK + WHEEL_W / 2
 
 # Servo extents measured from its OUTPUT AXIS (not its body centre): the axis
 # is offset SERVO_AXIS_X from centre, so the body reaches much further one way.
