@@ -16,8 +16,8 @@ Unresolved. Resolve -> move to [`decisions.md`](decisions.md).
 
 - **OQ-14 - micro-ROS on the bought Teensy 4.0.** Upstream lists the 4.0 as
   "Not tested" where the 4.1 is Supported. DEC-18 bought the 4.0, and DEC-04 makes
-  the bridge load-bearing for the whole family, so an untested board is a family
-  risk rather than a koala inconvenience. The board table and the shared reasoning
+  the bridge load-bearing, so the untested board sits on a load-bearing path
+  rather than a peripheral one. The board table and the shared reasoning
   live in
   [wk-robotics](https://github.com/WayneKennedy/wk-robotics/blob/main/docs/common.md#micro-ros-how-the-mcu-joins-the-graph),
   not here.
@@ -25,7 +25,10 @@ Unresolved. Resolve -> move to [`decisions.md`](decisions.md).
   to the 4.0, then log the result in [`test-log.md`](test-log.md). If it fails the
   fallback is a Teensy 4.1 or the ESP32 named in
   [`architecture.md`](architecture.md#bridge--contract) - not a redesign.
-  wk-devastator tracks the same question as its OQ-03, having bought no MCU yet.
+  **This is now koala's risk alone:** wk-devastator closed its half as DEC-10 - it
+  buys a 4.1 rather than prove a 4.0 - and confirmed koala's 4.0 is committed to
+  this build, not a family spare. Whether an untested board already bought is worth
+  proving or writing off is a koala decision nobody else shares.
 
 - **OQ-03 - Torso platform's 3 DOF.** pitch + roll + **yaw** (twist, very lifelike) vs
   pitch + roll + **heave** (breathing bob). Can't have all four from 3 actuators.
