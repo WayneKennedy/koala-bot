@@ -20,7 +20,7 @@ gaps; and none of the other three count if the content is wrong.
 ## What this project is
 
 An open-source family of small, printable, affordable companion robots. The first
-is **Koala V1** — a self-balancing, knee-wheeled, gesturing companion. Full intent
+is **Koala V1** — a self-balancing, wheel-footed, knee-articulating, gesturing companion. Full intent
 and morphology: [`docs/concept.md`](docs/concept.md).
 
 ## Where things live
@@ -37,9 +37,15 @@ and morphology: [`docs/concept.md`](docs/concept.md).
   (printed table is *generated* by the CAD build; never hand-edit it).
 - [`docs/sourcing.md`](docs/sourcing.md) — parts, suppliers, UK landed-cost notes.
 - [`docs/references.md`](docs/references.md) — prior art & inspirations.
-- [`docs/cad-review.md`](docs/cad-review.md) — the review that condemned the
-  a3f265c lower body; [`docs/cad-redesign.md`](docs/cad-redesign.md) — the DEC-29
-  replacement, its checks, and what is still unverified. **Read both before printing.**
+- [`docs/cad-restart-brief.md`](docs/cad-restart-brief.md) — **the handover for the
+  lower-body redesign** (DEC-30/31): invariants, what is kept/discarded, the servo
+  socket primitive, the process and its gates. Start here for any CAD work.
+- [`docs/soarm-joint-pattern.md`](docs/soarm-joint-pattern.md) — what DEC-21
+  "SO-ARM compatible" means in numbers: cradle + collar + clevis, measured from
+  upstream CAD.
+- [`docs/cad-review.md`](docs/cad-review.md) and
+  [`docs/cad-redesign.md`](docs/cad-redesign.md) — post-mortems of the two
+  discarded drafts (a3f265c, DEC-29). Read for failure modes, not geometry.
 
 ## The family, and what does not live here
 
@@ -56,8 +62,8 @@ for this repo:
   [how to configure a servo](https://github.com/WayneKennedy/wk-robotics/blob/main/docs/common.md#configuring-a-servo--true-for-every-sts-project):
   the FE-URT-1 adapter (bundled with the 6-packs, so already owned), one servo at a time
   because every unit ships as ID 1, the 6 V/12 V rail distinction, and the FTDI latency
-  trap. **Read that before configuring the limb servos** — ten V1 joints, twelve units
-  bought (`docs/bom.md`), each shipped as ID 1.
+  trap. **Read that before configuring the limb servos** — twelve V1 joints (DEC-31),
+  twelve units bought, no spare (`docs/bom.md`), each shipped as ID 1.
 - [Compute and micro-ROS](https://github.com/WayneKennedy/wk-robotics/blob/main/docs/common.md#compute-the-two-tier-split)
   — the two-tier split this project defined, and the micro-ROS mechanics.
 - [Power integrity](https://github.com/WayneKennedy/wk-robotics/blob/main/docs/common.md#power-integrity).
@@ -78,13 +84,14 @@ Changing DEC-16 or DEC-18 has consequences beyond this repo.
 
 ## Status
 
-**Phase 1 (V1 vertical slice) — CAD started, coupons only printed.** V1 hardware
-is ordered (DEC-19/22); a draft v1 lower body lives in `hardware/`
-(see its README). It is **not ready for structural printing or assembly** —
-DEC-29 rebuilt it after [`docs/cad-review.md`](docs/cad-review.md), and physical
-fits, sliced layers and strength remain unverified (OQ-13). Frontier: test-fit
-coupons -> prototype prints -> electronics bring-up
-([`docs/roadmap.md`](docs/roadmap.md)).
+**Phase 1 (V1 vertical slice) — CAD restarted 2026-09-07, coupons only printed.**
+V1 hardware is ordered (DEC-19/22) and two test-fit servos are on the bench. Both
+lower-body drafts are **discarded** (DEC-30): the code in `hardware/parts/` is
+scheduled for deletion and must not be printed. The legs now have articulating
+knees and wheels at the ankles (DEC-31). The redesign follows
+[`docs/cad-restart-brief.md`](docs/cad-restart-brief.md): calipers and a PETG
+gauge -> requirements -> servo socket primitive -> legs -> one joint rig printed
+(OQ-13, OQ-16). Then electronics bring-up ([`docs/roadmap.md`](docs/roadmap.md)).
 
 **One cheap check is worth doing before firmware:** micro-ROS upstream has not tested
 the Teensy 4.0 that DEC-18 bought — **[OQ-14](docs/open-questions.md)**, with the

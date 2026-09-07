@@ -11,7 +11,8 @@ Deferred by scope discipline (DEC-11) - captured so nothing is lost.
 
 ## Koala upgrades
 - 3-DOF torso platform activation (Phase 2).
-- Walking gait / articulated feet - **conditional** (gated on need; DEC-17), not assumed.
+- Walking gait, ankle DOF, articulated feet - **conditional** (gated on need). The
+  knees moved into V1 under DEC-31; the gait did not.
 - Two-segment (6-DOF) spine - richer, deferred in favour of a single 3-DOF platform.
 - Animatronic ears (personality DOF > extra limb DOF).
 - Swappable wheel <-> gripper limb-ends.

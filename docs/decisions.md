@@ -3,14 +3,43 @@
 Committed decisions with rationale. Unresolved items live in
 [`open-questions.md`](open-questions.md). Format: `DEC-nn - decision - why`.
 
-**CAD implementation caveat:** the [review of revision a3f265c](cad-review.md)
-finds unresolved assembly defects and insufficient manufacturing/strength
-validation. In particular, DEC-24's historical claim that the build proves
-support-free printing is not established by its area heuristic. DEC-23/26/28
-describe intent and prior work, not acceptance of the current mechanism.
-DEC-29 now replaces that geometry; structural acceptance remains open as OQ-13.
+**CAD implementation caveat:** both lower-body drafts are discarded (DEC-30).
+The [review of revision a3f265c](cad-review.md) found assembly defects and
+insufficient manufacturing/strength validation; DEC-29 replaced that geometry
+but breached DEC-21 in a different way. DEC-24's historical claim that the
+build proves support-free printing is not established by its area heuristic.
+DEC-23/26/27/28/29 describe intent and lessons, not accepted geometry. The
+redesign is governed by [`cad-restart-brief.md`](cad-restart-brief.md);
+acceptance remains open as OQ-13.
 
-- **DEC-29 — FDM-oriented lower-body prototype** (2026-09-06, authorized after
+- **DEC-31 — Rear legs: articulating knees, wheels as feet** (2026-09-07;
+  supersedes DEC-17 and the knee-wheel clause of DEC-07). Each rear leg is
+  hip roll + hip pitch (STS3215) → thigh → **knee pitch (STS3215, active in
+  V1)** → shank → **drive wheel at the ankle position, acting as the foot**
+  (37D motor + hub + Ø80 wheel, DEC-19). No ankle DOF in V1. Overall size
+  (DEC-15) and the rest of the skeleton (DEC-07/08) are unchanged. Why: the
+  knee was deferred "gated on need"; the maintainer has decided the need is
+  now — a leg that ends at the knee cannot crouch, stand or step, and a wheel
+  at a knee reads as a wheel, not a foot. Cost: two more STS3215 joints, so
+  the **twelve bought units cover twelve joints with no spare** (6 arm, 4 hip,
+  2 knee); the knee servo's torque margin and the motor's placement in the
+  shank are OQ-16. Concept, roadmap and BOM updated to match.
+- **DEC-30 — CAD restart: discard both lower-body geometries, keep the
+  tooling, hand over with a brief** (2026-09-07). The a3f265c and DEC-29 part
+  builders are deleted rather than patched; `params.py`, `servo_iface`,
+  `fasteners`, the export/audit/printability/viewer/slice tooling, tests,
+  coupons and docs are kept. Why: both drafts were designed around unmeasured
+  hardware and around a servo model rather than the proven SO-101 printed
+  parts, and each pass patched the previous one; a third patch would inherit
+  the same inputs. The restart is sequenced measure → requirements →
+  envelopes → structure → single-joint rig, per
+  [`cad-restart-brief.md`](cad-restart-brief.md), which is the handover to
+  the harness doing the design (the maintainer has assigned GPT Astra). The
+  first artefact is a servo socket primitive built from
+  [`soarm-joint-pattern.md`](soarm-joint-pattern.md) and used at every joint.
+  Old geometry stays recoverable at `a3f265c` and `4fc188a`.
+
+- **DEC-29 — FDM-oriented lower-body prototype** *(geometry discarded by DEC-30; lessons stand)* (2026-09-06, authorized after
   the CAD review). Integrate pelvis and roll roots; remove bracket mounting
   flanges. Replace enclosing hip links with flat roll cheeks, an open pitch
   saddle and removable case cap. Replace thigh/motor-clamp seams with flat
@@ -42,7 +71,7 @@ DEC-29 now replaces that geometry; structural acceptance remains open as OQ-13.
   Power integrity is treated as first-class.
 - **DEC-07 - V1 morphology:** front limbs 3-DOF x2 (dual-purpose arms/forelegs); rear leg
   **hips 2-DOF x2, active in V1** (lean-into-turns while the torso is rigid); rear
-  **knee-wheels** (2x DC); **3-RPS head** (3 micro servos + CF pushrods) with **yaw
+  **knee-wheels** (2x DC) *— superseded by DEC-31: 1-DOF knees, wheels at the ankles*; **3-RPS head** (3 micro servos + CF pushrods) with **yaw
   delegated to the mobile base**.
 - **DEC-08 - Torso: a single 3-DOF parallel platform** (not two stacked, not 6-DOF). Cuts
   actuators 6->3 (cost + mass, and mass sits high on the pendulum). **Rigid struts in V1**;
@@ -71,7 +100,7 @@ DEC-29 now replaces that geometry; structural acceptance remains open as OQ-13.
 - **DEC-16 - Motor driver: Pololu Dual TB9051FTG** (resolves OQ-07). At the ~1.5-3 kg mass
   from DEC-15, its 2.6 A cont / 5 A peak per channel is comfortable and the current-sense
   output is a bonus. Wired to the Teensy as a breakout (form factor moot; soldering fine).
-- **DEC-17 - Rear leg architecture** (resolves OQ-02). 2-DOF hip-to-pelvis; the 12V drive
+- **DEC-17 - Rear leg architecture** *(superseded by DEC-31: knees are active in V1 and the wheel moves to the ankle position)* (resolves OQ-02). 2-DOF hip-to-pelvis; the 12V drive
   motor sits **in the thigh** with the **wheel at the outer knee**, in constant ground
   contact. The V1 leg **ends at the knee** (no shin/foot). The knee is designed as an
   **expansion interface** to later accept a lower leg + foot + servo - but this is
@@ -102,6 +131,19 @@ DEC-29 now replaces that geometry; structural acceptance remains open as OQ-13.
   and trims 1.7 mm in Y), but nothing in `params.py` derives from it, so V1 geometry is
   unaffected. Verified against upstream `7629d2a`; measurements in
   [`../hardware/vendor/so-arm100/README.md`](../hardware/vendor/so-arm100/README.md).
+  **Amended 2026-09-07 — what "compatible" means.** Not the servo's case
+  dimensions: the SO-101 **mounting architecture**, measured in
+  [`soarm-joint-pattern.md`](soarm-joint-pattern.md): a **cradle** in the
+  structural part holding the rear ~17 mm of the case, a separate 3 mm **collar**
+  that slides over servo and cradle and closes the pocket, four M2 self-taps into
+  the servo's own lugs through Ø2.0 clearance holes, and a **clevis** on the driven
+  link bolted to both the drive and idler horns. **Both drafts breached this
+  decision:** a3f265c's `hip_link` had no body retention at all, and DEC-29 used a
+  friction cap and screws driven into an unmeasured case wall. Neither breach was
+  flagged against DEC-21 at the time, although `cad-review.md` and the vendor
+  README both noted that nothing had been taken from the SO-ARM bracket. From
+  DEC-30 on, every STS3215 joint instantiates one socket primitive that implements
+  this pattern; a joint that does not is a DEC-21 breach by definition.
 - **DEC-26 - Compact hip: pitch servo aft and outboard** (supersedes the stacked
   layout inside DEC-07, not DEC-07 itself). The roll and pitch axes sat **60 mm**
   apart, which read as a hip *plus a knee halfway down the thigh* rather than as a

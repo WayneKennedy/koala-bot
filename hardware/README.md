@@ -116,9 +116,13 @@ constant was tested rather than guessed.
 
 ## Status
 
-Draft **v1** lower body, **not ready for structural printing or assembly**.
-DEC-29 replaces the [reviewed defects](../docs/cad-review.md) with an integrated
-pelvis, open bolted hip carrier and flat twin-cheek thighs. Bed-fit, full-depth
-horn holes and sampled nominal collisions are checked. Physical servo/idler
-fits, sliced layers, clamp retention and structural print validation remain
-outstanding. See [cad-redesign.md](../docs/cad-redesign.md) before printing.
+**Restart in progress (DEC-30, 2026-09-07). Do not print anything in `parts/`
+except coupons.** The structural builders (`pelvis`, `hip_bracket`, `hip_link`,
+`thigh`, and `e_tray` as derived from them) are the discarded DEC-29 geometry,
+kept only until the redesign replaces them; the tooling in this package is
+kept and is the starting point. The redesign — knees and wheel-feet (DEC-31),
+every servo in the SO-101 cradle + collar + clevis pattern — is specified in
+[`../docs/cad-restart-brief.md`](../docs/cad-restart-brief.md); the pattern's
+numbers are in [`../docs/soarm-joint-pattern.md`](../docs/soarm-joint-pattern.md).
+The "Designing a part that passes" rules above still hold; their DEC-29
+examples do not.

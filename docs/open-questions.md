@@ -2,6 +2,21 @@
 
 Unresolved. Resolve -> move to [`decisions.md`](decisions.md).
 
+- **OQ-16 - Knee and wheel-foot leg: the choices DEC-31 leaves open.** The
+  decision fixes the chain (hip roll/pitch → thigh → knee pitch → shank →
+  wheel-foot) and the actuators; it does not fix: (a) **drive motor placement**
+  in the shank — direct drive on the wheel axis (default) vs motor higher in the
+  shank with a belt, decided by the 69 mm motor body against inner-leg
+  clearance at full knee flex; (b) **thigh/shank lengths and nominal knee
+  angle** against the 40–50 cm height (DEC-15); (c) **knee range**; (d) the
+  **knee servo torque margin** — 30 kg.cm nominal against the mass share times
+  the horizontal moment arm at the worst crouch, a number nobody has computed;
+  (e) whether **no spare STS3215** (12 bought, 12 joints) is acceptable or a
+  6-pack is added to the next order; (f) **track width** — an output of the
+  packaging, to be recorded as a tradeoff if it widens; (g) cable routing
+  through three powered joints per leg. Each resolves to a DEC entry during the
+  restart ([`cad-restart-brief.md`](cad-restart-brief.md) §5).
+
 - **OQ-15 - Whether to buy a second TB9051FTG.** The driver bought under DEC-16
   (qty 1, purchased 2026-09-01) has been **lent to wk-devastator**, which settled its
   own driver question by borrowing rather than buying
@@ -14,17 +29,16 @@ Unresolved. Resolve -> move to [`decisions.md`](decisions.md).
   or agree the tank returns it. **Until then, do not plan koala-bot's drive bring-up
   against a board that is in another robot.**
 
-- **OQ-13 - Lower-body mechanical redesign and FDM validation.** The
-  [review of revision a3f265c](cad-review.md) confirms printed hip/thigh
-  interference at neutral, blind roll-horn holes and an unassemblable
-  motor-clamp fastener arrangement. The existing gates do not establish
-  support-free manufacture or layer strength. Reassess the pelvis split
-  (the joined geometry fits flat on the bed), design the hip carrier and
-  driven fork together, then validate access, motion, load paths and sliced
-  layers before structural printing. Replacement geometry is implemented in
-  DEC-29; [its validation record](cad-redesign.md) distinguishes passed sampled
-  checks from open physical acceptance. Retention dimensions and structural
-  profile remain OQ-12 and OQ-11.
+- **OQ-13 - Lower-body mechanical redesign and FDM validation.** Two drafts
+  have been discarded (DEC-30): a3f265c for interference, blind holes and an
+  unassemblable motor clamp ([review](cad-review.md)); DEC-29 for breaching
+  DEC-21's mounting pattern and widening the track to 258.8 mm as a packaging
+  escape ([record](cad-redesign.md)). Neither reached a structural print. The
+  redesign now follows [`cad-restart-brief.md`](cad-restart-brief.md) in
+  order: caliper the servos, gauge the PETG pocket, bank requirements, reserve
+  swept envelopes, design with the socket primitive, then print one joint rig.
+  **Closes when** a full lower body passes fit and a documented load test
+  (OQ-11). Retention dimensions remain OQ-12; the leg's open choices are OQ-16.
 
 - **OQ-14 - micro-ROS on the bought Teensy 4.0.** Upstream lists the 4.0 as
   "Not tested" where the 4.1 is Supported. DEC-18 bought the 4.0, and DEC-04 makes
@@ -82,11 +96,19 @@ Unresolved. Resolve -> move to [`decisions.md`](decisions.md).
   `hip_bracket.build_root()` - so either those walls are equalised to one
   flange thickness (~4 mm, giving M2x8 throughout) or the thick side is
   counterbored; and the case bore depth that bounds engagement is unmeasured.
-  **DEC-29 authorization supersedes the former geometry freeze:**
-  the pitch servo now has a removable external case clamp, not invented case
-  screw locations. Its preload, creep, cable exit and real-case fit remain
-  unverified. Roll retention geometry and idler spacing still require
-  measurement.
+  **Superseded 2026-09-07 by the measured SO-101 pattern**
+  ([`soarm-joint-pattern.md`](soarm-joint-pattern.md)): retention is cradle +
+  collar with the four M2 self-taps into the servo's own lugs through **Ø2.0
+  clearance** holes, the wall **counterbored to ~2.2 mm** under the head so the
+  supplied M2×5 reaches — the length problem above is solved by geometry, not
+  by longer screws. The through-bolt-and-nut alternative is dropped in favour
+  of the proven pattern. Upstream's printed holes put the lugs at **~2.1 mm
+  from the rear face on the back face and ~5.8 mm on the horn face**, so the
+  single `SERVO_TAB_X` is wrong for one face; `SERVO_TAB_HOLE = 4.0` is wrong
+  for a screw hole. **Still blocked on calipers** for: both lug offsets, lug
+  pilot depth, idler and horn stand-off, and the horn stack for the clevis
+  span; and on **`Gauge_0` printed in PETG** for `CLEAR_POCKET` (upstream's
+  zero-clearance pocket is a press fit on the reference printer in PLA+).
 - **OQ-10 - Child-safety spec** (audience 2-5; DEC-15). Resolve during design: pinch-point
   guarding at every joint/linkage; software speed & torque limits + e-stop; graceful-fall
   behaviour; protected/enclosed LiPo; no small detachable parts; rounded edges; no hot

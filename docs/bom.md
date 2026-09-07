@@ -6,9 +6,10 @@ Full sourcing rationale and alternatives: [`sourcing.md`](sourcing.md).
 
 **Status:** V1 electronics and actuators are **ordered** (2026-09-01), and two
 test-fit servos are **in hand** (2026-09-07, below) — their box contents settle
-the servo screw *sizes*, not the lengths. Of the fasteners, the earlier
-stock/order statements have not been reverified against the DEC-29 redesign;
-check quantities and provisional lengths below.
+the servo screw *sizes*, not the lengths. **The DEC-29 geometry is discarded
+(DEC-30, 2026-09-07):** the fastener counts and the generated printed-parts
+table below derive from it and are **void** until the restart regenerates them.
+Nothing in the fastener table should be ordered.
 First coupon printed 2026-09-01 and passed (see [`test-log.md`](test-log.md)); no structural part printed yet.
 
 ## Bought — drive & balance base *(purchased 2026-09-01, Pi Hut, ~£159.50)*
@@ -16,7 +17,7 @@ First coupon printed 2026-09-01 and passed (see [`test-log.md`](test-log.md)); n
 | Part | Qty | £ | Role |
 |------|-----|---|------|
 | Pololu Dual TB9051FTG motor driver | 1 | 30.70 | drive motors (DEC-16) — **lent to wk-devastator 2026-09-07; see OQ-15** |
-| 37D 12V 122RPM 38 kg.cm geared motor + encoder | 2 | 55.80 | knee-wheel drive |
+| 37D 12V 122RPM 38 kg.cm geared motor + encoder | 2 | 55.80 | wheel-foot drive (DEC-31) |
 | Pololu 80x10 mm wheel pair | 1 | 8.40 | Ø80 mm control constant (DEC-19) |
 | Pololu 6 mm universal mounting hub (2-pack) | 1 | 12.50 | wheel to 6 mm D-shaft |
 | Adafruit BNO085 9-DOF IMU | 1 | 27.00 | balance loop attitude |
@@ -26,11 +27,11 @@ First coupon printed 2026-09-01 and passed (see [`test-log.md`](test-log.md)); n
 
 | Part | Qty | £ | Role |
 |------|-----|---|------|
-| Feetech STS3215 12V 30 kg.cm 6-pack | 2 | ~101 ea | 10 limb joints + 2 spare |
+| Feetech STS3215 12V 30 kg.cm 6-pack | 2 | ~101 ea | 12 limb joints (6 arm, 4 hip, 2 knee — DEC-31); **no spare** (OQ-16) |
 | Feetech STS3032M 6V 4.5 kg.cm 4-pack | 1 | 93.19 | 3 neck (3-RPS) + 1 spare |
 | STS3215 metal bracket set | 1 | 7.14 | dimensional reference (DEC-21) |
 
-Of the STS3215s, the **lower body uses 4**: 2 hip-roll + 2 hip-pitch.
+Of the STS3215s, the **lower body uses 6**: 2 hip-roll + 2 hip-pitch + 2 knee.
 
 ### Bought separately — test-fit servos *(Amazon, in hand 2026-09-07)*
 
@@ -76,14 +77,12 @@ stand-off, horn engagement and motor thread depth remain measurement gates
 against the supplied kits; their exact lengths/counts are not yet established
 here.
 
-**How to choose the M2 length**, once the case bore depth is measured: it is
-printed wall + engagement, and the wall is not one number. The current CAD
-gives 3.95 mm at one end wall and 6.35 mm at the horn-side wall, so an M2×8
-suits the thin side (~4 mm engagement) and leaves ~1.7 mm on the thick one.
-Either equalise those walls to a single flange thickness — a ~4 mm flange with
-M2×8 throughout is the tidy version, and is the reason to fix it in CAD before
-ordering — or counterbore the thick side. Both walls sit on the unverified
-`SERVO_TAB_X`/rear-ear geometry, so the numbers move if measurement does.
+**The M2 length is answered by upstream's geometry, not by buying longer
+screws:** SO-101 counterbores the wall so ~2.2 mm of plastic sits under the
+head and the supplied M2×5 reaches the lug
+([`soarm-joint-pattern.md`](soarm-joint-pattern.md)). The restart's socket
+primitive does the same, so the M2 line above becomes "use the supplied M2×5"
+once the lug pilot depth is calipered.
 
 **Servo horns are included above but may already be in the kit.** The 4-hole
 drive square lives on the horn, not the servo. Check the actual package before
@@ -137,9 +136,10 @@ on this profile beyond the requirements above.
 
 ## Printed parts
 
-Every part fits ≤ 200×200 mm in its declared orientation. Surface metrics do
-not certify support-free printing or strength (DEC-29). Regenerate with
-`cd hardware && uv run python -m koala_hardware.export`.
+**This table reflects the discarded DEC-29 geometry** (DEC-30) and stands only
+until the restart's first export overwrites it. Every part fits ≤ 200×200 mm in
+its declared orientation. Surface metrics do not certify support-free printing
+or strength. Regenerate with `cd hardware && uv run python -m koala_hardware.export`.
 
 <!-- BEGIN GENERATED: printed parts -->
 

@@ -7,6 +7,26 @@ in `hardware/src/koala_hardware/params.py`, tagged with their provenance.
 Reference printer per DEC-14 (Ender-5 S1 / Klipper), PETG, the standing
 general-purpose profile recorded in [`bom.md`](bom.md).
 
+## 2026-09-07 — SO-101 joint pattern, measured from upstream CAD (desk study; nothing printed)
+
+Prompted by the maintainer's SO-101 build: the koala drafts never followed the
+mounting pattern DEC-21 named. Upstream's assembly and part STEPs were measured
+with booleans and sections; full record and numbers in
+[`soarm-joint-pattern.md`](soarm-joint-pattern.md). What changes for koala:
+
+| Finding | Source | Consequence |
+|---------|--------|-------------|
+| Retention is **cradle + collar + 4 M2 self-taps into the servo's lugs**, then a **clevis on both horns** | Base/Base_motor_holder, Rotation_Pitch/Motor_holder_Base, Upper_arm | DEC-21 amended to say so; both drafts logged as breaches; the restart builds it as one primitive |
+| Lug holes sit at **~2.1 mm from the rear face on the back face and ~5.8 mm on the horn face** | Ø2.0 holes in Base roof/floor and Rotation_Pitch walls | `SERVO_TAB_X = −20.7` matches one face only → the open check below gains a second number |
+| Case-screw hole in plastic is **Ø2.0 clearance, ~2.2 long, counterbored above** | all four parts | `SERVO_TAB_HOLE` 4.0 → 2.0; the M2×5 "too short" finding is solved by counterboring, not longer screws |
+| Pocket **34.9 × 24.7, zero clearance**, press fit in PLA+ on this printer | `Gauge_0`; `3d-printing` print-log 2026-09-06/07 | `CLEAR_POCKET` (0.25, PETG) gets its value from printing `Gauge_0` in PETG, not from a guess |
+| Horn pattern **9.9 square**, plates 3.5 thick, holes Ø3.0–3.2, idler bolted too | Upper_arm, Rotation_Pitch | confirms `SERVO_DRIVE_SQ` and the 2026-09-02 idler finding; `CLEAR_HOLE_M3 = 3.4` (measured) stays |
+| Upstream's assembly **servo model overlaps its own cradle wall** by ~2 mm | assembly STEP | second servo model found wrong; measure printed parts and real servos only |
+
+**Added to the open caliper checks below (2026-09-02 §Open):** 8. lug offsets from
+the rear face on *both* faces; 9. lug pilot depth; 10. horn and idler stand-off
+and the full horn stack for the clevis span.
+
 ## 2026-09-07 — servo box contents (Waveshare ST3215 12V ×2, Amazon; nothing printed)
 
 Two 12 V ST3215 servos bought from Amazon as test-fit hardware — real cases to

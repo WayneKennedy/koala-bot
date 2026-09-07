@@ -29,7 +29,7 @@ Also outstanding: optional STEMMA QT cable for the BNO085.
 
 | Part | Qty | £ inc VAT | Role |
 |------|-----|-----------|------|
-| Feetech STS3215 12V 30 kg 6-pack (FE-URT-1 included each) | 2 | ~101 ea | 10 limb joints + 2 spare |
+| Feetech STS3215 12V 30 kg 6-pack (FE-URT-1 included each) | 2 | ~101 ea | 12 limb joints (DEC-31), no spare — see `bom.md` |
 | Feetech STS3032M 6V 4.5 kg metal-case 4-pack (DEC-22) | 1 | 93.19 | 3 neck (3-RPS) + 1 spare |
 | STS3215 metal bracket set | 1 | 7.14 | dimensional reference - **brackets are printed** (DEC-21) |
 

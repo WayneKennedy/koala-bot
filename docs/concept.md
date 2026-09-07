@@ -15,7 +15,8 @@ bodies**. The defining split between members is **wheel-vs-gripper limb-ends**
 
 ## Koala V1 — the first member
 
-A **self-balancing, knee-wheeled, ground-based** companion, koala-shaped (~40-50 cm tall - a 'big toy' *smaller than a toddler*; DEC-15), printable in
+A **self-balancing, wheel-footed, ground-based** companion with articulating
+knees (DEC-31), koala-shaped (~40-50 cm tall - a 'big toy' *smaller than a toddler*; DEC-15), printable in
 **PETG** with **every part <= 200x200 mm** (designing to the commonest bed
 maximises who can build it, even though the reference printer is 220 mm).
 
@@ -25,18 +26,19 @@ maximises who can build it, even though the reference printer is 220 mm).
 |---------|-----|----------|-------|
 | Front limbs x2 (arms *and* forelegs) | 3 each | STS3215 bus servo | shoulder pitch + roll + elbow; gesture + balance-assist; grippers optional |
 | Rear leg hips x2 | 2 each | STS3215 bus servo | **active in V1** — provide *lean-into-turns* while the torso is rigid |
-| Rear thigh + knee-wheel x2 | - | 12V geared DC + encoder (in thigh) | drive **wheel at the outer knee**, constant ground contact; leg ends here in V1 |
-| Rear knee (expansion iface) x2 | 0 (V1) | future STS3215 | designed to accept a lower leg + foot later; **deferred, gated on need** (DEC-17) |
+| Rear knees x2 | 1 each | STS3215 bus servo | **active in V1** (DEC-31) — articulating knee between thigh and shank; with the hips it sets ride height, crouch and stand |
+| Rear shank + wheel-foot x2 | - | 12V geared DC + encoder (in the shank) | drive **wheel at the ankle position, as the foot**; constant ground contact; no ankle DOF in V1 |
 | Head / neck | 3 | micro servo + CF pushrod | **3-RPS parallel** (pitch/roll/heave); *yaw delegated to the base* |
 | Torso | 0 (V1) | - | **rigid strut** in V1; interfaces pre-designed for a single 3-DOF platform later |
 
-V1 actuator count: ~**10-12 STS3215** (limbs) + **3 micro** (head) + **2 DC** (drive).
+V1 actuator count: **12 STS3215** (6 arm + 4 hip + 2 knee; twelve bought, no spare — OQ-16) + **3 micro** (head) + **2 DC** (drive).
 
 ### Locomotion
 
-- **Roll / balance:** dynamic two-wheel (rear knee-wheels) inverted pendulum; mass
+- **Roll / balance:** dynamic two-wheel (rear wheel-feet) inverted pendulum; mass
   carried high (koala posture) makes a forgiving pendulum. Yaw (turn to look) is
-  done by the base spinning in place.
+  done by the base spinning in place. Knees and hips set the ride height, and
+  with it the CoM height the balance loop sees.
 - **Lean:** 2-DOF leg hips bank into turns (V1); the torso platform adds torso lean
   once activated (V2).
 - **No agile climbing in V1** — a *front-arm winch-haul* assisted clamber is possible
