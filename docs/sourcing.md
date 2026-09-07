@@ -19,8 +19,11 @@ The self-balancing base subsystem (limb/head servos are a separate import order)
 | Teensy 4.0 (DEC-18) + header kit | 1 | 25.10 |
 | **Total** | | **~159.50** |
 
-Not in this order (bench-power for bring-up): a **12 V source** (bench PSU or 3S LiPo);
-optional STEMMA QT cable for the BNO085.
+Not in this order: a **3S LiPo** for bring-up — **DEC-20**, *not* a bench PSU, which this
+line previously offered as an equal option and should not have (the exception is servo ID
+assignment and current measurement, where a current-limited supply is the safer tool; see
+[wk-robotics `common.md`](https://github.com/WayneKennedy/wk-robotics/blob/main/docs/common.md#power-integrity)).
+Also outstanding: optional STEMMA QT cable for the BNO085.
 
 ## Confirmed order - servos (RCmall on AliExpress, ~£302 inc VAT) [PURCHASED 2026-09-01]
 
