@@ -40,11 +40,38 @@ inside it and upstream's assembly mates are ~1.9 mm off at the shoulder:
    present flat outer faces when fitted**. So the arms bear on flat metal on
    both sides and the arm centre recesses are clearance for the centre
    fixings, not for a boss. Because the whole stack is only 1.5 over the 34.9
-   pocket while the idler body alone is 2.1 thick, the idler body must seat
-   below the case main flat, in a pocket in the back face. **Last number
-   wanted:** depth-rod from the idler's outer face to the case main flat beside
-   it, idler fitted. That is the idler stand-off; the drive horn gets the rest
-   of the 1.5.
+   pocket while the idler body alone is 2.1 thick, the idler body was expected
+   to seat below the case main flat. *Measured, later the same day:* **idler
+   outer face to the case face it sits on = 3.1** — the idler sits flat on
+   that face, and the servo's rear boss stands **0.7 proud of the idler's outer
+   face**, which is what the Ø6 × 1.0 recess in the idler-side fork clears. On
+   the drive side the fork recess is deeper to clear the **pan-head M3 that
+   secures the drive horn**. Consequence: 3.1 on the idler side alone exceeds
+   the 1.5 total that the 34.9 pocket would allow, so **the faces the horn and
+   idler sit on are stepped below the faces the pocket grips** (the visible
+   line across the case in the photos). The model that closes every number:
+   the **tail ears carrying the M2 holes stand proud of the body** and are what
+   the 34.9 pocket grips (at 2.2 and 5.8 from the rear face, exactly where the
+   printed holes are); the body between the ears' faces is ~**30.3** thick; horn
+   and idler each ~3.1 sit flat on the body → 30.3 + 3.1 + 3.1 = 36.4. *To
+   confirm with calipers:* body thickness across the main faces beside the
+   discs; thickness across the tail ears; drive horn thickness.
+   The upstream cradle and collar have **no cable window** (STEP probe): the
+   collar's front slot in DEC-34 is an invention. So the connector bay must sit
+   above the 17 mm rim when seated, which is where the photos show it: on the
+   **back (idler) face immediately tailward of the idler disc**, connectors
+   facing out along the output axis — which is why the base-joint cable enters
+   from below. The two holes flanking the idler disc in IMG_6991 are ~20 mm
+   above the collar's holes and so cannot be what the collar screws into; they
+   are a second, front pair. *To confirm:* bay on the back face only; its
+   distance from the rear face; the tail ears exist with holes at 2.2 / 5.8.
+   Also from the maintainer, same day: the printed forks have **teardrop
+   counterbores over M3 clearance holes** and the screws seat on the plastic;
+   **the counterbores are too small for the M3 horn screws supplied with the
+   Waveshare servos** — koala's counterbore must be sized to the supplied heads.
+   The servo is held by **friction fit plus four M2 self-tappers, two per face**
+   (idler face and drive face); photos IMG_6991/6992 show the idler-face pair
+   and the fork counterbores.
 2. **Where the connectors are and which way the cable leaves.** The Base has a
    22 mm window behind the rear face; the Rotation_Pitch shelf is solid. Look at
    the shoulder servo in the assembled arm.
