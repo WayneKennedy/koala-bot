@@ -133,8 +133,16 @@ SOCKET_M2_HEAD = 3.8      # [VERIFY] head clearance for supplied M2 self-tapper
 SOCKET_M2_TOOL = 6.0      # [DESIGN] straight driver envelope
 SOCKET_BOSS_W = 6.0       # [DESIGN] collar lug boss width
 SOCKET_BOSS_CLEAR = 0.2   # [DESIGN] clearance between collar bosses and cradle
-SOCKET_IDLER_FACE = -(SOCKET_HORN_SEAT_X / 2 + SOCKET_IDLER_T)  # [MEASURED] -17.5:
-                           # idler outer face, 0.1 outside the widest case plane
+SOCKET_SEAT_OFFSET = 0.5   # [MEASURED 2026-09-08] the widest faces are NOT symmetric
+                           # about the horn seats: seat->widest is 2.5 on the drive
+                           # side and 3.5 on the back (connector/idler) side. The
+                           # pocket (34.8/34.9) is the cradle datum at X=0, so the
+                           # seat mid-plane sits +0.5 toward the drive side.
+SOCKET_IDLER_FACE = SOCKET_SEAT_OFFSET - (SOCKET_HORN_SEAT_X / 2 + SOCKET_IDLER_T)
+                           # [MEASURED] -17.0: idler outer face, 0.4 INSIDE the
+                           # widest back-face plane (-17.45), so the idler plate
+                           # (R 14) must not reach the region where the case is
+                           # at full width - axial extents still to measure.
 SOCKET_HORN_SPAN = 36.4   # [MEASURED 2026-09-08] calipers: drive horn outer face
                           # to idler wheel outer face on a Waveshare ST3215 with
                           # both horns fitted = 36.4; the printed SO-101

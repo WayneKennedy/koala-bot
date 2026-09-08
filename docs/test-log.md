@@ -69,10 +69,21 @@ inside it and upstream's assembly mates are ~1.9 mm off at the shoulder:
    **2.5** (the face-to-face figures imply 3.0 — within the scatter, or the
    widest plane is not symmetric); seat → drive horn outer face **4.3** (span
    arithmetic gave 4.5; 28.8 + 3.1 + 4.3 = 36.2 against the measured 36.4).
-   The derived values in `params.py` stand; the discrepancies are inside the
-   tool's scatter and the pocket (34.9) is proven by fit regardless. *Still
-   open:* over what length from the rear face each plane runs (the pocket
-   depth, the inward bosses and the plate outline depend on it).
+   *Then:* **the widest faces are not symmetric about the seats** — seat →
+   widest is 2.5 on the drive side and **3.5 on the back (connector) side**,
+   and 28.8 + 2.5 + 3.5 = 34.8 closes. Taking the pocket as datum (it is what
+   the cradle grips), the seat mid-plane sits **0.5 toward the drive side**;
+   the idler outer face lands at **−17.0** and the drive horn face at **+19.4**
+   in that frame (`SOCKET_SEAT_OFFSET`). The idler plate face is therefore
+   **0.4 inside the widest back-face plane**: wherever the case is at full
+   width, a Ø28 idler plate would hit it. **The audit now fails on exactly
+   this** (`rig idler -90/case: 229 mm³ overlap`): `socket_reference()` still
+   models the case as a full-width 34.9 box over its whole length, so the
+   idler plate at −17.0 cuts into it. The failure is correct and is left
+   standing rather than hidden: it clears when the case model gets the three
+   planes with their measured axial extents. *Now load-bearing, still open:*
+   over what length from the rear face the widest region runs, and where the
+   28.8 seat region begins.
    The upstream cradle and collar have **no cable window** (STEP probe): the
    collar's front slot in DEC-34 is an invention. So the connector bay must sit
    above the 17 mm rim when seated, which is where the photos show it: on the
