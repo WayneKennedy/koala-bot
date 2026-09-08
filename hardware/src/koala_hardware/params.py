@@ -101,7 +101,18 @@ STANDARD_GRAVITY = 9.80665      # [STD] m/s²
 
 # --- DEC-33 SO-101 socket, native X = output axis, Z = long case axis -------
 # Case rear at Z=0; case centered in X/Y. No pocket derives from a servo STEP.
-SOCKET_CASE_X = 34.9       # [STEP] SO-101 Gauge_0 pocket, across output axis
+SOCKET_CASE_X = 34.9       # [STEP] SO-101 Gauge_0 pocket, across output axis;
+                           # calipers 2026-09-08: the widest case faces are ~34.8
+# The case has THREE face planes on each side of the output axis
+# (calipers, 2026-09-08). Distances are face-to-face across the axis:
+SOCKET_EAR_X = 31.8        # [MEASURED 2026-09-08] faces carrying the M2 lug holes;
+                           # the SO-101 cradle walls boss inward to exactly 31.8
+                           # at the holes (STEP: 15.6 + 16.2)
+SOCKET_HORN_SEAT_X = 28.8  # [MEASURED 2026-09-08] faces the drive horn and idler
+                           # sit on, flat
+SOCKET_IDLER_T = 3.1       # [MEASURED 2026-09-08] idler thickness; sits flat on the seat
+SOCKET_IDLER_BOSS_PROUD = 0.7  # [MEASURED 2026-09-08] servo rear boss above the idler face;
+                               # the idler-side plate needs a >=0.7 deep centre recess
 SOCKET_CASE_Y = 24.7       # [STEP] SO-101 Gauge_0 pocket, case width
 SOCKET_CASE_L = 45.23      # [SPEC] nominal case length
 SOCKET_CLEAR = 0.0        # [MEASURED 2026-09-07] maintainer: SO-101 fits PLA+/PETG
@@ -122,7 +133,8 @@ SOCKET_M2_HEAD = 3.8      # [VERIFY] head clearance for supplied M2 self-tapper
 SOCKET_M2_TOOL = 6.0      # [DESIGN] straight driver envelope
 SOCKET_BOSS_W = 6.0       # [DESIGN] collar lug boss width
 SOCKET_BOSS_CLEAR = 0.2   # [DESIGN] clearance between collar bosses and cradle
-SOCKET_IDLER_FACE = -SOCKET_CASE_X / 2  # [STEP] SO-101 nominal flush idler
+SOCKET_IDLER_FACE = -(SOCKET_HORN_SEAT_X / 2 + SOCKET_IDLER_T)  # [MEASURED] -17.5:
+                           # idler outer face, 0.1 outside the widest case plane
 SOCKET_HORN_SPAN = 36.4   # [MEASURED 2026-09-08] calipers: drive horn outer face
                           # to idler wheel outer face on a Waveshare ST3215 with
                           # both horns fitted = 36.4; the printed SO-101

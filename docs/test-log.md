@@ -53,9 +53,20 @@ inside it and upstream's assembly mates are ~1.9 mm off at the shoulder:
    the **tail ears carrying the M2 holes stand proud of the body** and are what
    the 34.9 pocket grips (at 2.2 and 5.8 from the rear face, exactly where the
    printed holes are); the body between the ears' faces is ~**30.3** thick; horn
-   and idler each ~3.1 sit flat on the body → 30.3 + 3.1 + 3.1 = 36.4. *To
-   confirm with calipers:* body thickness across the main faces beside the
-   discs; thickness across the tail ears; drive horn thickness.
+   and idler each ~3.1 sit flat on the body → 30.3 + 3.1 + 3.1 = 36.4.
+   *Measured, three planes per side (calipers, same day):* **horn/idler
+   seating faces 28.8 apart; M2-hole (ear) faces 31.8 apart; widest faces
+   ~34.8 apart.** So the idler outer face is at 14.4 + 3.1 = **17.5** from the
+   centreline (0.1 outside the widest plane) and the drive horn's outer face at
+   36.4 − 17.5 = **18.9** (4.5 above its seat, so the drive horn is thicker or
+   sits on the output boss). The SO-101 cradle walls **boss inward to 31.8 at
+   the M2 holes** (STEP: inner faces −15.6 and +16.2) while the general pocket
+   is 34.9 — the design touches the ear faces at the screws and the widest
+   faces elsewhere. `params.py` now carries `SOCKET_EAR_X`, `SOCKET_HORN_SEAT_X`,
+   `SOCKET_IDLER_T`, `SOCKET_IDLER_BOSS_PROUD`; `SOCKET_IDLER_FACE` becomes the
+   measured −17.5. *Still open:* over what length from the rear face each plane
+   runs (the pocket depth and the plate outline depend on it); drive horn
+   thickness for its own sake.
    The upstream cradle and collar have **no cable window** (STEP probe): the
    collar's front slot in DEC-34 is an invention. So the connector bay must sit
    above the 17 mm rim when seated, which is where the photos show it: on the
