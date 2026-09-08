@@ -91,12 +91,18 @@ geometry, not by buying longer screws.
 
 ### Clevis span
 
-Base joint: Rotation_Pitch's plates bear on the horn faces. This CAD gives an
-inner span of 37.5, **and that figure is wrong**: calipers on 2026-09-08 read
-**36.4** on a servo with both horns fitted and 36.4 on the printed SO-101
-Rotation_Pitch itself (test-log). The SO-100 bracket had measured 36.4 too
-(test-log 2026-09-02). DEC-33 adopted 37.5; `SOCKET_HORN_SPAN` is now the
-measured 36.4. Treat every stand-off in this section as CAD-only until the
+Base joint: Rotation_Pitch's plates bear on the horn faces, **36.4 apart**.
+`Rotation_Pitch_SO101.step` has its arm inner faces at Y = 10.0 and Y = 46.4
+(36.4), matching calipers on the printed part and on a servo with both horns
+fitted (test-log 2026-09-08) and the SO-100 bracket (test-log 2026-09-02).
+The 37.5 that this document carried until 2026-09-08, and that DEC-33 adopted,
+was a **measurement error in this review**: the probe along the axis of the
+idler-side arm read the floor of a shallow centre recess (about 1 mm deep,
+under 8 mm across, present only at the axis) instead of the arm face. Upstream's
+CAD was right. Two consequences for the primitive: `SOCKET_HORN_SPAN = 36.4`,
+and the idler-side plate wants that small centre recess for whatever stands
+proud at the idler's centre — measure it. The drive-side arm has a Ø3.2 centre
+through-hole instead. Other stand-offs in this section remain CAD-only until the
 remaining caliper items in the test-log are taken.
 
 ## Upstream CAD caveat

@@ -52,9 +52,11 @@ acceptance remains open as OQ-13.
   layer inspection and load tests before acceptance. Supersedes restart
   brief §6 steps 0–1 and the equivalent prerequisites in OQ-12/13.
   **Partly reversed 2026-09-08:** the first caliper reading taken anyway found
-  the adopted 37.5 mm horn span wrong by 1.1 mm (measured 36.4, test-log).
-  Upstream printed-part *pockets* stand; horn-stack figures from upstream CAD
-  do not, and are being measured one by one.
+  the adopted 37.5 mm horn span wrong by 1.1 mm (measured 36.4, test-log). The
+  37.5 was a probing error in `soarm-joint-pattern.md`, which the part STEP
+  itself contradicts; upstream's CAD stands. The lesson holds either way: a
+  number nobody has put a caliper on is a candidate, and the remaining
+  horn-stack figures are being measured one by one.
 
 - **DEC-32 — Establish quantitative restart design targets before structure**
   (2026-09-07). Size against the DEC-15 upper mass of **3 kg**. Evaluate

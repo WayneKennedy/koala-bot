@@ -16,7 +16,7 @@ constant it names to `[MEASURED]`.
 
 | # | Measurement | Value | Consequence |
 |---|-------------|-------|-------------|
-| 1 | Drive horn outer face → idler wheel outer face | **36.4** | `SOCKET_HORN_SPAN` 37.5 → **36.4**. Corroborated independently: the printed SO-101 `Rotation_Pitch` fork is 36.4 inner face to inner face. Upstream's assembly CAD said 37.5; the discarded SO-100 bracket measurement of 2026-09-02 (36.4) was right all along. Every span-derived figure in DEC-34 (drive-face datum, crossbar length, motor face, track, bolt grips) shifts by 1.1 mm; `params.py` derives them |
+| 1 | Drive horn outer face → idler wheel outer face | **36.4** | `SOCKET_HORN_SPAN` 37.5 → **36.4**. Corroborated independently: the printed SO-101 `Rotation_Pitch` fork is 36.4 inner face to inner face, and `Rotation_Pitch_SO101.step` has its arm faces at Y = 10.0 and 46.4. The 37.5 in `soarm-joint-pattern.md` was a probing error there (an axis probe read a ~1 mm centre recess in the idler-side arm, not the arm face); upstream's CAD was right, as was the 2026-09-02 SO-100 bracket reading. Every span-derived figure in DEC-34 (drive-face datum, crossbar length, motor face, track, bolt grips) shifts by 1.1 mm; `params.py` derives them |
 
 Still to take: (2) case back face → idler wheel outer face; (3) case top → drive
 horn outer face; (4) bare case thickness and width; (5) lug hole positions from
