@@ -26,7 +26,8 @@ acceptance remains open as OQ-13.
   fastening** (2026-09-07). Replace every old structural builder. Use the
   shared SO-101 cradle/collar and double-horn clevis at roll, pitch and knee;
   100 mm thigh and shank, direct-drive ankle wheels, hip/knee nominal 15/30°.
-  Track is 239.5 mm; nominal deck height 283.2 mm, with 150 mm reserved above
+  Track is 237.3 mm (designed as 239.5 on the 37.5 mm span; the span measured
+  36.4 on 2026-09-08 and the track follows it); nominal deck height 283.2 mm, with 150 mm reserved above
   it (433.2 mm total). Adopt ±5° roll and −10…45° hip as the prototype's
   inspection range, trading the DEC-32 wider targets for this packaging;
   knee target remains 0…90°. Pitch sits 70.115 mm forward and 34 mm outboard
@@ -50,6 +51,10 @@ acceptance remains open as OQ-13.
   New cradle/collar/clevis geometry still needs the single-joint rig fit,
   layer inspection and load tests before acceptance. Supersedes restart
   brief §6 steps 0–1 and the equivalent prerequisites in OQ-12/13.
+  **Partly reversed 2026-09-08:** the first caliper reading taken anyway found
+  the adopted 37.5 mm horn span wrong by 1.1 mm (measured 36.4, test-log).
+  Upstream printed-part *pockets* stand; horn-stack figures from upstream CAD
+  do not, and are being measured one by one.
 
 - **DEC-32 — Establish quantitative restart design targets before structure**
   (2026-09-07). Size against the DEC-15 upper mass of **3 kg**. Evaluate

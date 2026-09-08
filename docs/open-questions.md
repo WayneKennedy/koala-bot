@@ -4,7 +4,7 @@ Unresolved. Resolve -> move to [`decisions.md`](decisions.md).
 
 - **OQ-16 - Knee/wheel-foot acceptance and remaining choices.** DEC-34
   banks the prototype's direct-drive motor placement, 100/100 mm links,
-  15/30° nominal hip/knee angles, 239.5 mm track and sampled motion ranges.
+  15/30° nominal hip/knee angles, 237.3 mm track (measured-span value) and sampled motion ranges.
   [`cad-restart-design.md`](cad-restart-design.md) records the tradeoffs and
   first torque calculations. Still open: continuous servo torque/temperature,
   actual mass and CoM, powered load sharing at crouch, whether twelve bought

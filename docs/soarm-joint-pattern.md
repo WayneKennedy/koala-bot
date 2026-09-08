@@ -91,10 +91,13 @@ geometry, not by buying longer screws.
 
 ### Clevis span
 
-Base joint: Rotation_Pitch's plates bear on the horn faces; inner span **37.5** in
-this CAD (the drive horn stands ~1.9 proud of the case top; the idler sits flush or
-recessed). The SO-100 bracket measured 36.4 (test-log 2026-09-02). **DEC-33 adopts the SO-101 37.5 mm nominal** for the redesign;
-check preload-free fit on the new rig before leg printing.
+Base joint: Rotation_Pitch's plates bear on the horn faces. This CAD gives an
+inner span of 37.5, **and that figure is wrong**: calipers on 2026-09-08 read
+**36.4** on a servo with both horns fitted and 36.4 on the printed SO-101
+Rotation_Pitch itself (test-log). The SO-100 bracket had measured 36.4 too
+(test-log 2026-09-02). DEC-33 adopted 37.5; `SOCKET_HORN_SPAN` is now the
+measured 36.4. Treat every stand-off in this section as CAD-only until the
+remaining caliper items in the test-log are taken.
 
 ## Upstream CAD caveat
 

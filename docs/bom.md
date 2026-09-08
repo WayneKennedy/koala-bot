@@ -117,7 +117,7 @@ No current hash-matched slice results, so filament is the **solid-geometry upper
 | Part | Qty | Size (mm) | Filament | Print time | Print notes |
 |------|-----|-----------|----------|-----------|-------------|
 | `e_tray` | 1 | 140 x 90 x 9 | ~63 g (solid max) | - | clean |
-| `hip_crossbar` | 2 | 22 x 16 x 40 | ~33 g (solid max) | - | 32 mm2 flagged overhang; inspect slice |
+| `hip_crossbar` | 2 | 22 x 16 x 39 | ~32 g (solid max) | - | 32 mm2 flagged overhang; inspect slice |
 | `hip_pitch_cradle_left` | 1 | 30 x 45 x 29 | ~28 g (solid max) | - | 24 mm2 flagged overhang; inspect slice |
 | `hip_pitch_cradle_right` | 1 | 30 x 45 x 29 | ~28 g (solid max) | - | 24 mm2 flagged overhang; inspect slice |
 | `joint_drive_cheek` | 6 | 56 x 28 x 4 | ~27 g (solid max) | - | clean |
@@ -125,21 +125,21 @@ No current hash-matched slice results, so filament is the **solid-geometry upper
 | `pelvis` | 1 | 180 x 150 x 32 | ~216 g (solid max) | - | 48 mm2 flagged overhang; inspect slice |
 | `servo_collar_left` | 3 | 51 x 36 x 26 | ~51 g (solid max) | - | 95 mm2 flagged overhang; inspect slice |
 | `servo_collar_right` | 3 | 51 x 36 x 26 | ~51 g (solid max) | - | 95 mm2 flagged overhang; inspect slice |
-| `shank_core` | 2 | 40 x 22 x 53 | ~108 g (solid max) | - | brim (tall, small footprint); 459 mm2 flagged overhang; inspect slice |
-| `thigh_core_left` | 1 | 45 x 30 x 56 | ~53 g (solid max) | - | brim (tall, small footprint); 239 mm2 flagged overhang; inspect slice |
-| `thigh_core_right` | 1 | 45 x 30 x 56 | ~53 g (solid max) | - | brim (tall, small footprint); 239 mm2 flagged overhang; inspect slice |
+| `shank_core` | 2 | 39 x 22 x 53 | ~105 g (solid max) | - | brim (tall, small footprint); 448 mm2 flagged overhang; inspect slice |
+| `thigh_core_left` | 1 | 45 x 30 x 56 | ~52 g (solid max) | - | brim (tall, small footprint); 233 mm2 flagged overhang; inspect slice |
+| `thigh_core_right` | 1 | 45 x 30 x 56 | ~52 g (solid max) | - | brim (tall, small footprint); 233 mm2 flagged overhang; inspect slice |
 | `wheel_foot_face` | 2 | 66 x 48 x 5 | ~25 g (solid max) | - | clean |
 | `wheel_foot_support` | 2 | 66 x 48 x 5 | ~14 g (solid max) | - | clean |
 | `coupon_ladder` | 1 | 150 x 60 x 6 | ~68 g (solid max) | - | clean |
 | `coupon_motor_bore` | 1 | 135 x 50 x 6 | ~26 g (solid max) | - | clean |
 | `coupon_motor_ring` | 1 | 47 x 47 x 5 | ~10 g (solid max) | - | clean |
 | `coupon_seam` | 1 | 60 x 75 x 13 | ~22 g (solid max) | - | 38 mm2 flagged overhang; inspect slice |
-| `coupon_socket_bridge` | 1 | 16 x 22 x 40 | ~17 g (solid max) | - | 32 mm2 flagged overhang; inspect slice |
+| `coupon_socket_bridge` | 1 | 16 x 22 x 39 | ~16 g (solid max) | - | 32 mm2 flagged overhang; inspect slice |
 | `coupon_socket_collar` | 1 | 51 x 36 x 26 | ~17 g (solid max) | - | 95 mm2 flagged overhang; inspect slice |
 | `coupon_socket_cradle` | 1 | 45 x 30 x 22 | ~16 g (solid max) | - | 24 mm2 flagged overhang; inspect slice |
 | `coupon_socket_drive` | 1 | 56 x 28 x 4 | ~4 g (solid max) | - | clean |
 | `coupon_socket_idler` | 1 | 56 x 28 x 4 | ~5 g (solid max) | - | clean |
-| **Structural total** | **32** | | **~780 g (solid max)** | **-** | |
+| **Structural total** | **32** | | **~775 g (solid max)** | **-** | |
 
 **Lower-body fastening schedule, derived from the same builders.** Candidate lengths require rig checks; excludes coupon hardware, torso, arms/head, and supplier-specific wheel/hub fixings.
 

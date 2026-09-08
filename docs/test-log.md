@@ -7,6 +7,23 @@ in `hardware/src/koala_hardware/params.py`, tagged with their provenance.
 Reference printer per DEC-14 (Ender-5 S1 / Klipper), PETG, the standing
 general-purpose profile recorded in [`bom.md`](bom.md).
 
+## 2026-09-08 — calipers on the Waveshare ST3215 with both horns fitted (in progress)
+
+The measurements DEC-33 waived, taken anyway because the DEC-34 review found
+the clevis span resting on an upstream CAD figure that upstream's own two
+joints disagreed on. Values are added here as they are taken; each moves the
+constant it names to `[MEASURED]`.
+
+| # | Measurement | Value | Consequence |
+|---|-------------|-------|-------------|
+| 1 | Drive horn outer face → idler wheel outer face | **36.4** | `SOCKET_HORN_SPAN` 37.5 → **36.4**. Corroborated independently: the printed SO-101 `Rotation_Pitch` fork is 36.4 inner face to inner face. Upstream's assembly CAD said 37.5; the discarded SO-100 bracket measurement of 2026-09-02 (36.4) was right all along. Every span-derived figure in DEC-34 (drive-face datum, crossbar length, motor face, track, bolt grips) shifts by 1.1 mm; `params.py` derives them |
+
+Still to take: (2) case back face → idler wheel outer face; (3) case top → drive
+horn outer face; (4) bare case thickness and width; (5) lug hole positions from
+the rear face on both faces, and pair spacing; (6) lug hole depth against an
+M2×5; (7) connector position, size and exit direction on the rear face; (8) M2×5
+head diameter and height.
+
 ## 2026-09-08 — DEC-34 digital prototype checks (nothing printed)
 
 Replaced both discarded lower-body builders. Export passes the existing bed,

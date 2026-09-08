@@ -123,7 +123,11 @@ SOCKET_M2_TOOL = 6.0      # [DESIGN] straight driver envelope
 SOCKET_BOSS_W = 6.0       # [DESIGN] collar lug boss width
 SOCKET_BOSS_CLEAR = 0.2   # [DESIGN] clearance between collar bosses and cradle
 SOCKET_IDLER_FACE = -SOCKET_CASE_X / 2  # [STEP] SO-101 nominal flush idler
-SOCKET_HORN_SPAN = 37.5   # [STEP] SO-101 clevis span, adopted under DEC-33
+SOCKET_HORN_SPAN = 36.4   # [MEASURED 2026-09-08] calipers: drive horn outer face
+                          # to idler wheel outer face on a Waveshare ST3215 with
+                          # both horns fitted = 36.4; the printed SO-101
+                          # Rotation_Pitch fork measures 36.4 inner face to inner
+                          # face. Upstream's assembly CAD gave 37.5 - wrong by 1.1.
 SOCKET_DRIVE_FACE = SOCKET_IDLER_FACE + SOCKET_HORN_SPAN
 SOCKET_HORN_DIA = 20.0    # [STEP] both horn discs
 SOCKET_HORN_RECESS = 20.5 # [STEP] recess diameter; never a through clearance

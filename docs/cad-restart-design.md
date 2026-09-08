@@ -16,7 +16,7 @@ Dimensions and assumptions live in `hardware/src/koala_hardware/params.py`.
 | Thigh / shank | 100 / 100 mm between axes |
 | Stance | Hip 15°, knee 30°; axle under hip-pitch axis in side view |
 | Deck height | 283.2 mm; 150 mm upper-body allocation gives 433.2 mm overall |
-| Track | 239.5 mm wheel centres, 249.5 mm tyre outside width |
+| Track | 237.3 mm wheel centres, 247.3 mm tyre outside width (239.5 / 249.5 as designed on the 37.5 span; corrected 2026-09-08 to the measured 36.4 — `params.py` derives it) |
 | Hip axes | Pitch 70.115 mm forward and 34 mm outboard of roll, same height; 77.9 mm axis-centre spacing |
 | Roll inspection range | ±5°; reduced from the ±10° study target to retain a track below 240 mm |
 | Hip / knee inspection ranges | −10…45° / 0…90°; hip extension reduced from the −30° study target |
@@ -84,9 +84,12 @@ coupon hardware and supplier-specific wheel/hub fixings are separate.
 | Four case screws per servo | M2x5 − 2.2 mm seat = 2.8 mm nominal lug engagement |
 | Drive horn square | M3x6 − 2.7 mm recess floor = 3.3 mm engagement |
 | Idler horn square | M3x6 − 3.5 mm flat cheek = 2.5 mm engagement |
-| Thigh/shank proximal crossbar | 36.7 mm spacer + two 3.5 mm cheeks = 43.7 mm grip; M3x50, washers and nut |
-| Hip carrier | Recessed head seat to outer idler cheek = 52.95 mm grip; M3x60, nut-side washer and nut |
-| Shank motor-plate seam | 36.7 + two 5 mm plates = 46.7 mm grip; M3x55, washers and nut |
+| Thigh/shank proximal crossbar | 35.6 mm spacer + two 3.5 mm cheeks = 42.6 mm grip; M3x50, washers and nut |
+| Hip carrier | Recessed head seat to outer idler cheek = 51.85 mm grip; M3x60, nut-side washer and nut |
+| Shank motor-plate seam | 35.6 + two 5 mm plates = 45.6 mm grip; M3x55, washers and nut |
+
+Span-derived grips above were shortened by 1.1 mm on 2026-09-08 when the horn
+span was measured at 36.4 (test-log); screw lengths are unchanged.
 | Motor face | Six M3x8 per motor, 5 mm plate → 3 mm nominal engagement; verify motor bore depth |
 | Hub | 5 mm plate + 3 mm cap head + 0.5 mm axial allowance + 9.5 mm hub = 18 mm stack; verify actual hub/set-screw access |
 | Tray | Four 10 mm female/female standoffs, M3x10 below 5 mm deck and M3x8 above 4 mm tray; verify thread depths |
