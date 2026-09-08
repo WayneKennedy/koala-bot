@@ -81,7 +81,7 @@ use them at **every** STS3215 joint. Numbers are upstream CAD nominal
 |---|---|---|
 | `cradle()` | pocket for the rear ~17 mm of the case: back wall + two side walls + shelf; open front and top. Each **side wall** takes one lug at the **rear lateral position** (one drive-face, one back-face): Ø2.0 × 2.2 seat then Ø4.0 counterbore to the outside | pocket 34.9 × 24.7 (zero clearance, `SOCKET_CLEAR`); walls 5 (≥4.8) |
 | `collar()` | 3 mm sleeve, ~26 tall, overlapping the cradle by ~9 mm, front wall bearing on the servo's front face; two bosses at the **open front corners** take the two lugs at the **front lateral position**, same Ø2.0 × 2.2 + Ø4.0 stack. No lanes cut through the cradle | inner = cradle outer + 0.2 total |
-| `clevis_plate(side)` | 3.5 mm **flat** plate, 4 × `CLEAR_HOLE_M3` on the 9.9 square, **no horn recess**; drive side: Ø3.2 centre hole with a countersink; idler side: blind centre recess ~Ø8 × 1.5 | both horns bolted — the joint is never a cantilever |
+| `clevis_plate(side)` | 3.5 mm **flat** plate bearing on the flat outer face of the horn or idler (both are flat when fitted, test-log 2026-09-08), 4 × `CLEAR_HOLE_M3` on the 9.9 square, **no horn recess**; drive side: Ø3.2 centre hole with a countersink; idler side: shallow blind centre recess ~Ø8 × 1.5 as clearance for the idler's centre fixing | both horns bolted — the joint is never a cantilever |
 
 *Corrected 2026-09-08 from the printed-part STEPs
 ([`soarm-joint-pattern.md`](soarm-joint-pattern.md), "read from the printed

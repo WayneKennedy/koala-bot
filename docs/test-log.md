@@ -35,9 +35,16 @@ inside it and upstream's assembly mates are ~1.9 mm off at the shoulder:
    The servo's rear face carries a proud round boss ~Ø8 with a centre hole
    (photo IMG_6989). The printed idler-side arms have blind centre recesses of
    Ø6 × 1.0 (Rotation_Pitch) and Ø8 × 1.5 (Upper_arm), which is the room for a
-   1 mm feature at the axis. **Still to settle:** which way the idler's 1 mm
-   boss faces and whether its body sits in a recess in the case — i.e. the
-   idler's outer face height above the case main flat with the idler fitted.
+   1 mm feature at the axis. *Further, same day:* the **boss faces inward**,
+   engaging the servo's rear boss, and **both the drive horn and the idler
+   present flat outer faces when fitted**. So the arms bear on flat metal on
+   both sides and the arm centre recesses are clearance for the centre
+   fixings, not for a boss. Because the whole stack is only 1.5 over the 34.9
+   pocket while the idler body alone is 2.1 thick, the idler body must seat
+   below the case main flat, in a pocket in the back face. **Last number
+   wanted:** depth-rod from the idler's outer face to the case main flat beside
+   it, idler fitted. That is the idler stand-off; the drive horn gets the rest
+   of the 1.5.
 2. **Where the connectors are and which way the cable leaves.** The Base has a
    22 mm window behind the rear face; the Rotation_Pitch shelf is solid. Look at
    the shoulder servo in the assembled arm.
