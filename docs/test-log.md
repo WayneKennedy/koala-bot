@@ -58,8 +58,9 @@ inside it and upstream's assembly mates are ~1.9 mm off at the shoulder:
    base servo and enters from below, which suggests the bay is a **through-slot
    open on the back face too** (IMG_6989 shows a slot between the ears on the
    back face). *To confirm:* through-slot or horn-face only; distance from the
-   rear end. The photo also confirms the collar's lug bosses at the **open-front
-   corners**, i.e. the lateral split of the four screws.
+   rear end. *(A claim that the photo confirmed the collar's lug bosses at the
+   open-front corners was withdrawn the same day: the maintainer says it is
+   inaccurate. How the collar engages the servo's front lugs is open — see 3.)*
 3. **The fourth lug.** `Motor_holder_Base`'s horn-side boss has a plain Ø4.0
    bore with no 2.2 mm seat, unlike the other three positions. What does the
    servo present there — a Ø4 post, a threaded boss, or a plain lug?
