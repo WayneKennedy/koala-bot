@@ -46,6 +46,20 @@ Every powered joint puts three printed parts around one STS3215:
 Retention is the pocket. The four M2 self-tappers go into the **servo's own lugs**,
 never into plastic; they only stop the case lifting out.
 
+**Where the pattern is used, per the assembly STEP (2026-09-08):** base
+(`Base` + `Base_motor_holder`), shoulder (`Rotation_Pitch` +
+`Motor_holder_Base`) and wrist pitch (`Under_arm` + `Motor_holder_Wrist`,
+the shoulder arrangement turned on its side). **The elbow is the exception:**
+the elbow servo's rear 20 mm sits in a one-piece saddle at the far end of
+`Upper_arm` — shelf plus the two horn-face walls, open on both width faces,
+all four lugs through those walls, no collar — and `Under_arm` carries the
+elbow clevis. The lugs are **ears standing proud** of the horn and back faces
+at the rear end (photo IMG_6989, 2026-09-08), so a servo cannot be pushed
+lengthwise into a closed pocket sized to the case: every socket admits it
+sideways through an open face, and the collar is what closes that face and
+carries the ears' screws afterwards. The elbow saddle gets away without one by
+leaving both width faces open and taking all four screws in its side walls.
+
 ## Numbers
 
 | Item | Value (mm) | Where measured |
