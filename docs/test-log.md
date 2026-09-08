@@ -25,6 +25,7 @@ the Bottom. Cheap calipers, ±0.3. Everything here moved a constant to
 | 6 | Front ↔ Back, widest faces | **~34.8** | the pocket; `SOCKET_CASE_X` 34.9 stands (proven by fit) |
 | 7 | Front side steps from the seat: ear / widest / drive horn face | **1.5 / 2.5 / 4.3** | 28.8 + 3.1 + 4.3 = 36.2 vs 36.4 measured — closes within the tool |
 | 8 | Back side step, seat → widest | **3.5** | **not symmetric**: seat mid-plane is 0.5 toward the Front of the pocket centre → `SOCKET_SEAT_OFFSET = 0.5`, idler face **−17.0**, drive face **+19.4**, track 238.2 |
+| 9 | Horn screws supplied in the Waveshare box | **M3×6 pan head, head Ø5.2 × 2.0** | `HORN_SCREW*` `[SUPPLIED]`. Upstream's fork counterbores do not fit them. With a 3.5 web (upstream's, and 6 − 3.5 = 2.5 into a horn whose tapped body is 2.1) the plate needs a ≥Ø6 × ≥2.5 counterbore, so the horn pad is ~6 thick, not 3.5. The RCmall Feetech packs may ship different screws — unverified |
 
 **Consequence 8 is why the audit fails right now** (`rig idler -90/case: 229
 mm³ overlap`): the idler face is 0.4 inside the widest Back plane, and

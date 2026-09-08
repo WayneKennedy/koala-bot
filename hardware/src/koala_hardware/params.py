@@ -43,6 +43,10 @@ SERVO_AXIS_X = 12.5    # [SPEC] axis offset from case length centre
 SERVO_DRIVE_SQ = 9.9   # [STEP] SO-101 printed horn hole pattern
 SERVO_MASS = 55.0      # [SPEC] per bare servo, nominal
 SELFTAP_DIA = 2.0      # [SUPPLIED 2026-09-07] M2x5 case-lug screws
+HORN_SCREW = "M3x6"    # [SUPPLIED 2026-09-08] pan head, in the Waveshare ST3215 box;
+HORN_SCREW_HEAD_DIA = 5.2  # [SUPPLIED 2026-09-08] the RCmall Feetech packs are unverified
+HORN_SCREW_HEAD_H = 2.0    # [SUPPLIED 2026-09-08] upstream's fork counterbores are too
+                           # small for these heads; size koala's to them
 
 # --- Drive motor - DFRobot FIT0403 37D 12V 122rpm w/encoder (Pi Hut) ---------
 # Manufacturer drawing:

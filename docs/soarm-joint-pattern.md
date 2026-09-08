@@ -131,6 +131,7 @@ near the Bottom**. *To confirm:* bay height from the Bottom; ears at 2.2 and
 | Collar | 3.0 walls, 26 tall, 9 below the floor, 0.1 per side to the cradle, closing wall 0.16 from the servo Side | Motor_holder_Base |
 | Cable | **no window** in any cradle or collar wall; the Base tower has a 24.7 × 22 window in the wall behind the Bottom (height 7.6–29.7) | Rotation_Pitch, Motor_holder_Base, Base |
 | Screws in the upstream model | #1-42 × 3/16" ≈ M2 × 4.8 self-tap (the supplied M2×5); M3 × 6 pan head | assembly labels |
+| Screws actually supplied (Waveshare box) | M2×5 self-tap; **M3×6 pan head, head Ø5.2 × 2.0** — upstream's counterbores are too small for it | calipers 2026-09-08; Feetech packs unverified |
 
 ### The M2×5 length problem, answered
 
@@ -147,7 +148,10 @@ reaches. koala's test-log finding of 2026-09-07 ("M2×5 too short for our 3.95 /
 2. **Walls boss inward to 31.8 at the M2 holes**, 34.9 elsewhere.
 3. **Flat plates, no Ø20.5 recess.** Front plate: Ø3.2 centre hole with a
    countersink for the pan-head; Back plate: blind centre recess ≥0.7 deep.
-4. **Counterbores sized to the supplied M3 horn screw heads** (to measure).
+4. **Counterbores sized to the supplied M3 horn screw heads**: Ø5.2 × 2.0 pan
+   heads, so ≥Ø6 × ≥2.5 pockets over a 3.5 web — the horn pad becomes ~6 thick.
+   M3×6 through a 3.5 web leaves 2.5 for a horn whose tapped body is 2.1;
+   confirm on the rig that the screw does not bottom before clamping.
 5. **No cable slot** in floor or collar; keep the collar top at 17 so the bay
    on the Back clears it.
 6. **Case reference with three planes** and their heights, so the audit's
