@@ -11,6 +11,7 @@ Provenance tags:
             printing anything that depends on it (see parts/coupons.py)
   [MEASURED] confirmed by a printed coupon on the reference printer, dated;
             results and their caveats live in docs/test-log.md
+  [DESIGN]  chosen design target or nominal geometry, not a measurement
   [SUPPLIED] read off hardware that arrived in the box, dated; what the vendor
             actually ships, which is not always what the spec sheet says
 """
@@ -26,7 +27,7 @@ BED_Z = 200.0
 # on a printer whose flow and XY accuracy are already calibrated - otherwise
 # they absorb that machine's error. See hardware/README "Reading a coupon
 # result".
-CLEAR_POCKET = 0.25   # [VERIFY] snug component pocket, per side
+CLEAR_POCKET = 0.25   # [VERIFY] generic non-servo fits; servo uses SOCKET_CLEAR
 CLEAR_HOLE_M3 = 3.4   # [MEASURED 2026-09-01] coupon_ladder: 3.4 slides free,
                       # 3.2 threads in by hand (too tight for a clearance hole)
 CLEAR_HOLE_M2_5 = 2.9 # [VERIFY] not yet coupon-tested; scaled from M3
@@ -37,103 +38,11 @@ CAP_M3_H = 3.0        # [STD] cap head height - what stands proud (DEC-25)
 WALL = 3.0            # default structural wall
 PLATE = 5.0           # default structural plate thickness
 
-# --- Feetech STS3215 (limb/hip servo) ---------------------------------------
-# Model ST-3215-C018. TWO INDEPENDENT FEATURE FAMILIES, on two different
-# datums. Keeping them apart matters: conflating them is what produced a run
-# of wrong conclusions (see docs/test-log.md 2026-09-02).
-#
-#   1. BODY, datum = the case.       Where the servo sits and how it is held.
-#   2. HORN, datum = the output axis. What the servo drives. ROTATES.
-#
-# The output axis sits SERVO_AXIS_X from the body centre, so a body feature
-# expressed as "distance from the axis" silently depends on that offset.
-# Prefer case coordinates for anything in family 1.
-#
-# Sources, most to least authoritative:
-#   [SPEC]  Feetech ST-3215-C018 specification A/0, 2023-07-20 - the maker's
-#           own document. Describes the BARE servo, no horn fitted.
-#   upstream printed parts - validated by every SO-ARM100/101 ever assembled;
-#           if their holes were wrong the arms would not go together.
-#   [STEP]  vendor/so-arm100/STS3215_03a.step - author UNKNOWN. Distributed by
-#           TheRobotStudio, not demonstrably by Feetech (it models 45.4 x 24.8
-#           where Feetech states 45.23 x 24.73). Models the servo WITH horn and
-#           idler fitted, which is why it carries features the drawing lacks.
-#           Treat as an approximation; it has already been wrong once.
-
-# --- family 1: the BODY (case datum) ---
-# [SPEC 6-1] gives 45.2 x 24.7 x 35. The STEP models 45.4 x 24.8. Pocket
-# constants stay on the STEP's larger figures deliberately: a 0.2 mm generous
-# pocket is the safe direction for an error.
-SERVO_L = 45.4          # [STEP] X (spec: 45.23)
-SERVO_W = 24.8          # [STEP] Y (spec: 24.73)
-SERVO_MASS = 55.0       # [SPEC 6-8] 55 +/- 1 g; 12 of them is 660 g
-SERVO_CASE = "PA+GF"    # [SPEC 6-3] glass-filled nylon. No metal thread in the
-                        # case - so nothing here takes a load-bearing thread.
-SERVO_BODY_TOP = 16.2   # [STEP] case top face (below horn boss)
-SERVO_BODY_BOT = -19.4  # [STEP] case bottom face
-
-# Body mounting holes. Upstream seats the servo in a snug printed pocket and
-# fixes it with 2 screws into the FRONT face and 2 into the BACK.
-SERVO_TAB_Y = 10.4      # [STEP][SPEC-corroborated] +/-y. 20.8 mm apart, ~2 mm
-                        # from a 24.73 case edge - matches the drawing.
-SERVO_TAB_X = -20.7     # [STEP] ONLY. The drawing carries no X dimension for
-                        # these. This is the least-supported number in the
-                        # file and it positions every retention screw. OQ-12.
-SERVO_TAB_HOLE = 4.0    # [STEP] ONLY, and an INTERPRETATION: a STEP cylinder
-                        # says nothing about which side is material, so this
-                        # may be a bore or a clamshell pillar. OQ-12.
-                        # The supplied screw is M2 (below), which no Ø4 hole
-                        # threads - so 4.0 is a recess, a boss OD or wrong.
-                        # Unresolved either way; measure it.
-# Self-tapping retention screws. Size is now known, length is not.
-# [SUPPLIED 2026-09-07] Two Waveshare-branded ST3215 12V units bought from
-# Amazon as test-fit hardware each shipped M2x5 self-tapping screws for these
-# holes (plus the M3 horn screws). So the screw is M2, not the 2.5 guessed
-# here before. LENGTH stays open (OQ-12): it is the printed wall at each hole
-# - currently 3.95 mm on one end wall and 6.35 mm on the horn-side wall of
-# hip_bracket.build_root() - plus a case bore depth nobody has measured.
-SELFTAP_DIA = 2.0       # [SUPPLIED 2026-09-07] M2 major dia
-SELFTAP_PILOT = 1.7     # [VERIFY] thread-forming pilot in PETG, ~0.85 x major
-SELFTAP_CLEAR = 2.4     # [VERIFY] clearance, on the M3 coupon's +0.4 convention
-
-# --- family 2: the HORN (output-axis datum) - THIS ROTATES ---
-# NOT servo geometry. [SPEC 11] "No Accessories": Feetech ships the servo bare,
-# so the horn comes from the kit vendor and these numbers follow whichever horn
-# is actually fitted. Filed here for convenience, but they are horn constants.
-SERVO_AXIS_X = 12.5     # [STEP][SPEC-dimensioned] axis offset from body centre
-SERVO_HORN_TOP = 20.2   # [STEP] top face of the fitted metal horn disc
-SERVO_HORN_DIA = 20.0   # [STEP] horn / idler disc - matches assembly photos
-SERVO_IDLER_BOT = -19.4 # [VERIFY] idler disc outer face. The idler is a
-                        # SECOND metal horn carrying the SAME 4-hole square,
-                        # free-spinning, there for axial alignment - so a fork
-                        # BOLTS to it rather than clearing it. How far it
-                        # stands proud of the case is NOT measured: the STEP
-                        # models it recessed, servo_envelope() models it 2 mm
-                        # proud, and they cannot both be right. If it stands
-                        # proud, the aft fork plate must move out. OQ-12.
-SERVO_HORN_BOSS_DIA = 9.0   # [STEP] centre boss under the horn - keep clear
-SERVO_HORN_SCREW = "M3x6"   # [SPEC 6-13] the single CENTRE screw fixing the
-                            # horn to the 25T spline. Says nothing about the
-                            # 4-hole drive square below. [SUPPLIED 2026-09-07]
-                            # the Waveshare retail box does include M3 horn
-                            # screws - length not recorded - so [SPEC 11]
-                            # "No Accessories" describes the bare Feetech
-                            # part, not every box. Unverified for the RCmall
-                            # 6-packs.
-SERVO_DRIVE_SQ = 9.9    # [STEP] 4x drive holes on a 9.9 mm square
-SERVO_DRIVE_SCREW = CLEAR_HOLE_M3
-# M3, not M2.5. The STEP models these at 2.5 - the M3 TAPPING DRILL - which an
-# earlier session read as an M2.5 clearance hole. Upstream's own bracket drills
-# 3.2 (M3 clearance) on this same square, and their arms assemble, so M3 is
-# right. An M3 will not pass through 2.9.
-
-# clearance; the hold is made against the servo. Threading only the print does
-# nothing - the screw would rattle in the servo's Ø4 bore.
-# OPEN (OQ-12): whether those screws thread the servo's case, or become a
-# through-bolt + nut clamping both walls onto its end faces. The latter cuts no
-# thread in a PA+GF case, which wears with reassembly, and suits a load-bearing
-# hip better than an arm. Clearance in the print keeps both options live.
-SERVO_TAB_TOP = 17.0    # [STEP] tab top face height (approx; tab is proud of case)
+# --- Shared ST3215 / SO-101 horn inputs ------------------------------------
+SERVO_AXIS_X = 12.5    # [SPEC] axis offset from case length centre
+SERVO_DRIVE_SQ = 9.9   # [STEP] SO-101 printed horn hole pattern
+SERVO_MASS = 55.0      # [SPEC] per bare servo, nominal
+SELFTAP_DIA = 2.0      # [SUPPLIED 2026-09-07] M2x5 case-lug screws
 
 # --- Drive motor - DFRobot FIT0403 37D 12V 122rpm w/encoder (Pi Hut) ---------
 # Manufacturer drawing:
@@ -167,33 +76,99 @@ BNO085_BOARD = (25.4, 19.5)                      # [VERIFY] Adafruit 4754
 STANDOFF_H = 5.0        # printed standoffs under the driver shield
 TRAY_GAP = 10.0         # bought M3 standoffs, pelvis top -> tray underside
 
-# --- Assembly layout (v1 draft) ----------------------------------------------
-THIGH_DROP = 154.0      # hip-pitch axis -> wheel axis; DEC-29 stance = 268 mm
-PELVIS_PLATE = (150.0, 170.0, PLATE)
-# DEC-29: wider pitch fork puts the motor face at Y=42.4 in each leg frame.
-HIP_ROLL_Y = 64.0       # DEC-29: wider roots allow inward motor sweep
-HIP_ROLL_DROP = 44.0    # integrated pelvis removes the 6 mm mounting flange
-HIP_PITCH_X = 20.0      # forward offset opens a thigh sweep lane behind its axis
-PITCH_TEST_DEG = 20.0   # geometric test target, NOT a commissioned motion limit
-ROLL_TEST_DEG = 10.0    # geometric test target, NOT a commissioned motion limit
+# --- DEC-32 restart requirements / OQ-16 sizing study -----------------------
+# Independent of the discarded assembly above. [DESIGN] is an engineering
+# target/assumption, NOT measured hardware or an accepted mechanical layout.
+RESTART_MASS_KG = 3.0            # [DESIGN] upper end of DEC-15
+RESTART_THIGH_MM = 100.0        # [DESIGN] OQ-16 candidate axis-to-axis length
+RESTART_SHANK_MM = 100.0        # [DESIGN] OQ-16 candidate axis-to-axis length
+RESTART_DECK_TO_ROLL_MM = 40.0  # [DESIGN] packaging allocation, not socket CAD
+RESTART_ROLL_TO_PITCH_MM = 25.0 # [DESIGN] vertical packaging allocation
+RESTART_ROLL_HALF_MM = 60.0     # [DESIGN] sensitivity-study datum only
+RESTART_UPPER_HEIGHT_MM = 150.0 # [DESIGN] deck to head top allocation
+RESTART_KNEE_NOMINAL_DEG = 30.0 # [DESIGN] bent stance candidate
+RESTART_KNEE_RANGE_DEG = (0.0, 90.0)   # [DESIGN] clearance-study target
+RESTART_HIP_RANGE_DEG = (-30.0, 45.0) # [DESIGN] clearance-study target
+RESTART_ROLL_RANGE_DEG = (-10.0, 10.0) # [DESIGN] clearance-study target
+RESTART_TRACK_TARGET_MM = 240.0 # [DESIGN] preferred maximum; feasibility open
+RESTART_MOTOR_GAP_MM = 2.0      # [DESIGN] nominal analytical separation target
+RESTART_ACCEL_G = 0.5           # [DESIGN] fore/aft load-case assumption
+RESTART_ONE_WHEEL_LOAD_G = 2.0  # [DESIGN] structural proof-load target
+RESTART_SHOVE_N = 10.0          # [DESIGN] lateral load at head-top allocation
+RESTART_TORQUE_KGFCM = 30.0     # [VENDOR] Waveshare ST3215 12V advertised torque;
+                               # not an established continuous torque rating
+STANDARD_GRAVITY = 9.80665      # [STD] m/s²
 
-# --- compact hip: the two axes sit close, as a hip should -------------------
-# The pitch servo's axis runs along Y, so sliding the servo ALONG Y is free -
-# it does not move the axis at all. Using that, the pitch servo is pointed AFT
-# and slid OUTBOARD, instead of sitting under the roll joint pointing up.
-#
-# The old 60 mm was not a choice: BRACKET_CLEAR_R (24) + SERVO_ABOVE (35.2)
-# = 59.2. The pitch servo was standing on the roll servo's head, which read as
-# a second knee halfway down the thigh rather than as a hip.
-#
-# Pointing it aft, the binding clearance is the roll servo's own body reaching
-# SERVO_BELOW (10.2) under its axis, against the pitch servo's half-WIDTH
-# (12.4) rather than its half-length:  10.2 + 12.4 + 3 margin = 25.6.
-HIP_PITCH_DROP = 30.0   # DEC-29: clears flat roll and pitch cheeks
-HIP_PITCH_Y = 22.0      # pitch servo shifted outboard along its output axis
-TRACK_HALF = HIP_ROLL_Y + HIP_PITCH_Y + SERVO_HORN_TOP + .2 + HUB_STACK + WHEEL_W / 2
+# --- DEC-33 SO-101 socket, native X = output axis, Z = long case axis -------
+# Case rear at Z=0; case centered in X/Y. No pocket derives from a servo STEP.
+SOCKET_CASE_X = 34.9       # [STEP] SO-101 Gauge_0 pocket, across output axis
+SOCKET_CASE_Y = 24.7       # [STEP] SO-101 Gauge_0 pocket, case width
+SOCKET_CASE_L = 45.23      # [SPEC] nominal case length
+SOCKET_CLEAR = 0.0        # [MEASURED 2026-09-07] maintainer: SO-101 fits PLA+/PETG
+SOCKET_AXIS_Z = SOCKET_CASE_L / 2 + SERVO_AXIS_X  # [SPEC] rear-face to axis
+SOCKET_WALL = 5.0         # [DESIGN] SO-101 nominal wall >=4.8
+SOCKET_DEPTH = 17.0       # [STEP] SO-101 rear-case capture depth
+SOCKET_SHELF = 5.0        # [DESIGN] flat bed / case rear support
+SOCKET_COLLAR_WALL = 3.0  # [STEP] SO-101 sleeve
+SOCKET_COLLAR_BOTTOM = -9.0 # [STEP] sleeve overlap below rear face
+SOCKET_COLLAR_CLEAR = 0.1 # [DESIGN] per side = 0.2 total
+SOCKET_FRONT_CLEAR = 0.16 # [STEP] upstream front-wall contact allowance
+SOCKET_LUG_BACK_Z = 2.1   # [STEP] SO-101 printed holes, not a caliper measurement
+SOCKET_LUG_DRIVE_Z = 5.8  # [STEP] SO-101 printed holes, not a caliper measurement
+SOCKET_LUG_Y = 10.4       # [STEP][SPEC] offset from case width centre
+SOCKET_M2_CLEAR = 2.0     # [STEP] clearance in print; not the case pilot diameter
+SOCKET_M2_SEAT = 2.2      # [STEP] plastic under supplied M2x5 head
+SOCKET_M2_HEAD = 3.8      # [VERIFY] head clearance for supplied M2 self-tapper
+SOCKET_M2_TOOL = 6.0      # [DESIGN] straight driver envelope
+SOCKET_BOSS_W = 6.0       # [DESIGN] collar lug boss width
+SOCKET_BOSS_CLEAR = 0.2   # [DESIGN] clearance between collar bosses and cradle
+SOCKET_IDLER_FACE = -SOCKET_CASE_X / 2  # [STEP] SO-101 nominal flush idler
+SOCKET_HORN_SPAN = 37.5   # [STEP] SO-101 clevis span, adopted under DEC-33
+SOCKET_DRIVE_FACE = SOCKET_IDLER_FACE + SOCKET_HORN_SPAN
+SOCKET_HORN_DIA = 20.0    # [STEP] both horn discs
+SOCKET_HORN_RECESS = 20.5 # [STEP] recess diameter; never a through clearance
+SOCKET_RECESS_DEPTH = 0.8 # [DESIGN] recess leaves 2.7 mm under horn screw heads
+SOCKET_PLATE_T = 3.5      # [STEP] SO-101 clevis plates
+SOCKET_PLATE_R = 14.0     # [DESIGN] horn plate edge allowance
+SOCKET_CENTRE_CLEAR = 3.2 # [STEP] drive centre screw access
+SOCKET_ARM_LENGTH = 42.0 # [DESIGN] joint-rig clevis arm, from output axis
+SOCKET_ARM_HALF_W = 11.0 # [DESIGN] flat cheek width
+SOCKET_BRIDGE_Z = 34.0   # [DESIGN] from output axis, beyond the case nose
+SOCKET_BRIDGE_H = 16.0   # [DESIGN] compression crossbar height
+SOCKET_BRIDGE_BOLT_Y = 6.0 # [DESIGN] two crossbar through-bolts
+SOCKET_CABLE_W = 8.0     # [VERIFY] connector/loom corridor width, rig fit check
+SOCKET_CABLE_H = 6.0     # [VERIFY] rear-case cable corridor height
 
-# Servo extents measured from its OUTPUT AXIS (not its body centre): the axis
-# is offset SERVO_AXIS_X from centre, so the body reaches much further one way.
-SERVO_ABOVE = SERVO_AXIS_X + SERVO_L / 2   # 35.2 - axis to far (tab) end
-SERVO_BELOW = SERVO_L / 2 - SERVO_AXIS_X   # 10.2 - axis to output end
+# --- DEC-34 lower-body packaging (prototype, joint rig gate remains) --------
+V2_ROLL_X = -70.115       # [DESIGN] puts neutral wheel line under tray origin
+V2_ROLL_Y = 43.5          # [DESIGN] 239.5 mm nominal track with direct drive
+V2_ROLL_DROP = 50.0       # [DESIGN] deck top to roll axis
+V2_PITCH_X = 70.115       # [DESIGN] socket rear at 35 + rear-to-axis 35.115
+V2_PITCH_Y = SOCKET_BRIDGE_Z # [DESIGN] outboard roll-clevis crossbar datum
+V2_HIP_STEM_X = 22.75     # [DESIGN] outer surface of roll drive cheek
+V2_PITCH_REAR_X = 35.0    # [DESIGN] case rear / recessed carrier screw heads
+V2_THIGH = 100.0         # [DESIGN] pitch-to-knee axes
+V2_SHANK = 100.0         # [DESIGN] knee-to-wheel axes
+V2_HIP_NOMINAL = 15.0    # [DESIGN] centered bent stance
+V2_KNEE_NOMINAL = 30.0   # [DESIGN] centered bent stance
+V2_ROLL_RANGE = (-5.0, 5.0)   # [DESIGN] nominal audit target, not control limits
+V2_HIP_RANGE = (-10.0, 45.0)  # [DESIGN] nominal audit target
+V2_KNEE_RANGE = (0.0, 90.0)   # [DESIGN] nominal audit target
+V2_MOTOR_FACE = SOCKET_DRIVE_FACE - SOCKET_RECESS_DEPTH # [DESIGN]
+V2_TRACK = 2*(V2_ROLL_Y + V2_PITCH_Y + V2_MOTOR_FACE + HUB_STACK + WHEEL_W/2)
+V2_DECK_SIZE = (180.0, 150.0, 5.0)  # [DESIGN] bed fits incl. socket roots
+V2_DECK_X = -15.0                  # [DESIGN] rear roll roots, tray forward
+V2_TRAY_SIZE = (140.0, 90.0, 4.0)   # [DESIGN] removable electronics carrier
+V2_TRAY_HOLES = ((-32., -35.), (-32., 35.), (60., -35.), (60., 35.)) # [DESIGN]
+V2_MOTOR_PLATE_T = 5.0            # [DESIGN]
+V2_MOTOR_PLATE_R = 24.0           # [DESIGN]
+V2_MOTOR_BOLTS_Z = (65.0, 75.0)   # [DESIGN] plate-to-shank registration / bolts
+V2_CORE_HALF = 11.0               # [DESIGN] central spine 22 mm square
+V2_REGISTER_DIA = 6.0             # [DESIGN] concentric shoulder at seam bolts
+V2_REGISTER_H = 1.5               # [DESIGN]
+V2_REGISTER_CLEAR = 0.2           # [VERIFY] diametral shoulder clearance
+V2_NUT_DIA = 6.4     # [STD] conservative M3 hex across-corners envelope
+V2_NUT_H = 2.4       # [STD] M3 regular nut height
+V2_WASHER_DIA = 7.0  # [STD] M3 plain washer
+V2_WASHER_H = 0.5    # [STD] M3 plain washer
+SOCKET_M2_HEAD_H = 1.4 # [VERIFY] supplied self-tapper head; rig check

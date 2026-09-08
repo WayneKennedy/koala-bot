@@ -14,6 +14,7 @@ import argparse
 import base64
 import http.server
 import json
+import math
 import pathlib
 import shutil
 import tempfile
@@ -63,17 +64,13 @@ def _item(name: str, mesh: trimesh.Trimesh, colour: str, **extra) -> dict:
 
 def _assembly_items(tmp: pathlib.Path) -> list[dict]:
     items = []
-    for i, (name, solid, colour) in enumerate(assembly.build_scene()):
+    for i, (name, solid, colour, group, side) in enumerate(assembly.scene_details()):
         ghost = name.startswith("reference")
         bought = name.split("_right")[0].split("_left")[0] in (
             "motor", "shaft", "hub", "wheel")
         items.append(_item(name, _mesh(solid, tmp, i), colour,
                            ghost=ghost,
-                           side=1 if name.endswith("_right") else -1,
-                           joint=("fixed" if name in ("pelvis", "e_tray")
-                                  or name.startswith("reference_roll")
-                                  else "roll" if name.startswith(("hip_", "reference_pitch"))
-                                  else "pitch"),
+                           side=side, joint=group,
                            kind="reference" if ghost
                            else "bought" if bought else "printed"))
     return items
@@ -102,7 +99,7 @@ def _part_items(tmp: pathlib.Path) -> list[dict]:
                            ghost=False, kind=kind,
                            notes=spec.get("notes", ""),
                            print_metrics=metrics(mesh),
-                           qty=spec.get("qty", 2 if spec.get("handed") else 1)))
+                           qty=spec.get("qty", 1) * (2 if spec.get("handed") else 1)))
         x += w + PART_GAP
         row_h = max(row_h, d)
     return items
@@ -122,14 +119,21 @@ def build() -> pathlib.Path:
                 "pitch_z": assembly.PITCH_Z,
                 "grid": GRID_STEP,
                 "bed": [P.BED_X, P.BED_Y],
-                "track": 2 * P.TRACK_HALF,
+                "track": P.V2_TRACK,
                 "stance": -assembly.GROUND_Z,
-                "hip_axes": P.HIP_PITCH_DROP,
-                "pitch_x": P.HIP_PITCH_X,
-                "roll_y": P.HIP_ROLL_Y,
-                "pitch_test": P.PITCH_TEST_DEG,
-                "roll_test": P.ROLL_TEST_DEG,
-                "status": "DEC-29 prototype — nominal geometry, hardware fit and strength unverified",
+                "hip_axes": math.hypot(P.V2_PITCH_X, P.V2_PITCH_Y),
+                "pitch_x": P.V2_ROLL_X + P.V2_PITCH_X,
+                "pitch_y": P.V2_ROLL_Y + P.V2_PITCH_Y,
+                "roll_x": P.V2_ROLL_X,
+                "knee_x": P.V2_ROLL_X + P.V2_PITCH_X + P.V2_THIGH*math.sin(math.radians(P.V2_HIP_NOMINAL)),
+                "knee_z": assembly.PITCH_Z - P.V2_THIGH*math.cos(math.radians(P.V2_HIP_NOMINAL)),
+                "hip_nominal": P.V2_HIP_NOMINAL,
+                "knee_nominal": P.V2_KNEE_NOMINAL,
+                "roll_y": P.V2_ROLL_Y,
+                "pitch_test": P.V2_HIP_RANGE,
+                "roll_test": P.V2_ROLL_RANGE,
+                "knee_test": P.V2_KNEE_RANGE,
+                "status": "DEC-34 prototype — SO-101 nominal joints; rig fit and strength unverified",
             },
         }
     data = OUT / "scene.json"

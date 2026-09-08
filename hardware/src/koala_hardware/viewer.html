@@ -140,8 +140,10 @@ canvas { display: block; }
         <input id="pitch" type="range" min="-20" max="20" value="0" step="1"></label>
       <label>Symmetric roll / splay <output id="roll-value">0°</output>
         <input id="roll" type="range" min="-10" max="10" value="0" step="1"></label>
-      <button id="neutral">Neutral</button>
-      <div class="warning">Inspection poses, not safe operating limits. Servo reference omits unresolved idler and cable geometry.</div>
+      <label>Knee flexion <output id="knee-value">30°</output>
+        <input id="knee" type="range" min="0" max="90" value="30" step="1"></label>
+      <button id="neutral">Nominal stance</button>
+      <div class="warning">Inspection poses, not safe operating limits. Nominal SO-101 interfaces; cable routes and physical fit need the joint rig.</div>
     </div>
     <div id="list"></div>
     <div id="detail">Prototype geometry. Select a print for its orientation and assembly notes.</div>
@@ -307,9 +309,10 @@ function pivotRotation(x, y, z, axis, angle) {
     .multiply(new THREE.Matrix4().makeTranslation(-x, -y, -z));
 }
 function applyPose() {
-  const pitch = Number($("#pitch").value), roll = Number($("#roll").value);
+  const pitch = Number($("#pitch").value), roll = Number($("#roll").value), knee = Number($("#knee").value);
   $("#pitch-value").textContent = pitch + "°";
   $("#roll-value").textContent = roll + "°";
+  $("#knee-value").textContent = knee + "°";
   if (mode !== "assembly") return;
   const d = DATA.meta, rad = Math.PI / 180;
   for (const mesh of meshes) {
@@ -317,17 +320,22 @@ function applyPose() {
     mesh.matrixAutoUpdate = false;
     mesh.matrix.identity();
     if (it.joint === "fixed") continue;
-    mesh.matrix.copy(pivotRotation(0, it.side * d.roll_y, d.roll_z,
+    mesh.matrix.copy(pivotRotation(d.roll_x, it.side * d.roll_y, d.roll_z,
       new THREE.Vector3(1, 0, 0), it.side * roll * rad));
-    if (it.joint === "pitch")
-      mesh.matrix.multiply(pivotRotation(d.pitch_x, it.side * d.roll_y, d.pitch_z,
-        new THREE.Vector3(0, 1, 0), pitch * rad));
+    if (it.joint === "pitch" || it.joint === "knee")
+      mesh.matrix.multiply(pivotRotation(d.pitch_x, it.side * d.pitch_y, d.pitch_z,
+        new THREE.Vector3(0, 1, 0), -(pitch - d.hip_nominal) * rad));
+    if (it.joint === "knee")
+      mesh.matrix.multiply(pivotRotation(d.knee_x, it.side * d.pitch_y, d.knee_z,
+        new THREE.Vector3(0, 1, 0), (knee - d.knee_nominal) * rad));
     mesh.matrixWorldNeedsUpdate = true;
   }
 }
-for (const id of ["#pitch", "#roll"]) $(id).oninput = applyPose;
+for (const id of ["#pitch", "#roll", "#knee"]) $(id).oninput = applyPose;
 $("#neutral").onclick = () => {
-  $("#pitch").value = $("#roll").value = 0; applyPose();
+  $("#pitch").value = DATA.meta.hip_nominal;
+  $("#knee").value = DATA.meta.knee_nominal;
+  $("#roll").value = 0; applyPose();
 };
 
 function applyVisibility() {
@@ -419,9 +427,11 @@ function switchTab(which) {
 
 fetch("scene.json?" + Date.now()).then((r) => r.json()).then((d) => {
   DATA = d;
-  for (const [id, range] of [["#pitch", d.meta.pitch_test], ["#roll", d.meta.roll_test]]) {
-    $(id).min = -range; $(id).max = range;
+  for (const [id, range] of [["#pitch", d.meta.pitch_test], ["#roll", d.meta.roll_test], ["#knee", d.meta.knee_test]]) {
+    $(id).min = range[0]; $(id).max = range[1];
   }
+  $("#pitch").value = d.meta.hip_nominal;
+  $("#knee").value = d.meta.knee_nominal;
   const tris = d.assembly.concat(d.parts).reduce((a, i) => a + i.tris, 0);
   $("#stamp").textContent =
     `${d.parts.filter(i => i.kind === "printed").length} print designs · ` +

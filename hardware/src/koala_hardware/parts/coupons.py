@@ -8,27 +8,6 @@ import math
 from build123d import Box, Cylinder, Part, Pos, Rot, Align, Text, extrude
 from .. import params as P
 from .. import fasteners as F
-from .. import servo_iface as S
-
-
-def build_servo_cradle() -> dict:
-    """STS3215 drops in; two screws through the rear tabs. Verifies
-    CLEAR_POCKET and the tab hole positions."""
-    block = Pos(0, 0, P.SERVO_BODY_BOT - 6) * Box(
-        64, 40, 30, align=(Align.CENTER, Align.CENTER, Align.MIN))
-    part = block - S.servo_envelope()
-    part -= S.tab_screw_cutters(boss_top_z=P.SERVO_BODY_BOT + 24, depth=30)
-    return {"name": "coupon_servo_cradle", "part": part,
-            "orientation": Rot(), "notes": "Servo should seat snug, tabs on the bosses."}
-
-
-def build_horn_plate() -> dict:
-    """Bolts to the servo horn: 4x M3 + centre clearance. Verifies the
-    drive-square measurement AND that M3x6 is the right screw ([SPEC 6-13])."""
-    plate = Box(30, 30, 4, align=(Align.CENTER, Align.CENTER, Align.MIN))
-    part = plate - S.drive_hole_cutters(4.0)
-    return {"name": "coupon_horn_plate", "part": part,
-            "orientation": Rot(), "notes": "All 4 M3x6 should start without force."}
 
 
 def build_motor_ring() -> dict:
@@ -114,6 +93,6 @@ def build_seam() -> dict:
             "orientation": Rot(), "notes": "Set inserts, screw the lid down flat."}
 
 
-BUILDERS = [build_servo_cradle, build_horn_plate, build_motor_ring,
+BUILDERS = [build_motor_ring,
             build_motor_bore,
             build_ladder, build_seam]

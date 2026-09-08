@@ -8,6 +8,7 @@ print orientation, fails the surface-geometry screen, or violates a critical
 assembly datum (DEC-09 / DEC-23 / DEC-24 / DEC-27).
 """
 import hashlib
+from collections import Counter
 import json
 import sys
 import pathlib
@@ -151,6 +152,16 @@ def write_bom(bom: list[dict]) -> bool:
     rows.append(f"| **Structural total** | **{tot_qty}** | | "
                 f"**{total_filament}** | **{total_time}** | |")
 
+    hardware = Counter()
+    for r in bom:
+        if not r['name'].startswith('coupon'):
+            hardware.update({key: count*r['qty'] for key, count in r.get('fasteners', {}).items()})
+    rows += ['', '**Lower-body fastening schedule, derived from the same builders.** '
+             'Candidate lengths require rig checks; excludes coupon hardware, torso, '
+             'arms/head, and supplier-specific wheel/hub fixings.', '',
+             '| Fastener / interface hardware | Qty |', '|---|---:|']
+    rows += [f'| {key} | {count} |' for key,count in sorted(hardware.items())]
+
     if sliced:
         preamble = (f"Figures with a matching STL hash are **measured** with "
                     f"the standing PETG profile on the print host "
@@ -229,7 +240,8 @@ def main():
             bom.append({"name": name, "qty": qty, "size": size,
                         "vol": mesh.volume / 1000, "ok": ok,
                         "overhang": m["overhang_area"],
-                        "bed_area": m["bed_area"]})
+                        "bed_area": m["bed_area"],
+                        "fasteners": spec.get("fasteners", {})})
             if not ok:
                 failures.append(name)
 

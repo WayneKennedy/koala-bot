@@ -1,53 +1,36 @@
 # SPDX-License-Identifier: CERN-OHL-S-2.0
-"""Electronics tray - first torso element, sits on the pelvis seam bosses.
-
-Carries: TB9051FTG shield (Arduino Uno hole pattern, verified standard),
-Teensy 4.0 (no holes -> zip-tie zone), BNO085 IMU (near the roll axis,
-zip/velcro zone until its holes are verified). M3 screws drop through the
-tray corners into the pelvis heat-set inserts (DEC-23).
-"""
-from build123d import Axis, Box, Cylinder, Part, Pos, Rot, Align, fillet
+"""New removable tray with metal through-fasteners; no printed screw threads."""
+from functools import lru_cache
+from build123d import Align, Axis, Box, Cylinder, Pos, Rot, fillet
 from .. import params as P
-from .. import fasteners as F
-from .pelvis import TRAY_BOSS_XY
-
-TRAY = (140.0, 90.0, 4.0)
-CORNER_R = 12.0
-ZIP_SLOT = (4.0, 10.0)
 
 
-def build() -> dict:
-    tx, ty, tt = TRAY
-    deck = Box(tx, ty, tt, align=(Align.CENTER, Align.CENTER, Align.MIN))
-    deck = fillet(deck.edges().filter_by(Axis.Z), CORNER_R)
-    part = Part() + deck
+@lru_cache
+def solid():
+    lx, ly, t = P.V2_TRAY_SIZE
+    part = Box(lx, ly, t, align=(Align.CENTER, Align.CENTER, Align.MIN))
+    part = fillet(part.edges().filter_by(Axis.Z), 8)
+    holes = list(P.V2_TRAY_HOLES)
+    for x, y in P.UNO_HOLES:
+        x, y = x-P.UNO_BOARD[0]/2+15, y-P.UNO_BOARD[1]/2
+        part += Pos(x,y,t)*Cylinder(3.5,P.STANDOFF_H,
+            align=(Align.CENTER,Align.CENTER,Align.MIN))
+        holes.append((x,y))
+    for x, y in holes:
+        part -= Pos(x,y,-1)*Cylinder(P.CLEAR_HOLE_M3/2,t+P.STANDOFF_H+2,
+            align=(Align.CENTER,Align.CENTER,Align.MIN))
+    # Separate board zones, secured by straps until BNO085 holes are confirmed.
+    for x in (-60., -40.):
+        for y in (-27., -3., 7., 33.):
+            part -= Pos(x,y,t/2)*Box(3,8,t+2)
+    return part
 
-    # Uno-pattern standoffs for the TB9051FTG shield, board centred forward
-    bx, by = P.UNO_BOARD
-    origin = (-bx / 2 + 10, -by / 2)  # slight forward bias, centred in Y
-    for (hx, hy) in P.UNO_HOLES:
-        part += Pos(origin[0] + hx, origin[1] + hy, tt) * Cylinder(
-            3.5, P.STANDOFF_H, align=(Align.CENTER, Align.CENTER, Align.MIN))
-        part -= Pos(origin[0] + hx, origin[1] + hy, tt + P.STANDOFF_H + 0.1) * \
-            Cylinder(1.4, P.STANDOFF_H + tt + 0.2,
-                     align=(Align.CENTER, Align.CENTER, Align.MAX))  # M3 self-tap pilot
 
-    # zip-tie slot fields: Teensy zone (rear-left) and IMU zone (rear-right)
-    for zx in (-55, -40, -25):
-        for zy in (18, 38, -18, -38):
-            part -= Pos(zx, zy, tt + 0.1) * Box(
-                ZIP_SLOT[0], ZIP_SLOT[1], tt + 0.2,
-                align=(Align.CENTER, Align.CENTER, Align.MAX))
-
-    # corner screw-downs: M3 through the tray into the standoffs below
-    for (cx, cy) in TRAY_BOSS_XY:
-        part -= Pos(cx, cy, tt + 0.1) * F.m3_clear(tt + 0.2)
-
-    return {
-        "name": "e_tray",
-        "qty": 1,
-        "part": part,
-        "orientation": Rot(),  # prints as-is, flat
-        "notes": "Rounded torso deck, inset from the pelvis. IMU hard-mount "
-                 "after BNO085 hole positions are verified.",
-    }
+def build():
+    return dict(name='e_tray',part=solid(),qty=1,orientation=Rot(),
+        fasteners={'M3x8 upper tray-standoff screw':len(P.V2_TRAY_HOLES),
+                   'M3x16 driver-shield screw (board stack to verify)':len(P.UNO_HOLES),
+                   'M3 nut':len(P.UNO_HOLES)},
+        notes='Flat bottom on bed. Uno shield on four through-bolted 5 mm standoffs; '
+              'Teensy and BNO085 occupy separate strap zones. Four bought 10 mm '
+              'standoffs attach tray to pelvis; use metal nuts, no plastic threads.')

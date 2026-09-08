@@ -22,15 +22,16 @@ with sync_playwright() as p:
     page.wait_for_selector("#loading", state="detached", timeout=60000)
     page.wait_for_function("renderer.info.render.triangles > 0")
     assert not page.evaluate("renderer.getContext().isContextLost()")
-    assert page.locator(".row").count() == 30
+    assert page.locator(".row").count() == len(build_scene())
     page.screenshot(path="build/viewer/assembly-check.png")
     page.locator("#pitch").fill("20")
-    page.locator("#roll").fill("-10")
+    page.locator("#roll").fill("-5")
     assert page.locator("#pitch-value").inner_text() == "20°"
+    page.locator("#knee").fill("60")
     # Verify viewer pivots and mirroring against CAD, not just a moving slider.
-    cad = {n: s for n, s, _ in build_scene(roll=-10, pitch=20)}
-    for name in ("thigh_outer_right", "thigh_outer_left",
-                 "hip_pitch_saddle_left", "reference_roll_servo_right"):
+    cad = {n: s for n, s, _ in build_scene(roll=-5, pitch=20, knee=60)}
+    for name in ("shank_core_right", "shank_core_left",
+                 "hip_pitch_cradle_left", "reference_roll_servo_right", "reference_knee_servo_left"):
         bounds = page.evaluate("""name => {
           const m = meshes.find(m => m.userData.name === name);
           m.updateMatrixWorld(true);
@@ -46,14 +47,14 @@ with sync_playwright() as p:
     page.screenshot(path="build/viewer/posed-check.png")
     page.locator("#tab-parts").click()
     assert page.locator("#pose").is_hidden()
-    page.get_by_role("button", name="thigh_outer", exact=False).click()
-    assert "Full cheek face on bed" in page.locator("#detail").inner_text()
+    page.get_by_role("button", name="thigh_core", exact=False).click()
+    assert "tapered support" in page.locator("#detail").inner_text()
     assert page.evaluate("meshes.filter(m=>m.visible).length") == 1
-    page.get_by_role("button", name="thigh_outer", exact=False).click()
+    page.get_by_role("button", name="thigh_core", exact=False).click()
     page.screenshot(path="build/viewer/parts-check.png")
     page.locator("#tab-assembly").click()
     page.locator("#neutral").click()
-    assert page.locator("#pitch-value").inner_text() == "0°"
+    assert page.locator("#pitch-value").inner_text() == "15°"
     assert not errors, errors
     browser.close()
     print("PASS rendered geometry, CAD/viewer pose parity, part orientation notes, solo and reset")

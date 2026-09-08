@@ -1,90 +1,171 @@
 # SPDX-License-Identifier: CERN-OHL-S-2.0
-"""STS3215 interface geometry, built from measured constants (params [STEP]).
+"""SO-101 cradle/collar/clevis primitive, DEC-33/34.
 
-Servo local frame follows the vendor STEP: body box centred in X/Y on the
-origin, output (spline) axis vertical (+Z) through (SERVO_AXIS_X, 0).
-Horn on top, idler hub underneath (double-sided clamp joint).
+Native X is the output axis; native Z is case length, rear face at Z=0.
+Body mounts use the CASE datum; horns use the OUTPUT AXIS datum. These are
+independent feature families (test-log 2026-09-02). Nominal printed-part
+interfaces are adopted from SO-101; no pocket derives from a servo model.
 """
-from build123d import Box, Cylinder, Part, Pos, Align
+from functools import lru_cache
+from build123d import Box, Cylinder, Part, Pos, Rot, Align, Rectangle, loft
 from . import params as P
-from . import fasteners as F
+
+# Restart primitive frame: X = output axis, Y = case width, Z = case length.
+# BODY features use rear face Z=0; HORN features use Z=SOCKET_AXIS_Z.
+# These are independent datums (test-log 2026-09-02); never locate a lug from
+# a horn hole.
 
 
-def on_axis(*rot) -> Pos:
-    """Compose a servo placement whose OUTPUT AXIS lands on the local origin.
+def _box(x0, x1, y0, y1, z0, z1):
+    return Pos(x0, y0, z0) * Box(x1-x0, y1-y0, z1-z0,
+        align=(Align.MIN, Align.MIN, Align.MIN))
 
-    The servo's output axis is offset SERVO_AXIS_X from its body centre, so a
-    bare rotation leaves the axis 12.5 mm off where you meant it. Always place
-    servos with this helper: `on_axis(Rot(Y=90))` etc.
+
+def _x_hole(x0, x1, y, z, diameter):
+    return Pos(x0, y, z) * Rot(Y=90) * Cylinder(diameter/2, x1-x0,
+        align=(Align.CENTER, Align.CENTER, Align.MIN))
+
+
+def _socket_bounds():
+    return (P.SOCKET_CASE_X/2 + P.SOCKET_CLEAR,
+            P.SOCKET_CASE_Y/2 + P.SOCKET_CLEAR)
+
+
+def rear_support(z0, half_x, half_y):
+    """45°-or-shallower expansion under a socket, within the collar bore.
+
+    Caller supplies the lower rectangle. The upper rectangle matches the
+    cradle shelf; collar boss lanes remain open through this support too.
     """
-    tf = Pos(0, 0, 0)
-    for r in rot:
-        tf = tf * r
-    return tf * Pos(-P.SERVO_AXIS_X, 0, 0)
+    x,y = _socket_bounds()
+    top = -P.SOCKET_SHELF
+    if z0 >= top:
+        raise ValueError('Support must begin below the shelf')
+    part = loft([Pos(0,0,z0)*Rectangle(2*half_x,2*half_y),
+                 Pos(0,-P.SOCKET_WALL/2,top)*Rectangle(2*(x+P.SOCKET_WALL),2*y+P.SOCKET_WALL)])
+    for cy in (-P.SOCKET_LUG_Y,P.SOCKET_LUG_Y):
+        half=P.SOCKET_BOSS_W/2+P.SOCKET_BOSS_CLEAR
+        part -= _box(x-P.SOCKET_BOSS_CLEAR,x+P.SOCKET_WALL+1,cy-half,cy+half,z0-1,top+1)
+    return part
 
 
-def servo_reference() -> Part:
-    """Nominal case and drive horn only, NOT vendor-complete hardware.
+@lru_cache
+def cradle() -> Part:
+    """Rear pocket: shelf, back and two sides; open front and top.
 
-    No invented tab block or padded horn. Idler is unresolved (OQ-12), so no
-    solid is invented for it. Collision checks cannot certify its clearance.
+    The drive-face side is relieved for the collar's inward lug bosses. The
+    screws retain the case through its lugs; no screw threads into the print.
     """
-    body = Pos(0, 0, P.SERVO_BODY_BOT) * Box(
-        P.SERVO_L, P.SERVO_W, P.SERVO_BODY_TOP - P.SERVO_BODY_BOT,
-        align=(Align.CENTER, Align.CENTER, Align.MIN))
-    horn = Pos(P.SERVO_AXIS_X, 0, P.SERVO_BODY_TOP) * Cylinder(
-        P.SERVO_HORN_DIA / 2, P.SERVO_HORN_TOP - P.SERVO_BODY_TOP,
-        align=(Align.CENTER, Align.CENTER, Align.MIN))
-    return body + horn
+    x, y = _socket_bounds()
+    w, h = P.SOCKET_WALL, P.SOCKET_DEPTH
+    part = _box(-x-w, x+w, -y-w, y, -P.SOCKET_SHELF, h)
+    part -= _box(-x, x, -y, y+1, 0, h+1)
+    # Full-height sliding lanes, including the shelf, for collar lug bosses.
+    for cy in (-P.SOCKET_LUG_Y, P.SOCKET_LUG_Y):
+        half = P.SOCKET_BOSS_W/2 + P.SOCKET_BOSS_CLEAR
+        part -= _box(x-P.SOCKET_BOSS_CLEAR, x+w+1, cy-half, cy+half,
+                     -P.SOCKET_SHELF-1, h+1)
+        part -= _x_hole(-x-w-1, -x+1, cy, P.SOCKET_LUG_BACK_Z, P.SOCKET_M2_CLEAR)
+        part -= _x_hole(-x-w-1, -x-P.SOCKET_M2_SEAT, cy,
+                        P.SOCKET_LUG_BACK_Z, P.SOCKET_M2_HEAD)
+    # Open-front cable channel through the shelf; actual connector is a rig check.
+    part -= _box(-P.SOCKET_CABLE_W/2, P.SOCKET_CABLE_W/2, 0, y+1,
+                 -P.SOCKET_SHELF-1, 1)
+    return part
 
 
-def servo_envelope(clearance: float = P.CLEAR_POCKET) -> Part:
-    """Simplified servo keep-out solid (body + tabs + horn/idler cylinders).
-    Subtract from a printed part to make a cradle pocket."""
-    c = clearance
-    body = Pos(0, 0, P.SERVO_BODY_BOT - c) * Box(
-        P.SERVO_L + 2 * c, P.SERVO_W + 2 * c,
-        (P.SERVO_BODY_TOP - P.SERVO_BODY_BOT) + 2 * c,
-        align=(Align.CENTER, Align.CENTER, Align.MIN))
-    # rear tab block (spans the -X end above the case, full width incl. ears)
-    tabs = Pos((P.SERVO_TAB_X - 3) / 1, 0, P.SERVO_BODY_BOT - c) * Box(
-        8 + 2 * c, P.SERVO_W + 6 + 2 * c,
-        (P.SERVO_TAB_TOP - P.SERVO_BODY_BOT) + 2 * c,
-        align=(Align.CENTER, Align.CENTER, Align.MIN))
-    horn = Pos(P.SERVO_AXIS_X, 0, P.SERVO_BODY_TOP) * Cylinder(
-        P.SERVO_HORN_DIA / 2 + c, (P.SERVO_HORN_TOP - P.SERVO_BODY_TOP) + 2,
-        align=(Align.CENTER, Align.CENTER, Align.MIN))
-    idler = Pos(P.SERVO_AXIS_X, 0, P.SERVO_IDLER_BOT - 2) * Cylinder(
-        P.SERVO_HORN_DIA / 2 + c, 6,
-        align=(Align.CENTER, Align.CENTER, Align.MIN))
-    return body + tabs + horn + idler
+@lru_cache
+def collar() -> Part:
+    """Separate open-ended sleeve; two deep bosses bear on drive-face lugs."""
+    x, y = _socket_bounds()
+    w, c, t = P.SOCKET_WALL, P.SOCKET_COLLAR_CLEAR, P.SOCKET_COLLAR_WALL
+    ix, back, front = x+w+c, -y-w-c, y+P.SOCKET_FRONT_CLEAR
+    z0, z1 = P.SOCKET_COLLAR_BOTTOM, P.SOCKET_DEPTH
+    part = _box(-ix-t, ix+t, back-t, front+t, z0, z1)
+    part -= _box(-ix, ix, back, front, z0-1, z1+1)
+    for cy in (-P.SOCKET_LUG_Y, P.SOCKET_LUG_Y):
+        part += _box(x, ix+t, cy-P.SOCKET_BOSS_W/2, cy+P.SOCKET_BOSS_W/2, z0, z1)
+        part -= _x_hole(x-1, ix+t+1, cy, P.SOCKET_LUG_DRIVE_Z, P.SOCKET_M2_CLEAR)
+        part -= _x_hole(x+P.SOCKET_M2_SEAT, ix+t+1, cy,
+                        P.SOCKET_LUG_DRIVE_Z, P.SOCKET_M2_HEAD)
+        # Sleeve must not bury the idler-side cradle screw heads or their tool.
+        part -= _x_hole(-ix-t-1, -ix+1, cy, P.SOCKET_LUG_BACK_Z, P.SOCKET_M2_TOOL)
+    # Open-bottom front slot keeps the loom outside the rotating clevis lane.
+    part -= _box(-P.SOCKET_CABLE_W/2, P.SOCKET_CABLE_W/2, front-1, front+t+1,
+                 z0-1, P.SOCKET_CABLE_H)
+    return part
 
 
-def drive_hole_cutters(plate_t: float) -> Part:
-    """Cutter for a plate that bolts onto the horn (or idler): 4x M3
-    clearance on the DRIVE_SQ square + centre boss clearance. Plate lies on
-    Z=0..plate_t with the drive axis at the local origin.
+@lru_cache
+def clevis_plate(side: str) -> Part:
+    """Flat XY cheek, horn centre at origin, arm along +Y; drive recess on TOP.
 
-    M3, not M2.5: the servo spec item 6-13 gives the output-shaft screw as
-    M3x6, and none are supplied ([SPEC 11] "No Accessories").
+    Prints broad face down. Both plates keep four full-depth M3 holes; the
+    drive-side 20.5 mm horn recess is blind. The nominal flush idler uses
+    a flat seat to avoid embedding the plate in the case; DEC-34. Only the
+    drive side has centre access.
     """
-    s = P.SERVO_DRIVE_SQ / 2
-    cut = Pos(0, 0, plate_t + 0.1) * Cylinder(
-        P.SERVO_HORN_BOSS_DIA / 2 + 0.5, plate_t + 0.2,
-        align=(Align.CENTER, Align.CENTER, Align.MAX))
-    for sx in (-s, s):
-        for sy in (-s, s):
-            cut += Pos(sx, sy, plate_t + 0.1) * F.m3_clear(plate_t + 0.2)
-    return cut
+    if side not in ("drive", "idler"):
+        raise ValueError("side must be 'drive' or 'idler'")
+    t = P.SOCKET_PLATE_T
+    part = Cylinder(P.SOCKET_PLATE_R, t, align=(Align.CENTER, Align.CENTER, Align.MIN))
+    part += _box(-P.SOCKET_ARM_HALF_W, P.SOCKET_ARM_HALF_W, 0,
+                 P.SOCKET_ARM_LENGTH, 0, t)
+    if side == "drive":
+        part -= Pos(0, 0, t-P.SOCKET_RECESS_DEPTH) * Cylinder(
+            P.SOCKET_HORN_RECESS/2, P.SOCKET_RECESS_DEPTH+1,
+            align=(Align.CENTER, Align.CENTER, Align.MIN))
+    holes = [(a, b, P.CLEAR_HOLE_M3) for a in (-P.SERVO_DRIVE_SQ/2, P.SERVO_DRIVE_SQ/2)
+             for b in (-P.SERVO_DRIVE_SQ/2, P.SERVO_DRIVE_SQ/2)]
+    holes += [(a, P.SOCKET_BRIDGE_Z, P.CLEAR_HOLE_M3)
+              for a in (-P.SOCKET_BRIDGE_BOLT_Y, P.SOCKET_BRIDGE_BOLT_Y)]
+    if side == "drive":
+        holes.append((0, 0, P.SOCKET_CENTRE_CLEAR))
+    for a, b, d in holes:
+        part -= Pos(a, b, -1) * Cylinder(d/2, t+2,
+            align=(Align.CENTER, Align.CENTER, Align.MIN))
+    return part
 
 
-def tab_screw_cutters(boss_top_z: float, depth: float = 12.0) -> Part:
-    """Cutters for the two rear-tab retention screws (vertical, at the
-    measured tab positions). Cut from boss_top_z downward."""
-    cut = None
-    for sy in (-P.SERVO_TAB_Y, P.SERVO_TAB_Y):
-        c = Pos(P.SERVO_TAB_X, sy, boss_top_z) * Cylinder(
-            P.SERVO_TAB_HOLE / 2, depth,
-            align=(Align.CENTER, Align.CENTER, Align.MAX))
-        cut = c if cut is None else cut + c
-    return cut
+def plate_location(side):
+    """Place a flat cheek in the socket frame; recess bears on the metal horn."""
+    from build123d import Plane
+    floor = P.SOCKET_PLATE_T - P.SOCKET_RECESS_DEPTH
+    if side == "drive":
+        return Plane(origin=(P.SOCKET_DRIVE_FACE+floor, 0, P.SOCKET_AXIS_Z),
+                     x_dir=(0, -1, 0), z_dir=(-1, 0, 0)).location
+    if side == "idler":
+        # Upstream nominal idler is flush: recessing this cheek would drive
+        # its annulus into the case. Full flat contact, no invented stand-off.
+        return Plane(origin=(P.SOCKET_IDLER_FACE-P.SOCKET_PLATE_T, 0, P.SOCKET_AXIS_Z),
+                     x_dir=(0, 1, 0), z_dir=(1, 0, 0)).location
+    raise ValueError("side must be 'drive' or 'idler'")
+
+
+def socket_reference():
+    """Nominal case and BOTH horns; pocket dimensions come from printed parts."""
+    x, y = P.SOCKET_CASE_X/2, P.SOCKET_CASE_Y/2
+    part = _box(-x, x, -y, y, 0, P.SOCKET_CASE_L)
+    part += _x_hole(x, P.SOCKET_DRIVE_FACE, 0, P.SOCKET_AXIS_Z, P.SOCKET_HORN_DIA)
+    # A thin idler disc is inside the case envelope, ending at its nominal flush face.
+    return part
+
+
+def socket_keepouts():
+    """Separate volumes for case/horns, straight drivers and a cable corridor.
+
+    Access is checked before the driven plates are fitted. Driver envelopes
+    stop at the head seats, not inside the screw shaft holes.
+    """
+    x, y = _socket_bounds()
+    result = [("case_and_horns", socket_reference())]
+    for cy in (-P.SOCKET_LUG_Y, P.SOCKET_LUG_Y):
+        result += [
+            ("idler_lug_driver", _x_hole(-x-35, -x-P.SOCKET_M2_SEAT,
+              cy, P.SOCKET_LUG_BACK_Z, P.SOCKET_M2_HEAD)),
+            ("drive_lug_driver", _x_hole(x+P.SOCKET_M2_SEAT, x+35,
+              cy, P.SOCKET_LUG_DRIVE_Z, P.SOCKET_M2_HEAD)),
+        ]
+    result.append(("cable", _box(-P.SOCKET_CABLE_W/2, P.SOCKET_CABLE_W/2,
+                   0, y+12, -P.SOCKET_SHELF, 0)))
+    return result

@@ -4,6 +4,8 @@ Handover for the harness doing the redesign. The maintainer has assigned this to
 **GPT Astra**; any harness must be able to pick it up from this file alone, so
 nothing here depends on chat history. Written 2026-09-07.
 
+**Implementation record:** [`cad-restart-design.md`](cad-restart-design.md) (DEC-34).
+
 **Reading order:** [`../AGENTS.md`](../AGENTS.md) → [`concept.md`](concept.md) →
 this brief → [`soarm-joint-pattern.md`](soarm-joint-pattern.md) →
 [`decisions.md`](decisions.md) and [`open-questions.md`](open-questions.md) →
@@ -11,6 +13,12 @@ this brief → [`soarm-joint-pattern.md`](soarm-joint-pattern.md) →
 [`cad-review.md`](cad-review.md) and [`cad-redesign.md`](cad-redesign.md) are the
 post-mortems of the two discarded drafts; read them for the failure modes, not
 for geometry.
+
+**2026-09-07 amendment (DEC-33):** the maintainer confirms standard ST3215
+fit in SO-101 parts in PLA+ and PETG and removes the repeat-gauge/caliper
+prerequisite. Use upstream nominal interface dimensions, retaining their
+provenance. The single-joint rig, slicing and load-test gates remain.
+Requirements and implementation evidence: [`cad-restart-design.md`](cad-restart-design.md).
 
 ## 1. Outcome wanted
 
@@ -67,7 +75,7 @@ patch: the review found both drafts were patched into their defects.
 
 Implement three functions in `servo_iface.py`, parameterised from `params.py`, and
 use them at **every** STS3215 joint. Numbers are upstream CAD nominal
-(`soarm-joint-pattern.md`); the `[VERIFY]` ones move when the calipers say so.
+(`soarm-joint-pattern.md`); the `[VERIFY]` ones move when the joint rig supplies evidence (DEC-33).
 
 | Function | What it cuts / adds | Nominal |
 |---|---|---|
@@ -75,7 +83,7 @@ use them at **every** STS3215 joint. Numbers are upstream CAD nominal
 | `collar()` | 3 mm sleeve, ~26 tall, overlapping the cradle by ~9 mm, front wall bearing on the servo's front face; bosses with Ø2.0 clearance + counterbore for the two **horn-face** lugs | inner = cradle outer + 0.2 total |
 | `clevis_plate(side)` | 3.5 mm plate, 4 × `CLEAR_HOLE_M3` on the 9.9 square, Ø20.5 horn recess; drive side adds the Ø3.2 centre hole | both horns bolted — the joint is never a cantilever |
 
-Lug positions (from upstream printed parts, **verify with calipers**): lateral
+Lug positions (from upstream printed parts, **adopted under DEC-33; check the new rig**): lateral
 ±10.4; from the case's rear face **~2.1 on the back face, ~5.8 on the horn face**.
 `SERVO_TAB_HOLE = 4.0` is wrong for a screw hole and becomes 2.0 clearance.
 
@@ -102,13 +110,12 @@ set ride height and the CoM height the balance loop sees.
 
 ## 6. Process, in order, with gates
 
-0. **Calipers first** (two Waveshare ST3215 in hand). Close the open checks in
-   `test-log.md` 2026-09-02 §Open plus: lug offsets on *both* faces, lug pilot
-   depth, horn and idler stand-off, horn stack for the clevis span. Re-tag the
-   constants `[MEASURED <date>]`. Nothing in §4 is cut before this.
-1. **Print upstream `Gauge_0` in PETG** on the reference printer → `CLEAR_POCKET`
-   becomes `[MEASURED]`. Printer rules live in the `3d-printing` repo: **never slice
-   while a print is running.**
+0. **Fit basis accepted (DEC-33):** the maintainer confirms standard ST3215
+   fit in SO-101 parts in PLA+ and PETG. Use the upstream nominal dimensions;
+   no caliper prerequisite and no repeat gauge print. Preserve provenance.
+1. **Record the fit basis:** `SOCKET_CLEAR=0` is specific to Gauge_0's pocket;
+   generic `CLEAR_POCKET` stays separate. The report is in `test-log.md`.
+   Printer rules live in `3d-printing`: **never slice while a print is running.**
 2. **Bank requirements** as DEC entries before geometry: joint ranges, load cases
    (stance, lean, wheel accel/brake, lateral shove, being picked up), mass budget,
    target deck height and track. The review's step 1 — never done for either draft.
@@ -170,10 +177,10 @@ uv run python -m koala_hardware.slice_remote   # only when the printer is idle
 
 ## 9. Deliverable checklist
 
-- [ ] Calipered servo constants in `params.py`, tagged and dated; `Gauge_0` PETG result in `test-log.md`
-- [ ] Requirements banked as DEC entries (ranges, loads, mass, height, track)
-- [ ] `servo_iface` socket primitive (§4) with a fit coupon for it
-- [ ] New `parts/` for pelvis, hip, thigh, knee, shank, wheel-foot, e-tray; old builders deleted
-- [ ] `export`, `audit` (incl. knee), `tests` green; viewer scene checked
+- [x] Servo fit basis recorded in `params.py` and `test-log.md`; caliper/repeat-gauge requirement removed by DEC-33
+- [x] Requirements and packaging banked as DEC-32/34 (ranges, loads, mass, height, track)
+- [x] `servo_iface` socket primitive (§4, amended by DEC-34 for the flush idler) and five-part joint rig
+- [x] New `parts/` for pelvis, hip, thigh, knee, shank, wheel-foot, e-tray; old builders deleted
+- [x] `export`, `audit` (incl. knee), `tests` green; viewer scene and browser/CAD pose parity checked
 - [ ] Slice inspection recorded; one joint rig printed and fitted; one leg; the pair
-- [ ] `bom.md` regenerated, fastener counts derived; `decisions.md`, `open-questions.md`, `AGENTS.md` status, `hardware/README.md` updated
+- [x] `bom.md` regenerated, fastener counts derived; `decisions.md`, `open-questions.md`, `AGENTS.md` status, `hardware/README.md` updated

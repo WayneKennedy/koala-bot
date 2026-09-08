@@ -12,6 +12,52 @@ DEC-23/26/27/28/29 describe intent and lessons, not accepted geometry. The
 redesign is governed by [`cad-restart-brief.md`](cad-restart-brief.md);
 acceptance remains open as OQ-13.
 
+- **DEC-34 — New six-servo lower-body prototype with explicit packaging and
+  fastening** (2026-09-07). Replace every old structural builder. Use the
+  shared SO-101 cradle/collar and double-horn clevis at roll, pitch and knee;
+  100 mm thigh and shank, direct-drive ankle wheels, hip/knee nominal 15/30°.
+  Track is 239.5 mm; nominal deck height 283.2 mm, with 150 mm reserved above
+  it (433.2 mm total). Adopt ±5° roll and −10…45° hip as the prototype's
+  inspection range, trading the DEC-32 wider targets for this packaging;
+  knee target remains 0…90°. Pitch sits 70.115 mm forward and 34 mm outboard
+  of roll to make the socket and carrier fasteners accessible. This is a
+  recorded compactness tradeoff, not an optimum. Use a **flat idler seat**
+  because recessing a plate onto the adopted flush idler collided with the
+  case; drive recess remains 0.8 mm. Registered through-bolted crossbars and
+  separate motor plates replace the old friction cap and thigh/motor seams;
+  threaded structural connections use metal nuts. No new physical fit or
+  strength is claimed. Requirements, load calculations, assembly sequence,
+  tests and outstanding gates: [`cad-restart-design.md`](cad-restart-design.md).
+
+- **DEC-33 — Reuse the confirmed SO-101 servo fit; remove the caliper/PETG
+  gauge prerequisite** (2026-09-07, maintainer instruction). The standard
+  ST3215 servos fit the SO-101 parts in **both PLA+ and PETG**, confirmed by
+  the maintainer during this restart. Proceed with the Gauge_0 pocket and
+  upstream printed-part interface dimensions without another gauge print or
+  caliper gate. `SOCKET_CLEAR = 0` applies to that nominal pocket only;
+  generic `CLEAR_POCKET` remains separate. Lug offsets and the 37.5 mm horn
+  span retain **upstream CAD** provenance, not invented caliper readings.
+  New cradle/collar/clevis geometry still needs the single-joint rig fit,
+  layer inspection and load tests before acceptance. Supersedes restart
+  brief §6 steps 0–1 and the equivalent prerequisites in OQ-12/13.
+
+- **DEC-32 — Establish quantitative restart design targets before structure**
+  (2026-09-07). Size against the DEC-15 upper mass of **3 kg**. Evaluate
+  two-wheel stance (half the weight per leg), fore/aft acceleration and
+  braking at **0.5g**, a **2g total-weight load on one wheel** for structural
+  testing, a **10 N lateral shove at the head-top allocation**, and lifting
+  the full robot by the torso (legs hanging; powered holding is not assumed).
+  These are chosen engineering test targets, not measured service loads or
+  safety ratings. Clearance-study targets: hip pitch −30…+45°, knee 0…90°,
+  roll ±10°; supported crouching follows hip = knee/2 with equal links.
+  Desired nominal deck height **~300 mm**, upper-body height allocation
+  **150 mm**, preferred wheel track **≤240 mm**. Link lengths, socket/hip
+  offsets and achievable track remain OQ-16 until packaging checks; initial
+  100 mm equal links are a study candidate. Why: both discarded drafts
+  omitted this step. Reproducible analysis and exclusions:
+  [`cad-restart-design.md`](cad-restart-design.md). An advertised servo
+  torque comparison does not establish continuous duty or structural strength.
+
 - **DEC-31 — Rear legs: articulating knees, wheels as feet** (2026-09-07;
   supersedes DEC-17 and the knee-wheel clause of DEC-07). Each rear leg is
   hip roll + hip pitch (STS3215) → thigh → **knee pitch (STS3215, active in

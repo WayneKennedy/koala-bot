@@ -1,128 +1,107 @@
 # hardware/
 
-Parametric code-CAD (DEC-09: `build123d`, body-as-source-code) for the printable
-parts. Licence: `CERN-OHL-S-2.0` (see [`../LICENSING.md`](../LICENSING.md));
-`vendor/` contains third-party Apache-2.0 reference CAD (see its README).
+Parametric build123d CAD, CERN-OHL-S-2.0. **DEC-34 is a digital lower-body
+prototype, not an accepted structural robot.** The previous structural
+builders have been deleted; they remain recoverable in git. Design and
+acceptance record: [`../docs/cad-restart-design.md`](../docs/cad-restart-design.md).
 
 ## Layout
 
-| Path | What |
-|------|------|
-| `src/koala_hardware/params.py` | **All dimensions** (mm), tagged by provenance (`[STEP]`/`[VENDOR]`/`[STD]`/`[VERIFY]`) |
-| `src/koala_hardware/fasteners.py` | DEC-23 joint primitives (M3 insert bosses, clearance holes, registration keys) |
-| `src/koala_hardware/servo_iface.py` | STS3215 pocket / horn-drive / retention geometry (measured from vendor STEP) |
-| `src/koala_hardware/parts/` | Builders by subassembly; `hip_bracket` is a private integral pelvis root, not a print |
-| `src/koala_hardware/printability.py` | Bed contact / overhang geometry screen, not a manufacturing proof |
-| `src/koala_hardware/validation.py` | Neutral motor clearance and wheel-track datum checks |
-| `src/koala_hardware/audit.py` | Sampled posed-solid and selected screw-head checks, full-depth horn-hole probes |
-| `src/koala_hardware/export.py` | Build pipeline: STL + 4-view renders + **DEC-09 bed-fit + DEC-24 checks** |
-| `src/koala_hardware/assembly.py` | Posed lower-body render for proportion/collision eyeballing |
-| `vendor/so-arm100/` | SO-ARM100 STEP reference models (Apache-2.0) |
-| `build/` | Outputs (gitignored): `stl/`, `renders/`, `manifest.txt` |
+| Path | Role |
+|---|---|
+| `src/koala_hardware/params.py` | Dimensions and provenance; `RESTART_*` study assumptions and `V2_*` implemented layout are distinct |
+| `servo_iface.py` | Shared SO-101 cradle, collar, two horn plates and socket access envelopes |
+| `parts/pelvis.py`, `parts/links.py`, `parts/e_tray.py` | New pelvis, orthogonal hips, thighs, knees, shanks, wheel-feet and tray |
+| `parts/joint_rig.py` | Five `coupon_socket_*` parts for the first physical gate |
+| `parts/coupons.py` | Retained motor, hole/insert and seam coupons; old enclosing cradle coupon removed |
+| `leg_sizing.py` | Analytical height, motor-width and knee-load study, independent of CAD |
+| `assembly.py`, `viewer.py`, `viewer.html` | Posed assembly and browser inspection with separate hip/knee pivots |
+| `audit.py`, `validation.py` | Nominal solid intersections, selected hardware access and hole probes, shared layout datums |
+| `export.py`, `printability.py` | STL/renders, bed/surface screens, generated printed/fastener BOM |
+| `slice_remote.py` | Printer-host slicing, only when idle |
+| `vendor/so-arm100/` | Apache-2.0 upstream reference CAD |
+| `build/` | Ignored outputs: STL, renders, viewer scene, manifest and hash-matched slice cache |
 
-## Build
+Source paths in the table are relative to `src/koala_hardware/` after the
+first row. All shell commands below run from `hardware/`.
+
+## Build and review
 
 ```sh
-cd hardware
-uv run python -m koala_hardware.export     # all parts -> build/
-uv run python -m koala_hardware.export thigh   # name filter
-uv run python -m koala_hardware.assembly   # assembly sanity render
-uv run python -m koala_hardware.viewer     # interactive 3D viewer on :8017
-uv run python -m koala_hardware.audit      # sampled mechanical regressions
+uv run python -m koala_hardware.export
+uv run python -m koala_hardware.audit
 uv run python -m unittest discover -s tests
+uv run python -m koala_hardware.leg_sizing
+uv run python -m koala_hardware.assembly
+uv run python -m koala_hardware.viewer       # http://localhost:8017
 ```
 
-Optional browser regression (with the viewer running):
-`uv run --with playwright python tests/viewer_smoke.py`. Install Playwright's
-Chromium or set `PLAYWRIGHT_CHROMIUM` to an existing compatible binary.
+`viewer --build` regenerates data without serving; `--serve` serves existing
+data; `--port N` changes the port. Hip and knee sliders are **inspection poses,
+not control limits**. The nominal stance is hip 15°, knee 30°, roll 0°.
 
-`koala_hardware.viewer` rebuilds `build/viewer/scene.json` from the current
-CAD, copies the checked-in `viewer.html` beside it, and serves both on
-`http://localhost:8017`. `--build` regenerates the data without serving,
-`--serve` serves without rebuilding, `--port N` moves it. Any harness can
-refresh the geometry and the browser tab picks it up on reload. It shows the
-posed assembly (printed parts, bought parts, nominal servo references) and every
-printed part in its declared print orientation. Click a row to isolate a part,
-shift-click to hide it. **The viewer is an eyeball check on proportion and
-packaging only**. Pitch and symmetric-roll sliders inspect geometry, not safe
-operating limits. The Parts tab shows bed orientation, layer/load-path notes
-and surface-screen metrics. All validation scope and remaining gates are in
-[the DEC-29 redesign record](../docs/cad-redesign.md).
+On the maintainer's `ivory` host, the running viewer is available within the
+tailnet at <https://ivory.tail13a0c0.ts.net:8443/> (configured 2026-09-08).
+Tailscale Serve proxies to `127.0.0.1:8017`; the viewer process must be running.
 
-A full run also regenerates the printed-parts table in
-[`../docs/bom.md`](../docs/bom.md) and prunes outputs for renamed parts. Parts
-marked `handed` export **both** `_right` and `_left` STLs — mirroring in the
-slicer is too easy to forget.
+The Parts tab shows declared print orientation, quantity and assembly notes;
+it is not a packed print plate.
 
-Measured slice figures are accepted only when their cached SHA-256 matches the
-current STL. A geometry change therefore falls back to a clearly labelled
-solid-volume upper bound until `koala_hardware.slice_remote` is run again.
+With the viewer running:
 
-The export **fails** if any part exceeds 200x200 mm in its declared print
-orientation (DEC-09/DEC-23), or if it fails the surface geometry screen:
-bed contact under 300 mm2, or overhang area over 800 mm2. On failure it prints
-the better orientations it measured. It also fails on critical assembly-layout
-errors that part-local checks cannot see, including overlapping neutral drive
-motors or inconsistent wheel track. Printable parts must also be one connected
-solid unless explicitly declared as a multi-piece coupon.
+```sh
+uv run --with playwright python tests/viewer_smoke.py
+```
 
-### Designing a part that passes
+Use an installed Playwright Chromium or set `PLAYWRIGHT_CHROMIUM`. The check
+compares browser-posed left/right mesh bounds to CAD, including knee motion.
 
-- **Features on one face only.** A plate with bosses up *and* structure hanging
-  down needs its actual bed orientation examined. The integrated pelvis prints
-  deck-top-down with its roots growing upward; no separate flange is required.
-- **No closed cavity floors** — a floor becomes a bridged ceiling when the part
-  is flipped. Let cavities open through.
-- **Choose layer direction from the load path.** The roll/thigh cheeks print
-  separately and flat, not standing as the tines of a one-piece fork.
-- **When two features want different orientations, add a seam** (DEC-23) — the
-  new thigh uses flat plates and compression spacers. There is no old motor-clamp seam.
-- **Cap heads stand proud; never countersink printed plastic** (DEC-25). Reach
-  for `fasteners.m3_counterbore` only where a proud head fouls a mating face or
-  a moving part, and put that face up so the pocket prints as open air.
+A full export regenerates the printed-parts **and fastening** tables in
+[`../docs/bom.md`](../docs/bom.md); never hand-edit the generated block.
+Handed cores, cradles and collars produce explicit `_left`/`_right` STLs.
+Per-side quantities come from the builders. Removed outputs are pruned.
+Cached slice figures count only when their SHA-256 matches the current STL.
 
-## Print order — coupons first
+The build rejects disconnected printable bodies (except the two-piece seam
+coupon), bed bounds over 200 mm, bed contact below 300 mm², and flagged
+overhang area above 800 mm². These surface tests are **screens**, not proof of
+support-free manufacture or strength. The audit samples 27 local and 81
+opposing-leg poses; it is not a continuous or tolerance-expanded sweep.
 
-Existing `coupon_*` parts cover selected fits, not every `[VERIFY]` constant
-or the new case clamp. **Print and fit-check the applicable coupons before
-any structural part**, adjust the constants, regenerate. Material: PETG.
+## Print order and remaining checks
 
-*("Coupon" is the materials-engineering term — from French *couper*, to cut —
-for a small sample made alongside the real thing and tested in its place. Here:
-a cheap print that answers one dimensional question before you commit filament
-and hours to a structural part.)*
+The maintainer confirms ST3215 fit in SO-101 parts in both PLA+ and PETG
+(DEC-33); repeat gauging and calipers are not prerequisites. `SOCKET_CLEAR=0`
+applies to that pocket. Generic non-servo fits remain separate.
 
-### Reading a coupon result
+1. When the printer is idle, slice and inspect **only the five
+   `coupon_socket_*` rig parts first**. The cradle's shelf, collar's open-bottom
+   cable slot and horizontal screw bores need layer inspection. Do not assume
+   a green overhang-area result proves them printable.
+2. Print and fit one complete joint, log insertion/removal, all screw
+   engagements, both horn fits, free motion without axial preload and cable
+   access in `docs/test-log.md`. The new parts have not inherited physical
+   acceptance merely by adopting upstream nominal dimensions.
+3. Resolve motor boss/body fits with the retained coupons. Then one leg,
+   the pair, and quantified load/creep tests under OQ-11/13. The front/rear
+   orientation of actual connectors and both handed sockets remain fit checks.
 
-A coupon measures **the design's clearance and the printer's error together**,
-so keep them apart:
+The five rig STL names begin `coupon_socket_`; `export coupon_socket` filters
+export output. It does not slice, pack or start a print. **Never slice on the
+printer host while a print is running.** On 2026-09-07 it reported `printing`,
+so this redesign did not run the slicer or start a print.
 
-- **Fit tests, not measurements.** Each coupon offers a ladder of sizes and the
-  answer is *the smallest that accepts the real part* — an M3 screw, the servo,
-  the 37D's face boss. Judge it by fit, not by calipers against nominal; a
-  caliper reading only tells you your printer's shrinkage, which is not what
-  the constant is for.
-- **Calibrate the printer first.** Flow / extrusion multiplier and XY
-  dimensional accuracy must be settled *before* a coupon result is folded into
-  `params.py`. Otherwise the design silently absorbs one machine's error and
-  every other builder inherits it.
-- **Constants here are reference-printer values** (DEC-14), not universal
-  truths. That is exactly why the coupons ship with the design: another builder
-  re-runs them on their own machine and re-derives their own numbers.
+The remaining motor/insert coupons are fit ladders: choose the smallest size
+that accepts the real part on the calibrated reference printer. Record every
+result, including no change, in the test log; store the value and provenance
+in `params.py`. Generic coupon results are not universal material tolerances.
 
-Record what a coupon actually showed — including "no change needed" — in
-[`../docs/test-log.md`](../docs/test-log.md), so the next person knows the
-constant was tested rather than guessed.
+## Design rules retained from the reviews
 
-## Status
-
-**Restart in progress (DEC-30, 2026-09-07). Do not print anything in `parts/`
-except coupons.** The structural builders (`pelvis`, `hip_bracket`, `hip_link`,
-`thigh`, and `e_tray` as derived from them) are the discarded DEC-29 geometry,
-kept only until the redesign replaces them; the tooling in this package is
-kept and is the starting point. The redesign — knees and wheel-feet (DEC-31),
-every servo in the SO-101 cradle + collar + clevis pattern — is specified in
-[`../docs/cad-restart-brief.md`](../docs/cad-restart-brief.md); the pattern's
-numbers are in [`../docs/soarm-joint-pattern.md`](../docs/soarm-joint-pattern.md).
-The "Designing a part that passes" rules above still hold; their DEC-29
-examples do not.
+Keep case and horn datums distinct. Design the carrier, driven link, hardware
+stack and access path together. Use real metal threads; no plastic sliding
+threads. Flat cheeks and motor plates keep their principal bending loads in
+the layer plane. Crossbars and tapered socket supports print from broad ends;
+root tension, creep and side loading still need physical tests. Keep head
+pockets open in the print orientation. Proud internal fasteners require
+clearance; exposed fasteners and pinch points require guards before child use.

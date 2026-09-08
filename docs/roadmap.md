@@ -9,10 +9,10 @@ but don't block the lower body).
 
 ## Phase 1 - Koala V1 (the vertical slice) *(current)*
 1. **CAD** - parametric body in code-CAD; parts <= 200 mm; export URDF.
-   *Restarted 2026-09-07 (DEC-30):* two lower-body drafts discarded; the
-   redesign follows [`cad-restart-brief.md`](cad-restart-brief.md) — calipers
-   and a PETG gauge first, then a servo socket primitive, then legs with knees
-   and wheel-feet (DEC-31).
+   *DEC-34 digital prototype, 2026-09-07:* both discarded drafts replaced;
+   six SO-101 servo sockets, articulating knees and ankle wheels. Servo fit
+   in PLA+/PETG is accepted (DEC-33), with no repeat-gauge/caliper prerequisite.
+   Digital checks and physical gates: [`cad-restart-design.md`](cad-restart-design.md).
 2. **Prototype prints** - one joint rig, then one leg, then the pair; neck.
 3. **Electronics bring-up** - MCU balance loop (2-wheel inverted pendulum, IMU +
    encoders); STS3215 bus + IDs; motor driver; power rail.

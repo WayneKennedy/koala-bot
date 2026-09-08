@@ -40,6 +40,8 @@ and morphology: [`docs/concept.md`](docs/concept.md).
 - [`docs/cad-restart-brief.md`](docs/cad-restart-brief.md) — **the handover for the
   lower-body redesign** (DEC-30/31): invariants, what is kept/discarded, the servo
   socket primitive, the process and its gates. Start here for any CAD work.
+- [`docs/cad-restart-design.md`](docs/cad-restart-design.md) — the DEC-34
+  replacement: layout tradeoffs, load calculations, fastener stacks and gates.
 - [`docs/soarm-joint-pattern.md`](docs/soarm-joint-pattern.md) — what DEC-21
   "SO-ARM compatible" means in numbers: cradle + collar + clevis, measured from
   upstream CAD.
@@ -84,14 +86,16 @@ Changing DEC-16 or DEC-18 has consequences beyond this repo.
 
 ## Status
 
-**Phase 1 (V1 vertical slice) — CAD restarted 2026-09-07, coupons only printed.**
-V1 hardware is ordered (DEC-19/22) and two test-fit servos are on the bench. Both
-lower-body drafts are **discarded** (DEC-30): the code in `hardware/parts/` is
-scheduled for deletion and must not be printed. The legs now have articulating
-knees and wheels at the ankles (DEC-31). The redesign follows
-[`docs/cad-restart-brief.md`](docs/cad-restart-brief.md): calipers and a PETG
-gauge -> requirements -> servo socket primitive -> legs -> one joint rig printed
-(OQ-13, OQ-16). Then electronics bring-up ([`docs/roadmap.md`](docs/roadmap.md)).
+**Phase 1 (V1 vertical slice) — DEC-34 digital lower-body prototype, 2026-09-07.**
+The two discarded drafts have been replaced with SO-101 cradle/collar/clevis
+joints, articulating knees and ankle wheels. The maintainer confirms servo fit
+in SO-101 parts in PLA+ and PETG; DEC-33 removes repeat-gauge/caliper prerequisites.
+New parts still need **one joint rig fitted before full leg printing**, then
+load/creep tests (OQ-12/13). See [`docs/cad-restart-design.md`](docs/cad-restart-design.md)
+for the implemented layout and validation scope. The printer was busy during
+this redesign: no new slicing or printing. V1 hardware is ordered and two
+fit-test servos are on the bench; electronics bring-up follows the mechanical
+gates ([`docs/roadmap.md`](docs/roadmap.md)).
 
 **One cheap check is worth doing before firmware:** micro-ROS upstream has not tested
 the Teensy 4.0 that DEC-18 bought — **[OQ-14](docs/open-questions.md)**, with the

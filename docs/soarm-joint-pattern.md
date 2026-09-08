@@ -19,6 +19,11 @@ as a primitive and use it at every joint.
 ![Base joint: Base alone, with servo, with Base_motor_holder](img/soarm-base-joint.png)
 ![Shoulder joint: Rotation_Pitch, servo, Motor_holder_Base, Upper_arm clevis](img/soarm-shoulder-joint.png)
 
+**Fit basis updated by DEC-33:** the maintainer has now confirmed ST3215 fit
+in the SO-101 parts in both PLA+ and PETG and authorized using these nominal
+interfaces without a caliper prerequisite. Figures below retain upstream-CAD
+provenance. Validate the new parts using the single-joint rig.
+
 ## The pattern (same at base, shoulder, wrist)
 
 Every powered joint puts three printed parts around one STS3215:
@@ -74,8 +79,7 @@ of the case (the end away from the output axis):
 | Back face (idler side) | **2.0–2.2** |
 
 The two faces are **not symmetric**. koala's single `SERVO_TAB_X = −20.7` (1.9 from
-the rear face) matches the back face only. Verify both faces with calipers on the
-Waveshare units before any pocket is cut.
+the rear face) matches the back face only. Adopt these upstream offsets under DEC-33; verify retention on the new rig.
 
 ### The M2×5 length problem, answered
 
@@ -89,8 +93,8 @@ geometry, not by buying longer screws.
 
 Base joint: Rotation_Pitch's plates bear on the horn faces; inner span **37.5** in
 this CAD (the drive horn stands ~1.9 proud of the case top; the idler sits flush or
-recessed). The SO-100 bracket measured 36.4 (test-log 2026-09-02). **Measure the real
-servo + horn stack**; do not take either figure into `params.py` unmeasured.
+recessed). The SO-100 bracket measured 36.4 (test-log 2026-09-02). **DEC-33 adopts the SO-101 37.5 mm nominal** for the redesign;
+check preload-free fit on the new rig before leg printing.
 
 ## Upstream CAD caveat
 
@@ -106,8 +110,9 @@ From `3d-printing/docs/print-log.md`: `Gauge_0` (zero-clearance 34.9 × 24.7 poc
 is a tight friction fit on the Ender-5 S1 in **PLA+** at 220/215 with
 `elefant_foot_compensation = 0`; the printed `Base` socket is a solid press fit.
 koala prints **PETG**, whose shrinkage differs, so `CLEAR_POCKET` (0.25, `[VERIFY]`)
-must come from printing `Gauge_0` in PETG on the same machine — a few grams of
-filament that answers the question directly.
+was originally awaiting a PETG gauge. **Superseded by DEC-33:** the maintainer
+confirms the SO-101 fit in PETG too; `SOCKET_CLEAR = 0` is specific to this
+pocket. Generic non-servo `CLEAR_POCKET` is unchanged.
 
 ## Reproducing the principal measurements
 

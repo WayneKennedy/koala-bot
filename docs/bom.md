@@ -5,11 +5,10 @@ CAD, so it cannot drift from the geometry). Prices are UK, inc VAT, ~2026.
 Full sourcing rationale and alternatives: [`sourcing.md`](sourcing.md).
 
 **Status:** V1 electronics and actuators are **ordered** (2026-09-01), and two
-test-fit servos are **in hand** (2026-09-07, below) — their box contents settle
-the servo screw *sizes*, not the lengths. **The DEC-29 geometry is discarded
-(DEC-30, 2026-09-07):** the fastener counts and the generated printed-parts
-table below derive from it and are **void** until the restart regenerates them.
-Nothing in the fastener table should be ordered.
+test-fit servos are **in hand** (2026-09-07). The generated tables now describe
+**DEC-34's replacement prototype**, not DEC-29. The maintainer confirms SO-101
+fit in PLA+ and PETG (DEC-33); the new joint rig remains unprinted. Fastener
+lengths below are candidates for that rig, not demonstrated engagement.
 First coupon printed 2026-09-01 and passed (see [`test-log.md`](test-log.md)); no structural part printed yet.
 
 ## Bought — drive & balance base *(purchased 2026-09-01, Pi Hut, ~£159.50)*
@@ -46,55 +45,23 @@ holes — so the retention screw is **M2**, not the M2.5 previously assumed
 RCmall Feetech 6-packs ship the same accessories is **unverified**; [SPEC 11]
 says the bare servo ships with *No Accessories*, which evidently describes the
 part, not a retail box. Waveshare's ST3215 is a rebadge of the same Feetech
-servo; that its dimensions match `params.py` is assumed, not yet measured.
+servo; the maintainer confirms fit against the SO-101 printed interfaces in
+PLA+ and PETG (DEC-33), without claiming new caliper readings.
 
 ## Bought — fasteners & consumables *(NOT yet ordered, ~£15–25 + filament)*
 
-Counts are **derived from the current CAD** (v1 lower body), not estimated —
-each row names where its quantity comes from. Order spares: these are pennies
-each and a missing M3×55 stops an assembly dead.
+The **generated fastening schedule below** replaces the discarded draft's
+counts. It includes twelve metal horns (two per joint), 48 horn-square screws,
+six centre screws and 24 M2x5 lug screws for the six lower-body servos.
+Check kit contents and stock before buying; the rig must establish actual
+engagement, head clearance and horn span. Wheel/hub fixings depend on the
+supplied kits and remain outside this count.
 
-| Part | Need | Buy | Role — where the count comes from |
-|------|------|-----|-----------------------------------|
-| M3 heat-set inserts, **5.7 mm long × 4.6 mm OD** | 4 | with spares | 2 pitch-cap posts per hip; fit unverified |
-| M3 short inserts, **≤4 mm long** | 4 | after fit test | pelvis tray mounts in 5 mm deck; selected insert OD/bore must match |
-| M3 socket screws 8 mm | 12 | assortment | 4 tray→standoff + 4 driver shield mounts + 4 pitch-cap screws; shield mounting remains provisional |
-| **M3 socket screws 55 mm** | 8 | 10 | 4 roll-cheek/carrier bolts + 4 thigh/spacer bolts; 50 mm nominal grip, verify washer/nut stack |
-| M3 nuts | 8 | assortment | through-bolts; use thin nuts fitting the 3 mm audit envelope or repeat clearance checks |
-| M3 washers | 16 | assortment | one under each through-bolt head and nut; verify chosen thickness |
-| M3 standoffs 10 mm, male/female | 4 | 4–10 | pelvis deck → electronics tray, sets the wiring gap |
-| **Servo horns, metal, 25T, 4-hole 9.9 mm square** | 8 | 8 | **2 per driven joint** — drive *and* idler. The idler horn is what makes the joint a supported clevis rather than a cantilever. [SPEC 11] says none are supplied; the Waveshare retail box does ship M3 **horn screws**, so what else it holds is worth counting before ordering |
-| M3 horn-square screws, **length TBD** | 32 | after measurement | 8 per joint × 4 joints; 5 mm printed cheeks plus measured horn engagement, NOT blanket M3×6 |
-| Motor face M3 screws, **length TBD** | 12 | after measurement | 6 per motor; M3×8 candidate gives 3 mm engagement through 5 mm plate; verify motor thread depth |
-| Roll-servo case-retention screws, **M2 self-tapping, length TBD** | 8 | M2 assortment, 5–10 mm | 4 per servo, OQ-12. **M2 is settled** — supplied with the Waveshare servos (2026-09-07); the CAD clearance is now 2.4 mm. The supplied M2×5 is too short here: the walls the screw crosses are **3.95 mm and 6.35 mm** in `hip_bracket.build_root()`, so no single length yet serves all 8, and case bore depth is unmeasured |
-| Soldering-iron insert tip | 1 | 1 | setting the heat-set inserts |
-| PETG filament, 1 kg | 1 | 1 | one spool; current quantity is pending a fresh slice — see the generated total below |
-
-**Do not order unverified lengths from this draft.** The M3×55 bolts now join
-printed components, not servo case bores. Roll retention *length*, idler
-stand-off, horn engagement and motor thread depth remain measurement gates
-(OQ-12). Horn centre/axle fixings and wheel/hub fixings must be checked
-against the supplied kits; their exact lengths/counts are not yet established
-here.
-
-**The M2 length is answered by upstream's geometry, not by buying longer
-screws:** SO-101 counterbores the wall so ~2.2 mm of plastic sits under the
-head and the supplied M2×5 reaches the lug
-([`soarm-joint-pattern.md`](soarm-joint-pattern.md)). The restart's socket
-primitive does the same, so the M2 line above becomes "use the supplied M2×5"
-once the lug pilot depth is calipered.
-
-**Servo horns are included above but may already be in the kit.** The 4-hole
-drive square lives on the horn, not the servo. Check the actual package before
-ordering — the Waveshare box's contents already contradicted the "no
-accessories" reading once.
-
-**Insert geometry is a design constant.** `INSERT_M3_DIA` / `INSERT_M3_LEN` in
-`params.py` target the **5.7 × 4.6 mm** M3 insert at the pitch-cap posts (Ruthex and
-equivalents). A different insert profile means re-deriving those constants and
-reprinting a fit coupon. The short pelvis inserts need their own bore fit check.
-
-Check existing fastener stock against the revised joints before buying spares.
+PETG filament remains a consumable; a 1 kg spool is the sourcing unit, not a
+measured requirement. Inserts and an insert tip are needed only for the
+retained seam/insert coupons; the new lower body's structural seams use
+through-bolts and metal nuts. Assembly order and candidate stacks are in
+[`cad-restart-design.md`](cad-restart-design.md).
 
 Bench power for bring-up (12 V source) is still outstanding — a 3S LiPo is the
 DEC-20 answer, not a bench PSU.
@@ -105,7 +72,7 @@ What the **design** requires is short, and it is all koala-bot asserts:
 
 - **PETG** (DEC-09), printed in each part's **declared orientation**, with
   support-free manufacture as a **target**, not a verified property. Inspect
-  sliced layers first, especially pelvis/root bores and saddle posts (DEC-29).
+  sliced layers first, especially socket shelves, crossbar bores and collar cable openings (DEC-34).
 - A **brim** on tall, small-footprint parts — flagged per part in the table.
 
 Parts are **not** printed solid; strength comes from perimeters and orientation,
@@ -136,10 +103,10 @@ on this profile beyond the requirements above.
 
 ## Printed parts
 
-**This table reflects the discarded DEC-29 geometry** (DEC-30) and stands only
-until the restart's first export overwrites it. Every part fits ≤ 200×200 mm in
-its declared orientation. Surface metrics do not certify support-free printing
-or strength. Regenerate with `cd hardware && uv run python -m koala_hardware.export`.
+These tables describe the **DEC-34 digital prototype**. Every part fits
+≤200 × 200 mm in its declared orientation. Surface metrics do not certify
+support-free printing or strength. Regenerate with
+`cd hardware && uv run python -m koala_hardware.export`.
 
 <!-- BEGIN GENERATED: printed parts -->
 
@@ -149,23 +116,49 @@ No current hash-matched slice results, so filament is the **solid-geometry upper
 
 | Part | Qty | Size (mm) | Filament | Print time | Print notes |
 |------|-----|-----------|----------|-----------|-------------|
-| `e_tray` | 1 | 140 x 90 x 9 | ~61 g (solid max) | - | clean |
-| `hip_pitch_cap` | 2 | 70 x 12 x 4 | ~8 g (solid max) | - | clean |
-| `hip_pitch_saddle_left` | 1 | 72 x 64 x 34 | ~45 g (solid max) | - | 217 mm2 flagged overhang; inspect slice |
-| `hip_pitch_saddle_right` | 1 | 72 x 64 x 34 | ~45 g (solid max) | - | 217 mm2 flagged overhang; inspect slice |
-| `hip_roll_drive` | 2 | 64 x 40 x 5 | ~15 g (solid max) | - | clean |
-| `hip_roll_idler` | 2 | 64 x 40 x 5 | ~15 g (solid max) | - | clean |
-| `pelvis` | 1 | 150 x 170 x 24 | ~188 g (solid max) | - | 560 mm2 flagged overhang; inspect slice |
-| `thigh_inner` | 2 | 48 x 193 x 5 | ~65 g (solid max) | - | clean |
-| `thigh_outer` | 2 | 48 x 193 x 5 | ~77 g (solid max) | - | clean |
-| `thigh_spacer` | 4 | 24 x 24 x 40 | ~90 g (solid max) | - | clean |
-| `coupon_horn_plate` | 1 | 30 x 30 x 4 | ~4 g (solid max) | - | clean |
+| `e_tray` | 1 | 140 x 90 x 9 | ~63 g (solid max) | - | clean |
+| `hip_crossbar` | 2 | 22 x 16 x 40 | ~33 g (solid max) | - | 32 mm2 flagged overhang; inspect slice |
+| `hip_pitch_cradle_left` | 1 | 30 x 45 x 29 | ~28 g (solid max) | - | 24 mm2 flagged overhang; inspect slice |
+| `hip_pitch_cradle_right` | 1 | 30 x 45 x 29 | ~28 g (solid max) | - | 24 mm2 flagged overhang; inspect slice |
+| `joint_drive_cheek` | 6 | 56 x 28 x 4 | ~27 g (solid max) | - | clean |
+| `joint_idler_cheek` | 6 | 56 x 28 x 4 | ~29 g (solid max) | - | clean |
+| `pelvis` | 1 | 180 x 150 x 32 | ~216 g (solid max) | - | 48 mm2 flagged overhang; inspect slice |
+| `servo_collar_left` | 3 | 51 x 36 x 26 | ~51 g (solid max) | - | 95 mm2 flagged overhang; inspect slice |
+| `servo_collar_right` | 3 | 51 x 36 x 26 | ~51 g (solid max) | - | 95 mm2 flagged overhang; inspect slice |
+| `shank_core` | 2 | 40 x 22 x 53 | ~108 g (solid max) | - | brim (tall, small footprint); 459 mm2 flagged overhang; inspect slice |
+| `thigh_core_left` | 1 | 45 x 30 x 56 | ~53 g (solid max) | - | brim (tall, small footprint); 239 mm2 flagged overhang; inspect slice |
+| `thigh_core_right` | 1 | 45 x 30 x 56 | ~53 g (solid max) | - | brim (tall, small footprint); 239 mm2 flagged overhang; inspect slice |
+| `wheel_foot_face` | 2 | 66 x 48 x 5 | ~25 g (solid max) | - | clean |
+| `wheel_foot_support` | 2 | 66 x 48 x 5 | ~14 g (solid max) | - | clean |
 | `coupon_ladder` | 1 | 150 x 60 x 6 | ~68 g (solid max) | - | clean |
 | `coupon_motor_bore` | 1 | 135 x 50 x 6 | ~26 g (solid max) | - | clean |
 | `coupon_motor_ring` | 1 | 47 x 47 x 5 | ~10 g (solid max) | - | clean |
 | `coupon_seam` | 1 | 60 x 75 x 13 | ~22 g (solid max) | - | 38 mm2 flagged overhang; inspect slice |
-| `coupon_servo_cradle` | 1 | 64 x 40 x 30 | ~55 g (solid max) | - | clean |
-| **Structural total** | **18** | | **~609 g (solid max)** | **-** | |
+| `coupon_socket_bridge` | 1 | 16 x 22 x 40 | ~17 g (solid max) | - | 32 mm2 flagged overhang; inspect slice |
+| `coupon_socket_collar` | 1 | 51 x 36 x 26 | ~17 g (solid max) | - | 95 mm2 flagged overhang; inspect slice |
+| `coupon_socket_cradle` | 1 | 45 x 30 x 22 | ~16 g (solid max) | - | 24 mm2 flagged overhang; inspect slice |
+| `coupon_socket_drive` | 1 | 56 x 28 x 4 | ~4 g (solid max) | - | clean |
+| `coupon_socket_idler` | 1 | 56 x 28 x 4 | ~5 g (solid max) | - | clean |
+| **Structural total** | **32** | | **~780 g (solid max)** | **-** | |
+
+**Lower-body fastening schedule, derived from the same builders.** Candidate lengths require rig checks; excludes coupon hardware, torso, arms/head, and supplier-specific wheel/hub fixings.
+
+| Fastener / interface hardware | Qty |
+|---|---:|
+| M2x5 self-tapper into servo lug | 24 |
+| M3 female/female standoff, 10 mm | 4 |
+| M3 nut | 20 |
+| M3 plain washer | 28 |
+| M3x10 lower tray-standoff screw | 4 |
+| M3x16 driver-shield screw (board stack to verify) | 4 |
+| M3x50 crossbar screw | 8 |
+| M3x55 motor-plate seam screw | 4 |
+| M3x6 horn centre screw (kit specification) | 6 |
+| M3x6 horn-square screw (engagement to verify) | 48 |
+| M3x60 crossbar screw | 4 |
+| M3x8 motor-face screw (engagement to verify) | 12 |
+| M3x8 upper tray-standoff screw | 4 |
+| Metal 9.9-square servo horn | 12 |
 
 <!-- END GENERATED -->
 

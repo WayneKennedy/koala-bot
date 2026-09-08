@@ -7,6 +7,37 @@ in `hardware/src/koala_hardware/params.py`, tagged with their provenance.
 Reference printer per DEC-14 (Ender-5 S1 / Klipper), PETG, the standing
 general-purpose profile recorded in [`bom.md`](bom.md).
 
+## 2026-09-08 — DEC-34 digital prototype checks (nothing printed)
+
+Replaced both discarded lower-body builders. Export passes the existing bed,
+connected-solid and surface checks; explicit handed STLs are generated.
+The audit checks the socket and bores, 27 local roll/hip/knee poses with
+nominal horn/carrier/motor/lug heads and nuts, and 81 opposing-leg pose pairs.
+The browser regression rendered the assembly and matched left/right hip/knee
+motion to CAD within 0.1 mm; eight unit tests passed. Scope and remaining
+uncertainties are in [`cad-restart-design.md`](cad-restart-design.md).
+
+Read-only Moonraker queries on 7 September and at 00:01 BST on 8 September
+returned **printing**. No slicing or print was
+started. The five `coupon_socket_*` parts are the next fit rig; they include
+the same registered cheeks and crossbar interface as the legs. None of these
+digital results establishes physical fit, unsupported-layer behaviour or
+strength.
+
+## 2026-09-07 — maintainer confirms SO-101 fit in PLA+ and PETG
+
+The maintainer reports that the standard ST3215 servos fit the SO-101 parts
+perfectly in **both PLA+ and PETG**, and explicitly removes the requirement
+for repeat gauging or caliper measurements before redesign (DEC-33).
+The earlier local `3d-printing` entry documents the PLA+ Gauge_0 test;
+the PETG evidence here is the maintainer's direct report. No print settings,
+new caliper readings or individual PETG job identifiers were supplied.
+
+Adopt the Gauge_0 nominal pocket with zero added servo clearance
+(`SOCKET_CLEAR` in `params.py`). This does not validate generic non-servo
+pockets, new retention details, or the new joint's loaded behaviour.
+The new primitive's lug positions and horn span remain tagged `[STEP]`.
+
 ## 2026-09-07 — SO-101 joint pattern, measured from upstream CAD (desk study; nothing printed)
 
 Prompted by the maintainer's SO-101 build: the koala drafts never followed the

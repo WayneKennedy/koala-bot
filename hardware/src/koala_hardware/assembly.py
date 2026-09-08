@@ -1,111 +1,106 @@
 # SPDX-License-Identifier: CERN-OHL-S-2.0
-"""Lower-body geometry. Angles are CAD inspection poses, not control limits."""
-import pathlib
-import matplotlib
-matplotlib.use("Agg")
-import matplotlib.pyplot as plt
-from mpl_toolkits.mplot3d.art3d import Poly3DCollection
-import numpy as np
-import trimesh
-from build123d import Pos, Rot, Cylinder, Align, mirror, Plane, export_stl
-from . import params as P
-from . import servo_iface as S
-from .parts import pelvis, hip_link, thigh, e_tray
+"""DEC-34 lower body with roll -> pitch -> knee -> wheel-foot transforms.
 
-ROOT = pathlib.Path(__file__).resolve().parents[2]
-ROLL_Z = -P.HIP_ROLL_DROP
-PITCH_Z = ROLL_Z - P.HIP_PITCH_DROP
-WHEEL_Z = PITCH_Z - P.THIGH_DROP
-GROUND_Z = WHEEL_Z - P.WHEEL_DIA / 2
+Angles are geometric poses, not controller limits. Hip positive advances the
+knee; knee positive folds the shank aft. Ground metadata is the nominal pose.
+"""
+from math import cos, radians
+from build123d import Align, Cylinder, Plane, Pos, Rot, mirror
+from . import params as P, servo_iface as S
+from .parts import pelvis, links as L, e_tray
+
+ROOT = __import__('pathlib').Path(__file__).resolve().parents[2]
+ROLL_Z = -P.V2_ROLL_DROP
+PITCH_Z = ROLL_Z
+WHEEL_Z = PITCH_Z - P.V2_THIGH*cos(radians(P.V2_HIP_NOMINAL)) - P.V2_SHANK*cos(radians(P.V2_HIP_NOMINAL-P.V2_KNEE_NOMINAL))
+GROUND_Z = WHEEL_Z-P.WHEEL_DIA/2
+PITCH_ORIGIN = (P.V2_PITCH_X, P.V2_PITCH_Y, 0.)
+# Socket orientation: X native = Y robot, Y native = Z robot, Z native = X robot.
+PITCH_FRAME = Plane(origin=PITCH_ORIGIN, x_dir=(0,1,0), z_dir=(1,0,0)).location
 
 
 def leg_parts():
-    """One right leg in roll-local frame, with kinematic group labels."""
-    pitch = Pos(P.HIP_PITCH_X, 0, -P.HIP_PITCH_DROP)
-    knee = pitch * Pos(0, 0, -P.THIGH_DROP)
+    """Right-leg solids in roll coordinates at the nominal pose, plus groups."""
     items = []
-    for b in (hip_link.build_drive, hip_link.build_idler,
-              hip_link.build_saddle, hip_link.build_cap):
-        s = b()
-        items.append((s["name"], s["part"], "#d9a48f", "roll"))
-    for b in (thigh.build_outer, thigh.build_inner):
-        s = b()
-        items.append((s["name"], pitch * s["part"], "#c98fd9", "pitch"))
-    for i, spacer in enumerate(thigh.placed_spacers()):
-        items.append((f"thigh_spacer_{i+1}", pitch * spacer, "#8fd9c9", "pitch"))
-    def cyl(r, h):
-        return Cylinder(r, h, align=(Align.CENTER, Align.CENTER, Align.MIN))
-    face = thigh.MOTOR_FACE_Y
-    items += [
-        ("motor", knee * Pos(0, face, 0) * Rot(X=90) *
-         cyl(P.MOTOR_DIA / 2, P.MOTOR_BODY_LEN), "#777777", "pitch"),
-        ("shaft", knee * Pos(0, face, 0) * Rot(X=-90) *
-         cyl(P.MOTOR_SHAFT_DIA / 2, P.MOTOR_SHAFT_LEN), "#aaaaaa", "pitch"),
-        ("hub", knee * Pos(0, face + P.HUB_STACK - P.HUB_T, 0) * Rot(X=-90) *
-         cyl(P.HUB_DIA / 2, P.HUB_T), "#bbbbbb", "pitch"),
-        ("wheel", knee * Pos(0, face + P.HUB_STACK, 0) * Rot(X=-90) *
-         cyl(P.WHEEL_DIA / 2, P.WHEEL_W), "#555555", "pitch"),
-        ("reference_roll_servo", S.on_axis(Rot(Y=90)) * S.servo_reference(),
-         "#e8d44d", "fixed"),
-        ("reference_pitch_servo", pitch * Pos(0, P.HIP_PITCH_Y, 0) *
-         S.on_axis(Rot(X=-90)) * S.servo_reference(), "#e8d44d", "roll"),
-    ]
+    def add(name, part, colour, group):
+        items.append((name, part, colour, group))
+    for side in ('drive', 'idler'):
+        add('hip_roll_'+side, Rot(X=-90)*L.registered_fork(side), '#d9a48f', 'roll')
+    add('hip_crossbar', L.build_hip_bridge()['part'], '#d9a48f', 'roll')
+    add('hip_pitch_cradle', L.hip_socket(), '#d9a48f', 'roll')
+    add('hip_pitch_collar', L.PITCH_FRAME*S.collar(), '#d9a48f', 'roll')
+    add('reference_roll_servo', Rot(X=180)*L.AXIS*S.socket_reference(), '#e8d44d', 'fixed')
+    add('roll_collar', Rot(X=180)*L.AXIS*S.collar(), '#d9a48f', 'fixed')
+    add('reference_pitch_servo', PITCH_FRAME*L.AXIS*S.socket_reference(), '#e8d44d', 'roll')
+    thigh_tf = PITCH_FRAME*Rot(X=90-P.V2_HIP_NOMINAL)
+    knee_tf = thigh_tf*Pos(0,0,P.V2_THIGH)
+    shank_tf = knee_tf*Rot(X=P.V2_KNEE_NOMINAL)
+    for side in ('drive','idler'):
+        add('thigh_'+side, thigh_tf*L.registered_fork(side), '#c98fd9', 'pitch')
+        add('shank_'+side, shank_tf*L.registered_fork(side), '#8fd9c9', 'knee')
+    add('thigh_core', thigh_tf*L.thigh_core(), '#c98fd9', 'pitch')
+    add('knee_collar', knee_tf*L.AXIS*S.collar(), '#c98fd9', 'pitch')
+    add('reference_knee_servo', knee_tf*L.AXIS*S.socket_reference(), '#e8d44d', 'pitch')
+    add('shank_core', shank_tf*L.shank_core(), '#8fd9c9', 'knee')
+    add('wheel_foot_face', shank_tf*L.motor_plate(True), '#8fd9c9', 'knee')
+    add('wheel_foot_support', shank_tf*L.motor_plate(False), '#8fd9c9', 'knee')
+    face, z = P.V2_MOTOR_FACE, P.V2_SHANK
+    for name, x0, x1, dia, colour in [
+        ('motor',face-P.MOTOR_BODY_LEN,face,P.MOTOR_DIA,'#777777'),
+        ('shaft',face,face+P.MOTOR_SHAFT_LEN,P.MOTOR_SHAFT_DIA,'#aaaaaa'),
+        ('hub',face+P.HUB_STACK-P.HUB_T,face+P.HUB_STACK,P.HUB_DIA,'#bbbbbb'),
+        ('wheel',face+P.HUB_STACK,face+P.HUB_STACK+P.WHEEL_W,P.WHEEL_DIA,'#555555')]:
+        add(name,shank_tf*S._x_hole(x0,x1,0,z,dia),colour,'knee')
     return items
 
 
-def build_scene(roll=0.0, pitch=0.0):
-    """Symmetric local roll (positive = splay), common fore/aft pitch."""
-    items = [("pelvis", pelvis.build()["part"], "#8fb4d9"),
-             ("e_tray", Pos(0, 0, P.TRAY_GAP) * e_tray.build()["part"], "#b4d98f")]
-    local = leg_parts()
-    pitch_tf = (Pos(P.HIP_PITCH_X, 0, -P.HIP_PITCH_DROP) * Rot(Y=pitch) *
-                Pos(-P.HIP_PITCH_X, 0, P.HIP_PITCH_DROP))
-    for side in (1, -1):
-        for name, solid, colour, group in local:
-            if group == "pitch":
-                solid = pitch_tf * solid
-            if group != "fixed":
-                solid = Rot(X=roll) * solid
+def motion(roll=0., hip=P.V2_HIP_NOMINAL, knee=P.V2_KNEE_NOMINAL):
+    """Delta transforms from nominal meshes; compose knee, hip, roll."""
+    pitch_pos = Pos(*PITCH_ORIGIN)
+    hip_tf = pitch_pos*Rot(Y=-(hip-P.V2_HIP_NOMINAL))*pitch_pos.inverse()
+    k = (PITCH_FRAME*Rot(X=90-P.V2_HIP_NOMINAL)*Pos(0,0,P.V2_THIGH)).position
+    kp = Pos(k.X,k.Y,k.Z)
+    knee_tf = kp*Rot(Y=knee-P.V2_KNEE_NOMINAL)*kp.inverse()
+    return {'fixed': Pos(), 'roll': Rot(X=roll),
+            'pitch': Rot(X=roll)*hip_tf,
+            'knee': Rot(X=roll)*hip_tf*knee_tf}
+
+
+def scene_details(roll=0., hip=P.V2_HIP_NOMINAL, knee=P.V2_KNEE_NOMINAL):
+    items = [('pelvis',pelvis.solid(),'#8fb4d9','fixed',0),
+             ('e_tray',Pos(0,0,P.TRAY_GAP)*e_tray.solid(),'#b4d98f','fixed',0)]
+    transforms = motion(roll,hip,knee)
+    for side in (1,-1):
+        for name, solid, colour, group in leg_parts():
+            solid = transforms[group]*solid
             if side == -1:
-                solid = mirror(solid, Plane.XZ)
-            items.append((name + ("_right" if side == 1 else "_left"),
-                          Pos(0, side * P.HIP_ROLL_Y, ROLL_Z) * solid, colour))
+                solid = mirror(solid,Plane.XZ)
+            solid = Pos(P.V2_ROLL_X,side*P.V2_ROLL_Y,ROLL_Z)*solid
+            items.append((name+('_right' if side==1 else '_left'),solid,colour,group,side))
     return items
+
+
+def build_scene(roll=0., pitch=P.V2_HIP_NOMINAL, knee=P.V2_KNEE_NOMINAL):
+    return [(n,s,c) for n,s,c,_,_ in scene_details(roll,pitch,knee)]
 
 
 def main():
-    tmp = ROOT / "build" / "_asm"
-    tmp.mkdir(parents=True, exist_ok=True)
-    meshes = []
-    for i, (_name, solid, colour) in enumerate(build_scene()):
-        p = tmp / f"{i}.stl"
-        export_stl(solid, str(p))
-        meshes.append((trimesh.load(p), colour))
-
-    fig = plt.figure(figsize=(14, 6))
-    views = [(20, -55, "iso"), (0, -90, "side profile"), (0, 0, "front")]
-    bounds = np.array([m.bounds for m, _ in meshes])
-    lo, hi = bounds[:, 0].min(axis=0), bounds[:, 1].max(axis=0)
-    c, r = (lo + hi) / 2, max(hi - lo) / 2 * 1.05
-    for i, (elev, azim, label) in enumerate(views, 1):
-        ax = fig.add_subplot(1, 3, i, projection="3d")
-        for m, colour in meshes:
-            ax.add_collection3d(Poly3DCollection(
-                m.vertices[m.faces], alpha=0.95, facecolor=colour,
-                edgecolor="#333333", linewidth=0.1))
-        ax.set_xlim(c[0] - r, c[0] + r)
-        ax.set_ylim(c[1] - r, c[1] + r)
-        ax.set_zlim(c[2] - r, c[2] + r)
-        ax.view_init(elev=elev, azim=azim)
-        ax.set_title(label, fontsize=10)
-        ax.set_axis_off()
-    fig.suptitle(f"koala-bot lower body v1 - wheel axis {WHEEL_Z:.0f} mm, "
-                 f"ground {GROUND_Z:.0f} mm below the pelvis deck")
-    fig.tight_layout()
-    out = ROOT / "build" / "renders" / "assembly.png"
-    fig.savefig(out, dpi=100)
-    print(f"wrote {out}")
+    # Reuse the export renderer so the saved assembly shows the same solids as the viewer.
+    import tempfile
+    import pathlib
+    import trimesh
+    from build123d import export_stl
+    from .export import render
+    meshes=[]
+    with tempfile.TemporaryDirectory() as td:
+        for i,(_,solid,_) in enumerate(build_scene()):
+            path=pathlib.Path(td)/f'{i}.stl'
+            export_stl(solid,str(path))
+            meshes.append(trimesh.load(path,force='mesh'))
+    out=ROOT/'build/renders/assembly.png';out.parent.mkdir(parents=True,exist_ok=True)
+    render(trimesh.util.concatenate(meshes),out,'DEC-34 lower body — nominal geometry, fit/strength unverified')
+    print(f'wrote {out}')
 
 
-if __name__ == "__main__":
+if __name__=='__main__':
     main()
