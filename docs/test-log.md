@@ -29,6 +29,15 @@ inside it and upstream's assembly mates are ~1.9 mm off at the shoulder:
 1. **Which side the 1.5 mm horn stack lives on.** Does the idler wheel stand
    proud of the case's main flat, and by roughly how much? (Depth rod from the
    wheel face to the flat beside it; zero means all 1.5 is on the drive horn.)
+   *Partly answered 2026-09-08, maintainer with calipers:* SO-101 **does fit
+   the idler**. It is **3.1 thick overall: a 2.1 mm main body, drilled and
+   tapped M3 on the same 9.9 square as the drive horn, plus a 1.0 mm boss**.
+   The servo's rear face carries a proud round boss ~Ø8 with a centre hole
+   (photo IMG_6989). The printed idler-side arms have blind centre recesses of
+   Ø6 × 1.0 (Rotation_Pitch) and Ø8 × 1.5 (Upper_arm), which is the room for a
+   1 mm feature at the axis. **Still to settle:** which way the idler's 1 mm
+   boss faces and whether its body sits in a recess in the case — i.e. the
+   idler's outer face height above the case main flat with the idler fitted.
 2. **Where the connectors are and which way the cable leaves.** The Base has a
    22 mm window behind the rear face; the Rotation_Pitch shelf is solid. Look at
    the shoulder servo in the assembled arm.
