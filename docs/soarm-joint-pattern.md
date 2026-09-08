@@ -94,11 +94,31 @@ present **flat outer faces** when fitted. The drive horn is retained by a
 Taking the pocket as datum (X = 0 at its centre), the seat mid-plane is
 **0.5 toward the Front**, the idler outer face is at **−17.0** and the drive
 horn face at **+19.4** (`SOCKET_SEAT_OFFSET`, `SOCKET_IDLER_FACE`,
-`SOCKET_DRIVE_FACE`). The idler face is therefore 0.4 *inside* the widest Back
-plane (−17.45): a Back plate must not reach any height where the case is at
-full width. **Not yet measured:** over what height from the Bottom each plane
-runs. The audit currently fails on this, correctly, because the case reference
-is still a full-width box.
+`SOCKET_DRIVE_FACE`). The idler face is 0.4 *inside* the widest Back plane
+(−17.45), which is harmless because the widest region does not reach the
+plates:
+
+**Where each plane runs, height from the Bottom** (Back, photos IMG_6993–6995;
+Front lengths assumed the same, `[VERIFY]`):
+
+| Height | Region | Plane |
+|---|---|---|
+| 0 – 5.3 | ears; the Bottom M2 pair at the corners | 31.8 |
+| 5.3 – 18.8 | recessed rectangular panel with a small screw | **34.8, the widest — what the pocket grips** |
+| 18.8 – 35.2 | connector bay 18.8–24.5, a second M2 pair at ~22 | below the seat plane |
+| 35.2 (axis) – 45.4 | Top region | below the seat plane |
+| Ø20 pad at the axis | **raised** round seat the idler covers exactly | 28.8 |
+
+The output axis is at 35.2 from the Bottom (spec 22.6 + 12.5 = 35.1).
+`socket_reference()` carries this profile with the C/D faces conservatively at
+the seat plane, plus idler, boss, drive horn and pan head.
+
+Two consequences for the plates. A Ø28 Back plate at the axis spans heights
+21.2–49.2 and so overhangs the connector bay's top 3.3 mm; upstream's Ø24 pad
+(23.2–47.2) overhangs it 1.3 mm. Keep the Back plate to **Ø24, or flatten its
+Bottom edge**, so the connectors and the cable exit stay clear. And the
+centre features are mandatory: the audit now fails on the pan head into the
+flat Front plate and the boss into the flat Back plate.
 
 Connectors: two, side by side in a **bay recessed into the Back**, immediately
 below the idler disc, facing out along the output axis; the cable leaves along

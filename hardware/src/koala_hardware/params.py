@@ -119,6 +119,17 @@ SOCKET_EAR_X = 31.8        # [MEASURED 2026-09-08] faces carrying the M2 lug hol
 SOCKET_HORN_SEAT_X = 28.8  # [MEASURED 2026-09-08] faces the drive horn and idler
                            # sit on, flat
 SOCKET_IDLER_T = 3.1       # [MEASURED 2026-09-08] idler thickness; sits flat on the seat
+# Where each plane runs along the height (from the Bottom). Measured on the
+# BACK (photos IMG_6993/6994, lettered A-D): ears 0-5.3, widest 5.3-18.8, then
+# the seat level to the Top; the output axis is the C/D line at 35.2 (spec
+# 35.1). The Ø20 seat is a RAISED pad the idler covers exactly; the general
+# face around it in C/D is lower still, so modelling C/D at the seat plane is
+# conservative for clearance. The FRONT is assumed to share these heights
+# [VERIFY] - its steps (1.5 / 2.5) are measured, its region lengths are not.
+SOCKET_REGION_Z = (5.3, 18.8)  # [MEASURED 2026-09-08 Back][VERIFY Front] ear|widest, widest|seat
+SOCKET_BOSS_DIA = 8.0      # [VERIFY] Back boss through the idler, from the photos
+SOCKET_BAY_Z = (18.8, 24.5)  # [MEASURED 2026-09-08] connector bay on the Back, height band;
+                             # connectors face out along the axis - keep it uncovered
 SOCKET_IDLER_BOSS_PROUD = 0.7  # [MEASURED 2026-09-08] the servo's Back boss above the
                                # idler's outer face; the Back plate needs a >=0.7
                                # deep blind centre recess

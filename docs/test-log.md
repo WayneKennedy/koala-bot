@@ -25,16 +25,18 @@ the Bottom. Cheap calipers, ±0.3. Everything here moved a constant to
 | 6 | Front ↔ Back, widest faces | **~34.8** | the pocket; `SOCKET_CASE_X` 34.9 stands (proven by fit) |
 | 7 | Front side steps from the seat: ear / widest / drive horn face | **1.5 / 2.5 / 4.3** | 28.8 + 3.1 + 4.3 = 36.2 vs 36.4 measured — closes within the tool |
 | 8 | Back side step, seat → widest | **3.5** | **not symmetric**: seat mid-plane is 0.5 toward the Front of the pocket centre → `SOCKET_SEAT_OFFSET = 0.5`, idler face **−17.0**, drive face **+19.4**, track 238.2 |
-| 10 | Back face, regions along the height from the Bottom (photos IMG_6993/6994, lettered) | **A 0–5.3, B 5.3–18.8, C 18.8–35.8, D 35.8–46.0; E (case length) 45.4** | A+B+C+D = 46.0 vs 45.4, within the tool. The C/D boundary is the **output axis** (45.4 − 10.2 = 35.2; spec puts it at 22.6 + 12.5 = 35.1 ✓). A carries the Bottom M2 pair at the corners; B is the region with the recessed rectangular panel; the **connector bay starts at the B/C line (18.8) and runs to ~24.5**, two connectors facing out along the axis, with a second M2 pair flanking it at ~22; the Ø8 boss sits in a raised round pad at the axis. Which of the three depth planes each region lies on is **to confirm** (reading: A = ear plane, B = widest, D = seat; C's level and whether the round pad is raised above C are the open points) |
+| 10 | Back face, regions along the height from the Bottom (photos IMG_6993/6994, lettered) | **A 0–5.3, B 5.3–18.8, C 18.8–35.8, D 35.8–46.0; E (case length) 45.4** | A+B+C+D = 46.0 vs 45.4, within the tool. The C/D boundary is the **output axis** (45.4 − 10.2 = 35.2; spec puts it at 22.6 + 12.5 = 35.1 ✓). A carries the Bottom M2 pair at the corners; B is the region with the recessed rectangular panel; the **connector bay starts at the B/C line (18.8) and runs to ~24.5**, two connectors facing out along the axis, with a second M2 pair flanking it at ~22; the Ø8 boss sits in a raised round pad at the axis. Depth planes: A = ear plane, B = widest, and — photo IMG_6995 with the idler fitted — **the Ø20 seat is a raised round pad that the idler covers exactly**, so the general faces of C and D lie *below* the seat plane. `socket_reference()` now models this profile, with C/D conservatively at the seat plane. Front region lengths assumed equal `[VERIFY]` |
 | 9 | Horn screws supplied in the Waveshare box | **M3×6 pan head, head Ø5.2 × 2.0** | `HORN_SCREW*` `[SUPPLIED]`. Upstream's fork counterbores do not fit them. With a 3.5 web (upstream's, and 6 − 3.5 = 2.5 into a horn whose tapped body is 2.1) the plate needs a ≥Ø6 × ≥2.5 counterbore, so the horn pad is ~6 thick, not 3.5. The RCmall Feetech packs may ship different screws — unverified |
 
-**Consequence 8 is why the audit fails right now** (`rig idler -90/case: 229
-mm³ overlap`): the idler face is 0.4 inside the widest Back plane, and
-`socket_reference()` still models the case as a full-width box along its whole
-height. The failure is correct and is left standing; it clears when the case
-model carries the three planes with their heights — **the one measurement
-still wanted: over what height from the Bottom the widest region runs, and
-where the 28.8 seat region begins.**
+**The audit failure has moved to the right place.** With the full-width box it
+failed on the idler face being 0.4 inside the widest Back plane (229 mm³).
+With the measured profile in `socket_reference()` (row 10) that clears, and it
+now fails on the two centre features the bench identified: the **drive horn's
+pan head** (Ø5.2 × 2.0) into the flat Front plate — 26.4 mm³ — and, once past
+that, the **servo boss** (Ø8 × 0.7) into the flat Back plate — 35.2 mm³, which
+is exactly π·4²·0.7. Both are DEC-34 plate defects already on the corrections
+list (Front countersink, Back blind recess); left failing until the plates are
+fixed.
 
 Also established the same day:
 

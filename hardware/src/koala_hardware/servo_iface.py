@@ -148,11 +148,31 @@ def plate_location(side):
 
 
 def socket_reference():
-    """Nominal case and BOTH horns; pocket dimensions come from printed parts."""
-    x, y = P.SOCKET_CASE_X/2, P.SOCKET_CASE_Y/2
-    part = _box(-x, x, -y, y, 0, P.SOCKET_CASE_L)
-    part += _x_hole(x, P.SOCKET_DRIVE_FACE, 0, P.SOCKET_AXIS_Z, P.SOCKET_HORN_DIA)
-    # A thin idler disc is inside the case envelope, ending at its nominal flush face.
+    """Measured case profile with both horns fitted (test-log 2026-09-08).
+
+    Pocket frame: X=0 is the pocket centre; the seat mid-plane sits
+    SOCKET_SEAT_OFFSET toward the Front. Along the height from the Bottom the
+    case has an ear region (31.8 across), the widest region (34.9, what the
+    pocket grips) and, from SOCKET_REGION_Z[1] to the Top, faces at or below
+    the horn seats (28.8) - modelled AT the seat plane, which is conservative.
+    The idler (3.1) plus the servo boss (0.7 proud) sit on the Back seat; the
+    drive horn plus its pan-head centre screw sit on the Front seat.
+    """
+    y, off, L = P.SOCKET_CASE_Y/2, P.SOCKET_SEAT_OFFSET, P.SOCKET_CASE_L
+    seat_f, seat_b = off + P.SOCKET_HORN_SEAT_X/2, off - P.SOCKET_HORN_SEAT_X/2
+    ear_f, ear_b = off + P.SOCKET_EAR_X/2, off - P.SOCKET_EAR_X/2
+    wide = P.SOCKET_CASE_X/2
+    zA, zB = P.SOCKET_REGION_Z
+    part = _box(ear_b, ear_f, -y, y, 0, zA)          # ears, M2 holes near the Bottom
+    part += _box(-wide, wide, -y, y, zA, zB)         # widest: the pocket grips this
+    part += _box(seat_b, seat_f, -y, y, zB, L)       # seat level to the Top (conservative)
+    z = P.SOCKET_AXIS_Z
+    part += _x_hole(P.SOCKET_IDLER_FACE, seat_b, 0, z, P.SOCKET_HORN_DIA)           # idler
+    part += _x_hole(P.SOCKET_IDLER_FACE - P.SOCKET_IDLER_BOSS_PROUD,
+                    P.SOCKET_IDLER_FACE, 0, z, P.SOCKET_BOSS_DIA)                   # servo boss
+    part += _x_hole(seat_f, P.SOCKET_DRIVE_FACE, 0, z, P.SOCKET_HORN_DIA)           # drive horn
+    part += _x_hole(P.SOCKET_DRIVE_FACE, P.SOCKET_DRIVE_FACE + P.HORN_SCREW_HEAD_H,
+                    0, z, P.HORN_SCREW_HEAD_DIA)                                     # its pan head
     return part
 
 
