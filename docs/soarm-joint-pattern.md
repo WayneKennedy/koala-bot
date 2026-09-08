@@ -104,7 +104,7 @@ Front lengths assumed the same, `[VERIFY]`):
 | Height | Region | Plane |
 |---|---|---|
 | 0 – 5.3 | ears; the Bottom M2 pair at the corners | 31.8 |
-| 5.3 – 18.8 | recessed rectangular panel with a small screw | **34.8, the widest — what the pocket grips** |
+| 5.3 – 18.8 | a **raised, centred pad 18.5 wide** (Side to Side) with a small screw; the face beside it stays at the ear plane | **34.8, the widest — what the pocket grips**, over an 18.5 × 13.5 pad per side |
 | 18.8 – 35.2 | connector bay 18.8–24.5, a second M2 pair at ~22 | below the seat plane |
 | 35.2 (axis) – 45.4 | Top region | below the seat plane |
 | Ø20 pad at the axis | **raised** round seat the idler covers exactly | 28.8 |

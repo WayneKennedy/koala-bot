@@ -127,6 +127,10 @@ SOCKET_IDLER_T = 3.1       # [MEASURED 2026-09-08] idler thickness; sits flat on
 # conservative for clearance. The FRONT is assumed to share these heights
 # [VERIFY] - its steps (1.5 / 2.5) are measured, its region lengths are not.
 SOCKET_REGION_Z = (5.3, 18.8)  # [MEASURED 2026-09-08 Back][VERIFY Front] ear|widest, widest|seat
+SOCKET_WIDE_PAD_Y = 18.5   # [MEASURED 2026-09-08 Back][VERIFY Front] the widest plane is a
+                           # CENTRED raised pad this wide (Side to Side), not the full
+                           # 24.7 case width; beside it the face stays at the ear plane.
+                           # The pocket walls therefore grip an 18.5 x 13.5 pad per side.
 SOCKET_BOSS_DIA = 8.0      # [VERIFY] Back boss through the idler, from the photos
 SOCKET_BAY_Z = (18.8, 24.5)  # [MEASURED 2026-09-08] connector bay on the Back, height band;
                              # connectors face out along the axis - keep it uncovered

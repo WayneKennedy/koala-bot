@@ -163,8 +163,9 @@ def socket_reference():
     ear_f, ear_b = off + P.SOCKET_EAR_X/2, off - P.SOCKET_EAR_X/2
     wide = P.SOCKET_CASE_X/2
     zA, zB = P.SOCKET_REGION_Z
-    part = _box(ear_b, ear_f, -y, y, 0, zA)          # ears, M2 holes near the Bottom
-    part += _box(-wide, wide, -y, y, zA, zB)         # widest: the pocket grips this
+    pad = P.SOCKET_WIDE_PAD_Y/2
+    part = _box(ear_b, ear_f, -y, y, 0, zB)          # ear plane over the whole Bottom region
+    part += _box(-wide, wide, -pad, pad, zA, zB)     # widest: a centred pad the pocket grips
     part += _box(seat_b, seat_f, -y, y, zB, L)       # seat level to the Top (conservative)
     z = P.SOCKET_AXIS_Z
     part += _x_hole(P.SOCKET_IDLER_FACE, seat_b, 0, z, P.SOCKET_HORN_DIA)           # idler
