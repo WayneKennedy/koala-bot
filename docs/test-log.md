@@ -64,9 +64,15 @@ inside it and upstream's assembly mates are ~1.9 mm off at the shoulder:
    is 34.9 — the design touches the ear faces at the screws and the widest
    faces elsewhere. `params.py` now carries `SOCKET_EAR_X`, `SOCKET_HORN_SEAT_X`,
    `SOCKET_IDLER_T`, `SOCKET_IDLER_BOSS_PROUD`; `SOCKET_IDLER_FACE` becomes the
-   measured −17.5. *Still open:* over what length from the rear face each plane
-   runs (the pocket depth and the plate outline depend on it); drive horn
-   thickness for its own sake.
+   measured −17.5. *Drive-side steps, same day (cheap calipers, ±0.3 or so):*
+   seat → ear face **1.5** (agrees with (31.8−28.8)/2); seat → widest face
+   **2.5** (the face-to-face figures imply 3.0 — within the scatter, or the
+   widest plane is not symmetric); seat → drive horn outer face **4.3** (span
+   arithmetic gave 4.5; 28.8 + 3.1 + 4.3 = 36.2 against the measured 36.4).
+   The derived values in `params.py` stand; the discrepancies are inside the
+   tool's scatter and the pocket (34.9) is proven by fit regardless. *Still
+   open:* over what length from the rear face each plane runs (the pocket
+   depth, the inward bosses and the plate outline depend on it).
    The upstream cradle and collar have **no cable window** (STEP probe): the
    collar's front slot in DEC-34 is an invention. So the connector bay must sit
    above the 17 mm rim when seated, which is where the photos show it: on the
