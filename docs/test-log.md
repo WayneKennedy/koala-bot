@@ -7,118 +7,57 @@ in `hardware/src/koala_hardware/params.py`, tagged with their provenance.
 Reference printer per DEC-14 (Ender-5 S1 / Klipper), PETG, the standing
 general-purpose profile recorded in [`bom.md`](bom.md).
 
-## 2026-09-08 — calipers on the Waveshare ST3215 with both horns fitted (in progress)
+## 2026-09-08 — calipers and photos: the ST3215 as it really is (nothing printed)
 
-The measurements DEC-33 waived, taken anyway because the DEC-34 review found
-the clevis span resting on an upstream CAD figure that upstream's own two
-joints disagreed on. Values are added here as they are taken; each moves the
-constant it names to `[MEASURED]`.
+Terminology per [`soarm-joint-pattern.md`](soarm-joint-pattern.md): **Front**
+(drive horn), **Back** (idler and connectors), **Bottom** (the end it stands on;
+ears near it), **Top** (end nearest the output axis), **Sides**. Height is from
+the Bottom. Cheap calipers, ±0.3. Everything here moved a constant to
+`[MEASURED]` or corrected a doc.
 
 | # | Measurement | Value | Consequence |
-|---|-------------|-------|-------------|
-| 1 | Drive horn outer face → idler wheel outer face | **36.4** | `SOCKET_HORN_SPAN` 37.5 → **36.4**. Corroborated independently: the printed SO-101 `Rotation_Pitch` fork is 36.4 inner face to inner face, and `Rotation_Pitch_SO101.step` has its arm faces at Y = 10.0 and 46.4. The 37.5 in `soarm-joint-pattern.md` was a probing error there (an axis probe read a ~1 mm centre recess in the idler-side arm, not the arm face); upstream's CAD was right, as was the 2026-09-02 SO-100 bracket reading. Every span-derived figure in DEC-34 (drive-face datum, crossbar length, motor face, track, bolt grips) shifts by 1.1 mm; `params.py` derives them |
+|---|---|---|---|
+| 1 | Drive horn outer face → idler outer face (clevis span) | **36.4** | `SOCKET_HORN_SPAN` 37.5 → 36.4. Also 36.4 on the printed `Rotation_Pitch` fork and in its STEP (arm faces Y 10.0 / 46.4). The 37.5 was a probing error in the review (an axis probe read a centre recess as the arm face); upstream's CAD was right, as was the SO-100 bracket reading of 2026-09-02 |
+| 2 | Idler: total thickness / tapped body / boss | **3.1 / 2.1 / 1.0**, boss **inward** onto the servo; tapped M3 on the 9.9 square like the drive horn | both horns present flat outer faces when fitted; plates bear on flat metal |
+| 3 | Idler outer face above the seat it sits on | **3.1** | sits flat; the servo's boss stands **0.7** proud of the idler face — the Back plate's blind centre recess (upstream Ø6 × 1.0) clears it |
+| 4 | Front ↔ Back, horn/idler seats | **28.8** | `SOCKET_HORN_SEAT_X` |
+| 5 | Front ↔ Back, ear faces (M2 holes) | **31.8** | `SOCKET_EAR_X`; the SO-101 cradle walls boss inward to exactly this at the holes (STEP 15.6 + 16.2) |
+| 6 | Front ↔ Back, widest faces | **~34.8** | the pocket; `SOCKET_CASE_X` 34.9 stands (proven by fit) |
+| 7 | Front side steps from the seat: ear / widest / drive horn face | **1.5 / 2.5 / 4.3** | 28.8 + 3.1 + 4.3 = 36.2 vs 36.4 measured — closes within the tool |
+| 8 | Back side step, seat → widest | **3.5** | **not symmetric**: seat mid-plane is 0.5 toward the Front of the pocket centre → `SOCKET_SEAT_OFFSET = 0.5`, idler face **−17.0**, drive face **+19.4**, track 238.2 |
 
-**Superseded the same day by the maintainer's point that the printed-part
-STEPs are proven by fit.** Items 4, 5, 8 and most of 7 are now read from the
-parts themselves ([`soarm-joint-pattern.md`](soarm-joint-pattern.md), "read
-from the printed parts alone"): pocket, lug positions and hole stack, flat
-clevis plates with centre recesses, the base joint's 22 mm rear cable window.
-What the parts cannot say, because no part file knows where the servo sits
-inside it and upstream's assembly mates are ~1.9 mm off at the shoulder:
+**Consequence 8 is why the audit fails right now** (`rig idler -90/case: 229
+mm³ overlap`): the idler face is 0.4 inside the widest Back plane, and
+`socket_reference()` still models the case as a full-width box along its whole
+height. The failure is correct and is left standing; it clears when the case
+model carries the three planes with their heights — **the one measurement
+still wanted: over what height from the Bottom the widest region runs, and
+where the 28.8 seat region begins.**
 
-1. **Which side the 1.5 mm horn stack lives on.** Does the idler wheel stand
-   proud of the case's main flat, and by roughly how much? (Depth rod from the
-   wheel face to the flat beside it; zero means all 1.5 is on the drive horn.)
-   *Partly answered 2026-09-08, maintainer with calipers:* SO-101 **does fit
-   the idler**. It is **3.1 thick overall: a 2.1 mm main body, drilled and
-   tapped M3 on the same 9.9 square as the drive horn, plus a 1.0 mm boss**.
-   The servo's rear face carries a proud round boss ~Ø8 with a centre hole
-   (photo IMG_6989). The printed idler-side arms have blind centre recesses of
-   Ø6 × 1.0 (Rotation_Pitch) and Ø8 × 1.5 (Upper_arm), which is the room for a
-   1 mm feature at the axis. *Further, same day:* the **boss faces inward**,
-   engaging the servo's rear boss, and **both the drive horn and the idler
-   present flat outer faces when fitted**. So the arms bear on flat metal on
-   both sides and the arm centre recesses are clearance for the centre
-   fixings, not for a boss. Because the whole stack is only 1.5 over the 34.9
-   pocket while the idler body alone is 2.1 thick, the idler body was expected
-   to seat below the case main flat. *Measured, later the same day:* **idler
-   outer face to the case face it sits on = 3.1** — the idler sits flat on
-   that face, and the servo's rear boss stands **0.7 proud of the idler's outer
-   face**, which is what the Ø6 × 1.0 recess in the idler-side fork clears. On
-   the drive side the fork recess is deeper to clear the **pan-head M3 that
-   secures the drive horn**. Consequence: 3.1 on the idler side alone exceeds
-   the 1.5 total that the 34.9 pocket would allow, so **the faces the horn and
-   idler sit on are stepped below the faces the pocket grips** (the visible
-   line across the case in the photos). The model that closes every number:
-   the **tail ears carrying the M2 holes stand proud of the body** and are what
-   the 34.9 pocket grips (at 2.2 and 5.8 from the rear face, exactly where the
-   printed holes are); the body between the ears' faces is ~**30.3** thick; horn
-   and idler each ~3.1 sit flat on the body → 30.3 + 3.1 + 3.1 = 36.4.
-   *Measured, three planes per side (calipers, same day):* **horn/idler
-   seating faces 28.8 apart; M2-hole (ear) faces 31.8 apart; widest faces
-   ~34.8 apart.** So the idler outer face is at 14.4 + 3.1 = **17.5** from the
-   centreline (0.1 outside the widest plane) and the drive horn's outer face at
-   36.4 − 17.5 = **18.9** (4.5 above its seat, so the drive horn is thicker or
-   sits on the output boss). The SO-101 cradle walls **boss inward to 31.8 at
-   the M2 holes** (STEP: inner faces −15.6 and +16.2) while the general pocket
-   is 34.9 — the design touches the ear faces at the screws and the widest
-   faces elsewhere. `params.py` now carries `SOCKET_EAR_X`, `SOCKET_HORN_SEAT_X`,
-   `SOCKET_IDLER_T`, `SOCKET_IDLER_BOSS_PROUD`; `SOCKET_IDLER_FACE` becomes the
-   measured −17.5. *Drive-side steps, same day (cheap calipers, ±0.3 or so):*
-   seat → ear face **1.5** (agrees with (31.8−28.8)/2); seat → widest face
-   **2.5** (the face-to-face figures imply 3.0 — within the scatter, or the
-   widest plane is not symmetric); seat → drive horn outer face **4.3** (span
-   arithmetic gave 4.5; 28.8 + 3.1 + 4.3 = 36.2 against the measured 36.4).
-   *Then:* **the widest faces are not symmetric about the seats** — seat →
-   widest is 2.5 on the drive side and **3.5 on the back (connector) side**,
-   and 28.8 + 2.5 + 3.5 = 34.8 closes. Taking the pocket as datum (it is what
-   the cradle grips), the seat mid-plane sits **0.5 toward the drive side**;
-   the idler outer face lands at **−17.0** and the drive horn face at **+19.4**
-   in that frame (`SOCKET_SEAT_OFFSET`). The idler plate face is therefore
-   **0.4 inside the widest back-face plane**: wherever the case is at full
-   width, a Ø28 idler plate would hit it. **The audit now fails on exactly
-   this** (`rig idler -90/case: 229 mm³ overlap`): `socket_reference()` still
-   models the case as a full-width 34.9 box over its whole length, so the
-   idler plate at −17.0 cuts into it. The failure is correct and is left
-   standing rather than hidden: it clears when the case model gets the three
-   planes with their measured axial extents. *Now load-bearing, still open:*
-   over what length from the rear face the widest region runs, and where the
-   28.8 seat region begins.
-   The upstream cradle and collar have **no cable window** (STEP probe): the
-   collar's front slot in DEC-34 is an invention. So the connector bay must sit
-   above the 17 mm rim when seated, which is where the photos show it: on the
-   **back (idler) face immediately tailward of the idler disc**, connectors
-   facing out along the output axis — which is why the base-joint cable enters
-   from below. The two holes flanking the idler disc in IMG_6991 are ~20 mm
-   above the collar's holes and so cannot be what the collar screws into; they
-   are a second, front pair. *To confirm:* bay on the back face only; its
-   distance from the rear face; the tail ears exist with holes at 2.2 / 5.8.
-   Also from the maintainer, same day: the printed forks have **teardrop
-   counterbores over M3 clearance holes** and the screws seat on the plastic;
-   **the counterbores are too small for the M3 horn screws supplied with the
-   Waveshare servos** — koala's counterbore must be sized to the supplied heads.
-   The servo is held by **friction fit plus four M2 self-tappers, two per face**
-   (idler face and drive face); photos IMG_6991/6992 show the idler-face pair
-   and the fork counterbores.
-2. **Where the connectors are and which way the cable leaves.** The Base has a
-   22 mm window behind the rear face; the Rotation_Pitch shelf is solid. Look at
-   the shoulder servo in the assembled arm.
-   *From photo IMG_6990 (dry fit, base + shoulder, cable connected), 2026-09-08:*
-   the two connectors sit side by side in a **rectangular bay recessed into the
-   horn face**, at the bottom edge of the exposed case — i.e. immediately above
-   the collar rim, so roughly **17–23 mm from the rear end**. The cable leaves
-   **parallel to the output axis** and turns down the outside of the tower. The
-   cradle depth of 17 and the flush collar top are evidently chosen so the bay
-   clears the rim. At the base joint the cable dives down the near side of the
-   base servo and enters from below, which suggests the bay is a **through-slot
-   open on the back face too** (IMG_6989 shows a slot between the ears on the
-   back face). *To confirm:* through-slot or horn-face only; distance from the
-   rear end. *(A claim that the photo confirmed the collar's lug bosses at the
-   open-front corners was withdrawn the same day: the maintainer says it is
-   inaccurate. How the collar engages the servo's front lugs is open — see 3.)*
-3. **The fourth lug.** `Motor_holder_Base`'s horn-side boss has a plain Ø4.0
-   bore with no 2.2 mm seat, unlike the other three positions. What does the
-   servo present there — a Ø4 post, a threaded boss, or a plain lug?
+Also established the same day:
+
+- The printed forks are **counterbored (teardrop) over M3 clearance holes**;
+  screws seat on the plastic and thread into the tapped horns. **The
+  counterbores are too small for the M3 horn screws supplied with the Waveshare
+  servos.** koala's counterbore must fit those heads — diameter and height to
+  measure.
+- Retention is **friction plus four M2 self-tappers, two through the Front wall
+  side and two through the Back wall side**, into the servo's ears.
+- **Connector bay on the Back**, immediately below the idler disc, two
+  connectors facing out along the axis; the cable leaves along the axis and
+  turns down the outside (IMG_6990/6991). Upstream's cradle and collar have **no
+  cable window** (STEP probe), so DEC-34's floor slot and collar slot are
+  inventions. Two more M2 holes flank the idler disc on the Back, ~20 mm above
+  the ones the collar uses. *To confirm:* bay height from the Bottom; ears at
+  2.2 / 5.8 with holes.
+- Upstream `Motor_holder_Base`'s Front boss has a **plain Ø4.0 bore with no
+  seat**, unlike the other three M2 positions. *To confirm:* what the servo
+  presents there.
+
+The items DEC-33 waived (pocket, lug positions, hole stack, plate geometry) are
+now read from the printed-part STEPs instead — the maintainer's point that
+parts proven by fit carry the interface. What no part file can give is where
+the servo sits inside it, which is what the readings above supply.
 
 ## 2026-09-08 — DEC-34 digital prototype checks (nothing printed)
 

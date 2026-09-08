@@ -1,7 +1,12 @@
 # SPDX-License-Identifier: CERN-OHL-S-2.0
 """SO-101 cradle/collar/clevis primitive, DEC-33/34.
 
-Native X is the output axis; native Z is case length, rear face at Z=0.
+Servo face words (docs/soarm-joint-pattern.md, Terminology): FRONT = drive-horn
+face = +X; BACK = idler/connector face = -X; BOTTOM = the end the servo stands
+on = Z 0; TOP = the end nearest the output axis = Z 45.23; SIDES = +-Y. The
+cradle has a floor under the Bottom, a Front wall and a Back wall (the pair
+34.9 apart), one Side wall and an open Side that the collar's closing wall
+shuts. The clevis has a Front plate (drive horn) and a Back plate (idler).
 Body mounts use the CASE datum; horns use the OUTPUT AXIS datum. These are
 independent feature families (test-log 2026-09-02). Nominal printed-part
 interfaces are adopted from SO-101; no pocket derives from a servo model.

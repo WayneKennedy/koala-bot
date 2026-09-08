@@ -100,7 +100,11 @@ RESTART_TORQUE_KGFCM = 30.0     # [VENDOR] Waveshare ST3215 12V advertised torqu
 STANDARD_GRAVITY = 9.80665      # [STD] m/s²
 
 # --- DEC-33 SO-101 socket, native X = output axis, Z = long case axis -------
-# Case rear at Z=0; case centered in X/Y. No pocket derives from a servo STEP.
+# Servo face words (docs/soarm-joint-pattern.md, Terminology): FRONT = the
+# drive-horn face (+X), BACK = the idler/connector face (-X), BOTTOM = the end
+# it stands on (Z=0, ears near it), TOP = the end nearest the output axis
+# (Z=45.23), SIDES = the two flat long faces (+-Y). The pocket (widest faces)
+# is centred at X=0. No pocket derives from a servo STEP.
 SOCKET_CASE_X = 34.9       # [STEP] SO-101 Gauge_0 pocket, across output axis;
                            # calipers 2026-09-08: the widest case faces are ~34.8
 # The case has THREE face planes on each side of the output axis
@@ -111,17 +115,18 @@ SOCKET_EAR_X = 31.8        # [MEASURED 2026-09-08] faces carrying the M2 lug hol
 SOCKET_HORN_SEAT_X = 28.8  # [MEASURED 2026-09-08] faces the drive horn and idler
                            # sit on, flat
 SOCKET_IDLER_T = 3.1       # [MEASURED 2026-09-08] idler thickness; sits flat on the seat
-SOCKET_IDLER_BOSS_PROUD = 0.7  # [MEASURED 2026-09-08] servo rear boss above the idler face;
-                               # the idler-side plate needs a >=0.7 deep centre recess
+SOCKET_IDLER_BOSS_PROUD = 0.7  # [MEASURED 2026-09-08] the servo's Back boss above the
+                               # idler's outer face; the Back plate needs a >=0.7
+                               # deep blind centre recess
 SOCKET_CASE_Y = 24.7       # [STEP] SO-101 Gauge_0 pocket, case width
 SOCKET_CASE_L = 45.23      # [SPEC] nominal case length
 SOCKET_CLEAR = 0.0        # [MEASURED 2026-09-07] maintainer: SO-101 fits PLA+/PETG
 SOCKET_AXIS_Z = SOCKET_CASE_L / 2 + SERVO_AXIS_X  # [SPEC] rear-face to axis
 SOCKET_WALL = 5.0         # [DESIGN] SO-101 nominal wall >=4.8
 SOCKET_DEPTH = 17.0       # [STEP] SO-101 rear-case capture depth
-SOCKET_SHELF = 5.0        # [DESIGN] flat bed / case rear support
+SOCKET_SHELF = 5.0        # [DESIGN] cradle floor under the servo's Bottom
 SOCKET_COLLAR_WALL = 3.0  # [STEP] SO-101 sleeve
-SOCKET_COLLAR_BOTTOM = -9.0 # [STEP] sleeve overlap below rear face
+SOCKET_COLLAR_BOTTOM = -9.0 # [STEP] sleeve overlap below the servo's Bottom
 SOCKET_COLLAR_CLEAR = 0.1 # [DESIGN] per side = 0.2 total
 SOCKET_FRONT_CLEAR = 0.16 # [STEP] upstream front-wall contact allowance
 SOCKET_LUG_BACK_Z = 2.1   # [STEP] SO-101 printed holes, not a caliper measurement
@@ -140,9 +145,9 @@ SOCKET_SEAT_OFFSET = 0.5   # [MEASURED 2026-09-08] the widest faces are NOT symm
                            # seat mid-plane sits +0.5 toward the drive side.
 SOCKET_IDLER_FACE = SOCKET_SEAT_OFFSET - (SOCKET_HORN_SEAT_X / 2 + SOCKET_IDLER_T)
                            # [MEASURED] -17.0: idler outer face, 0.4 INSIDE the
-                           # widest back-face plane (-17.45), so the idler plate
-                           # (R 14) must not reach the region where the case is
-                           # at full width - axial extents still to measure.
+                           # widest Back plane (-17.45), so the Back plate (R 14)
+                           # must not reach any height where the case is at full
+                           # width - plane heights still to measure.
 SOCKET_HORN_SPAN = 36.4   # [MEASURED 2026-09-08] calipers: drive horn outer face
                           # to idler wheel outer face on a Waveshare ST3215 with
                           # both horns fitted = 36.4; the printed SO-101

@@ -1,204 +1,164 @@
-# SO-101 servo joint pattern — measured from upstream CAD (2026-09-07)
+# SO-101 servo joint pattern — what DEC-21 "SO-ARM compatible" means in numbers
 
-**What DEC-21 "SO-ARM compatible" actually means, in numbers.** Source:
-[TheRobotStudio/SO-ARM100](https://github.com/TheRobotStudio/SO-ARM100)
-`STEP/SO101/SO101 Assembly.step` plus the individual part STEPs (Apache-2.0),
-measured with build123d/OpenCascade booleans and trimesh sections. Every figure
-is **upstream CAD nominal**, not a caliper reading. Where the upstream servo
-model and the printed pocket disagree, trust the pocket: the printed parts are
-proven by every arm assembled and by the press-fit results on the reference
-printer (`3d-printing/docs/print-log.md`, 2026-09-06/07).
+Canonical description of how SO-101 mounts an STS3215 and drives from it, and
+the servo interface dimensions the koala socket primitive is built to. Sources,
+in order of authority: **calipers on a Waveshare ST3215 and on the maintainer's
+printed SO-101 parts** (2026-09-08, `test-log.md`); **the printed-part STEPs**
+from [TheRobotStudio/SO-ARM100](https://github.com/TheRobotStudio/SO-ARM100)
+`STEP/SO101/`, which are proven by fit; and, for arrangement only, upstream's
+assembly STEP. Upstream's *servo model* is not a source: it is hollow on the
+Back and its assembly mates are ~1.9 mm off at the shoulder.
 
-Why this exists: both koala drafts (a3f265c, DEC-29) claimed DEC-21 and followed
-only the servo's outer dimensions. The maintainer, half-way through printing and
-assembling an SO-101, saw the difference on the bench. This is the canonical
-description of the pattern; the restart brief
-([`cad-restart-brief.md`](cad-restart-brief.md)) tells the designer to build it
-as a primitive and use it at every joint.
+Why this exists: both discarded koala drafts (a3f265c, DEC-29) claimed DEC-21
+and followed only the servo's outer dimensions. The maintainer, assembling an
+SO-101, saw the difference on the bench. The restart brief
+([`cad-restart-brief.md`](cad-restart-brief.md)) tells the designer to build
+the pattern as one primitive and use it at every joint.
 
 ![Base joint: Base alone, with servo, with Base_motor_holder](img/soarm-base-joint.png)
 ![Shoulder joint: Rotation_Pitch, servo, Motor_holder_Base, Upper_arm clevis](img/soarm-shoulder-joint.png)
 
-**Fit basis updated by DEC-33:** the maintainer has now confirmed ST3215 fit
-in the SO-101 parts in both PLA+ and PETG and authorized using these nominal
-interfaces without a caliper prerequisite. Figures below retain upstream-CAD
-provenance. Validate the new parts using the single-joint rig.
+## Terminology — use these words and no others
 
-## The pattern (same at base, shoulder, wrist)
+Stand the servo on its end with the drive horn toward you:
 
-Every powered joint puts three printed parts around one STS3215:
-
-1. **Cradle**, part of the structural link. Three walls plus a shelf, open on the
-   servo's front face and on top, so the servo drops in and the pocket prints
-   support-free. It holds the **rear ~17 mm** of the case. Two of the four case
-   screws pass through its side walls.
-2. **Collar** (upstream: "motor holder"). A separate 3 mm sleeve, open top and
-   bottom. It slides down over the servo *and* over the cradle rim, closing the
-   open front against the servo's front face and doubling the wall. The other two
-   case screws pass through bosses in the collar, so the servo pins collar and
-   cradle together. At the base joint the collar is additionally screwed to the
-   tower (two M2 self-taps into Ø1.5 pilots).
-3. **Clevis** on the driven link: two ~3.5 mm plates bolted 4×M3 to the drive horn
-   *and* 4×M3 to the idler horn. The servo is loaded in double shear, never as a
-   cantilever off one horn. The drive-side plate also has the Ø3.2 centre hole for
-   the horn's centre screw.
-
-Retention is the pocket. The four M2 self-tappers go into the **servo's own lugs**,
-never into plastic; they only stop the case lifting out.
-
-**Where the pattern is used, per the assembly STEP (2026-09-08):** base
-(`Base` + `Base_motor_holder`), shoulder (`Rotation_Pitch` +
-`Motor_holder_Base`) and wrist pitch (`Under_arm` + `Motor_holder_Wrist`,
-the shoulder arrangement turned on its side). **The elbow is the exception:**
-the elbow servo's rear 20 mm sits in a one-piece saddle at the far end of
-`Upper_arm` — shelf plus the two horn-face walls, open on both width faces,
-all four lugs through those walls, no collar — and `Under_arm` carries the
-elbow clevis. The lugs are **ears standing proud** of the horn and back faces
-at the rear end (photo IMG_6989, 2026-09-08), so a servo cannot be pushed
-lengthwise into a closed pocket sized to the case: every socket admits it
-sideways through an open face, and the collar is what closes that face and
-carries the ears' screws afterwards. The elbow saddle gets away without one by
-leaving both width faces open and taking all four screws in its side walls.
-
-## Numbers
-
-| Item | Value (mm) | Where measured |
+| Word | Servo face | Was called |
 |---|---|---|
-| Pocket across the output axis (case "thickness") | **34.9** | shoulder cradle inner faces; `STL/Gauges/Gauge_0` pocket |
-| Pocket across the case width | **24.7** | base tower inner faces; `Gauge_0` pocket |
-| `Gauge_tight_1` pocket | 34.8 × 24.6 | STL section |
-| Cradle depth, shelf to wall top | 17–18.5 | shoulder: shelf Z 84.5, walls to 101.5 / 103.2 |
-| Cradle wall thickness | 4.8 (back-face side), 6.3 (horn side), back wall 4.8 | shoulder, mid-height |
-| Base tower socket walls | 5.0 | base, both sides |
-| Collar wall | 3.0 (shoulder); 4.0–4.9 (base) | rod probes |
-| Collar height / overlap below the cradle shelf | 26 / 9 | shoulder: Z 75.5–101.5 |
-| Collar-to-cradle clearance | 0.0–0.4 total | shoulder |
-| Collar front wall to servo front face | 0.16 (shoulder), 0 (base) | rod probes |
-| Clevis plate thickness | 3.5 | Upper_arm, Rotation_Pitch |
-| Horn screw holes in plastic | **Ø3.0–3.2** on a **9.9** square | Upper_arm r=1.5, Rotation_Pitch r=1.6 |
-| Drive-side centre hole | Ø3.2 through the plate | Rotation_Pitch top plate, Upper_arm horn-side plate |
-| Case-screw hole in plastic | **Ø2.0 clearance, 2.0–2.2 long**, wall counterbored above it | all four parts |
-| Self-tap into plastic (collar → base tower) | **Ø1.5 pilot**; Ø2.0 clearance in the collar | Base r=0.75, Base_motor_holder r=1.0 |
-| Screws in the upstream model | #1-42 × 3/16" ≈ **M2 × 4.8** self-tap (the supplied M2×5); M3 × 6 pan head | assembly part labels |
+| **Front** | the face the drive spindle and horn are on | horn face, drive face, horn side |
+| **Back** | the opposite face, carrying the idler and the connector bay | back face, idler face, idler side |
+| **Bottom** | the end face it stands on, away from the output axis; the M2 ears are near it | rear face, rear end, tail |
+| **Top** | the end face nearest the output axis (the axis is offset 12.5 toward it) | front end, nose |
+| **Sides** | the two flat, symmetric long faces | width faces, long side faces |
 
-### Case lug positions, from the printed holes (base and shoulder agree)
+The **output axis** runs Front → Back. **Height** is measured from the Bottom.
+Printed-part words follow the servo: a cradle has a **floor** under the Bottom,
+a **Front wall** and a **Back wall** (the pair 34.9 apart, which carry the M2
+screws), and one **Side wall**; its **open Side** is where the servo enters and
+where the collar's **closing wall** goes. The clevis has a **Front plate** on the
+drive horn and a **Back plate** on the idler. In `servo_iface.py`: Front = +X,
+Back = −X, Bottom = Z 0, Top = Z 45.23, Sides = ±Y.
 
-Lateral: **±10.2–10.5** from the case centreline (20.4–21 apart; koala
-`SERVO_TAB_Y = 10.4` stands). Along the long axis, measured from the **rear face**
-of the case (the end away from the output axis):
+## The pattern
 
-| Face | Offset from rear face |
-|---|---|
-| Horn-side face (drive horn side) | **5.5–6.0** |
-| Back face (idler side) | **2.0–2.2** |
+Every powered joint puts three printed parts around one servo:
 
-The two faces are **not symmetric**. koala's single `SERVO_TAB_X = −20.7` (1.9 from
-the rear face) matches the back face only. Adopt these upstream offsets under DEC-33; verify retention on the new rig.
+1. **Cradle**, part of the structural link: floor, Front wall, Back wall, one
+   Side wall; open Side and open Top. It holds the bottom ~17 mm of the case.
+   Its Front and Back walls each take one M2 screw into the ears at the lateral
+   position nearer the Side wall.
+2. **Collar** (upstream "motor holder"): a separate 3 mm sleeve, open at both
+   ends, slid down over servo and cradle together. Its closing wall shuts the
+   open Side against the servo; its two bosses at the open-Side corners take the
+   other two M2 screws. At the base joint the collar is also screwed to the
+   tower (two M2 self-taps into Ø1.5 pilots).
+3. **Clevis** on the driven link: a Front plate bolted 4×M3 to the drive horn
+   and a Back plate bolted 4×M3 to the idler, both horns tapped M3 on the 9.9
+   square. The servo is loaded in double shear, never as a cantilever.
 
-### The M2×5 length problem, answered
+Retention is friction in the pocket plus **four M2 self-tappers into the
+servo's own ears**, two through the Front wall side and two through the Back
+wall side; nothing threads into plastic. The ears stand proud of the case, so a
+servo cannot enter a closed pocket lengthwise: every socket admits it through
+the open Side and the collar closes that Side afterwards.
 
-The Ø2.0 clearance section is only 2.0–2.2 mm long inside walls that are 5–7.5 mm
-thick: upstream counterbores the wall so ~2.2 mm of plastic sits under the screw
-head and the supplied M2×5 still reaches the lug. koala's test-log entry of
-2026-09-07 ("M2×5 too short for our 3.95 / 6.35 mm walls") is therefore solved by
-geometry, not by buying longer screws.
+**Where it is used** (assembly STEP): base (`Base` + `Base_motor_holder`),
+shoulder (`Rotation_Pitch` + `Motor_holder_Base`), wrist pitch (`Under_arm` +
+`Motor_holder_Wrist`, the shoulder arrangement on its side). **The elbow is the
+exception:** the elbow servo's bottom 20 mm sits in a one-piece saddle at the
+far end of `Upper_arm` — floor plus Front and Back walls, both Sides open, all
+four M2 screws through those two walls, no collar — and `Under_arm` carries the
+elbow clevis.
 
-### Clevis span
+## The servo, as measured (calipers, 2026-09-08; cheap tool, ±0.3)
 
-Base joint: Rotation_Pitch's plates bear on the horn faces, **36.4 apart**.
-`Rotation_Pitch_SO101.step` has its arm inner faces at Y = 10.0 and Y = 46.4
-(36.4), matching calipers on the printed part and on a servo with both horns
-fitted (test-log 2026-09-08) and the SO-100 bracket (test-log 2026-09-02).
-The 37.5 that this document carried until 2026-09-08, and that DEC-33 adopted,
-was a **measurement error in this review**: the probe along the axis of the
-idler-side arm read the floor of a shallow centre recess (about 1 mm deep,
-under 8 mm across, present only at the axis) instead of the arm face. Upstream's
-CAD was right. Two consequences for the primitive: `SOCKET_HORN_SPAN = 36.4`,
-and the idler-side plate wants that small centre recess for whatever stands
-proud at the idler's centre — measure it. The drive-side arm has a Ø3.2 centre
-through-hole instead. Other stand-offs in this section remain CAD-only until the
-remaining caliper items in the test-log are taken.
+The Front and Back are not flat. Each has **three planes**, and they are **not
+symmetric about the output axis**. Distances are between the same plane on
+Front and Back, across the axis:
 
-## The interface, read from the printed parts alone (2026-09-08)
+| Plane | Front ↔ Back | Front side, from horn seat | Back side, from idler seat |
+|---|---|---|---|
+| Horn / idler seat (the horns sit flat on it) | **28.8** | 0 | 0 |
+| Ear face (carries the M2 holes) | **31.8** | 1.5 | 1.5 |
+| Widest face (what the pocket grips) | **~34.8** | 2.5 | **3.5** |
+| Drive horn outer face | | **4.3–4.5** | |
+| Idler outer face | | | **3.1** (idler thickness, sits flat) |
+| Servo boss through the idler | | | 0.7 proud of the idler face |
 
-The maintainer's point, and the right method: the SO-101 printed-part STEPs
-are proven by fit, so every **part-intrinsic** dimension below is a fact about
-the servo interface. Rod probes at set radii from each joint axis and cylinder
-listings around each hole, on `Rotation_Pitch`, `Upper_arm`, `Base` and
-`Motor_holder_Base`. Where two parts carry the same feature, both are given.
+Closure: 28.8 + 3.1 + 4.3 = 36.2 against the measured **36.4 span**; 28.8 +
+2.5 + 3.5 = 34.8. The drive horn is 4.3–4.5 above its seat, so it is thicker
+than the idler or sits up on the output boss. The idler is 3.1 thick: a 2.1 mm
+tapped body and a 1.0 mm boss that faces **inward** onto the servo; both horns
+present **flat outer faces** when fitted. The drive horn is retained by a
+**pan-head M3** that stands proud of its face.
+
+Taking the pocket as datum (X = 0 at its centre), the seat mid-plane is
+**0.5 toward the Front**, the idler outer face is at **−17.0** and the drive
+horn face at **+19.4** (`SOCKET_SEAT_OFFSET`, `SOCKET_IDLER_FACE`,
+`SOCKET_DRIVE_FACE`). The idler face is therefore 0.4 *inside* the widest Back
+plane (−17.45): a Back plate must not reach any height where the case is at
+full width. **Not yet measured:** over what height from the Bottom each plane
+runs. The audit currently fails on this, correctly, because the case reference
+is still a full-width box.
+
+Connectors: two, side by side in a **bay recessed into the Back**, immediately
+below the idler disc, facing out along the output axis; the cable leaves along
+the axis and turns. Seated in a 17 mm cradle the bay sits just above the collar
+rim (photos IMG_6990/6991). Two further M2 holes flank the idler disc on the
+Back, ~20 mm above the pair the collar uses; the collar's pair are the **ears
+near the Bottom**. *To confirm:* bay height from the Bottom; ears at 2.2 and
+5.8 with holes.
+
+## The printed parts, as read from their STEPs (part-intrinsic, proven by fit)
 
 | Feature | Value (mm) | Parts |
 |---|---|---|
-| Clevis span, arm inner face to arm inner face | **36.4** (65.78−29.38; 20.24−(−16.16)) | Rotation_Pitch, Upper_arm |
-| Clevis arm faces | **flat** — no Ø20 horn recess on either side; the horn and idler bear on plain faces | both |
-| Drive-side arm centre | Ø3.2 through hole, plus a countersink/recess: cone Ø8 at the face to Ø3.6 at 2.4 deep (Rotation_Pitch); Ø7.5 × 1.5 with a chamfer to Ø10.5 (Upper_arm) | both |
-| Idler-side arm centre | blind recess Ø6 × 1.0 chamfered to Ø8 (Rotation_Pitch); Ø8 × 1.5 chamfered to Ø11 (Upper_arm). No through hole | both |
-| Horn screw holes | Ø3.2 (Rotation_Pitch) / Ø3.0 (Upper_arm), **3.53 long**, 9.9 square; pan heads sit in a Ø24 pocket behind the web | both |
-| Arm outline at the horn | Ø24 round pad, edge chamfered ~1.5 | both |
-| Pocket across the output axis / across the width | **34.9 / 24.7** | Rotation_Pitch / Base |
-| Lug hole stack, three of four positions | **Ø2.0 × 2.2 seat, then Ø4.0 counterbore** to the outside (4.5–7.8 long) | Rotation_Pitch both walls, Base roof, Motor_holder_Base idler-side boss |
-| Lug hole stack, fourth position | **Ø4.0 straight through** the 8.5 mm boss, no seat | Motor_holder_Base horn-side boss — see bench question 3 |
-| Base floor (idler-side lug) | Ø2.0 through a 2.0 mm floor; heads exposed underneath | Base |
-| Lug offsets from the shelf / rear wall | idler side **2.2–2.3**, horn side **5.7–6.1** | Rotation_Pitch (from shelf), Base (from rear wall inner face) |
-| Lug offset from the case centreline | **±10.25** | all |
-| Rear tab clamp | Base roof underside to floor top **32.9** — 1.0 per side inside the 34.9 pocket, so the lug tab region is stepped below the main flat | Base |
-| Cable exit, base joint | window in the tower's rear wall **24.7 wide × 22 tall** (Z 35.6–57.7 against a case at Z 28–63), then a Ø11 vertical channel | Base |
-| Cable exit, shoulder joint | the shelf under the servo is **solid** across the whole footprint; no hole. The cable must leave sideways toward the open front | Rotation_Pitch |
-| Collar | 3.0 walls, 26 tall, 9 below the shelf, 0.1 per side to the cradle, 0.16 to the servo front face | Motor_holder_Base |
+| Clevis span, plate inner face to plate inner face | **36.4** (65.78−29.38; 20.24−(−16.16)) — matches calipers on the servo and on the print | Rotation_Pitch, Upper_arm |
+| Clevis plate faces | **flat**, no horn recess; plates bear on the flat horn faces | both |
+| Front plate centre | Ø3.2 through, plus a countersink for the drive horn's pan-head screw: cone Ø8 → Ø3.6, 2.4 deep (Rotation_Pitch); Ø7.5 × 1.5 with chamfer (Upper_arm) | both |
+| Back plate centre | blind recess Ø6 × 1.0 chamfered to Ø8 (Rotation_Pitch); Ø8 × 1.5 to Ø11 (Upper_arm) — clears the 0.7 servo boss | both |
+| Horn screw holes | Ø3.2 (Rotation_Pitch) / Ø3.0 (Upper_arm), 3.53 long, 9.9 square; **teardrop counterbores** for the heads behind the web. **Too small for the M3 horn screws supplied with the Waveshare servos** (maintainer) | both |
+| Plate outline at the horn | Ø24 pad, edge chamfered ~1.5 | both |
+| Pocket, Front wall ↔ Back wall / Side wall ↔ open Side | **34.9 / 24.7**; `Gauge_0` is the same pocket, a press fit in PLA+ on the reference printer | Rotation_Pitch / Base |
+| **Inward bosses at the M2 holes** | wall inner faces at 15.6 and 16.2 from the pocket centre = **31.8**, the ear faces; the wall is 5 elsewhere and ~7.5 at the boss | Rotation_Pitch |
+| Cradle depth, floor to wall top | 17–18.5 | Rotation_Pitch |
+| Cradle wall thickness | Front/Back 4.8–6.3 (7.5 at the bosses); Side wall 4.8; Base tower 5.0 | Rotation_Pitch, Base |
+| M2 hole stack, three of four positions | **Ø2.0 × 2.2 seat, then Ø4.0 counterbore** outward (4.5–7.8 long) | Rotation_Pitch both walls, Base roof, Motor_holder_Base Back boss |
+| M2 hole stack, fourth position | **Ø4.0 straight through** the 8.5 boss, no seat | Motor_holder_Base Front boss — bench question |
+| Base floor (Back-side ear) | Ø2.0 through a 2.0 floor; heads exposed underneath | Base |
+| M2 hole heights from the floor | **Back-side ears 2.2–2.3; Front-side ears 5.7–6.1** — the two faces differ | Rotation_Pitch, Base |
+| M2 holes, lateral | ±10.25 from the pocket's Side-to-Side centre | all |
+| Base roof ↔ floor | 32.9, clamping the ears (31.8) with ~0.5 each side | Base |
+| Collar | 3.0 walls, 26 tall, 9 below the floor, 0.1 per side to the cradle, closing wall 0.16 from the servo Side | Motor_holder_Base |
+| Cable | **no window** in any cradle or collar wall; the Base tower has a 24.7 × 22 window in the wall behind the Bottom (height 7.6–29.7) | Rotation_Pitch, Motor_holder_Base, Base |
+| Screws in the upstream model | #1-42 × 3/16" ≈ M2 × 4.8 self-tap (the supplied M2×5); M3 × 6 pan head | assembly labels |
 
-**What the STEPs cannot give: the split of the horn stack between the two
-sides.** Span minus pocket fixes the total at 36.4 − 34.9 = 1.5, but the two
-joints in upstream's *assembly* place the parts inconsistently:
+### The M2×5 length problem, answered
 
-| Joint | Horn-side stand-off | Idler-side stand-off | Basis |
-|---|---|---|---|
-| Shoulder | −0.64 (plate inside the pocket plane — impossible) | +2.14 | Upper_arm plate faces vs Rotation_Pitch pocket faces |
-| Base | +1.29 | +0.21 | Rotation_Pitch arms vs the Base roof/floor, assuming the rear tab is centred on the case |
+The Ø2.0 section is 2.0–2.2 mm long inside a wall bossed inward to the ear
+face: ~2.2 mm of plastic under the head, then the ear. The supplied M2×5
+reaches. koala's test-log finding of 2026-09-07 ("M2×5 too short for our 3.95 /
+6.35 mm walls") is solved by geometry, not longer screws.
 
-Individual part files do not know where the servo sits inside them, and the
-assembly mates are demonstrably off by ~1.9 mm at the shoulder. The base-joint
-figures are the physically possible pair and agree with the design's current
-assumption (drive horn ~1.3–1.5 proud, idler near flush), but they rest on a
-centred-tab assumption. **One bench observation closes it**: whether the idler
-wheel stands proud of the case's main flat, and by roughly how much.
+## Corrections the koala primitive needs (against DEC-34 as built)
 
-### Corrections to the primitive that follow from this
+1. **Lug split by lateral position:** Front and Back walls each take the ear
+   nearer the Side wall; collar bosses at the open-Side corners take the other
+   two. No lanes cut through the cradle walls.
+2. **Walls boss inward to 31.8 at the M2 holes**, 34.9 elsewhere.
+3. **Flat plates, no Ø20.5 recess.** Front plate: Ø3.2 centre hole with a
+   countersink for the pan-head; Back plate: blind centre recess ≥0.7 deep.
+4. **Counterbores sized to the supplied M3 horn screw heads** (to measure).
+5. **No cable slot** in floor or collar; keep the collar top at 17 so the bay
+   on the Back clears it.
+6. **Case reference with three planes** and their heights, so the audit's
+   clearance checks mean something; the Back plate must clear the widest Back
+   plane by staying above the region where the case is at full width.
+7. Clevis span **36.4**, idler face **−17.0**, drive face **+19.4** in the
+   pocket frame (already in `params.py`).
 
-1. Split the four lug screws by **lateral position**, as upstream does: each
-   cradle side wall takes one lug (one drive-face, one back-face) at the rear
-   lateral position; the collar's two bosses at the open front corners take the
-   other two. No lanes through the cradle wall.
-2. **Flat clevis plates.** Drop the Ø20.5 × 0.8 horn recess (an invention that
-   originated in this document's first version). Keep the drive-side Ø3.2 centre
-   hole with a countersink; add the idler-side centre recess, about Ø8 × 1.5.
-3. Lug stack Ø2.0 × 2.2 seat plus Ø4.0 counterbore, matching three of upstream's
-   four positions.
-4. Cable: the base joint exits rearward through a 22 mm window in the wall behind
-   the rear face; the shoulder has no shelf opening. Decide per joint after bench
-   question 2.
+## Reproducing the STEP measurements
 
-## Upstream CAD caveat
-
-The assembly's `ST3215_Servo_v2` model overlaps the cradle's back-face wall by up to
-~2 mm and models the back cover as a hollow shell. The printed pocket is 34.9 wide
-and fits real servos as a press fit, so the servo model is the suspect — exactly the
-lesson already learned from `STS3215_03a.step` (test-log 2026-09-02). **Derive pockets
-from upstream printed parts and calipers, never from a servo model.**
-
-## Fit evidence on the reference printer
-
-From `3d-printing/docs/print-log.md`: `Gauge_0` (zero-clearance 34.9 × 24.7 pocket)
-is a tight friction fit on the Ender-5 S1 in **PLA+** at 220/215 with
-`elefant_foot_compensation = 0`; the printed `Base` socket is a solid press fit.
-koala prints **PETG**, whose shrinkage differs, so `CLEAR_POCKET` (0.25, `[VERIFY]`)
-was originally awaiting a PETG gauge. **Superseded by DEC-33:** the maintainer
-confirms the SO-101 fit in PETG too; `SOCKET_CLEAR = 0` is specific to this
-pocket. Generic non-servo `CLEAR_POCKET` is unchanged.
-
-## Reproducing the principal measurements
-
-From `hardware/`, with the STEPs downloaded from the upstream `STEP/SO101/` folder
-into a scratch directory `$D`:
+From `hardware/`, with the STEPs downloaded from upstream `STEP/SO101/` into `$D`:
 
 ```sh
 uv run python - <<'PY'
@@ -222,7 +182,7 @@ for n, k in parts.items():
 PY
 ```
 
-Hole positions came from listing cylindrical faces (r ≤ 1.7 and r ≥ 8) of each
-part in the assembly frame; pocket widths from the rod probes above; gauge
-pockets from trimesh sections of the STLs. The scripts are not kept in the repo;
-the recipe above regenerates the load-bearing numbers.
+Clevis spans come from the same rod probe along the joint axis at 4–8 mm radius
+(at the axis itself the probe falls into the centre recess — the source of an
+earlier 37.5 error); hole stacks from listing cylindrical faces around each
+hole; gauge pockets from trimesh sections of the STLs.

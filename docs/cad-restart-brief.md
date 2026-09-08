@@ -74,22 +74,26 @@ patch: the review found both drafts were patched into their defects.
 ## 4. The servo socket primitive — build this first
 
 Implement three functions in `servo_iface.py`, parameterised from `params.py`, and
-use them at **every** STS3215 joint. Numbers are upstream CAD nominal
-(`soarm-joint-pattern.md`); the `[VERIFY]` ones move when the joint rig supplies evidence (DEC-33).
+use them at **every** STS3215 joint. Servo faces are named per
+`soarm-joint-pattern.md` (Front = drive horn, Back = idler and connectors, Bottom
+= the end it stands on, Top, Sides). Numbers come from the printed-part STEPs and
+from calipers on the servo (test-log 2026-09-08); the remaining `[VERIFY]` ones
+move when the joint rig supplies evidence.
 
 | Function | What it cuts / adds | Nominal |
 |---|---|---|
-| `cradle()` | pocket for the rear ~17 mm of the case: back wall + two side walls + shelf; open front and top. Each **side wall** takes one lug at the **rear lateral position** (one drive-face, one back-face): Ø2.0 × 2.2 seat then Ø4.0 counterbore to the outside | pocket 34.9 × 24.7 (zero clearance, `SOCKET_CLEAR`); walls 5 (≥4.8) |
-| `collar()` | 3 mm sleeve, ~26 tall, overlapping the cradle by ~9 mm, front wall bearing on the servo's front face; two bosses at the **open front corners** take the two lugs at the **front lateral position**, same Ø2.0 × 2.2 + Ø4.0 stack. No lanes cut through the cradle | inner = cradle outer + 0.2 total |
-| `clevis_plate(side)` | 3.5 mm **flat** plate bearing on the flat outer face of the horn or idler (both are flat when fitted, test-log 2026-09-08), 4 × `CLEAR_HOLE_M3` on the 9.9 square, **no horn recess**; drive side: Ø3.2 centre hole with a countersink; idler side: shallow blind centre recess ~Ø8 × 1.5 as clearance for the idler's centre fixing | both horns bolted — the joint is never a cantilever |
+| `cradle()` | floor under the servo's Bottom, a **Front wall** and a **Back wall** 34.9 apart that **boss inward to 31.8 at the M2 holes**, one **Side wall**; open Side and open Top; holds the bottom ~17 mm. Each of Front and Back wall takes one M2 at the ear nearer the Side wall: Ø2.0 × 2.2 seat, then Ø4.0 counterbore outward | pocket 34.9 × 24.7 (zero clearance, `SOCKET_CLEAR`); walls 5, ~7.5 at the bosses |
+| `collar()` | 3 mm sleeve, 26 tall, 9 below the floor, top flush with the cradle at 17 so the Back's connector bay clears it; closing wall shuts the open Side 0.16 from the servo; two bosses at the open-Side corners take the other two M2s, same stack. No lanes through the cradle, no cable slot | inner = cradle outer + 0.2 total |
+| `clevis_plate(side)` | 3.5 mm **flat** plate on the flat outer face of the horn or idler, 4 × `CLEAR_HOLE_M3` on the 9.9 square with counterbores sized to the **supplied** M3 heads; Front plate: Ø3.2 centre hole plus countersink for the drive horn's pan-head; Back plate: blind centre recess ≥0.7 for the servo boss. Plate outline must stay clear of any height where the case is at full width | idler face −17.0, drive face +19.4 in the pocket frame; span 36.4 |
 
-*Corrected 2026-09-08 from the printed-part STEPs
-([`soarm-joint-pattern.md`](soarm-joint-pattern.md), "read from the printed
-parts alone"). The first version of this table split the lugs by face and
-specified a Ø20.5 horn recess; both were wrong and DEC-34 implemented them.*
+*Corrected 2026-09-08 from the printed-part STEPs and the bench
+([`soarm-joint-pattern.md`](soarm-joint-pattern.md), "Corrections the koala
+primitive needs"). The first version of this table split the lugs by face,
+specified a Ø20.5 horn recess and a cable slot; all three were wrong and DEC-34
+implemented them.*
 
 Lug positions (from upstream printed parts, **adopted under DEC-33; check the new rig**): lateral
-±10.4; from the case's rear face **~2.1 on the back face, ~5.8 on the horn face**.
+±10.25; heights from the Bottom **2.2–2.3 on the Back side, 5.7–6.1 on the Front side**.
 `SERVO_TAB_HOLE = 4.0` is wrong for a screw hole and becomes 2.0 clearance.
 
 ## 5. Leg architecture (DEC-31) and the choices left to you
