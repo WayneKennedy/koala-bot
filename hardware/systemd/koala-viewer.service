@@ -1,0 +1,23 @@
+# koala-bot CAD viewer as a user service on the reference workstation (DEC-35).
+# Install once (paths are absolute; edit if the checkout moves):
+#   systemctl --user link ~/Code/koala-bot/hardware/systemd/koala-viewer.service
+#   systemctl --user enable --now koala-viewer
+#   sudo loginctl enable-linger $USER      # keep it up without a login session
+# Refresh after a CAD change: systemctl --user restart koala-viewer
+# (ExecStartPre rebuilds scene.json from the working tree; a failed build keeps
+# the previous scene and the server still starts.)
+[Unit]
+Description=koala-bot CAD viewer (build/viewer on 127.0.0.1:8017)
+After=network.target
+
+[Service]
+WorkingDirectory=/home/wkenn/Code/koala-bot/hardware
+Environment=PATH=/home/wkenn/.local/bin:/usr/local/bin:/usr/bin:/bin
+ExecStartPre=-/home/wkenn/.local/bin/uv run python -m koala_hardware.viewer --build
+ExecStart=/home/wkenn/.local/bin/uv run python -m koala_hardware.viewer --serve --no-open --port 8017
+TimeoutStartSec=900
+Restart=always
+RestartSec=5
+
+[Install]
+WantedBy=default.target

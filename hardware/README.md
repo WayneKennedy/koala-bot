@@ -40,9 +40,14 @@ uv run python -m koala_hardware.viewer       # http://localhost:8017
 data; `--port N` changes the port. Hip and knee sliders are **inspection poses,
 not control limits**. The nominal stance is hip 15°, knee 30°, roll 0°.
 
-On the maintainer's `ivory` host, the running viewer is available within the
-tailnet at <https://ivory.tail13a0c0.ts.net:8443/> (configured 2026-09-08).
-Tailscale Serve proxies to `127.0.0.1:8017`; the viewer process must be running.
+**Always-on instance (DEC-35):** the reference workstation `blake` runs the
+viewer as a user service, reachable within the tailnet at
+<https://blake.tail13a0c0.ts.net:8443/> (Tailscale Serve → `127.0.0.1:8017`;
+configured 2026-09-08). The unit is [`systemd/koala-viewer.service`](systemd/koala-viewer.service);
+its header has the install steps. **The scene is not live**: the server only
+serves `build/viewer/scene.json`, rebuilt when the service (re)starts. After a
+CAD change on blake, `systemctl --user restart koala-viewer` (the rebuild took
+6 s on 2026-09-08) and reload the tab; or run `viewer --build` and reload.
 
 The Parts tab shows declared print orientation, quantity and assembly notes;
 it is not a packed print plate.

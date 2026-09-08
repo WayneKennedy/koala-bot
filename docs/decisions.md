@@ -12,6 +12,16 @@ DEC-23/26/27/28/29 describe intent and lessons, not accepted geometry. The
 redesign is governed by [`cad-restart-brief.md`](cad-restart-brief.md);
 acceptance remains open as OQ-13.
 
+- **DEC-35 — `blake` is the reference workstation; the CAD viewer is always
+  on there** (2026-09-08). The viewer runs as a user systemd service on blake
+  (`hardware/systemd/koala-viewer.service`, linger enabled) behind Tailscale
+  Serve at `https://blake.tail13a0c0.ts.net:8443/`. The ad-hoc instance and
+  serve config on `ivory` are removed. Why: one canonical, always-reachable
+  view of the working tree for the maintainer and every harness, instead of
+  stale ad-hoc servers on two machines — two were found on 2026-09-08 serving
+  discarded geometry. The scene is rebuilt only on service (re)start; it does
+  not track edits live.
+
 - **DEC-34 — New six-servo lower-body prototype with explicit packaging and
   fastening** (2026-09-07). Replace every old structural builder. Use the
   shared SO-101 cradle/collar and double-horn clevis at roll, pitch and knee;
