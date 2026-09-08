@@ -26,9 +26,13 @@ def require_clear(a, b, label, limit=.01):
 
 def check_socket():
     case, cradle, collar = S.socket_reference(), S.cradle(), S.collar()
-    for a,b,label in [(case,cradle,'case/cradle'),(case,collar,'case/collar'),
-                      (cradle,collar,'cradle/collar')]:
-        require_clear(a,b,label)
+    # The pocket is a zero-clearance press fit and the vendored case model is
+    # good to ~0.3 mm (vendor/st3215/README.md), so case-to-pocket contact may
+    # register as a sliver of overlap. 50 mm³ is ~0.1 mm over the two 18.5 x
+    # 13.5 pads; a pocket 0.5 mm too narrow would show ~250 mm³ and still fail.
+    for a,b,label,limit in [(case,cradle,'case/cradle',50.),(case,collar,'case/collar',50.),
+                            (cradle,collar,'cradle/collar',.01)]:
+        require_clear(a,b,label,limit)
     for name,tool in S.socket_keepouts()[1:]:
         for n,p in [('cradle',cradle),('collar',collar)]:
             require_clear(tool,p,name+'/'+n)

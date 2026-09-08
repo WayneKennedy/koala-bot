@@ -3,10 +3,10 @@
 `STS3215_c.step` — a FreeCAD-authored model of the STS3215 with both horns,
 case screws, the two Molex connectors and the label (STEP header: FreeCAD,
 Open CASCADE 7.8, 2026-06-08; part labels `Middle`/`Top`/`Bottom` for the case
-halves, `Freetech_sts3215` for the label plate). Supplied by the maintainer on
-2026-09-08 from `~/Code/ST3215-CAD` on ivory. **Author and licence: not yet
-recorded — see below.** `sts3215_view2.jpg` is one of the renders that came
-with it.
+halves, `Freetech_sts3215` for the label plate). **Source:**
+<https://grabcad.com/library/feetech-sts3215-smart-serial-servo-1> (GrabCAD
+Community Library), downloaded by the maintainer and supplied on 2026-09-08.
+`sts3215_view2.jpg` is one of the renders that came with it.
 
 ## Why it is here
 
@@ -45,8 +45,13 @@ idler and connectors, Bottom = the end it stands on. Heights from the Bottom.
 
 ## Licence
 
-Unknown at the time of vendoring. The repository's own hardware licence
-(CERN-OHL-S-2.0, `../../../LICENSING.md`) does not cover third-party files in
-`vendor/`; this file must not be redistributed under it. **Record the source
-URL and licence here before the repository is published or this file is
-pushed.**
+GrabCAD Community Library content is provided under GrabCAD's terms of use,
+which grant members download and use rights but **do not grant a general
+redistribution licence**; the uploader's own licence, if any, is not stated on
+the model page. The repository's hardware licence (CERN-OHL-S-2.0,
+`../../../LICENSING.md`) does not cover `vendor/` files. **Decision pending
+(maintainer):** either keep this file out of the public repository — untracked,
+with `case_model()` falling back to the parametric profile when it is absent and
+this README telling a builder to download it from the link above — or obtain
+the uploader's permission to redistribute. Do not push the STEP before that is
+settled.
