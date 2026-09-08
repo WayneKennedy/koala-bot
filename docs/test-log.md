@@ -48,6 +48,18 @@ inside it and upstream's assembly mates are ~1.9 mm off at the shoulder:
 2. **Where the connectors are and which way the cable leaves.** The Base has a
    22 mm window behind the rear face; the Rotation_Pitch shelf is solid. Look at
    the shoulder servo in the assembled arm.
+   *From photo IMG_6990 (dry fit, base + shoulder, cable connected), 2026-09-08:*
+   the two connectors sit side by side in a **rectangular bay recessed into the
+   horn face**, at the bottom edge of the exposed case — i.e. immediately above
+   the collar rim, so roughly **17–23 mm from the rear end**. The cable leaves
+   **parallel to the output axis** and turns down the outside of the tower. The
+   cradle depth of 17 and the flush collar top are evidently chosen so the bay
+   clears the rim. At the base joint the cable dives down the near side of the
+   base servo and enters from below, which suggests the bay is a **through-slot
+   open on the back face too** (IMG_6989 shows a slot between the ears on the
+   back face). *To confirm:* through-slot or horn-face only; distance from the
+   rear end. The photo also confirms the collar's lug bosses at the **open-front
+   corners**, i.e. the lateral split of the four screws.
 3. **The fourth lug.** `Motor_holder_Base`'s horn-side boss has a plain Ø4.0
    bore with no 2.2 mm seat, unlike the other three positions. What does the
    servo present there — a Ø4 post, a threaded boss, or a plain lug?
