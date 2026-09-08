@@ -15,7 +15,8 @@ def volume_overlap(a, b):
     if any(getattr(aa.max, k) <= getattr(bb.min, k)+1e-6 or
            getattr(bb.max, k) <= getattr(aa.min, k)+1e-6 for k in 'XYZ'):
         return 0.0
-    return sum(s.volume for s in (a & b).solids())
+    common = a & b
+    return 0.0 if common is None else sum(s.volume for s in common.solids())
 
 
 def require_clear(a, b, label, limit=.01):
