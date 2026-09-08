@@ -105,6 +105,64 @@ proud at the idler's centre — measure it. The drive-side arm has a Ø3.2 centr
 through-hole instead. Other stand-offs in this section remain CAD-only until the
 remaining caliper items in the test-log are taken.
 
+## The interface, read from the printed parts alone (2026-09-08)
+
+The maintainer's point, and the right method: the SO-101 printed-part STEPs
+are proven by fit, so every **part-intrinsic** dimension below is a fact about
+the servo interface. Rod probes at set radii from each joint axis and cylinder
+listings around each hole, on `Rotation_Pitch`, `Upper_arm`, `Base` and
+`Motor_holder_Base`. Where two parts carry the same feature, both are given.
+
+| Feature | Value (mm) | Parts |
+|---|---|---|
+| Clevis span, arm inner face to arm inner face | **36.4** (65.78−29.38; 20.24−(−16.16)) | Rotation_Pitch, Upper_arm |
+| Clevis arm faces | **flat** — no Ø20 horn recess on either side; the horn and idler bear on plain faces | both |
+| Drive-side arm centre | Ø3.2 through hole, plus a countersink/recess: cone Ø8 at the face to Ø3.6 at 2.4 deep (Rotation_Pitch); Ø7.5 × 1.5 with a chamfer to Ø10.5 (Upper_arm) | both |
+| Idler-side arm centre | blind recess Ø6 × 1.0 chamfered to Ø8 (Rotation_Pitch); Ø8 × 1.5 chamfered to Ø11 (Upper_arm). No through hole | both |
+| Horn screw holes | Ø3.2 (Rotation_Pitch) / Ø3.0 (Upper_arm), **3.53 long**, 9.9 square; pan heads sit in a Ø24 pocket behind the web | both |
+| Arm outline at the horn | Ø24 round pad, edge chamfered ~1.5 | both |
+| Pocket across the output axis / across the width | **34.9 / 24.7** | Rotation_Pitch / Base |
+| Lug hole stack, three of four positions | **Ø2.0 × 2.2 seat, then Ø4.0 counterbore** to the outside (4.5–7.8 long) | Rotation_Pitch both walls, Base roof, Motor_holder_Base idler-side boss |
+| Lug hole stack, fourth position | **Ø4.0 straight through** the 8.5 mm boss, no seat | Motor_holder_Base horn-side boss — see bench question 3 |
+| Base floor (idler-side lug) | Ø2.0 through a 2.0 mm floor; heads exposed underneath | Base |
+| Lug offsets from the shelf / rear wall | idler side **2.2–2.3**, horn side **5.7–6.1** | Rotation_Pitch (from shelf), Base (from rear wall inner face) |
+| Lug offset from the case centreline | **±10.25** | all |
+| Rear tab clamp | Base roof underside to floor top **32.9** — 1.0 per side inside the 34.9 pocket, so the lug tab region is stepped below the main flat | Base |
+| Cable exit, base joint | window in the tower's rear wall **24.7 wide × 22 tall** (Z 35.6–57.7 against a case at Z 28–63), then a Ø11 vertical channel | Base |
+| Cable exit, shoulder joint | the shelf under the servo is **solid** across the whole footprint; no hole. The cable must leave sideways toward the open front | Rotation_Pitch |
+| Collar | 3.0 walls, 26 tall, 9 below the shelf, 0.1 per side to the cradle, 0.16 to the servo front face | Motor_holder_Base |
+
+**What the STEPs cannot give: the split of the horn stack between the two
+sides.** Span minus pocket fixes the total at 36.4 − 34.9 = 1.5, but the two
+joints in upstream's *assembly* place the parts inconsistently:
+
+| Joint | Horn-side stand-off | Idler-side stand-off | Basis |
+|---|---|---|---|
+| Shoulder | −0.64 (plate inside the pocket plane — impossible) | +2.14 | Upper_arm plate faces vs Rotation_Pitch pocket faces |
+| Base | +1.29 | +0.21 | Rotation_Pitch arms vs the Base roof/floor, assuming the rear tab is centred on the case |
+
+Individual part files do not know where the servo sits inside them, and the
+assembly mates are demonstrably off by ~1.9 mm at the shoulder. The base-joint
+figures are the physically possible pair and agree with the design's current
+assumption (drive horn ~1.3–1.5 proud, idler near flush), but they rest on a
+centred-tab assumption. **One bench observation closes it**: whether the idler
+wheel stands proud of the case's main flat, and by roughly how much.
+
+### Corrections to the primitive that follow from this
+
+1. Split the four lug screws by **lateral position**, as upstream does: each
+   cradle side wall takes one lug (one drive-face, one back-face) at the rear
+   lateral position; the collar's two bosses at the open front corners take the
+   other two. No lanes through the cradle wall.
+2. **Flat clevis plates.** Drop the Ø20.5 × 0.8 horn recess (an invention that
+   originated in this document's first version). Keep the drive-side Ø3.2 centre
+   hole with a countersink; add the idler-side centre recess, about Ø8 × 1.5.
+3. Lug stack Ø2.0 × 2.2 seat plus Ø4.0 counterbore, matching three of upstream's
+   four positions.
+4. Cable: the base joint exits rearward through a 22 mm window in the wall behind
+   the rear face; the shoulder has no shelf opening. Decide per joint after bench
+   question 2.
+
 ## Upstream CAD caveat
 
 The assembly's `ST3215_Servo_v2` model overlaps the cradle's back-face wall by up to

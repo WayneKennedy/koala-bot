@@ -18,11 +18,23 @@ constant it names to `[MEASURED]`.
 |---|-------------|-------|-------------|
 | 1 | Drive horn outer face → idler wheel outer face | **36.4** | `SOCKET_HORN_SPAN` 37.5 → **36.4**. Corroborated independently: the printed SO-101 `Rotation_Pitch` fork is 36.4 inner face to inner face, and `Rotation_Pitch_SO101.step` has its arm faces at Y = 10.0 and 46.4. The 37.5 in `soarm-joint-pattern.md` was a probing error there (an axis probe read a ~1 mm centre recess in the idler-side arm, not the arm face); upstream's CAD was right, as was the 2026-09-02 SO-100 bracket reading. Every span-derived figure in DEC-34 (drive-face datum, crossbar length, motor face, track, bolt grips) shifts by 1.1 mm; `params.py` derives them |
 
-Still to take: (2) case back face → idler wheel outer face; (3) case top → drive
-horn outer face; (4) bare case thickness and width; (5) lug hole positions from
-the rear face on both faces, and pair spacing; (6) lug hole depth against an
-M2×5; (7) connector position, size and exit direction on the rear face; (8) M2×5
-head diameter and height.
+**Superseded the same day by the maintainer's point that the printed-part
+STEPs are proven by fit.** Items 4, 5, 8 and most of 7 are now read from the
+parts themselves ([`soarm-joint-pattern.md`](soarm-joint-pattern.md), "read
+from the printed parts alone"): pocket, lug positions and hole stack, flat
+clevis plates with centre recesses, the base joint's 22 mm rear cable window.
+What the parts cannot say, because no part file knows where the servo sits
+inside it and upstream's assembly mates are ~1.9 mm off at the shoulder:
+
+1. **Which side the 1.5 mm horn stack lives on.** Does the idler wheel stand
+   proud of the case's main flat, and by roughly how much? (Depth rod from the
+   wheel face to the flat beside it; zero means all 1.5 is on the drive horn.)
+2. **Where the connectors are and which way the cable leaves.** The Base has a
+   22 mm window behind the rear face; the Rotation_Pitch shelf is solid. Look at
+   the shoulder servo in the assembled arm.
+3. **The fourth lug.** `Motor_holder_Base`'s horn-side boss has a plain Ø4.0
+   bore with no 2.2 mm seat, unlike the other three positions. What does the
+   servo present there — a Ø4 post, a threaded boss, or a plain lug?
 
 ## 2026-09-08 — DEC-34 digital prototype checks (nothing printed)
 

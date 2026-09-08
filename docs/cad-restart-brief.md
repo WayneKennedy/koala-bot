@@ -79,9 +79,14 @@ use them at **every** STS3215 joint. Numbers are upstream CAD nominal
 
 | Function | What it cuts / adds | Nominal |
 |---|---|---|
-| `cradle()` | pocket for the rear ~17 mm of the case: back wall + two side walls + shelf; open front and top; Ø2.0 clearance holes at the two **back-face** lugs, counterbored so ≤2.2 mm of wall sits under an M2×5 head | pocket 34.9 × 24.7 + `CLEAR_POCKET` per side; walls 5 (≥4.8) |
-| `collar()` | 3 mm sleeve, ~26 tall, overlapping the cradle by ~9 mm, front wall bearing on the servo's front face; bosses with Ø2.0 clearance + counterbore for the two **horn-face** lugs | inner = cradle outer + 0.2 total |
-| `clevis_plate(side)` | 3.5 mm plate, 4 × `CLEAR_HOLE_M3` on the 9.9 square, Ø20.5 horn recess; drive side adds the Ø3.2 centre hole | both horns bolted — the joint is never a cantilever |
+| `cradle()` | pocket for the rear ~17 mm of the case: back wall + two side walls + shelf; open front and top. Each **side wall** takes one lug at the **rear lateral position** (one drive-face, one back-face): Ø2.0 × 2.2 seat then Ø4.0 counterbore to the outside | pocket 34.9 × 24.7 (zero clearance, `SOCKET_CLEAR`); walls 5 (≥4.8) |
+| `collar()` | 3 mm sleeve, ~26 tall, overlapping the cradle by ~9 mm, front wall bearing on the servo's front face; two bosses at the **open front corners** take the two lugs at the **front lateral position**, same Ø2.0 × 2.2 + Ø4.0 stack. No lanes cut through the cradle | inner = cradle outer + 0.2 total |
+| `clevis_plate(side)` | 3.5 mm **flat** plate, 4 × `CLEAR_HOLE_M3` on the 9.9 square, **no horn recess**; drive side: Ø3.2 centre hole with a countersink; idler side: blind centre recess ~Ø8 × 1.5 | both horns bolted — the joint is never a cantilever |
+
+*Corrected 2026-09-08 from the printed-part STEPs
+([`soarm-joint-pattern.md`](soarm-joint-pattern.md), "read from the printed
+parts alone"). The first version of this table split the lugs by face and
+specified a Ø20.5 horn recess; both were wrong and DEC-34 implemented them.*
 
 Lug positions (from upstream printed parts, **adopted under DEC-33; check the new rig**): lateral
 ±10.4; from the case's rear face **~2.1 on the back face, ~5.8 on the horn face**.
