@@ -7,7 +7,10 @@ printed SO-101 parts** (2026-09-08, `test-log.md`); **the printed-part STEPs**
 from [TheRobotStudio/SO-ARM100](https://github.com/TheRobotStudio/SO-ARM100)
 `STEP/SO101/`, which are proven by fit; and, for arrangement only, upstream's
 assembly STEP. Upstream's *servo model* is not a source: it is hollow on the
-Back and its assembly mates are ~1.9 mm off at the shoulder.
+Back and its assembly mates are ~1.9 mm off at the shoulder. Since 2026-09-08
+the case *shape* in the koala audit comes from a better third-party model,
+[`hardware/vendor/st3215/`](../hardware/vendor/st3215/README.md), whose
+deviations from the calipers are tabulated there; its horn stack is not used.
 
 Why this exists: both discarded koala drafts (a3f265c, DEC-29) claimed DEC-21
 and followed only the servo's outer dimensions. The maintainer, assembling an

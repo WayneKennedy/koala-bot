@@ -20,6 +20,7 @@ acceptance record: [`../docs/cad-restart-design.md`](../docs/cad-restart-design.
 | `export.py`, `printability.py` | STL/renders, bed/surface screens, generated printed/fastener BOM |
 | `slice_remote.py` | Printer-host slicing, only when idle |
 | `vendor/so-arm100/` | Apache-2.0 upstream reference CAD |
+| `vendor/st3215/` | STS3215 case model used by `servo_iface.case_model()` for clearance checks; licence to record (see its README) |
 | `build/` | Ignored outputs: STL, renders, viewer scene, manifest and hash-matched slice cache |
 
 Source paths in the table are relative to `src/koala_hardware/` after the

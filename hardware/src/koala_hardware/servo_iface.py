@@ -147,17 +147,39 @@ def plate_location(side):
     raise ValueError("side must be 'drive' or 'idler'")
 
 
-def socket_reference():
-    """Measured case profile with both horns fitted (test-log 2026-09-08).
+_ST3215_STEP = __import__('pathlib').Path(__file__).resolve().parents[2] / 'vendor' / 'st3215' / 'STS3215_c.step'
+_ST3215_BOTTOM_X = 35.1117   # model frame: Bottom face at X=+35.11, Top at X=-10.11, axis at X=0
+_ST3215_POCKET_SHIFT = 0.4   # model widest faces sit at Y -17.9 / +17.1: shift +0.4 centres the pocket
 
-    Pocket frame: X=0 is the pocket centre; the seat mid-plane sits
-    SOCKET_SEAT_OFFSET toward the Front. Along the height from the Bottom the
-    case has an ear region (31.8 across), the widest region (34.9, what the
-    pocket grips) and, from SOCKET_REGION_Z[1] to the Top, faces at or below
-    the horn seats (28.8) - modelled AT the seat plane, which is conservative.
-    The idler (3.1) plus the servo boss (0.7 proud) sit on the Back seat; the
-    drive horn plus its pan-head centre screw sit on the Front seat.
+
+@lru_cache
+def case_model() -> Part | None:
+    """The bare STS3215 case from vendor/st3215/STS3215_c.step, in the socket frame.
+
+    Model frame -> socket frame: model +Y (drive side) -> Front +X; model Z
+    (Sides) -> -Y; model X (height, Bottom at +35.11) -> Z with the Bottom at
+    Z=0. Only the three case solids ('Middle', 'Top', 'Bottom' in the file) are
+    used; the file's horns, screws, connectors and label are dropped because
+    its horn stack is 0.85 wider than the measured 36.4 (test-log 2026-09-08)
+    and the koala horn stack comes from calipers instead. None if the file is
+    absent, and socket_reference() falls back to the parametric profile.
     """
+    if not _ST3215_STEP.exists():
+        return None
+    from build123d import import_step, Plane
+    model = import_step(str(_ST3215_STEP))
+    loc = Plane(origin=(_ST3215_POCKET_SHIFT, 0, _ST3215_BOTTOM_X),
+                x_dir=(0, 0, -1), z_dir=(0, -1, 0)).location
+    part = None
+    for child in model.children:
+        if child.label in ('Middle', 'Top', 'Bottom'):
+            for s in child.solids():
+                part = s if part is None else part + s
+    return loc * part
+
+
+def _parametric_case() -> Part:
+    """Fallback stepped profile from the caliper constants (conservative)."""
     y, off, L = P.SOCKET_CASE_Y/2, P.SOCKET_SEAT_OFFSET, P.SOCKET_CASE_L
     seat_f, seat_b = off + P.SOCKET_HORN_SEAT_X/2, off - P.SOCKET_HORN_SEAT_X/2
     ear_f, ear_b = off + P.SOCKET_EAR_X/2, off - P.SOCKET_EAR_X/2
@@ -167,6 +189,23 @@ def socket_reference():
     part = _box(ear_b, ear_f, -y, y, 0, zB)          # ear plane over the whole Bottom region
     part += _box(-wide, wide, -pad, pad, zA, zB)     # widest: a centred pad the pocket grips
     part += _box(seat_b, seat_f, -y, y, zB, L)       # seat level to the Top (conservative)
+    return part
+
+
+@lru_cache
+def socket_reference():
+    """Case (vendor STEP, or the parametric profile) plus the MEASURED horn stack.
+
+    Pocket frame: X=0 is the pocket centre; the seat mid-plane sits
+    SOCKET_SEAT_OFFSET toward the Front. The idler (3.1) plus the servo boss
+    (0.7 proud) sit on the Back seat; the drive horn plus its pan-head centre
+    screw sit on the Front seat (test-log 2026-09-08).
+    """
+    off = P.SOCKET_SEAT_OFFSET
+    seat_f, seat_b = off + P.SOCKET_HORN_SEAT_X/2, off - P.SOCKET_HORN_SEAT_X/2
+    part = case_model()
+    if part is None:
+        part = _parametric_case()
     z = P.SOCKET_AXIS_Z
     part += _x_hole(P.SOCKET_IDLER_FACE, seat_b, 0, z, P.SOCKET_HORN_DIA)           # idler
     part += _x_hole(P.SOCKET_IDLER_FACE - P.SOCKET_IDLER_BOSS_PROUD,

@@ -38,6 +38,16 @@ is exactly π·4²·0.7. Both are DEC-34 plate defects already on the correction
 list (Front countersink, Back blind recess); left failing until the plates are
 fixed.
 
+**Case reference switched to a vendored STEP, same day.** The maintainer
+supplied `STS3215_c.step` (FreeCAD model, author and licence to record;
+`hardware/vendor/st3215/README.md`). Its shape matches the servo — centred
+pads, ear plane, connector bay at 18.7–23.6, seat pads, Top step — and its
+dimensions match the calipers within 0.3 except the horn stack (span 37.25
+against 36.4). `servo_iface.case_model()` loads its three case solids into the
+socket frame (Bottom at Z=0, Front +X, pocket centred by a 0.4 shift); the
+horns, idler, boss and pan head stay on the measured constants. The
+hand-built stepped profile remains as the fallback when the file is absent.
+
 Also established the same day:
 
 - The printed forks are **counterbored (teardrop) over M3 clearance holes**;
