@@ -43,15 +43,24 @@ idler and connectors, Bottom = the end it stands on. Heights from the Bottom.
 | Connector bay, height band | 18.7–23.6 | 18.8–24.5 | ok |
 | Front case screws (model) | at 2.4 and 42.2, Z ±10 | printed parts use 5.8 on the Front | differs — the model shows case-assembly screws, not the SO-101 mounting holes |
 
-## Licence
+## Licence and how to get the file
 
 GrabCAD Community Library content is provided under GrabCAD's terms of use,
-which grant members download and use rights but **do not grant a general
-redistribution licence**; the uploader's own licence, if any, is not stated on
-the model page. The repository's hardware licence (CERN-OHL-S-2.0,
-`../../../LICENSING.md`) does not cover `vendor/` files. **Decision pending
-(maintainer):** either keep this file out of the public repository — untracked,
-with `case_model()` falling back to the parametric profile when it is absent and
-this README telling a builder to download it from the link above — or obtain
-the uploader's permission to redistribute. Do not push the STEP before that is
-settled.
+which grant members download and use rights but **not redistribution**, and the
+uploader states no licence. **The STEP and its render are therefore not in this
+repository** (`.gitignore`d here) and are not covered by the repository's
+CERN-OHL-S-2.0 hardware licence. What koala-bot *does* keep is the record above
+of what was taken from the model and how it compares to calipers; the
+dimensions the design depends on live in `params.py` with `[MEASURED]` tags.
+
+To reproduce the clearance audit with the case shape rather than the parametric
+fallback, download the model yourself:
+
+1. <https://grabcad.com/library/feetech-sts3215-smart-serial-servo-1> (GrabCAD
+   account required), STEP format.
+2. Save it as `hardware/vendor/st3215/STS3215_c.step` (this exact name).
+3. `koala_hardware.servo_iface.case_model()` picks it up automatically; without
+   it, `socket_reference()` uses the stepped profile from the measured constants.
+
+The file used on 2026-09-08 was 4,372,667 bytes with a FreeCAD/Open CASCADE 7.8
+header dated 2026-06-08.

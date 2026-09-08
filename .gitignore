@@ -19,3 +19,7 @@ Thumbs.db
 *.swp
 .idea/
 .vscode/
+
+# GrabCAD-sourced STS3215 model: use rights only, not redistributable (see README)
+hardware/vendor/st3215/*.step
+hardware/vendor/st3215/*.jpg
