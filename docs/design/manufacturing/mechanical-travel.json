@@ -1,0 +1,105 @@
+{
+  "scene_sha256": "bfc5fa25b8519642aca16265d2f61d4e4b45db3f5fe25d3e7fed8df44589b448",
+  "engine_sha256": "1460f87924e9bc0218bdfc7686dc560bade36bb1d1375008a240a61bbf76655e",
+  "poses": {
+    "quadruped": {
+      "bounds": {
+        "pitch": {
+          "min": -27,
+          "max": 91,
+          "stops": [
+            [
+              "front_carrier_right",
+              "reference_front_pitch_servo_right"
+            ],
+            [
+              "rear_carrier_right",
+              "front_forearm_right"
+            ]
+          ]
+        },
+        "roll": {
+          "min": -5,
+          "max": 116,
+          "stops": [
+            [
+              "pelvis_socket_right",
+              "rear_thigh_right"
+            ],
+            [
+              "reference_rear_roll_servo_right",
+              "rear_thigh_right"
+            ]
+          ]
+        },
+        "knee": {
+          "min": -73.75,
+          "max": 45.25,
+          "stops": [
+            [
+              "reference_front_elbow_servo_right",
+              "front_forearm_right"
+            ],
+            [
+              "reference_rear_knee_servo_right",
+              "rear_shank_right"
+            ]
+          ]
+        }
+      },
+      "step": 0.25,
+      "angular_reserve_degrees": 1,
+      "search_ceiling": 180
+    },
+    "upright": {
+      "bounds": {
+        "pitch": {
+          "min": -101,
+          "max": 58,
+          "stops": [
+            [
+              "front_carrier_right",
+              "reference_front_pitch_servo_right"
+            ],
+            [
+              "rear_carrier_right",
+              "reference_rear_pitch_servo_right"
+            ]
+          ]
+        },
+        "roll": {
+          "min": -5,
+          "max": 116,
+          "stops": [
+            [
+              "shoulder_socket_right",
+              "front_upper_arm_right"
+            ],
+            [
+              "reference_rear_roll_servo_right",
+              "rear_thigh_right"
+            ]
+          ]
+        },
+        "knee": {
+          "min": -6,
+          "max": 50.5,
+          "stops": [
+            [
+              "reference_front_elbow_servo_right",
+              "front_forearm_right"
+            ],
+            [
+              "reference_rear_knee_servo_right",
+              "rear_shank_right"
+            ]
+          ]
+        }
+      },
+      "step": 0.25,
+      "angular_reserve_degrees": 1,
+      "search_ceiling": 180
+    }
+  },
+  "scope": "Grouped initial CAD clearances at 0.25 degree steps with 1 degree reserve; head omitted, mounting unresolved. Recomputed by the viewer after changes. No electrical, loaded or continuous travel proof."
+}

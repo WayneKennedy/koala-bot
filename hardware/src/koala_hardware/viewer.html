@@ -3,7 +3,7 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>Koala Lower Body</title>
+<title>Koala V1</title>
 <style>
 /* Single dark instrument palette - this is a shop-floor CAD check, not a
    document, so it commits to one look and paints every colour explicitly. */
@@ -52,7 +52,7 @@ header p {
 .tabs button:focus-visible, .opt:focus-visible, .row:focus-visible,
 .view button:focus-visible { outline: 2px solid var(--accent); outline-offset: 2px; }
 
-#list { flex: 1; overflow-y: auto; padding: 0 6px 12px; min-height: 0; }
+#list { flex: 1; overflow-y: auto; padding: 0 6px 12px; min-height: 100px; }
 .group {
   padding: 12px 10px 5px; font: 600 10px/1 var(--sans);
   letter-spacing: 0.09em; text-transform: uppercase; color: var(--ink-faint);
@@ -65,6 +65,7 @@ header p {
   border-radius: 5px; background: none; color: var(--ink);
   font: 12px/1.35 var(--mono); cursor: pointer; text-align: left;
 }
+.row > span:nth-child(2) { min-width: 0; overflow: hidden; text-overflow: ellipsis; }
 .row:hover { background: var(--panel-2); }
 .row[aria-pressed="false"] { color: var(--ink-faint); }
 .row[aria-pressed="false"] .dot { opacity: 0.22; }
@@ -113,10 +114,16 @@ canvas { display: block; }
 #sel { color: var(--accent); }
 #pose, #detail { padding: 8px 16px; font-size: 11px; border-top: 1px solid var(--line); }
 #pose label { display: block; }
+#body-pose { background:var(--panel-2); color:var(--ink); border:1px solid var(--line); padding:3px; }
 #pose input { width: 100%; accent-color: var(--accent); }
 #neutral { background: var(--panel-2); color: var(--ink); border: 1px solid var(--line);
   border-radius: 4px; padding: 4px 10px; cursor: pointer; }
-#detail { max-height: 150px; overflow-y: auto; color: var(--ink-dim); }
+#detail { max-height: 80px; overflow-y: auto; color: var(--ink-dim); }
+#reference-controls { padding: 6px 16px; border-top: 1px solid var(--line); font-size: 11px; }
+#reference-controls select { background: var(--panel-2); color: var(--ink); border: 1px solid var(--line); padding: 3px; width: 100%; }
+#reference-controls input { width: 100%; accent-color: var(--accent); }
+#reference-note { position: absolute; top: 60px; right: 14px; max-width: 270px;
+  background: var(--panel); padding: 6px 10px; border-radius: 4px; font-size: 11px; }
 .warning { color: var(--warn); font-size: 10px; margin-top: 6px; }
 #loading {
   position: absolute; inset: 0; display: grid; place-items: center;
@@ -128,7 +135,7 @@ canvas { display: block; }
 <div id="app">
   <aside>
     <header>
-      <h1>Koala lower body</h1>
+      <h1>Koala V1</h1>
       <p id="stamp">loading…</p>
     </header>
     <div class="tabs" role="tablist">
@@ -136,17 +143,24 @@ canvas { display: block; }
       <button role="tab" id="tab-parts" aria-selected="false">Parts</button>
     </div>
     <div id="pose">
-      <label>Hip pitch <output id="pitch-value">0°</output>
-        <input id="pitch" type="range" min="-20" max="20" value="0" step="1"></label>
-      <label>Symmetric roll / splay <output id="roll-value">0°</output>
-        <input id="roll" type="range" min="-10" max="10" value="0" step="1"></label>
-      <label>Knee flexion <output id="knee-value">30°</output>
-        <input id="knee" type="range" min="0" max="90" value="30" step="1"></label>
-      <button id="neutral">Nominal stance</button>
-      <div class="warning">Inspection poses, not safe operating limits. Nominal SO-101 interfaces; cable routes and physical fit need the joint rig.</div>
+      <label>Body pose <select id="body-pose"><option value="quadruped">Supported · front feet</option><option value="upright">Upright · head pending</option></select></label>
+      <label>Root pitch adjustment <output id="pitch-value">0°</output>
+        <input id="pitch" type="range" min="0" max="0" value="0" step="0.25" disabled></label>
+      <label>Limb roll (sideways) <output id="roll-value">0°</output>
+        <input id="roll" type="range" min="0" max="0" value="0" step="0.25" disabled></label>
+      <label>Knee / elbow adjustment <output id="knee-value">0°</output>
+        <input id="knee" type="range" min="0" max="0" value="0" step="0.25" disabled></label>
+      <button id="neutral">Reset adjustments</button>
+      <div id="limits-status" class="warning">Calculating mechanical clearance…</div>
+      <div class="warning">Joint clearance only. Ground contact, cables and loaded motion are unverified.</div>
     </div>
     <div id="list"></div>
     <div id="detail">Prototype geometry. Select a print for its orientation and assembly notes.</div>
+    <div id="reference-controls" hidden>
+      <button class="opt" id="opt-reference" aria-pressed="true"><i class="box"></i>Side layout backdrop</button>
+      <label>Backdrop opacity <input id="reference-opacity" type="range" min="0.15" max="1" step="0.05" value="0.75"></label>
+      <a id="reference-download" href="body-quadruped.svg" target="_blank" style="color:var(--accent)">Open 2D schematic</a>
+    </div>
     <footer>
       <button class="opt" id="opt-ghost" aria-pressed="true"><i class="box"></i>Nominal servo references</button>
       <button class="opt" id="opt-wire" aria-pressed="false"><i class="box"></i>Wireframe</button>
@@ -161,11 +175,12 @@ canvas { display: block; }
       <button data-view="top">Top</button>
     </div>
     <div id="hud"></div>
+    <div id="reference-note" hidden>Orthographic side view · fixed nominal reference.<br>Dashed lines follow the adopted joint centres.</div>
     <div id="loading">loading geometry…</div>
   </main>
 </div>
 
-<script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
+<script src="three-r128.min.js"></script>
 <script>
 const $ = (s) => document.querySelector(s);
 const GRID_COL = 0x2a3038, AXIS_COL = 0x3d4650;
@@ -182,8 +197,10 @@ $("main").appendChild(renderer.domElement);
 
 const scene = new THREE.Scene();
 scene.background = new THREE.Color(0x14171b);
-const camera = new THREE.PerspectiveCamera(38, 1, 1, 8000);
-camera.up.set(0, 0, 1);                       // build123d is Z-up
+const perspective = new THREE.PerspectiveCamera(38, 1, 1, 8000);
+const orthographic = new THREE.OrthographicCamera(-300, 300, 300, -300, 1, 8000);
+let camera = perspective, activeView = "iso";
+for (const c of [perspective, orthographic]) c.up.set(0, 0, 1);
 
 scene.add(new THREE.HemisphereLight(0xbcd0e0, 0x20242a, 0.85));
 const key = new THREE.DirectionalLight(0xffffff, 0.75);
@@ -197,12 +214,19 @@ scene.add(root, helpers);
 /* ---- orbit: azimuth/elevation about the Z axis ---- */
 const cam = { az: -0.95, el: 0.32, r: 600, t: new THREE.Vector3() };
 function place() {
+  if (camera.isOrthographicCamera) {
+    const half = cam.r * Math.tan(perspective.fov * Math.PI / 360);
+    camera.left = -half * perspective.aspect; camera.right = half * perspective.aspect;
+    camera.top = half; camera.bottom = -half;
+    camera.updateProjectionMatrix();
+  }
   const ce = Math.cos(cam.el);
   camera.position.set(
     cam.t.x + cam.r * ce * Math.cos(cam.az),
     cam.t.y + cam.r * ce * Math.sin(cam.az),
     cam.t.z + cam.r * Math.sin(cam.el));
   camera.lookAt(cam.t);
+  camera.updateMatrixWorld(true);
   key.position.copy(camera.position).add(new THREE.Vector3(60, 40, 220));
   fill.position.copy(camera.position).multiplyScalar(-1);
 }
@@ -223,6 +247,7 @@ el.addEventListener("pointermove", (e) => {
       camera.position.clone().sub(cam.t).normalize(), right).normalize();
     cam.t.addScaledVector(right, -dx * k).addScaledVector(up, -dy * k);
   } else {
+    if (camera.isOrthographicCamera) { camera = perspective; activeView = "iso"; syncReference(); }
     cam.az -= dx * 0.008;
     cam.el = Math.max(-1.5, Math.min(1.5, cam.el + dy * 0.008));
   }
@@ -239,13 +264,72 @@ el.addEventListener("wheel", (e) => {
 function resize() {
   const w = $("main").clientWidth, h = $("main").clientHeight;
   renderer.setSize(w, h);
-  camera.aspect = w / h; camera.updateProjectionMatrix();
+  perspective.aspect = w / h; perspective.updateProjectionMatrix(); place();
 }
 addEventListener("resize", resize);
 
 /* ---- scene assembly ---- */
+let poseName = "quadruped";
+let limitSeeds={};
 let DATA = null, mode = "assembly", meshes = [], solo = null;
 const opts = { ghost: true, wire: false, grid: true };
+let referenceData = null, referenceMesh = null, referenceEnabled = true;
+function selectedReference() {
+  return referenceData?.variants.find(v => v.pose === poseName);
+}
+function syncReference() {
+  const visible = !!referenceMesh && referenceEnabled && mode === "assembly" && activeView === "side";
+  if (referenceMesh) referenceMesh.visible = visible;
+  $("#reference-note").hidden = !visible;
+  $("#reference-controls").hidden = !referenceData || mode !== "assembly";
+}
+function frameReference() {
+  const v = selectedReference();
+  if (!v || !referenceEnabled || activeView !== "side" || mode !== "assembly") return;
+  const [u, y, w, h] = v.bounds;
+  cam.t.set(-(u+w/2), 0, -(y+h/2));
+  cam.r = Math.max(h/2, w/2/perspective.aspect) * 1.05 / Math.tan(perspective.fov*Math.PI/360);
+  place();
+}
+let referenceRequest = 0;
+function loadReference() {
+  const v = selectedReference(); if (!v) return;
+  const request = ++referenceRequest;
+  $("#reference-download").href = `body-${poseName}.svg`;
+  new THREE.TextureLoader().load(v.file, texture => {
+    if (request !== referenceRequest) { texture.dispose(); return; }
+    if (referenceMesh) {
+      scene.remove(referenceMesh); referenceMesh.geometry.dispose();
+      referenceMesh.material.map.dispose(); referenceMesh.material.dispose();
+    }
+    const [u, y, w, h] = v.bounds, back = -400;
+    const geometry = new THREE.BufferGeometry();
+    geometry.setAttribute("position", new THREE.Float32BufferAttribute([
+      -u,back,-y-h, -u-w,back,-y-h, -u-w,back,-y, -u,back,-y],3));
+    geometry.setAttribute("uv",new THREE.Float32BufferAttribute([0,0,1,0,1,1,0,1],2));
+    geometry.setIndex([0,1,2,0,2,3]);
+    texture.encoding = THREE.sRGBEncoding;
+    referenceMesh = new THREE.Mesh(geometry,new THREE.MeshBasicMaterial({
+      map:texture, transparent:true, opacity:Number($("#reference-opacity").value),
+      side:THREE.DoubleSide, depthWrite:false }));
+    referenceMesh.renderOrder = -1;
+    scene.add(referenceMesh); syncReference(); frameReference();
+  });
+}
+$("#body-pose").onchange = () => {
+  poseName = $("#body-pose").value;
+  DATA.assembly = DATA.poses[poseName];
+  resetAngles();
+  load("assembly"); loadReference();
+};
+$("#reference-opacity").oninput = () => {
+  if (referenceMesh) referenceMesh.material.opacity = Number($("#reference-opacity").value);
+};
+$("#opt-reference").onclick = () => {
+  referenceEnabled = !referenceEnabled;
+  $("#opt-reference").setAttribute("aria-pressed",String(referenceEnabled));
+  syncReference(); frameReference();
+};
 
 function gridLines(x0, x1, y0, y1, step, z) {
   const pts = [];
@@ -297,10 +381,20 @@ function load(which) {
   }
 
   box.getCenter(cam.t);
-  const halfFov = Math.atan(Math.tan(camera.fov * Math.PI / 360) *
-                           Math.min(1, camera.aspect));
+  const halfFov = Math.atan(Math.tan(perspective.fov * Math.PI / 360) *
+                           Math.min(1, perspective.aspect));
   cam.r = box.getBoundingSphere(new THREE.Sphere()).radius / Math.sin(halfFov) * 1.08;
-  place(); applyPose(); applyVisibility(); buildList(); setHud(null);
+  place(); applyPose(); applyVisibility(); buildList(); setHud(null); syncReference(); frameReference();
+  if(which === "assembly") requestLimits(true);
+}
+
+function frameGeometry() {
+  root.updateMatrixWorld(true);
+  const box=new THREE.Box3().setFromObject(root);
+  box.getCenter(cam.t);
+  const half=Math.atan(Math.tan(perspective.fov*Math.PI/360)*Math.min(1,perspective.aspect));
+  cam.r=box.getBoundingSphere(new THREE.Sphere()).radius/Math.sin(half)*1.08;
+  place();
 }
 
 function pivotRotation(x, y, z, axis, angle) {
@@ -309,34 +403,65 @@ function pivotRotation(x, y, z, axis, angle) {
     .multiply(new THREE.Matrix4().makeTranslation(-x, -y, -z));
 }
 function applyPose() {
-  const pitch = Number($("#pitch").value), roll = Number($("#roll").value), knee = Number($("#knee").value);
-  $("#pitch-value").textContent = pitch + "°";
-  $("#roll-value").textContent = roll + "°";
-  $("#knee-value").textContent = knee + "°";
-  if (mode !== "assembly") return;
-  const d = DATA.meta, rad = Math.PI / 180;
+  const pitch=Number($("#pitch").value),roll=Number($("#roll").value),knee=Number($("#knee").value);
+  for (const [id,v] of [["pitch",pitch],["roll",roll],["knee",knee]]) $("#"+id+"-value").textContent=v+"°";
+  if (mode!=="assembly") return;
+  const rad=Math.PI/180, joints=DATA.meta.joints[poseName];
+  const reflect=new THREE.Matrix4().makeScale(1,-1,1);
   for (const mesh of meshes) {
-    const it = mesh.userData;
-    mesh.matrixAutoUpdate = false;
-    mesh.matrix.identity();
-    if (it.joint === "fixed") continue;
-    mesh.matrix.copy(pivotRotation(d.roll_x, it.side * d.roll_y, d.roll_z,
-      new THREE.Vector3(1, 0, 0), it.side * roll * rad));
-    if (it.joint === "pitch" || it.joint === "knee")
-      mesh.matrix.multiply(pivotRotation(d.pitch_x, it.side * d.pitch_y, d.pitch_z,
-        new THREE.Vector3(0, 1, 0), -(pitch - d.hip_nominal) * rad));
-    if (it.joint === "knee")
-      mesh.matrix.multiply(pivotRotation(d.knee_x, it.side * d.pitch_y, d.knee_z,
-        new THREE.Vector3(0, 1, 0), (knee - d.knee_nominal) * rad));
-    mesh.matrixWorldNeedsUpdate = true;
+    const it=mesh.userData; mesh.matrixAutoUpdate=false; mesh.matrix.identity();
+    if (it.side) {
+      const [key,group]=it.joint.split("_"),d=joints[key];
+      const r=pivotRotation(...d.roll,new THREE.Vector3(...d.roll_axis),roll*rad);
+      const h=pivotRotation(...d.pitch,new THREE.Vector3(0,1,0),pitch*rad);
+      const k=pivotRotation(...d.bend,new THREE.Vector3(0,1,0),knee*rad);
+      if(group!=="fixed")mesh.matrix.multiply(h);
+      if(group==="roll"||group==="bend")mesh.matrix.multiply(r);
+      if(group==="bend")mesh.matrix.multiply(k);
+      if(it.side===-1)mesh.matrix.premultiply(reflect).multiply(reflect);
+    }
+    mesh.matrixWorldNeedsUpdate=true;
   }
 }
-for (const id of ["#pitch", "#roll", "#knee"]) $(id).oninput = applyPose;
-$("#neutral").onclick = () => {
-  $("#pitch").value = DATA.meta.hip_nominal;
-  $("#knee").value = DATA.meta.knee_nominal;
-  $("#roll").value = 0; applyPose();
-};
+let limitWorker=null, limitRequest=0;
+let limitState={pending:true};
+const sliderIds=['pitch','roll','knee'];
+function angles(){return Object.fromEntries(sliderIds.map(k=>[k,Number($('#'+k).value)]));}
+function resetAngles(){for(const k of sliderIds){const e=$('#'+k);e.min=-180;e.max=180;e.value=0;}}
+function requestLimits(init=false){
+  if(mode!=='assembly'||!DATA)return;
+  const id=++limitRequest;limitState={pending:true};
+  for(const k of sliderIds)$('#'+k).disabled=true;
+  $('#limits-status').textContent='Calculating mechanical clearance…';
+  if(init||!limitWorker){
+    if(limitWorker)limitWorker.terminate();
+    limitWorker=new Worker('mechanical_limits.js');
+    limitWorker.onerror=e=>{
+      limitState={pending:false,error:e.message};
+      $('#limits-status').textContent='Clearance search unavailable; sliders locked.';
+    };
+    limitWorker.onmessage=e=>{
+      const result=e.data;
+      if(result.progress){$('#limits-status').textContent='Checking '+result.progress+' clearance…';return;}
+      if(result.id!==limitRequest)return;
+      limitState={pending:false,...result};
+      if(result.error){
+        $('#limits-status').textContent=result.error+(result.pair?' — '+result.pair.join(' / '):'');
+        return;
+      }
+      for(const k of sliderIds){
+        const input=$('#'+k),range=result.bounds[k];
+        input.min=range.min;input.max=range.max;input.disabled=range.min===range.max;
+        input.title=`CAD clearance ${range.min}° to ${range.max}°`;
+      }
+      $('#limits-status').textContent=sliderIds.map(k=>`${k==='knee'?'bend':k}: ${result.bounds[k].min}°…${result.bounds[k].max}°`).join(' · ');
+    };
+  }
+  limitWorker.postMessage({id,type:init?'init':'bounds',angles:angles(),
+    ...(init?{items:DATA.assembly,joints:DATA.meta.joints[poseName],cache:limitSeeds[poseName]?.cache||[]}:{})});
+}
+for(const k of sliderIds)$('#'+k).oninput=()=>{applyPose();requestLimits();};
+$('#neutral').onclick=()=>{resetAngles();applyPose();requestLimits();};
 
 function applyVisibility() {
   for (const m of meshes) {
@@ -367,7 +492,7 @@ function buildList() {
       b.setAttribute("aria-pressed", it.hidden ? "false" : "true");
       b.innerHTML = `<i class="dot" style="background:${it.colour}"></i>` +
         `<span>${it.name}</span>` +
-        `<span class="qty">${it.qty ? "×" + it.qty : ""}</span>`;
+        `<span class="qty">${it.printable || (it.qty ? "×" + it.qty : "")}</span>`;
       b.onclick = (e) => {
         if (e.shiftKey) { it.hidden = !it.hidden; }
         else { solo = solo === it.name ? null : it.name; }
@@ -383,13 +508,13 @@ function buildList() {
 function setHud(it) {
   const m = DATA.meta;
   const stats = mode === "assembly"
-    ? [["Neutral stance", `${m.stance.toFixed(0)} mm`],
+    ? [["Overall height target", `${m.stance.toFixed(0)} mm`],
        ["Neutral track", `${m.track.toFixed(0)} mm`],
-       ["Hip axes", `${m.hip_axes.toFixed(0)} mm`]]
+       ["Drive", `${DATA.poses[poseName].filter(i => i.kind === "bought" && i.name.includes("_motor_")).length} powered wheels`]]
     : [["Bed ref", `${m.bed[0]}×${m.bed[1]} mm`],
        ["Parts", String(DATA.parts.length)]];
   const sel = it
-    ? `<div><b>${it.name}</b><span id="sel">${it.size.join(" × ")} mm</span></div>`
+    ? `<div><b>${it.name}</b><span id="sel">${it.size.join(" × ")} mm${it.printable ? " · printable: "+it.printable+" · "+it.material : ""}</span></div>`
     : `<div><b>Selection</b><span id="sel">click to solo · shift-click to hide</span></div>`;
   $("#hud").innerHTML = sel + stats.map(
     ([k, v]) => `<div><b>${k}</b><span>${v}</span></div>`).join("");
@@ -397,14 +522,19 @@ function setHud(it) {
     (it.print_metrics ? " Bed contact " + it.print_metrics.bed_area.toFixed(0) +
      " mm²; flagged overhang " + it.print_metrics.overhang_area.toFixed(0) +
      " mm². Layout is a comparison, not one printable plate. Layers are horizontal." : "")
-    : m.status;
+    : "All current prints: assumed. Select a part for material and print notes.";
 }
 
 /* ---- controls ---- */
 const VIEWS = { iso: [-0.95, 0.32], front: [0, 0], side: [Math.PI / 2, 0],
                 top: [-Math.PI / 2, 1.5] };
 for (const b of document.querySelectorAll(".view button"))
-  b.onclick = () => { [cam.az, cam.el] = VIEWS[b.dataset.view]; place(); };
+  b.onclick = () => {
+    activeView = b.dataset.view;
+    camera = activeView === "side" ? orthographic : perspective;
+    [cam.az, cam.el] = VIEWS[activeView]; syncReference();
+    if(activeView === "side" && referenceEnabled) frameReference(); else frameGeometry();
+  };
 
 for (const [id, k] of [["#opt-ghost", "ghost"], ["#opt-wire", "wire"],
                        ["#opt-grid", "grid"]]) {
@@ -425,19 +555,26 @@ function switchTab(which) {
 
 (function tick() { requestAnimationFrame(tick); renderer.render(scene, camera); })();
 
-fetch("scene.json?" + Date.now()).then((r) => r.json()).then((d) => {
-  DATA = d;
-  for (const [id, range] of [["#pitch", d.meta.pitch_test], ["#roll", d.meta.roll_test], ["#knee", d.meta.knee_test]]) {
-    $(id).min = range[0]; $(id).max = range[1];
-  }
-  $("#pitch").value = d.meta.hip_nominal;
-  $("#knee").value = d.meta.knee_nominal;
+async function digest(text){return Array.from(new Uint8Array(await crypto.subtle.digest('SHA-256',new TextEncoder().encode(text))),b=>b.toString(16).padStart(2,'0')).join('');}
+fetch("scene.json?" + Date.now()).then(r=>r.text()).then(async text=>{
+  try{
+    const [seed,engine]=await Promise.all([
+      fetch('mechanical-limits.json?'+Date.now()).then(r=>r.json()),
+      fetch('mechanical_limits.js?'+Date.now()).then(r=>r.text())]);
+    if(seed.scene_sha256===await digest(text)&&seed.engine_sha256===await digest(engine))limitSeeds=seed.poses;
+  }catch(e){} // Recompute from geometry if a matching warm cache is absent.
+  return JSON.parse(text);
+}).then((d) => {
+  DATA = d; d.assembly = d.poses[poseName];
   const tris = d.assembly.concat(d.parts).reduce((a, i) => a + i.tris, 0);
   $("#stamp").textContent =
     `${d.parts.filter(i => i.kind === "printed").length} print designs · ` +
     `${d.parts.filter(i => i.kind === "coupon").length} coupons`;
   $("#loading").remove();
   resize(); load("assembly");
+  fetch("layout-reference.json?" + Date.now()).then(r => r.ok ? r.json() : null).then(ref => {
+    referenceData = ref; syncReference(); loadReference();
+  }).catch(() => {}); // Older static scenes remain viewable without a backdrop.
 }).catch((e) => {
   $("#loading").textContent =
     "scene.json did not load (" + e.message + "). Serve this page with " +

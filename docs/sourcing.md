@@ -11,7 +11,7 @@ The self-balancing base subsystem (limb/head servos are a separate import order)
 
 | Part | Qty | £ inc VAT |
 |------|-----|-----------|
-| Pololu Dual TB9051FTG motor driver (DEC-16) — **lent to wk-devastator, OQ-15** | 1 | 30.70 |
+| Pololu Dual TB9051FTG motor driver (DEC-16) — in hand; the 2026-09-07 loan to wk-devastator is dissolved by DEC-51 | 1 | 30.70 |
 | Pi Hut 37D 12V 122RPM 38 kg.cm geared motor + encoder | 2 | 55.80 |
 | Pololu Wheel 80x10 mm pair (Ø80 mm = control constant, DEC-19) | 1 | 8.40 |
 | Pololu 6 mm universal mounting hub (2-pack) | 1 | 12.50 |
@@ -25,15 +25,24 @@ assignment and current measurement, where a current-limited supply is the safer 
 [wk-robotics `common.md`](https://github.com/WayneKennedy/wk-robotics/blob/main/docs/common.md#power-integrity)).
 Also outstanding: optional STEMMA QT cable for the BNO085.
 
-## Confirmed order - servos (RCmall on AliExpress, ~£302 inc VAT) [PURCHASED 2026-09-01]
+## Confirmed order - servos (RCmall on AliExpress, ~£302 inc VAT) [PURCHASED 2026-09-01, ARRIVED 2026-09-12]
 
 | Part | Qty | £ inc VAT | Role |
 |------|-----|-----------|------|
-| Feetech STS3215 12V 30 kg 6-pack (FE-URT-1 included each) | 2 | ~101 ea | 12 limb joints (DEC-31), no spare — see `bom.md` |
+| Feetech STS3215 12V 30 kg 6-pack (listed with FE-URT-1 — **none shipped**, 2026-09-12) | 2 | ~101 ea | 12 limb joints (DEC-31). **Four reallocated to SO-ARM101 2026-09-12**; eight remain, four to re-order — see `bom.md` |
 | Feetech STS3032M 6V 4.5 kg metal-case 4-pack (DEC-22) | 1 | 93.19 | 3 neck (3-RPS) + 1 spare |
-| STS3215 metal bracket set | 1 | 7.14 | dimensional reference - **brackets are printed** (DEC-21) |
+| STS3215 metal bracket set | 1 | 7.14 | dimensional reference - **brackets are printed** (DEC-21). Arrived 2026-09-12; the servos themselves ship without brackets |
 
 Neck servos are 6V -> a separate 6V bus segment from the 12V limb bus (same STS protocol).
+
+**Arrived 2026-09-12** — 12 × STS3215 and 4 × STS3032M, counts confirmed by the owner.
+**Each STS3215 ships with a drive horn, an idler horn, M3×6 pan-head horn screws and
+M2×6 self-tapping case screws — and no serial-bus adapter.** The listing's FE-URT-1 was
+not in either 6-pack; the family's adapters cover it (Waveshare Bus Servo Adapter (A),
+FE-URT-2). **Each STS3032M ships with a fixed single cable — no pass-through port — plus
+one aluminium and three plastic horns, mounting screws, a small 3-port connector board and
+a separate cable to daisy-chain the boards.** Full contents tables in [`test-log.md`](test-log.md)
+2026-09-12.
 
 ## Test-fit pair (Amazon, in hand 2026-09-07)
 
@@ -44,6 +53,19 @@ price is not recorded). Its value was **what came in the box** - M2x5 self-tappi
 case screws and M3 horn screws, which is a BOM fact, recorded in
 [`bom.md`](bom.md) and [`test-log.md`](test-log.md). Whether the RCmall Feetech
 6-packs ship the same accessories is unverified.
+
+**Reallocated 2026-09-09:** both units are now SO-ARM101 follower servos (`shoulder_pan`
+ID 1, `shoulder_lift` ID 2) — see [wk-soarm101 `docs/servos.md`](https://github.com/WayneKennedy/wk-soarm101/blob/main/docs/servos.md). The koala-bot bench had
+no STS3215 from then until the 6-packs arrived on 2026-09-12.
+
+## Four-wheel hardware (DEC-38) — arrived 2026-09-11, surplus
+
+Two more 37D 12 V 122 rpm 38 kg.cm motors + encoders and **two** more Pololu Dual
+TB9051FTGs, ordered for DEC-38's four driven wheels some time after 2026-09-08. DEC-43
+cancelled the front drives on 2026-09-10, before they arrived. Order date, supplier and
+price are not recorded; the part numbers match the Pi Hut order above. **Not koala-bot's**
+— allocated by DEC-51: one driver is wk-devastator's own (ending its loan), the other
+driver and both motors are pooled in [wk-robotics `common.md`](https://github.com/WayneKennedy/wk-robotics/blob/main/docs/common.md#drive-motors-drivers-and-mcus-in-hand).
 
 ## Part notes & alternatives (pre-purchase research, kept for reference)
 

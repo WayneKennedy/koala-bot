@@ -1,18 +1,17 @@
 # SPDX-License-Identifier: CERN-OHL-S-2.0
-"""SO-101 cradle/collar/clevis primitive, DEC-33/34.
+"""Koala four-ear saddle and integrated-fork interfaces, DEC-33/40.
 
 Servo face words (docs/soarm-joint-pattern.md, Terminology): FRONT = drive-horn
 face = +X; BACK = idler/connector face = -X; BOTTOM = the end the servo stands
 on = Z 0; TOP = the end nearest the output axis = Z 45.23; SIDES = +-Y. The
-cradle has a floor under the Bottom, a Front wall and a Back wall (the pair
-34.9 apart), one Side wall and an open Side that the collar's closing wall
-shuts. The clevis has a Front plate (drive horn) and a Back plate (idler).
+saddle has a floor under the Bottom, a Front wall and a Back wall (the pair
+34.9 apart away from the ear bosses), with enclosing Side returns and a rounded outer footprint. The clevis has a Front plate (drive horn) and a Back plate (idler).
 Body mounts use the CASE datum; horns use the OUTPUT AXIS datum. These are
 independent feature families (test-log 2026-09-02). Nominal printed-part
 interfaces are adopted from SO-101; no pocket derives from a servo model.
 """
 from functools import lru_cache
-from build123d import Box, Cylinder, Part, Pos, Rot, Align, Rectangle, loft
+from build123d import Box, Cylinder, Part, Pos, Rot, Align, Axis, fillet, RectangleRounded, extrude, Polygon
 from . import params as P
 
 # Restart primitive frame: X = output axis, Y = case width, Z = case length.
@@ -36,115 +35,102 @@ def _socket_bounds():
             P.SOCKET_CASE_Y/2 + P.SOCKET_CLEAR)
 
 
-def rear_support(z0, half_x, half_y):
-    """45°-or-shallower expansion under a socket, within the collar bore.
+def ear_face(side):
+    return P.SOCKET_SEAT_OFFSET + (1 if side == 'drive' else -1)*P.SOCKET_EAR_X/2
 
-    Caller supplies the lower rectangle. The upper rectangle matches the
-    cradle shelf; collar boss lanes remain open through this support too.
-    """
-    x,y = _socket_bounds()
-    top = -P.SOCKET_SHELF
-    if z0 >= top:
-        raise ValueError('Support must begin below the shelf')
-    part = loft([Pos(0,0,z0)*Rectangle(2*half_x,2*half_y),
-                 Pos(0,-P.SOCKET_WALL/2,top)*Rectangle(2*(x+P.SOCKET_WALL),2*y+P.SOCKET_WALL)])
-    for cy in (-P.SOCKET_LUG_Y,P.SOCKET_LUG_Y):
-        half=P.SOCKET_BOSS_W/2+P.SOCKET_BOSS_CLEAR
-        part -= _box(x-P.SOCKET_BOSS_CLEAR,x+P.SOCKET_WALL+1,cy-half,cy+half,z0-1,top+1)
+
+def ear_holes(part, side, ys):
+    face = ear_face(side)
+    z = P.SOCKET_LUG_DRIVE_Z if side == 'drive' else P.SOCKET_LUG_BACK_Z
+    for y in ys:
+        part -= _x_hole(-30, 30, y, z, P.SOCKET_M2_CLEAR)
+        if side == 'drive':
+            part -= _x_hole(face+P.SOCKET_M2_SEAT, 30, y, z, P.SOCKET_M2_HEAD)
+        else:
+            part -= _x_hole(-30, face-P.SOCKET_M2_SEAT, y, z, P.SOCKET_M2_HEAD)
     return part
 
 
 @lru_cache
-def cradle() -> Part:
-    """Rear pocket: shelf, back and two sides; open front and top.
+def saddle():
+    """Enclosing four-ear pocket; slides onto the servo Bottom before assembly.
 
-    The drive-face side is relieved for the collar's inward lug bosses. The
-    screws retain the case through its lugs; no screw threads into the print.
+    Side returns retain the accepted Gauge_0 pocket. The open top remains
+    below the connector bay. Drive/idler slots follow the unequal SO-101
+    widths and starts; ear planes and screw datums are unchanged.
     """
     x, y = _socket_bounds()
-    w, h = P.SOCKET_WALL, P.SOCKET_DEPTH
-    part = _box(-x-w, x+w, -y-w, y, -P.SOCKET_SHELF, h)
-    part -= _box(-x, x, -y, y+1, 0, h+1)
-    # Full-height sliding lanes, including the shelf, for collar lug bosses.
-    for cy in (-P.SOCKET_LUG_Y, P.SOCKET_LUG_Y):
-        half = P.SOCKET_BOSS_W/2 + P.SOCKET_BOSS_CLEAR
-        part -= _box(x-P.SOCKET_BOSS_CLEAR, x+w+1, cy-half, cy+half,
-                     -P.SOCKET_SHELF-1, h+1)
-        part -= _x_hole(-x-w-1, -x+1, cy, P.SOCKET_LUG_BACK_Z, P.SOCKET_M2_CLEAR)
-        part -= _x_hole(-x-w-1, -x-P.SOCKET_M2_SEAT, cy,
-                        P.SOCKET_LUG_BACK_Z, P.SOCKET_M2_HEAD)
-    # Open-front cable channel through the shelf; actual connector is a rig check.
-    part -= _box(-P.SOCKET_CABLE_W/2, P.SOCKET_CABLE_W/2, 0, y+1,
-                 -P.SOCKET_SHELF-1, 1)
+    y += 2.0                 # material beyond each ear for the head pockets
+    part = _box(-x-P.SOCKET_WALL, x+P.SOCKET_WALL, -y, y, -P.SOCKET_SHELF, 0)
+    for side, sign in [('drive',1), ('idler',-1)]:
+        a,b = (x,x+P.SOCKET_WALL) if sign == 1 else (-x-P.SOCKET_WALL,-x)
+        wall = _box(a,b,-y,y, -P.SOCKET_SHELF,P.SOCKET_DEPTH)
+        face = ear_face(side)
+        for sy in (-1,1):
+            edge=(P.SOCKET_DRIVE_SLOT_Y if side=='drive' else P.SOCKET_IDLER_SLOT_Y)/2
+            ya,yb = (edge,y) if sy == 1 else (-y,-edge)
+            lo,hi = (face,x+P.SOCKET_WALL) if sign == 1 else (-x-P.SOCKET_WALL,face)
+            wall += _box(lo,hi,ya,yb,0,P.SOCKET_DEPTH)
+        if side=='idler':
+            # Upstream's wider Back recess starts above the low ear screws.
+            # The continuous lower seat avoids the former bore/strip tangency.
+            wall += _box(-x-P.SOCKET_WALL,face,-y,y,0,P.SOCKET_IDLER_SLOT_Z)
+        # Cut each wall separately: a Front counterbore must not drill the Back seat.
+        part += ear_holes(wall,side,(-P.SOCKET_LUG_Y,P.SOCKET_LUG_Y))
+    # Enclosing Side returns: support the case instead of only the screws.
+    # Keep the 24.7 mm pocket and both straight ear-driver approaches.
+    for sign in (-1,1):
+        a,b=(P.SOCKET_CASE_Y/2,y) if sign==1 else (-y,-P.SOCKET_CASE_Y/2)
+        part += _box(-x,x,a,b,-P.SOCKET_SHELF,P.SOCKET_DEPTH)
+    # Round the outside without changing the stepped contact surfaces.
+    outside=Pos(0,0,-P.SOCKET_SHELF)*extrude(
+        RectangleRounded(2*(x+P.SOCKET_WALL),2*y,2),
+        amount=P.SOCKET_DEPTH+P.SOCKET_SHELF)
+    part &= outside
+    # Floor also needs the low Back screw's counterbore continuation.
+    for side in ('drive','idler'):
+        face=ear_face(side); z=P.SOCKET_LUG_DRIVE_Z if side=='drive' else P.SOCKET_LUG_BACK_Z
+        for y in (-P.SOCKET_LUG_Y,P.SOCKET_LUG_Y):
+            a,b=(face+P.SOCKET_M2_SEAT,30) if side=='drive' else (-30,face-P.SOCKET_M2_SEAT)
+            part -= _x_hole(a,b,y,z,P.SOCKET_M2_HEAD)
     return part
 
 
 @lru_cache
-def collar() -> Part:
-    """Separate open-ended sleeve; two deep bosses bear on drive-face lugs."""
-    x, y = _socket_bounds()
-    w, c, t = P.SOCKET_WALL, P.SOCKET_COLLAR_CLEAR, P.SOCKET_COLLAR_WALL
-    ix, back, front = x+w+c, -y-w-c, y+P.SOCKET_FRONT_CLEAR
-    z0, z1 = P.SOCKET_COLLAR_BOTTOM, P.SOCKET_DEPTH
-    part = _box(-ix-t, ix+t, back-t, front+t, z0, z1)
-    part -= _box(-ix, ix, back, front, z0-1, z1+1)
-    for cy in (-P.SOCKET_LUG_Y, P.SOCKET_LUG_Y):
-        part += _box(x, ix+t, cy-P.SOCKET_BOSS_W/2, cy+P.SOCKET_BOSS_W/2, z0, z1)
-        part -= _x_hole(x-1, ix+t+1, cy, P.SOCKET_LUG_DRIVE_Z, P.SOCKET_M2_CLEAR)
-        part -= _x_hole(x+P.SOCKET_M2_SEAT, ix+t+1, cy,
-                        P.SOCKET_LUG_DRIVE_Z, P.SOCKET_M2_HEAD)
-        # Sleeve must not bury the idler-side cradle screw heads or their tool.
-        part -= _x_hole(-ix-t-1, -ix+1, cy, P.SOCKET_LUG_BACK_Z, P.SOCKET_M2_TOOL)
-    # Open-bottom front slot keeps the loom outside the rotating clevis lane.
-    part -= _box(-P.SOCKET_CABLE_W/2, P.SOCKET_CABLE_W/2, front-1, front+t+1,
-                 z0-1, P.SOCKET_CABLE_H)
-    return part
+def clevis_plate(side: str):
+    """Native XY plate, contact at Z=0; +Y runs along the driven link.
 
-
-@lru_cache
-def clevis_plate(side: str) -> Part:
-    """Flat XY cheek, horn centre at origin, arm along +Y; drive recess on TOP.
-
-    Prints broad face down. Both plates keep four full-depth M3 holes; the
-    drive-side 20.5 mm horn recess is blind. The nominal flush idler uses
-    a flat seat to avoid embedding the plate in the case; DEC-34. Only the
-    drive side has centre access.
+    Flat horn contact, 3.5 mm web, 2.8 mm head recesses. A 10.4 mm circular
+    root clears the Back bay in every angular orientation; the four bolt pads
+    fit within it. A narrower tail connects it to the integral bridge.
     """
-    if side not in ("drive", "idler"):
-        raise ValueError("side must be 'drive' or 'idler'")
-    t = P.SOCKET_PLATE_T
-    part = Cylinder(P.SOCKET_PLATE_R, t, align=(Align.CENTER, Align.CENTER, Align.MIN))
-    part += _box(-P.SOCKET_ARM_HALF_W, P.SOCKET_ARM_HALF_W, 0,
-                 P.SOCKET_ARM_LENGTH, 0, t)
-    if side == "drive":
-        part -= Pos(0, 0, t-P.SOCKET_RECESS_DEPTH) * Cylinder(
-            P.SOCKET_HORN_RECESS/2, P.SOCKET_RECESS_DEPTH+1,
-            align=(Align.CENTER, Align.CENTER, Align.MIN))
-    holes = [(a, b, P.CLEAR_HOLE_M3) for a in (-P.SERVO_DRIVE_SQ/2, P.SERVO_DRIVE_SQ/2)
-             for b in (-P.SERVO_DRIVE_SQ/2, P.SERVO_DRIVE_SQ/2)]
-    holes += [(a, P.SOCKET_BRIDGE_Z, P.CLEAR_HOLE_M3)
-              for a in (-P.SOCKET_BRIDGE_BOLT_Y, P.SOCKET_BRIDGE_BOLT_Y)]
-    if side == "drive":
-        holes.append((0, 0, P.SOCKET_CENTRE_CLEAR))
-    for a, b, d in holes:
-        part -= Pos(a, b, -1) * Cylinder(d/2, t+2,
-            align=(Align.CENTER, Align.CENTER, Align.MIN))
+    if side not in ('drive','idler'): raise ValueError(side)
+    t=P.SOCKET_PAD_T
+    part=Cylinder(P.SOCKET_PLATE_R,t,align=(Align.CENTER,Align.CENTER,Align.MIN))
+    # Broad, tapered fork roots with rounded end corners, within a compact
+    # envelope; keep the R10.4 nose for the measured connector corridor.
+    tail=extrude(Polygon((-8,0),(8,0),(8,22),(10.4,28),(10.4,32),(-10.4,32),(-10.4,28),(-8,22),align=None),amount=t)
+    tail=fillet(tail.edges().filter_by(Axis.Z),2)
+    part+=tail
+    for a in (-P.SERVO_DRIVE_SQ/2,P.SERVO_DRIVE_SQ/2):
+        for b in (-P.SERVO_DRIVE_SQ/2,P.SERVO_DRIVE_SQ/2):
+            part-=Pos(a,b,-1)*Cylinder(P.CLEAR_HOLE_M3/2,t+2,align=(Align.CENTER,Align.CENTER,Align.MIN))
+            part-=Pos(a,b,P.SOCKET_PLATE_T)*Cylinder(P.SOCKET_HEAD_CLEAR/2,t+1,align=(Align.CENTER,Align.CENTER,Align.MIN))
+    if side=='drive':
+        part-=Cylinder(3.2/2,t+1,align=(Align.CENTER,Align.CENTER,Align.MIN))
+        part-=Cylinder((P.HORN_SCREW_HEAD_DIA+.6)/2,P.HORN_SCREW_HEAD_H+.4,align=(Align.CENTER,Align.CENTER,Align.MIN))
+    else:
+        part-=Cylinder((P.SOCKET_BOSS_DIA+.6)/2,P.SOCKET_IDLER_BOSS_PROUD+.4,align=(Align.CENTER,Align.CENTER,Align.MIN))
     return part
 
 
 def plate_location(side):
-    """Place a flat cheek in the socket frame; recess bears on the metal horn."""
     from build123d import Plane
-    floor = P.SOCKET_PLATE_T - P.SOCKET_RECESS_DEPTH
-    if side == "drive":
-        return Plane(origin=(P.SOCKET_DRIVE_FACE+floor, 0, P.SOCKET_AXIS_Z),
-                     x_dir=(0, -1, 0), z_dir=(-1, 0, 0)).location
-    if side == "idler":
-        # Upstream nominal idler is flush: recessing this cheek would drive
-        # its annulus into the case. Full flat contact, no invented stand-off.
-        return Plane(origin=(P.SOCKET_IDLER_FACE-P.SOCKET_PLATE_T, 0, P.SOCKET_AXIS_Z),
-                     x_dir=(0, 1, 0), z_dir=(1, 0, 0)).location
-    raise ValueError("side must be 'drive' or 'idler'")
+    if side=='drive':
+        return Plane(origin=(P.SOCKET_DRIVE_FACE,0,P.SOCKET_AXIS_Z),x_dir=(0,1,0),z_dir=(1,0,0)).location
+    if side=='idler':
+        return Plane(origin=(P.SOCKET_IDLER_FACE,0,P.SOCKET_AXIS_Z),x_dir=(0,-1,0),z_dir=(-1,0,0)).location
+    raise ValueError(side)
 
 
 _ST3215_STEP = __import__('pathlib').Path(__file__).resolve().parents[2] / 'vendor' / 'st3215' / 'STS3215_c.step'
@@ -175,20 +161,38 @@ def case_model() -> Part | None:
         if child.label in ('Middle', 'Top', 'Bottom'):
             for s in child.solids():
                 part = s if part is None else part + s
-    return loc * part
+    part=loc*part
+    # The imported Back centre projection is 1.2 mm proud; measured boss is
+    # composed separately below. Clip only the boss cylinder outside its seat.
+    seat_b=P.SOCKET_SEAT_OFFSET-P.SOCKET_HORN_SEAT_X/2
+    part-=_x_hole(-40,seat_b,0,P.SOCKET_AXIS_Z,P.SOCKET_BOSS_DIA+.6)
+    return part
+
+
+def case_boxes():
+    """Conservative case boxes, shared by BREP and viewer collision checks.
+
+    Back heights are caliper based. Front pad width comes from SO-101's slot;
+    its upper extent covers the supplied STEP's raised plane. Neither case
+    envelope sets the accepted pocket or measured ear/horn datums.
+    """
+    y,off,L=P.SOCKET_CASE_Y/2,P.SOCKET_SEAT_OFFSET,P.SOCKET_CASE_L
+    seat_f,seat_b=off+P.SOCKET_HORN_SEAT_X/2,off-P.SOCKET_HORN_SEAT_X/2
+    ear_f,ear_b=off+P.SOCKET_EAR_X/2,off-P.SOCKET_EAR_X/2
+    wide=P.SOCKET_CASE_X/2;za,zb=P.SOCKET_REGION_Z
+    front=P.SOCKET_DRIVE_SLOT_Y/2;back=P.SOCKET_IDLER_SLOT_Y/2
+    return [((ear_b,-y,0),(ear_f,y,zb)),
+            ((seat_f,-front,0),(wide,front,P.SOCKET_DRIVE_PAD_TOP)),
+            ((-wide,-back,za),(ear_b,back,zb)),
+            ((seat_b,-y,zb),(seat_f,y,L))]
 
 
 def _parametric_case() -> Part:
-    """Fallback stepped profile from the caliper constants (conservative)."""
-    y, off, L = P.SOCKET_CASE_Y/2, P.SOCKET_SEAT_OFFSET, P.SOCKET_CASE_L
-    seat_f, seat_b = off + P.SOCKET_HORN_SEAT_X/2, off - P.SOCKET_HORN_SEAT_X/2
-    ear_f, ear_b = off + P.SOCKET_EAR_X/2, off - P.SOCKET_EAR_X/2
-    wide = P.SOCKET_CASE_X/2
-    zA, zB = P.SOCKET_REGION_Z
-    pad = P.SOCKET_WIDE_PAD_Y/2
-    part = _box(ear_b, ear_f, -y, y, 0, zB)          # ear plane over the whole Bottom region
-    part += _box(-wide, wide, -pad, pad, zA, zB)     # widest: a centred pad the pocket grips
-    part += _box(seat_b, seat_f, -y, y, zB, L)       # seat level to the Top (conservative)
+    """Fallback stepped profile with distinct Front and Back raised pads."""
+    part=None
+    for (x0,y0,z0),(x1,y1,z1) in case_boxes():
+        box=_box(x0,x1,y0,y1,z0,z1)
+        part=box if part is None else part+box
     return part
 
 
@@ -217,20 +221,43 @@ def socket_reference():
 
 
 def socket_keepouts():
-    """Separate volumes for case/horns, straight drivers and a cable corridor.
-
-    Access is checked before the driven plates are fitted. Driver envelopes
-    stop at the head seats, not inside the screw shaft holes.
-    """
-    x, y = _socket_bounds()
-    result = [("case_and_horns", socket_reference())]
-    for cy in (-P.SOCKET_LUG_Y, P.SOCKET_LUG_Y):
-        result += [
-            ("idler_lug_driver", _x_hole(-x-35, -x-P.SOCKET_M2_SEAT,
-              cy, P.SOCKET_LUG_BACK_Z, P.SOCKET_M2_HEAD)),
-            ("drive_lug_driver", _x_hole(x+P.SOCKET_M2_SEAT, x+35,
-              cy, P.SOCKET_LUG_DRIVE_Z, P.SOCKET_M2_HEAD)),
-        ]
-    result.append(("cable", _box(-P.SOCKET_CABLE_W/2, P.SOCKET_CABLE_W/2,
-                   0, y+12, -P.SOCKET_SHELF, 0)))
+    """Back bay exits along -X; straight drivers are pre-clevis assembly checks."""
+    result=[('case_and_horns',socket_reference())]
+    for side in ('drive','idler'):
+        face=ear_face(side); z=P.SOCKET_LUG_DRIVE_Z if side=='drive' else P.SOCKET_LUG_BACK_Z
+        a,b=(face+P.SOCKET_M2_SEAT,face+35) if side=='drive' else (face-35,face-P.SOCKET_M2_SEAT)
+        for y in (-P.SOCKET_LUG_Y,P.SOCKET_LUG_Y):
+            result.append((side+'_lug_driver',_x_hole(a,b,y,z,P.SOCKET_M2_HEAD)))
+    result.append(('cable',_box(-45,-P.SOCKET_CASE_X/2,-P.SOCKET_CABLE_W/2,P.SOCKET_CABLE_W/2,*P.SOCKET_BAY_Z)))
     return result
+
+
+@lru_cache
+def horn_head_envelopes():
+    """Eight supplied square-fixing heads, plus four narrow Back washers.
+
+    Output-axis frame, matching an integral link. Threads are not solid
+    envelopes; engagement is accounted for separately in the fastening stack.
+    """
+    from build123d import Compound
+    items=[]
+    for side in ('drive','idler'):
+        tf=Pos(0,0,-P.SOCKET_AXIS_Z)*plate_location(side)
+        extra=P.HORN_IDLER_WASHER_T if side=='idler' else 0
+        for x in (-P.SERVO_DRIVE_SQ/2,P.SERVO_DRIVE_SQ/2):
+            for y in (-P.SERVO_DRIVE_SQ/2,P.SERVO_DRIVE_SQ/2):
+                items.append(tf*Pos(x,y,P.SOCKET_PLATE_T+extra)*Cylinder(P.HORN_SCREW_HEAD_DIA/2,P.HORN_SCREW_HEAD_H,align=(Align.CENTER,Align.CENTER,Align.MIN)))
+                if extra:items.append(tf*Pos(x,y,P.SOCKET_PLATE_T)*Cylinder(P.HORN_IDLER_WASHER_OD/2,extra,align=(Align.CENTER,Align.CENTER,Align.MIN)))
+    return Compound(children=items)
+
+
+@lru_cache
+def ear_head_envelopes():
+    """Four case-lug heads, case datum. Driver paths are separate keep-outs."""
+    from build123d import Compound
+    items=[]
+    for side in ('drive','idler'):
+        face=ear_face(side);z=P.SOCKET_LUG_DRIVE_Z if side=='drive' else P.SOCKET_LUG_BACK_Z
+        a,b=(face+P.SOCKET_M2_SEAT,face+P.SOCKET_M2_SEAT+P.SOCKET_M2_HEAD_H) if side=='drive' else (face-P.SOCKET_M2_SEAT-P.SOCKET_M2_HEAD_H,face-P.SOCKET_M2_SEAT)
+        for y in (-P.SOCKET_LUG_Y,P.SOCKET_LUG_Y):items.append(_x_hole(a,b,y,z,P.SOCKET_M2_HEAD-.3))
+    return Compound(children=items)

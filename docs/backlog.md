@@ -10,6 +10,8 @@ Deferred by scope discipline (DEC-11) - captured so nothing is lost.
 - Further bodies on the shared brain.
 
 ## Koala upgrades
+- Knee-area wheels with separate folding rear feet (DEC-42, deferred by DEC-43).
+  [Packaging study](knee-drive-packaging.md) retained as evidence; not V1 work.
 - 3-DOF torso platform activation (Phase 2).
 - Walking gait, ankle DOF, articulated feet - **conditional** (gated on need). The
   knees moved into V1 under DEC-31; the gait did not.

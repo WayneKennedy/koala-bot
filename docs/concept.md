@@ -15,8 +15,14 @@ bodies**. The defining split between members is **wheel-vs-gripper limb-ends**
 
 ## Koala V1 — the first member
 
-A **self-balancing, wheel-footed, ground-based** companion with articulating
-knees (DEC-31), koala-shaped (~40-50 cm tall - a 'big toy' *smaller than a toddler*; DEC-15), printable in
+A ground-based companion with **two rear ankle wheels and two replaceable rounded TPU
+front contacts**, articulating knees and a two-wheel balancing/drive mode
+(DEC-31/41/43). The compact koala baseline is **450 mm upright head-top height**,
+within the ~400–500 mm overall size goal (DEC-15). Head mounting and position
+are unresolved; this height is a sizing allocation, not a solved installation. The supported quadruped pose
+is lower. These poses are CAD references; loaded transitions and locomotion
+remain to be demonstrated. Dimensions: [body-layout.md](body-layout.md).
+Printable in
 **PETG** with **every part <= 200x200 mm** (designing to the commonest bed
 maximises who can build it, even though the reference printer is 220 mm).
 
@@ -24,25 +30,31 @@ maximises who can build it, even though the reference printer is 220 mm).
 
 | Segment | DOF | Actuator | Notes |
 |---------|-----|----------|-------|
-| Front limbs x2 (arms *and* forelegs) | 3 each | STS3215 bus servo | shoulder pitch + roll + elbow; gesture + balance-assist; grippers optional |
-| Rear leg hips x2 | 2 each | STS3215 bus servo | **active in V1** — provide *lean-into-turns* while the torso is rigid |
+| Front limbs x2 (arms *and* forelegs) | 3 each | STS3215 bus servo | shoulder pitch → roll → elbow; flatter integrated forearm ending in a replaceable TPU contact at wrist/hand reach; support and gesture; 75 mm forearm + 25 mm hand to Ø32 mm ball centre (DEC-43) |
+| Rear leg hips x2 | 2 each | STS3215 bus servo | **pitch + roll**, in that serial order (DEC-41); active lean and leg placement with a rigid torso |
 | Rear knees x2 | 1 each | STS3215 bus servo | **active in V1** (DEC-31) — articulating knee between thigh and shank; with the hips it sets ride height, crouch and stand |
-| Rear shank + wheel-foot x2 | - | 12V geared DC + encoder (in the shank) | drive **wheel at the ankle position, as the foot**; constant ground contact; no ankle DOF in V1 |
+| Rear ankle wheels x2 | continuous spin | Bought 37D 12V geared DC + encoder | integrated 90 mm shanks retain ankle drives; no separate rear walking feet |
 | Head / neck | 3 | micro servo + CF pushrod | **3-RPS parallel** (pitch/roll/heave); *yaw delegated to the base* |
 | Torso | 0 (V1) | - | **rigid strut** in V1; interfaces pre-designed for a single 3-DOF platform later |
 
-V1 actuator count: **12 STS3215** (6 arm + 4 hip + 2 knee; twelve bought, no spare — OQ-16) + **3 micro** (head) + **2 DC** (drive).
+V1 actuator count: **12 STS3215** (6 arm + 4 hip + 2 knee; twelve bought, no spare — OQ-16) + **3 micro** (head) + **2 DC** (rear drive; bought pair retained).
 
 ### Locomotion
 
-- **Roll / balance:** dynamic two-wheel (rear wheel-feet) inverted pendulum; mass
-  carried high (koala posture) makes a forgiving pendulum. Yaw (turn to look) is
-  done by the base spinning in place. Knees and hips set the ride height, and
-  with it the CoM height the balance loop sees.
+- **Supported stance:** front ball feet and rear wheel-feet provide four
+  contacts. Standing without active balancing is intended; power-off standing
+  is not established. Uneven-terrain stepping with wheel-feet is a later gait
+  experiment, not a prerequisite for completing V1.
+- **Wheeled balance/drive:** raise the forelegs and balance on the rear ankle
+  wheel pair. Differential drive turns the robot; hip and knee angles set
+  posture and ride height.
 - **Lean:** 2-DOF leg hips bank into turns (V1); the torso platform adds torso lean
   once activated (V2).
-- **No agile climbing in V1** — a *front-arm winch-haul* assisted clamber is possible
-  if front grippers are fitted, but four-limb tree-climbing is a sibling's job (backlog).
+- **Mode transition:** transfer load from supported stance to rear wheels while
+  lifting front feet and establishing balance. CoM, support and servo loads
+  throughout the motion remain open; there is no knee-wheel deployment mechanism.
+- **No agile climbing in V1.** Rounded front feet add no grasping DOF;
+  grippers and winch-assisted clambering remain later options in the backlog.
 
 Closest prior art: **Swiss-Mile / ANYmal-on-wheels** ([`references.md`](references.md)).
 
@@ -53,11 +65,13 @@ Closest prior art: **Swiss-Mile / ANYmal-on-wheels** ([`references.md`](referenc
 2. **Actuator matched to task** (heterogeneous actuation). Spend STS3215-grade money
    only where body weight and balance flow through (limbs). Head/ears/fingers -> micro
    servos; drive -> geared DC. Exploit passive dynamics where possible.
-3. **Every part <= 200x200 mm.** Segment large structures into printable modules; hide
-   seams under paneling. Seams are *designed* screw-joints derived from one master model
-   (DEC-23), with an explicit print orientation for each part.
+3. **Every part <= 200x200 mm.** Prefer one integrated structural print per link
+   (DEC-39), with an explicit print orientation. Add a seam only for a specific
+   assembly, service, strength or bed-size reason; any seam remains a designed
+   joint derived from the master model.
    Bed fit is enforced by the CAD build. Support-free manufacture remains a
-   target requiring sliced-layer and physical validation; the surface-area
+   preference, with accessible local supports allowed. Sliced-layer and physical
+   validation remain necessary; the surface-area
    screen alone does not prove it (DEC-29).
 4. **Body-as-source-code.** Parametric code-CAD (`build123d` / `CadQuery`) so `bed_size`
    and `scale` are parameters, geometry lives in-repo, and it can export URDF.

@@ -1,0 +1,672 @@
+{
+  "source": "hardware/vendor/so-arm100/SO101/Upper_arm_SO101.step",
+  "source_sha256": "efa19a6dd2ccb459248500c76629cfa840630e7e15d9e146394d31da1525dd61",
+  "upstream_commit": "eecbe3e0a9ebb23e25ad7b2759b03884c6660903",
+  "derived_assets_license": "Apache-2.0",
+  "source_crop_planes_X_mm": {
+    "socket_max": -28.0,
+    "fork_min": 10.0
+  },
+  "socket_datum_source_xyz": [
+    -47.4849891178812,
+    4.8,
+    -0.9
+  ],
+  "fork_datum_source_xyz": [
+    65.0849891178812,
+    12.0,
+    0
+  ],
+  "templates": {
+    "upper_socket_source": {
+      "size_mm": [
+        50.0,
+        37.0849891178812,
+        24.50000000000017
+      ],
+      "volume_mm3": 22363.027902469898,
+      "valid_single_solid": true,
+      "watertight_STL": true,
+      "STEP_reimport_relative_volume_error": 4.968905151664692e-08
+    },
+    "upper_fork_source": {
+      "size_mm": [
+        67.30000020000003,
+        24.0000002,
+        67.0849893178812
+      ],
+      "volume_mm3": 51682.96273204393,
+      "valid_single_solid": true,
+      "watertight_STL": true,
+      "STEP_reimport_relative_volume_error": 4.551821656885244e-08
+    }
+  },
+  "current_parts": [
+    {
+      "name": "pelvis_socket",
+      "qty": 2,
+      "declared_orientation_metrics": {
+        "bed_area": 3121.162976059372,
+        "overhang_area": 113.8029170916829,
+        "size": [
+          67.0,
+          46.69999998807907,
+          86.1150016784668
+        ],
+        "height": 86.1150016784668
+      },
+      "principal_orientation_screen": [
+        [
+          "as-modelled",
+          113.8029170916829,
+          3121.162976059372
+        ],
+        [
+          "X-90",
+          953.1256577796479,
+          702.2254317420493
+        ],
+        [
+          "X+90",
+          953.1256050299223,
+          702.225431719701
+        ]
+      ],
+      "notes": "Independent enclosing pitch socket. Secure all four servo ear screws on the bench. Fit module onto frame locating pins and two accessible M3 through-bolts at x=-30/-20. Socket-floor face down, opening up; perpendicular flange grows as a vertical wall. Bridge the 4.4 mm locator-pocket roofs; ear-hole roofs use accessible local support. Accessible local supports permitted; inspect layers. Physical fit/load unverified.",
+      "printable": "assumed",
+      "material": "PETG"
+    },
+    {
+      "name": "shoulder_socket",
+      "qty": 2,
+      "declared_orientation_metrics": {
+        "bed_area": 2833.096404214486,
+        "overhang_area": 99.9646420324849,
+        "size": [
+          62.0,
+          46.69999998807907,
+          27.000001907348633
+        ],
+        "height": 27.000001907348633
+      },
+      "principal_orientation_screen": [
+        [
+          "as-modelled",
+          99.9646420324849,
+          2833.096404214486
+        ],
+        [
+          "X+90",
+          1087.289427381156,
+          275.88989275854544
+        ],
+        [
+          "X-90",
+          1087.28949040747,
+          275.88989202824297
+        ]
+      ],
+      "notes": "Independent enclosing pitch socket. Secure all four servo ear screws on the bench. Fit module onto frame locating pins and two accessible M3 through-bolts at x=-30/-20. Flat frame face down, socket opening up. Bridge the 4.4 mm locator-pocket roofs; ear-hole roofs use accessible local support. Accessible local supports permitted; inspect layers. Physical fit/load unverified.",
+      "printable": "assumed",
+      "material": "PETG"
+    },
+    {
+      "name": "thigh",
+      "qty": 2,
+      "declared_orientation_metrics": {
+        "bed_area": 598.8212885677308,
+        "overhang_area": 2416.048648485225,
+        "size": [
+          44.900001525878906,
+          77.28178405761719,
+          49.0
+        ],
+        "height": 49.0
+      },
+      "principal_orientation_screen": [
+        [
+          "X+90",
+          1705.1346630554717,
+          447.10635194452334
+        ],
+        [
+          "X-90",
+          1767.7466925892359,
+          19.558563955022514
+        ],
+        [
+          "Y-90",
+          1945.3930512456766,
+          535.5548021976857
+        ]
+      ],
+      "notes": "One 85 mm link: roll-axis horn forks, bridge, spine and perpendicular knee/elbow saddle. Outer horn pad on bed; remove supports from inner fork and saddle. No structural seam bolts. Accessible local supports permitted; inspect layers. Physical fit/load unverified.",
+      "printable": "assumed",
+      "material": "PETG"
+    },
+    {
+      "name": "upper_arm",
+      "qty": 2,
+      "declared_orientation_metrics": {
+        "bed_area": 598.8212885677308,
+        "overhang_area": 2153.02024677368,
+        "size": [
+          44.900001525878906,
+          62.28178024291992,
+          49.0
+        ],
+        "height": 49.0
+      },
+      "principal_orientation_screen": [
+        [
+          "X+90",
+          1494.1976306356946,
+          447.10635194452334
+        ],
+        [
+          "Y-90",
+          1667.351152711345,
+          535.5546563695171
+        ],
+        [
+          "Y+90",
+          1667.351153812103,
+          535.5546552687593
+        ]
+      ],
+      "notes": "One 70 mm link: roll-axis horn forks, bridge, spine and perpendicular knee/elbow saddle. Outer horn pad on bed; remove supports from inner fork and saddle. No structural seam bolts. Accessible local supports permitted; inspect layers. Physical fit/load unverified.",
+      "printable": "assumed",
+      "material": "PETG"
+    },
+    {
+      "name": "shank",
+      "qty": 2,
+      "declared_orientation_metrics": {
+        "bed_area": 598.8212885677308,
+        "overhang_area": 3118.773275240196,
+        "size": [
+          123.39678192138672,
+          45.99981689453125,
+          49.0
+        ],
+        "height": 49.0
+      },
+      "principal_orientation_screen": [
+        [
+          "Y-90",
+          1633.0957295005633,
+          19.558563955022514
+        ],
+        [
+          "Y+90",
+          1687.3024616260632,
+          17.187131861007348
+        ],
+        [
+          "X+90",
+          3087.7646371217847,
+          17.210139035663524
+        ]
+      ],
+      "notes": "One 90 mm link: both forks and integrated 37D face/body support. Slide motor from inboard; install face screws before hub and wheel. Remove support from body bore. Accessible local supports permitted; inspect layers. Physical fit/load unverified.",
+      "printable": "assumed",
+      "material": "PETG"
+    },
+    {
+      "name": "forearm",
+      "qty": 2,
+      "declared_orientation_metrics": {
+        "bed_area": 1054.4331568106513,
+        "overhang_area": 1375.4645244784324,
+        "size": [
+          49.0,
+          113.39678192138672,
+          20.799999237060547
+        ],
+        "height": 20.799999237060547
+      },
+      "principal_orientation_screen": [
+        [
+          "X+90",
+          1020.5852985890417,
+          122.06489025932262
+        ],
+        [
+          "X-90",
+          1073.937104446535,
+          19.558563955022514
+        ],
+        [
+          "as-modelled",
+          1375.4645244784324,
+          1054.4331568106513
+        ]
+      ],
+      "notes": "One flat-section forearm; elbow fork and keyed TPU-pad seat. Broad native -Y face on bed. Insert captive M3 nut from side; fit pad and recessed M3x20 screw with washer. Local support under nut-slot roof and fork hole roofs is accessible from outside. Accessible local supports permitted; inspect layers. Physical fit/load unverified.",
+      "printable": "assumed",
+      "material": "PETG"
+    },
+    {
+      "name": "root_carrier",
+      "qty": 4,
+      "declared_orientation_metrics": {
+        "bed_area": 2236.3912615399386,
+        "overhang_area": 331.3125331012179,
+        "size": [
+          44.900001525878906,
+          88.14999848604202,
+          50.511783599853516
+        ],
+        "height": 50.511783599853516
+      },
+      "principal_orientation_screen": [
+        [
+          "as-modelled",
+          331.3125331012179,
+          2236.3912615399386
+        ],
+        [
+          "X-90",
+          1756.604658843662,
+          917.0771399913217
+        ],
+        [
+          "X+90",
+          1936.9813417490618,
+          736.7004597154887
+        ]
+      ],
+      "notes": "Common hip/shoulder pitch fork and enclosing roll socket: print two of each hand. Roll centres 149 mm apart. Unbevelled common flat back on bed; accessible local hole-roof supports. Fit all four roll ear screws before the upper link. Accessible local supports permitted; inspect layers. Physical fit/load unverified.",
+      "printable": "assumed",
+      "material": "PETG"
+    },
+    {
+      "name": "front_contact_pad",
+      "qty": 2,
+      "declared_orientation_metrics": {
+        "bed_area": 608.3694485836625,
+        "overhang_area": 3.909200045998449,
+        "size": [
+          31.991779327392578,
+          31.995332717895508,
+          19.589736938476562
+        ],
+        "height": 19.589736938476562
+      },
+      "principal_orientation_screen": [
+        [
+          "as-modelled",
+          3.909200045998449,
+          608.3694485836625
+        ],
+        [
+          "X+180",
+          454.46753961553213,
+          0.0
+        ],
+        [
+          "X+90",
+          494.6067755468228,
+          1.9542863504738959
+        ]
+      ],
+      "notes": "Replaceable rounded TPU ground contact at the accepted 100 mm elbow-to-ball centre. Truncated mating face on bed; tapered keyed cavity avoids a flat internal roof. No support intended; recessed screw/washer remains above contact surface. Traction/wear untested. Accessible local supports permitted; inspect layers. Physical fit/load unverified.",
+      "printable": "assumed",
+      "material": "TPU"
+    },
+    {
+      "name": "torso_frame",
+      "qty": 1,
+      "declared_orientation_metrics": {
+        "bed_area": 1693.5852956652884,
+        "overhang_area": 957.0700910610472,
+        "size": [
+          57.88500213623047,
+          80.0,
+          62.0
+        ],
+        "height": 62.0
+      },
+      "principal_orientation_screen": [
+        [
+          "as-modelled",
+          957.0700910610472,
+          1693.5852956652884
+        ],
+        [
+          "X+90",
+          1241.786758546094,
+          1276.3719982667144
+        ],
+        [
+          "X-90",
+          1241.786758546094,
+          1276.3719982667144
+        ]
+      ],
+      "notes": "Rigid 150 mm pitch-axis torso. Flanges contact crossmembers. Eight through-bolts with nuts and socket-module locating pockets; rear face down. Support the opposite rails and flange/slot roofs; all supports are removable through the open cage. Accessible local supports permitted; inspect layers. Physical fit/load unverified.",
+      "printable": "assumed",
+      "material": "PETG"
+    },
+    {
+      "name": "e_tray",
+      "qty": 1,
+      "declared_orientation_metrics": {
+        "bed_area": 8209.90474878663,
+        "overhang_area": 0.0,
+        "size": [
+          96.0,
+          88.0,
+          9.0
+        ],
+        "height": 9.0
+      },
+      "principal_orientation_screen": [
+        [
+          "as-modelled",
+          0.0,
+          8209.90474878663
+        ],
+        [
+          "X+90",
+          314.78498308391323,
+          347.9265944321901
+        ],
+        [
+          "X-90",
+          314.7849847842617,
+          347.9265944321901
+        ]
+      ],
+      "notes": "Flat tray, Uno-pattern stand-offs plus strap slots. Four 4 mm spacers to torso; rounded stand-off roots. No support intended; electronics packaging remains open. Accessible local supports permitted; inspect layers. Physical fit/load unverified.",
+      "printable": "assumed",
+      "material": "PETG"
+    },
+    {
+      "name": "tray_spacer",
+      "qty": 4,
+      "declared_orientation_metrics": {
+        "bed_area": 29.39312154490878,
+        "overhang_area": 0.0,
+        "size": [
+          7.0,
+          6.997824192047119,
+          4.0
+        ],
+        "height": 4.0
+      },
+      "principal_orientation_screen": [
+        [
+          "as-modelled",
+          0.0,
+          29.39312154490878
+        ],
+        [
+          "X+180",
+          0.0,
+          29.39312154490878
+        ],
+        [
+          "Y+90",
+          28.999381160827348,
+          4.188356157759318
+        ]
+      ],
+      "notes": "Four functional 4 mm tray stand-offs. Print together with brim. Accessible local supports permitted; inspect layers. Physical fit/load unverified.",
+      "printable": "assumed",
+      "material": "PETG"
+    },
+    {
+      "name": "coupon_socket_saddle",
+      "qty": 1,
+      "declared_orientation_metrics": {
+        "bed_area": 1285.1913945546912,
+        "overhang_area": 69.56662639603165,
+        "size": [
+          44.900001525878906,
+          28.700000762939453,
+          22.0
+        ],
+        "height": 22.0
+      },
+      "principal_orientation_screen": [
+        [
+          "as-modelled",
+          69.56662639603165,
+          1285.1913945546912
+        ],
+        [
+          "Y-90",
+          484.2922356129424,
+          535.5547057205365
+        ],
+        [
+          "Y+90",
+          484.2922357956409,
+          535.554705537838
+        ]
+      ],
+      "notes": "Production four-ear saddle. M2x5 through 2.2 mm seats; enclosing Side returns and open insertion face. Floor down. Accessible support beneath ear-hole roofs. Fit/removal and screw engagement check. Accessible local supports permitted; inspect layers. Physical fit/load unverified.",
+      "printable": "assumed",
+      "material": "PETG"
+    },
+    {
+      "name": "coupon_socket_fork",
+      "qty": 1,
+      "declared_orientation_metrics": {
+        "bed_area": 598.8212885677308,
+        "overhang_area": 567.5095276036675,
+        "size": [
+          42.39678192138672,
+          20.799999237060547,
+          49.0
+        ],
+        "height": 49.0
+      },
+      "principal_orientation_screen": [
+        [
+          "Y+90",
+          241.77098950458748,
+          803.9750135151662
+        ],
+        [
+          "X+180",
+          559.4703833113783,
+          606.8604328600201
+        ],
+        [
+          "as-modelled",
+          567.5095276036675,
+          598.8212885677308
+        ]
+      ],
+      "notes": "Production integral double fork. Flat 36.4 mm horn contact span; 3.5 mm web, 6 mm pan-head pockets and blind Back boss relief. Outer horn pad down; removable support beneath opposite cheek. Fit before full limbs. Accessible local supports permitted; inspect layers. Physical fit/load unverified.",
+      "printable": "assumed",
+      "material": "PETG"
+    },
+    {
+      "name": "coupon_motor_ring",
+      "qty": 1,
+      "declared_orientation_metrics": {
+        "bed_area": 1547.0956491591685,
+        "overhang_area": 0.0,
+        "size": [
+          47.0,
+          46.985389709472656,
+          5.0
+        ],
+        "height": 5.0
+      },
+      "principal_orientation_screen": [
+        [
+          "as-modelled",
+          0.0,
+          1547.0956491591685
+        ],
+        [
+          "X+180",
+          0.0,
+          1547.0956491591685
+        ],
+        [
+          "X+90",
+          304.82756101961576,
+          5.858712792396545
+        ]
+      ],
+      "notes": "Face-boss + BCD only; the body bore is coupon_motor_bore.",
+      "printable": "assumed",
+      "material": "PETG"
+    },
+    {
+      "name": "coupon_motor_bore",
+      "qty": 1,
+      "declared_orientation_metrics": {
+        "bed_area": 3437.911760814745,
+        "overhang_area": 0.0,
+        "size": [
+          135.0,
+          50.0,
+          6.0
+        ],
+        "height": 6.0
+      },
+      "principal_orientation_screen": [
+        [
+          "as-modelled",
+          0.0,
+          3437.911760814745
+        ],
+        [
+          "X+180",
+          23.385467681647015,
+          3414.5063900883406
+        ],
+        [
+          "X+90",
+          545.8667706144734,
+          810.0
+        ]
+      ],
+      "notes": "Smallest bore the 37D gearbox slides into wins.",
+      "printable": "assumed",
+      "material": "PETG"
+    },
+    {
+      "name": "coupon_ladder",
+      "qty": 1,
+      "declared_orientation_metrics": {
+        "bed_area": 8934.964574158794,
+        "overhang_area": 0.0,
+        "size": [
+          150.0,
+          60.0,
+          6.0
+        ],
+        "height": 6.0
+      },
+      "principal_orientation_screen": [
+        [
+          "as-modelled",
+          0.0,
+          8934.964574158794
+        ],
+        [
+          "X+180",
+          118.45549470159246,
+          8816.509407308557
+        ],
+        [
+          "X+90",
+          167.8862663066833,
+          900.0
+        ]
+      ],
+      "notes": "Smallest that ACCEPTS the real screw/insert wins - fit, not calipers. Outer 150.0 x 60.0 x 6.0 is the machine's dimensional-accuracy datum.",
+      "printable": "assumed",
+      "material": "PETG"
+    },
+    {
+      "name": "coupon_seam",
+      "qty": 1,
+      "declared_orientation_metrics": {
+        "bed_area": 3543.599118988146,
+        "overhang_area": 38.25,
+        "size": [
+          60.0,
+          75.0,
+          13.0
+        ],
+        "height": 13.0
+      },
+      "principal_orientation_screen": [
+        [
+          "as-modelled",
+          38.25,
+          3543.599118988146
+        ],
+        [
+          "Y+90",
+          182.0841796303462,
+          270.0
+        ],
+        [
+          "Y-90",
+          182.0841796303462,
+          270.0
+        ]
+      ],
+      "notes": "Set inserts, screw the lid down flat.",
+      "printable": "assumed",
+      "material": "PETG"
+    }
+  ],
+  "upstream_print_orientation": {
+    "native_build_direction": "+Y",
+    "bed_area": 3739.0062634119427,
+    "overhang_area": 1789.0258204702625,
+    "size": [
+      142.16998291015625,
+      67.29999923706055,
+      24.500000000000167
+    ],
+    "height": 24.500000000000167
+  },
+  "upstream_features": {
+    "main_outer_fillet_radius_mm": 5,
+    "local_end_radius_mm": 2,
+    "fork_tip_radius_mm": 12,
+    "horn_contact_span_mm": 36.4,
+    "fork_outer_span_mm": 63.4,
+    "pocket_widest_planes_source_Z_mm": [
+      -18.3,
+      16.5
+    ],
+    "pocket_across_axis_mm": 34.8,
+    "pocket_side_planes_source_X_mm": [
+      -59.8849891178812,
+      -35.0849891178812
+    ],
+    "pocket_width_mm": 24.8,
+    "floor_thickness_mm": 4.8,
+    "highest_wall_above_floor_mm": 19.7,
+    "ear_planes_source_Z_mm": [
+      -16.4,
+      15.4
+    ],
+    "normalized_socket_slots": {
+      "drive": {
+        "plane_x_mm": 17.4,
+        "width_mm": 14.0,
+        "start_z_mm": 2.842170943040401e-14,
+        "end_z_mm": 18.5
+      },
+      "idler": {
+        "plane_x_mm": -17.400000000000002,
+        "width_mm": 18.500000000000004,
+        "start_z_mm": 5.000000000000028,
+        "end_z_mm": 17.7
+      }
+    }
+  }
+}

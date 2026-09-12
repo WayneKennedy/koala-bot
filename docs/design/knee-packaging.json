@@ -1,0 +1,116 @@
+{
+  "reference": "imported case + measured horns",
+  "native_frame": "X lateral, Y fore/aft in thigh frame, Z down straight shank",
+  "fold_angles_deg": [
+    0,
+    30,
+    60,
+    90,
+    120
+  ],
+  "offset_sweep": [
+    {
+      "offset_mm": 0,
+      "motor_servo_overlap_mm3": 17509.367,
+      "motor_thigh_overlap_mm3": 9.657,
+      "motor_servo_distance_mm": 0.0,
+      "wheel_thigh_overlap_mm3": 0.0,
+      "shank_motor_overlap_mm3": [
+        2545.337,
+        2545.337,
+        2545.337,
+        2545.337,
+        2545.337
+      ]
+    },
+    {
+      "offset_mm": 25,
+      "motor_servo_overlap_mm3": 2714.859,
+      "motor_thigh_overlap_mm3": 0,
+      "motor_servo_distance_mm": 0.0,
+      "wheel_thigh_overlap_mm3": 0.0,
+      "shank_motor_overlap_mm3": [
+        211.739,
+        165.283,
+        165.283,
+        211.364,
+        165.283
+      ]
+    },
+    {
+      "offset_mm": 30,
+      "motor_servo_overlap_mm3": 148.64,
+      "motor_thigh_overlap_mm3": 0,
+      "motor_servo_distance_mm": 0.0,
+      "wheel_thigh_overlap_mm3": 0.0,
+      "shank_motor_overlap_mm3": [
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0
+      ]
+    },
+    {
+      "offset_mm": 35,
+      "motor_servo_overlap_mm3": 0.0,
+      "motor_thigh_overlap_mm3": 0,
+      "motor_servo_distance_mm": 4.138,
+      "wheel_thigh_overlap_mm3": 0.0,
+      "shank_motor_overlap_mm3": [
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0
+      ]
+    },
+    {
+      "offset_mm": 40,
+      "motor_servo_overlap_mm3": 0.0,
+      "motor_thigh_overlap_mm3": 0,
+      "motor_servo_distance_mm": 9.138,
+      "wheel_thigh_overlap_mm3": 0.0,
+      "shank_motor_overlap_mm3": [
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0
+      ]
+    },
+    {
+      "offset_mm": 45,
+      "motor_servo_overlap_mm3": 0.0,
+      "motor_thigh_overlap_mm3": 0.0,
+      "motor_servo_distance_mm": 14.138,
+      "wheel_thigh_overlap_mm3": 0.0,
+      "shank_motor_overlap_mm3": [
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0
+      ]
+    }
+  ],
+  "shank_servo_overlap_mm3": [
+    0,
+    0,
+    0,
+    0,
+    16.405
+  ],
+  "shank_thigh_overlap_mm3": [
+    0.0,
+    0.0,
+    0.0,
+    0.0,
+    0
+  ],
+  "existing_track_mm": 220.0,
+  "existing_knee_centre_spacing_mm": 149.2,
+  "outboard_coaxial_stack_track_mm": 390.6,
+  "coaxial_stack_assumed_clearance_mm": 3,
+  "limits": "Local nominal envelope study only. Shank is retained clevis + 16 mm beam, not final foot geometry. No motor mounts, hardware heads, wiring, full-robot collisions, continuous sweep, strength or loaded poses."
+}

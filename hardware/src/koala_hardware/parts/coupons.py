@@ -22,7 +22,7 @@ def build_motor_ring() -> dict:
         part -= Pos(P.MOTOR_BCD / 2 * math.cos(a),
                     P.MOTOR_BCD / 2 * math.sin(a), 5.1) * F.m3_clear(5.2)
     return {"name": "coupon_motor_ring", "part": part,
-            "orientation": Rot(), "notes": "Face-boss + BCD only; the body "
+            "orientation": Rot(), "printable": "assumed", "material": "PETG", "notes": "Face-boss + BCD only; the body "
             "bore is coupon_motor_bore."}
 
 
@@ -55,7 +55,7 @@ def build_ladder() -> dict:
         part -= _label(f"{d}", x - 5, -20)
     part -= _label("M3 CLEAR", 5, 16, size=6)
     part -= _label("INSERT", 5, -10, size=6)
-    return {"name": "coupon_ladder", "part": part, "orientation": Rot(),
+    return {"name": "coupon_ladder", "part": part, "orientation": Rot(), "printable": "assumed", "material": "PETG",
             "notes": "Smallest that ACCEPTS the real screw/insert wins - fit, "
                      "not calipers. Outer 150.0 x 60.0 x 6.0 is the machine's "
                      "dimensional-accuracy datum."}
@@ -71,7 +71,7 @@ def build_motor_bore() -> dict:
         part -= Pos(x, 0, 6.1) * Cylinder(
             d / 2, 6.2, align=(Align.CENTER, Align.CENTER, Align.MAX))
         part -= _label(f"{d}", x - 7, 20, size=4.5)
-    return {"name": "coupon_motor_bore", "part": part, "orientation": Rot(),
+    return {"name": "coupon_motor_bore", "part": part, "orientation": Rot(), "printable": "assumed", "material": "PETG",
             "notes": "Smallest bore the 37D gearbox slides into wins."}
 
 
@@ -90,7 +90,7 @@ def build_seam() -> dict:
         - Pos(0, 8, P.CLEAR_POCKET) * Rot(X=180) * F.registration_key(
             clearance=P.CLEAR_POCKET))
     return {"name": "coupon_seam", "part": base + lid, "multi_body": True,
-            "orientation": Rot(), "notes": "Set inserts, screw the lid down flat."}
+            "orientation": Rot(), "printable": "assumed", "material": "PETG", "notes": "Set inserts, screw the lid down flat."}
 
 
 BUILDERS = [build_motor_ring,

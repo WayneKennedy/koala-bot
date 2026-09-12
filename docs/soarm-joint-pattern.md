@@ -43,7 +43,9 @@ Back = −X, Bottom = Z 0, Top = Z 45.23, Sides = ±Y.
 
 ## The pattern
 
-Every powered joint puts three printed parts around one servo:
+The cradle/collar variant uses these three structural functions around one
+servo. **They are not a requirement for three separately printed link pieces**:
+DEC-39 integrates the clevis, spine and next socket into a single link.
 
 1. **Cradle**, part of the structural link: floor, Front wall, Back wall, one
    Side wall; open Side and open Top. It holds the bottom ~17 mm of the case.
@@ -60,17 +62,24 @@ Every powered joint puts three printed parts around one servo:
 
 Retention is friction in the pocket plus **four M2 self-tappers into the
 servo's own ears**, two through the Front wall side and two through the Back
-wall side; nothing threads into plastic. The ears stand proud of the case, so a
-servo cannot enter a closed pocket lengthwise: every socket admits it through
-the open Side and the collar closes that Side afterwards.
+wall side; nothing threads into plastic. The ears stand proud of the case, so entry must follow the actual pocket reliefs. In the cradle/collar variant,
+the servo enters through the open Side and the collar closes it afterwards.
+This is not a universal prohibition on enclosed, shaped sockets.
 
 **Where it is used** (assembly STEP): base (`Base` + `Base_motor_holder`),
 shoulder (`Rotation_Pitch` + `Motor_holder_Base`), wrist pitch (`Under_arm` +
-`Motor_holder_Wrist`, the shoulder arrangement on its side). **The elbow is the
-exception:** the elbow servo's bottom 20 mm sits in a one-piece saddle at the
-far end of `Upper_arm` — floor plus Front and Back walls, both Sides open, all
-four M2 screws through those two walls, no collar — and `Under_arm` carries the
-elbow clevis.
+`Motor_holder_Wrist`, the shoulder arrangement on its side). **The elbow uses a different enclosed socket:** the servo's bottom approximately
+20 mm sits in the far end of `Upper_arm`. This includes a floor, Front/Back
+walls and substantial Side-wall returns with shaped reliefs; all four M2
+screws pass through the Front/Back walls, without a collar. `Under_arm` carries
+the elbow clevis. The earlier description of both Sides being open was wrong;
+it confused our simplified saddle with the actual upstream part. See the
+[2026-09-10 STEP extraction](design/so101/README.md) and maintainer photo.
+
+DEC-39 explicitly permits this saddle variant for koala where insertion and
+all four ear screws remain accessible. See [integrated-links.md](integrated-links.md)
+for the adopted part strategy; do not reintroduce flat cheek/crossbar seams
+solely to satisfy the earlier print-orientation heuristic.
 
 ## The servo, as measured (calipers, 2026-09-08; cheap tool, ±0.3)
 
@@ -102,15 +111,24 @@ horn face at **+19.4** (`SOCKET_SEAT_OFFSET`, `SOCKET_IDLER_FACE`,
 plates:
 
 **Where each plane runs, height from the Bottom** (Back, photos IMG_6993–6995;
-Front lengths assumed the same, `[VERIFY]`):
+Back measurements only; do not apply these lengths or pad width to the Front):
 
 | Height | Region | Plane |
 |---|---|---|
 | 0 – 5.3 | ears; the Bottom M2 pair at the corners | 31.8 |
-| 5.3 – 18.8 | a **raised, centred pad 18.5 wide** (Side to Side) with a small screw; the face beside it stays at the ear plane | **34.8, the widest — what the pocket grips**, over an 18.5 × 13.5 pad per side |
+| 5.3 – 18.8 | a **raised, centred pad 18.5 wide** (Side to Side) with a small screw; the face beside it stays at the ear plane | **34.8, the widest — what the pocket grips**, over the measured 18.5 × 13.5 Back pad |
 | 18.8 – 35.2 | connector bay 18.8–24.5, a second M2 pair at ~22 | below the seat plane |
 | 35.2 (axis) – 45.4 | Top region | below the seat plane |
 | Ø20 pad at the axis | **raised** round seat the idler covers exactly | 28.8 |
+
+**DEC-50 correction (2026-09-11):** the pinned SO-101 Upper arm recess is
+14 mm wide on the drive face from the socket floor; the idler recess is
+18.5 mm wide and starts 5 mm above the floor. The production socket now uses
+these distinct profiles. The earlier shared Back-width assumption was wrong.
+The supplied case STEP also shows the narrower Front raised plane extending
+to Z=25.5444 mm; the fallback collision envelope covers it to 25.55 mm. This
+is a STEP-based clearance envelope, not a new measured pocket dimension.
+[Slot views and source measurements](design/so101/socket-slot-comparison.png).
 
 The output axis is at 35.2 from the Bottom (spec 22.6 + 12.5 = 35.1).
 `socket_reference()` carries this profile with the C/D faces conservatively at
@@ -162,6 +180,30 @@ The Ø2.0 section is 2.0–2.2 mm long inside a wall bossed inward to the ear
 face: ~2.2 mm of plastic under the head, then the ear. The supplied M2×5
 reaches. koala's test-log finding of 2026-09-07 ("M2×5 too short for our 3.95 /
 6.35 mm walls") is solved by geometry, not longer screws.
+
+## Upper-arm STEP construction correction — 2026-09-10
+
+The exact pinned `Upper_arm_SO101.step` has a 34.8 mm widest Front/Back pocket
+span, 24.8 mm Side span, 4.8 mm floor and up to 19.7 mm wall height above the
+floor. These source-part dimensions differ slightly from the Gauge_0 values
+in the table, which remain our accepted nominal interface. Preserve the
+confirmed fit and measured hardware stack when adapting its enclosing shape.
+
+Its flat back is native STEP Y=0. Both servo output axes run along native Z,
+parallel to each other and horizontal when the back is on the bed. The broad
+fork body has flat horn contacts 36.4 mm apart, 3.5 mm bearing webs and outer
+cheek faces 63.4 mm apart. R5 blends and R12 tips provide substantially more
+root/tip material than our compact Ø20.8 pads. Original holes and outer
+widths are not automatic replacements for the supplied-hardware clearances
+or the available chassis space. [Full critique](part-design-review.md).
+
+## Current implementation
+
+[DEC-40](cad-integrated-design.md) implements flat horn faces, corrected ear
+seats, supplied-head pockets and the measured centre reliefs. It uses the
+four-ear saddle throughout the chassis and a two-print acceptance rig.
+The items below are the historical DEC-34 correction list, preserved with the
+upstream measurement record; they are not a current defect list.
 
 ## Corrections the koala primitive needs (against DEC-34 as built)
 

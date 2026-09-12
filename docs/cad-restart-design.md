@@ -1,5 +1,21 @@
 # DEC-34 lower-body prototype — 2026-09-07
 
+**Historical: implementation replaced by [DEC-40](cad-integrated-design.md).**
+
+**Morphology superseded by DEC-36/37.** This is the historical specimen's
+implementation record. Use [body-layout.md](body-layout.md) and
+[the engineering schematics](design/README.md) for the adopted short-limbed,
+four-wheel body and resolved dimensions.
+DEC-39 also supersedes the flat-cheek/crossbar decomposition described here;
+use [integrated-links.md](integrated-links.md) for the new structural strategy.
+
+**2026-09-08 status: correction required.** The [measurement impact assessment](cad-measurement-impact.md)
+supersedes the socket's earlier acceptance and records the current audit failure.
+This document describes the former implementation and design intent; its
+socket geometry and fastening assumptions below are not a build-ready design.
+For whole-body height, skeleton correspondence and the static viewer's side
+backdrop, see [body-layout.md](body-layout.md).
+
 Replacement build123d geometry for DEC-30/31. **Digital prototype; no new part
 has been sliced, printed, fitted or load-tested.** The confirmed SO-101 fit
 (DEC-33) is the input, not acceptance of these new parts. Start physical work
@@ -16,12 +32,12 @@ Dimensions and assumptions live in `hardware/src/koala_hardware/params.py`.
 | Thigh / shank | 100 / 100 mm between axes |
 | Stance | Hip 15°, knee 30°; axle under hip-pitch axis in side view |
 | Deck height | 283.2 mm; 150 mm upper-body allocation gives 433.2 mm overall |
-| Track | 237.3 mm wheel centres, 247.3 mm tyre outside width (239.5 / 249.5 as designed on the 37.5 span; corrected 2026-09-08 to the measured 36.4 — `params.py` derives it) |
+| Track | Current code: 238.2 mm wheel centres, 248.2 mm tyre outside width, after the 36.4 mm span and asymmetric face correction; final track awaits interface repair |
 | Hip axes | Pitch 70.115 mm forward and 34 mm outboard of roll, same height; 77.9 mm axis-centre spacing |
 | Roll inspection range | ±5°; reduced from the ±10° study target to retain a track below 240 mm |
 | Hip / knee inspection ranges | −10…45° / 0…90°; hip extension reduced from the −30° study target |
 | Motor | Inboard 69 mm body, coaxial with wheel, no belt or ankle DOF |
-| Neutral motor end gap | 55.5 mm; inward-roll/unequal-flexion poses checked separately |
+| Neutral motor end gap | Current code: 54.2 mm; inward-roll/unequal-flexion clearance must be rechecked after interface repair |
 | Pelvis | 180 × 150 mm deck, roll roots integral; deck top against bed |
 | Upper-body interface | Four M3 through-holes on a 40 mm square for a rigid strut; future parallel-platform and shoulder-girdle interfaces remain open |
 
@@ -44,8 +60,12 @@ intervals alone do not prove a solid collision.
 
 ## Socket and load path
 
+The following is the uncorrected implementation. For required changes to
+retention, flat horn seats, centre/head clearances and cable exit, use the
+[impact assessment](cad-measurement-impact.md#findings-and-correction-scope).
+
 `servo_iface` uses X for the output axis and Z for case length. The rear case
-face is Z=0. Lug positions use that case datum; horn holes use the output-axis
+end (Bottom in the current terminology) is Z=0. Lug positions use that case datum; horn holes use the output-axis
 datum. The pocket comes from Gauge_0, **not a servo STEP**.
 
 All six joints use the same rear cradle, sliding collar and two bolted horn
@@ -81,19 +101,20 @@ coupon hardware and supplier-specific wheel/hub fixings are separate.
 
 | Interface | Candidate stack, before physical verification |
 |---|---|
-| Four case screws per servo | M2x5 − 2.2 mm seat = 2.8 mm nominal lug engagement |
+| Four case screws per servo | Current gaps reduce nominal penetration to 1.75 mm Front / 0.75 mm Back; boss correction required before engagement is accepted |
 | Drive horn square | M3x6 − 2.7 mm recess floor = 3.3 mm engagement |
 | Idler horn square | M3x6 − 3.5 mm flat cheek = 2.5 mm engagement |
 | Thigh/shank proximal crossbar | 35.6 mm spacer + two 3.5 mm cheeks = 42.6 mm grip; M3x50, washers and nut |
-| Hip carrier | Recessed head seat to outer idler cheek = 51.85 mm grip; M3x60, nut-side washer and nut |
+| Hip carrier | Recessed head seat to outer idler cheek = 52.5 mm span, including an unintended 0.65 mm mating gap; repair before choosing final grip/screw length |
 | Shank motor-plate seam | 35.6 + two 5 mm plates = 45.6 mm grip; M3x55, washers and nut |
-
-Span-derived grips above were shortened by 1.1 mm on 2026-09-08 when the horn
-span was measured at 36.4 (test-log); screw lengths are unchanged.
 | Motor face | Six M3x8 per motor, 5 mm plate → 3 mm nominal engagement; verify motor bore depth |
 | Hub | 5 mm plate + 3 mm cap head + 0.5 mm axial allowance + 9.5 mm hub = 18 mm stack; verify actual hub/set-screw access |
 | Tray | Four 10 mm female/female standoffs, M3x10 below 5 mm deck and M3x8 above 4 mm tray; verify thread depths |
 | Driver shield | Four M3x16 through tray/standoffs and board into nuts; actual board stack remains to check |
+
+Values reflect `f541600`; corrected horn seats, head pads and carrier contact
+will change these stacks again. Screw lengths remain candidates, not accepted
+hardware selections.
 
 1. Fit the rig cradle and collar to a servo using all four M2x5 screws. Check
    seating, removal, engagement and cable access without bottoming a screw.
@@ -165,7 +186,8 @@ powered support requirement is banked here.
 
 Read-only Moonraker checks on 2026-09-07 and at 00:01 BST on 2026-09-08
 returned **printing**. No slicing
-or print was started. Next: printer idle → inspect PETG layers for the five
+or print was started. Next: correct the measured interface → rerun digital
+checks → printer idle → inspect PETG layers for the five
 `coupon_socket_*` parts → print and fit one joint → log it → one full leg →
 the pair → documented strength, creep and motion testing (OQ-11/13).
 The restart brief remains open until physical acceptance; digital checks do

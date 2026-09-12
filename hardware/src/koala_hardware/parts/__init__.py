@@ -1,8 +1,8 @@
 # SPDX-License-Identifier: CERN-OHL-S-2.0
-"""Current printable parts; discarded DEC-29 builders are deliberately absent."""
-from . import pelvis, links, e_tray, coupons, joint_rig
+"""DEC-40 current builders; legacy seam-based links no longer export."""
+from . import pelvis, links, e_tray, torso, coupons, joint_rig
 
 
 def all_builders():
-    return [pelvis.build, *links.BUILDERS, e_tray.build, *joint_rig.BUILDERS,
-            *coupons.BUILDERS]
+    return [pelvis.build,pelvis.build_shoulders,*links.BUILDERS,torso.build,
+            e_tray.build,e_tray.build_spacer,*joint_rig.BUILDERS,*coupons.BUILDERS]

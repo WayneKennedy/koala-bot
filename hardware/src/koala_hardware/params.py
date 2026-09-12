@@ -42,9 +42,9 @@ PLATE = 5.0           # default structural plate thickness
 SERVO_AXIS_X = 12.5    # [SPEC] axis offset from case length centre
 SERVO_DRIVE_SQ = 9.9   # [STEP] SO-101 printed horn hole pattern
 SERVO_MASS = 55.0      # [SPEC] per bare servo, nominal
-SELFTAP_DIA = 2.0      # [SUPPLIED 2026-09-07] M2x5 case-lug screws
+SELFTAP_DIA = 2.0      # [SUPPLIED 2026-09-07] M2x5 case-lug screws (Waveshare); RCmall packs read M2x6, unmeasured (test-log 2026-09-12)
 HORN_SCREW = "M3x6"    # [SUPPLIED 2026-09-08] pan head, in the Waveshare ST3215 box;
-HORN_SCREW_HEAD_DIA = 5.2  # [SUPPLIED 2026-09-08] the RCmall Feetech packs are unverified
+HORN_SCREW_HEAD_DIA = 5.2  # [SUPPLIED 2026-09-08] Waveshare box; RCmall packs ship the same M3x6 pan head, head not re-measured (2026-09-12)
 HORN_SCREW_HEAD_H = 2.0    # [SUPPLIED 2026-09-08] upstream's fork counterbores are too
                            # small for these heads; size koala's to them
 
@@ -80,7 +80,41 @@ BNO085_BOARD = (25.4, 19.5)                      # [VERIFY] Adafruit 4754
 STANDOFF_H = 5.0        # printed standoffs under the driver shield
 TRAY_GAP = 10.0         # bought M3 standoffs, pelvis top -> tray underside
 
-# --- DEC-32 restart requirements / OQ-16 sizing study -----------------------
+# --- DEC-36/37/38/40 body master and structural assembly ------------------
+# [DESIGN] Maintainer-adopted GPT schematics, 2026-09-08. See docs/body-layout.md.
+# Segment lengths govern the next layout. DEC-37 resolves pose/envelope
+# annotations; DEC-40 implements the compact links and adjusts packaging.
+BODY_STANDING_HEIGHT_MM = 450.0
+BODY_HEAD_LENGTH_MM = 85.0
+BODY_HEAD_WIDTH_MM = 110.0    # engineering packaging envelope, DEC-37
+BODY_HEAD_HEIGHT_MM = 75.0
+BODY_NECK_LENGTH_MM = 35.0
+BODY_TORSO_LENGTH_MM = 150.0    # shoulder axis to hip axis
+BODY_RUMP_LENGTH_MM = 70.0     # hip to rear envelope
+BODY_UPPER_ARM_MM = 70.0       # shoulder to elbow
+BODY_FOREARM_MM = 75.0         # elbow to nominal wrist, DEC-43
+BODY_HAND_MM = 25.0            # wrist to fixed ball centre, along forearm
+BODY_FRONT_FOOT_RADIUS_MM = 16.0 # integral rounded foot; grip/loads unverified
+BODY_THIGH_MM = 85.0           # hip pitch to knee
+BODY_SHANK_MM = 90.0           # knee to ankle/wheel axis
+BODY_WHEEL_COUNT = 2           # rear ankles only, DEC-43
+BODY_DRIVE_MOTOR_COUNT = 2     # bought 37D pair
+BODY_WHEEL_DIA_MM = WHEEL_DIA  # 80 mm rear wheels
+BODY_LENGTH_TARGET_MM = 340.0  # nose to rear, closed quadruped envelope ~339.6
+BODY_WHEELBASE_TARGET_MM = 260.0 # front foot to rear wheel contact centres
+BODY_TRACK_TARGET_MM = 220.0   # DEC-40: retains clearance with inward roll and bought 69 mm motors
+BODY_SHOULDER_WIDTH_MM = 149.0
+BODY_QUAD_SHOULDER_HEIGHT_MM = 165.0 # axis height, from closed front-leg IK
+BODY_QUAD_HIP_HEIGHT_MM = 175.0
+BODY_QUAD_REAR_OFFSET_MM = 55.0 # rear wheel axle behind hip in quad stance
+BODY_MOTOR_GAP_MIN_MM = 4.0
+BODY_QUAD_RUMP_HEIGHT_MM = 220.0
+BODY_UPRIGHT_SHOULDER_HEIGHT_MM = 340.0 # 190 hip + 150 torso
+BODY_GROUND_CLEARANCE_MM = 60.0 # lowest body point, excludes limbs/wheels
+BODY_UPRIGHT_WRIST_X_MM = 100.0 # front ball centre; historical WRIST name retained
+BODY_UPRIGHT_WRIST_RISE_MM = -10.0 # front ball centre relative to shoulder
+
+# --- Historical DEC-32 / DEC-34 sizing study, superseded by DEC-36 ---------
 # Independent of the discarded assembly above. [DESIGN] is an engineering
 # target/assumption, NOT measured hardware or an accepted mechanical layout.
 RESTART_MASS_KG = 3.0            # [DESIGN] upper end of DEC-15
@@ -124,13 +158,17 @@ SOCKET_IDLER_T = 3.1       # [MEASURED 2026-09-08] idler thickness; sits flat on
 # the seat level to the Top; the output axis is the C/D line at 35.2 (spec
 # 35.1). The Ø20 seat is a RAISED pad the idler covers exactly; the general
 # face around it in C/D is lower still, so modelling C/D at the seat plane is
-# conservative for clearance. The FRONT is assumed to share these heights
-# [VERIFY] - its steps (1.5 / 2.5) are measured, its region lengths are not.
-SOCKET_REGION_Z = (5.3, 18.8)  # [MEASURED 2026-09-08 Back][VERIFY Front] ear|widest, widest|seat
-SOCKET_WIDE_PAD_Y = 18.5   # [MEASURED 2026-09-08 Back][VERIFY Front] the widest plane is a
-                           # CENTRED raised pad this wide (Side to Side), not the full
-                           # 24.7 case width; beside it the face stays at the ear plane.
-                           # The pocket walls therefore grip an 18.5 x 13.5 pad per side.
+# conservative for Back clearance. Front pad height instead uses the supplied
+# STEP envelope below; its physical region lengths have not been measured.
+SOCKET_REGION_Z = (5.3, 18.8)  # [MEASURED 2026-09-08 Back] ear|widest, widest|seat
+# [STEP 2026-09-11] pinned SO101/Upper_arm: unequal recess widths.
+# Drive: Y +/-7 from the floor. Idler: Y +/-9.25, starting Z=5.
+# These are socket features, not inferred symmetric servo dimensions.
+SOCKET_DRIVE_SLOT_Y = 14.0
+SOCKET_IDLER_SLOT_Y = 18.5  # also consistent with the measured Back pad
+SOCKET_IDLER_SLOT_Z = 5.0
+SOCKET_DRIVE_PAD_TOP = 25.55 # [STEP envelope] supplied case plane ends at 25.5444;
+                            # conservative fallback only, not a pocket datum
 SOCKET_BOSS_DIA = 8.0      # [VERIFY] Back boss through the idler, from the photos
 SOCKET_BAY_Z = (18.8, 24.5)  # [MEASURED 2026-09-08] connector bay on the Back, height band;
                              # connectors face out along the axis - keep it uncovered
@@ -148,12 +186,12 @@ SOCKET_COLLAR_WALL = 3.0  # [STEP] SO-101 sleeve
 SOCKET_COLLAR_BOTTOM = -9.0 # [STEP] sleeve overlap below the servo's Bottom
 SOCKET_COLLAR_CLEAR = 0.1 # [DESIGN] per side = 0.2 total
 SOCKET_FRONT_CLEAR = 0.16 # [STEP] upstream front-wall contact allowance
-SOCKET_LUG_BACK_Z = 2.1   # [STEP] SO-101 printed holes, not a caliper measurement
+SOCKET_LUG_BACK_Z = 2.25   # [STEP] SO-101 printed holes, not a caliper measurement
 SOCKET_LUG_DRIVE_Z = 5.8  # [STEP] SO-101 printed holes, not a caliper measurement
-SOCKET_LUG_Y = 10.4       # [STEP][SPEC] offset from case width centre
+SOCKET_LUG_Y = 10.25       # [STEP][SPEC] offset from case width centre
 SOCKET_M2_CLEAR = 2.0     # [STEP] clearance in print; not the case pilot diameter
 SOCKET_M2_SEAT = 2.2      # [STEP] plastic under supplied M2x5 head
-SOCKET_M2_HEAD = 3.8      # [VERIFY] head clearance for supplied M2 self-tapper
+SOCKET_M2_HEAD = 4.0      # [VERIFY] head clearance for supplied M2 self-tapper
 SOCKET_M2_TOOL = 6.0      # [DESIGN] straight driver envelope
 SOCKET_BOSS_W = 6.0       # [DESIGN] collar lug boss width
 SOCKET_BOSS_CLEAR = 0.2   # [DESIGN] clearance between collar bosses and cradle
@@ -176,49 +214,40 @@ SOCKET_HORN_SPAN = 36.4   # [MEASURED 2026-09-08] calipers: drive horn outer fac
                           # error in docs/soarm-joint-pattern.md, not upstream's.
 SOCKET_DRIVE_FACE = SOCKET_IDLER_FACE + SOCKET_HORN_SPAN
 SOCKET_HORN_DIA = 20.0    # [STEP] both horn discs
-SOCKET_HORN_RECESS = 20.5 # [STEP] recess diameter; never a through clearance
-SOCKET_RECESS_DEPTH = 0.8 # [DESIGN] recess leaves 2.7 mm under horn screw heads
 SOCKET_PLATE_T = 3.5      # [STEP] SO-101 clevis plates
-SOCKET_PLATE_R = 14.0     # [DESIGN] horn plate edge allowance
+SOCKET_PLATE_R = 10.4     # [DESIGN] compact root; Back connector clearance
 SOCKET_CENTRE_CLEAR = 3.2 # [STEP] drive centre screw access
-SOCKET_ARM_LENGTH = 42.0 # [DESIGN] joint-rig clevis arm, from output axis
-SOCKET_ARM_HALF_W = 11.0 # [DESIGN] flat cheek width
-SOCKET_BRIDGE_Z = 34.0   # [DESIGN] from output axis, beyond the case nose
-SOCKET_BRIDGE_H = 16.0   # [DESIGN] compression crossbar height
-SOCKET_BRIDGE_BOLT_Y = 6.0 # [DESIGN] two crossbar through-bolts
+SOCKET_ARM_LENGTH = 32.0 # [DESIGN] joint-rig clevis arm, from output axis
+SOCKET_ARM_HALF_W = 8.0 # [DESIGN] flat cheek width
 SOCKET_CABLE_W = 8.0     # [VERIFY] connector/loom corridor width, rig fit check
 SOCKET_CABLE_H = 6.0     # [VERIFY] rear-case cable corridor height
 
-# --- DEC-34 lower-body packaging (prototype, joint rig gate remains) --------
-V2_ROLL_X = -70.115       # [DESIGN] puts neutral wheel line under tray origin
-V2_ROLL_Y = 43.5          # [DESIGN] 239.5 mm nominal track with direct drive
-V2_ROLL_DROP = 50.0       # [DESIGN] deck top to roll axis
-V2_PITCH_X = 70.115       # [DESIGN] socket rear at 35 + rear-to-axis 35.115
-V2_PITCH_Y = SOCKET_BRIDGE_Z # [DESIGN] outboard roll-clevis crossbar datum
-V2_HIP_STEM_X = 22.75     # [DESIGN] outer surface of roll drive cheek
-V2_PITCH_REAR_X = 35.0    # [DESIGN] case rear / recessed carrier screw heads
-V2_THIGH = 100.0         # [DESIGN] pitch-to-knee axes
-V2_SHANK = 100.0         # [DESIGN] knee-to-wheel axes
-V2_HIP_NOMINAL = 15.0    # [DESIGN] centered bent stance
-V2_KNEE_NOMINAL = 30.0   # [DESIGN] centered bent stance
-V2_ROLL_RANGE = (-5.0, 5.0)   # [DESIGN] nominal audit target, not control limits
-V2_HIP_RANGE = (-10.0, 45.0)  # [DESIGN] nominal audit target
-V2_KNEE_RANGE = (0.0, 90.0)   # [DESIGN] nominal audit target
-V2_MOTOR_FACE = SOCKET_DRIVE_FACE - SOCKET_RECESS_DEPTH # [DESIGN]
-V2_TRACK = 2*(V2_ROLL_Y + V2_PITCH_Y + V2_MOTOR_FACE + HUB_STACK + WHEEL_W/2)
-V2_DECK_SIZE = (180.0, 150.0, 5.0)  # [DESIGN] bed fits incl. socket roots
-V2_DECK_X = -15.0                  # [DESIGN] rear roll roots, tray forward
-V2_TRAY_SIZE = (140.0, 90.0, 4.0)   # [DESIGN] removable electronics carrier
-V2_TRAY_HOLES = ((-32., -35.), (-32., 35.), (60., -35.), (60., 35.)) # [DESIGN]
-V2_MOTOR_PLATE_T = 5.0            # [DESIGN]
-V2_MOTOR_PLATE_R = 24.0           # [DESIGN]
-V2_MOTOR_BOLTS_Z = (65.0, 75.0)   # [DESIGN] plate-to-shank registration / bolts
-V2_CORE_HALF = 11.0               # [DESIGN] central spine 22 mm square
-V2_REGISTER_DIA = 6.0             # [DESIGN] concentric shoulder at seam bolts
-V2_REGISTER_H = 1.5               # [DESIGN]
-V2_REGISTER_CLEAR = 0.2           # [VERIFY] diametral shoulder clearance
-V2_NUT_DIA = 6.4     # [STD] conservative M3 hex across-corners envelope
-V2_NUT_H = 2.4       # [STD] M3 regular nut height
-V2_WASHER_DIA = 7.0  # [STD] M3 plain washer
-V2_WASHER_H = 0.5    # [STD] M3 plain washer
 SOCKET_M2_HEAD_H = 1.4 # [VERIFY] supplied self-tapper head; rig check
+
+# --- DEC-43 integrated structural CAD [DESIGN], dimensions in mm --------
+SOCKET_PAD_T = 6.3       # 3.5 mm bearing web + 2.8 mm pan-head/washer pocket
+SOCKET_HEAD_CLEAR = 6.4
+LINK_BRIDGE_START = 18.0 # from proximal axis; outside nominal case nose
+LINK_BRIDGE_END = 32.0
+LINK_SPINE_HALF = 8.0
+ROOT_PITCH_Y = 24.0     # lateral first-axis centres; roll follows pitch (DEC-41)
+ROOT_MOUNT_Z = SOCKET_AXIS_Z + SOCKET_SHELF
+ROOT_REAR_MOUNT_Z = 46.0 # [DESIGN DEC-49] head underside at 43: clears the
+                         # common carrier back's 40.91 mm radial sweep by >2 mm
+ROOT_FRAME_HOLES = ((-30.,-34.),(-30.,34.),(-20.,-34.),(-20.,34.))  # outside case/driver footprints
+FRAME_PLATE_T = 5.0
+MOTOR_MOUNT_T = 5.0
+MOTOR_MOUNT_R = 23.0
+MOTOR_SUPPORT_T = 5.0
+MOTOR_SUPPORT_OFFSET = 24.0
+
+HORN_IDLER_WASHER_T = 0.5  # [DESIGN] M3 narrow washer, prevents nominal idler bottoming
+HORN_IDLER_WASHER_OD = 6.0 # [DESIGN] procure matching narrow washer
+
+
+# DEC-48 manufacturing revision, preserving DEC-44 joint centres.
+ROOT_MODULE_GAP = 0.6       # removable left/right socket plates
+ROOT_LOCATOR_DIA = 4.0      # integral locating pins, not threaded plastic
+ROOT_LOCATOR_DEPTH = 2.0
+FRONT_PAD_START = 96.0     # 100 mm nominal ball centre, truncated top
+FRONT_PAD_NUT_Z = 92.0

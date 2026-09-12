@@ -39,12 +39,19 @@ output closes on the MCU; the Pi only sends setpoints and reads telemetry.
 | Joint group | Actuator | Why |
 |-------------|----------|-----|
 | Limbs (hip, knee, shoulder, elbow) | Feetech **STS3215** 12V bus servo (~30 kg.cm, feedback) | load-bearing; feedback for coordinated/balance motion; one serial bus |
-| Head / neck (3-RPS) | **Feetech STS3032M** (6V, 4.5 kg.cm, STS-protocol bus, feedback) + CF pushrods | small feedback servo on its own 6V bus; servos mount at the shoulder girdle, head stays light |
-| Drive wheel-feet (ankle position, DEC-31) | **12V geared DC** (37D-class) + encoder | continuous rotation + torque |
+| Head / neck (3-RPS) | **Feetech STS3032M** (6V, 4.5 kg.cm, STS-protocol bus, feedback) + CF pushrods | small feedback servo on its own 6V bus; servos mount at the shoulder girdle, head stays light. **Fixed single cable per servo** — the 6V bus chains through the supplied 3-port connector boards and link cable, one board per servo lead, not servo-to-servo (`test-log.md` 2026-09-12) |
+| Rear ankle wheels (DEC-43) | **12V geared DC** (37D-class) + encoder | continuous rotation + torque |
+| Front feet (DEC-43) | Fixed rounded printed ends; no drive actuator | ground support and stepping |
 | *(climber, later)* grippers / winch / clutch | mixed (see backlog) | passive-latch hang, ballistic swing, winch haul |
 
 Head mass is a hard budget (< ~250-300 g) so micro servos suffice; offload eye
 expression to **screen/OLED "eyes"** rather than eye-servos where possible.
+
+DEC-43 needs **two motor channels and two encoder inputs** for the bought
+rear ankle-drive pair. The dual-channel shield covers that count and is in
+hand (DEC-51 dissolved the loan to wk-devastator). Front feet support the
+robot with the rear wheel contacts, then lift for balanced driving. Establish
+power/thermal duty for body support and contact transfer on the assembled robot.
 
 ## Power
 

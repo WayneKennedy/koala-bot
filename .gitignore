@@ -10,7 +10,10 @@ __pycache__/
 *.FCStd1
 *.f3d~
 # Local-only reference material (unlicensed third-party images - kept out of the repo)
-docs/inspiration/
+docs/inspiration/*
+!docs/inspiration/README.md
+!docs/inspiration/Koala schematic.PNG
+!docs/inspiration/Side on.PNG
 
 # OS / editor
 .DS_Store

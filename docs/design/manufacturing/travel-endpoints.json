@@ -1,0 +1,89 @@
+{
+  "scope": "BREP checks of the twelve initial grouped slider endpoints; dynamic combinations are searched by the viewer mesh engine. No loaded or continuous-sweep proof.",
+  "endpoints": [
+    {
+      "pose": "quadruped",
+      "axis": "pitch",
+      "endpoint": "min",
+      "degrees": -27,
+      "boolean_pairs": 149
+    },
+    {
+      "pose": "quadruped",
+      "axis": "pitch",
+      "endpoint": "max",
+      "degrees": 91,
+      "boolean_pairs": 141
+    },
+    {
+      "pose": "quadruped",
+      "axis": "roll",
+      "endpoint": "min",
+      "degrees": -5,
+      "boolean_pairs": 143
+    },
+    {
+      "pose": "quadruped",
+      "axis": "roll",
+      "endpoint": "max",
+      "degrees": 116,
+      "boolean_pairs": 157
+    },
+    {
+      "pose": "quadruped",
+      "axis": "knee",
+      "endpoint": "min",
+      "degrees": -73.75,
+      "boolean_pairs": 137
+    },
+    {
+      "pose": "quadruped",
+      "axis": "knee",
+      "endpoint": "max",
+      "degrees": 45.25,
+      "boolean_pairs": 137
+    },
+    {
+      "pose": "upright",
+      "axis": "pitch",
+      "endpoint": "min",
+      "degrees": -101,
+      "boolean_pairs": 148
+    },
+    {
+      "pose": "upright",
+      "axis": "pitch",
+      "endpoint": "max",
+      "degrees": 58,
+      "boolean_pairs": 144
+    },
+    {
+      "pose": "upright",
+      "axis": "roll",
+      "endpoint": "min",
+      "degrees": -5,
+      "boolean_pairs": 158
+    },
+    {
+      "pose": "upright",
+      "axis": "roll",
+      "endpoint": "max",
+      "degrees": 116,
+      "boolean_pairs": 150
+    },
+    {
+      "pose": "upright",
+      "axis": "knee",
+      "endpoint": "min",
+      "degrees": -6,
+      "boolean_pairs": 142
+    },
+    {
+      "pose": "upright",
+      "axis": "knee",
+      "endpoint": "max",
+      "degrees": 50.5,
+      "boolean_pairs": 132
+    }
+  ]
+}

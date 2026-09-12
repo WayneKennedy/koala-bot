@@ -1,0 +1,87 @@
+{
+  "status": "Unregistered construction candidate; not production CAD or a slicing result",
+  "source_part": "shoulder_carrier (viewer front_carrier_right/left)",
+  "back_plane_local_Z_mm": -40.114999999999995,
+  "bridge_step_mm": 8.114999999999995,
+  "fill_profile_local_X_Z_mm": [
+    [
+      0,
+      -40.114999999999995
+    ],
+    [
+      8,
+      -40.114999999999995
+    ],
+    [
+      8,
+      -25
+    ],
+    [
+      -8,
+      -25
+    ],
+    [
+      -8,
+      -32
+    ]
+  ],
+  "fill_lateral_Y_range_mm": [
+    0.7000000000000002,
+    60.65
+  ],
+  "added_volume_cm3": 5.586713999999998,
+  "current_metrics": {
+    "bed_area": 574.9797735286362,
+    "overhang_area": 1170.21749628159,
+    "size": [
+      44.900001525878906,
+      50.511783599853516,
+      88.14999848604202
+    ],
+    "height": 88.14999848604202
+  },
+  "candidate_metrics": {
+    "bed_area": 1797.429931278224,
+    "overhang_area": 281.38238756828565,
+    "size": [
+      44.900001525878906,
+      88.14999848604202,
+      50.511783599853516
+    ],
+    "height": 50.511783599853516
+  },
+  "samples": [
+    {
+      "pose": "quadruped",
+      "pitch_delta_degrees": -5,
+      "new_interference_mm3": []
+    },
+    {
+      "pose": "quadruped",
+      "pitch_delta_degrees": 0,
+      "new_interference_mm3": []
+    },
+    {
+      "pose": "quadruped",
+      "pitch_delta_degrees": 5,
+      "new_interference_mm3": []
+    },
+    {
+      "pose": "upright",
+      "pitch_delta_degrees": -5,
+      "new_interference_mm3": []
+    },
+    {
+      "pose": "upright",
+      "pitch_delta_degrees": 0,
+      "new_interference_mm3": []
+    },
+    {
+      "pose": "upright",
+      "pitch_delta_degrees": 5,
+      "new_interference_mm3": []
+    }
+  ],
+  "limits": "Added material checked on right carrier at six saved-pose/pitch samples, with existing roll/bend positions. Symmetric left follows by reflection. No continuous sweep, redesigned sockets/root modules, independent limb poses or slicer acceptance.",
+  "printable": "assumed"
+}

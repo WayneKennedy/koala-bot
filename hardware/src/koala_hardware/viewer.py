@@ -19,15 +19,18 @@ import pathlib
 import shutil
 import tempfile
 import webbrowser
+import subprocess
 
 import numpy as np
 import trimesh
-from build123d import export_stl
+from build123d import export_stl, Plane, mirror
 
 from . import assembly
-from . import params as P
+from . import params as P, servo_iface as S
 from .parts import all_builders
 from .printability import metrics
+from . import body_plan
+from .meshing import export_mesh
 
 ROOT = pathlib.Path(__file__).resolve().parents[2]
 OUT = ROOT / "build" / "viewer"
@@ -43,8 +46,7 @@ LAYOUT_W = 430.0     # mm; wrap width, chosen to read as a grid rather
 
 def _mesh(solid, tmp: pathlib.Path, i: int) -> trimesh.Trimesh:
     path = tmp / f"{i}.stl"
-    export_stl(solid, str(path))
-    return trimesh.load(path, force="mesh")
+    return export_mesh(solid, path, tolerance=.08, angular_tolerance=.25)
 
 
 def _item(name: str, mesh: trimesh.Trimesh, colour: str, **extra) -> dict:
@@ -62,13 +64,49 @@ def _item(name: str, mesh: trimesh.Trimesh, colour: str, **extra) -> dict:
     }
 
 
-def _assembly_items(tmp: pathlib.Path) -> list[dict]:
+def _assembly_items(tmp: pathlib.Path, pose="quadruped") -> list[dict]:
     items = []
-    for i, (name, solid, colour, group, side) in enumerate(assembly.scene_details()):
+    specs={d['name']:d for d in (f() for f in all_builders())}
+    cores={}
+    # Use the conservative caliper case for collision search, avoiding cosmetic
+    # details in the imported STEP. Visual geometry remains the supplied STEP.
+    from unittest.mock import patch
+    with patch.object(S,'case_model',return_value=None):
+        collision_case=S.socket_reference.__wrapped__()
+    # Only for the servo's OWN coaxial fork: the circular horns, boss and
+    # centre head sit in rotationally invariant, audited contact/relief zones.
+    # Test the full conservative case here; retain all hardware for other pairs.
+    clipped=S._parametric_case()
+    for ref,mount,tf in assembly.socket_frames(pose):
+        key=ref.split('_')[1]
+        joint=ref.split('_')[2]
+        partner=key+'_'+({'pitch':'carrier','roll':'upper_arm' if key=='front' else 'thigh','elbow':'forearm','knee':'shank'}[joint])
+        for side in ('right','left'):
+            core=tf*clipped
+            if side=='left':core=mirror(core,Plane.XZ)
+            matrix=np.eye(4)
+            for r in range(3):
+                for c in range(4):matrix[r,c]=tf.wrapped.Transformation().Value(r+1,c+1)
+            if side=='left':matrix=np.diag([1,-1,1,1])@matrix
+            cores[ref.replace('_right','_'+side)]=(partner+'_'+side,core,tf*collision_case if side=='right' else mirror(tf*collision_case,Plane.XZ),matrix.T.flatten().tolist())
+    for i, (name, solid, colour, group, side) in enumerate(assembly.scene_details(pose=pose)):
         ghost = name.startswith("reference")
-        bought = name.split("_right")[0].split("_left")[0] in (
-            "motor", "shaft", "hub", "wheel")
+        bought = any("_"+s+"_" in name for s in ("motor", "shaft", "hub", "wheel"))
+        tag=name.removesuffix('_right').removesuffix('_left')
+        tag={'rear_carrier':'root_carrier','front_carrier':'root_carrier',
+             'front_contact_pad':'front_contact_pad','rear_thigh':'thigh',
+             'rear_shank':'shank','front_upper_arm':'upper_arm','front_forearm':'forearm'}.get(tag,tag)
+        if tag.startswith('tray_spacer_'):tag='tray_spacer'
+        spec=specs.get(tag,{})
+        extra={}
+        if name in cores:
+            partner,core,collision,case_frame=cores[name]
+            extra={'contactFrame':case_frame,'contactBoxes':S.case_boxes(),
+                   'contactPartner':partner,'contactCore':_item(name,_mesh(core,tmp,2000+i),colour),
+                   'collisionMesh':_item(name,_mesh(collision,tmp,3000+i),colour)}
         items.append(_item(name, _mesh(solid, tmp, i), colour,
+                           printable=spec.get('printable') if not (ghost or bought) else None,
+                           material=spec.get('material'),notes=spec.get('notes',''),**extra,
                            ghost=ghost,
                            side=side, joint=group,
                            kind="reference" if ghost
@@ -98,6 +136,7 @@ def _part_items(tmp: pathlib.Path) -> list[dict]:
         items.append(_item(spec["name"], mesh, PART_COLOURS[n % len(PART_COLOURS)],
                            ghost=False, kind=kind,
                            notes=spec.get("notes", ""),
+                           printable=spec.get("printable","unknown"), material=spec.get("material","PETG"),
                            print_metrics=metrics(mesh),
                            qty=spec.get("qty", 1) * (2 if spec.get("handed") else 1)))
         x += w + PART_GAP
@@ -109,41 +148,53 @@ def build() -> pathlib.Path:
     OUT.mkdir(parents=True, exist_ok=True)
     with tempfile.TemporaryDirectory() as td:
         tmp = pathlib.Path(td)
-        scene = {
-            "assembly": _assembly_items(tmp),
-            "parts": _part_items(tmp),
-            "meta": {
-                "ground_z": assembly.GROUND_Z,
-                "wheel_z": assembly.WHEEL_Z,
-                "roll_z": assembly.ROLL_Z,
-                "pitch_z": assembly.PITCH_Z,
-                "grid": GRID_STEP,
-                "bed": [P.BED_X, P.BED_Y],
-                "track": P.V2_TRACK,
-                "stance": -assembly.GROUND_Z,
-                "hip_axes": math.hypot(P.V2_PITCH_X, P.V2_PITCH_Y),
-                "pitch_x": P.V2_ROLL_X + P.V2_PITCH_X,
-                "pitch_y": P.V2_ROLL_Y + P.V2_PITCH_Y,
-                "roll_x": P.V2_ROLL_X,
-                "knee_x": P.V2_ROLL_X + P.V2_PITCH_X + P.V2_THIGH*math.sin(math.radians(P.V2_HIP_NOMINAL)),
-                "knee_z": assembly.PITCH_Z - P.V2_THIGH*math.cos(math.radians(P.V2_HIP_NOMINAL)),
-                "hip_nominal": P.V2_HIP_NOMINAL,
-                "knee_nominal": P.V2_KNEE_NOMINAL,
-                "roll_y": P.V2_ROLL_Y,
-                "pitch_test": P.V2_HIP_RANGE,
-                "roll_test": P.V2_ROLL_RANGE,
-                "knee_test": P.V2_KNEE_RANGE,
-                "status": "DEC-34 prototype — SO-101 nominal joints; rig fit and strength unverified",
-            },
-        }
+        poses={name:_assembly_items(tmp,name) for name in body_plan.poses()}
+        scene={"poses":poses,
+               "parts":_part_items(tmp),"meta":{
+                   "ground_z":0,"grid":GRID_STEP,"bed":[P.BED_X,P.BED_Y],
+                   "track":P.BODY_TRACK_TARGET_MM,"stance":P.BODY_STANDING_HEIGHT_MM,
+                   "hip_axes":2*__import__('koala_hardware.parts.links',fromlist=['rear_axis_y']).rear_axis_y(),
+                   "joints":{name:assembly.joint_data(name) for name in poses},
+                   "status":"DEC-49/50: common flat-back carriers, unequal drive/idler socket slots; head placement undecided and omitted. Printable: assumed; physical prints, fit and loads unproven. Slider ranges are sampled CAD clearances, not calibrated servo limits."}}
     data = OUT / "scene.json"
     data.write_text(json.dumps(scene))
     shutil.copy(HTML, OUT / "index.html")
-    tris = sum(i["tris"] for g in ("assembly", "parts") for i in scene[g])
+    shutil.copy(HTML.with_name('mechanical_limits.js'),OUT/'mechanical_limits.js')
+    for source in (ROOT/'vendor/viewer').iterdir():
+        if source.is_file():shutil.copy(source,OUT/source.name)
+    # Drawings come from the same body master as the structural assembly.
+    for pose in body_plan.poses():
+        source=ROOT.parent/'docs/design'/f'body-{pose}.svg'
+        if source.exists():shutil.copy(source,OUT/source.name)
+    write_backdrops(OUT)
+    subprocess.run(["node",str(HTML.with_name("build_mechanical_limits.cjs")),str(OUT)],check=True)
+    tris = sum(i['tris'] for items in [*scene['poses'].values(),scene['parts']] for i in items)
     print(f"wrote {data.relative_to(ROOT)}  "
-          f"{len(scene['assembly'])} assembly + {len(scene['parts'])} parts, "
+          f"{len(poses['quadruped'])} assembly per pose + {len(scene['parts'])} parts, "
           f"{tris:,} triangles, {data.stat().st_size / 1e6:.1f} MB")
     return data
+
+
+def write_backdrops(out):
+    """Plain, metrically aligned side skeleton; no labels stretched into 3D."""
+    for name in ('layout-150.svg','layout-200.svg'):
+        (out/name).unlink(missing_ok=True)
+    variants=[]
+    for name,pose in body_plan.poses().items():
+        bounds=(-305,-270,430,300) if name=='quadruped' else (-175,-475,285,505)
+        bits=[f'<svg xmlns="http://www.w3.org/2000/svg" width="{2*bounds[2]}" height="{2*bounds[3]}" viewBox="{" ".join(map(str,bounds))}">']
+        for key in ('rear','front'):
+            l=pose[key]
+            points=' '.join(f'{-p.x},{-p.z}' for p in (l.root,l.bend,l.axle))
+            bits.append(f'<polyline points="{points}" fill="none" stroke="#73aea4" stroke-width="2" stroke-dasharray="4 3"/>')
+            radius=P.WHEEL_DIA/2 if key=='rear' else P.BODY_FRONT_FOOT_RADIUS_MM
+            bits.append(f'<circle cx="{-l.axle.x}" cy="{-l.axle.z}" r="{radius}" fill="none" stroke="#73aea4"/>')
+        h,s=pose['rear'].root,pose['front'].root
+        bits.append(f'<path d="M{-h.x},{-h.z} L{-s.x},{-s.z}" stroke="#73aea4" stroke-width="3"/>')
+        bits.append('</svg>')
+        file=f'backdrop-{name}.svg';(out/file).write_text(''.join(bits))
+        variants.append({'pose':name,'file':file,'bounds':bounds})
+    (out/'layout-reference.json').write_text(json.dumps({'variants':variants}))
 
 
 def serve(port: int, open_browser: bool) -> None:

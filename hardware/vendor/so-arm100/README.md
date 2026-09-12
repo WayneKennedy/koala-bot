@@ -1,5 +1,11 @@
 # Vendor CAD — SO-ARM100 (third-party)
 
+**2026-09-08 addition:** the actual SO-101 upper/under-arm STEP references
+are now in [`SO101/`](SO101/README.md), pinned and unmodified for DEC-39.
+The SO-100 comparisons below are historical; current servo geometry uses the
+later measurements in `docs/soarm-joint-pattern.md`, not all of this older
+servo model's dimensions.
+
 STEP files from [TheRobotStudio/SO-ARM100](https://github.com/TheRobotStudio/SO-ARM100),
 licensed **Apache-2.0** (text in [`../../../LICENSES/Apache-2.0.txt`](../../../LICENSES/Apache-2.0.txt)),
 redistributed here unmodified per DEC-21 (SO-ARM-compatible servo mounting).

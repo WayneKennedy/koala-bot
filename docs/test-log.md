@@ -7,6 +7,91 @@ in `hardware/src/koala_hardware/params.py`, tagged with their provenance.
 Reference printer per DEC-14 (Ender-5 S1 / Klipper), PETG, the standing
 general-purpose profile recorded in [`bom.md`](bom.md).
 
+## 2026-09-12 — RCmall servo order arrived; STS3215 box contents (owner report, nothing measured)
+
+12 × Feetech STS3215 12 V and 4 × STS3032M 6 V, the 2026-09-01 order in
+[`sourcing.md`](sourcing.md), are in hand. The STS3215 packs were opened; the
+owner reports the contents as the same hardware as the Waveshare box of 2026-09-07.
+
+| Finding | Source | Consequence |
+|---------|--------|-------------|
+| **Two horns per servo — drive and idler**, metal | in the box | **Closes open check 7.** 12 servos → 24 horns, exactly the `Metal 9.9-square horn/idler` line of the [`bom.md`](bom.md) fastening schedule. Nothing to buy; [SPEC 11] "No Accessories" describes the bare part, not the RCmall retail pack |
+| **M3×6 pan-head horn screws** | in the box | Same part as the Waveshare box (2026-09-08 row 9). `HORN_SCREW` holds for both vendors; head Ø and height not re-measured on the RCmall screws. Count per servo not recorded — the schedule needs 8 |
+| **M2×6 self-tapping case screws** | in the box, owner's reading | The Waveshare box was recorded as **M2×5** (2026-09-07). Either the packs differ by 1 mm or one reading is off — caliper both before `SOCKET_M2_*` moves. Neither length reaches the walls measured 2026-09-07; longer screws are still needed. Count per servo not recorded — the schedule needs 4 |
+| **No serial-bus adapter** in either 6-pack | in the box | The listing's "FE-URT-1 included" was wrong. ID assignment uses the family's Waveshare Bus Servo Adapter (A) or FE-URT-2 ([wk-robotics `common.md`](https://github.com/WayneKennedy/wk-robotics/blob/main/docs/common.md#configuring-a-servo--true-for-every-sts-project)) |
+| **The ordered STS3215 metal bracket set arrived; no bracket per servo** | in the shipment | The DEC-21 dimensional reference is in hand. Nothing changes for the printed brackets |
+
+**STS3032M 4-pack (owner report, nothing measured):**
+
+| Finding | Source | Consequence |
+|---------|--------|-------------|
+| **Fixed cable, one port** — not the two-port pass-through case of the STS3215 | in the box | The neck servos **cannot daisy-chain servo-to-servo**; the chain runs through the supplied boards instead ([`architecture.md`](architecture.md)) |
+| **A small 3-port connector board, plus a separate cable to daisy-chain the boards** | in the box | Three ports read as servo lead + bus in + bus out, so each board is the servo's externalised second port and the boards chain with the supplied cable. That reading, and the number of boards and cables in the pack, are **inferred, not counted** — count them and note the connector type before designing the neck harness |
+| **1 × aluminium drive horn + 3 × plastic horns per servo**, with all mounting screws | in the box | 3-RPS pushrod ends have a metal horn to fix to; the plastic horns are spares or alternatives. Screw sizes not recorded |
+| No USB bus adapter | in the box | Same as the 6-packs; setup uses the family's Waveshare (A) or FE-URT-2 at **6 V** |
+
+Open checks 1–4 and 6 below are still unmeasured; fourteen identical STS3215 cases
+are now on the bench to answer them.
+
+## 2026-09-11 — DEC-49/50 common carriers and unequal socket slots (unprinted)
+
+All four roots now use `root_carrier_left/right`, two prints of each hand,
+with the former front carrier's bevel removed. Both roll spacings are 149 mm;
+rear motor mounts absorb the 0.1 mm per-side shift, preserving 220 mm track.
+Direct substitution into the old rear mount clashed upright. Rear pitch cases
+now point forward in the torso frame; the rear flange moves to Z=46 mm to clear
+the common back and frame screw heads. The unresolved head placeholder is omitted.
+
+The pinned SO-101 Upper arm STEP confirms distinct **14 mm drive / 18.5 mm
+idler slots**, starting respectively 0/5 mm above the socket floor. The shared
+primitive now matches those widths and starts, retains accepted ear/horn datums,
+and no longer uses the Back width for both faces. The continuous lower idler
+seat removes the old bore/strip tangency. Source/production planar-face
+measurements and a [dimensioned image](design/so101/socket-slot-comparison.png)
+are recorded in [socket-slots.json](design/so101/socket-slots.json).
+
+- **17 designs / 24 export variants:** valid closed meshes within the bed rule;
+  all current STL hashes have successful local slices. The chassis still uses
+  24 physical prints. Common-carrier bed contact is approximately 2,236 mm²;
+  the declared orientation uses only accessible local supports.
+- **24 regression tests**, 62 complete assembly samples, 19 interface-rig angles
+  and two nominal fallback-case checks pass. Bench servo insertion/ear-driver
+  access and installed frame-bolt access remain checked.
+- Browser/CAD alignment, both poses, slider recalculation and print/material
+  tags pass. All twelve initial slider endpoints independently pass BREP checks.
+  Upright grouped pitch limits are −101°/+58°; quadruped −27°/+91° in the current
+  finite-resolution search. These are clearance aids, not physical servo limits.
+- **Every part remains assumed printable.** No physical print, fitting, support
+  removal, loaded travel or strength has been demonstrated for this revision.
+
+[Current validation and STL hashes](design/cad-validation.json) ·
+[Slice records and layer views](design/manufacturing/README.md).
+
+## 2026-09-10 — DEC-48 manufacturing revision (local slicing; nothing printed)
+
+Enclosing sockets, rounded/tapered fork roots and links, independently removable
+root modules, flat-section forearms and keyed TPU contact pads now implement
+the accepted layout. [Part review](part-design-review.md).
+
+- **26 handed STL variants / 18 designs:** valid exports within the bed rule;
+  successful local PrusaSlicer toolpaths, with exact STL/settings hashes and
+  deposited-path PNGs in [manufacturing evidence](design/manufacturing/README.md).
+  PETG uses accessible local supports/brims; the TPU pad slices without supports.
+- **Printability remains assumed for every current part.** No current-revision
+  physical print, material-quality, support-removal, fit or strength result.
+  TPU settings are provisional until matched to the actual spool. Older SO-101
+  fit and the pre-fix ladder result remain accepted, separate evidence.
+- **CAD:** 62 full-assembly samples, 19 rig angles, separate fallback-reference
+  checks, root-module bench driver/insertion and installed frame-bolt access.
+  Twenty-two unit tests pass; the forearm export is checked on its broad back.
+- **Viewer:** grouped travel searches at 0.25° resolution with a 1° reserve,
+  changing with pose and other joint settings. All twelve initial slider
+  endpoints independently pass BREP collision checks. Browser/CAD parity,
+  reset and per-part material/printability display pass in both poses.
+
+[Current validation snapshot](design/cad-validation.json). No print was
+submitted; all slicing ran on the workstation, not the printer controller.
+
 ## 2026-09-08 — calipers and photos: the ST3215 as it really is (nothing printed)
 
 Terminology per [`soarm-joint-pattern.md`](soarm-joint-pattern.md): **Front**
@@ -26,7 +111,7 @@ the Bottom. Cheap calipers, ±0.3. Everything here moved a constant to
 | 7 | Front side steps from the seat: ear / widest / drive horn face | **1.5 / 2.5 / 4.3** | 28.8 + 3.1 + 4.3 = 36.2 vs 36.4 measured — closes within the tool |
 | 8 | Back side step, seat → widest | **3.5** | **not symmetric**: seat mid-plane is 0.5 toward the Front of the pocket centre → `SOCKET_SEAT_OFFSET = 0.5`, idler face **−17.0**, drive face **+19.4**, track 238.2 |
 | 10 | Back face, regions along the height from the Bottom (photos IMG_6993/6994, lettered) | **A 0–5.3, B 5.3–18.8, C 18.8–35.8, D 35.8–46.0; E (case length) 45.4** | A+B+C+D = 46.0 vs 45.4, within the tool. The C/D boundary is the **output axis** (45.4 − 10.2 = 35.2; spec puts it at 22.6 + 12.5 = 35.1 ✓). A carries the Bottom M2 pair at the corners; B is the region with the recessed rectangular panel; the **connector bay starts at the B/C line (18.8) and runs to ~24.5**, two connectors facing out along the axis, with a second M2 pair flanking it at ~22; the Ø8 boss sits in a raised round pad at the axis. Depth planes: A = ear plane, B = widest, and — photo IMG_6995 with the idler fitted — **the Ø20 seat is a raised round pad that the idler covers exactly**, so the general faces of C and D lie *below* the seat plane. `socket_reference()` now models this profile, with C/D conservatively at the seat plane. Front region lengths assumed equal `[VERIFY]` |
-| 9 | Horn screws supplied in the Waveshare box | **M3×6 pan head, head Ø5.2 × 2.0** | `HORN_SCREW*` `[SUPPLIED]`. Upstream's fork counterbores do not fit them. With a 3.5 web (upstream's, and 6 − 3.5 = 2.5 into a horn whose tapped body is 2.1) the plate needs a ≥Ø6 × ≥2.5 counterbore, so the horn pad is ~6 thick, not 3.5. The RCmall Feetech packs may ship different screws — unverified |
+| 9 | Horn screws supplied in the Waveshare box | **M3×6 pan head, head Ø5.2 × 2.0** | `HORN_SCREW*` `[SUPPLIED]`. Upstream's fork counterbores do not fit them. With a 3.5 web (upstream's, and 6 − 3.5 = 2.5 into a horn whose tapped body is 2.1) the plate needs a ≥Ø6 × ≥2.5 counterbore, so the horn pad is ~6 thick, not 3.5. The RCmall Feetech packs ship the same M3×6 pan head (owner report 2026-09-12; head not re-measured) |
 
 **The audit failure has moved to the right place.** With the full-width box it
 failed on the idler face being 0.4 inside the widest Back plane (229 mm³).
@@ -220,14 +305,16 @@ The file is not wrong; it depicts a different object. Its author is **unknown**
    *Measure: spline centre to one hole.* Also turn the horn and watch whether
    the rear square turns with it.
 5. **Screw sizes** for the four body screws. *Answered 2026-09-07: M2
-   self-tapping, supplied as M2×5. The bore depth they thread into is not.*
+   self-tapping, supplied as M2×5 by Waveshare; the RCmall packs report **M2×6**
+   (2026-09-12, unmeasured). The bore depth they thread into is not.*
 6. **Idler horn stand-off** — how far the aft disc sits proud of the case face.
    *Measure: case rear face to idler horn outer face.* The aft fork plate
    position (`SERVO_IDLER_BOT`) depends on it.
 7. **How many horns are in the box.** Each driven joint needs **two** — drive
    and idler — so the lower body needs **8**, and Feetech supplies none
-   ([SPEC 11]). The BOM now has a line for them. *Still open 2026-09-07: the
-   Waveshare box held horn screws; the horn count in it was not recorded.*
+   ([SPEC 11]). *Closed 2026-09-12: every RCmall STS3215 ships with both horns,
+   so the 24 in the BOM schedule are supplied, not bought. The Waveshare box's
+   horn count was never recorded and no longer matters.*
 
 ## 2026-09-01 — `coupon_ladder` (pre-fix revision)
 

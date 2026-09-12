@@ -1,5 +1,8 @@
 # References & prior art
 
+- **Maintainer's GPT-prepared koala schematics** — adopted shape/segment targets
+  under DEC-36; [originals and provenance](inspiration/README.md). DEC-37's
+  [engineering schematics](design/README.md) resolve the inconsistent dimensions.
 - **Swiss-Mile / ANYmal-on-wheels** (ETH Zurich) - wheeled quadruped that walks, rolls,
   and rears to a biped to use front legs as arms. Closest precedent to Koala's concept.
 - **SO-ARM / SO-101** (TheRobotStudio) - open robot arm built on ~£15 Feetech STS3215 bus

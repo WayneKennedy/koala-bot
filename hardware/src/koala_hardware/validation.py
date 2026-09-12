@@ -1,18 +1,17 @@
 # SPDX-License-Identifier: CERN-OHL-S-2.0
-"""Assembly datums; sampled solid and fastener checks live in audit.py."""
-from . import params as P
+"""Shared body / motor datums; solid and interface checks live in audit.py."""
+from . import params as P, body_plan as B
+from .parts import links as L, torso as T
 
 
 def check_layout():
-    expected=2*(P.V2_ROLL_Y+P.V2_PITCH_Y+P.V2_MOTOR_FACE+P.HUB_STACK+P.WHEEL_W/2)
-    if abs(expected-P.V2_TRACK)>.001:
-        raise ValueError('Wheel track disagrees with motor/hub stack')
-    gap=2*(P.V2_ROLL_Y+P.V2_PITCH_Y+P.V2_MOTOR_FACE-P.MOTOR_BODY_LEN)
-    if gap<2:
-        raise ValueError('Neutral motors overlap')
-    if abs(P.V2_PITCH_X-(P.V2_PITCH_REAR_X+P.SOCKET_AXIS_Z))>.001:
-        raise ValueError('Pitch axis must be derived from socket rear face')
-    if P.HUB_STACK>P.MOTOR_SHAFT_LEN:
-        raise ValueError('Shaft does not reach nominal hub stack')
-    return [f'neutral motor gap {gap:.1f} mm', f'wheel track {expected:.1f} mm',
-            'roll/pitch/knee prototype; physical gates remain open']
+    result=B.check()
+    for front,y in [(False,L.rear_axis_y())]:
+        expected=2*(y+L.motor_face(front)+P.HUB_STACK+P.WHEEL_W/2)
+        assert abs(expected-P.BODY_TRACK_TARGET_MM)<1e-8
+    assert P.HUB_STACK<=P.MOTOR_SHAFT_LEN
+    assert T.HIGH>T.LOW+10
+    assert abs(P.SOCKET_DRIVE_FACE-P.SOCKET_IDLER_FACE-P.SOCKET_HORN_SPAN)<1e-9
+    return [f"motor end gap {result['motor_end_gap_mm']:.1f} mm",
+            f'wheel track {P.BODY_TRACK_TARGET_MM:g} mm',
+            'four integrated limbs; physical acceptance pending']

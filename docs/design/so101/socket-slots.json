@@ -1,0 +1,33 @@
+{
+  "source": "hardware/vendor/so-arm100/SO101/Upper_arm_SO101.step",
+  "sha256": "efa19a6dd2ccb459248500c76629cfa840630e7e15d9e146394d31da1525dd61",
+  "source_slots": {
+    "drive": {
+      "plane_x_mm": 17.4,
+      "width_mm": 14.0,
+      "start_z_mm": 2.842170943040401e-14,
+      "end_z_mm": 18.5
+    },
+    "idler": {
+      "plane_x_mm": -17.400000000000002,
+      "width_mm": 18.500000000000004,
+      "start_z_mm": 5.000000000000028,
+      "end_z_mm": 17.7
+    }
+  },
+  "koala_slots": {
+    "idler": {
+      "plane_x_mm": -17.45,
+      "width_mm": 18.5,
+      "start_z_mm": 5.0,
+      "end_z_mm": 17.0
+    },
+    "drive": {
+      "plane_x_mm": 17.45,
+      "width_mm": 14.000000000000002,
+      "start_z_mm": 0.0,
+      "end_z_mm": 17.0
+    }
+  },
+  "case_envelope_note": "Drive raised plane in supplied case STEP reaches Z=25.5444; fallback covers to 25.55. No new caliper measurement."
+}

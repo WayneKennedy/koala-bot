@@ -1,0 +1,958 @@
+{
+  "design": "DEC-49/50",
+  "date": "2026-09-11",
+  "primary": {
+    "socket_contact_mm3": 39.1282,
+    "rig_angles": 19,
+    "nominal_M2_engagement_mm": 2.8,
+    "nominal_idler_engagement_mm": 2.0,
+    "reference": "STEP + measured stack",
+    "part_designs": 17,
+    "assembly_samples": [
+      {
+        "pose": "quadruped",
+        "delta_degrees": [
+          0,
+          0,
+          0
+        ],
+        "boolean_pairs": 133
+      },
+      {
+        "pose": "quadruped",
+        "delta_degrees": [
+          -5,
+          -5,
+          -5
+        ],
+        "boolean_pairs": 52
+      },
+      {
+        "pose": "quadruped",
+        "delta_degrees": [
+          -5,
+          -5,
+          0
+        ],
+        "boolean_pairs": 4
+      },
+      {
+        "pose": "quadruped",
+        "delta_degrees": [
+          -5,
+          -5,
+          5
+        ],
+        "boolean_pairs": 12
+      },
+      {
+        "pose": "quadruped",
+        "delta_degrees": [
+          -5,
+          0,
+          -5
+        ],
+        "boolean_pairs": 2
+      },
+      {
+        "pose": "quadruped",
+        "delta_degrees": [
+          -5,
+          0,
+          0
+        ],
+        "boolean_pairs": 0
+      },
+      {
+        "pose": "quadruped",
+        "delta_degrees": [
+          -5,
+          0,
+          5
+        ],
+        "boolean_pairs": 0
+      },
+      {
+        "pose": "quadruped",
+        "delta_degrees": [
+          -5,
+          5,
+          -5
+        ],
+        "boolean_pairs": 16
+      },
+      {
+        "pose": "quadruped",
+        "delta_degrees": [
+          -5,
+          5,
+          0
+        ],
+        "boolean_pairs": 0
+      },
+      {
+        "pose": "quadruped",
+        "delta_degrees": [
+          -5,
+          5,
+          5
+        ],
+        "boolean_pairs": 0
+      },
+      {
+        "pose": "quadruped",
+        "delta_degrees": [
+          0,
+          -5,
+          -5
+        ],
+        "boolean_pairs": 0
+      },
+      {
+        "pose": "quadruped",
+        "delta_degrees": [
+          0,
+          -5,
+          0
+        ],
+        "boolean_pairs": 0
+      },
+      {
+        "pose": "quadruped",
+        "delta_degrees": [
+          0,
+          -5,
+          5
+        ],
+        "boolean_pairs": 0
+      },
+      {
+        "pose": "quadruped",
+        "delta_degrees": [
+          0,
+          0,
+          -5
+        ],
+        "boolean_pairs": 0
+      },
+      {
+        "pose": "quadruped",
+        "delta_degrees": [
+          0,
+          0,
+          5
+        ],
+        "boolean_pairs": 0
+      },
+      {
+        "pose": "quadruped",
+        "delta_degrees": [
+          0,
+          5,
+          -5
+        ],
+        "boolean_pairs": 0
+      },
+      {
+        "pose": "quadruped",
+        "delta_degrees": [
+          0,
+          5,
+          0
+        ],
+        "boolean_pairs": 0
+      },
+      {
+        "pose": "quadruped",
+        "delta_degrees": [
+          0,
+          5,
+          5
+        ],
+        "boolean_pairs": 0
+      },
+      {
+        "pose": "quadruped",
+        "delta_degrees": [
+          5,
+          -5,
+          -5
+        ],
+        "boolean_pairs": 16
+      },
+      {
+        "pose": "quadruped",
+        "delta_degrees": [
+          5,
+          -5,
+          0
+        ],
+        "boolean_pairs": 0
+      },
+      {
+        "pose": "quadruped",
+        "delta_degrees": [
+          5,
+          -5,
+          5
+        ],
+        "boolean_pairs": 0
+      },
+      {
+        "pose": "quadruped",
+        "delta_degrees": [
+          5,
+          0,
+          -5
+        ],
+        "boolean_pairs": 0
+      },
+      {
+        "pose": "quadruped",
+        "delta_degrees": [
+          5,
+          0,
+          0
+        ],
+        "boolean_pairs": 0
+      },
+      {
+        "pose": "quadruped",
+        "delta_degrees": [
+          5,
+          0,
+          5
+        ],
+        "boolean_pairs": 0
+      },
+      {
+        "pose": "quadruped",
+        "delta_degrees": [
+          5,
+          5,
+          -5
+        ],
+        "boolean_pairs": 0
+      },
+      {
+        "pose": "quadruped",
+        "delta_degrees": [
+          5,
+          5,
+          0
+        ],
+        "boolean_pairs": 0
+      },
+      {
+        "pose": "quadruped",
+        "delta_degrees": [
+          5,
+          5,
+          5
+        ],
+        "boolean_pairs": 0
+      },
+      {
+        "pose": "quadruped",
+        "delta_degrees": [
+          -5,
+          -5,
+          -5
+        ],
+        "opposed_left_pitch_bend": true,
+        "boolean_pairs": 0
+      },
+      {
+        "pose": "quadruped",
+        "delta_degrees": [
+          -5,
+          -5,
+          5
+        ],
+        "opposed_left_pitch_bend": true,
+        "boolean_pairs": 0
+      },
+      {
+        "pose": "quadruped",
+        "delta_degrees": [
+          -5,
+          5,
+          -5
+        ],
+        "opposed_left_pitch_bend": true,
+        "boolean_pairs": 0
+      },
+      {
+        "pose": "quadruped",
+        "delta_degrees": [
+          -5,
+          5,
+          5
+        ],
+        "opposed_left_pitch_bend": true,
+        "boolean_pairs": 0
+      },
+      {
+        "pose": "upright",
+        "delta_degrees": [
+          0,
+          0,
+          0
+        ],
+        "boolean_pairs": 142
+      },
+      {
+        "pose": "upright",
+        "delta_degrees": [
+          -5,
+          -5,
+          -5
+        ],
+        "boolean_pairs": 72
+      },
+      {
+        "pose": "upright",
+        "delta_degrees": [
+          -5,
+          -5,
+          0
+        ],
+        "boolean_pairs": 8
+      },
+      {
+        "pose": "upright",
+        "delta_degrees": [
+          -5,
+          -5,
+          5
+        ],
+        "boolean_pairs": 26
+      },
+      {
+        "pose": "upright",
+        "delta_degrees": [
+          -5,
+          0,
+          -5
+        ],
+        "boolean_pairs": 8
+      },
+      {
+        "pose": "upright",
+        "delta_degrees": [
+          -5,
+          0,
+          0
+        ],
+        "boolean_pairs": 6
+      },
+      {
+        "pose": "upright",
+        "delta_degrees": [
+          -5,
+          0,
+          5
+        ],
+        "boolean_pairs": 4
+      },
+      {
+        "pose": "upright",
+        "delta_degrees": [
+          -5,
+          5,
+          -5
+        ],
+        "boolean_pairs": 22
+      },
+      {
+        "pose": "upright",
+        "delta_degrees": [
+          -5,
+          5,
+          0
+        ],
+        "boolean_pairs": 4
+      },
+      {
+        "pose": "upright",
+        "delta_degrees": [
+          -5,
+          5,
+          5
+        ],
+        "boolean_pairs": 4
+      },
+      {
+        "pose": "upright",
+        "delta_degrees": [
+          0,
+          -5,
+          -5
+        ],
+        "boolean_pairs": 4
+      },
+      {
+        "pose": "upright",
+        "delta_degrees": [
+          0,
+          -5,
+          0
+        ],
+        "boolean_pairs": 0
+      },
+      {
+        "pose": "upright",
+        "delta_degrees": [
+          0,
+          -5,
+          5
+        ],
+        "boolean_pairs": 4
+      },
+      {
+        "pose": "upright",
+        "delta_degrees": [
+          0,
+          0,
+          -5
+        ],
+        "boolean_pairs": 0
+      },
+      {
+        "pose": "upright",
+        "delta_degrees": [
+          0,
+          0,
+          5
+        ],
+        "boolean_pairs": 0
+      },
+      {
+        "pose": "upright",
+        "delta_degrees": [
+          0,
+          5,
+          -5
+        ],
+        "boolean_pairs": 0
+      },
+      {
+        "pose": "upright",
+        "delta_degrees": [
+          0,
+          5,
+          0
+        ],
+        "boolean_pairs": 0
+      },
+      {
+        "pose": "upright",
+        "delta_degrees": [
+          0,
+          5,
+          5
+        ],
+        "boolean_pairs": 0
+      },
+      {
+        "pose": "upright",
+        "delta_degrees": [
+          5,
+          -5,
+          -5
+        ],
+        "boolean_pairs": 24
+      },
+      {
+        "pose": "upright",
+        "delta_degrees": [
+          5,
+          -5,
+          0
+        ],
+        "boolean_pairs": 4
+      },
+      {
+        "pose": "upright",
+        "delta_degrees": [
+          5,
+          -5,
+          5
+        ],
+        "boolean_pairs": 4
+      },
+      {
+        "pose": "upright",
+        "delta_degrees": [
+          5,
+          0,
+          -5
+        ],
+        "boolean_pairs": 0
+      },
+      {
+        "pose": "upright",
+        "delta_degrees": [
+          5,
+          0,
+          0
+        ],
+        "boolean_pairs": 0
+      },
+      {
+        "pose": "upright",
+        "delta_degrees": [
+          5,
+          0,
+          5
+        ],
+        "boolean_pairs": 0
+      },
+      {
+        "pose": "upright",
+        "delta_degrees": [
+          5,
+          5,
+          -5
+        ],
+        "boolean_pairs": 0
+      },
+      {
+        "pose": "upright",
+        "delta_degrees": [
+          5,
+          5,
+          0
+        ],
+        "boolean_pairs": 0
+      },
+      {
+        "pose": "upright",
+        "delta_degrees": [
+          5,
+          5,
+          5
+        ],
+        "boolean_pairs": 0
+      },
+      {
+        "pose": "upright",
+        "delta_degrees": [
+          -5,
+          -5,
+          -5
+        ],
+        "opposed_left_pitch_bend": true,
+        "boolean_pairs": 0
+      },
+      {
+        "pose": "upright",
+        "delta_degrees": [
+          -5,
+          -5,
+          5
+        ],
+        "opposed_left_pitch_bend": true,
+        "boolean_pairs": 0
+      },
+      {
+        "pose": "upright",
+        "delta_degrees": [
+          -5,
+          5,
+          -5
+        ],
+        "opposed_left_pitch_bend": true,
+        "boolean_pairs": 0
+      },
+      {
+        "pose": "upright",
+        "delta_degrees": [
+          -5,
+          5,
+          5
+        ],
+        "opposed_left_pitch_bend": true,
+        "boolean_pairs": 0
+      }
+    ],
+    "limits": "Nominal geometry only; no continuous sweep, tolerance expansion, complete loom, slices or physical load acceptance."
+  },
+  "fallback": {
+    "socket_contact_mm3": 0,
+    "rig_angles": 19,
+    "nominal_M2_engagement_mm": 2.8,
+    "nominal_idler_engagement_mm": 2.0,
+    "reference": "parametric",
+    "part_designs": 17,
+    "assembly_samples": [
+      {
+        "pose": "quadruped",
+        "delta_degrees": [
+          0,
+          0,
+          0
+        ],
+        "boolean_pairs": 133
+      },
+      {
+        "pose": "upright",
+        "delta_degrees": [
+          0,
+          0,
+          0
+        ],
+        "boolean_pairs": 142
+      }
+    ],
+    "limits": "Nominal geometry only; no continuous sweep, tolerance expansion, complete loom, slices or physical load acceptance."
+  },
+  "unit_tests": 24,
+  "browser": "Both poses, fresh grouped-clearance results after every slider change, coupled-bound changes, CAD/browser parity at pitch=2 roll=-2 bend=2; reset, printability and TPU tags passed.",
+  "scene_sha256": "bfc5fa25b8519642aca16265d2f61d4e4b45db3f5fe25d3e7fed8df44589b448",
+  "mechanical_engine_sha256": "1460f87924e9bc0218bdfc7686dc560bade36bb1d1375008a240a61bbf76655e",
+  "initial_slider_bounds": {
+    "quadruped": {
+      "bounds": {
+        "pitch": {
+          "min": -27,
+          "max": 91,
+          "stops": [
+            [
+              "front_carrier_right",
+              "reference_front_pitch_servo_right"
+            ],
+            [
+              "rear_carrier_right",
+              "front_forearm_right"
+            ]
+          ]
+        },
+        "roll": {
+          "min": -5,
+          "max": 116,
+          "stops": [
+            [
+              "pelvis_socket_right",
+              "rear_thigh_right"
+            ],
+            [
+              "reference_rear_roll_servo_right",
+              "rear_thigh_right"
+            ]
+          ]
+        },
+        "knee": {
+          "min": -73.75,
+          "max": 45.25,
+          "stops": [
+            [
+              "reference_front_elbow_servo_right",
+              "front_forearm_right"
+            ],
+            [
+              "reference_rear_knee_servo_right",
+              "rear_shank_right"
+            ]
+          ]
+        }
+      },
+      "step": 0.25,
+      "angular_reserve_degrees": 1,
+      "search_ceiling": 180
+    },
+    "upright": {
+      "bounds": {
+        "pitch": {
+          "min": -101,
+          "max": 58,
+          "stops": [
+            [
+              "front_carrier_right",
+              "reference_front_pitch_servo_right"
+            ],
+            [
+              "rear_carrier_right",
+              "reference_rear_pitch_servo_right"
+            ]
+          ]
+        },
+        "roll": {
+          "min": -5,
+          "max": 116,
+          "stops": [
+            [
+              "shoulder_socket_right",
+              "front_upper_arm_right"
+            ],
+            [
+              "reference_rear_roll_servo_right",
+              "rear_thigh_right"
+            ]
+          ]
+        },
+        "knee": {
+          "min": -6,
+          "max": 50.5,
+          "stops": [
+            [
+              "reference_front_elbow_servo_right",
+              "front_forearm_right"
+            ],
+            [
+              "reference_rear_knee_servo_right",
+              "rear_shank_right"
+            ]
+          ]
+        }
+      },
+      "step": 0.25,
+      "angular_reserve_degrees": 1,
+      "search_ceiling": 180
+    }
+  },
+  "independent_BREP_endpoints": {
+    "scope": "BREP checks of the twelve initial grouped slider endpoints; dynamic combinations are searched by the viewer mesh engine. No loaded or continuous-sweep proof.",
+    "endpoints": [
+      {
+        "pose": "quadruped",
+        "axis": "pitch",
+        "endpoint": "min",
+        "degrees": -27,
+        "boolean_pairs": 149
+      },
+      {
+        "pose": "quadruped",
+        "axis": "pitch",
+        "endpoint": "max",
+        "degrees": 91,
+        "boolean_pairs": 141
+      },
+      {
+        "pose": "quadruped",
+        "axis": "roll",
+        "endpoint": "min",
+        "degrees": -5,
+        "boolean_pairs": 143
+      },
+      {
+        "pose": "quadruped",
+        "axis": "roll",
+        "endpoint": "max",
+        "degrees": 116,
+        "boolean_pairs": 157
+      },
+      {
+        "pose": "quadruped",
+        "axis": "knee",
+        "endpoint": "min",
+        "degrees": -73.75,
+        "boolean_pairs": 137
+      },
+      {
+        "pose": "quadruped",
+        "axis": "knee",
+        "endpoint": "max",
+        "degrees": 45.25,
+        "boolean_pairs": 137
+      },
+      {
+        "pose": "upright",
+        "axis": "pitch",
+        "endpoint": "min",
+        "degrees": -101,
+        "boolean_pairs": 148
+      },
+      {
+        "pose": "upright",
+        "axis": "pitch",
+        "endpoint": "max",
+        "degrees": 58,
+        "boolean_pairs": 144
+      },
+      {
+        "pose": "upright",
+        "axis": "roll",
+        "endpoint": "min",
+        "degrees": -5,
+        "boolean_pairs": 158
+      },
+      {
+        "pose": "upright",
+        "axis": "roll",
+        "endpoint": "max",
+        "degrees": 116,
+        "boolean_pairs": 150
+      },
+      {
+        "pose": "upright",
+        "axis": "knee",
+        "endpoint": "min",
+        "degrees": -6,
+        "boolean_pairs": 142
+      },
+      {
+        "pose": "upright",
+        "axis": "knee",
+        "endpoint": "max",
+        "degrees": 50.5,
+        "boolean_pairs": 132
+      }
+    ]
+  },
+  "manufacturing_slices": "manufacturing/slices.json",
+  "socket_slot_evidence": "so101/socket-slots.json",
+  "common_carrier": {
+    "prints_per_hand": 2,
+    "roll_spacing_mm": 149,
+    "rear_flange_z_mm": 46,
+    "head_placeholder": "omitted; position and mounting unresolved"
+  },
+  "exports": [
+    {
+      "name": "coupon_ladder",
+      "material": "PETG",
+      "printable": "assumed",
+      "stl_sha256": "1498c0ec61260b1b76a6e98b82822de2f993deb0fb9ddb5b1deb47fc3b5ca02b"
+    },
+    {
+      "name": "coupon_motor_bore",
+      "material": "PETG",
+      "printable": "assumed",
+      "stl_sha256": "89a21226a5f58ce5e80cfdc84ee9c2905b8fa28da2acd4041f57d49843b54d4f"
+    },
+    {
+      "name": "coupon_motor_ring",
+      "material": "PETG",
+      "printable": "assumed",
+      "stl_sha256": "f0394784d058b668860e7edb5e099efc5637c0a6a128df042e1e2538c2062a2e"
+    },
+    {
+      "name": "coupon_seam",
+      "material": "PETG",
+      "printable": "assumed",
+      "stl_sha256": "a4e0dd0b2ac17c144de265733613b8a4bebd48f48b3347e073cd7dfc9320c728"
+    },
+    {
+      "name": "coupon_socket_fork",
+      "material": "PETG",
+      "printable": "assumed",
+      "stl_sha256": "4beb0b15238dcfa78a58d510e1a0a50a539aaa3a40d32d5dca79daa6e73572c1"
+    },
+    {
+      "name": "coupon_socket_saddle",
+      "material": "PETG",
+      "printable": "assumed",
+      "stl_sha256": "d1858112ea8a2d9b7eed1929ccc45c3460409ed423ecb0b5a7f889533804269d"
+    },
+    {
+      "name": "e_tray",
+      "material": "PETG",
+      "printable": "assumed",
+      "stl_sha256": "c2f84c83bdfbee12f29af43e8c8dae5537734b6dd8c0cd9c257473da1b04beb9"
+    },
+    {
+      "name": "forearm_left",
+      "material": "PETG",
+      "printable": "assumed",
+      "stl_sha256": "968718bfa1f638f5ecf35fae2044bcbbf76fd0a238aa883e458c9da3c4dd8d3d"
+    },
+    {
+      "name": "forearm_right",
+      "material": "PETG",
+      "printable": "assumed",
+      "stl_sha256": "0802609c2083713e47bf6db72ad978fe54cf05697dd0dcd34391f04b3cb55b73"
+    },
+    {
+      "name": "front_contact_pad",
+      "material": "TPU",
+      "printable": "assumed",
+      "stl_sha256": "9d501073b0732572d2736cae6d86ebf08841942c8138d905962c9b4b31a760d6"
+    },
+    {
+      "name": "pelvis_socket_left",
+      "material": "PETG",
+      "printable": "assumed",
+      "stl_sha256": "16add43511e687ea99b280dc5266e15bbc85ba356b0178474ce443f3c6eeaf05"
+    },
+    {
+      "name": "pelvis_socket_right",
+      "material": "PETG",
+      "printable": "assumed",
+      "stl_sha256": "84acd4bc1bacbb97d05d52bdc531285ab1e9d1f97035d4de7caa5506dc093155"
+    },
+    {
+      "name": "root_carrier_left",
+      "material": "PETG",
+      "printable": "assumed",
+      "stl_sha256": "a78af9974d5087901416b0a80c50601f1443162b6f477b6a9ab4fdc783d8eaba"
+    },
+    {
+      "name": "root_carrier_right",
+      "material": "PETG",
+      "printable": "assumed",
+      "stl_sha256": "e288e2755f28ac31e283dbd2c8657ef77e4665bbca1acd7fe2166cceb25e836c"
+    },
+    {
+      "name": "shank_left",
+      "material": "PETG",
+      "printable": "assumed",
+      "stl_sha256": "a343ee45cd7ee8e5b271fed33205f5dfc5e0cee8ffb936dac95364ab2bbbe2b9"
+    },
+    {
+      "name": "shank_right",
+      "material": "PETG",
+      "printable": "assumed",
+      "stl_sha256": "bbc25a6353e9104022657a82254d7ce01fb5c6b92f6d06277e8c800223f2fb5a"
+    },
+    {
+      "name": "shoulder_socket_left",
+      "material": "PETG",
+      "printable": "assumed",
+      "stl_sha256": "7b7e7af01a24f42543b840788e0f764e8170a45d2071d176927fee8b940ed95d"
+    },
+    {
+      "name": "shoulder_socket_right",
+      "material": "PETG",
+      "printable": "assumed",
+      "stl_sha256": "95ba773fd21d96e57ff460b958846ff5c23eae475d655a0fa5f7da0136bee828"
+    },
+    {
+      "name": "thigh_left",
+      "material": "PETG",
+      "printable": "assumed",
+      "stl_sha256": "7e68ff2f0cf6419a6a03bd0b923ba74ac3003a79f7f7a9bc2e476a4abb2bb8e7"
+    },
+    {
+      "name": "thigh_right",
+      "material": "PETG",
+      "printable": "assumed",
+      "stl_sha256": "a5df9b129881d39733459fd156f6943a727c0e2039ed9243457df7fd45852131"
+    },
+    {
+      "name": "torso_frame",
+      "material": "PETG",
+      "printable": "assumed",
+      "stl_sha256": "25162342f70e479b1129dbc916b35d243ff81b3c923b2afc69641846d19ecd6e"
+    },
+    {
+      "name": "tray_spacer",
+      "material": "PETG",
+      "printable": "assumed",
+      "stl_sha256": "b5d7bbf3d5419dabee09ddf97133d1266d539b4373d9942e20b4f521099791fd"
+    },
+    {
+      "name": "upper_arm_left",
+      "material": "PETG",
+      "printable": "assumed",
+      "stl_sha256": "01a5f00d368a18e145a86a7f761abd497f6c0c75eab591603856bad60ae35d11"
+    },
+    {
+      "name": "upper_arm_right",
+      "material": "PETG",
+      "printable": "assumed",
+      "stl_sha256": "e5db97ea430de5c97f157a858570129d2acb058eae0ab20b2d44b3a0f2d8bf7a"
+    }
+  ],
+  "limits": "Assumed printable, not physically proven. Local slices; no physical print, fit, load, TPU traction or continuous-sweep acceptance."
+}

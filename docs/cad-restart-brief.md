@@ -4,7 +4,19 @@ Handover for the harness doing the redesign. The maintainer has assigned this to
 **GPT Astra**; any harness must be able to pick it up from this file alone, so
 nothing here depends on chat history. Written 2026-09-07.
 
-**Implementation record:** [`cad-restart-design.md`](cad-restart-design.md) (DEC-34).
+**Current implementation:** [cad-integrated-design.md](cad-integrated-design.md)
+(DEC-40); the DEC-34 [record](cad-restart-design.md) below is historical.
+
+**Current morphology (DEC-36/37/38, 2026-09-08):** use the compact 4×4
+[body master](body-layout.md): driven wrist wheels as well as driven ankle
+wheels, 70/75 mm front links and 85/90 mm rear links. The old 100/100 mm links,
+deck/track targets and 150 mm upper allocation below are historical study
+inputs. DEC-40 implements the full four-limb chassis at 220 mm track; the shared-interface requirements
+remain load-bearing, and the old builders have been replaced.
+**Part strategy (DEC-39):** use integrated SO-101-style links; forks, bridge,
+spine and distal socket/motor mount form one structural print by default.
+Separate collars/retainers only for their installation or service function.
+Accessible local supports are allowed. See [integrated-links.md](integrated-links.md).
 
 **Reading order:** [`../AGENTS.md`](../AGENTS.md) → [`concept.md`](concept.md) →
 this brief → [`soarm-joint-pattern.md`](soarm-joint-pattern.md) →
@@ -20,33 +32,38 @@ prerequisite. Use upstream nominal interface dimensions, retaining their
 provenance. The single-joint rig, slicing and load-test gates remain.
 Requirements and implementation evidence: [`cad-restart-design.md`](cad-restart-design.md).
 
+**Historical brief below:** the DEC-40 implementation record takes precedence
+for current builders, part boundaries, dimensions and acceptance-rig names.
+The original requirements and failure lessons remain here for traceability.
+
 ## 1. Outcome wanted
 
 A new **lower body** as build123d code in `hardware/src/koala_hardware/parts/`:
 pelvis, two legs (2-DOF hip, 1-DOF knee, shank, wheel-foot), electronics tray,
 and the fit coupons that gate them. It must pass the existing export/audit gates,
 and **one printed single-joint rig must fit real hardware and be logged** before
-any full leg is printed. Not in scope: arms, head, torso — only their mounting
-interfaces on the pelvis/shoulder girdle (DEC-08).
+any full leg is printed. The current review starts at the pelvis and lower body;
+DEC-38/39 extends the same integrated-link approach to the driven forelimbs.
+Head and torso mechanisms remain separate detailed design work.
 
 ## 2. Invariants — change none without a new DEC entry
 
 | Invariant | Source |
 |---|---|
 | Overall height **40–50 cm**, mass ~1.5–3 kg, audience 2–5 years | DEC-15 |
-| Morphology: front limbs 3-DOF ×2, rear hips 2-DOF ×2, **rear knees 1-DOF ×2**, **wheel at each ankle position as the foot**, 3-RPS head, rigid torso strut | DEC-07 as amended by DEC-31 |
+| Morphology: front limbs 3-DOF ×2 with driven wrist wheels, rear hips 2-DOF ×2, rear knees 1-DOF ×2 with driven ankle wheels; 3-RPS head, rigid torso strut | DEC-07/31/36/37/38 |
 | Every part ≤ 200 × 200 mm in its declared print orientation; PETG; parametric code-CAD | DEC-09, DEC-23 |
-| Wheel Ø80 × 10 (Pololu), 6 mm universal hub, 37D 12 V 122 rpm motor with encoder ×2 | DEC-19; `params.py` MOTOR_* / WHEEL_* / HUB_* |
+| Wheel Ø80 × 10, 6 mm hub, four 37D 12 V geared/encoder motor envelopes (four motors bought; DEC-43 uses the rear two, the other pair is surplus — DEC-51) | DEC-19/38; `params.py` MOTOR_* / WHEEL_* / HUB_* |
 | STS3215 12 V for hips and knees: **12 bought, 12 joints (6 arm + 4 hip + 2 knee), no spare** | DEC-22, DEC-31 |
-| Servo mounting = the SO-101 **cradle + collar + clevis** pattern at every powered joint | DEC-21 as amended, `soarm-joint-pattern.md` |
+| Servo mounting = measured SO-101 cradle/collar or four-ear saddle, with both horn forks integrated into the link | DEC-21/39; `soarm-joint-pattern.md` |
 | Socket cap heads proud, no countersinks in plastic; counterbore only where a head fouls | DEC-25 |
 | No plastic-on-plastic sliding threads; real bearings where things rotate on plastic | DEC-12 |
 | Child-safety: no pinch points, rounded edges, no proud fasteners on touchable surfaces | concept.md 7, OQ-10 |
 | Electronics tray hosts the TB9051FTG shield (Uno pattern), Teensy 4.0, BNO085; 12 V single rail, 5 V buck | DEC-16/18/19/20, `params.py` UNO_HOLES etc. |
 
-Track width, stance height, hip axis spacing and thigh/shank lengths are **not**
-invariants: they are outputs of this design, to be chosen against the height budget
-and recorded (§5).
+DEC-36/37 now supply the link lengths, track and nominal pose dimensions.
+Physical hip-axis packaging must fit that master or receive an explicit
+engineering revision; do not silently restore the discarded body proportions.
 
 ## 3. What is kept, what is discarded
 
@@ -79,6 +96,11 @@ use them at **every** STS3215 joint. Servo faces are named per
 = the end it stands on, Top, Sides). Numbers come from the printed-part STEPs and
 from calipers on the servo (test-log 2026-09-08); the remaining `[VERIFY]` ones
 move when the joint rig supplies evidence.
+
+These functions define interface geometry, **not mandatory part boundaries**.
+Under DEC-39 the two horn plates and their connecting structure become one
+link. A separate collar is needed only for the selected retention/assembly
+pattern; the SO-101 elbow saddle is an allowed alternative.
 
 | Function | What it cuts / adds | Nominal |
 |---|---|---|
@@ -186,10 +208,13 @@ uv run python -m koala_hardware.slice_remote   # only when the printer is idle
 
 ## 9. Deliverable checklist
 
+Reassessed against `f541600` on 2026-09-08: the new measurements invalidate
+the earlier socket/audit acceptance. See [impact assessment](cad-measurement-impact.md).
+
 - [x] Servo fit basis recorded in `params.py` and `test-log.md`; caliper/repeat-gauge requirement removed by DEC-33
 - [x] Requirements and packaging banked as DEC-32/34 (ranges, loads, mass, height, track)
-- [x] `servo_iface` socket primitive (§4, amended by DEC-34 for the flush idler) and five-part joint rig
+- [ ] Correct `servo_iface` and the five-part rig to the measured interface in §4; DEC-34's earlier primitive is not accepted
 - [x] New `parts/` for pelvis, hip, thigh, knee, shank, wheel-foot, e-tray; old builders deleted
-- [x] `export`, `audit` (incl. knee), `tests` green; viewer scene and browser/CAD pose parity checked
+- [ ] Rerun `export`, `audit` (incl. knee), tests and viewer/browser-CAD parity after correction; current audit fails at the plate centre
 - [ ] Slice inspection recorded; one joint rig printed and fitted; one leg; the pair
-- [x] `bom.md` regenerated, fastener counts derived; `decisions.md`, `open-questions.md`, `AGENTS.md` status, `hardware/README.md` updated
+- [ ] Regenerate `bom.md` and fastener metadata after correction; reconcile dimensions and assembly notes across the design/status docs

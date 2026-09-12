@@ -1,0 +1,96 @@
+{
+  "upstream_commit": "eecbe3e0a9ebb23e25ad7b2759b03884c6660903",
+  "source_sha256": {
+    "Under_arm_SO101": "677a1a57efeddc439d97ebdc309b1c2853cfcb83f14c7d695c312fcf13a89713",
+    "Motor_holder_SO101_Wrist": "e58d86502535a5a4936677e9d934f1bda9417e83f7480f475061728c146739c4"
+  },
+  "under_arm_crop_native_X_max_mm": -24.85,
+  "reference_frame": "original upstream coordinates; both source files already share placement",
+  "derived_geometry_license": "Apache-2.0",
+  "templates": {
+    "under_socket_source": {
+      "volume_mm3": 14545.699176821303,
+      "size_mm": [
+        28.999907436607415,
+        24.00000020000002,
+        52.0
+      ],
+      "watertight_STL": true,
+      "STEP_reimport_relative_volume_error": 1.1583615931509948e-06
+    },
+    "wrist_holder_source": {
+      "volume_mm3": 13880.539857894682,
+      "size_mm": [
+        28.000000200000006,
+        36.90000010000011,
+        56.390965689663204
+      ],
+      "watertight_STL": true,
+      "STEP_reimport_relative_volume_error": 0.0
+    }
+  },
+  "pitch_centres_mm": 48.0,
+  "minimum_saddle_gap_mm": 3.1000000000000014,
+  "driver_probe_diameter_mm": 4.0,
+  "driver_probe_length_mm": 40,
+  "blocked_inboard_ear_screws": [
+    {
+      "root": "hip",
+      "side": "right",
+      "ear_lateral_mm": -10.25,
+      "opposite_servo_overlap_mm3": 308.1019,
+      "crossmember_overlap_mm3": 14.8275
+    },
+    {
+      "root": "hip",
+      "side": "right",
+      "ear_lateral_mm": 10.25,
+      "opposite_servo_overlap_mm3": 308.105,
+      "crossmember_overlap_mm3": 14.8275
+    },
+    {
+      "root": "hip",
+      "side": "left",
+      "ear_lateral_mm": -10.25,
+      "opposite_servo_overlap_mm3": 308.1019,
+      "crossmember_overlap_mm3": 14.8275
+    },
+    {
+      "root": "hip",
+      "side": "left",
+      "ear_lateral_mm": 10.25,
+      "opposite_servo_overlap_mm3": 308.105,
+      "crossmember_overlap_mm3": 14.8275
+    },
+    {
+      "root": "shoulder",
+      "side": "right",
+      "ear_lateral_mm": -10.25,
+      "opposite_servo_overlap_mm3": 308.1019,
+      "crossmember_overlap_mm3": 14.8275
+    },
+    {
+      "root": "shoulder",
+      "side": "right",
+      "ear_lateral_mm": 10.25,
+      "opposite_servo_overlap_mm3": 308.105,
+      "crossmember_overlap_mm3": 14.8275
+    },
+    {
+      "root": "shoulder",
+      "side": "left",
+      "ear_lateral_mm": -10.25,
+      "opposite_servo_overlap_mm3": 308.1019,
+      "crossmember_overlap_mm3": 14.8275
+    },
+    {
+      "root": "shoulder",
+      "side": "left",
+      "ear_lateral_mm": 10.25,
+      "opposite_servo_overlap_mm3": 308.105,
+      "crossmember_overlap_mm3": 14.8275
+    }
+  ],
+  "limits": "40 mm straight-driver access screen on paired fixed roots; no offset tool, installation trajectory, revised mount or physical assembly acceptance.",
+  "upstream_cradle_holder_overlap_mm3": 0
+}
