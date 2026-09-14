@@ -34,8 +34,12 @@ Unresolved. Resolve -> move to [`decisions.md`](decisions.md).
   alone, and the front step length is bounded by that swing. Four-foot walking
   is already experimental (DEC-43), so this is a small further bet on the
   supported stance and the lift-to-balance transition working with a
-  sideways-folding foreleg. Decide before the front upper arm is drawn; it
-  changes the elbow socket's attitude on the upper arm and nothing upstream.
+  sideways-folding foreleg. It also decides the shoulder block's form: with a
+  sagittal elbow, B (pitch) and C (elbow) are parallel and can share one
+  block on A's horn with a link down the upper arm, the Orion pattern; with
+  the hug elbow they are perpendicular, as B and C already are at the rear,
+  and C must sit on the upper arm. Decide before the front upper arm is
+  drawn; it changes the elbow socket's attitude and the shoulder block.
 
 - **OQ-23 — Torso width and neck servo packaging.** The two shoulder socket
   modules meet at the centreline with a 0.6 mm gap (DEC-48), so the shoulder
