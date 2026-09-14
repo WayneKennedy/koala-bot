@@ -2,6 +2,39 @@
 
 Unresolved. Resolve -> move to [`decisions.md`](decisions.md).
 
+- **OQ-22 — Root carrier construction: the pitch → roll bridge is the weak,
+  hard-to-print part.** Raised 2026-09-14 against the DEC-49 `root_carrier`
+  (`parts/links.py` `carrier()`). Pitch centres are ±24 mm and roll centres
+  ±74.5 mm (DEC-41), and the roll socket floor sits 40 mm below the pitch axis,
+  so the part reaches 50.5 mm out and 40 mm down from the pitch horn. The only
+  member joining the horn clevis to the roll socket is the 16 × 15 mm bridge
+  box; every leg load in balance pose crosses it, with layers across the load
+  when printed back-down (50.5 mm tall, horn discs standing on 6.3 mm pads).
+  The maintainer's own reading: unprintable as drawn and structurally weak,
+  and the four-in-a-row carriers are the part of the layout that reads as
+  cumbersome. Cause: DEC-41's intersecting axes plus DEC-45's root modules push
+  the roll servo outboard of the module and below the axis. Options, none
+  modelled yet, axis positions are estimates:
+  1. **L-block (SpotMicro / Orion pattern).** Roll servo lies alongside the
+     pitch servo, enclosed by a socket rotated 90° whose outboard wall is the
+     pitch horn plate; output faces +X. Roll axis ≈ 54 mm from centre, hips
+     ≈ 40 mm narrower, no neck, roll servo tucked against the torso. Keeps
+     DEC-41's axis order and intersection. Also the block a shoulder-mounted
+     knee servo would share later (wk-robotics `ideas.md`, quadruped leg
+     layouts). Recommended direction.
+  2. **SO-101 shoulder, end-on.** Roll servo stands on its Bottom on the pitch
+     horn plate, as `Rotation_Pitch` stands on the base horn
+     (`soarm-joint-pattern.md`); the plate is the socket floor. Axes still
+     intersect at pitch-axis height. Roll axis ≈ 85 mm, hips ≈ 20 mm wider;
+     thigh and motor-face offsets shift to hold the 220 mm track.
+  3. **Drop rear hip roll for V1.** Balance mode does not use it; quadruped lean
+     and leg placement do. Deletes two carriers, frees two ST3215s (closes the
+     OQ-16 shortfall), and makes each rear hip the proven SO-101 single-socket
+     pitch joint. A concept change (DEC-41/43), not a construction fix.
+  Decide the pattern before any carrier is printed; DEC-45's torso-side root
+  modules survive options 1 and 2 unchanged. Track, thigh fork and collision
+  checks (OQ-21) must be re-run for whichever is chosen.
+
 - **OQ-21 — Physical joint travel and control limits.** DEC-48 implements
   DEC-46's pose-dependent viewer search using the printed geometry and nominal
   hardware envelopes. The search uses 0.25° steps and a 1° reserve before the
