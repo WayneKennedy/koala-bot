@@ -83,6 +83,17 @@ so they need no collar.
 - The area/overhang screen identifies places to inspect; it cannot establish
   print failure or justify an automatic split. Bed fit, sliced layers,
   assembly access and load tests still have to be checked.
+- **Fillet after union, never before; every inside corner gets a fillet.**
+  Two plates that meet at a right angle are one body with a filleted internal
+  corner (radius at least the thinner wall) or a gusset, not two rounded
+  boxes overlapped. Filleting each box before the union leaves a groove on
+  the outside where the two roundings cross and a sharp, unreinforced inside
+  corner where the load turns through 90°; in FDM that corner is also where
+  layers change direction. Maintainer rule, 2026-09-14, from the DEC-49
+  `pelvis_socket` return (`parts/pelvis.py`: `plate` and `web` are each
+  filleted, then summed). Union the raw boxes, then fillet outside edges and
+  the concave junction edge; check the result in section, not only in the
+  viewer.
 
 The integrated parts are implemented and exported under
 [DEC-48](cad-integrated-design.md). They have not been physically accepted.

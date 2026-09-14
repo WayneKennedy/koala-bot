@@ -45,7 +45,12 @@ Unresolved. Resolve -> move to [`decisions.md`](decisions.md).
 
 - **OQ-20 — Physical acceptance of the SO-101 construction adaptation.**
   DEC-48/49/50 implement enclosing asymmetric sockets, rounded links/forks,
-  common carriers at all four roots and independent root modules. Bench driver approaches, nominal
+  common carriers at all four roots and independent root modules. **Known
+  defect, 2026-09-14:** the `pelvis_socket` right-angle return is two
+  separately filleted boxes overlapped, with no inside fillet at the
+  flange-to-floor corner; it fails the fillet-after-union rule in
+  `integrated-links.md` and must be rebuilt before printing. Audit the other
+  parts for the same construction. Bench driver approaches, nominal
   insertion and CAD clearances are checked; local slices support `assumed`
   printability. Check real support removal, mounting fit, assembly/service
   access and load/creep on the revised parts. No repeat Gauge_0 is required.
