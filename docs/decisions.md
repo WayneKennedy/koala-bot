@@ -16,6 +16,25 @@ acceptance remains open as OQ-13.
 are superseded by the [impact assessment](cad-measurement-impact.md). DEC-40 implements the corrected interface and replaces its geometry;
 physical acceptance remains open.
 
+- **DEC-52 — Redesign the structure torso-first, outward to the feet and
+  wheels; downstream parts do not constrain upstream ones** (2026-09-14,
+  maintainer instruction). The DEC-48/49/50 parts were detailed outward from
+  accepted joint centres, and OQ-22 shows the cost: the rear root module's
+  web and right-angle return exist only to clear a carrier that was taken as
+  fixed. From here the order is torso frame → root modules → carriers →
+  upper links → lower links → feet and wheels, each part designed for its own
+  load path and print, with the parts below it re-derived to suit rather than
+  the reverse. What is kept: the layout and both saved poses, joint centres as
+  targets not datums, pitch → roll (DEC-41), twelve ST3215s, the two rear
+  ankle drives (DEC-43), the SO-101 socket and horn interfaces (DEC-33/50),
+  the fillet-after-union and integrated-link rules. What is not kept:
+  any current part's geometry as a constraint on the part above it. Each
+  stage is reviewed visually before the next starts, using rendered images
+  or the viewer, since nothing can be printed and handled yet. Resolves the
+  choice in OQ-22 in principle: the root module is designed first and the
+  carrier follows it. The `cad-integrated-design.md` record remains the
+  description of the current exports until each part is replaced.
+
 - **DEC-51 — koala-bot keeps one TB9051FTG and its rear 37D pair; the four-wheel
   hardware is surplus to the family** (2026-09-11, maintainer report). The second 37D
   pair and two more Dual TB9051FTGs, ordered for DEC-38's four driven wheels, arrived

@@ -16,6 +16,10 @@ but don't block the lower body).
    Servo fit in PLA+/PETG is accepted (DEC-33), with no repeat-gauge prerequisite.
    Head/neck and complete electronics/battery packaging remain detailed work.
    Digital scope and physical gates: [cad-integrated-design.md](cad-integrated-design.md).
+   *DEC-52, 2026-09-14:* structural redesign proceeds torso-first, outward:
+   torso frame → root modules → carriers → upper links → lower links → feet and
+   wheels, each stage reviewed visually before the next; downstream parts are
+   re-derived, not preserved. Current step: the torso frame and root modules.
 2. **Prototype prints** - corrected joint rig, integrated links (DEC-39), one
    rear leg, the pair, passive-foot forelimbs, torso and neck; fit/load
    evidence at each stage.
