@@ -2,6 +2,26 @@
 
 Unresolved. Resolve -> move to [`decisions.md`](decisions.md).
 
+- **OQ-26 — Battery: capacity undecided; inclination is 3S2P Li-ion 21700,
+  half on each torso side, removable for charging.** Maintainer, 2026-09-14.
+  Capacity waits on a power budget that does not exist yet: the only figure
+  in the record is the 32 A fault case of twelve stalled STS3215s
+  (`architecture.md`); typical walking, balancing and idle draws are
+  unmeasured. Facts for sizing: a 21700 cell is Ø21 × 70 mm, about 70 g, 4–5 Ah
+  and, depending on the cell, 10–35 A continuous; 3S2P is 8–10 Ah, 11.1 V
+  nominal, roughly 90–110 Wh and about 420 g of cells plus holders and BMS,
+  against the 1.5–3 kg whole-robot budget (DEC-15). Choose a high-drain cell
+  over a high-capacity one: the pack must ride servo transients, and Li-ion
+  sags more than the "stiff LiPo" DEC-20 assumes, so bulk capacitance on the
+  servo bus matters more, not less. One 3S1P stick per side is three cells
+  abreast, about 66 × 73 × 23 mm wrapped, which fits lengthwise inside the
+  150 mm torso below the shoulders. Conflict to resolve with OQ-23: DEC-54
+  puts the shoulder root sockets on the same torso sides; the sticks would
+  sit below them, and the side walls then carry sockets, packs and a
+  removal path, which drives the torso width. Chemistry change from the
+  `architecture.md` "3S LiPo" is within its 3S-only rule (12.6 V full).
+  Decide capacity once a first leg has been driven and current measured.
+
 - **OQ-25 — Elbow axis in the roll direction: the "hug".** Raised with
   DEC-54. With the elbow axis parallel to the shoulder roll axis (along the
   spine), the forearms fold sideways and inward: in upright with the arms
