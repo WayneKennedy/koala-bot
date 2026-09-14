@@ -37,7 +37,10 @@ physical acceptance remains open.
   the knee socket's shelf; the 85 mm thigh keeps its length with no room to
   spare between roll socket and knee shelf. The shoulder keeps the DEC-49
   carrier and 149 mm roll spacing until DEC-54's chain replaces it. The two
-  root axes still intersect. Printable: `unknown`, no slice yet.
+  root axes still intersect. Printable: `unknown`, no slice yet. The viewer
+  search after commit gives roll −3.5° to 9.75° and quadruped pitch −2.75° to
+  96°: the roll socket under the axis is what the thigh must clear, and the
+  block shares the module walls' 18 mm radius; both are open in OQ-22.
 
 - **DEC-54 — Forelimbs are roll-first: shoulder abduction servo in a root
   socket on the torso's side, axis along the spine; front and rear limb

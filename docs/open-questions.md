@@ -113,6 +113,19 @@ Unresolved. Resolve -> move to [`decisions.md`](decisions.md).
   Still open here: physical acceptance of the hip carrier and the new thigh
   forks (no slice, no print), the thigh's zero margin between roll socket and
   knee shelf at 85 mm, and the shoulder carrier, which waits for DEC-54.
+  **Travel found by the viewer search, 2026-09-14, DEC-55 as committed:**
+  roll −3.5° to 9.75° in both poses (was −5° to 116°), stopped inward by the
+  thigh slab tipping under the carrier block and outward by the slab's flat
+  top against B's flat socket floor 2 mm above it; quadruped pitch −2.75° to
+  96° (was −27° to 91°), the hind leg's forward swing stopped by the carrier
+  block's top corners against the root module's Side-wall returns, both
+  lying on the same 18 mm radius about the pitch axis; upright pitch −77° to
+  131° (was −101° to 58°). Candidate fixes, unmodelled: (a) make B's socket
+  underside and the thigh slab top concentric cylinders about the roll axis
+  so outward roll is free; (b) shorten the module's Side-wall returns or
+  taper the block's forward corner so the hind leg can protract; inward roll
+  was already ≈5° and is bounded by the block. Judge in the viewer before
+  changing either part.
 
   **Root carrier: acceptable (maintainer, 2026-09-14).** The session's first
   review called its 16 × 15 mm bridge weak; that was overstated and is
