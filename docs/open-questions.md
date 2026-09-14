@@ -3,12 +3,10 @@
 Unresolved. Resolve -> move to [`decisions.md`](decisions.md).
 
 - **OQ-22 — Root joint construction: the pelvis socket module is weak and
-  hard to print; the carrier bridge is the same problem one joint out.**
-  Raised by the maintainer 2026-09-14 against the DEC-49 `pelvis_socket`
-  (`parts/pelvis.py`), then extended to the DEC-49 `root_carrier` by the
-  session review. Both parts sit in one load path, torso → module → pitch
-  servo → carrier → roll servo → thigh, and both fail the same way: the load
-  turns through 90° across a thin neck or an unfilleted corner.
+  hard to print.** Raised by the maintainer 2026-09-14 against the DEC-49
+  `pelvis_socket` (`parts/pelvis.py`), the piece between the torso and the
+  pitch servo. The `root_carrier` one joint out was reviewed at the same time
+  and is acceptable (below).
 
   **Pelvis socket module (maintainer's finding: unprintable as drawn,
   inherently weak).** The pitch servo hangs 46 mm below the torso flange
@@ -42,30 +40,23 @@ Unresolved. Resolve -> move to [`decisions.md`](decisions.md).
   Recommended: 3 if the ear retention can be shown on a coupon; else 1 + 2
   together.
 
-  **Root carrier (session review).** Pitch centres ±24 mm and roll centres
-  ±74.5 mm (DEC-41), roll socket floor 40 mm below the pitch axis, so the part
-  reaches 50.5 mm out and 40 mm down; the only member joining the horn clevis
-  to the roll socket is the 16 × 15 mm bridge box (`parts/links.py`
-  `carrier()`), with layers across the load when printed back-down (50.5 mm
-  tall, horn discs on 6.3 mm pads). Four of these in a row are also what
-  makes the hip arrangement read as cumbersome. Cause: DEC-41's intersecting
-  axes plus DEC-45's outboard-clearing modules. Options, axis positions
-  estimated:
-  1. **L-block (SpotMicro / Orion pattern).** Roll servo alongside the pitch
-     servo in a socket rotated 90° whose outboard wall is the pitch horn
-     plate; output faces +X. Roll axis ≈ 54 mm, hips ≈ 40 mm narrower, no
-     neck; keeps DEC-41's order and intersection; the block a
-     shoulder-mounted knee servo could share later. Recommended.
-  2. **SO-101 shoulder, end-on.** Roll servo stands on its Bottom on the pitch
-     horn plate as `Rotation_Pitch` stands on the base horn; axes intersect at
-     pitch-axis height; roll axis ≈ 85 mm, hips ≈ 20 mm wider.
-  3. **Drop rear hip roll for V1.** Balance mode does not use it; deletes two
-     carriers, frees two ST3215s (OQ-16), rear hip becomes the proven SO-101
-     single-socket pitch joint. A concept change (DEC-41/43), not a fix.
+  **Root carrier: acceptable (maintainer, 2026-09-14).** The session's first
+  review called its 16 × 15 mm bridge weak; that was overstated and is
+  withdrawn. Pitch centres ±24 mm, roll centres ±74.5 mm, roll socket floor
+  40 mm below the pitch axis (`parts/links.py` `carrier()`). A 15 N leg load
+  (half of a 3 kg robot on two legs, DEC-15) at the 50.5 mm reach gives
+  ≈ 0.76 N·m at the bridge and ≈ 1.3 MPa bending stress, far inside PETG.
+  Printed back-down the bending tension lies in the layer plane, not across
+  it; the horn discs print as supported towers, which the local slice
+  already covers. Dynamic and torsional loads are unmeasured (OQ-16). Layout
+  alternatives are noted only in case the roll arrangement is revisited: an
+  L-block with the roll servo alongside the pitch servo (SpotMicro / Orion
+  pattern, roll axis ≈ 54 mm, no reach) or the SO-101 end-on shoulder (roll
+  axis ≈ 85 mm); dropping rear roll for V1 would free two ST3215s but is a
+  concept change. None is required.
 
-  Decide the module and carrier constructions together before any root part
-  is printed; re-run track, thigh-fork and OQ-21 clearance checks for the
-  chosen pair.
+  Decide the module construction before any root part is printed; re-run
+  frame contact and OQ-21 clearance checks for the chosen option.
 
 - **OQ-21 — Physical joint travel and control limits.** DEC-48 implements
   DEC-46's pose-dependent viewer search using the printed geometry and nominal
