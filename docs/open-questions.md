@@ -59,6 +59,9 @@ Unresolved. Resolve -> move to [`decisions.md`](decisions.md).
   end-on, below), which shrinks the carrier's swept radius to about a case
   half-width, lets the pitch case stand vertical at both roots, and makes
   the flat shoulder module the single root part, printed four times.
+  **DEC-52 settles the order:** the root module is designed first, from the
+  torso, and the carrier is then derived to clear it. Which module
+  construction (1–3) and which carrier form remain open here.
 
   **Root carrier: acceptable (maintainer, 2026-09-14).** The session's first
   review called its 16 × 15 mm bridge weak; that was overstated and is
