@@ -16,6 +16,22 @@ acceptance remains open as OQ-13.
 are superseded by the [impact assessment](cad-measurement-impact.md). DEC-40 implements the corrected interface and replaces its geometry;
 physical acceptance remains open.
 
+- **DEC-53 — Build one rear leg in isolation first; root pitch sockets stay
+  separate modules, four ear screws each, torso fixing by captive M3 nuts
+  under the servo; torso shape deferred** (2026-09-14, maintainer
+  instruction). Amends DEC-52's starting point: the design vehicle is one
+  complete rear leg, root module → carrier → thigh → knee → shank → wheel,
+  built and reviewed on its own; the torso's exact shape waits until the
+  limbs are right. Root modules remain one per servo (DEC-45) so all four ear
+  screws are fitted on the bench. The module's torso-facing plate carries
+  captive M3 nuts under the servo footprint; screws come from the torso side,
+  the fitted servo then covers the nuts. This puts the bolt base under the
+  case instead of the two-bolt 10 mm row outside it (OQ-22). Case
+  orientation at each root and the carrier form are derived from the module
+  per DEC-52, not inherited. The torso is expected to grow wider than the
+  present 48 mm pitch centres allow, for the neck servos (OQ-23); koalas are
+  broad.
+
 - **DEC-52 — Redesign the structure torso-first, outward to the feet and
   wheels; downstream parts do not constrain upstream ones** (2026-09-14,
   maintainer instruction). The DEC-48/49/50 parts were detailed outward from

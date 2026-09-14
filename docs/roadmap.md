@@ -19,7 +19,8 @@ but don't block the lower body).
    *DEC-52, 2026-09-14:* structural redesign proceeds torso-first, outward:
    torso frame → root modules → carriers → upper links → lower links → feet and
    wheels, each stage reviewed visually before the next; downstream parts are
-   re-derived, not preserved. Current step: the torso frame and root modules.
+   re-derived, not preserved. *DEC-53:* the design vehicle is one rear leg in
+   isolation; torso shape deferred. Current step: the root module with captive nuts.
 2. **Prototype prints** - corrected joint rig, integrated links (DEC-39), one
    rear leg, the pair, passive-foot forelimbs, torso and neck; fit/load
    evidence at each stage.

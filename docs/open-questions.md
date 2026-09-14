@@ -2,6 +2,15 @@
 
 Unresolved. Resolve -> move to [`decisions.md`](decisions.md).
 
+- **OQ-23 — Torso width and neck servo packaging.** The two shoulder socket
+  modules meet at the centreline with a 0.6 mm gap (DEC-48), so the shoulder
+  girdle, where `architecture.md` mounts the three STS3032M neck servos,
+  has no room for them. DEC-53 expects a wider torso. Widening moves
+  `ROOT_PITCH_Y` (48 mm centres, DEC-41) and with it the carrier reach, the
+  149 mm roll centres and the 220 mm track (DEC-40/41/49); the head envelope
+  and neck length (DEC-37/49) are unchanged by it. Decide the width once the
+  leg (DEC-53) fixes the root module and carrier, and before the torso frame.
+
 - **OQ-22 — Root joint construction: the pelvis socket module is weak and
   hard to print.** Raised by the maintainer 2026-09-14 against the DEC-49
   `pelvis_socket` (`parts/pelvis.py`), the piece between the torso and the
@@ -59,9 +68,10 @@ Unresolved. Resolve -> move to [`decisions.md`](decisions.md).
   end-on, below), which shrinks the carrier's swept radius to about a case
   half-width, lets the pitch case stand vertical at both roots, and makes
   the flat shoulder module the single root part, printed four times.
-  **DEC-52 settles the order:** the root module is designed first, from the
-  torso, and the carrier is then derived to clear it. Which module
-  construction (1–3) and which carrier form remain open here.
+  **DEC-52/53 settle the order and the module:** separate modules with four
+  ear screws and captive M3 nuts under the servo (DEC-53); the carrier is
+  then derived to clear whatever case orientation the module takes. Case
+  orientation and carrier form remain open here.
 
   **Root carrier: acceptable (maintainer, 2026-09-14).** The session's first
   review called its 16 × 15 mm bridge weak; that was overstated and is
