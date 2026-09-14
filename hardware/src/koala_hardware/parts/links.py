@@ -2,7 +2,7 @@
 """DEC-43 integral limbs with DEC-41 root joints. Native X = lateral; +Z down link."""
 from functools import lru_cache
 from math import cos, sin, radians
-from build123d import Pos, Rot, Plane, Sphere, Cylinder, Align, RectangleRounded, extrude, Polygon, Cone, RegularPolygon, loft, Circle, fillet, Axis
+from build123d import Pos, Rot, Plane, Sphere, Cylinder, Align, RectangleRounded, extrude, Polygon, Cone, RegularPolygon, loft, Circle, fillet, Axis, mirror
 from .. import params as P, servo_iface as S
 
 AXIS=Pos(0,0,-P.SOCKET_AXIS_Z)
@@ -22,15 +22,35 @@ def clevis():
 
 
 @lru_cache
-def upper_link(length):
+def upper_link(length,hip=False):
     bottom=length-P.SOCKET_AXIS_Z
     c=P.LINK_SPINE_HALF
-    spine=Pos(0,0,P.LINK_BRIDGE_START)*extrude(RectangleRounded(2*c,2*c,3),amount=bottom-P.LINK_BRIDGE_START)
-    part=Rot(Z=-90)*clevis()+spine
-    # Tapered root spreads load into the socket floor; no abrupt thin plank.
-    start=max(P.LINK_BRIDGE_END,bottom-12)
-    part+=loft([Pos(0,0,start)*RectangleRounded(16,16,3),
-                Pos(0,0,bottom)*RectangleRounded(36,24,3)])
+    if not hip:
+        spine=Pos(0,0,P.LINK_BRIDGE_START)*extrude(RectangleRounded(2*c,2*c,3),amount=bottom-P.LINK_BRIDGE_START)
+        part=Rot(Z=-90)*clevis()+spine
+        # Tapered root spreads load into the socket floor; no abrupt thin plank.
+        start=max(P.LINK_BRIDGE_END,bottom-12)
+        part+=loft([Pos(0,0,start)*RectangleRounded(16,16,3),
+                    Pos(0,0,bottom)*RectangleRounded(36,24,3)])
+        part+=Pos(0,0,bottom)*S.saddle()
+        return part
+    # DEC-55 thigh: B stands Bottom-down in the hip carrier, so the forks cannot
+    # pass its nose. Pads grip the horn and idler, short tails stop above B's
+    # socket walls, cheeks step outboard of the walls and run down to a slab that
+    # passes under the socket floor and is the knee socket's shelf.
+    clip=P.HIP_FORK_CLIP_Z; sx=P.SOCKET_CASE_X/2+P.SOCKET_CLEAR+P.SOCKET_WALL+P.HIP_FORK_CLEAR   # 23.45 along the roll axis
+    t=P.SOCKET_PAD_T; a=P.SOCKET_ARM_HALF_W
+    pads=(Rot(Z=-90)*clevis())&S._box(-30,30,-30,30,-P.SOCKET_PLATE_R-1,clip)
+    part=pads
+    slab_top=P.SOCKET_AXIS_Z+P.SOCKET_SHELF+2.0        # 42.1: 2 mm under B's socket floor
+    for sign in (-1,1):
+        cheek=S._box(-a,a,min(sign*sx,sign*(sx+t)),max(sign*sx,sign*(sx+t)),clip-10,bottom)
+        pad_face=P.SOCKET_DRIVE_FACE if sign<0 else -P.SOCKET_IDLER_FACE   # pad inner faces after Rot(Z=-90): drive at -y, idler at +y
+        join=S._box(-a,a,min(sign*pad_face,sign*(sx+t)),max(sign*pad_face,sign*(sx+t)),clip-10,clip)
+        part+=cheek+join
+    part+=S._box(-a,a,-(sx+t),sx+t,slab_top,bottom)
+    x,y=S._socket_bounds(); y+=2.0
+    part+=S._box(-(x+P.SOCKET_WALL),x+P.SOCKET_WALL,-y,y,slab_top,bottom)   # slab fills to the knee socket outline
     part+=Pos(0,0,bottom)*S.saddle()
     return part
 
@@ -41,7 +61,7 @@ def motor_face(front=False):
 
 
 def rear_axis_y():
-    return P.BODY_SHOULDER_WIDTH_MM/2
+    return P.ROOT_ROLL_Y   # DEC-55 hip roll centre; the front keeps BODY_SHOULDER_WIDTH_MM/2 until DEC-54's chain is drawn
 
 
 @lru_cache
@@ -87,21 +107,36 @@ def pitch_fork_frame():
     return Plane(origin=(0,P.ROOT_PITCH_Y,0),x_dir=(0,1,0),z_dir=(0,0,-1)).location
 
 
-def roll_socket_frame(axis_y):
-    return Pos(0,axis_y,0)*AXIS
+def roll_socket_frame(axis_y,front=False):
+    if front:
+        return Pos(0,axis_y,0)*AXIS                      # DEC-49 front: B nose down, socket on the torso side
+    # DEC-55 hip: B Bottom-down in a socket below the pitch axis, nose toward the torso.
+    return Plane(origin=(0,axis_y,P.SOCKET_AXIS_Z),x_dir=(1,0,0),z_dir=(0,0,-1)).location
 
 
 @lru_cache
-def carrier():
-    """One unchamfered front-style carrier, used twice per hand (DEC-49)."""
-    axis_y=P.BODY_SHOULDER_WIDTH_MM/2
-    edge=axis_y-P.SOCKET_CASE_Y/2-1.5
-    floor=-P.SOCKET_AXIS_Z-P.SOCKET_SHELF
+def carrier(front=False):
+    """Root carrier: pitch-horn clevis to roll-servo socket.
+
+    front: the DEC-49 shoulder carrier, unchanged until DEC-54's chain replaces it.
+    rear: DEC-55 hip carrier. Clevis bridge under A's nose, one block from the fork
+    tails to B's socket, B Bottom-down beside A's drive pad, flat back at the
+    bottom. Nothing on the torso side of the pitch axis, so the sweep clears
+    the root module and A at every pitch the poses use."""
+    if front:
+        axis_y=P.BODY_SHOULDER_WIDTH_MM/2
+        edge=axis_y-P.SOCKET_CASE_Y/2-1.5
+        floor=-P.SOCKET_AXIS_Z-P.SOCKET_SHELF
+        inner=P.ROOT_PITCH_Y+P.SOCKET_IDLER_FACE-P.SOCKET_PAD_T
+        return (pitch_fork_frame()*clevis()+
+                S._box(-8,8,inner,edge,floor,-25)+
+                roll_socket_frame(axis_y,True)*S.saddle())
+    axis_y=P.ROOT_ROLL_Y; w=P.HIP_BLOCK_HALF_W
+    floor=P.SOCKET_AXIS_Z+P.SOCKET_SHELF
     inner=P.ROOT_PITCH_Y+P.SOCKET_IDLER_FACE-P.SOCKET_PAD_T
-    # The fork bridge and socket floor share a continuous flat bed face.
-    # No head-driven bevel: head position and mounting are unresolved.
-    return (pitch_fork_frame()*clevis()+
-            S._box(-8,8,inner,edge,floor,-25)+
+    edge=axis_y-P.SOCKET_CASE_Y/2-P.SOCKET_CLEAR-2.0+1.0
+    clevis_nose=mirror(pitch_fork_frame()*clevis(),Plane.XY)
+    return (clevis_nose+S._box(-w,w,inner,edge,P.LINK_BRIDGE_START,floor)+
             roll_socket_frame(axis_y)*S.saddle())
 
 
@@ -118,11 +153,14 @@ def spec(name,part,qty=1,orientation=None,fasteners=None,notes='',handed=False,m
                 notes=notes+' Accessible local supports permitted; inspect layers. Physical fit/load unverified.')
 
 
-def upper_spec(name,length):
-    return spec(name,upper_link(length),handed=True,orientation=Rot(X=90),
+def upper_spec(name,length,hip=False):
+    notes=(f'One {length:g} mm thigh (DEC-55): horn/idler pads, short tails, cheeks outboard of the roll socket, slab into the knee shelf. '
+           'Orientation to review; no slice yet.' if hip else
+           f'One {length:g} mm link: roll-axis horn forks, bridge, spine and perpendicular knee/elbow saddle. '
+           'Outer horn pad on bed; remove supports from inner fork and saddle. No structural seam bolts.')
+    return spec(name,upper_link(length,hip),handed=True,orientation=Rot(X=90),
         fasteners=HORN_FASTENERS|{'M2x5 self-tapper into servo ear':4},
-        notes=f'One {length:g} mm link: roll-axis horn forks, bridge, spine and perpendicular knee/elbow saddle. '+
-        'Outer horn pad on bed; remove supports from inner fork and saddle. No structural seam bolts.', printable='assumed')
+        notes=notes, printable='unknown' if hip else 'assumed')
 
 
 def lower_spec(name,length,front):
@@ -132,7 +170,7 @@ def lower_spec(name,length,front):
         'Slide motor from inboard; install face screws before hub and wheel. Remove support from body bore.', printable='assumed')
 
 
-def build_thigh(): return upper_spec('thigh',P.BODY_THIGH_MM)
+def build_thigh(): return upper_spec('thigh',P.BODY_THIGH_MM,hip=True)
 def build_upper_arm(): return upper_spec('upper_arm',P.BODY_UPPER_ARM_MM)
 def build_shank(): return lower_spec('shank',P.BODY_SHANK_MM,False)
 def front_pad():
@@ -163,11 +201,18 @@ def build_front_pad():
         'No support intended; recessed screw/washer remains above contact surface. Traction/wear untested.', printable='assumed')
 
 def build_root_carrier():
-    return spec('root_carrier',carrier(),qty=2,handed=True,orientation=Rot(),
+    return spec('shoulder_carrier',carrier(True),qty=1,handed=True,orientation=Rot(),
         fasteners=HORN_FASTENERS|{'M2x5 self-tapper into servo ear':4},
-        notes='Common hip/shoulder pitch fork and enclosing roll socket: print two of each hand. '
-        'Roll centres 149 mm apart. Unbevelled common flat back on bed; accessible local hole-roof supports. '
-        'Fit all four roll ear screws before the upper link.', printable='assumed')
+        notes='DEC-49 shoulder carrier, retained until the DEC-54 roll-first shoulder chain replaces it. '
+        'Roll centres 149 mm apart. Flat back on bed; accessible local hole-roof supports.', printable='assumed')
 
 
-BUILDERS=[build_thigh,build_upper_arm,build_shank,build_forearm,build_root_carrier,build_front_pad]
+def build_hip_carrier():
+    return spec('hip_carrier',carrier(False),qty=1,handed=True,orientation=Rot(X=180),
+        fasteners=HORN_FASTENERS|{'M2x5 self-tapper into servo ear':4},
+        notes='DEC-55 hip carrier: clevis on the pitch horn, block, roll socket alongside with the servo Bottom down. '
+        f'Roll centres {2*P.ROOT_ROLL_Y:.1f} mm apart. Flat back (block and socket floor) on the bed, forks rising; '
+        'accessible local hole-roof supports. Fit all four roll ear screws before the thigh.', printable='unknown')
+
+
+BUILDERS=[build_thigh,build_upper_arm,build_shank,build_forearm,build_root_carrier,build_hip_carrier,build_front_pad]

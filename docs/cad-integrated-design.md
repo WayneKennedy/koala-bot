@@ -44,10 +44,12 @@ harnesses and guards remain detailed design work.
   corners sweep 46 mm, so the saved upright pose intersects and quadruped
   pitch is capped near 42° until the carrier is re-derived (DEC-52, OQ-22).
   The carrier bullets below describe the export that still exists.
-- All four roots use the same unbevelled front-style carrier: print two of
-  each `root_carrier_left/right` variant, common flat back on the bed.
-  *(DEC-49 text, superseded at the root by DEC-53; carrier re-derivation
-  pending.)* The rear flange previously moved 5.885 mm into the torso
+- **DEC-55 hip carrier** replaces the rear pair: body below the pitch axis,
+  roll servo Bottom-down beside the pitch servo, roll centres 128.1 mm apart,
+  flat back on the bed; the thigh's forks pass the roll socket (see DEC-55).
+  The shoulder pair is still the DEC-49 carrier (`shoulder_carrier_left/right`),
+  common flat back on the bed, until DEC-54's chain replaces it. *(DEC-49
+  text follows.)* The rear flange previously moved 5.885 mm into the torso
   (Z=46 mm) with rear cases turned 90° and right-angle socket modules;
   that arrangement is gone.
   The upper link's roll fork remains perpendicular to its elbow/knee socket.

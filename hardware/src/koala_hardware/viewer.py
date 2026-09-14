@@ -155,7 +155,7 @@ def build() -> pathlib.Path:
                    "track":P.BODY_TRACK_TARGET_MM,"stance":P.BODY_STANDING_HEIGHT_MM,
                    "hip_axes":2*__import__('koala_hardware.parts.links',fromlist=['rear_axis_y']).rear_axis_y(),
                    "joints":{name:assembly.joint_data(name) for name in poses},
-                   "status":"DEC-49/50: common flat-back carriers, unequal drive/idler socket slots; head placement undecided and omitted. Printable: assumed; physical prints, fit and loads unproven. Slider ranges are sampled CAD clearances, not calibrated servo limits."}}
+                   "status":"DEC-53/55: root modules with captive nuts; hip carrier below the pitch axis with the roll servo Bottom-down; thigh forks pass its socket. Front chain still DEC-49, awaiting DEC-54. Printable: root and hip parts unknown, rest assumed. Slider ranges are sampled CAD clearances, not calibrated servo limits."}}
     data = OUT / "scene.json"
     data.write_text(json.dumps(scene))
     shutil.copy(HTML, OUT / "index.html")

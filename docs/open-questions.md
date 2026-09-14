@@ -107,10 +107,12 @@ Unresolved. Resolve -> move to [`decisions.md`](decisions.md).
   end-on, below), which shrinks the carrier's swept radius to about a case
   half-width, lets the pitch case stand vertical at both roots, and makes
   the flat shoulder module the single root part, printed four times.
-  **DEC-52/53 settle the order and the module:** separate modules with four
-  ear screws and captive M3 nuts under the servo (DEC-53); the carrier is
-  then derived to clear whatever case orientation the module takes. Case
-  orientation and carrier form remain open here.
+  **DEC-52/53/55 settle it:** separate modules with four ear screws and
+  captive M3 nuts under the servo (DEC-53), vertical cases at both roots, and
+  a hip carrier below the pitch axis with the roll servo Bottom-down (DEC-55).
+  Still open here: physical acceptance of the hip carrier and the new thigh
+  forks (no slice, no print), the thigh's zero margin between roll socket and
+  knee shelf at 85 mm, and the shoulder carrier, which waits for DEC-54.
 
   **Root carrier: acceptable (maintainer, 2026-09-14).** The session's first
   review called its 16 × 15 mm bridge weak; that was overstated and is

@@ -16,6 +16,29 @@ acceptance remains open as OQ-13.
 are superseded by the [impact assessment](cad-measurement-impact.md). DEC-40 implements the corrected interface and replaces its geometry;
 physical acceptance remains open.
 
+- **DEC-55 — Hip carrier below the pitch axis, roll servo Bottom-down beside
+  the pitch servo; thigh forks pass the roll socket** (2026-09-14, maintainer
+  choice between two rendered options, "option 2"). The DEC-49 carrier's body
+  sat on the torso side of the pitch axis, wrapped around the pitch servo's
+  upper half; with the DEC-53 module's vertical case it intersected both the
+  servo and the module in the saved upright pose (about 3 cm³ each, measured).
+  The hip carrier now has its clevis bridge under the pitch servo's nose, one
+  24 × 22 mm block from the fork tails to the roll socket, and the roll servo
+  standing Bottom-down in that socket beside the pitch servo's drive fork pad,
+  nose toward the torso. Roll centres are **128.1 mm** apart (`ROOT_ROLL_Y`
+  64.05), from 149; the rear motor-face offset grows to hold the 220 mm track.
+  The flat back is the true bottom of the part: block and socket floor on the
+  bed, forks rising. Nothing lies on the torso side of the pitch axis, so the
+  carrier clears the module and the pitch servo in both poses at rest (test),
+  and its sweep only reaches the torso near ±180° pitch. Consequence: the
+  thigh cannot pass the roll servo's nose, so its forks are pads on the horn
+  and idler, tails stopped 3 mm above the socket walls, cheeks stepped 1 mm
+  outboard of the walls, and a slab 2 mm under the socket floor that is also
+  the knee socket's shelf; the 85 mm thigh keeps its length with no room to
+  spare between roll socket and knee shelf. The shoulder keeps the DEC-49
+  carrier and 149 mm roll spacing until DEC-54's chain replaces it. The two
+  root axes still intersect. Printable: `unknown`, no slice yet.
+
 - **DEC-54 — Forelimbs are roll-first: shoulder abduction servo in a root
   socket on the torso's side, axis along the spine; front and rear limb
   geometry differ by design** (2026-09-14, maintainer instruction, "for

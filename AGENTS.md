@@ -115,8 +115,10 @@ torso's sides (DEC-54), so front and rear limb geometry differ by design and
 the front lengths and foot positions are targets to re-derive. The structure is
 being redesigned torso-first, outward, with one rear leg as the vehicle
 (DEC-52/53): one `root_socket` module holds servo A of every limb, four captive
-M3 nuts under the servo, two prints per hand. The DEC-49 carriers still export
-but no longer clear the rear module; they are next to be re-derived (OQ-22).
+M3 nuts under the servo, two prints per hand. The hip carrier sits below the
+pitch axis with the roll servo Bottom-down and the thigh's forks pass its socket
+(DEC-55); the shoulder still uses the DEC-49 carrier until DEC-54's chain is
+drawn. Nothing new is sliced or printed.
 Drive/idler socket slots
 are 14/18.5 mm wide. Head placement is undecided and omitted from structural CAD.
 The viewer uses sampled pose-dependent mechanical-clearance ranges (DEC-46),

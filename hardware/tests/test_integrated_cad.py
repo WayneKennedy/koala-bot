@@ -59,16 +59,17 @@ class IntegratedCADTests(unittest.TestCase):
             for a,b in zip(actual[side],expected[side]):self.assertAlmostEqual(a,b,places=5)
         self.assertLess(actual['drive'][0],actual['idler'][0])
 
-    def test_four_carriers_share_two_print_variants_and_flat_backs(self):
+    def test_carriers_match_their_builders_and_have_flat_backs(self):
         from koala_hardware import assembly as A,body_plan as B
-        d=L.build_root_carrier()
-        self.assertEqual(d['qty']*(2 if d['handed'] else 1),4)
-        self.assertAlmostEqual(L.rear_axis_y(),P.BODY_SHOULDER_WIDTH_MM/2)
+        builders={'front':L.build_root_carrier(),'rear':L.build_hip_carrier()}
+        for d in builders.values():
+            self.assertEqual(d['qty']*(2 if d['handed'] else 1),2)
+        self.assertAlmostEqual(L.rear_axis_y(),P.ROOT_ROLL_Y)
         for pose,body in B.poses().items():
             shapes={n:s for n,s,*_ in A.scene_details(pose=pose)}
             self.assertNotIn('reference_head_envelope',shapes)
             for key in ('front','rear'):
-                limb=body[key]
+                limb=body[key];d=builders[key]
                 from build123d import Rot
                 tf=A.segment_frame(limb.root,limb.bend,0)*Rot(Z=-90)
                 part=tf.inverse()*shapes[key+'_carrier_right']
@@ -78,14 +79,25 @@ class IntegratedCADTests(unittest.TestCase):
         from koala_hardware.meshing import export_mesh
         from koala_hardware.printability import metrics
         with tempfile.TemporaryDirectory() as td:
-            mesh=export_mesh(d['orientation']*d['part'],Path(td)/'carrier.stl')
-            self.assertTrue(mesh.is_watertight)
-            self.assertGreater(metrics(mesh)['bed_area'],1900)
+            for key,d in builders.items():
+                mesh=export_mesh(d['orientation']*d['part'],Path(td)/f'{key}.stl')
+                self.assertTrue(mesh.is_watertight)
+                self.assertGreater(metrics(mesh)['bed_area'],1900)
+
+    def test_hip_carrier_and_thigh_clear_the_root_and_each_other_at_rest(self):
+        from koala_hardware import assembly as A
+        from koala_hardware.audit import overlap
+        for pose in ('quadruped','upright'):
+            d={n:p for n,p,c,g,s in A.scene_details(pose=pose)}
+            for a,b in (('rear_carrier_right','reference_rear_pitch_servo_right'),('rear_carrier_right','pelvis_socket_right'),
+                        ('rear_thigh_right','rear_carrier_right'),('rear_thigh_right','reference_rear_roll_servo_right'),
+                        ('reference_rear_roll_servo_right','pelvis_socket_right')):
+                self.assertLess(overlap(d[a],d[b]),.01,f'{pose}: {a} vs {b}')
 
     def test_main_limb_prints_are_connected(self):
-        for length in (70,85):
-            self.assertTrue(L.upper_link(length).is_valid)
-            self.assertEqual(len(L.upper_link(length).solids()),1)
+        for length,hip in ((70,False),(85,True)):
+            self.assertTrue(L.upper_link(length,hip).is_valid)
+            self.assertEqual(len(L.upper_link(length,hip).solids()),1)
         for length,front in ((100,True),(90,False)):
             self.assertTrue(L.lower_link(length,front).is_valid)
             self.assertEqual(len(L.lower_link(length,front).solids()),1)

@@ -258,5 +258,11 @@ HORN_IDLER_WASHER_OD = 6.0 # [DESIGN] procure matching narrow washer
 
 # DEC-48 manufacturing revision, preserving DEC-44 joint centres.
 ROOT_MODULE_GAP = 0.6       # removable left/right socket plates (retained as a minimum)
+# DEC-55 hip carrier (option 2): body below the pitch axis, roll servo B Bottom-down
+# beside the pitch servo's drive fork pad; the thigh's forks pass B's socket.
+ROOT_ROLL_Y = ROOT_PITCH_Y + SOCKET_DRIVE_FACE + SOCKET_PAD_T + SOCKET_CASE_Y/2 + SOCKET_CLEAR + 2.0  # [DESIGN DEC-55] hip roll centre, 64.05
+HIP_BLOCK_HALF_W = 12.0     # [DESIGN DEC-55] carrier block half-width, fore-aft
+HIP_FORK_CLEAR = 1.0        # [DESIGN DEC-55] thigh fork cheeks outside B's socket walls
+HIP_FORK_CLIP_Z = 15.0      # [DESIGN DEC-55] pad tails end above B's socket wall tops (18.1)
 FRONT_PAD_START = 96.0     # 100 mm nominal ball centre, truncated top
 FRONT_PAD_NUT_Z = 92.0
