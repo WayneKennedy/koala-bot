@@ -40,6 +40,26 @@ Unresolved. Resolve -> move to [`decisions.md`](decisions.md).
   Recommended: 3 if the ear retention can be shown on a coupon; else 1 + 2
   together.
 
+  **Trial, 2026-09-14: the shoulder module at both roots does not work with
+  the carrier as built.** Three edits (rear `pitch_socket` as the front's
+  rotated 180° about the pitch axis so the case stands into the torso; the
+  front plate and no web at the rear; `ROOT_REAR_MOUNT_Z = ROOT_MOUNT_Z`),
+  then the viewer's limit search. Result: the saved **upright pose itself
+  intersects** (`pelvis_socket` vs `rear_carrier`: the carrier's flat back is
+  40.1 mm from the pitch axis and its corners sweep 45.97 mm, the plate sits
+  at 40.1) and **quadruped pitch max falls from 91° to 42.5°**, stopped by
+  the rear carrier against the vertical pitch case. The plate clash is the
+  5.9 mm DEC-49 moved the flange; the case clash is why DEC-49 also turned
+  the case horizontal, which is what forces the web and the right-angle
+  return. So the root module's shape is set by the carrier: the roll servo
+  sits on the torso side of the pitch axis, and its back sweeps through
+  wherever a vertical case would stand. The real choice is therefore
+  (a) keep the carrier and rebuild the module's construction (options 1–3),
+  or (b) move the roll servo beside the pitch servo (L-block or SO-101
+  end-on, below), which shrinks the carrier's swept radius to about a case
+  half-width, lets the pitch case stand vertical at both roots, and makes
+  the flat shoulder module the single root part, printed four times.
+
   **Root carrier: acceptable (maintainer, 2026-09-14).** The session's first
   review called its 16 × 15 mm bridge weak; that was overstated and is
   withdrawn. Pitch centres ±24 mm, roll centres ±74.5 mm, roll socket floor
