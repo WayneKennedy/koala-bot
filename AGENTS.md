@@ -108,13 +108,16 @@ is tagged `assumed`, with local slices and layer images in
 by a physical print of this revision. Shared SO-101 fit remains accepted; no
 repeat gauge is required (DEC-33).
 
-Retain pitch → roll, twelve ST3215s, two bought 37D rear ankle drives,
-70 mm upper arms, 100 mm elbow-to-contact centres, 85/90 mm rear links,
-150 mm torso, 220 mm rear track and 450 mm upright head-top sizing target.
-Common carriers are printed twice per hand, at 149 mm front/rear roll spacing.
-Rear pitch cases point forward in the torso frame; their integral socket
-returns meet a rear flange raised to Z=46 mm; bolt/pin XY positions and
-fastener stacks are retained. Drive/idler socket slots
+Retain twelve ST3215s, two bought 37D rear ankle drives, 85/90 mm rear links,
+150 mm torso, 220 mm rear track and the 450 mm upright head-top sizing target.
+Hips are pitch → roll (DEC-41); shoulders are **roll → pitch**, mounted on the
+torso's sides (DEC-54), so front and rear limb geometry differ by design and
+the front lengths and foot positions are targets to re-derive. The structure is
+being redesigned torso-first, outward, with one rear leg as the vehicle
+(DEC-52/53): one `root_socket` module holds servo A of every limb, four captive
+M3 nuts under the servo, two prints per hand. The DEC-49 carriers still export
+but no longer clear the rear module; they are next to be re-derived (OQ-22).
+Drive/idler socket slots
 are 14/18.5 mm wide. Head placement is undecided and omitted from structural CAD.
 The viewer uses sampled pose-dependent mechanical-clearance ranges (DEC-46),
 with initial caches tied to geometry/engine hashes. Hidden parts still constrain

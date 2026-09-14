@@ -2,29 +2,20 @@
 
 Unresolved. Resolve -> move to [`decisions.md`](decisions.md).
 
-- **OQ-24 — Shoulder axis order: roll-first may be right for the forelimbs.**
-  Raised by the maintainer 2026-09-14. DEC-41 chose pitch → roll at both roots
-  because a torso-fixed roll axis along the spine turns into yaw when the
-  torso stands up. That argument holds for the hips, whose thigh angle to the
-  spine changes by about 90° between the saved poses. It is weaker for the
-  forelimbs: in both saved poses the forelimb is roughly perpendicular to the
-  spine (hanging in quadruped; reaching 100 mm forward and 10 mm down in
-  upright, `BODY_UPRIGHT_WRIST_*`), and it stays so through the transition,
-  since the arms hold their angle while the body rotates under them. For a
-  limb perpendicular to the spine, rotation about the spine axis is
-  abduction in every torso attitude. Roll-first at the shoulder therefore
-  works for support, transition and forward gesture, and degenerates only
-  when the arm hangs parallel to the spine, where it becomes humeral rotation:
-  a wave from the hanging position would be lost (pitch-first keeps it,
-  because its carried roll axis stays perpendicular to the limb).
-  What roll-first buys: the dog shoulder (SpotMicro / Orion): abduction servo
-  fixed in the torso with its axis along the spine, pitch and elbow servos
-  together in one L-block at the shoulder, no carrier reach, and shoulder
-  width free of the carrier. Mixed order (roll-first shoulders, pitch-first
-  hips) is mechanically fine and the DEC-53 root module holds either servo;
-  only its mounting attitude on the torso changes. Decide on the gesture
-  set: if arms-hanging sideways motion is not needed, roll-first shoulders
-  are the simpler build. Supersedes the shoulder half of DEC-41 if adopted.
+- **OQ-25 — Elbow axis in the roll direction: the "hug".** Raised with
+  DEC-54. With the elbow axis parallel to the shoulder roll axis (along the
+  spine), the forearms fold sideways and inward: in upright with the arms
+  forward the axes are vertical and both forearms close like a hug, the
+  clinging grip a koala uses on a trunk and a possible basis for climbing;
+  in quadruped the axes are horizontal fore-aft and a front foot lifts by
+  folding the forearm inward under the body, a sprawling rather than a
+  sagittal knee. What it gives up: the forearm no longer shortens the leg in
+  the sagittal plane, so fore-aft foot placement comes from shoulder pitch
+  alone, and the front step length is bounded by that swing. Four-foot walking
+  is already experimental (DEC-43), so this is a small further bet on the
+  supported stance and the lift-to-balance transition working with a
+  sideways-folding foreleg. Decide before the front upper arm is drawn; it
+  changes the elbow socket's attitude on the upper arm and nothing upstream.
 
 - **OQ-23 — Torso width and neck servo packaging.** The two shoulder socket
   modules meet at the centreline with a 0.6 mm gap (DEC-48), so the shoulder

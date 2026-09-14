@@ -16,6 +16,26 @@ acceptance remains open as OQ-13.
 are superseded by the [impact assessment](cad-measurement-impact.md). DEC-40 implements the corrected interface and replaces its geometry;
 physical acceptance remains open.
 
+- **DEC-54 — Forelimbs are roll-first: shoulder abduction servo in a root
+  socket on the torso's side, axis along the spine; front and rear limb
+  geometry differ by design** (2026-09-14, maintainer instruction, "for
+  science"). Resolves OQ-24 and supersedes the shoulder half of DEC-41; the
+  hips stay pitch → roll. Rationale: the forelimb is roughly perpendicular to
+  the spine in both saved poses and through the transition, so a torso-fixed
+  roll axis along the spine is abduction in every torso attitude; it
+  degenerates only with the arm hanging parallel to the spine (a wave from
+  rest is given up). The DEC-53 `root_socket` is unchanged and holds servo A
+  of every limb; the shoulder pair mounts on the torso's lateral faces with
+  the plate against the side wall and the case outboard, the hip pair on the
+  torso's end. Shoulder pitch (servo B) and the elbow follow outboard in a
+  block on the roll horn, the dog-shoulder pattern, with no carrier reach.
+  Consequences: the shoulder end of the torso is free for the head and neck
+  mount, and the shoulders become properly lateral; the front carrier of
+  DEC-49 is retired along with its 149 mm front roll spacing; front
+  contact geometry, the 70/100 mm arm lengths and the supported-stance foot
+  positions (DEC-43) are targets to re-derive under DEC-52, not datums.
+  Whether the elbow axis also lies in the roll direction is OQ-25.
+
 - **DEC-53 — Build one rear leg in isolation first; root pitch sockets stay
   separate modules, four ear screws each, torso fixing by captive M3 nuts
   under the servo; torso shape deferred** (2026-09-14, maintainer

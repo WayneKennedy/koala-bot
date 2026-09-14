@@ -30,7 +30,7 @@ maximises who can build it, even though the reference printer is 220 mm).
 
 | Segment | DOF | Actuator | Notes |
 |---------|-----|----------|-------|
-| Front limbs x2 (arms *and* forelegs) | 3 each | STS3215 bus servo | shoulder pitch → roll → elbow; flatter integrated forearm ending in a replaceable TPU contact at wrist/hand reach; support and gesture; 75 mm forearm + 25 mm hand to Ø32 mm ball centre (DEC-43) |
+| Front limbs x2 (arms *and* forelegs) | 3 each | STS3215 bus servo | shoulder **roll → pitch** → elbow (DEC-54; elbow axis direction OQ-25); flatter integrated forearm ending in a replaceable TPU contact at wrist/hand reach; support and gesture; 75 mm forearm + 25 mm hand to Ø32 mm ball centre (DEC-43) |
 | Rear leg hips x2 | 2 each | STS3215 bus servo | **pitch + roll**, in that serial order (DEC-41); active lean and leg placement with a rigid torso |
 | Rear knees x2 | 1 each | STS3215 bus servo | **active in V1** (DEC-31) — articulating knee between thigh and shank; with the hips it sets ride height, crouch and stand |
 | Rear ankle wheels x2 | continuous spin | Bought 37D 12V geared DC + encoder | integrated 90 mm shanks retain ankle drives; no separate rear walking feet |

@@ -64,7 +64,8 @@ Loaded balance and a transition between these saved poses are not established.
 Keep the bought 37D pair at the ankles. Each motor face is 23 mm inboard of
 the wheel centre; each motor body extends 69 mm farther inward. At 220 mm
 track the opposed motor end gap is 36 mm. DEC-40 widened the earlier 200 mm
-track to clear inward roll; DEC-41 corrected pitch → roll at hips/shoulders.
+track to clear inward roll; DEC-41 corrected pitch → roll at the hips; DEC-54
+makes the shoulders roll → pitch, mounted on the torso's sides.
 The 120 mm conceptual track would overlap the motors by 64 mm.
 
 The twelve ST3215s and two wheel-drive channels remain. Front ball feet add
