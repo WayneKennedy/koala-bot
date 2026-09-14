@@ -37,7 +37,7 @@ two motors and one driver; the surplus is pooled in
 
 | Part | Qty | £ | Role |
 |------|-----|---|------|
-| Feetech STS3215 12V 30 kg.cm 6-pack | 2 | ~101 ea | 12 limb joints (6 arm, 4 hip, 2 knee — DEC-31). **Eight in hand**: four went to SO-ARM101 on 2026-09-12 ([wk-soarm101 DEC-09](https://github.com/WayneKennedy/wk-soarm101/blob/main/docs/decisions.md)), so **four short, re-order needed** (OQ-16) |
+| Feetech STS3215 12V 30 kg.cm 6-pack | 2 | ~101 ea | 12 limb joints (6 arm, 4 hip, 2 knee — DEC-31). **Eight in hand**: four went to SO-ARM101 on 2026-09-12 ([wk-soarm101 DEC-09](https://github.com/WayneKennedy/wk-soarm101/blob/main/docs/decisions.md)), so four short — **a further 6-pack ordered from RCmall 2026-09-14** (price and ETA not recorded) to backfill; the four in the arm stay there permanently. On arrival: 14 in hand, 12 fitted, 2 spare (OQ-16) |
 | Feetech STS3032M 6V 4.5 kg.cm 4-pack | 1 | 93.19 | 3 neck (3-RPS) + 1 spare. Fixed single cable — chains board-to-board through the supplied 3-port connector boards and link cable, not servo-to-servo (`test-log.md` 2026-09-12) |
 | STS3215 metal bracket set | 1 | 7.14 | dimensional reference (DEC-21) |
 
