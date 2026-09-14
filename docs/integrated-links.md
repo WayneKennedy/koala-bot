@@ -1,9 +1,10 @@
 # Integrated limb structures — DEC-39
 
-**DEC-45 root-mount exception:** pelvis/shoulder pitch servos require a
-pair of independently removable socket modules because each servo blocks
-its sibling's inboard screws. Fully fasten each servo off the robot, then attach
-its module with accessible frame hardware;
+**DEC-45 root-mount exception, DEC-53 form:** pelvis/shoulder pitch servos
+sit in independently removable socket modules because each servo blocks its
+sibling's inboard screws. One `root_socket` design serves all four roots;
+each servo is fully fastened off the robot, and the module is fixed from the
+torso side into M3 nuts captive under the servo;
 [required assembly sequence](root-servo-mounts.md). This functional seam does
 not change the one-main-print principle for limb links.
 

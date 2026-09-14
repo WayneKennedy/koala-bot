@@ -1,39 +1,52 @@
 # SPDX-License-Identifier: CERN-OHL-S-2.0
-"""Independent pitch-servo socket modules, bench assembled before frame fitting."""
+"""DEC-53 root socket module: one design at all four limb roots, handed, two per hand.
+
+The plate faces the torso. Four M3 nuts sit captive in the socket shelf under the
+servo Bottom; the fitted servo covers them and the screws come from the torso
+side. A rear module is a front module turned 180 deg about the pitch axis, so the
+case stands into the torso at both roots. Bench assembled before frame fitting."""
 from functools import lru_cache
-from build123d import Pos, Rot, Plane, mirror, Axis, fillet, Cylinder, Align
+from math import sqrt
+from build123d import Pos, Rot, Plane, mirror, Axis, Cylinder, Align, extrude, RectangleRounded, RegularPolygon
 from .. import params as P, servo_iface as S
 from . import links as L
 
 
 def pitch_socket(front=False):
-    # Rear case points forward in the torso frame; rotate about its existing
-    # lateral output axis, preserving pitch, centres and horn-face handedness.
-    shoulder=Plane(origin=(0,P.ROOT_PITCH_Y,0),x_dir=(0,1,0),z_dir=(0,0,1)).location*L.AXIS
-    return shoulder if front else Rot(Y=-90)*shoulder
+    # Same physical part at both roots: the shoulder case points down the torso,
+    # the pelvis case points up it. 180 deg about the lateral pitch axis.
+    return Plane(origin=(0,P.ROOT_PITCH_Y,0),x_dir=(0,1,0),z_dir=(0,0,1 if front else -1)).location*L.AXIS
+
+
+def nut_xy():
+    """Captive-nut centres in the socket frame (along the axis, across it)."""
+    return [(a,b) for a in (-P.ROOT_NUT_DX,P.ROOT_NUT_DX) for b in (-P.ROOT_NUT_DY,P.ROOT_NUT_DY)]
+
+
+def plate_outline():
+    x,y=S._socket_bounds(); y+=2.0
+    return 2*(x+P.SOCKET_WALL+P.ROOT_PLATE_FLANGE_X),2*(y+P.ROOT_PLATE_FLANGE)
+
+
+@lru_cache
+def root_socket():
+    """Socket frame: Z up from the servo Bottom; shelf -5..0; plate below it."""
+    w,d=plate_outline(); t=P.ROOT_PLATE_T
+    plate=Pos(0,0,-P.SOCKET_SHELF-t)*extrude(RectangleRounded(w,d,4),amount=t)
+    # Union first, then features: no separately rounded bodies overlapped
+    # (integrated-links rule, 2026-09-14).
+    part=plate+S.saddle()
+    pocket_d=P.NUT_M3_T+P.NUT_POCKET_CLEAR
+    r=(P.NUT_M3_AF+P.NUT_POCKET_CLEAR)/sqrt(3)
+    for a,b in nut_xy():
+        part-=Pos(a,b,-pocket_d)*extrude(RegularPolygon(r,6),amount=pocket_d+0.01)
+        part-=Pos(a,b,-P.SOCKET_SHELF-t-1)*Cylinder(P.CLEAR_HOLE_M3/2,P.SOCKET_SHELF+t+2,align=(Align.CENTER,Align.CENTER,Align.MIN))
+    return part
 
 
 @lru_cache
 def module(front=False):
-    z0=P.ROOT_REAR_MOUNT_Z if not front else -P.ROOT_MOUNT_Z-P.FRAME_PLATE_T
-    floor=P.SOCKET_AXIS_Z+P.SOCKET_SHELF
-    plate=S._box(-46,16 if front else floor,P.ROOT_MODULE_GAP/2,47,z0,z0+P.FRAME_PLATE_T)
-    plate=fillet(plate.edges().filter_by(Axis.Z),4)
-    part=plate+pitch_socket(front)*S.saddle()
-    if not front:
-        # Socket floor is perpendicular to the raised torso flange. Its
-        # full-width return grows from the bed when printed socket-floor down.
-        web=S._box(floor-5,floor,P.ROOT_MODULE_GAP/2,47,-16,z0+P.FRAME_PLATE_T)
-        part+=fillet(web.edges().filter_by(Axis.X),3)
-    for x,y in P.ROOT_FRAME_HOLES:
-        if y>0:
-            part-=Pos(x,y,z0-1)*Cylinder(P.CLEAR_HOLE_M3/2,P.FRAME_PLATE_T+2,align=(Align.CENTER,Align.CENTER,Align.MIN))
-    # Blind locating pockets in the frame datum: the flat face remains a
-    # broad build face. The small pocket roofs bridge just 4.4 mm.
-    z=z0 if front else z0+P.FRAME_PLATE_T-P.ROOT_LOCATOR_DEPTH-.3
-    for y in (12,26):
-        part-=Pos(-28,y,z)*Cylinder((P.ROOT_LOCATOR_DIA+.4)/2,P.ROOT_LOCATOR_DEPTH+.3,align=(Align.CENTER,Align.CENTER,Align.MIN))
-    return part
+    return pitch_socket(front)*root_socket()
 
 
 @lru_cache
@@ -43,18 +56,22 @@ def solid(front=False):
     return right+mirror(right,Plane.XZ)
 
 
-def _build(front):
-    # Enclosing pocket opens upwards in both declared print orientations.
-    return L.spec('shoulder_socket' if front else 'pelvis_socket',module(front),
-        handed=True,orientation=Rot() if front else Rot(Y=90),
-        fasteners={'M2x5 self-tapper into servo ear':4},
-        notes='Independent enclosing pitch socket. Secure all four servo ear screws on the bench. '
-        'Fit module onto frame locating pins and two accessible M3 through-bolts at x=-30/-20. ' +
-        ('Flat frame face down, socket opening up. ' if front else
-         'Socket-floor face down, opening up; perpendicular flange grows as a vertical wall. ') +
-        'Bridge the 4.4 mm locator-pocket roofs; '
-        'ear-hole roofs use accessible local support.', printable='assumed')
+def fixing_envelopes(front=False):
+    """Screw heads beyond the torso flange and captive nuts, socket frame, one side."""
+    t=P.ROOT_PLATE_T; z_flange=-P.SOCKET_SHELF-t-P.FRAME_PLATE_T
+    parts=None
+    for a,b in nut_xy():
+        head=Pos(a,b,z_flange-3)*Cylinder(3,3,align=(Align.CENTER,Align.CENTER,Align.MIN))
+        nut=Pos(a,b,-P.NUT_M3_T-0.1)*Cylinder(P.NUT_M3_AF/sqrt(3),P.NUT_M3_T,align=(Align.CENTER,Align.CENTER,Align.MIN))
+        parts=head+nut if parts is None else parts+head+nut
+    return pitch_socket(front)*parts
 
 
-def build(): return _build(False)
-def build_shoulders(): return _build(True)
+def build():
+    return L.spec('root_socket',root_socket(),qty=2,handed=True,orientation=Rot(),
+        fasteners={'M2x5 self-tapper into servo ear':4,f'{P.ROOT_SCREW} root screw, from the torso side':4,'M3 nut, captive under the servo':4},
+        notes='One root module for all four limb roots, two per hand; the pelvis pair is the shoulder pair turned '
+        '180 deg about the pitch axis. Drop four M3 nuts into the shelf pockets, then fit the servo and all four ear '
+        'screws on the bench; the servo traps the nuts. Offer the module to the torso and drive four M3x16 from the '
+        'torso side. Flat plate face down, socket opening up; ear-hole roofs use accessible local support. '
+        'Unverified: STS3215 Bottom flatness over the pockets, cable exit past the plate, nut fit.', printable='unknown')

@@ -28,24 +28,32 @@ harnesses and guards remain detailed design work.
   insertion. Forearms use an **18 × 17.9 mm** rounded rectangular shaft with a
   flat print face. A keyed post locates each TPU pad. An M3×20 recessed screw
   and washer retain it against a captive metal nut in the rigid forearm.
+- **DEC-53 root module (2026-09-14) — one `root_socket` design at all four
+  roots, handed, two per hand.** Plate faces the torso: 46.9 × 36.7 × 6 mm
+  under the shoulder-style enclosing socket, the pelvis pair being the
+  shoulder pair turned 180° about the pitch axis, so the pitch case stands
+  into the torso at both roots. Four M3 nuts sit captive in the socket shelf
+  under the servo Bottom (±10 mm along the axis, ±6 mm across; 5.7 AF × 2.6 mm
+  pockets, 8.4 mm plastic under each) and the fitted servo traps them;
+  M3×16 screws drive from the torso side through the flange, plate and
+  shelf. All four ear screws are fitted on the bench (DEC-45 retained).
+  No locating pins; the torso is expected to locate the plate outline
+  (deferred, OQ-23). The rear flange returns to Z = 40.115 mm and the frame
+  spans 46.1 to 103.9 mm. **The DEC-49 carrier no longer clears this
+  module at the rear**: its back sits at the module's plate plane and its
+  corners sweep 46 mm, so the saved upright pose intersects and quadruped
+  pitch is capped near 42° until the carrier is re-derived (DEC-52, OQ-22).
+  The carrier bullets below describe the export that still exists.
 - All four roots use the same unbevelled front-style carrier: print two of
   each `root_carrier_left/right` variant, common flat back on the bed.
-  Rear fixed pitch cases turn 90° about their lateral axes to clear this
-  carrier upright. Their socket modules have an integral right-angle return
-  to the torso flange; print with the socket floor down. The rear flange
-  moves 5.885 mm into the torso (Z=46 mm), preserving fastener stacks and
-  bolt/pin XY positions while clearing the carrier's back and screw heads.
-  Torso and tray attachments follow the revised flange datum.
+  *(DEC-49 text, superseded at the root by DEC-53; carrier re-derivation
+  pending.)* The rear flange previously moved 5.885 mm into the torso
+  (Z=46 mm) with rear cases turned 90° and right-angle socket modules;
+  that arrangement is gone.
   The upper link's roll fork remains perpendicular to its elbow/knee socket.
-- Each pelvis/shoulder mount is now **two independent socket modules**, with a
-  0.6 mm plate separation. Secure all four servo ear screws on the bench, then
-  attach each module to the torso with two accessible M3 frame bolts at body
-  X=−30/−20 mm and Y=±34 mm. Ø4 × 2 mm integral torso pins engage Ø4.4 mm
-  module pockets; the broad flat faces carry clamping loads. Modules can be
-  removed independently; the earlier installed ear-screw obstruction does not
-  require opening a neighbouring socket.
-- The rigid torso preserves **150 mm** root spacing. Eight M3 through-bolts
-  join its flanges to the four socket modules. A rounded removable tray and
+- The rigid torso preserves **150 mm** root spacing, shape deferred (DEC-53).
+  Sixteen M3×16 root screws pass its flanges into the four socket modules;
+  the front rails sit at X = 10–20 mm to clear them. A rounded removable tray and
   four spacers complete the current electronics carrier.
 
 The chassis has **24 physical prints**: eight rigid limb segments, four
@@ -141,14 +149,15 @@ motor mounts. Candidate hardware stacks, before physical checks:
 | Case ears | M2×5 through 2.2 mm seat; 2.8 mm nominal penetration |
 | Front horn square | M3×6 through 3.5 mm web; 2.5 mm engagement |
 | Back horn square | M3×6, 0.5 mm narrow washer, 3.5 mm web; 2.0 mm engagement |
-| Torso flanges | M3×14, two 5 mm flanges, two 0.5 mm washers and 2.4 mm nut; about 0.6 mm protrusion |
+| Root modules to torso | M3×16 from the torso side through the 5 mm flange, 6 mm plate and shelf into a captive M3 nut under the servo (DEC-53); length to verify |
 | Motor faces | Six M3×8 through 5 mm face plate; 3 mm nominal engagement, bore depth unverified |
 | Hub | 5 mm plate + 3 mm cap head + 0.5 mm clearance + 9.5 mm hub = 18 mm nominal stack |
 | Front TPU pads | Recessed M3×20 and washer into a side-loaded captive M3 nut; key locates the pad; no printed thread |
 | Tray | M3×25 through 4 mm tray, 4 mm spacer and 10 mm frame boss; washers and nut |
 
-Fully secure each root servo into its separate socket module on the bench;
-then locate and bolt the modules onto the torso. Fit all
+Drop four M3 nuts into each root module's shelf pockets, fit the servo and
+all four ear screws on the bench, then offer the module to the torso and
+drive its four M3×16 from the torso side (DEC-53). Fit all
 four roll-servo ear screws in each carrier before fitting the upper link.
 Fit each elbow/knee servo into its upper link before installing the lower
 link. With its horns removed, the open end of the enclosing socket admits the servo without passing

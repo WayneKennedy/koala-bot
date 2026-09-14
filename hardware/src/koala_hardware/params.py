@@ -232,10 +232,21 @@ LINK_BRIDGE_END = 32.0
 LINK_SPINE_HALF = 8.0
 ROOT_PITCH_Y = 24.0     # lateral first-axis centres; roll follows pitch (DEC-41)
 ROOT_MOUNT_Z = SOCKET_AXIS_Z + SOCKET_SHELF
-ROOT_REAR_MOUNT_Z = 46.0 # [DESIGN DEC-49] head underside at 43: clears the
-                         # common carrier back's 40.91 mm radial sweep by >2 mm
-ROOT_FRAME_HOLES = ((-30.,-34.),(-30.,34.),(-20.,-34.),(-20.,34.))  # outside case/driver footprints
-FRAME_PLATE_T = 5.0
+ROOT_REAR_MOUNT_Z = ROOT_MOUNT_Z  # [DESIGN DEC-53] same module at both roots; rear plate starts here
+FRAME_PLATE_T = 5.0      # torso flange thickness
+# DEC-53 root socket module: plate faces the torso, four M3 nuts captive under
+# the servo Bottom, screws from the torso side. One design, handed, two per hand.
+ROOT_PLATE_T = 6.0       # [DESIGN DEC-53] plate under the socket shelf
+ROOT_PLATE_FLANGE = 4.0  # [DESIGN DEC-53] plate margin beyond the socket outline, across the axis
+ROOT_PLATE_FLANGE_X = 1.0 # [DESIGN DEC-53] along the axis: modules at 48 mm centres leave 3.1 mm (OQ-23)
+ROOT_NUT_DX = 10.0       # [DESIGN DEC-53] nut centres along the pitch axis, from the case centre
+ROOT_NUT_DY = 6.0        # [DESIGN DEC-53] nut centres across the pitch axis
+NUT_M3_AF = 5.5          # [STD] ISO 4032 M3 nut across flats
+NUT_M3_T = 2.4           # [STD] ISO 4032 M3 nut thickness
+NUT_POCKET_CLEAR = 0.2   # [DESIGN] on AF and depth; fit unverified
+ROOT_SCREW = "M3x16"     # [DESIGN DEC-53] flange 5 + plate 6 + shelf to the nut; length to verify
+# Torso flange holes follow the nut pattern: body x across the axis, y along it, both sides.
+ROOT_FRAME_HOLES = tuple((sx*ROOT_NUT_DY, sy*(ROOT_PITCH_Y+a)) for sx in (-1,1) for sy in (-1,1) for a in (-ROOT_NUT_DX,ROOT_NUT_DX))
 MOTOR_MOUNT_T = 5.0
 MOTOR_MOUNT_R = 23.0
 MOTOR_SUPPORT_T = 5.0
@@ -246,8 +257,6 @@ HORN_IDLER_WASHER_OD = 6.0 # [DESIGN] procure matching narrow washer
 
 
 # DEC-48 manufacturing revision, preserving DEC-44 joint centres.
-ROOT_MODULE_GAP = 0.6       # removable left/right socket plates
-ROOT_LOCATOR_DIA = 4.0      # integral locating pins, not threaded plastic
-ROOT_LOCATOR_DEPTH = 2.0
+ROOT_MODULE_GAP = 0.6       # removable left/right socket plates (retained as a minimum)
 FRONT_PAD_START = 96.0     # 100 mm nominal ball centre, truncated top
 FRONT_PAD_NUT_Z = 92.0

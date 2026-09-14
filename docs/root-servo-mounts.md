@@ -57,7 +57,19 @@ retain that engagement. Use real metal nuts/threads for new structural fixings.
 Do not assume the existing frame-hole locations give tool or screw-head access
 with a servo installed: that must be designed into the new interface.
 
-## Implemented — DEC-48/49/50
+## Implemented — DEC-53 (current)
+
+One `root_socket` design at all four roots, two per hand (`parts/pelvis.py`).
+The plate faces the torso and carries four M3 nuts captive under the servo
+Bottom; screws come from the torso side, so the fixing pattern sits under the
+case rather than in a row outside it. Sequence: nuts into the shelf pockets,
+servo in, four ear screws on the bench, module onto the torso, four M3×16
+from inside the frame. The pelvis modules are shoulder modules turned 180°
+about the pitch axis; the DEC-49 right-angle return and its corner defect are
+gone. The carrier must now be re-derived to clear a vertical rear case
+(DEC-52, OQ-22). Nut fit, servo Bottom flatness and cable exit are unverified.
+
+## Implemented — DEC-48/49/50 (superseded by DEC-53)
 
 Production CAD now has four independent enclosing socket modules. Each pair
 has a 0.6 mm plate gap. Two M3 frame bolts per module sit outside the case at

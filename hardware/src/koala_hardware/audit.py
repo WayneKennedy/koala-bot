@@ -143,14 +143,18 @@ def check_motor_insertion():
 
 def check_frame():
     # Each seam has actual face contact and a clear full-depth screw shaft.
-    assert abs(torso.LOW-(P.ROOT_REAR_MOUNT_Z+P.FRAME_PLATE_T))<1e-9
-    assert abs(torso.HIGH-(P.BODY_TORSO_LENGTH_MM-P.ROOT_MOUNT_Z-P.FRAME_PLATE_T))<1e-9
+    assert abs(torso.LOW-(P.ROOT_REAR_MOUNT_Z+P.ROOT_PLATE_T))<1e-9
+    assert abs(torso.HIGH-(P.BODY_TORSO_LENGTH_MM-P.ROOT_MOUNT_Z-P.ROOT_PLATE_T))<1e-9
     assert torso.solid().distance_to(pelvis.solid())<1e-6
     assert torso.solid().distance_to(Pos(0,0,P.BODY_TORSO_LENGTH_MM)*pelvis.solid(True))<1e-6
-    for x,y in P.ROOT_FRAME_HOLES:
-        for z0,z1,base in [(P.ROOT_REAR_MOUNT_Z,torso.LOW+5,pelvis.solid()),(torso.HIGH-5,P.BODY_TORSO_LENGTH_MM-P.ROOT_MOUNT_Z,Pos(0,0,P.BODY_TORSO_LENGTH_MM)*pelvis.solid(True))]:
-            shaft=Pos(x,y,z0-1)*Cylinder((P.CLEAR_HOLE_M3-.02)/2,z1-z0+2,align=(Align.CENTER,Align.CENTER,Align.MIN))
-            clear(base,shaft,'crossmember bolt');clear(torso.solid(),shaft,'torso flange bolt')
+    # DEC-53: the shaft runs from beyond the torso flange to the nut pocket, socket frame.
+    z0=-P.SOCKET_SHELF-P.ROOT_PLATE_T-P.FRAME_PLATE_T-1; z1=-(P.NUT_M3_T+P.NUT_POCKET_CLEAR)+0.05
+    for front in (False,True):
+        base=pelvis.solid(front); shift=Pos(0,0,P.BODY_TORSO_LENGTH_MM if front else 0)
+        for a,b in pelvis.nut_xy():
+            shaft=pelvis.pitch_socket(front)*Pos(a,b,z0)*Cylinder((P.CLEAR_HOLE_M3-.02)/2,z1-z0,align=(Align.CENTER,Align.CENTER,Align.MIN))
+            for s_ in (shaft,mirror(shaft,Plane.XZ)):
+                clear(base,s_,'root module screw');clear(torso.solid(),shift*s_,'torso flange screw')
 
 
 def main():

@@ -54,16 +54,12 @@ def nominal_details(pose_name='quadruped'):
             add(('shoulder_socket' if front else 'pelvis_socket')+('_right' if side==1 else '_left'),
                 tf*(module if side==1 else mirror(module,Plane.XZ)),'#8fb4d9')
     add('torso_frame',body*torso.solid(),'#8fb4d9')
-    # All eight root-module bolts and nuts are modelled outside servo bodies.
+    # DEC-53: sixteen root screws from the torso side and their captive nuts.
     for front in (False,True):
-        z0=P.ROOT_REAR_MOUNT_Z if not front else P.BODY_TORSO_LENGTH_MM-P.ROOT_MOUNT_Z-P.FRAME_PLATE_T
-        for i,(x,y) in enumerate(P.ROOT_FRAME_HOLES):
-            # Heads on the accessible servo side; nuts inside the open cage.
-            zh=z0-3 if not front else z0+P.FRAME_PLATE_T
-            zn=z0+P.FRAME_PLATE_T+5 if not front else z0-5-2.5
-            heads=Pos(x,y,zh)*__import__('build123d').Cylinder(3,3,align=(Align.CENTER,Align.CENTER,Align.MIN))
-            heads+=Pos(x,y,zn)*__import__('build123d').Cylinder(3.2,2.5,align=(Align.CENTER,Align.CENTER,Align.MIN))
-            add(f'reference_{"shoulder" if front else "pelvis"}_frame_fixing_{i}',body*heads,'#aaaaaa')
+        tf=body*Pos(0,0,P.BODY_TORSO_LENGTH_MM if front else 0)
+        env=pelvis.fixing_envelopes(front)
+        for i,side in enumerate((1,-1)):
+            add(f'reference_{"shoulder" if front else "pelvis"}_frame_fixing_{i}',tf*(env if side==1 else mirror(env,Plane.XZ)),'#aaaaaa')
     add('e_tray',body*e_tray.location()*e_tray.solid(),'#b4d98f')
     for i,(y,z) in enumerate(( (y,z) for y in (-26,26) for z in (torso.LOW+12,torso.HIGH-12))):
         add(f'tray_spacer_{i}',body*S._x_hole(-50,-46,y,z,7)-body*S._x_hole(-51,-45,y,z,P.CLEAR_HOLE_M3),'#b4d98f')

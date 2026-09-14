@@ -4,5 +4,5 @@ from . import pelvis, links, e_tray, torso, coupons, joint_rig
 
 
 def all_builders():
-    return [pelvis.build,pelvis.build_shoulders,*links.BUILDERS,torso.build,
+    return [pelvis.build,*links.BUILDERS,torso.build,
             e_tray.build,e_tray.build_spacer,*joint_rig.BUILDERS,*coupons.BUILDERS]

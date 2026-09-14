@@ -130,11 +130,10 @@ class IntegratedCADTests(unittest.TestCase):
                 clear(module,tf*probe,'bench module '+name)
             for shift in (0,5,15,25,50):
                 clear(module,tf*Pos(0,0,shift)*S._parametric_case(),'open-end insertion')
-            z0=-P.ROOT_MOUNT_Z-P.FRAME_PLATE_T if front else P.ROOT_REAR_MOUNT_Z
-            for x,y in P.ROOT_FRAME_HOLES:
-                if y<0:continue
-                za,zb=(z0+P.FRAME_PLATE_T,z0+P.FRAME_PLATE_T+40) if front else (z0-40,z0)
-                probe=Pos(x,y,za)*Cylinder(3,zb-za,align=(Align.CENTER,Align.CENTER,Align.MIN))
+            # DEC-53: root screws drive from beyond the torso flange, away from the module.
+            z_far=-P.SOCKET_SHELF-P.ROOT_PLATE_T-P.FRAME_PLATE_T
+            for a,b in pelvis.nut_xy():
+                probe=tf*Pos(a,b,z_far-40)*Cylinder(3,40,align=(Align.CENTER,Align.CENTER,Align.MIN))
                 clear(pelvis.solid(front),probe,'installed frame head driver')
                 clear(tf*S.socket_reference(),probe,'frame driver / installed servo')
 
