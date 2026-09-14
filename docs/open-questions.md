@@ -2,38 +2,70 @@
 
 Unresolved. Resolve -> move to [`decisions.md`](decisions.md).
 
-- **OQ-22 — Root carrier construction: the pitch → roll bridge is the weak,
-  hard-to-print part.** Raised 2026-09-14 against the DEC-49 `root_carrier`
-  (`parts/links.py` `carrier()`). Pitch centres are ±24 mm and roll centres
-  ±74.5 mm (DEC-41), and the roll socket floor sits 40 mm below the pitch axis,
-  so the part reaches 50.5 mm out and 40 mm down from the pitch horn. The only
-  member joining the horn clevis to the roll socket is the 16 × 15 mm bridge
-  box; every leg load in balance pose crosses it, with layers across the load
-  when printed back-down (50.5 mm tall, horn discs standing on 6.3 mm pads).
-  The maintainer's own reading: unprintable as drawn and structurally weak,
-  and the four-in-a-row carriers are the part of the layout that reads as
-  cumbersome. Cause: DEC-41's intersecting axes plus DEC-45's root modules push
-  the roll servo outboard of the module and below the axis. Options, none
-  modelled yet, axis positions are estimates:
-  1. **L-block (SpotMicro / Orion pattern).** Roll servo lies alongside the
-     pitch servo, enclosed by a socket rotated 90° whose outboard wall is the
-     pitch horn plate; output faces +X. Roll axis ≈ 54 mm from centre, hips
-     ≈ 40 mm narrower, no neck, roll servo tucked against the torso. Keeps
-     DEC-41's axis order and intersection. Also the block a shoulder-mounted
-     knee servo would share later (wk-robotics `ideas.md`, quadruped leg
-     layouts). Recommended direction.
+- **OQ-22 — Root joint construction: the pelvis socket module is weak and
+  hard to print; the carrier bridge is the same problem one joint out.**
+  Raised by the maintainer 2026-09-14 against the DEC-49 `pelvis_socket`
+  (`parts/pelvis.py`), then extended to the DEC-49 `root_carrier` by the
+  session review. Both parts sit in one load path, torso → module → pitch
+  servo → carrier → roll servo → thigh, and both fail the same way: the load
+  turns through 90° across a thin neck or an unfilleted corner.
+
+  **Pelvis socket module (maintainer's finding: unprintable as drawn,
+  inherently weak).** The pitch servo hangs 46 mm below the torso flange
+  plate, held only by the 5 mm socket-floor web (67 mm tall) that meets the
+  5 mm flange plate (86 mm long) at a single right-angle corner. That corner
+  is two separately filleted boxes overlapped, with no inside fillet
+  (fillet-after-union rule, `integrated-links.md`). The plate then carries the
+  whole leg as a cantilever to two M3 frame bolts at x = −30 and −20, only
+  10 mm apart in one row at y = 34, plus two Ø4 × 2 mm locating pins, 60–70 mm
+  from the corner. Every leg moment is resolved by prying over that 10 mm
+  bolt pitch and by the pins in 2 mm of plastic. Printed socket-floor down as
+  declared, the flange stands as an 86 mm tall, 5 mm thick wall on a small
+  footprint, with its hole roofs near the top. The shoulder module has no
+  web (flat plate on the frame face) but the same two-bolt cantilever.
+  Construction options, none modelled:
+  1. **Box the module.** Side cheeks join web and flange into a closed
+     C-section; union first, fillet the outside edges and the concave junction
+     edges; spread the frame bolts to four corners of the plate or add a
+     second row. Keeps DEC-45's bench-assembled independent modules. Minimum
+     fix; still a cantilever off the frame face.
+  2. **Let the frame carry the moment.** The module is captured by the torso
+     frame (tongue between the flange and the y = ±36 rails, or a dovetail)
+     so broad faces take the leg moment and the bolts only clamp, which is
+     what DEC-45 intended and the implementation does not deliver.
+  3. **Socket cast into a one-piece crossmember, SO-101 Base pattern.** The
+     pitch servo sits inside the torso's own structure with no module and no
+     cantilever. Needs a new answer to DEC-45's blocked inboard ear screws:
+     capture the inboard ears in a blind slot the servo slides into and screw
+     only the outboard ears, or retain by cradle plus collar as SO-101's base
+     does. Unverified; the strongest and cleanest if the retention works.
+  Recommended: 3 if the ear retention can be shown on a coupon; else 1 + 2
+  together.
+
+  **Root carrier (session review).** Pitch centres ±24 mm and roll centres
+  ±74.5 mm (DEC-41), roll socket floor 40 mm below the pitch axis, so the part
+  reaches 50.5 mm out and 40 mm down; the only member joining the horn clevis
+  to the roll socket is the 16 × 15 mm bridge box (`parts/links.py`
+  `carrier()`), with layers across the load when printed back-down (50.5 mm
+  tall, horn discs on 6.3 mm pads). Four of these in a row are also what
+  makes the hip arrangement read as cumbersome. Cause: DEC-41's intersecting
+  axes plus DEC-45's outboard-clearing modules. Options, axis positions
+  estimated:
+  1. **L-block (SpotMicro / Orion pattern).** Roll servo alongside the pitch
+     servo in a socket rotated 90° whose outboard wall is the pitch horn
+     plate; output faces +X. Roll axis ≈ 54 mm, hips ≈ 40 mm narrower, no
+     neck; keeps DEC-41's order and intersection; the block a
+     shoulder-mounted knee servo could share later. Recommended.
   2. **SO-101 shoulder, end-on.** Roll servo stands on its Bottom on the pitch
-     horn plate, as `Rotation_Pitch` stands on the base horn
-     (`soarm-joint-pattern.md`); the plate is the socket floor. Axes still
-     intersect at pitch-axis height. Roll axis ≈ 85 mm, hips ≈ 20 mm wider;
-     thigh and motor-face offsets shift to hold the 220 mm track.
-  3. **Drop rear hip roll for V1.** Balance mode does not use it; quadruped lean
-     and leg placement do. Deletes two carriers, frees two ST3215s (closes the
-     OQ-16 shortfall), and makes each rear hip the proven SO-101 single-socket
-     pitch joint. A concept change (DEC-41/43), not a construction fix.
-  Decide the pattern before any carrier is printed; DEC-45's torso-side root
-  modules survive options 1 and 2 unchanged. Track, thigh fork and collision
-  checks (OQ-21) must be re-run for whichever is chosen.
+     horn plate as `Rotation_Pitch` stands on the base horn; axes intersect at
+     pitch-axis height; roll axis ≈ 85 mm, hips ≈ 20 mm wider.
+  3. **Drop rear hip roll for V1.** Balance mode does not use it; deletes two
+     carriers, frees two ST3215s (OQ-16), rear hip becomes the proven SO-101
+     single-socket pitch joint. A concept change (DEC-41/43), not a fix.
+
+  Decide the module and carrier constructions together before any root part
+  is printed; re-run track, thigh-fork and OQ-21 clearance checks for the
+  chosen pair.
 
 - **OQ-21 — Physical joint travel and control limits.** DEC-48 implements
   DEC-46's pose-dependent viewer search using the printed geometry and nominal
@@ -46,11 +78,10 @@ Unresolved. Resolve -> move to [`decisions.md`](decisions.md).
 - **OQ-20 — Physical acceptance of the SO-101 construction adaptation.**
   DEC-48/49/50 implement enclosing asymmetric sockets, rounded links/forks,
   common carriers at all four roots and independent root modules. **Known
-  defect, 2026-09-14:** the `pelvis_socket` right-angle return is two
-  separately filleted boxes overlapped, with no inside fillet at the
-  flange-to-floor corner; it fails the fillet-after-union rule in
-  `integrated-links.md` and must be rebuilt before printing. Audit the other
-  parts for the same construction. Bench driver approaches, nominal
+  defect, 2026-09-14:** the `pelvis_socket` return corner is two separately
+  filleted boxes overlapped with no inside fillet (fillet-after-union rule,
+  `integrated-links.md`); its construction as a whole is OQ-22. Audit the
+  other parts for the same corner construction. Bench driver approaches, nominal
   insertion and CAD clearances are checked; local slices support `assumed`
   printability. Check real support removal, mounting fit, assembly/service
   access and load/creep on the revised parts. No repeat Gauge_0 is required.
