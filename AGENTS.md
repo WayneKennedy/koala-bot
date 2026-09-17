@@ -89,6 +89,11 @@ Changing DEC-16 or DEC-18 has consequences beyond this repo.
   put anything unresolved in `open-questions.md`. Move items between them as they resolve.
 - **Distinguish decided from open.** `decisions.md` = committed; `open-questions.md` =
   still debated. Never state an open question as settled.
+- **Check what is owned before suggesting a purchase.** Read the private
+  [wk-inventory `docs/stock.md`](https://github.com/WayneKennedy/wk-inventory/blob/main/docs/stock.md)
+  and search the owner's invoices, and say what was found. Full rule and the owner's goal
+  (fewer unused parts, more finished projects):
+  [wk-inventory `AGENTS.md`](https://github.com/WayneKennedy/wk-inventory/blob/main/AGENTS.md#before-anything-is-bought).
 - **Per-part printability:** maintain `unknown`, `assumed` or `proven` in
   [`docs/part-design-review.md`](docs/part-design-review.md) (DEC-47). New parts
   default to unknown; reassess after changes; proven needs a recorded print.
