@@ -22,7 +22,7 @@ cancelled four-wheel V1 (DEC-38), arrived and are **not koala-bot's**. This BOM 
 two motors and one driver; the surplus is pooled in
 [wk-robotics `common.md`](https://github.com/WayneKennedy/wk-robotics/blob/main/docs/common.md#drive-motors-drivers-and-mcus-in-hand).
 
-## Bought — drive & balance base *(purchased 2026-09-01, Pi Hut, ~£159.50)*
+## Bought — drive & balance base *(The Pi Hut #1614498, ordered 2026-09-01, delivered 2026-09-03; £159.50 goods + £3.80 shipping = £163.30)*
 
 | Part | Qty | £ | Role |
 |------|-----|---|------|
@@ -33,21 +33,26 @@ two motors and one driver; the surplus is pooled in
 | Adafruit BNO085 9-DOF IMU | 1 | 27.00 | balance loop attitude |
 | Teensy 4.0 + header kit | 1 | 25.10 | MCU / spinal cord (DEC-18) |
 
-## Bought — servos *(purchased 2026-09-01, RCmall AliExpress, ~£302; servos arrived 2026-09-12)*
+## Bought — servos *(AliExpress #3075773528793179, ordered 2026-09-01, delivered 2026-09-12; £254.31 paid, no shipping line)*
+
+Line prices are as invoiced (AliExpress order and PayPal receipt, read 2026-09-17); the
+earlier ~£302 and per-line figures were listing estimates. The seller is recorded here as
+RCmall; the order emails name only AliExpress. No courier VAT or handling charge was found
+in the mail.
 
 | Part | Qty | £ | Role |
 |------|-----|---|------|
-| Feetech STS3215 12V 30 kg.cm 6-pack | 2 | ~101 ea | 12 limb joints (6 arm, 4 hip, 2 knee — DEC-31). **Eight in hand**: four went to SO-ARM101 on 2026-09-12 ([wk-soarm101 DEC-09](https://github.com/WayneKennedy/wk-soarm101/blob/main/docs/decisions.md)), so four short — **a further 6-pack ordered from RCmall 2026-09-14** (price and ETA not recorded) to backfill; the four in the arm stay there permanently. On arrival: 14 in hand, 12 fitted, 2 spare (OQ-16) |
-| Feetech STS3032M 6V 4.5 kg.cm 4-pack | 1 | 93.19 | 3 neck (3-RPS) + 1 spare. Fixed single cable — chains board-to-board through the supplied 3-port connector boards and link cable, not servo-to-servo (`test-log.md` 2026-09-12) |
-| STS3215 metal bracket set | 1 | 7.14 | dimensional reference (DEC-21) |
+| Feetech STS3215 12V 30 kg.cm 6-pack | 2 | 84.95 ea | 12 limb joints (6 arm, 4 hip, 2 knee — DEC-31). **Eight in hand**: four went to SO-ARM101 on 2026-09-12 ([wk-soarm101 DEC-09](https://github.com/WayneKennedy/wk-soarm101/blob/main/docs/decisions.md)), so four short — **a further 6-pack ordered 2026-09-14** (AliExpress #3076088966873179, £103.15 paid; shipped 2026-09-15, not delivered as of 2026-09-17) to backfill; the four in the arm stay there permanently. On arrival: 14 in hand, 12 fitted, 2 spare (OQ-16) |
+| Feetech STS3032M 6V 4.5 kg.cm 4-pack | 1 | 78.38 | 3 neck (3-RPS) + 1 spare. Fixed single cable — chains board-to-board through the supplied 3-port connector boards and link cable, not servo-to-servo (`test-log.md` 2026-09-12) |
+| STS3215 metal bracket set | 1 | 6.03 | dimensional reference (DEC-21) |
 
 Of the STS3215s, the **lower body uses 6**: 2 hip-roll + 2 hip-pitch + 2 knee.
 
-### Bought separately — test-fit servos *(Amazon, in hand 2026-09-07)*
+### Bought separately — test-fit servos *(Amazon 204-4694570-7173960, ordered 2026-09-02, delivered 2026-09-04)*
 
 | Part | Qty | £ | Role |
 |------|-----|---|------|
-| Waveshare **ST3215 12V** bus servo | 2 | not recorded | something to test-fit printed parts against, ahead of the RCmall order |
+| Waveshare **ST3215 12V** bus servo | 2 | 31.90 ea (listing names neither Waveshare nor 12 V) | something to test-fit printed parts against, ahead of the RCmall order |
 
 Bought to have real cases on the bench. **What was in the box is a BOM fact:**
 M3 servo horn screws **and M2×5 self-tapping screws** for the case fixing
