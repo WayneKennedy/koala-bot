@@ -16,6 +16,65 @@ acceptance remains open as OQ-13.
 are superseded by the [impact assessment](cad-measurement-impact.md). DEC-40 implements the corrected interface and replaces its geometry;
 physical acceptance remains open.
 
+- **DEC-58 — Rear thigh with stepped roll yoke and sideways knee socket;
+  open shank fork and filleted motor supports** (2026-09-15, implementation
+  of the maintainer's instruction to progress outward from DEC-57).
+  Keep the **85/90 mm** joint-centre lengths and the **220 mm** neutral rear
+  track. Clock servo C's case **90° about the unchanged knee shaft**, with
+  its Bottom toward the thigh's native +Y. The previous knee shelf itself
+  swept into the carrier during inward roll; trimming only the thigh slab
+  could not clear it. The roll yoke now passes 4 mm outside B's socket walls,
+  joins beyond the complete horn pads and bridges 60 mm below the roll axis.
+  Its stepped roots are R6.3, knee-socket roots R5, and the 2 mm lip and
+  outer horn-pad returns R1.5.
+  The lower leg's bridge starts 46 mm from the knee axis, leaving room to
+  fold past the thigh. R6.3 fork roots and R5 spine/face/body-ring joins are
+  formed before motor bores and screw paths are cut; the small outer fork
+  offset has an R2 return. Axial 37D insertion,
+  six M3 face screws and the bought wheel/hub stack are retained.
+  Increase the viewer's angular reserve to **2°**: its previous 1° reserve
+  left 0.013/0.020 mm³ imported-case interference at the proposed forward
+  pitch endpoints. This remains a sampled geometry check, not calibration.
+  [Rear-leg review and scoped checks](design/rear-leg/README.md).
+  Local clearance targets are provisional engineering targets, not accepted
+  walking limits. New thigh and shank printability remain `unknown`; longer
+  fork stiffness, layer strength, motor screw depth and physical fitting are
+  unverified. No slice or physical print of these parts has been made.
+
+- **DEC-57 — Hold the 45° pitch-socket tilt as the proposed rear A/B
+  arrangement and progress to the thigh and motor shank** (2026-09-15,
+  maintainer approval of the socket-tilt viewer). Servo A's root socket mounts
+  on a torso face inclined 45° from the existing mount (body Y rotation −45°).
+  Retain the DEC-56 carrier and servo B's placement, both joint axes and the
+  saved rear-leg coordinates. This is the working arrangement for downstream
+  clearance design; the inclined torso walls, physical indexing and loaded
+  travel remain open. The bulkier angled-fork carrier is parked.
+  [Proposal and sampled clearance](design/carrier-orientation/README.md).
+  Physical acceptance remains open.
+
+- **DEC-56 — Refine the rear carrier before progressing to the thigh**
+  (2026-09-14, maintainer's marked viewer screenshot). Narrow the carrier
+  block from 24 to **16 mm**, flush with the fork necks, and align its top
+  with the roll socket wall ends (22 mm block depth). Crop the buried,
+  flared generic fork tails so they do not protrude through the narrower
+  block. Add **R6.3** inner fork-root fillets and **R5** block-to-socket
+  fillets after union. The outer fork's return onto the 2 mm socket lip
+  uses **R1.5**, limited by the accepted pocket, with 0.5 mm to that pocket.
+  **2 mm, 45° bevels** on the two exposed inner block edges taper out before
+  the fillet feet; an unrestricted tangent-chain chamfer cuts into the horn
+  pads. The complete horn-pad geometry, servo datums and flat build face
+  are retained. This implements the requested local refinement; it does
+  not resolve the forward-pitch shortage. The viewer gains 4.25° forward
+  adjustment, but the imported STEP still has small intersections at its
+  displayed forward endpoints. Travel and the proposed horizontal/45°
+  quadruped carrier orientation remain open under OQ-22.
+  [View and checks](design/hip-carrier-refinement.json) ·
+  [Carrier image](design/hip-carrier-refinement.png).
+  The thinner beam has less section area; unchanged whole-joint strength
+  is unverified. Printable remains `unknown`; no slice or physical print.
+  DEC-57 subsequently selects the proposed mounting arrangement and advances
+  the review to the thigh and its outstanding fixings.
+
 - **DEC-55 — Hip carrier below the pitch axis, roll servo Bottom-down beside
   the pitch servo; thigh forks pass the roll socket** (2026-09-14, maintainer
   choice between two rendered options, "option 2"). The DEC-49 carrier's body
@@ -550,6 +609,21 @@ physical acceptance remains open.
   against the complexity of an articulated foot. So V2 walking is *conditional, not assumed*.
 - **DEC-18 - MCU: Teensy 4.0** (resolves OQ-05). Ordered; a 600 MHz Cortex-M7 gives ample
   headroom for the balance loop. ESP32 / RP2040 remain valid cheaper/wireless variants.
+  **Amended 2026-09-18 (owner): the MCU is a Teensy 4.1 NE, bought new; the 4.0 leaves this
+  robot.** Resolves OQ-14 by decision rather than by test. The reason is not that the 4.0
+  probably fails - same i.MX RT1062 core, it very likely works - but that **upstream micro-ROS
+  lists the 4.0 "Not tested" while the 4.1 is Supported**, so it is absent from anyone's CI and
+  an upstream release could break it silently. DEC-04 puts the bridge on a load-bearing path,
+  and the family's two-tier rule requires the reflex tier to keep working when the Pi is
+  unreachable; an untested target is the wrong foundation for that, and a passing bench test
+  would not have changed it - it would prove one version works today, not that it stays working.
+  **~GBP 30 also buys standardisation:** one board across koala-bot, wk-devastator (its DEC-10)
+  and SO-ARM101 (its OQ-09) - one toolchain, one set of quirks, knowledge that transfers.
+  It further removes a contention: the family's single in-hand 4.1 NE was claimed by both
+  SO-ARM101 and this robot's fallback. **The 4.0 is not orphaned** - it becomes the bench
+  logger ([wk-robotics `ideas.md`](https://github.com/WayneKennedy/wk-robotics/blob/main/docs/ideas.md#a-correlated-bench-logger)),
+  a job that uses bare Teensyduino and no micro-ROS at all, so its one limitation does not
+  apply, and its header kit (bought with it) is an advantage there.
 - **DEC-19 - Drive/balance base parts confirmed; wheel diameter locked.** Pololu 80x10 mm
   wheels + Pololu 6 mm universal hubs (matched set for the 37D 6 mm D-shaft), Adafruit BNO085
   IMU (fusion, I2C), TB9051FTG driver, 2x 37D motors, Teensy 4.0. **Wheel diameter = 80 mm is

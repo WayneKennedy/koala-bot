@@ -50,7 +50,22 @@ Unresolved. Resolve -> move to [`decisions.md`](decisions.md).
   and neck length (DEC-37/49) are unchanged by it. Decide the width once the
   leg (DEC-53) fixes the root module and carrier, and before the torso frame.
 
-- **OQ-22 — Root joint construction: the pelvis socket module is weak and
+- **OQ-22 — Root joint construction and travel acceptance.**
+  **Current, 2026-09-15 (DEC-57/58):** hold the 45° pitch-socket mounting
+  variant as the proposed rear A/B arrangement. The new thigh has clear horn
+  bores/heads/drivers, filleted yoke roots and a knee case clocked 90° about
+  its shaft; the revised motor shank has an extended open knee fork and
+  filleted motor supports. [Rear-leg evidence](design/rear-leg/README.md).
+  The main assembly retains the previous torso mount; the separate rear-leg
+  viewer uses the proposal. Still open: complete inclined torso walls and
+  their driver access, real servo indexing and cables, physical print/support
+  removal, fork stiffness/creep, and a loaded motion trajectory. Local joint
+  clearance does not permit both rear motors to pass through each other.
+  The false cylindrical nut references and missing carrier/root printability
+  tags noted below are corrected; the full nominal CAD audit now passes both
+  saved poses. The following records describe the earlier geometry.
+
+  **Historical issue: the pelvis socket module was weak and
   hard to print.** Raised by the maintainer 2026-09-14 against the DEC-49
   `pelvis_socket` (`parts/pelvis.py`), the piece between the torso and the
   pitch servo. The `root_carrier` one joint out was reviewed at the same time
@@ -127,6 +142,105 @@ Unresolved. Resolve -> move to [`decisions.md`](decisions.md).
   was already ≈5° and is bounded by the block. Judge in the viewer before
   changing either part.
 
+  **DEC-56 carrier refinement, 2026-09-14:** the 16 mm block, tapered 2 mm
+  bevels and filleted structural joins are implemented. The viewer now gives
+  quadruped pitch −7° to 96.25° and upright pitch −81.5° to 131.25°; the
+  forward stop is the carrier against the pitch servo, instead of the root
+  module. Roll is still −3.5° to 9.75°. [View and checks](design/hip-carrier-refinement.json).
+  These are displayed mesh/fallback-case bounds, **not accepted full-reference
+  endpoints**: the imported STEP intersects the carrier's inner idler-root
+  fillet by 0.0134 mm³ at quadruped −7° and 0.0200 mm³ at upright −81.5°.
+  Quadruped −6° has zero overlap against both references at that sample.
+  The maintainer still finds forward travel insufficient for quadruped walking;
+  a required foot trajectory and rest configuration have not been selected.
+  Carrier printability and unchanged whole-joint strength remain unverified.
+  The thigh's obstructed fixings and unfilleted joins below are deferred
+  until the carrier review is complete. The nut-reference and audit issues
+  are also still open; these new carrier checks do not close them.
+
+  **Carrier orientation proposal, 2026-09-14:** the maintainer proposed a
+  horizontal carrier or 45° down in four-legged rest, instead of either
+  vertical orientation. [Side-view placement study](design/carrier-orientation/README.md)
+  rotates the existing carrier about A's pitch pivot, with the root fixed.
+  Its current bottom direction is 77.47° below world forward. At 45° down
+  rearward (pitch delta +57.53°), the carrier and B case clear the root module
+  and A case at that sample and at ±10°/±20° around it; horizontal rearward also clears those two
+  obstacles. Forward 45° and horizontal placements intersect the root and
+  A case. A whole-carrier rotation also tilts B's shaft: 45° at the diagonal
+  placements, vertical at horizontal placements. The thigh, foot location
+  and useful lateral motion must therefore be re-derived before accepting
+  such a rest pose. Rotating only B's body/socket about its own shaft is a
+  distinct alternative that retains the axes but needs a new connecting
+  bridge. **No new orientation is selected or implemented.**
+
+  **Clarification and connected candidate, 2026-09-14:** retain the pitch
+  socket and put the fork arms 45° down/rearward; the roll-socket connection
+  and printing are the questions. A [separate angled-fork candidate](design/carrier-orientation/README.md)
+  joins those forks to the unchanged roll socket with a filleted/gusseted
+  wedge and common flat print base. The roll shaft need not tilt with the
+  forks. The candidate is a valid single solid, 60.6 × 77.7 × 50.5 mm;
+  44 scoped checks pass, including seven quadruped pitch samples from −30°
+  through +30° against the fixed root module and pitch case. The horn pads
+  are preserved and the existing thigh clears at both saved rest poses.
+  Its solid volume is about 70% greater than the current carrier: refine the
+  material distribution and assess strength/support removal before adopting
+  it. Printable remains `unknown`; no slice, print, continuous travel or
+  gait acceptance. Production geometry and saved poses are unchanged.
+
+  **Reopened in favour of the simpler carrier, 2026-09-14:** after initially
+  accepting the angled-fork arrangement, the maintainer proposed tilting the
+  pitch socket and putting its non-vertical mounting face into the torso.
+  They favour a 45° slope for printing. Carrier lightening is paused.
+  The [inclined-face study](design/carrier-orientation/README.md) retains both
+  existing joint prints and their print orientations. A −45° socket rotation
+  about the unchanged pitch shaft passes sampled carrier/roll-case clearance
+  against the module, pitch case and matching face patch through −51° forward
+  pitch and at +30° in both saved poses. The four local frame-driver paths
+  clear; access through a completed torso is not yet modelled. With the current
+  torso print orientation, the proposed surface is 45° to the bed. The 5 mm
+  patch represents a torso surface, not a new separate print. Complete the
+  torso wall transitions and travel/access review remain open. DEC-57 now
+  selects 45° as the proposal and the rear-leg study implements that placement;
+  no main-assembly mount or saved pose change has been made.
+
+  **CAD review, 2026-09-14 (DEC-53/55, source at `44a8a8e`, before DEC-56):**
+  - **Thigh roll-horn fixings are obstructed.** In `upper_link(..., hip=True)`,
+    the cheek/join boxes start at Z = 5 mm and are added after the horn holes
+    and head recesses were cut. They refill the knee-facing pair on each
+    horn: four screws per thigh. Individual-solid BREP checks find
+    96.706 mm³ total intrusion into the four supplied heads and two idler
+    washers, on both hands in both saved poses. The through-bores are also
+    partly filled. [Sections through the heads](design/hind-root-review.png).
+    Restore the bores, recesses and straight driver approaches after the
+    structural unions, then recheck the remaining plastic section.
+  - **The new thigh and hip carrier still have square internal junctions.**
+    The cheek/join/shelf and fork/block unions return without the internal
+    fillets or gussets required by `integrated-links.md`. Review those load
+    turns in section; no strength failure is inferred from their shape alone.
+  - **The full nominal assembly audit fails in both poses despite all 25 unit
+    tests passing.** `pelvis.fixing_envelopes()` represents each captive hex
+    nut by its circumscribed cylinder, giving 35.372 mm³ false interference
+    per root module. A matching 5.5 AF hexagonal nut gives zero overlap in
+    the 5.7 AF pocket; correct the reference, not the pocket. Compound
+    hardware intersections also give pose-dependent misses/false positives:
+    check their component solids separately. This confirms the thigh/head
+    clash above but finds no roll/knee ear-head clash at rest. The viewer
+    skips rigid pairs on the assumption that this audit has passed, so a
+    successful limit-cache build does not establish assembly clearance.
+  - The current cache matches its scene and engine hashes. Independent BREP
+    checks confirm the carrier/thigh pair clears at roll −3.5°/9.75° and the
+    module/carrier pair clears at quadruped pitch −2.75°; interference starts
+    just beyond the reserved ranges. These are selected-pair checks, not a
+    new full endpoint acceptance. The published `travel-endpoints.json`
+    still describes the earlier geometry and needs regeneration after the
+    baseline audit is repaired. Roll/knee socket ear-driver and nominal
+    cable probes clear their owning new prints at rest.
+  - The viewer's assembly metadata lookup still uses the retired
+    `root_carrier`, `pelvis_socket` and `shoulder_socket` design names;
+    all eight installed carriers/root modules consequently have null
+    printability tags. Update the mapping and the obsolete all-`assumed`
+    browser smoke assertions when validating this revision.
+
   **Root carrier: acceptable (maintainer, 2026-09-14).** The session's first
   review called its 16 × 15 mm bridge weak; that was overstated and is
   withdrawn. Pitch centres ±24 mm, roll centres ±74.5 mm, roll socket floor
@@ -147,7 +261,7 @@ Unresolved. Resolve -> move to [`decisions.md`](decisions.md).
 
 - **OQ-21 — Physical joint travel and control limits.** DEC-48 implements
   DEC-46's pose-dependent viewer search using the printed geometry and nominal
-  hardware envelopes. The search uses 0.25° steps and a 1° reserve before the
+  hardware envelopes. The search uses 0.25° steps and a 2° reserve before the
   first intersection, within a ±180° search ceiling. Servo indexing, actual
   electrical limits, tolerances, complete cables/guards and loaded operation
   remain unverified. This is a finite-resolution clearance aid, not continuous
@@ -206,7 +320,15 @@ Unresolved. Resolve -> move to [`decisions.md`](decisions.md).
   has yet been sliced or printed. **Closes when** a full lower body passes fit and a documented load test
   (OQ-11). Retention dimensions remain OQ-12; the leg's open choices are OQ-16.
 
-- **OQ-14 - micro-ROS on the bought Teensy 4.0.** Upstream lists the 4.0 as
+- **OQ-14 - micro-ROS on the bought Teensy 4.0.** **Resolved 2026-09-18 by DEC-18 as amended:
+  the question is retired unanswered - the robot moves to a Teensy 4.1 NE instead of testing the
+  4.0.** The owner's reasoning: a passing test would prove one version works on one day, not that
+  the board is supported, and "Not tested" means it is in nobody's CI, so the risk is standing
+  rather than one-off. That is the wrong footing for a load-bearing reflex tier (DEC-04, and the
+  family's two-tier rule), and ~GBP 30 also standardises the MCU across three robots. The 4.0
+  goes to the bench logger, where micro-ROS is not used. Original text kept below.
+
+  Upstream lists the 4.0 as
   "Not tested" where the 4.1 is Supported. DEC-18 bought the 4.0, and DEC-04 makes
   the bridge load-bearing, so the untested board sits on a load-bearing path
   rather than a peripheral one. The board table and the shared reasoning
