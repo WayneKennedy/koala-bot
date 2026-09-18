@@ -37,6 +37,9 @@ class JointAxisTests(unittest.TestCase):
                     self.assertIn(owner,('pelvis_socket_right','shoulder_socket_right'))
                     self.assertAlmostEqual(abs(output.Y),1)
                     self.assertLess((origin-Vector(joint['pitch'])).length,1e-8)
+                elif '_knee_' in reference or '_elbow_' in reference:
+                    self.assertAlmostEqual(abs(output.Y),1)
+                    self.assertLess((origin-Vector(joint['bend'])).length,1e-8)
 
     def test_pitch_is_parent_of_roll(self):
         # A pure roll command must leave its case/carrier fixed. Pitch must

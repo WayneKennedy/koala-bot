@@ -77,11 +77,11 @@ def nominal_details(pose_name='quadruped'):
                ('reference_roll_servo',roll_frame*L.roll_socket_frame(y,front)*S.socket_reference(),'#e8d44d','pitch'),
                ('reference_pitch_servo',root*pelvis.pitch_socket(front)*S.socket_reference(),'#e8d44d','fixed'),
                ('upper_arm' if front else 'thigh',upper*L.upper_link(limb.upper,not front),'#c98fd9','roll'),
-               ('reference_elbow_servo' if front else 'reference_knee_servo',knee*L.AXIS*S.socket_reference(),'#e8d44d','roll'),
+               ('reference_elbow_servo' if front else 'reference_knee_servo',upper*L.knee_socket_frame(limb.upper,not front)*S.socket_reference(),'#e8d44d','roll'),
                ('forearm' if front else 'shank',lower*L.lower_link(limb.lower,front),'#8fd9c9','bend')]
         for label,tf,g in [('roll',roll,'roll'),('pitch',roll_frame*L.pitch_fork_frame(),'pitch'),('bend',lower,'bend')]:
             local.append(('reference_'+label+'_horn_heads',tf*S.horn_head_envelopes(),'#aaaaaa',g))
-        for label,tf,g in [('roll',roll_frame*L.roll_socket_frame(y,front),'pitch'),('pitch',root*pelvis.pitch_socket(front),'fixed'),('bend',knee*L.AXIS,'roll')]:
+        for label,tf,g in [('roll',roll_frame*L.roll_socket_frame(y,front),'pitch'),('pitch',root*pelvis.pitch_socket(front),'fixed'),('bend',upper*L.knee_socket_frame(limb.upper,not front),'roll')]:
             local.append(('reference_'+label+'_ear_heads',tf*S.ear_head_envelopes(),'#aaaaaa',g))
         if front:
             local.append(('contact_pad',lower*L.front_pad(),'#555f66','bend'))
@@ -163,5 +163,5 @@ def socket_frames(pose_name):
         out.extend([
             (f'reference_{key}_pitch_servo_right','shoulder_socket_right' if front else 'pelvis_socket_right',root*pelvis.pitch_socket(front)),
             (f'reference_{key}_roll_servo_right',f'{key}_carrier_right',roll_frame*L.roll_socket_frame(y,front)),
-            (f'reference_{key}_'+('elbow' if front else 'knee')+'_servo_right',f'{key}_'+('upper_arm' if front else 'thigh')+'_right',upper*Pos(0,0,limb.upper)*L.AXIS)])
+            (f'reference_{key}_'+('elbow' if front else 'knee')+'_servo_right',f'{key}_'+('upper_arm' if front else 'thigh')+'_right',upper*L.knee_socket_frame(limb.upper,not front))])
     return out

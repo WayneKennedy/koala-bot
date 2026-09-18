@@ -62,7 +62,7 @@ def fixing_envelopes(front=False):
     parts=None
     for a,b in nut_xy():
         head=Pos(a,b,z_flange-3)*Cylinder(3,3,align=(Align.CENTER,Align.CENTER,Align.MIN))
-        nut=Pos(a,b,-P.NUT_M3_T-0.1)*Cylinder(P.NUT_M3_AF/sqrt(3),P.NUT_M3_T,align=(Align.CENTER,Align.CENTER,Align.MIN))
+        nut=Pos(a,b,-P.NUT_M3_T-0.1)*extrude(RegularPolygon(P.NUT_M3_AF/sqrt(3),6),amount=P.NUT_M3_T)
         parts=head+nut if parts is None else parts+head+nut
     return pitch_socket(front)*parts
 

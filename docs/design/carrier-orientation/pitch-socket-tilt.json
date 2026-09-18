@@ -1,0 +1,706 @@
+{
+  "status": "mounting-face placement study; no production change; torso construction unresolved",
+  "tilt_definition": "negative rotation about body +Y, through the existing pitch axis; compared with the current root mounting face",
+  "retained": [
+    "carrier shape and print orientation",
+    "root socket shape and print orientation",
+    "hip pitch and roll axes",
+    "saved leg coordinates",
+    "four captive M3 nuts per root module"
+  ],
+  "face": "5 mm patch with eight matching frame holes; intended as part of a future torso, not an extra print",
+  "samples": [
+    {
+      "pose": "quadruped",
+      "socket_tilt_degrees_relative_to_current_mount": 0,
+      "pitch_axis": [
+        0.0,
+        1.0,
+        0.0
+      ],
+      "pitch_centre_mm": [
+        0.0,
+        24.0,
+        175.0
+      ],
+      "samples": [
+        {
+          "pitch_delta_degrees": 0,
+          "intersection_mm3": {
+            "root module": 0,
+            "pitch case": 0,
+            "torso face": 0.0,
+            "roll case / root module": 0.0,
+            "roll case / pitch case": 0.0,
+            "roll case / torso face": 0.0
+          }
+        },
+        {
+          "pitch_delta_degrees": -15,
+          "intersection_mm3": {
+            "root module": 0,
+            "pitch case": 17.389657759148943,
+            "torso face": 0.0,
+            "roll case / root module": 0.0,
+            "roll case / pitch case": 0.0,
+            "roll case / torso face": 0.0
+          }
+        },
+        {
+          "pitch_delta_degrees": -30,
+          "intersection_mm3": {
+            "root module": 906.4102275455302,
+            "pitch case": 934.3721582160289,
+            "torso face": 0.0,
+            "roll case / root module": 0.0,
+            "roll case / pitch case": 0.0,
+            "roll case / torso face": 0.0
+          }
+        },
+        {
+          "pitch_delta_degrees": -36,
+          "intersection_mm3": {
+            "root module": 1647.7422592974715,
+            "pitch case": 1795.8625415133952,
+            "torso face": 0,
+            "roll case / root module": 0.0,
+            "roll case / pitch case": 0.0,
+            "roll case / torso face": 0.0
+          }
+        },
+        {
+          "pitch_delta_degrees": -45,
+          "intersection_mm3": {
+            "root module": 3268.4107490315346,
+            "pitch case": 3909.3949434114948,
+            "torso face": 0,
+            "roll case / root module": 0.0,
+            "roll case / pitch case": 0.0,
+            "roll case / torso face": 0.0
+          }
+        },
+        {
+          "pitch_delta_degrees": -51,
+          "intersection_mm3": {
+            "root module": 4519.70701734737,
+            "pitch case": 5410.622546258852,
+            "torso face": 0,
+            "roll case / root module": 0.0,
+            "roll case / pitch case": 0.0,
+            "roll case / torso face": 0.0
+          }
+        },
+        {
+          "pitch_delta_degrees": 30,
+          "intersection_mm3": {
+            "root module": 0.0,
+            "pitch case": 0,
+            "torso face": 0.0,
+            "roll case / root module": 0.0,
+            "roll case / pitch case": 0.0,
+            "roll case / torso face": 0.0
+          }
+        }
+      ],
+      "module_old_torso_overlap_mm3": 0,
+      "case_old_torso_overlap_mm3": 0.0
+    },
+    {
+      "pose": "quadruped",
+      "socket_tilt_degrees_relative_to_current_mount": -30,
+      "pitch_axis": [
+        0.0,
+        1.0,
+        0.0
+      ],
+      "pitch_centre_mm": [
+        0.0,
+        24.0,
+        175.0
+      ],
+      "samples": [
+        {
+          "pitch_delta_degrees": 0,
+          "intersection_mm3": {
+            "root module": 0,
+            "pitch case": 0,
+            "torso face": 0.0,
+            "roll case / root module": 0.0,
+            "roll case / pitch case": 0.0,
+            "roll case / torso face": 0.0
+          }
+        },
+        {
+          "pitch_delta_degrees": -15,
+          "intersection_mm3": {
+            "root module": 0,
+            "pitch case": 0,
+            "torso face": 0,
+            "roll case / root module": 0.0,
+            "roll case / pitch case": 0.0,
+            "roll case / torso face": 0.0
+          }
+        },
+        {
+          "pitch_delta_degrees": -30,
+          "intersection_mm3": {
+            "root module": 0,
+            "pitch case": 0,
+            "torso face": 0,
+            "roll case / root module": 0.0,
+            "roll case / pitch case": 0.0,
+            "roll case / torso face": 0.0
+          }
+        },
+        {
+          "pitch_delta_degrees": -36,
+          "intersection_mm3": {
+            "root module": 0,
+            "pitch case": 0,
+            "torso face": 0,
+            "roll case / root module": 0.0,
+            "roll case / pitch case": 0.0,
+            "roll case / torso face": 0.0
+          }
+        },
+        {
+          "pitch_delta_degrees": -45,
+          "intersection_mm3": {
+            "root module": 0,
+            "pitch case": 17.389657759121313,
+            "torso face": 0,
+            "roll case / root module": 0.0,
+            "roll case / pitch case": 0.0,
+            "roll case / torso face": 0.0
+          }
+        },
+        {
+          "pitch_delta_degrees": -51,
+          "intersection_mm3": {
+            "root module": 204.5278632561679,
+            "pitch case": 212.70417883391994,
+            "torso face": 0,
+            "roll case / root module": 0.0,
+            "roll case / pitch case": 0.0,
+            "roll case / torso face": 0.0
+          }
+        },
+        {
+          "pitch_delta_degrees": 30,
+          "intersection_mm3": {
+            "root module": 0,
+            "pitch case": 0,
+            "torso face": 0.0,
+            "roll case / root module": 0.0,
+            "roll case / pitch case": 0.0,
+            "roll case / torso face": 0.0
+          }
+        }
+      ],
+      "module_old_torso_overlap_mm3": 377.8188490222279,
+      "case_old_torso_overlap_mm3": 0.0
+    },
+    {
+      "pose": "quadruped",
+      "socket_tilt_degrees_relative_to_current_mount": -45,
+      "pitch_axis": [
+        0.0,
+        1.0,
+        0.0
+      ],
+      "pitch_centre_mm": [
+        0.0,
+        24.0,
+        175.0
+      ],
+      "samples": [
+        {
+          "pitch_delta_degrees": 0,
+          "intersection_mm3": {
+            "root module": 0,
+            "pitch case": 0,
+            "torso face": 0.0,
+            "roll case / root module": 0.0,
+            "roll case / pitch case": 0.0,
+            "roll case / torso face": 0.0
+          }
+        },
+        {
+          "pitch_delta_degrees": -15,
+          "intersection_mm3": {
+            "root module": 0,
+            "pitch case": 0,
+            "torso face": 0.0,
+            "roll case / root module": 0.0,
+            "roll case / pitch case": 0.0,
+            "roll case / torso face": 0.0
+          }
+        },
+        {
+          "pitch_delta_degrees": -30,
+          "intersection_mm3": {
+            "root module": 0,
+            "pitch case": 0,
+            "torso face": 0.0,
+            "roll case / root module": 0.0,
+            "roll case / pitch case": 0.0,
+            "roll case / torso face": 0.0
+          }
+        },
+        {
+          "pitch_delta_degrees": -36,
+          "intersection_mm3": {
+            "root module": 0,
+            "pitch case": 0,
+            "torso face": 0.0,
+            "roll case / root module": 0.0,
+            "roll case / pitch case": 0.0,
+            "roll case / torso face": 0.0
+          }
+        },
+        {
+          "pitch_delta_degrees": -45,
+          "intersection_mm3": {
+            "root module": 0,
+            "pitch case": 0,
+            "torso face": 0.0,
+            "roll case / root module": 0.0,
+            "roll case / pitch case": 0.0,
+            "roll case / torso face": 0.0
+          }
+        },
+        {
+          "pitch_delta_degrees": -51,
+          "intersection_mm3": {
+            "root module": 0,
+            "pitch case": 0,
+            "torso face": 0.0,
+            "roll case / root module": 0.0,
+            "roll case / pitch case": 0.0,
+            "roll case / torso face": 0.0
+          }
+        },
+        {
+          "pitch_delta_degrees": 30,
+          "intersection_mm3": {
+            "root module": 0,
+            "pitch case": 0,
+            "torso face": 0.0,
+            "roll case / root module": 0.0,
+            "roll case / pitch case": 0.0,
+            "roll case / torso face": 0.0
+          }
+        }
+      ],
+      "module_old_torso_overlap_mm3": 0,
+      "case_old_torso_overlap_mm3": 0.0,
+      "frame_driver_access": [
+        {
+          "nut_xy_mm": [
+            -10.0,
+            -6.0
+          ],
+          "driver_intersection_mm3": {
+            "own module": 0,
+            "pitch case": 0.0,
+            "opposite module": 0.0,
+            "torso face": 0
+          }
+        },
+        {
+          "nut_xy_mm": [
+            -10.0,
+            6.0
+          ],
+          "driver_intersection_mm3": {
+            "own module": 0,
+            "pitch case": 0.0,
+            "opposite module": 0.0,
+            "torso face": 0
+          }
+        },
+        {
+          "nut_xy_mm": [
+            10.0,
+            -6.0
+          ],
+          "driver_intersection_mm3": {
+            "own module": 0,
+            "pitch case": 0.0,
+            "opposite module": 0.0,
+            "torso face": 0
+          }
+        },
+        {
+          "nut_xy_mm": [
+            10.0,
+            6.0
+          ],
+          "driver_intersection_mm3": {
+            "own module": 0,
+            "pitch case": 0.0,
+            "opposite module": 0.0,
+            "torso face": 0
+          }
+        }
+      ],
+      "module_face_overlap_mm3": 0,
+      "nominal_bearing_area_mm2": 1671.178671289128
+    },
+    {
+      "pose": "upright",
+      "socket_tilt_degrees_relative_to_current_mount": 0,
+      "pitch_axis": [
+        0.0,
+        1.0,
+        0.0
+      ],
+      "pitch_centre_mm": [
+        0.0,
+        24.0,
+        190.0
+      ],
+      "samples": [
+        {
+          "pitch_delta_degrees": 0,
+          "intersection_mm3": {
+            "root module": 0.0,
+            "pitch case": 0,
+            "torso face": 0.0,
+            "roll case / root module": 0.0,
+            "roll case / pitch case": 0.0,
+            "roll case / torso face": 0.0
+          }
+        },
+        {
+          "pitch_delta_degrees": -15,
+          "intersection_mm3": {
+            "root module": 0.0,
+            "pitch case": 0,
+            "torso face": 0.0,
+            "roll case / root module": 0.0,
+            "roll case / pitch case": 0.0,
+            "roll case / torso face": 0.0
+          }
+        },
+        {
+          "pitch_delta_degrees": -30,
+          "intersection_mm3": {
+            "root module": 0.0,
+            "pitch case": 0,
+            "torso face": 0.0,
+            "roll case / root module": 0.0,
+            "roll case / pitch case": 0.0,
+            "roll case / torso face": 0.0
+          }
+        },
+        {
+          "pitch_delta_degrees": -36,
+          "intersection_mm3": {
+            "root module": 0.0,
+            "pitch case": 0,
+            "torso face": 0.0,
+            "roll case / root module": 0.0,
+            "roll case / pitch case": 0.0,
+            "roll case / torso face": 0.0
+          }
+        },
+        {
+          "pitch_delta_degrees": -45,
+          "intersection_mm3": {
+            "root module": 0.0,
+            "pitch case": 0,
+            "torso face": 0.0,
+            "roll case / root module": 0.0,
+            "roll case / pitch case": 0.0,
+            "roll case / torso face": 0.0
+          }
+        },
+        {
+          "pitch_delta_degrees": -51,
+          "intersection_mm3": {
+            "root module": 0,
+            "pitch case": 0,
+            "torso face": 0.0,
+            "roll case / root module": 0.0,
+            "roll case / pitch case": 0.0,
+            "roll case / torso face": 0.0
+          }
+        },
+        {
+          "pitch_delta_degrees": 30,
+          "intersection_mm3": {
+            "root module": 0.0,
+            "pitch case": 0,
+            "torso face": 0.0,
+            "roll case / root module": 0.0,
+            "roll case / pitch case": 0.0,
+            "roll case / torso face": 0.0
+          }
+        }
+      ],
+      "module_old_torso_overlap_mm3": 0,
+      "case_old_torso_overlap_mm3": 0.0
+    },
+    {
+      "pose": "upright",
+      "socket_tilt_degrees_relative_to_current_mount": -30,
+      "pitch_axis": [
+        0.0,
+        1.0,
+        0.0
+      ],
+      "pitch_centre_mm": [
+        0.0,
+        24.0,
+        190.0
+      ],
+      "samples": [
+        {
+          "pitch_delta_degrees": 0,
+          "intersection_mm3": {
+            "root module": 0,
+            "pitch case": 0,
+            "torso face": 0.0,
+            "roll case / root module": 0.0,
+            "roll case / pitch case": 0.0,
+            "roll case / torso face": 0.0
+          }
+        },
+        {
+          "pitch_delta_degrees": -15,
+          "intersection_mm3": {
+            "root module": 0,
+            "pitch case": 0,
+            "torso face": 0.0,
+            "roll case / root module": 0.0,
+            "roll case / pitch case": 0.0,
+            "roll case / torso face": 0.0
+          }
+        },
+        {
+          "pitch_delta_degrees": -30,
+          "intersection_mm3": {
+            "root module": 0,
+            "pitch case": 0,
+            "torso face": 0.0,
+            "roll case / root module": 0.0,
+            "roll case / pitch case": 0.0,
+            "roll case / torso face": 0.0
+          }
+        },
+        {
+          "pitch_delta_degrees": -36,
+          "intersection_mm3": {
+            "root module": 0,
+            "pitch case": 0,
+            "torso face": 0.0,
+            "roll case / root module": 0.0,
+            "roll case / pitch case": 0.0,
+            "roll case / torso face": 0.0
+          }
+        },
+        {
+          "pitch_delta_degrees": -45,
+          "intersection_mm3": {
+            "root module": 0,
+            "pitch case": 0,
+            "torso face": 0.0,
+            "roll case / root module": 0.0,
+            "roll case / pitch case": 0.0,
+            "roll case / torso face": 0.0
+          }
+        },
+        {
+          "pitch_delta_degrees": -51,
+          "intersection_mm3": {
+            "root module": 0,
+            "pitch case": 0,
+            "torso face": 0.0,
+            "roll case / root module": 0.0,
+            "roll case / pitch case": 0.0,
+            "roll case / torso face": 0.0
+          }
+        },
+        {
+          "pitch_delta_degrees": 30,
+          "intersection_mm3": {
+            "root module": 0,
+            "pitch case": 0,
+            "torso face": 0.0,
+            "roll case / root module": 0.0,
+            "roll case / pitch case": 0.0,
+            "roll case / torso face": 0.0
+          }
+        }
+      ],
+      "module_old_torso_overlap_mm3": 377.81884902226807,
+      "case_old_torso_overlap_mm3": 0.0
+    },
+    {
+      "pose": "upright",
+      "socket_tilt_degrees_relative_to_current_mount": -45,
+      "pitch_axis": [
+        0.0,
+        1.0,
+        0.0
+      ],
+      "pitch_centre_mm": [
+        0.0,
+        24.0,
+        190.0
+      ],
+      "samples": [
+        {
+          "pitch_delta_degrees": 0,
+          "intersection_mm3": {
+            "root module": 0,
+            "pitch case": 0,
+            "torso face": 0.0,
+            "roll case / root module": 0.0,
+            "roll case / pitch case": 0.0,
+            "roll case / torso face": 0.0
+          }
+        },
+        {
+          "pitch_delta_degrees": -15,
+          "intersection_mm3": {
+            "root module": 0,
+            "pitch case": 0,
+            "torso face": 0.0,
+            "roll case / root module": 0.0,
+            "roll case / pitch case": 0.0,
+            "roll case / torso face": 0.0
+          }
+        },
+        {
+          "pitch_delta_degrees": -30,
+          "intersection_mm3": {
+            "root module": 0,
+            "pitch case": 0,
+            "torso face": 0.0,
+            "roll case / root module": 0.0,
+            "roll case / pitch case": 0.0,
+            "roll case / torso face": 0.0
+          }
+        },
+        {
+          "pitch_delta_degrees": -36,
+          "intersection_mm3": {
+            "root module": 0,
+            "pitch case": 0,
+            "torso face": 0.0,
+            "roll case / root module": 0.0,
+            "roll case / pitch case": 0.0,
+            "roll case / torso face": 0.0
+          }
+        },
+        {
+          "pitch_delta_degrees": -45,
+          "intersection_mm3": {
+            "root module": 0,
+            "pitch case": 0,
+            "torso face": 0.0,
+            "roll case / root module": 0.0,
+            "roll case / pitch case": 0.0,
+            "roll case / torso face": 0.0
+          }
+        },
+        {
+          "pitch_delta_degrees": -51,
+          "intersection_mm3": {
+            "root module": 0,
+            "pitch case": 0,
+            "torso face": 0.0,
+            "roll case / root module": 0.0,
+            "roll case / pitch case": 0.0,
+            "roll case / torso face": 0.0
+          }
+        },
+        {
+          "pitch_delta_degrees": 30,
+          "intersection_mm3": {
+            "root module": 0,
+            "pitch case": 0,
+            "torso face": 0.0,
+            "roll case / root module": 0.0,
+            "roll case / pitch case": 0.0,
+            "roll case / torso face": 0.0
+          }
+        }
+      ],
+      "module_old_torso_overlap_mm3": 0.0,
+      "case_old_torso_overlap_mm3": 0.0,
+      "frame_driver_access": [
+        {
+          "nut_xy_mm": [
+            -10.0,
+            -6.0
+          ],
+          "driver_intersection_mm3": {
+            "own module": 0,
+            "pitch case": 0.0,
+            "opposite module": 0.0,
+            "torso face": 0
+          }
+        },
+        {
+          "nut_xy_mm": [
+            -10.0,
+            6.0
+          ],
+          "driver_intersection_mm3": {
+            "own module": 0,
+            "pitch case": 0.0,
+            "opposite module": 0.0,
+            "torso face": 0
+          }
+        },
+        {
+          "nut_xy_mm": [
+            10.0,
+            -6.0
+          ],
+          "driver_intersection_mm3": {
+            "own module": 0,
+            "pitch case": 0.0,
+            "opposite module": 0.0,
+            "torso face": 0
+          }
+        },
+        {
+          "nut_xy_mm": [
+            10.0,
+            6.0
+          ],
+          "driver_intersection_mm3": {
+            "own module": 0,
+            "pitch case": 0.0,
+            "opposite module": 0.0,
+            "torso face": 0
+          }
+        }
+      ],
+      "module_face_overlap_mm3": 0,
+      "nominal_bearing_area_mm2": 1671.178671289128
+    }
+  ],
+  "limits": [
+    "Discrete samples only; no continuous travel interval or gait acceptance.",
+    "The complete torso, wall transitions, driver access through those walls and print orientation remain to be designed.",
+    "45-degree mounting tilt is relative to the current mount; support needs depend on the eventual torso print orientation.",
+    "Cables, guards, physical servo indexing and loaded strength remain unverified."
+  ],
+  "source_sha256": {
+    "hardware/src/koala_hardware/pitch_socket_tilt_study.py": "eac374bc9b4db6bcd80a054013a40543188fbcf02048fea962eaa681dae18097",
+    "hardware/src/koala_hardware/parts/links.py": "e08c497d3d2ae0e853a9985a13d28e263a8ebe52370e3768fa14276b4ba7ad49",
+    "hardware/src/koala_hardware/parts/pelvis.py": "b9406feb7f631514b3f2c39de4cadd2c7f6f81b83af48a45f862e90250fb30d8",
+    "hardware/src/koala_hardware/parts/torso.py": "7329ffb0ce4b1d076b04d2f5e4186e65c93fb5d6ca05b42141dcc68965ac39f9",
+    "hardware/src/koala_hardware/assembly.py": "30d8b88a61357c93daf7ea221fc6f89e00b5b5cb478f5fc7da6ab5f1c95d5553",
+    "hardware/src/koala_hardware/body_plan.py": "d0c92ad8d26d0441914e9cf77872e28c482d05461074a90f219b25ab2599442f",
+    "hardware/src/koala_hardware/params.py": "20274c30c4d7acd50b089779731ff16d272703b3a150f4d87fd702272bebf22f",
+    "hardware/src/koala_hardware/servo_iface.py": "45f0306516cdab1e7ca8295aadd6fdc103cea390803092690ea276941d43a5a8"
+  },
+  "local_case_reference_sha256": "77668e64549bd0845843aa75b561afbcedfd4bc4d66d12732993cb1afd07f2b8",
+  "face_angle_to_bed_in_current_torso_print_orientation_degrees": 45.000000000000114
+}

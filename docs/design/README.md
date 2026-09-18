@@ -10,6 +10,25 @@ images](manufacturing/README.md) support `assumed` printability for every part.
 Current assets show rear ankle drives and fixed rounded front feet.
 [Design and assembly](../cad-integrated-design.md).
 
+**Current rear carrier — DEC-56:** [viewer close-up](hip-carrier-refinement.png),
+[four views](parts/hip_carrier_right.png) and
+[geometry/travel checks](hip-carrier-refinement.json). The earlier common-carrier
+images below predate the rear carrier replacement. This revision is `unknown`
+printable and has not been sliced or printed.
+
+**Rear leg, DEC-57/58:** [current thigh/shank and 45° A/B proposal](rear-leg/README.md).
+This includes the revised roll yoke, sideways knee socket, open shank fork,
+motor mount, STEP exports and sampled clearance evidence. Printability is unknown.
+
+**Rear carrier orientation studies:** [horizontal / 45° side-view study](carrier-orientation/README.md).
+This compares placements of the existing carrier around the fixed pitch root;
+the selected production orientation is still DEC-55.
+The clarified proposal has a separate [connected candidate](carrier-orientation/angled-fork.html):
+45° rearward forks, retained roll-socket placement and a common flat print base.
+The maintainer has since reopened the choice: [tilt the pitch socket on an
+inclined torso face](carrier-orientation/pitch-socket-tilt.html), retaining the
+simpler current carrier. DEC-57 selects its 45° variant as the proposed arrangement.
+
 **Historical knee packaging study, deferred by DEC-43:**
 [PNG](knee-packaging.png) · [SVG](knee-packaging.svg) ·
 [Results](knee-packaging.json) · [Interpretation](../knee-drive-packaging.md).

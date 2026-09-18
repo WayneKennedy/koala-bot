@@ -1,0 +1,286 @@
+{
+  "date": "2026-09-14",
+  "status": "implemented refinement; insufficient forward travel, orientation under review",
+  "geometry": {
+    "valid": true,
+    "solid_count": 1,
+    "old_volume_mm3": 44891.012864710756,
+    "new_volume_mm3": 36584.01271838995,
+    "left": {
+      "watertight": true,
+      "extents_mm": [
+        44.900001525878906,
+        77.70000153779984,
+        50.511783499853514
+      ],
+      "print_metrics": {
+        "bed_area": 2079.9372740094077,
+        "overhang_area": 281.6525160588373,
+        "size": [
+          44.900001525878906,
+          77.70000153779984,
+          50.511783499853514
+        ],
+        "height": 50.511783499853514
+      }
+    },
+    "right": {
+      "watertight": true,
+      "extents_mm": [
+        44.900001525878906,
+        77.70000153779984,
+        50.511783499853514
+      ],
+      "print_metrics": {
+        "bed_area": 2079.9372740094077,
+        "overhang_area": 281.6525160588373,
+        "size": [
+          44.900001525878906,
+          77.70000153779984,
+          50.511783499853514
+        ],
+        "height": 50.511783499853514
+      }
+    }
+  },
+  "source_sha256": {
+    "hardware/src/koala_hardware/parts/links.py": "e08c497d3d2ae0e853a9985a13d28e263a8ebe52370e3768fa14276b4ba7ad49",
+    "hardware/src/koala_hardware/params.py": "20274c30c4d7acd50b089779731ff16d272703b3a150f4d87fd702272bebf22f",
+    "hardware/tests/test_integrated_cad.py": "fb0bb529090e6c8182d354f2b9530e55b5594feffc122bf1a0526d190d440269"
+  },
+  "viewer": {
+    "scene_sha256": "00c9c004ab2ad7b3a6a680ca75a640a1b0e3632dc0b9ea54cd670527b691008a",
+    "engine_sha256": "1460f87924e9bc0218bdfc7686dc560bade36bb1d1375008a240a61bbf76655e",
+    "before_bounds": {
+      "quadruped": {
+        "pitch": {
+          "min": -2.75,
+          "max": 96.25,
+          "stops": [
+            [
+              "pelvis_socket_right",
+              "rear_carrier_right"
+            ],
+            [
+              "rear_thigh_right",
+              "front_contact_pad_right"
+            ]
+          ]
+        },
+        "roll": {
+          "min": -3.5,
+          "max": 9.75,
+          "stops": [
+            [
+              "rear_carrier_right",
+              "rear_thigh_right"
+            ],
+            [
+              "rear_carrier_right",
+              "rear_thigh_right"
+            ]
+          ]
+        },
+        "knee": {
+          "min": -73.75,
+          "max": 45.25,
+          "stops": [
+            [
+              "reference_front_elbow_servo_right",
+              "front_forearm_right"
+            ],
+            [
+              "reference_rear_knee_servo_right",
+              "rear_shank_right"
+            ]
+          ]
+        }
+      },
+      "upright": {
+        "pitch": {
+          "min": -77.25,
+          "max": 131.25,
+          "stops": [
+            [
+              "pelvis_socket_right",
+              "rear_carrier_right"
+            ],
+            [
+              "front_carrier_right",
+              "reference_front_pitch_servo_right"
+            ]
+          ]
+        },
+        "roll": {
+          "min": -3.5,
+          "max": 9.75,
+          "stops": [
+            [
+              "rear_carrier_right",
+              "rear_thigh_right"
+            ],
+            [
+              "rear_carrier_right",
+              "rear_thigh_right"
+            ]
+          ]
+        },
+        "knee": {
+          "min": -6,
+          "max": 50.5,
+          "stops": [
+            [
+              "reference_front_elbow_servo_right",
+              "front_forearm_right"
+            ],
+            [
+              "reference_rear_knee_servo_right",
+              "rear_shank_right"
+            ]
+          ]
+        }
+      }
+    },
+    "after_bounds": {
+      "quadruped": {
+        "pitch": {
+          "min": -7,
+          "max": 96.25,
+          "stops": [
+            [
+              "rear_carrier_right",
+              "reference_rear_pitch_servo_right"
+            ],
+            [
+              "rear_thigh_right",
+              "front_contact_pad_right"
+            ]
+          ]
+        },
+        "roll": {
+          "min": -3.5,
+          "max": 9.75,
+          "stops": [
+            [
+              "rear_carrier_right",
+              "rear_thigh_right"
+            ],
+            [
+              "rear_carrier_right",
+              "rear_thigh_right"
+            ]
+          ]
+        },
+        "knee": {
+          "min": -73.75,
+          "max": 45.25,
+          "stops": [
+            [
+              "reference_front_elbow_servo_right",
+              "front_forearm_right"
+            ],
+            [
+              "reference_rear_knee_servo_right",
+              "rear_shank_right"
+            ]
+          ]
+        }
+      },
+      "upright": {
+        "pitch": {
+          "min": -81.5,
+          "max": 131.25,
+          "stops": [
+            [
+              "rear_carrier_right",
+              "reference_rear_pitch_servo_right"
+            ],
+            [
+              "front_carrier_right",
+              "reference_front_pitch_servo_right"
+            ]
+          ]
+        },
+        "roll": {
+          "min": -3.5,
+          "max": 9.75,
+          "stops": [
+            [
+              "rear_carrier_right",
+              "rear_thigh_right"
+            ],
+            [
+              "rear_carrier_right",
+              "rear_thigh_right"
+            ]
+          ]
+        },
+        "knee": {
+          "min": -6,
+          "max": 50.5,
+          "stops": [
+            [
+              "reference_front_elbow_servo_right",
+              "front_forearm_right"
+            ],
+            [
+              "reference_rear_knee_servo_right",
+              "rear_shank_right"
+            ]
+          ]
+        }
+      }
+    }
+  },
+  "checks": {
+    "unit_tests": "26 passed; includes exact horn-pad preservation and per-solid fastener, driver and insertion checks",
+    "exports": "all 24 handed exports built; valid STEP / watertight positive-volume STL / bed fit",
+    "assembly_audit": "not passed; outstanding thigh screw/head obstruction and root nut reference defect recorded in OQ-22",
+    "printability": "unknown",
+    "slice": "not performed",
+    "physical_fit_load_strength": "not tested"
+  },
+  "pitch_samples": [
+    {
+      "pose": "quadruped",
+      "pitch_delta_degrees": 0,
+      "root_overlap_mm3": 0,
+      "full_step_pitch_case_overlap_mm3": 0,
+      "fallback_pitch_case_overlap_mm3": 0
+    },
+    {
+      "pose": "quadruped",
+      "pitch_delta_degrees": -6,
+      "root_overlap_mm3": 0,
+      "full_step_pitch_case_overlap_mm3": 0,
+      "fallback_pitch_case_overlap_mm3": 0
+    },
+    {
+      "pose": "quadruped",
+      "pitch_delta_degrees": -7,
+      "root_overlap_mm3": 0,
+      "full_step_pitch_case_overlap_mm3": 0.013415897835267053,
+      "fallback_pitch_case_overlap_mm3": 0
+    },
+    {
+      "pose": "upright",
+      "pitch_delta_degrees": 0,
+      "root_overlap_mm3": 0.0,
+      "full_step_pitch_case_overlap_mm3": 0,
+      "fallback_pitch_case_overlap_mm3": 0
+    },
+    {
+      "pose": "upright",
+      "pitch_delta_degrees": -81.5,
+      "root_overlap_mm3": 0,
+      "full_step_pitch_case_overlap_mm3": 0.020044785298804702,
+      "fallback_pitch_case_overlap_mm3": 0
+    }
+  ],
+  "limitations": [
+    "The viewer uses a sampled fallback-case search. The imported STEP has small inner-fillet interference at the displayed forward minima; these bounds are not accepted full-reference endpoints.",
+    "The narrowed block has less section area; unchanged whole-joint strength is not established.",
+    "Neither supported rest placement nor walking travel has been accepted. Carrier orientation remains OQ-22.",
+    "Old manufacturing/travel-endpoints.json does not validate this revision."
+  ]
+}

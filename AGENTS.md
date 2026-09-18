@@ -102,15 +102,17 @@ Changing DEC-16 or DEC-18 has consequences beyond this repo.
 
 ## Status
 
-**Phase 1 (V1 vertical slice) — DEC-49/50 common carriers and asymmetric sockets, 2026-09-11.**
+**Phase 1 (V1 vertical slice) — DEC-57/58 proposed rear mounting and revised links, 2026-09-15.**
 The accepted DEC-44 overall layout is retained. Production CAD now implements
 rounded links/fork roots, enclosing servo sockets, independently removable
 left/right root socket modules, flatter forearms and separate keyed TPU contact
 pads with recessed metal fixings. There are 17 designs / 24 handed exports
 including six coupons; the chassis uses 24 physical prints. Every current print
-is tagged `assumed`, with local slices and layer images in
+from DEC-49/50 has local slices and layer images in
 [`docs/design/manufacturing/`](docs/design/manufacturing/README.md). None is proven
-by a physical print of this revision. Shared SO-101 fit remains accepted; no
+by a physical print of this revision. The later root modules, hip carriers
+and revised thighs/shanks are `unknown` printable; the other parts retain `assumed` tags.
+Shared SO-101 fit remains accepted; no
 repeat gauge is required (DEC-33).
 
 Retain twelve ST3215s, two bought 37D rear ankle drives, 85/90 mm rear links,
@@ -122,7 +124,16 @@ being redesigned torso-first, outward, with one rear leg as the vehicle
 (DEC-52/53): one `root_socket` module holds servo A of every limb, four captive
 M3 nuts under the servo, two prints per hand. The hip carrier sits below the
 pitch axis with the roll servo Bottom-down and the thigh's forks pass its socket
-(DEC-55); the shoulder still uses the DEC-49 carrier until DEC-54's chain is
+(DEC-55). DEC-56 narrows its block to the 16 mm fork neck, adds tapered
+2 mm inner-edge bevels and internal root fillets. DEC-57 holds the **45° tilted
+pitch socket on an inclined torso face** as the proposed A/B arrangement,
+retaining that carrier. The separate [rear-leg review](docs/design/rear-leg/README.md)
+uses it; the main assembly retains the previous torso mount. DEC-58 replaces
+the thigh's obstructed fork joins with a filleted stepped yoke, clocks C's
+case 90° about its unchanged knee shaft, and extends the shank's open fork.
+Local 1° checks clear ±30° roll and 0–120° knee flexion; these are not whole-robot
+walking limits. Motors, wheels and the opposite leg also constrain travel.
+The shoulder still uses the DEC-49 carrier until DEC-54's chain is
 drawn. Nothing new is sliced or printed.
 Drive/idler socket slots
 are 14/18.5 mm wide. Head placement is undecided and omitted from structural CAD.

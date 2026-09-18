@@ -17,7 +17,10 @@ def volume(s):return sum(p.volume for p in s.solids()) if s is not None else 0.0
 
 def overlap(a,b):
     if not bounds_overlap(a.bounding_box(optimal=False),b.bounding_box(optimal=False)):return 0.0
-    return volume(a&b)
+    # OCC compound booleans can omit touching hardware children. Test the
+    # individual solids (notably separate screw heads and idler washers).
+    return sum(volume(x&y) for x in a.solids() for y in b.solids()
+               if bounds_overlap(x.bounding_box(optimal=False),y.bounding_box(optimal=False)))
 
 
 def bounds_overlap(a,b):
@@ -118,11 +121,14 @@ def check_scene(pose,angles=(0,0,0),static_cache=None,asymmetric=False):
             relative=(*angles,asymmetric)
         key=(pose,n,m,relative)
         if static_cache is not None and key in static_cache:continue
-        count+=1;hit=a&b;v=volume(hit)
+        count+=1
+        hits=[x&y for x in a.solids() for y in b.solids()
+              if bounds_overlap(x.bounding_box(optimal=False),y.bounding_box(optimal=False))]
+        v=sum(volume(hit) for hit in hits)
         if v>.01:
             zone=fits.get(frozenset((n,m)))
             # Fitted reference, owning print and allowed contact region move together.
-            if zone is None or v>50 or volume(hit-zone)>.01:
+            if zone is None or v>50 or sum(volume(hit-zone) for hit in hits if volume(hit)>.000001)>.01:
                 fail.append((n,m,round(v,3)))
         if static_cache is not None:static_cache.add(key)
     assert not fail,f'{pose} {angles}: {fail}'

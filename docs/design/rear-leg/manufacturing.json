@@ -1,0 +1,68 @@
+{
+  "parts": [
+    {
+      "part": "thigh_right",
+      "stl_sha256": "d6c281005b4ec80d0b48cc3cb2d1b76d3080168b5c129fb5c730057bca7ba681",
+      "watertight": true,
+      "positive_volume": true,
+      "bed_area": 962.4000244140625,
+      "overhang_area": 2742.488830371033,
+      "size": [
+        44.900001525878906,
+        109.74678039550781,
+        72.86499786376953
+      ],
+      "height": 72.86499786376953
+    },
+    {
+      "part": "thigh_left",
+      "stl_sha256": "7e5464b186bc06be7892cdedef1d7c4d119af3491fc9a29f6302f80be29cc489",
+      "watertight": true,
+      "positive_volume": true,
+      "bed_area": 962.4000244140625,
+      "overhang_area": 2742.488830371033,
+      "size": [
+        44.900001525878906,
+        109.74678039550781,
+        72.86499786376953
+      ],
+      "height": 72.86499786376953
+    },
+    {
+      "part": "shank_right",
+      "stl_sha256": "d0ae0c19bf9cc44727d41cb65403e532239f777f4601d283c2bbec354b6e3ee7",
+      "watertight": true,
+      "positive_volume": true,
+      "bed_area": 1821.1920984335234,
+      "overhang_area": 2241.1506572100016,
+      "size": [
+        123.38967895507812,
+        45.99934005737305,
+        51.25
+      ],
+      "height": 51.25
+    },
+    {
+      "part": "shank_left",
+      "stl_sha256": "32635c8c2f6f41e63f0284e5bc778452490beaa0765f02fc8c8622bf5d4db060",
+      "watertight": true,
+      "positive_volume": true,
+      "bed_area": 1821.1920984335234,
+      "overhang_area": 2241.1506572100016,
+      "size": [
+        123.38967895507812,
+        45.99934005737305,
+        51.25
+      ],
+      "height": 51.25
+    }
+  ],
+  "unit_tests": 29,
+  "unit_tests_passed": true,
+  "full_nominal_assembly_audit": "passes both saved poses with component-solid hardware intersections",
+  "physical_status": "unknown printable; no slice or physical print",
+  "source_sha256": {
+    "hardware/src/koala_hardware/parts/links.py": "5fd946d112cb1340187a5ad8de2f45b1ab5fcddf5f44e8d1641a6f8b5eaab783",
+    "hardware/src/koala_hardware/params.py": "f69961db3d01e795ffe73b131655d19750e532d219f34003e5591644458fa8e1"
+  }
+}

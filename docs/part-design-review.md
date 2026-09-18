@@ -13,9 +13,9 @@ DEC-50 corrects unequal drive/idler socket slots.
 
 ## Printability tags — DEC-47
 
-Every current part below is **`assumed`**. Each has an explicit orientation,
-a reviewed support/removal approach, a closed mesh and a successful local slice
-of the exported STL. These are **17 designs / 24 handed export variants**,
+The DEC-53/55/56 root modules, hip carriers and DEC-58 thighs/shanks are **`unknown`**;
+the other rows retain **`assumed`**. Earlier local slices apply only to their
+matching STL hashes. These are **17 designs / 24 handed export variants**,
 including six coupons. The robot uses 24 physical structural prints, including
 two TPU pads and four tray spacers. Nothing in this revision has been printed.
 
@@ -45,10 +45,10 @@ no support. See the recorded overrides and actual deposited-path images.
 |---|---|---|---|
 | `root_socket_left/right` / 4 (two of each hand) | `unknown` | PETG | DEC-53: one root module at all four roots; the pelvis pair is the shoulder pair turned 180° about the pitch axis. Flat 6 mm plate face down, socket opening up; nut pockets open into the shelf and bridge nothing; ear-hole roofs use accessible local support. Replaces `pelvis_socket` and `shoulder_socket` (the pelvis corner defect with them). No slice yet. |
 | `shoulder_carrier_left/right` / 2 | `assumed` | PETG | DEC-49 front carrier, retained until DEC-54's roll-first shoulder chain replaces it. Flat back down; accessible local hole-roof supports. |
-| `hip_carrier_left/right` / 2 | `unknown` | PETG | DEC-55: clevis bridge under the pitch servo's nose, block to the roll socket, roll servo Bottom-down beside the pitch servo's drive pad. Block and socket floor share the flat back, on the bed; forks rise 50 mm. No slice yet. |
-| `thigh_left/right` / 2 | `unknown` | PETG | DEC-55 forks: horn/idler pads with tails stopped 3 mm above the roll socket walls, cheeks 1 mm outboard of the walls, slab 2 mm under the socket floor doubling as the knee shelf; 85 mm centres, orthogonal interfaces retained. Print orientation to review; no slice of this revision. |
+| `hip_carrier_left/right` / 2 | `unknown` | PETG | DEC-55/56: 16 mm fork-width block below the pitch axis, tapered 2 mm inner-edge bevels; R6.3 fork roots, R5 socket roots and R1.5 at the narrow socket lip. Roll servo Bottom-down. Block and socket floor share the flat bed face (2080 mm²); 50.5 mm build height. Valid solid and closed handed meshes; support removal, strength and slicing remain unverified. [Current view](design/hip-carrier-refinement.png). |
+| `thigh_left/right` / 2 | `unknown` | PETG | DEC-58: 85 mm centres, stepped roll yoke 4 mm outside B's socket, complete horn pads, R6.3 internal roots, R5 knee roots and R1.5 lip. C's case is clocked 90° about the knee shaft. Native −Y cheek down: 44.9 × 109.8 mm footprint, 72.9 mm high, 962 mm² bed contact. Opposing cheek and knee socket need accessible supports; 2742 mm² flagged overhang. No slice or support-removal trial. [Review](design/rear-leg/README.md). |
 | `upper_arm_left/right` / 2 | `assumed` | PETG | The same interface family at 70 mm centres. Rounded transition sized for the shorter link. Outer horn pad down; accessible fork/socket supports. |
-| `shank_left/right` / 2 | `assumed` | PETG | 90 mm knee-to-ankle centres. Rounded spine and bridge connect the fork to the 37D face and body support. Outer horn pad down; support under the face/ring is removable through the open axial bore before motor insertion. |
+| `shank_left/right` / 2 | `unknown` | PETG | DEC-58: 90 mm knee-to-ankle centres, bridge 46 mm below the knee, R6.3 fork roots and R5 motor face/ring/spine roots. Native +X motor-face surface down: 123.4 × 46 mm footprint, 51.3 mm high, 1821 mm² bed contact. Supports under the opposite fork and body ring are accessible through the open fork and axial bore before hardware insertion; 2241 mm² flagged overhang. No slice or removal trial for this revision. |
 | `forearm_left/right` / 2 | `assumed` | PETG | Rounded 18 × 17.9 mm shaft section with a flat native −Y bed face, integral fork and keyed pad seat. Local support under hole roofs, nut slot and projecting key is externally accessible. Insert the metal nut before attaching the pad. |
 | `front_contact_pad` / 2 | `assumed` | TPU | Rounded contact preserves the 100 mm elbow-to-ball centre and Ø32 mm ground envelope. Truncated mating face down; keyed cavity tapers to the through-hole without a flat roof. No supports; recessed screw/washer, replaceable pad. Material settings remain provisional. |
 | `torso_frame` / 1 | `assumed` | PETG | Rounded rail corners, continuous flanges and integral module locating pins. Declared side face down; snug supports under opposing rails and flange roofs can be removed through the open cage. |

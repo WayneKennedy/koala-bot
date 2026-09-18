@@ -1,0 +1,22 @@
+{
+  "tailnet_url": "https://blake.tail13a0c0.ts.net:8443/rear-leg/",
+  "page_errors": [],
+  "checks": [
+    "both pose caches load",
+    "2 degree reserve",
+    "printability tags",
+    "pose matrix responds to roll",
+    "part selection and notes",
+    "backdrop controls hidden"
+  ],
+  "poses": [
+    {
+      "pose": "quadruped",
+      "limits": "pitch: -51\u00b0\u2026173.75\u00b0 \u00b7 roll: -5.5\u00b0\u2026180\u00b0 \u00b7 bend: -96.5\u00b0\u202656.25\u00b0"
+    },
+    {
+      "pose": "upright",
+      "limits": "pitch: -125.5\u00b0\u202699.5\u00b0 \u00b7 roll: -5\u00b0\u2026180\u00b0 \u00b7 bend: -91.25\u00b0\u202661.5\u00b0"
+    }
+  ]
+}

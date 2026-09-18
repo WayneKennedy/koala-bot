@@ -1,0 +1,223 @@
+{
+  "status": "unselected construction study; printable unknown; no slice or physical print",
+  "fork_direction": "45 degrees below world rearward in the saved quadruped pose",
+  "fork_angle_relative_to_production_degrees": 57.529592652532315,
+  "roll_socket": "position and orientation unchanged from production",
+  "valid": true,
+  "solids": 1,
+  "volume_mm3": 62305.19921365805,
+  "production_volume_mm3": 36584.01271838995,
+  "print_orientation": "native Z=socket floor on bed, rotated X=180 and translated to Z=0",
+  "print_metrics": {
+    "bed_area": 2773.6338742532207,
+    "overhang_area": 560.7617978606189,
+    "size": [
+      60.588687896728516,
+      77.70000153779984,
+      50.51367940439453
+    ],
+    "height": 50.51367940439453
+  },
+  "watertight": true,
+  "horn_pad_changed_volume_mm3": 0,
+  "checks": [
+    {
+      "check": "roll drive_lug_driver 0",
+      "intersection_mm3": 0
+    },
+    {
+      "check": "roll drive_lug_driver 1",
+      "intersection_mm3": 0
+    },
+    {
+      "check": "roll idler_lug_driver 2",
+      "intersection_mm3": 0
+    },
+    {
+      "check": "roll idler_lug_driver 3",
+      "intersection_mm3": 0
+    },
+    {
+      "check": "roll cable 4",
+      "intersection_mm3": 0
+    },
+    {
+      "check": "roll insertion 0 mm",
+      "intersection_mm3": 0
+    },
+    {
+      "check": "roll insertion 5 mm",
+      "intersection_mm3": 0
+    },
+    {
+      "check": "roll insertion 15 mm",
+      "intersection_mm3": 0
+    },
+    {
+      "check": "roll insertion 25 mm",
+      "intersection_mm3": 0
+    },
+    {
+      "check": "roll insertion 50 mm",
+      "intersection_mm3": 0.0
+    },
+    {
+      "check": "pitch horn head/washer 0",
+      "intersection_mm3": 0
+    },
+    {
+      "check": "pitch horn head/washer 1",
+      "intersection_mm3": 0
+    },
+    {
+      "check": "pitch horn head/washer 2",
+      "intersection_mm3": 0
+    },
+    {
+      "check": "pitch horn head/washer 3",
+      "intersection_mm3": 0
+    },
+    {
+      "check": "pitch horn head/washer 4",
+      "intersection_mm3": 0
+    },
+    {
+      "check": "pitch horn head/washer 5",
+      "intersection_mm3": 0
+    },
+    {
+      "check": "pitch horn head/washer 6",
+      "intersection_mm3": 0
+    },
+    {
+      "check": "pitch horn head/washer 7",
+      "intersection_mm3": 0
+    },
+    {
+      "check": "pitch horn head/washer 8",
+      "intersection_mm3": 0
+    },
+    {
+      "check": "pitch horn head/washer 9",
+      "intersection_mm3": 0
+    },
+    {
+      "check": "pitch horn head/washer 10",
+      "intersection_mm3": 0
+    },
+    {
+      "check": "pitch horn head/washer 11",
+      "intersection_mm3": 0
+    },
+    {
+      "check": "roll ear head 0",
+      "intersection_mm3": 0
+    },
+    {
+      "check": "roll ear head 1",
+      "intersection_mm3": 0
+    },
+    {
+      "check": "roll ear head 2",
+      "intersection_mm3": 0
+    },
+    {
+      "check": "roll ear head 3",
+      "intersection_mm3": 0
+    },
+    {
+      "check": "quadruped thigh at rest",
+      "intersection_mm3": 0
+    },
+    {
+      "check": "quadruped pitch -30 / root module",
+      "intersection_mm3": 0
+    },
+    {
+      "check": "quadruped pitch -30 / pitch case",
+      "intersection_mm3": 0
+    },
+    {
+      "check": "quadruped pitch -20 / root module",
+      "intersection_mm3": 0
+    },
+    {
+      "check": "quadruped pitch -20 / pitch case",
+      "intersection_mm3": 0
+    },
+    {
+      "check": "quadruped pitch -10 / root module",
+      "intersection_mm3": 0
+    },
+    {
+      "check": "quadruped pitch -10 / pitch case",
+      "intersection_mm3": 0
+    },
+    {
+      "check": "quadruped pitch +0 / root module",
+      "intersection_mm3": 0
+    },
+    {
+      "check": "quadruped pitch +0 / pitch case",
+      "intersection_mm3": 0
+    },
+    {
+      "check": "quadruped pitch +10 / root module",
+      "intersection_mm3": 0
+    },
+    {
+      "check": "quadruped pitch +10 / pitch case",
+      "intersection_mm3": 0
+    },
+    {
+      "check": "quadruped pitch +20 / root module",
+      "intersection_mm3": 0
+    },
+    {
+      "check": "quadruped pitch +20 / pitch case",
+      "intersection_mm3": 0
+    },
+    {
+      "check": "quadruped pitch +30 / root module",
+      "intersection_mm3": 0.0
+    },
+    {
+      "check": "quadruped pitch +30 / pitch case",
+      "intersection_mm3": 0
+    },
+    {
+      "check": "upright thigh at rest",
+      "intersection_mm3": 0
+    },
+    {
+      "check": "upright pitch +0 / root module",
+      "intersection_mm3": 0.0
+    },
+    {
+      "check": "upright pitch +0 / pitch case",
+      "intersection_mm3": 0
+    }
+  ],
+  "limitations": [
+    "Discrete right-side samples only; no complete travel interval or gait established.",
+    "Other installed hardware, complete cable routing, loaded strength and sliced layers remain unverified.",
+    "The wider, heavier wedge is a first construction, not an optimized production replacement.",
+    "Fork undersides and hole roofs may require accessible supports."
+  ],
+  "source_sha256": {
+    "hardware/src/koala_hardware/carrier_fork_study.py": "bfc0f890042c31ce8bd73b3ca9d57a74463dc4b02cc0b9f5e43068575370d955",
+    "hardware/src/koala_hardware/parts/links.py": "e08c497d3d2ae0e853a9985a13d28e263a8ebe52370e3768fa14276b4ba7ad49",
+    "hardware/src/koala_hardware/params.py": "20274c30c4d7acd50b089779731ff16d272703b3a150f4d87fd702272bebf22f",
+    "hardware/src/koala_hardware/servo_iface.py": "45f0306516cdab1e7ca8295aadd6fdc103cea390803092690ea276941d43a5a8",
+    "hardware/src/koala_hardware/body_plan.py": "d0c92ad8d26d0441914e9cf77872e28c482d05461074a90f219b25ab2599442f"
+  },
+  "artifact_sha256": {
+    "angled-fork.step": "d378833f23642f94a441ec371f4c124ef80d3ce0e775d8f10b3870f9a2493706",
+    "angled-fork.stl": "7afaf63c3b8d96ba2f963b40d07f83a6374468f65023e4cb8638d03e404f3ca7"
+  },
+  "pitch_case_reference": {
+    "kind": "local imported case plus measured horn stack",
+    "file": "hardware/vendor/st3215/STS3215_c.step",
+    "sha256": "77668e64549bd0845843aa75b561afbcedfd4bc4d66d12732993cb1afd07f2b8"
+  }
+}

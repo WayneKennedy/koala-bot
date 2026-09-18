@@ -1,0 +1,32 @@
+<!doctype html><html lang="en"><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Pitch socket tilt and inclined torso face</title>
+<style>body{margin:0;background:#15191e;color:#e1e7ec;font:15px system-ui}header{padding:20px 24px 10px;position:absolute;z-index:2;pointer-events:none;max-width:850px}h1{font-size:22px;margin:0 0 8px}p{margin:6px 0;color:#bcc7d0;line-height:1.4}nav{pointer-events:auto;display:flex;gap:8px;flex-wrap:wrap;margin-top:12px}button,select{font:inherit;background:#29323b;color:#e1e7ec;border:1px solid #49515a;border-radius:5px;padding:8px 12px;cursor:pointer}button.active{background:#426d60}label{display:flex;align-items:center;gap:8px}#note{position:absolute;bottom:22px;left:24px;background:#20272ee8;padding:12px 16px;border-radius:6px;max-width:850px}canvas{display:block;touch-action:none}small{color:#aab7c1}</style>
+<header><h1>Keep the carrier · incline the torso mounting face</h1><p>Blue: existing root socket. Pink: existing carrier. Green: proposed torso face.<br>The rest of the torso is omitted; the green surface represents part of it, not an extra print.</p>
+<nav><button data-tilt="0">Current mount</button><button data-tilt="30">30° tilt</button><button data-tilt="45">45° tilt</button></nav>
+<nav><label>Pose <select id="pose"><option value="quadruped">Quadruped</option><option value="upright">Upright</option></select></label><label>Pitch adjustment <select id="pitch"><option value="0">Rest</option><option value="-30">30° forward</option><option value="-45">45° forward</option><option value="-51">51° forward</option><option value="30">30° backward</option></select></label></nav>
+<p><small>Drag to orbit · wheel to zoom · gold = measured servo envelopes · red = interference in the scoped CAD check</small></p></header>
+<div id="note"></div><script src="../../../hardware/vendor/viewer/three-r128.min.js"></script><script>
+const DATA=__DATA__;
+const scene=new THREE.Scene();scene.background=new THREE.Color('#15191e');
+const camera=new THREE.PerspectiveCamera(38,innerWidth/innerHeight,.1,3000);camera.up.set(0,0,1);
+const renderer=new THREE.WebGLRenderer({antialias:true});renderer.setPixelRatio(Math.min(devicePixelRatio,2));renderer.setSize(innerWidth,innerHeight);document.body.appendChild(renderer.domElement);
+scene.add(new THREE.HemisphereLight(0xbcd0e0,0x20242a,.85));
+for(const pos of [[120,-180,200],[-100,130,80]]){const light=new THREE.DirectionalLight(0xffffff,.45);light.position.set(...pos);scene.add(light)}
+let group,tilt='45',pose='quadruped',pitch=0,az=2.35,el=.32,radius=280,target=new THREE.Vector3(),drag=null;
+function decode(s,T){const b=Uint8Array.from(atob(s),c=>c.charCodeAt(0));return new T(b.buffer)}
+function place(){camera.position.set(target.x+radius*Math.cos(el)*Math.cos(az),target.y+radius*Math.cos(el)*Math.sin(az),target.z+radius*Math.sin(el));camera.lookAt(target);renderer.render(scene,camera)}
+function draw(){if(group){scene.remove(group);group.traverse(o=>{if(o.geometry)o.geometry.dispose();if(o.material)o.material.dispose()})}group=new THREE.Group();
+ const entry=DATA.poses[pose][tilt],centre=DATA.centres[pose],hit=entry.collisions[String(pitch)];
+ const moving=new THREE.Group();moving.position.set(...centre);moving.rotation.y=pitch*Math.PI/180;group.add(moving);
+ for(const item of entry.items){const geometry=new THREE.BufferGeometry();geometry.setAttribute('position',new THREE.BufferAttribute(decode(item.pos,Float32Array),3));geometry.setIndex(new THREE.BufferAttribute(decode(item.idx,Uint32Array),1));geometry.computeVertexNormals();const material=new THREE.MeshStandardMaterial({color:item.moving&&hit?'#d66d77':item.colour,roughness:.78,metalness:0,flatShading:true,transparent:item.ghost,opacity:item.ghost?.35:1,depthWrite:!item.ghost});const mesh=new THREE.Mesh(geometry,material);if(item.moving){mesh.position.set(-centre[0],-centre[1],-centre[2]);moving.add(mesh)}else group.add(mesh)}
+ scene.add(group);target.set(15,20,centre[2]+10);
+ document.querySelectorAll('[data-tilt]').forEach(b=>b.classList.toggle('active',b.dataset.tilt===tilt));
+ document.querySelector('#note').innerHTML=(hit?'Interference at this sample.':'Clear at this sample against the root module, pitch servo and face patch.')+'<br><small>Socket tilt is relative to the current mount. Joint centres and the roll axis are retained. Complete torso, cables, loaded motion and walking remain unverified.</small>';place()}
+document.querySelectorAll('[data-tilt]').forEach(b=>b.onclick=()=>{tilt=b.dataset.tilt;draw()});
+document.querySelector('#pose').onchange=e=>{pose=e.target.value;draw()};document.querySelector('#pitch').onchange=e=>{pitch=Number(e.target.value);draw()};
+renderer.domElement.onpointerdown=e=>{drag=[e.clientX,e.clientY];renderer.domElement.setPointerCapture(e.pointerId)};
+renderer.domElement.onpointermove=e=>{if(!drag)return;az-=(e.clientX-drag[0])*.007;el=Math.max(-1.4,Math.min(1.4,el+(e.clientY-drag[1])*.007));drag=[e.clientX,e.clientY];place()};
+renderer.domElement.onpointerup=()=>drag=null;renderer.domElement.onpointercancel=()=>drag=null;
+renderer.domElement.onwheel=e=>{e.preventDefault();radius=Math.max(60,Math.min(700,radius*Math.exp(e.deltaY*.001)));place()};
+onresize=()=>{camera.aspect=innerWidth/innerHeight;camera.updateProjectionMatrix();renderer.setSize(innerWidth,innerHeight);place()};draw();
+</script></html>

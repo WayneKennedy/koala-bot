@@ -1,0 +1,151 @@
+{
+  "date": "2026-09-14",
+  "status": "placement study; no orientation selected or production geometry changed by this study",
+  "angle_definition": "Direction from pitch axis towards bridge/socket bottom, measured from world +X toward +Z; negative is down. Whole carrier rotated about A; B axis tilts with it.",
+  "pose": "quadruped",
+  "method": "Exact BREP intersections of current carrier and imported roll servo reference against right root module and imported pitch servo reference at five discrete placements. Silhouettes from exported meshes.",
+  "excluded": [
+    "thigh and downstream geometry",
+    "full fastener envelopes and tool access",
+    "continuous sweep",
+    "cables",
+    "ground contacts",
+    "loaded motion",
+    "strength"
+  ],
+  "source_sha256": {
+    "hardware/src/koala_hardware/parts/links.py": "e08c497d3d2ae0e853a9985a13d28e263a8ebe52370e3768fa14276b4ba7ad49",
+    "hardware/src/koala_hardware/params.py": "20274c30c4d7acd50b089779731ff16d272703b3a150f4d87fd702272bebf22f",
+    "hardware/src/koala_hardware/assembly.py": "30d8b88a61357c93daf7ea221fc6f89e00b5b5cb478f5fc7da6ab5f1c95d5553",
+    "hardware/src/koala_hardware/body_plan.py": "d0c92ad8d26d0441914e9cf77872e28c482d05461074a90f219b25ab2599442f"
+  },
+  "samples": [
+    {
+      "label": "Current rest pose",
+      "carrier_direction_degrees_from_world_forward": -77.47040734746768,
+      "pitch_delta_degrees": 0.0,
+      "roll_axis_unit_vector": [
+        -0.9761840881783851,
+        2.220446049250313e-16,
+        -0.21694383141112894
+      ],
+      "intersection_mm3": {
+        "carrier_root": 0,
+        "carrier_pitch_case": 0,
+        "roll_case_root": 0.0,
+        "roll_case_pitch_case": 0.0
+      }
+    },
+    {
+      "label": "45\u00b0 down, rearward",
+      "carrier_direction_degrees_from_world_forward": -135,
+      "pitch_delta_degrees": 57.529592652532315,
+      "roll_axis_unit_vector": [
+        -0.7071067811865477,
+        2.220446049250313e-16,
+        0.7071067811865532
+      ],
+      "intersection_mm3": {
+        "carrier_root": 0.0,
+        "carrier_pitch_case": 0,
+        "roll_case_root": 0.0,
+        "roll_case_pitch_case": 0.0
+      }
+    },
+    {
+      "label": "Horizontal, rearward",
+      "carrier_direction_degrees_from_world_forward": -180,
+      "pitch_delta_degrees": 102.52959265253232,
+      "roll_axis_unit_vector": [
+        -1.1102230246251565e-16,
+        2.220446049250313e-16,
+        1.0
+      ],
+      "intersection_mm3": {
+        "carrier_root": 0.0,
+        "carrier_pitch_case": 0,
+        "roll_case_root": 0.0,
+        "roll_case_pitch_case": 0.0
+      }
+    },
+    {
+      "label": "45\u00b0 down, forward",
+      "carrier_direction_degrees_from_world_forward": -45,
+      "pitch_delta_degrees": -32.470407347467685,
+      "roll_axis_unit_vector": [
+        -0.7071067811865475,
+        2.220446049250313e-16,
+        -0.7071067811865532
+      ],
+      "intersection_mm3": {
+        "carrier_root": 1179.982301995162,
+        "carrier_pitch_case": 1243.560659102391,
+        "roll_case_root": 0.0,
+        "roll_case_pitch_case": 0.0
+      }
+    },
+    {
+      "label": "Horizontal, forward",
+      "carrier_direction_degrees_from_world_forward": 0,
+      "pitch_delta_degrees": -77.47040734746768,
+      "roll_axis_unit_vector": [
+        1.1102230246251565e-16,
+        2.220446049250313e-16,
+        -1.0
+      ],
+      "intersection_mm3": {
+        "carrier_root": 6182.160006887985,
+        "carrier_pitch_case": 8248.680855367622,
+        "roll_case_root": 0.0,
+        "roll_case_pitch_case": 0.0
+      }
+    }
+  ],
+  "rearward_45_pitch_samples": [
+    {
+      "delta_from_45_down_rearward_degrees": -20,
+      "intersection_mm3": {
+        "carrier_root": 0.0,
+        "carrier_pitch_case": 0,
+        "roll_case_root": 0.0,
+        "roll_case_pitch_case": 0.0
+      }
+    },
+    {
+      "delta_from_45_down_rearward_degrees": -10,
+      "intersection_mm3": {
+        "carrier_root": 0.0,
+        "carrier_pitch_case": 0,
+        "roll_case_root": 0.0,
+        "roll_case_pitch_case": 0.0
+      }
+    },
+    {
+      "delta_from_45_down_rearward_degrees": 0,
+      "intersection_mm3": {
+        "carrier_root": 0.0,
+        "carrier_pitch_case": 0,
+        "roll_case_root": 0.0,
+        "roll_case_pitch_case": 0.0
+      }
+    },
+    {
+      "delta_from_45_down_rearward_degrees": 10,
+      "intersection_mm3": {
+        "carrier_root": 0.0,
+        "carrier_pitch_case": 0,
+        "roll_case_root": 0.0,
+        "roll_case_pitch_case": 0.0
+      }
+    },
+    {
+      "delta_from_45_down_rearward_degrees": 20,
+      "intersection_mm3": {
+        "carrier_root": 0.0,
+        "carrier_pitch_case": 0,
+        "roll_case_root": 0.0,
+        "roll_case_pitch_case": 0.0
+      }
+    }
+  ]
+}

@@ -94,6 +94,25 @@ class IntegratedCADTests(unittest.TestCase):
                         ('reference_rear_roll_servo_right','pelvis_socket_right')):
                 self.assertLess(overlap(d[a],d[b]),.01,f'{pose}: {a} vs {b}')
 
+    def test_hip_carrier_refinement_preserves_horn_pads_and_servo_access(self):
+        from build123d import Plane,mirror
+        from koala_hardware.audit import clear
+        part=L.carrier(False)
+        forks=mirror(L.pitch_fork_frame()*(L.fork('drive')+L.fork('idler')),Plane.XY)
+        # A bevel following tangent edges can silently cut into a screw pad.
+        # Compare the complete horn region, including its web and recesses.
+        region=S._box(-30,30,-10,100,-P.SOCKET_PLATE_R-1,P.SOCKET_PLATE_R)
+        self.assertLess(volume((part-forks)&region)+volume((forks-part)&region),.01)
+        heads=mirror(L.pitch_fork_frame()*S.horn_head_envelopes(),Plane.XY)
+        for head in heads.solids(): clear(part,head,'hip pitch horn head/washer')
+        tf=L.roll_socket_frame(P.ROOT_ROLL_Y)
+        for name,probe in S.socket_keepouts()[1:]:
+            clear(part,tf*probe,'hip roll '+name)
+        for shift in (0,5,15,25,50):
+            clear(part,tf*Pos(0,0,shift)*S._parametric_case(),'hip roll insertion')
+        for head in (tf*S.ear_head_envelopes()).solids():
+            clear(part,head,'hip roll ear head')
+
     def test_main_limb_prints_are_connected(self):
         for length,hip in ((70,False),(85,True)):
             self.assertTrue(L.upper_link(length,hip).is_valid)
@@ -101,6 +120,43 @@ class IntegratedCADTests(unittest.TestCase):
         for length,front in ((100,True),(90,False)):
             self.assertTrue(L.lower_link(length,front).is_valid)
             self.assertEqual(len(L.lower_link(length,front).solids()),1)
+
+    def test_rear_links_keep_complete_horn_pads_and_driver_paths(self):
+        from build123d import Rot,Cylinder,Align
+        from koala_hardware.audit import clear
+        for part,tf in ((L.upper_link(85,True),Rot(Z=-90)),(L.lower_link(90),Pos())):
+            expected=tf*(L.fork('drive')+L.fork('idler'))
+            region=S._box(-40,40,-40,40,-12,P.SOCKET_PLATE_R)
+            # Retain every original pad/web; the outer return fillets may add
+            # material provided the independent head/driver checks still pass.
+            self.assertLess(volume((expected-part)&region),.01)
+            for head in (tf*S.horn_head_envelopes()).solids():clear(part,head,'rear horn head/washer')
+            for side in ('drive','idler'):
+                frame=tf*L.AXIS*S.plate_location(side)
+                for x in (-4.95,4.95):
+                    for y in (-4.95,4.95):
+                        clear(part,frame*Pos(x,y,4)*Cylinder(3.19,35,align=(Align.CENTER,Align.CENTER,Align.MIN)),
+                              'rear horn driver through stepped fork')
+
+    def test_rear_thigh_roll_and_knee_folding_clear_the_adjacent_joint(self):
+        from build123d import Rot
+        from koala_hardware.audit import clear
+        from unittest.mock import patch
+        thigh=L.upper_link(85,True);shank=L.lower_link(90)
+        tf=Pos(-P.ROOT_ROLL_Y,0,0)*Rot(Z=-90)
+        with patch.object(S,'case_model',return_value=None):fallback=S.socket_reference.__wrapped__()
+        for angle in (-30,-15,0,15,30):
+            clear(Rot(Y=angle)*thigh,tf*L.carrier(False),'thigh swing / carrier')
+            clear(Rot(Y=angle)*thigh,tf*L.roll_socket_frame(P.ROOT_ROLL_Y)*S.socket_reference(),'thigh swing / B case')
+            clear(Rot(Y=angle)*thigh,tf*L.roll_socket_frame(P.ROOT_ROLL_Y)*fallback,'thigh swing / measured B case')
+        for angle in (0,60,90,120):
+            lower=Pos(0,0,85)*Rot(X=angle)*shank
+            clear(lower,thigh,'folded knee / thigh')
+            clear(lower,L.knee_socket_frame(85,True)*S.socket_reference(),'folded knee / C case')
+
+    def test_motor_shank_keeps_insertion_and_all_six_fixing_approaches(self):
+        from koala_hardware.audit import check_motor_insertion
+        check_motor_insertion()
 
     def test_fastening_schedule_covers_twelve_joints_and_two_motors(self):
         from collections import Counter

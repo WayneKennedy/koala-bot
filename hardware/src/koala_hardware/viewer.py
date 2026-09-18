@@ -64,7 +64,7 @@ def _item(name: str, mesh: trimesh.Trimesh, colour: str, **extra) -> dict:
     }
 
 
-def _assembly_items(tmp: pathlib.Path, pose="quadruped") -> list[dict]:
+def _assembly_items(tmp: pathlib.Path, pose="quadruped", *, details=None, frames=None) -> list[dict]:
     items = []
     specs={d['name']:d for d in (f() for f in all_builders())}
     cores={}
@@ -77,7 +77,7 @@ def _assembly_items(tmp: pathlib.Path, pose="quadruped") -> list[dict]:
     # centre head sit in rotationally invariant, audited contact/relief zones.
     # Test the full conservative case here; retain all hardware for other pairs.
     clipped=S._parametric_case()
-    for ref,mount,tf in assembly.socket_frames(pose):
+    for ref,mount,tf in (assembly.socket_frames(pose) if frames is None else frames):
         key=ref.split('_')[1]
         joint=ref.split('_')[2]
         partner=key+'_'+({'pitch':'carrier','roll':'upper_arm' if key=='front' else 'thigh','elbow':'forearm','knee':'shank'}[joint])
@@ -89,11 +89,12 @@ def _assembly_items(tmp: pathlib.Path, pose="quadruped") -> list[dict]:
                 for c in range(4):matrix[r,c]=tf.wrapped.Transformation().Value(r+1,c+1)
             if side=='left':matrix=np.diag([1,-1,1,1])@matrix
             cores[ref.replace('_right','_'+side)]=(partner+'_'+side,core,tf*collision_case if side=='right' else mirror(tf*collision_case,Plane.XZ),matrix.T.flatten().tolist())
-    for i, (name, solid, colour, group, side) in enumerate(assembly.scene_details(pose=pose)):
+    for i, (name, solid, colour, group, side) in enumerate(assembly.scene_details(pose=pose) if details is None else details):
         ghost = name.startswith("reference")
         bought = any("_"+s+"_" in name for s in ("motor", "shaft", "hub", "wheel"))
         tag=name.removesuffix('_right').removesuffix('_left')
-        tag={'rear_carrier':'root_carrier','front_carrier':'root_carrier',
+        tag={'rear_carrier':'hip_carrier','front_carrier':'shoulder_carrier',
+             'pelvis_socket':'root_socket','shoulder_socket':'root_socket',
              'front_contact_pad':'front_contact_pad','rear_thigh':'thigh',
              'rear_shank':'shank','front_upper_arm':'upper_arm','front_forearm':'forearm'}.get(tag,tag)
         if tag.startswith('tray_spacer_'):tag='tray_spacer'
@@ -155,7 +156,7 @@ def build() -> pathlib.Path:
                    "track":P.BODY_TRACK_TARGET_MM,"stance":P.BODY_STANDING_HEIGHT_MM,
                    "hip_axes":2*__import__('koala_hardware.parts.links',fromlist=['rear_axis_y']).rear_axis_y(),
                    "joints":{name:assembly.joint_data(name) for name in poses},
-                   "status":"DEC-53/55: root modules with captive nuts; hip carrier below the pitch axis with the roll servo Bottom-down; thigh forks pass its socket. Front chain still DEC-49, awaiting DEC-54. Printable: root and hip parts unknown, rest assumed. Slider ranges are sampled CAD clearances, not calibrated servo limits."}}
+                   "status":"Rear thigh and shank revised; their printability is unknown. The proposed 45° rear socket mounting is in the separate rear-leg review; this full assembly retains the previous torso mount. Front chain still awaits DEC-54. Slider ranges are sampled CAD clearances, not calibrated servo limits."}}
     data = OUT / "scene.json"
     data.write_text(json.dumps(scene))
     shutil.copy(HTML, OUT / "index.html")

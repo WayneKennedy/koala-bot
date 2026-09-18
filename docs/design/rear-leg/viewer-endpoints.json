@@ -1,0 +1,120 @@
+{
+  "scene_sha256": "63e0c893db8d815b5c0d65930ca9ec4d61ef8b756ef0add54cd0019ee420b94e",
+  "engine_sha256": "0b3e0a7902d1a839c8fc142580751b86c2e70cd7e97c0f6abfd330d7236d4a91",
+  "scope": "Imported case plus measured horns; all rear solids and both legs. Nominal pocket contact only is allowed.",
+  "checks": [
+    {
+      "pose": "quadruped",
+      "axis": "pitch",
+      "endpoint": "min",
+      "degrees": -51,
+      "collisions": []
+    },
+    {
+      "pose": "quadruped",
+      "axis": "pitch",
+      "endpoint": "max",
+      "degrees": 173.75,
+      "collisions": []
+    },
+    {
+      "pose": "quadruped",
+      "axis": "roll",
+      "endpoint": "min",
+      "degrees": -5.5,
+      "collisions": []
+    },
+    {
+      "pose": "quadruped",
+      "axis": "roll",
+      "endpoint": "max",
+      "degrees": 180,
+      "collisions": []
+    },
+    {
+      "pose": "quadruped",
+      "axis": "knee",
+      "endpoint": "min",
+      "degrees": -96.5,
+      "collisions": []
+    },
+    {
+      "pose": "quadruped",
+      "axis": "knee",
+      "endpoint": "max",
+      "degrees": 56.25,
+      "collisions": []
+    },
+    {
+      "pose": "quadruped",
+      "roll": 15,
+      "pitch": -30,
+      "knee_delta": 15,
+      "collisions": []
+    },
+    {
+      "pose": "quadruped",
+      "roll": 30,
+      "pitch": -45,
+      "knee_delta": 30,
+      "collisions": []
+    },
+    {
+      "pose": "upright",
+      "axis": "pitch",
+      "endpoint": "min",
+      "degrees": -125.5,
+      "collisions": []
+    },
+    {
+      "pose": "upright",
+      "axis": "pitch",
+      "endpoint": "max",
+      "degrees": 99.5,
+      "collisions": []
+    },
+    {
+      "pose": "upright",
+      "axis": "roll",
+      "endpoint": "min",
+      "degrees": -5,
+      "collisions": []
+    },
+    {
+      "pose": "upright",
+      "axis": "roll",
+      "endpoint": "max",
+      "degrees": 180,
+      "collisions": []
+    },
+    {
+      "pose": "upright",
+      "axis": "knee",
+      "endpoint": "min",
+      "degrees": -91.25,
+      "collisions": []
+    },
+    {
+      "pose": "upright",
+      "axis": "knee",
+      "endpoint": "max",
+      "degrees": 61.5,
+      "collisions": []
+    },
+    {
+      "pose": "upright",
+      "roll": 15,
+      "pitch": -30,
+      "knee_delta": 15,
+      "collisions": []
+    },
+    {
+      "pose": "upright",
+      "roll": 30,
+      "pitch": -45,
+      "knee_delta": 30,
+      "collisions": []
+    }
+  ],
+  "all_passed": true
+}

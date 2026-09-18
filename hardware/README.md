@@ -8,6 +8,13 @@ assembly, dimensions and remaining acceptance gates:
 
 ## Current CAD
 
+**DEC-57/58:** the proposed rear A/B mount tilts the pitch socket 45° and
+retains the refined carrier. The thigh has a filleted roll yoke and a knee
+case clocked 90° about its shaft; the shank has an extended open fork and
+filleted motor supports. [Rear-leg review](../docs/design/rear-leg/README.md)
+contains its clearance evidence and separate viewer. The main assembly
+retains the previous torso flange while the inclined torso walls are deferred.
+
 `params.py` supplies the body and interface dimensions. `servo_iface.py`
 implements the four-ear SO-101 saddle, flat horn interfaces and hardware
 references. `parts/links.py` builds integrated upper/lower links and orthogonal
@@ -57,10 +64,15 @@ DEC-32 analytical study; it does not size the current robot.
 **DEC-46/48:** sliders use pose-dependent mechanical-clearance ranges for the
 printed parts and nominal hardware. The static build warms geometry/engine-hashed
 caches using Node.js. A browser worker recomputes bounds after each change.
-The search uses 0.25° samples and a 1° reserve before the first obstruction;
+The search uses 0.25° samples and a 2° reserve before the first obstruction;
 these are not calibrated servo or loaded operating limits. Ground contact and
-complete harnesses are outside the search. Initial BREP endpoint checks are in
-`docs/design/manufacturing/travel-endpoints.json`.
+complete harnesses are outside the search. The earlier
+`docs/design/manufacturing/travel-endpoints.json` predates the current links;
+current rear-proposal checks are in `docs/design/rear-leg/viewer-endpoints.json`.
+
+Build the rear proposal with `uv run python -m koala_hardware.rear_leg_review`;
+the existing server then exposes it at
+[rear-leg/](https://blake.tail13a0c0.ts.net:8443/rear-leg/).
 
 [Blake viewer](https://blake.tail13a0c0.ts.net:8443/) is the canonical instance
 (DEC-35), served by [systemd/koala-viewer.service](systemd/koala-viewer.service).

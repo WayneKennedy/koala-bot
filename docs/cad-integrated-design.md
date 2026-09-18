@@ -3,11 +3,25 @@
 **DEC-49/50 (2026-09-11)** implements the manufacturing refinement of the accepted
 DEC-44 layout. Enclosing sockets, rounded/tapered fork roots and link transitions,
 independent root modules, flat-section forearms and replaceable TPU contact pads
-are production CAD. Common unbevelled carriers now serve all four roots;
-the shared socket has distinct drive/idler recesses. [Part review and printability tags](part-design-review.md).
+are production CAD. DEC-53/55/56 subsequently replace the root modules and
+rear carriers; the shoulders retain the DEC-49 carrier. The shared socket
+has distinct drive/idler recesses. [Part review and printability tags](part-design-review.md).
 
-Every current print is `assumed` printable, supported by a declared orientation,
-reviewed support access and a successful local slice of its exported STL.
+**DEC-57/58, 2026-09-15:** the selected rear A/B proposal mounts the retained
+pitch socket on a **45° inclined torso face** and keeps the DEC-56 carrier.
+The [rear-leg review](design/rear-leg/README.md) uses that proposal; the main
+assembly still uses the previous torso flange. The production thigh now has
+a stepped, filleted roll yoke with unobstructed horn fixings and a knee case
+clocked 90° about its shaft. The shank has an extended open knee fork and
+filleted motor supports. The 85/90 mm centres, saved feet and 220 mm neutral
+track remain unchanged. Local 1° solid-CAD samples clear ±30° thigh roll and
+0–120° knee flexion. Full rear hardware checks and their scope are recorded in
+the review; a locomotion trajectory has not been accepted.
+
+The revised root modules, hip carriers, thighs and shanks are `unknown` printable;
+the other parts retain their recorded `assumed` tags. Earlier revisions have
+declared orientations, reviewed support access and local slices; those slices
+apply only to the matching STL hashes.
 [Slice records and layer images](design/manufacturing/README.md) are in the docs
 structure. Nothing in this revision is physically printed, fitted or load-tested.
 The unresolved head placeholder is omitted from structural CAD and the viewer.
@@ -20,7 +34,9 @@ harnesses and guards remain detailed design work.
   centres. Forearms retain the **100 mm** elbow-to-contact-centre reach
   (75 mm forearm + 25 mm hand). The **Ø32 mm** contact envelope is now a separate
   rounded TPU pad; no wrist articulation is added.
-- Each thigh/upper arm integrates its proximal fork, rounded spine, tapered
+- Each thigh/upper arm integrates its proximal fork and distal socket. The
+  DEC-58 thigh uses the stepped roll yoke and sideways knee case described
+  above; the upper arm retains its rounded spine and tapered
   transition and enclosing four-ear distal socket. The accepted pocket,
   measured ear positions and horn interfaces are preserved. Side-wall returns
   support the case, and the open end admits the servo Bottom first.
@@ -47,12 +63,21 @@ harnesses and guards remain detailed design work.
 - **DEC-55 hip carrier** replaces the rear pair: body below the pitch axis,
   roll servo Bottom-down beside the pitch servo, roll centres 128.1 mm apart,
   flat back on the bed; the thigh's forks pass the roll socket (see DEC-55).
+  **DEC-56** narrows the block to the 16 mm fork neck, adds tapered 2 mm
+  inner-edge bevels, R6.3 fork-root and R5 socket-root fillets, plus R1.5 at
+  the narrow socket lip. The horn pads and servo datums are unchanged.
+  [Current carrier and validation](design/hip-carrier-refinement.json).
+  The [45° socket-mount proposal](design/carrier-orientation/README.md) is
+  held under DEC-57 and implemented in the separate rear-leg review. The old
+  torso mount still limits the main assembly. Root clearance alone does not
+  establish a gait.
   The shoulder pair is still the DEC-49 carrier (`shoulder_carrier_left/right`),
   common flat back on the bed, until DEC-54's chain replaces it. *(DEC-49
   text follows.)* The rear flange previously moved 5.885 mm into the torso
   (Z=46 mm) with rear cases turned 90° and right-angle socket modules;
   that arrangement is gone.
-  The upper link's roll fork remains perpendicular to its elbow/knee socket.
+  The upper link's roll shaft remains perpendicular to its elbow/knee shaft;
+  DEC-58 clocks the rear case around that unchanged knee shaft.
 - The rigid torso preserves **150 mm** root spacing, shape deferred (DEC-53).
   Sixteen M3×16 root screws pass its flanges into the four socket modules;
   the front rails sit at X = 10–20 mm to clear them. A rounded removable tray and
@@ -96,9 +121,10 @@ it is not held world-horizontal through arbitrary motion. There is no yaw joint.
 
 Both root axes intersect as geometric lines. The servo bodies sit at different
 lateral positions: ±24 mm for pitch and ±74.5 mm for both hip and shoulder
-roll. There is no added link length between their axes. The rear roll centres
-move inward 0.1 mm per side to match the front print; motor-face offsets absorb
-the change so wheel track stays 220 mm. The measured servo
+roll in DEC-49; DEC-55 places rear roll at ±64.05 mm, while the front stays
+at ±74.5 mm. There is no added link length between the intersecting axes.
+Motor-face offsets absorb the rear spacing change so wheel track stays
+220 mm. The measured servo
 interfaces and twelve-actuator budget are retained.
 
 ## Corrected servo interface
@@ -189,7 +215,7 @@ access. Unit tests check the joint axes, solid/mesh integrity, fastening
 schedule and TPU/rear-wheel ground contacts.
 
 The viewer uses those same joint transforms. It searches the reachable interval
-from the current configuration in **0.25° increments**, with **1° additional
+from the current configuration in **0.25° increments**, with **2° additional
 reserve** before the first detected intersection. Changing a slider or body
 pose recomputes the grouped bounds; all four limbs must clear. Geometry/hardware
 and hidden parts still participate in the search. Servo cases use the
@@ -202,8 +228,14 @@ carrier geometry or travel. Body-master head outlines show sizing intent only.
 This is a finite-resolution mesh search, not continuous swept-volume proof.
 The ±180° search ceiling is not a calibrated servo setting. Floor contact,
 complete cables/guards, tolerances and loaded motion are not established by the
-slider bounds. Initial limits have independent BREP endpoint checks recorded
-in [travel-endpoints.json](design/manufacturing/travel-endpoints.json).
+slider bounds. [travel-endpoints.json](design/manufacturing/travel-endpoints.json)
+records an earlier revision and does not validate the current root/carrier.
+The earlier [DEC-56 checks](design/hip-carrier-refinement.json) found small
+imported-STEP intersections at the then-displayed forward pitch minima.
+DEC-58 increases the reserve to 2° and records separate
+[rear-proposal endpoint checks](design/rear-leg/viewer-endpoints.json).
+The old manufacturing endpoint report does not validate today's full chassis
+or arbitrary slider combinations; continuous travel remains OQ-21/22.
 
 The static build includes geometry- and engine-hashed clearance caches so it
 opens without repeating the full initial search. The browser recomputes changed

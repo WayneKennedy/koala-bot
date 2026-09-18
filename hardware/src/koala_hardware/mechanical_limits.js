@@ -1,11 +1,13 @@
 /* SPDX-License-Identifier: CERN-OHL-S-2.0
  * Pose-dependent, grouped joint clearance search for the static viewer.
- * Surfaces are checked at 0.25 degree increments with a 1 degree reserve before the first hit.
+ * Surfaces are checked at 0.25 degree increments with a 2 degree reserve before the first hit.
  * Start from the current clear pose and stop at the FIRST obstruction.
  * This is finite-resolution CAD inspection, not a certified swept-volume test.
  */
 importScripts('three-r128.min.js', 'three-mesh-bvh-0.5.23.js');
-const STEP = .25, MARGIN = 0, RESERVE = 1, CEILING = 180;
+// One degree left 0.013/0.020 mm3 of imported-case contact at the rear pitch
+// endpoints. Two degrees clears those independent solid-CAD checks (DEC-58).
+const STEP = .25, MARGIN = 0, RESERVE = 2, CEILING = 180;
 const LEVEL = {fixed:0,pitch:1,roll:2,bend:3};
 let items=[], pairs=[], joints={}, cache=new Map();
 const reflect=new THREE.Matrix4().makeScale(1,-1,1);
@@ -86,7 +88,7 @@ function bounds(q) {
         const next={...q,[axis]:Math.round(angle*100)/100};
         stop=blocked(next);if(stop)break;last=next[axis];
       }
-      // One additional sample of angular reserve before the first obstruction.
+      // Angular reserve before the first detected obstruction.
       if(stop)last=q[axis]+sign*Math.max(0,Math.abs(last-q[axis])-RESERVE);
       limits.push(last);stops.push(stop);
     }

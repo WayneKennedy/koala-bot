@@ -261,8 +261,24 @@ ROOT_MODULE_GAP = 0.6       # removable left/right socket plates (retained as a 
 # DEC-55 hip carrier (option 2): body below the pitch axis, roll servo B Bottom-down
 # beside the pitch servo's drive fork pad; the thigh's forks pass B's socket.
 ROOT_ROLL_Y = ROOT_PITCH_Y + SOCKET_DRIVE_FACE + SOCKET_PAD_T + SOCKET_CASE_Y/2 + SOCKET_CLEAR + 2.0  # [DESIGN DEC-55] hip roll centre, 64.05
-HIP_BLOCK_HALF_W = 12.0     # [DESIGN DEC-55] carrier block half-width, fore-aft
+HIP_BLOCK_HALF_W = SOCKET_ARM_HALF_W  # [DESIGN DEC-56] 16 mm block, flush with the fork necks
+HIP_FORK_ROOT_R = SOCKET_PAD_T       # [DESIGN DEC-56] R6.3 inside each pitch fork root
+HIP_SOCKET_ROOT_R = SOCKET_WALL     # [DESIGN DEC-56] R5 external block-to-socket roots
+HIP_SOCKET_LIP_R = 1.5              # [DESIGN DEC-56] small return at the 2 mm socket lip; 0.5 mm to pocket
+HIP_EDGE_BEVEL = 2.0                # [DESIGN DEC-56] 45-degree bevels, tapered before the root fillets
 HIP_FORK_CLEAR = 1.0        # [DESIGN DEC-55] thigh fork cheeks outside B's socket walls
 HIP_FORK_CLIP_Z = 15.0      # [DESIGN DEC-55] pad tails end above B's socket wall tops (18.1)
+REAR_SOCKET_TILT = -45.0   # [PROPOSED DEC-57] rear torso face, body Y; isolated rear-leg review
+THIGH_KNEE_CLOCK = 90.0    # [DESIGN] about the knee shaft; Bottom toward native +Y
+THIGH_CHEEK_CLEAR = 4.0    # [DESIGN] permits R6.3 stepped fork roots outside B's socket
+THIGH_JOIN_START = 10.5    # [DESIGN] beyond the complete proximal horn pads
+THIGH_PAD_TAIL_Z = 13.5    # [DESIGN] tail corners remain inside the measured Back-pad sweep
+THIGH_PAD_RETURN_R = 1.5  # [DESIGN] outer pad steps; starts beyond the head/driver envelopes
+THIGH_BRIDGE_START = 60.0  # [DESIGN] clears the carrier through local +/-30 degree roll
+REAR_FORK_ROOT_R = 6.3     # [DESIGN] full fork thickness at internal structural roots
+SHANK_BRIDGE_START = 46.0  # [DESIGN] long open knee fork for 120 degree flexion
+SHANK_BRIDGE_END = 56.0
+SHANK_OUTER_STEP_R = 2.0  # [DESIGN] 2.25 mm motor-face offset beyond the drive fork
+REAR_MOTOR_ROOT_R = 5.0    # [DESIGN] face/ring thickness at motor support joins
 FRONT_PAD_START = 96.0     # 100 mm nominal ball centre, truncated top
 FRONT_PAD_NUT_Z = 92.0

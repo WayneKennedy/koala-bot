@@ -2,7 +2,7 @@
 """DEC-43 integral limbs with DEC-41 root joints. Native X = lateral; +Z down link."""
 from functools import lru_cache
 from math import cos, sin, radians
-from build123d import Pos, Rot, Plane, Sphere, Cylinder, Align, RectangleRounded, extrude, Polygon, Cone, RegularPolygon, loft, Circle, fillet, Axis, mirror
+from build123d import Pos, Rot, Plane, Sphere, Cylinder, Align, RectangleRounded, extrude, Polygon, Cone, RegularPolygon, loft, Circle, fillet, Axis, mirror, GeomType, Vertex
 from .. import params as P, servo_iface as S
 
 AXIS=Pos(0,0,-P.SOCKET_AXIS_Z)
@@ -34,24 +34,52 @@ def upper_link(length,hip=False):
                     Pos(0,0,bottom)*RectangleRounded(36,24,3)])
         part+=Pos(0,0,bottom)*S.saddle()
         return part
-    # DEC-55 thigh: B stands Bottom-down in the hip carrier, so the forks cannot
-    # pass its nose. Pads grip the horn and idler, short tails stop above B's
-    # socket walls, cheeks step outboard of the walls and run down to a slab that
-    # passes under the socket floor and is the knee socket's shelf.
-    clip=P.HIP_FORK_CLIP_Z; sx=P.SOCKET_CASE_X/2+P.SOCKET_CLEAR+P.SOCKET_WALL+P.HIP_FORK_CLEAR   # 23.45 along the roll axis
+    return rear_thigh(length)
+
+
+def knee_socket_frame(length,hip=False):
+    """Clock the rear case without changing the lateral knee shaft or centre."""
+    return Pos(0,0,length)*Rot(X=P.THIGH_KNEE_CLOCK if hip else 0)*AXIS
+
+
+def _root_fillet(part,selector,radius,count,label):
+    edges=[e for e in part.edges() if e.geom_type==GeomType.LINE and selector(e)]
+    if len(edges)!=count: raise ValueError(f'{label}: expected {count} edges, got {len(edges)}')
+    return fillet(edges,radius)
+
+
+@lru_cache
+def rear_thigh(length):
+    """Stepped roll yoke and sideways knee socket; joint centres retained."""
+    clip=P.THIGH_PAD_TAIL_Z
+    sx=P.SOCKET_CASE_X/2+P.SOCKET_CLEAR+P.SOCKET_WALL+P.THIGH_CHEEK_CLEAR
     t=P.SOCKET_PAD_T; a=P.SOCKET_ARM_HALF_W
-    pads=(Rot(Z=-90)*clevis())&S._box(-30,30,-30,30,-P.SOCKET_PLATE_R-1,clip)
-    part=pads
-    slab_top=P.SOCKET_AXIS_Z+P.SOCKET_SHELF+2.0        # 42.1: 2 mm under B's socket floor
+    # New structure starts beyond the entire horn region; adding cheeks must
+    # never fill the four lower bores/head recesses again.
+    part=(Rot(Z=-90)*(fork('drive')+fork('idler')))&S._box(-30,30,-40,40,-P.SOCKET_PLATE_R-1,clip)
+    bottom=length-(P.SOCKET_CASE_Y/2+P.SOCKET_CLEAR+2)
+    bridge=P.THIGH_BRIDGE_START; back=P.SOCKET_AXIS_Z+P.SOCKET_SHELF
     for sign in (-1,1):
-        cheek=S._box(-a,a,min(sign*sx,sign*(sx+t)),max(sign*sx,sign*(sx+t)),clip-10,bottom)
-        pad_face=P.SOCKET_DRIVE_FACE if sign<0 else -P.SOCKET_IDLER_FACE   # pad inner faces after Rot(Z=-90): drive at -y, idler at +y
-        join=S._box(-a,a,min(sign*pad_face,sign*(sx+t)),max(sign*pad_face,sign*(sx+t)),clip-10,clip)
+        cheek=S._box(-a,a,min(sign*sx,sign*(sx+t)),max(sign*sx,sign*(sx+t)),P.THIGH_JOIN_START,bottom)
+        pad_face=P.SOCKET_DRIVE_FACE if sign<0 else -P.SOCKET_IDLER_FACE
+        join=S._box(-a,a,min(sign*pad_face,sign*(sx+t)),max(sign*pad_face,sign*(sx+t)),P.THIGH_JOIN_START,clip)
         part+=cheek+join
-    part+=S._box(-a,a,-(sx+t),sx+t,slab_top,bottom)
-    x,y=S._socket_bounds(); y+=2.0
-    part+=S._box(-(x+P.SOCKET_WALL),x+P.SOCKET_WALL,-y,y,slab_top,bottom)   # slab fills to the knee socket outline
-    part+=Pos(0,0,bottom)*S.saddle()
+    part+=S._box(-a,a,-sx-t,back,bridge,bottom)
+    part+=knee_socket_frame(length,True)*S.saddle()
+    for z,ys in [(clip,(-sx,sx)),(bridge,(-sx,sx)),(bridge,(sx+t,))]:
+        part=_root_fillet(part,lambda e:abs(e.length-2*a)<1e-5 and abs(e.center().Z-z)<1e-5
+                          and any(abs(e.center().Y-y)<1e-5 for y in ys),
+                          P.REAR_FORK_ROOT_R,len(ys),'thigh yoke root')
+    part=_root_fillet(part,lambda e:abs(abs(e.center().X)-a)<1e-5 and abs(e.center().Z-bottom)<1e-5
+                      and abs(e.length-(P.SOCKET_DEPTH+P.SOCKET_SHELF))<1e-5,
+                      P.SOCKET_WALL,2,'thigh knee-socket roots')
+    # The 2 mm side return limits this lip radius, as on the hip carrier.
+    lip=P.SOCKET_AXIS_Z-P.SOCKET_DEPTH
+    part=_root_fillet(part,lambda e:abs(e.center().Y-lip)<1e-5 and abs(e.center().Z-bottom)<1e-5
+                      and abs(e.center().X)<1e-5,P.HIP_SOCKET_LIP_R,1,'thigh socket lip')
+    for y in (-P.SOCKET_DRIVE_FACE-t,-P.SOCKET_IDLER_FACE+t):
+        part=_root_fillet(part,lambda e:abs(e.center().Y-y)<1e-5 and abs(e.center().Z-P.THIGH_JOIN_START)<1e-5
+                          and abs(e.length-2*a)<1e-5,P.THIGH_PAD_RETURN_R,1,'thigh outer pad return')
     return part
 
 
@@ -78,20 +106,36 @@ def lower_link(length,front=False):
         part-=nut+S._box(0,12,-2.9,2.9,P.FRONT_PAD_NUT_Z,P.FRONT_PAD_NUT_Z+2.6)
         part-=Pos(0,0,90)*Cylinder(P.CLEAR_HOLE_M3/2,15,align=(Align.CENTER,Align.CENTER,Align.MIN))
         return part
-    face=motor_face(front); t=P.MOTOR_MOUNT_T
+    return motor_shank(length)
+
+
+@lru_cache
+def motor_shank(length):
+    """Open knee fork, filleted spine, 37D face and axial body support."""
+    face=motor_face(False); t=P.MOTOR_MOUNT_T
     inner=face-P.MOTOR_SUPPORT_OFFSET
-    part=clevis()
-    # The face plate and inner body ring are joined above the motor body.
-    # Open axial insertion from inboard, face screws before hub/wheel.
+    a=P.SOCKET_ARM_HALF_W; start=P.SHANK_BRIDGE_START; end=P.SHANK_BRIDGE_END
+    # Crop generic flared tails before extending the straight fork necks.
+    part=(fork('drive')+fork('idler'))&S._box(-30,30,-30,30,-P.SOCKET_PLATE_R-1,20)
+    for lo,hi in [(P.SOCKET_IDLER_FACE-P.SOCKET_PAD_T,P.SOCKET_IDLER_FACE),
+                  (P.SOCKET_DRIVE_FACE,P.SOCKET_DRIVE_FACE+P.SOCKET_PAD_T)]:
+        part+=S._box(lo,hi,-a,a,20,end)
+    part+=S._box(P.SOCKET_IDLER_FACE-P.SOCKET_PAD_T,max(face+t,P.SOCKET_DRIVE_FACE+P.SOCKET_PAD_T),-a,a,start,end)
+    x0=inner-P.MOTOR_SUPPORT_T; x1=face+t
+    top=length-P.MOTOR_DIA/2-1
+    part+=S._box(x0,x1,-a,a,start,top)
     part+=S._x_hole(face,face+t,0,length,2*P.MOTOR_MOUNT_R)
     part+=S._x_hole(inner-P.MOTOR_SUPPORT_T,inner,0,length,2*P.MOTOR_MOUNT_R)
-    x0=inner-P.MOTOR_SUPPORT_T; x1=face+t
-    part+=Pos((x0+x1)/2,0,P.LINK_BRIDGE_START)*extrude(
-        RectangleRounded(x1-x0,16,3),amount=length-P.MOTOR_DIA/2-1-P.LINK_BRIDGE_START)
-    # Short webs connect fork shoulders to the offset rear motor support.
-    x0=min(inner-P.MOTOR_SUPPORT_T,P.SOCKET_IDLER_FACE)
-    x1=max(face+t,P.SOCKET_DRIVE_FACE)
-    part+=Pos((x0+x1)/2,0,18)*extrude(RectangleRounded(x1-x0,20.8,3),amount=14)
+    # Fillet structural unions before cutting the insertion bore and screw
+    # patterns, so added root material cannot obstruct those interfaces.
+    meet=length-(P.MOTOR_MOUNT_R**2-a*a)**.5
+    for y in (-a,a):
+        part=_root_fillet(part,lambda e:abs(e.length-t)<1e-5 and abs(e.center().Y-y)<1e-5
+                          and abs(e.center().Z-meet)<1e-5,P.REAR_MOTOR_ROOT_R,2,'motor ring/spine roots')
+    for z,xs,r in [(start,(P.SOCKET_IDLER_FACE,P.SOCKET_DRIVE_FACE),P.REAR_FORK_ROOT_R),
+                   (end,(x0,),P.REAR_MOTOR_ROOT_R),(top,(face,inner),P.REAR_MOTOR_ROOT_R)]:
+        part=_root_fillet(part,lambda e:abs(e.length-2*a)<1e-5 and abs(e.center().Z-z)<1e-5
+                          and any(abs(e.center().X-x)<1e-5 for x in xs),r,len(xs),'shank root')
     part-=S._x_hole(inner-P.MOTOR_SUPPORT_T-1,face,0,length,
                     P.MOTOR_DIA+2*P.CLEAR_POCKET)
     part-=S._x_hole(face-1,face+t+1,0,length,P.MOTOR_FACE_BOSS_DIA+1)
@@ -99,6 +143,9 @@ def lower_link(length,front=False):
         a=radians(i*60+30)
         part-=S._x_hole(face-1,face+t+1,P.MOTOR_BCD/2*cos(a),
                         length+P.MOTOR_BCD/2*sin(a),P.CLEAR_HOLE_M3)
+    part=_root_fillet(part,lambda e:abs(e.center().X-(P.SOCKET_DRIVE_FACE+P.SOCKET_PAD_T))<1e-5
+                      and abs(e.center().Z-start)<1e-5 and abs(e.length-2*P.SOCKET_ARM_HALF_W)<1e-5,
+                      P.SHANK_OUTER_STEP_R,1,'shank outer fork step')
     return part
 
 
@@ -119,10 +166,9 @@ def carrier(front=False):
     """Root carrier: pitch-horn clevis to roll-servo socket.
 
     front: the DEC-49 shoulder carrier, unchanged until DEC-54's chain replaces it.
-    rear: DEC-55 hip carrier. Clevis bridge under A's nose, one block from the fork
-    tails to B's socket, B Bottom-down beside A's drive pad, flat back at the
-    bottom. Nothing on the torso side of the pitch axis, so the sweep clears
-    the root module and A at every pitch the poses use."""
+    rear: DEC-55/56 hip carrier. Fork-width block below A's nose, filleted
+    structural joins and bevelled inner block edges. B stands Bottom-down;
+    the block and socket floor retain one flat build face."""
     if front:
         axis_y=P.BODY_SHOULDER_WIDTH_MM/2
         edge=axis_y-P.SOCKET_CASE_Y/2-1.5
@@ -131,13 +177,51 @@ def carrier(front=False):
         return (pitch_fork_frame()*clevis()+
                 S._box(-8,8,inner,edge,floor,-25)+
                 roll_socket_frame(axis_y,True)*S.saddle())
-    axis_y=P.ROOT_ROLL_Y; w=P.HIP_BLOCK_HALF_W
+    return hip_carrier()
+
+
+@lru_cache
+def hip_carrier():
+    """DEC-56 refinement of the rear carrier, keeping both servo interfaces."""
+    w=P.HIP_BLOCK_HALF_W
+    top=P.SOCKET_AXIS_Z-P.SOCKET_DEPTH  # flush with the roll socket wall ends
     floor=P.SOCKET_AXIS_Z+P.SOCKET_SHELF
     inner=P.ROOT_PITCH_Y+P.SOCKET_IDLER_FACE-P.SOCKET_PAD_T
-    edge=axis_y-P.SOCKET_CASE_Y/2-P.SOCKET_CLEAR-2.0+1.0
-    clevis_nose=mirror(pitch_fork_frame()*clevis(),Plane.XY)
-    return (clevis_nose+S._box(-w,w,inner,edge,P.LINK_BRIDGE_START,floor)+
-            roll_socket_frame(axis_y)*S.saddle())
+    socket_y=P.ROOT_ROLL_Y-P.SOCKET_CASE_Y/2-P.SOCKET_CLEAR-2.0
+    roots=(P.ROOT_PITCH_Y+P.SOCKET_IDLER_FACE,P.ROOT_PITCH_Y+P.SOCKET_DRIVE_FACE)
+    # The generic fork tails flare below this junction. Crop them before
+    # adding the narrower block, so buried tails cannot protrude through it.
+    forks=mirror(pitch_fork_frame()*(fork('drive')+fork('idler')),Plane.XY)
+    r=P.SOCKET_PLATE_R+1
+    forks &= S._box(-r,r,inner-1,socket_y+1,-r,top)
+    part=(forks+S._box(-w,w,inner,socket_y+1,top,floor)+
+          roll_socket_frame(P.ROOT_ROLL_Y)*S.saddle())
+    # Fillet the assembled structural joins, selected by their datums rather
+    # than OCC edge numbers. Mating pocket corners remain the accepted saddle.
+    edges=[e for e in part.edges() if e.geom_type==GeomType.LINE
+           and abs(e.center().Z-top)<1e-5 and abs(e.length-2*w)<1e-5
+           and any(abs(e.center().Y-y)<1e-5 for y in roots)]
+    if len(edges)!=2: raise ValueError('Hip carrier: expected two inner fork roots')
+    part=fillet(edges,P.HIP_FORK_ROOT_R)
+    edges=[e for e in part.edges() if e.geom_type==GeomType.LINE
+           and abs(abs(e.center().X)-w)<1e-5 and abs(e.center().Y-socket_y)<1e-5
+           and abs(e.length-(floor-top))<1e-5]
+    if len(edges)!=2: raise ValueError('Hip carrier: expected two block/socket roots')
+    part=fillet(edges,P.HIP_SOCKET_ROOT_R)
+    edges=[e for e in part.edges() if e.geom_type==GeomType.LINE
+           and abs(e.center().X)<1e-5 and abs(e.center().Y-socket_y)<1e-5
+           and abs(e.center().Z-top)<1e-5]
+    if len(edges)!=1: raise ValueError('Hip carrier: expected the outer fork/socket lip')
+    part=fillet(edges,P.HIP_SOCKET_LIP_R)
+    # Explicit tapered bevels stop at the fillet feet. A tangent-chain
+    # chamfer would continue up the forks and cut the horn-pad edges.
+    b=P.HIP_EDGE_BEVEL
+    start,end=roots[0]+P.HIP_FORK_ROOT_R,roots[1]-P.HIP_FORK_ROOT_R
+    if end-start<=2*b or not 0<b<w: raise ValueError('Hip carrier: bevels exceed the clear bridge')
+    profile=Plane.XZ*Polygon((w-b,top),(w,top+b),(w,top),align=None)
+    bevel=loft([Vertex(w,start,top),Pos(0,start+b,0)*profile,
+                Pos(0,end-b,0)*profile,Vertex(w,end,top)],ruled=True)
+    return part-bevel-mirror(bevel,Plane.YZ)
 
 
 HORN_FASTENERS={'M3x6 supplied horn-square pan screw (bottoming to verify)':8,
@@ -154,7 +238,7 @@ def spec(name,part,qty=1,orientation=None,fasteners=None,notes='',handed=False,m
 
 
 def upper_spec(name,length,hip=False):
-    notes=(f'One {length:g} mm thigh (DEC-55): horn/idler pads, short tails, cheeks outboard of the roll socket, slab into the knee shelf. '
+    notes=(f'One {length:g} mm thigh: stepped roll yoke with R6.3 roots and sideways knee socket. '
            'Orientation to review; no slice yet.' if hip else
            f'One {length:g} mm link: roll-axis horn forks, bridge, spine and perpendicular knee/elbow saddle. '
            'Outer horn pad on bed; remove supports from inner fork and saddle. No structural seam bolts.')
@@ -166,8 +250,8 @@ def upper_spec(name,length,hip=False):
 def lower_spec(name,length,front):
     return spec(name,lower_link(length,front),handed=True,
         fasteners=HORN_FASTENERS|{'M3x8 motor-face screw (depth to verify)':6},
-        notes=f'One {length:g} mm link: both forks and integrated 37D face/body support. '+
-        'Slide motor from inboard; install face screws before hub and wheel. Remove support from body bore.', printable='assumed')
+        notes=f'One {length:g} mm link: extended open knee fork, R6.3 fork roots, R5 motor-support roots. '+
+        'Slide motor from inboard; install face screws before hub and wheel. Remove support from body bore. No slice of this revision.', printable='unknown')
 
 
 def build_thigh(): return upper_spec('thigh',P.BODY_THIGH_MM,hip=True)
@@ -210,7 +294,9 @@ def build_root_carrier():
 def build_hip_carrier():
     return spec('hip_carrier',carrier(False),qty=1,handed=True,orientation=Rot(X=180),
         fasteners=HORN_FASTENERS|{'M2x5 self-tapper into servo ear':4},
-        notes='DEC-55 hip carrier: clevis on the pitch horn, block, roll socket alongside with the servo Bottom down. '
+        notes='DEC-55/56 hip carrier: fork-width 16 mm block, tapered 2 mm inner-edge bevels, '
+        'R6.3 fork-root and R5 socket-root fillets, R1.5 at the narrow socket lip. '
+        'Roll socket alongside with the servo Bottom down. '
         f'Roll centres {2*P.ROOT_ROLL_Y:.1f} mm apart. Flat back (block and socket floor) on the bed, forks rising; '
         'accessible local hole-roof supports. Fit all four roll ear screws before the thigh.', printable='unknown')
 
