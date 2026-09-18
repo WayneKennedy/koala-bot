@@ -279,6 +279,15 @@ Unresolved. Resolve -> move to [`decisions.md`](decisions.md).
   access and load/creep on the revised parts. No repeat Gauge_0 is required.
   [Part review](part-design-review.md).
 
+- **OQ-20 — Pace and scope.** (Owner, 2026-09-18.) The design continues as a
+  **background task**, paced by the owner's frontier-AI token limits rather than by the
+  project. The owner doubts the ambition of a unique limb geometry — the CAD is far from
+  done and no part of the current revision has been printed — and keeps returning to
+  "build something proven that you can print and assemble as easily as SO-ARM was".
+  Not a pivot and not a parking: koala-bot stays active at background pace. Which proven
+  build, if any, runs alongside it is a family question in
+  [wk-robotics `status.md`](https://github.com/WayneKennedy/wk-robotics/blob/main/docs/status.md).
+
 - **OQ-19 — Front-foot contact acceptance.** DEC-43 fixes the rear ankle-wheel
   location and retains current size. The CAD uses a 75 mm forearm plus 25 mm
   hand to a fixed Ø32 mm ball centre, with both front feet on the floor in the
