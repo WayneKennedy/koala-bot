@@ -284,6 +284,12 @@ Unresolved. Resolve -> move to [`decisions.md`](decisions.md).
   project. The owner doubts the ambition of a unique limb geometry — the CAD is far from
   done and no part of the current revision has been printed — and keeps returning to
   "build something proven that you can print and assemble as easily as SO-ARM was".
+  **The problem is not kinematics or gait** (owner correction, 2026-09-18): it is
+  aesthetics and printability — the AI assistants keep producing unprintable designs, and
+  describing 3D geometry in words, against what an image shows, is the draining part.
+  Reviews of CAD should therefore go through rendered images (the viewer, the slice and
+  layer images under `docs/design/manufacturing/`) and marked-up screenshots, which
+  assistants can read, rather than prose descriptions of geometry.
   Not a pivot and not a parking: koala-bot stays active at background pace. Which proven
   build, if any, runs alongside it is a family question in
   [wk-robotics `status.md`](https://github.com/WayneKennedy/wk-robotics/blob/main/docs/status.md).
