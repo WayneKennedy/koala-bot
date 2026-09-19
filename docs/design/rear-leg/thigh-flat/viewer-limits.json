@@ -1,0 +1,98 @@
+{
+  "scene_sha256": "30e6bcc6d7505c6f92913ab0a0de2ca6faaf753c0f27ff8aa64370a4ba303707",
+  "engine_sha256": "64bca0b0008824e6400ad32110c24fff3141c436ba471655aff0bd5b590415cb",
+  "poses": {
+    "quadruped": {
+      "bounds": {
+        "pitch": {
+          "min": -51,
+          "max": 173.75,
+          "stops": [
+            [
+              "rear_carrier_right",
+              "reference_rear_pitch_servo_right"
+            ],
+            [
+              "rear_carrier_right",
+              "reference_rear_pitch_servo_right"
+            ]
+          ]
+        },
+        "roll": {
+          "min": -4.5,
+          "max": 180,
+          "stops": [
+            [
+              "rear_motor_right",
+              "rear_motor_left"
+            ],
+            null
+          ]
+        },
+        "knee": {
+          "min": -96.5,
+          "max": 56.25,
+          "stops": [
+            [
+              "rear_shank_right",
+              "rear_thigh_right"
+            ],
+            [
+              "rear_shank_right",
+              "rear_thigh_right"
+            ]
+          ]
+        }
+      },
+      "step": 0.25,
+      "angular_reserve_degrees": 2,
+      "search_ceiling": 180
+    },
+    "upright": {
+      "bounds": {
+        "pitch": {
+          "min": -125.5,
+          "max": 99.5,
+          "stops": [
+            [
+              "rear_carrier_right",
+              "reference_rear_pitch_servo_right"
+            ],
+            [
+              "rear_carrier_right",
+              "reference_rear_pitch_servo_right"
+            ]
+          ]
+        },
+        "roll": {
+          "min": -4.25,
+          "max": 180,
+          "stops": [
+            [
+              "rear_motor_right",
+              "rear_motor_left"
+            ],
+            null
+          ]
+        },
+        "knee": {
+          "min": -91.25,
+          "max": 61.5,
+          "stops": [
+            [
+              "rear_shank_right",
+              "rear_thigh_right"
+            ],
+            [
+              "rear_shank_right",
+              "rear_thigh_right"
+            ]
+          ]
+        }
+      },
+      "step": 0.25,
+      "angular_reserve_degrees": 2,
+      "search_ceiling": 180
+    }
+  }
+}

@@ -70,7 +70,11 @@ complete harnesses are outside the search. The earlier
 `docs/design/manufacturing/travel-endpoints.json` predates the current links;
 current rear-proposal checks are in `docs/design/rear-leg/viewer-endpoints.json`.
 
-Build the rear proposal with `uv run python -m koala_hardware.rear_leg_review`;
+Build the rear proposal with `uv run python -m koala_hardware.rear_leg_review`
+(add `--thigh-options` for the 2026-09-19 thigh print-form comparison, left leg
+option 1, right leg option 2: [record](../docs/design/rear-leg/thigh-options/README.md);
+`--thigh-flat` for the owner's chosen one-piece tapered thigh on both legs:
+[record](../docs/design/rear-leg/thigh-flat/README.md));
 the existing server then exposes it at
 [rear-leg/](https://blake.tail13a0c0.ts.net:8443/rear-leg/).
 
@@ -127,7 +131,8 @@ and store calibrated constants in `params.py`.
 
 `uv run python -m koala_hardware.manufacturing_slices` uses local PrusaSlicer,
 reads the shared printer profile from the sibling 3d-printing checkout and adds
-`print/manufacturing-*.ini` project settings. It records exact STL hashes and
+`print/manufacturing-*.ini` project settings (support from the bed only, never off the part:
+the house rule, learned on plate 1; `-tree.ini` for organic support, one part per job). It records exact STL hashes and
 layer-path images in `docs/design/manufacturing/`. It never submits a print.
 Every current design is `assumed`; none is physically `proven` at this revision.
 TPU settings are provisional until matched to the actual spool.

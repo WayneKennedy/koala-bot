@@ -246,3 +246,165 @@ Continue physical acceptance with the new joint rig, a rear leg, the pair,
 front limbs and loaded support/transition checks (OQ-12/13/17/18). Use actual
 hardware masses and the material-specific slice estimates before revising servo
 load or thermal claims.
+
+## Revision log
+
+Dated notes on **unprinted** geometry, reclassified out of `decisions.md` by
+DEC-59 (2026-09-18). Entries keep their original DEC numbers so existing
+cross-references resolve; the full original text is in git
+(`git show 82e4995:docs/decisions.md`). A note here is not accepted geometry:
+it records what was tried, what triggered it, and what replaced it. An entry
+leaves `unprinted` only when [`test-log.md`](test-log.md) records a print of
+that revision. New CAD iterations go here, one entry each, never to
+`decisions.md`.
+
+- **DEC-37** (2026-09-08, engineering judgement authorised by the maintainer).
+  Closed DEC-36's segment lengths into two poses: quadruped hip/shoulder axes
+  175/165 mm, 260 mm wheelbase, 200 mm track, upright hip/shoulder 190/340 mm,
+  head top 450 mm, passive wrist wheels. Track went to 220 mm in DEC-40; wrists
+  were driven by DEC-38 and removed by DEC-43. Link lengths and the 450 mm
+  target persist through DEC-43. Numbers: `params.py` `BODY_*`; masters in
+  [`design/README.md`](design/README.md). Unprinted.
+- **DEC-40** (2026-09-08, no maintainer trigger recorded). First integrated
+  4×4 chassis replacing DEC-34: one print per segment, SO-101 four-ear saddles
+  at all twelve servos, 150 mm torso, track 200 → 220 mm because the paired
+  37D bodies collided upright, raised wrists moved to 100 mm forward / 330 mm
+  high, 0.5 mm washers on the Back M3×6 fixings. Axis order corrected by
+  DEC-41 the same day; front drives removed by DEC-43. Unprinted.
+- **DEC-42** (2026-09-10, maintainer instruction; superseded by DEC-43 the
+  same day). Wheels moved from the ankles to the rear knee area with separate
+  folding rear feet; all front drives cancelled. The cancellation and the
+  integrated forearms with fixed ball feet survive in DEC-43; the knee wheels
+  do not. [Assessment](two-wheel-walking.md). Unprinted.
+- **DEC-44** (2026-09-10, maintainer visual review of a render). "Layout
+  accepted" at the DEC-43 numbers; the SO-ARM101 upper arm adopted as the
+  construction reference (`IMG_7004`, [templates](design/so101/README.md)).
+  Re-opened by DEC-52: joint centres are targets, not datums. Pitch → roll
+  retained (DEC-41). Unprinted.
+- **DEC-45** (2026-09-10, maintainer feedback). Paired pitch mounts split into
+  independently removable socket modules so all four ear screws are reachable
+  on the bench. Carried into DEC-53 (one module per servo, captive nuts).
+  [Access evidence](root-servo-mounts.md). Unprinted.
+- **DEC-46** (2026-09-10, maintainer instruction for the next viewer update).
+  Viewer sliders show sampled mechanical-clearance ranges instead of ±5°;
+  implemented in `mechanical_limits.js` with caches keyed by geometry and
+  engine hashes. Ranges are CAD clearances, not loaded limits (OQ-21).
+  Tooling, not geometry.
+- **DEC-48** (2026-09-10, maintainer instruction). DEC-44 construction applied
+  throughout: enclosing sockets, rounded links, flatter forearms, separate
+  keyed TPU front pads with recessed fixings; DEC-47 tags assigned; local
+  slices and layer images in [`design/manufacturing/`](design/manufacturing/README.md).
+  Root parts replaced by DEC-53/55. Unprinted.
+- **DEC-49** (2026-09-11, maintainer trial instruction). Front carrier tried
+  at all four roots: rear cases rotated 90°, right-angle pelvis socket module,
+  rear flange moved to Z = 46 mm, head placeholder removed from CAD. The trial
+  produced the weak, unprintable pelvis socket (OQ-22, 2026-09-14) and the
+  carrier that DEC-52 names as the wrongly fixed constraint. Replaced by
+  DEC-53/55. Head removal stands (OQ-18). Unprinted.
+- **DEC-55** (2026-09-14, maintainer choice between two rendered options,
+  "option 2"). Hip carrier body below the pitch axis, roll servo Bottom-down
+  beside the pitch servo, thigh forks as pads passing the roll socket, roll
+  centres 128.1 mm. Viewer travel as committed: roll −3.5° to 9.75°,
+  quadruped pitch −2.75° to 96°. Revised by DEC-56/58. Unprinted; strength
+  unverified.
+- **DEC-56** (2026-09-14, maintainer's marked-up viewer screenshot). Carrier
+  block 24 → 16 mm, R6.3/R5 fillets after union, tapered 2 mm bevels. Did not
+  resolve the forward-pitch shortage the maintainer raised; the imported STEP
+  still intersects by 0.013–0.020 mm³ at the forward endpoints.
+  [Image](design/hip-carrier-refinement.png). Unprinted.
+- **DEC-57** (2026-09-15, maintainer approval of the socket-tilt viewer).
+  Rear servo A socket on a torso face inclined 45° (body Y −45°), carrier as
+  DEC-56, angled-fork carrier parked. Used only by the separate
+  [rear-leg review](design/rear-leg/README.md); the main assembly keeps the
+  earlier mount, so **two mounts coexist in CAD**. Inclined torso walls,
+  indexing and loaded travel open (OQ-22). Unprinted.
+- **DEC-58** (2026-09-15, assistant geometry following the instruction to
+  progress outward from DEC-57). Thigh: stepped roll yoke because the knee
+  shelf swept into the carrier; servo C clocked 90° about the knee shaft.
+  Shank: open fork bridging 46 mm from the knee axis, filleted motor supports.
+  Viewer reserve 1° → 2°. Radii and offsets live in `parts/links.py`. Local
+  checks: ±30° roll, 0–120° knee. [Review](design/rear-leg/README.md).
+  Unprinted; printability `unknown`.
+- **2026-09-18 review** (owner, from the [rear-leg viewer](design/rear-leg/README.md)).
+  Root socket module and hip carrier look right: tagged `assumed`. Thigh and
+  shank: general geometry good, but as drawn they would need a lot of support,
+  which would probably ruin the parts. Both stay `unknown`; the next revision
+  of either must fix orientation or form before any slice. The owner expects
+  the shank to be the easier fix. Basis: the owner's aesthetic judgement and
+  printability instinct from the render, not a slice. Nothing printed.
+- **2026-09-18 thigh orientation study** (assistant, geometry screen on the
+  DEC-58 STL; [image and figures](design/rear-leg/README.md)). No lying or
+  standing orientation gets below ≈48 cm³ of support because the C-yoke's
+  cheeks are parallel cantilevers and the knee socket is offset to one cheek.
+  **Proposals, unmodelled:** (1) stand the part on the knee socket and centre
+  the socket under the bridge so socket wall and bridge face form one flat
+  foot, which needs the DEC-58 carrier-clearance check re-run because C's case
+  moves toward −Y; (2) if the socket must stay offset, fill under the bridge
+  from the socket wall to the thin cheek with a 45° wedge (≈12 cm³ solid at
+  16 mm yoke width) so the bridge is self-supporting standing up; (3) chamfer
+  the fork steps to 45° so the forks print support-free on top. Interim with
+  no CAD change: print flipped (thick cheek and socket wall down), which halves
+  support and keeps it out of the pocket. Standing orientations put layers
+  across the cheeks' bending load; strength unverified either way. Unprinted.
+- **2026-09-19 thigh options modelled** (assistant, owner's instruction to model
+  both and show them in the rear-leg viewer, left = option 1, right = option 2).
+  Neither original proposal survived contact with the geometry: the knee socket
+  is fixed by C's shaft so it cannot be centred, and a wedge under the bridge
+  would sit where the case is. Modelled instead: **option 1** a one-print frame
+  thigh standing on the knee socket (foot + bar close the knee end; C enters
+  sideways); **option 2** a two-print thigh with a bolted drive-side cheek
+  (lip over the bridge end, two M3 into captive nuts; body lies on the
+  cup-floor plane). An outer lap plate on the cheek failed the 0–120° knee
+  check at 117° and was removed. Record, screen and checks:
+  [thigh-options](design/rear-leg/thigh-options/README.md). Main assembly and
+  BOM unchanged. Unprinted; strength unverified.
+- **2026-09-19 option 3 chosen direction** (owner, from the viewer). One print:
+  option 2's body form with the drive-side cheek kept in the same part, and the
+  step from the thickened cheek to the idler pad replaced by one flat taper
+  along the owner's red line (`THIGH_CHAMFER_Z`). To be printed on the
+  cup-floor plane with tree support, which the owner trusts from SO-ARM101.
+  Modelled on both legs of the rear-leg viewer; record and checks in
+  [thigh-flat](design/rear-leg/thigh-flat/README.md). Slice pending the
+  printer (plate 1 running). Unprinted; strength unverified.
+- **2026-09-19 shank motor inset** (owner, from the viewer). The DEC-58 shank's
+  outer print face has a 2.25 mm step between the motor-mount face and the
+  drive fork; the owner asked for the motor to move inboard by that step so
+  the face is one plane (`SHANK_MOTOR_INSET`, `option_shank_flush`). Track
+  220 → 215.5 mm and motor gap 36 → 31.5 mm follow if adopted; carried in the
+  rear-leg viewer's option 3 mode with the moved motor stack, not yet in the
+  main assembly. [Record](design/rear-leg/thigh-flat/README.md). Unprinted.
+- **2026-09-19 thigh v2, shank v2, rounding pass** (owner: "final pass for
+  these legs"). The tapered one-piece thigh and the flush-faced shank become the
+  production `thigh` and `shank` (v2 in `part-versions.json`), with DEC-60
+  making the flush face fall out of the spacing rather than a motor inset.
+  Every straight convex square edge of at least 8 mm outside the fork pads,
+  joins, knee cup pocket, motor face and ring is filleted R2 (cup outer edges
+  R1.5) by `links.round_convex_edges`; edges the kernel refuses stay sharp and
+  are counted in the build log. Both print faces are the flat planes chosen
+  above: thigh on the cup-floor plane with tree support, shank on its outer
+  face. Tagged `assumed` on the owner's judgement of the forms; the rounding
+  itself is unreviewed. Unprinted; sliced when the printer is free.
+- **2026-09-19 45° rear mount into the main assembly** (owner). DEC-61 banks
+  DEC-57's proposal: the tilt moves into the rear pitch-socket placement and
+  the torso's rear flange becomes the inclined face. Torso v2 also carries
+  DEC-60's spacing. The rear-leg review's own tilt and face patch are removed.
+- **2026-09-19 torso rebuilt as box + bracket** (owner rejected the first
+  DEC-61 torso in the viewer: the rotated flange cut head pockets through the top
+  rails, ran the 45° plate far too high into the planned battery space, and
+  looked dumb; "revert to a cube, with an additional 45° block on the rear face,
+  lower, more or less where the sockets mounted before"). Torso v3: the DEC-60
+  box unchanged, plus a bracket under the rear face carrying the inclined 5 mm
+  pelvis plate (the flange plane rotated about the pitch axis with the modules,
+  clipped to the torso footprint) on two 3 mm side gussets, open at the back so
+  the module screws and their driver reach the plate. Multi-view render
+  ([image](design/parts/torso_frame-views.png)), judged before the rebuild:
+  **does it look stupid? No.** Frame contact and screw-path audit pass.
+  Unprinted.
+- **2026-09-19 pad-completeness test narrowed** (assistant). The v2 rounding
+  pass takes R2 off the fork arms' outer corners (22 mm³ on the shank between
+  6.6 and 10.4 mm from the horn axis); `test_rear_links_keep_complete_horn_pads_and_driver_paths`
+  now protects the arms' inner 12 mm core, every seat and web, and still runs
+  the head and driver checks. Part versions are ledgered in
+  `hardware/part-versions.json` with a placement-invariant fingerprint compared
+  within tolerance (0.5 mm³, 0.1 mm), so rigid shifts such as DEC-60's do not
+  count as changes.

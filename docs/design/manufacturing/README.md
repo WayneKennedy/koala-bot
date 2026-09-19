@@ -11,7 +11,10 @@ part and orange is the nearest support layer (its separate Z is labelled). These
 
 The shared printer profile is read from `../3d-printing/reference/`; it is not
 copied into Koala. Project-specific overrides live in `hardware/print/`.
-PETG uses accessible snug supports and a brim. The TPU contact pad uses no
+PETG uses snug supports **from the bed only** (`support_material_buildplate_only = 1`, the
+house rule; plate 1 on 2026-09-19 was sliced without it and its M2 ear holes came out
+blocked) and a brim; `manufacturing-petg-tree.ini` is the organic-support variant for the
+v2 thigh and shank, one part per job. The TPU contact pad uses no
 support; its taper avoids a flat cavity roof. TPU temperatures/feed remain
 provisional until matched to the actual spool. G-code is a local review artefact
 in `hardware/build/manufacturing/`, not a job submitted to the printer.

@@ -49,6 +49,17 @@ Unresolved. Resolve -> move to [`decisions.md`](decisions.md).
   149 mm roll centres and the 220 mm track (DEC-40/41/49); the head envelope
   and neck length (DEC-37/49) are unchanged by it. Decide the width once the
   leg (DEC-53) fixes the root module and carrier, and before the torso frame.
+  **Shank motor inset, 2026-09-19 (assistant recommendation, not decided):** the flush-face
+  shank moves each 37D inboard 2.25 mm, narrowing the track to 215.5 mm and the inward-roll
+  motor-to-motor stop from −5.5° to −4.5° (thigh-flat record). No roll requirement is defined
+  (OQ-21), the upright balance pose needs no adduction, and stance width comes from abduction,
+  so the loss is not pressing. To restore 220 mm the cheapest lever is this torso: widen the
+  hip pitch centres from 48 to 52.5 mm (`ROOT_PITCH_Y` 24 → 26.25). The torso is the deferred,
+  unprinted part already expected to grow for the neck servos; root modules, carriers, thigh
+  and shank geometry are unchanged by it (they shift rigidly), so the prints in hand and
+  planned stay valid either way. Moving the wheel out on the shaft instead (`HUB_STACK` +2.25)
+  puts the hub's grub screw at the end of the 15.5 mm D-flat on the 21 mm shaft: not without
+  measuring the hub. Decide when the torso is drawn; the thigh and shank prints do not wait.
 
 - **OQ-22 — Root joint construction and travel acceptance.**
   **Current, 2026-09-15 (DEC-57/58):** hold the 45° pitch-socket mounting
@@ -258,6 +269,33 @@ Unresolved. Resolve -> move to [`decisions.md`](decisions.md).
 
   Decide the module construction before any root part is printed; re-run
   frame contact and OQ-21 clearance checks for the chosen option.
+  **Print planned 2026-09-19 (owner, 2026-09-18); plate 1 printed 2026-09-19, fit passes, ear holes blocked by support (profile fixed, see `test-log.md`); plate 2 re-sliced with bed-only support:** the root socket (2 per hand) and hip
+  carrier (1 per hand), PETG, sliced on `printhub` (online for slicer access since
+  2026-09-18). Both are `assumed` from the owner's review of the rear-leg viewer; this print
+  is the first physical evidence for any DEC-53/55/56 part and its result goes to
+  `test-log.md`. The thigh and shank are not printed: as drawn they need support that would
+  probably ruin them (revision log, 2026-09-18).
+  **Sliced 2026-09-18 (printhub clock 2026-09-19 00:50 BST), nothing printed:** base
+  `~/slicer/ender5s1_petg.ini` plus `hardware/print/manufacturing-petg.ini` (4 perimeters,
+  30 % grid, snug supports from 45°, 4 mm brim, 240/80 °C), Debian `prusa-slicer` 2.5.0 with
+  `--merge --center 104,123`. In Mainsail: `koala-root-socket-x4.gcode` (2 left + 2 right,
+  9 h 10 min, 89 g, footprint X 46–162 Y 75–171) and `koala-hip-carrier-x2.gcode` (left +
+  right, 7 h 00 min, 68 g, X 52–156 Y 71–175); both inside the probed mesh. STL SHA-256
+  prefixes: root_socket 298f0eff (L) / cbd58598 (R), hip_carrier eb5a282a (L) / ad7843e2 (R),
+  from the 2026-09-18 export. Times and masses are slicer estimates. **Slicer fact for the
+  3d-printing repo:** the Flathub PrusaSlicer 2.9.6 segfaults (exit 139) on `--merge` with
+  these STLs, single-part slicing works, and `slice-plate.sh` prints "Done" on that crash
+  because its pipeline hides the exit code; the Debian 2.5.0 binary merges correctly.
+  **Re-sliced and sliced 2026-09-19 after plate 1, all with support from the bed only:**
+  `koala-hip-carrier-x2.gcode` re-sliced (Debian 2.5.0, snug bed-only: 6 h 42 min, 66 g, no
+  support at all now; the earlier file had 900 support blocks, all off the part). The v2 legs,
+  one part per job on the Flathub 2.9.6 slicer with organic support from the bed
+  (`manufacturing-petg-tree.ini`): `koala-thigh-v2-left.gcode` 4 h 57 min / 49 g,
+  `koala-thigh-v2-right.gcode` 5 h 03 min / 50 g, `koala-shank-v2-left.gcode` 3 h 56 min / 39 g,
+  `koala-shank-v2-right.gcode` 3 h 59 min / 39 g. STL SHA-256 prefixes: thigh bca33526 (L) /
+  15ea8a90 (R), shank 335d9f74 (L) / ae2ac311 (R), v2 exports of 2026-09-19. Known consequence of
+  bed-only support on the shank: the Ø39 motor bore's roof prints unsupported as an arc, so
+  expect some sag at the top of the bore; check the 37D still slides in and file if needed.
 
 - **OQ-21 — Physical joint travel and control limits.** DEC-48 implements
   DEC-46's pose-dependent viewer search using the printed geometry and nominal
@@ -293,6 +331,12 @@ Unresolved. Resolve -> move to [`decisions.md`](decisions.md).
   Not a pivot and not a parking: koala-bot stays active at background pace. Which proven
   build, if any, runs alongside it is a family question in
   [wk-robotics `status.md`](https://github.com/WayneKennedy/wk-robotics/blob/main/docs/status.md).
+  **DEC-59, 2026-09-18:** the owner probed the 29 decisions banked since the restart and
+  found most were turns of this review loop. Twelve are reclassified as revision notes;
+  the rule for what a DEC is now lives in `AGENTS.md`. **Proposed next gate (assistant,
+  2026-09-18, not agreed):** the next commit that touches geometry is a physical print of
+  the `root_socket` module — the smallest new part, on every limb's load path — recorded
+  in `test-log.md`; no further revision note until it has been handled.
 
 - **OQ-19 — Front-foot contact acceptance.** DEC-43 fixes the rear ankle-wheel
   location and retains current size. The CAD uses a 75 mm forearm plus 25 mm

@@ -15,7 +15,10 @@ from . import links as L
 def pitch_socket(front=False):
     # Same physical part at both roots: the shoulder case points down the torso,
     # the pelvis case points up it. 180 deg about the lateral pitch axis.
-    return Plane(origin=(0,P.ROOT_PITCH_Y,0),x_dir=(0,1,0),z_dir=(0,0,1 if front else -1)).location*L.AXIS
+    loc=Plane(origin=(0,P.ROOT_PITCH_Y,0),x_dir=(0,1,0),z_dir=(0,0,1 if front else -1)).location*L.AXIS
+    # DEC-61: the rear sockets mount on the torso's 45° face; the rotation is about
+    # the pitch axis, so the leg's saved coordinates and joint axes are unchanged.
+    return loc if front else Rot(Y=P.REAR_SOCKET_TILT)*loc
 
 
 def nut_xy():
@@ -74,4 +77,5 @@ def build():
         '180 deg about the pitch axis. Drop four M3 nuts into the shelf pockets, then fit the servo and all four ear '
         'screws on the bench; the servo traps the nuts. Offer the module to the torso and drive four M3x16 from the '
         'torso side. Flat plate face down, socket opening up; ear-hole roofs use accessible local support. '
-        'Unverified: STS3215 Bottom flatness over the pockets, cable exit past the plate, nut fit.', printable='unknown')
+        'Unverified: STS3215 Bottom flatness over the pockets, cable exit past the plate, nut fit. '
+        'Assumed: owner visual review of the rear-leg viewer, 2026-09-18 (revision log); no slice or print.', printable='assumed')

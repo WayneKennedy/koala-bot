@@ -124,12 +124,14 @@ class IntegratedCADTests(unittest.TestCase):
     def test_rear_links_keep_complete_horn_pads_and_driver_paths(self):
         from build123d import Rot,Cylinder,Align
         from koala_hardware.audit import clear
-        for part,tf in ((L.upper_link(85,True),Rot(Z=-90)),(L.lower_link(90),Pos())):
+        for part,tf,core in ((L.upper_link(85,True),Rot(Z=-90),S._box(-6,6,-40,40,-12,P.SOCKET_PLATE_R)),
+                             (L.lower_link(90),Pos(),S._box(-40,40,-6,6,-12,P.SOCKET_PLATE_R))):
             expected=tf*(L.fork('drive')+L.fork('idler'))
-            region=S._box(-40,40,-40,40,-12,P.SOCKET_PLATE_R)
-            # Retain every original pad/web; the outer return fillets may add
-            # material provided the independent head/driver checks still pass.
-            self.assertLess(volume((expected-part)&region),.01)
+            # Retain every original pad seat and web: the arms' core (inner 12 of the
+            # 16 mm width) must be complete. The v2 rounding pass (2026-09-19) may
+            # round the arms' outer corners R2; the outer return fillets may add
+            # material. The independent head/driver checks below still apply.
+            self.assertLess(volume((expected-part)&core),.01)
             for head in (tf*S.horn_head_envelopes()).solids():clear(part,head,'rear horn head/washer')
             for side in ('drive','idler'):
                 frame=tf*L.AXIS*S.plate_location(side)

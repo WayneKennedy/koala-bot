@@ -1,0 +1,489 @@
+{
+ "coupon_ladder": {
+  "version": 1,
+  "since": "2026-09-19",
+  "fingerprint": {
+   "volume_mm3": 53538.55,
+   "extents": [
+    150.0,
+    60.0,
+    6.0
+   ],
+   "faces": 547,
+   "edges": 1512
+  },
+  "history": [
+   {
+    "version": 1,
+    "date": "2026-09-19",
+    "note": "initial ledger, 2026-09-19: every current design at v1; the DEC-58 thigh and shank, the 2026-09-19 option parts, and the root socket printing as plate 1"
+   }
+  ]
+ },
+ "coupon_motor_bore": {
+  "version": 1,
+  "since": "2026-09-19",
+  "fingerprint": {
+   "volume_mm3": 20605.2,
+   "extents": [
+    135.0,
+    50.0,
+    6.0
+   ],
+   "faces": 199,
+   "edges": 561
+  },
+  "history": [
+   {
+    "version": 1,
+    "date": "2026-09-19",
+    "note": "initial ledger, 2026-09-19: every current design at v1; the DEC-58 thigh and shank, the 2026-09-19 option parts, and the root socket printing as plate 1"
+   }
+  ]
+ },
+ "coupon_motor_ring": {
+  "version": 1,
+  "since": "2026-09-19",
+  "fingerprint": {
+   "volume_mm3": 7738.69,
+   "extents": [
+    47.0,
+    47.0,
+    5.0
+   ],
+   "faces": 10,
+   "edges": 24
+  },
+  "history": [
+   {
+    "version": 1,
+    "date": "2026-09-19",
+    "note": "initial ledger, 2026-09-19: every current design at v1; the DEC-58 thigh and shank, the 2026-09-19 option parts, and the root socket printing as plate 1"
+   }
+  ]
+ },
+ "coupon_seam": {
+  "version": 1,
+  "since": "2026-09-19",
+  "fingerprint": {
+   "volume_mm3": 17056.42,
+   "extents": [
+    60.0,
+    75.0,
+    13.0
+   ],
+   "faces": 32,
+   "edges": 66
+  },
+  "history": [
+   {
+    "version": 1,
+    "date": "2026-09-19",
+    "note": "initial ledger, 2026-09-19: every current design at v1; the DEC-58 thigh and shank, the 2026-09-19 option parts, and the root socket printing as plate 1"
+   }
+  ]
+ },
+ "coupon_socket_fork": {
+  "version": 1,
+  "since": "2026-09-19",
+  "fingerprint": {
+   "volume_mm3": 16288.54,
+   "extents": [
+    49.0,
+    20.8,
+    42.4
+   ],
+   "faces": 63,
+   "edges": 153
+  },
+  "history": [
+   {
+    "version": 1,
+    "date": "2026-09-19",
+    "note": "initial ledger, 2026-09-19: every current design at v1; the DEC-58 thigh and shank, the 2026-09-19 option parts, and the root socket printing as plate 1"
+   }
+  ]
+ },
+ "coupon_socket_saddle": {
+  "version": 1,
+  "since": "2026-09-19",
+  "fingerprint": {
+   "volume_mm3": 13970.2,
+   "extents": [
+    44.9,
+    28.7,
+    22.0
+   ],
+   "faces": 35,
+   "edges": 84
+  },
+  "history": [
+   {
+    "version": 1,
+    "date": "2026-09-19",
+    "note": "initial ledger, 2026-09-19: every current design at v1; the DEC-58 thigh and shank, the 2026-09-19 option parts, and the root socket printing as plate 1"
+   }
+  ]
+ },
+ "e_tray": {
+  "version": 1,
+  "since": "2026-09-19",
+  "fingerprint": {
+   "volume_mm3": 33540.64,
+   "extents": [
+    96.0,
+    88.0,
+    9.0
+   ],
+   "faces": 54,
+   "edges": 143
+  },
+  "history": [
+   {
+    "version": 1,
+    "date": "2026-09-19",
+    "note": "initial ledger, 2026-09-19: every current design at v1; the DEC-58 thigh and shank, the 2026-09-19 option parts, and the root socket printing as plate 1"
+   }
+  ]
+ },
+ "forearm": {
+  "version": 1,
+  "since": "2026-09-19",
+  "fingerprint": {
+   "volume_mm3": 37616.3,
+   "extents": [
+    49.0,
+    20.8,
+    113.4
+   ],
+   "faces": 94,
+   "edges": 237
+  },
+  "history": [
+   {
+    "version": 1,
+    "date": "2026-09-19",
+    "note": "initial ledger, 2026-09-19: every current design at v1; the DEC-58 thigh and shank, the 2026-09-19 option parts, and the root socket printing as plate 1"
+   }
+  ]
+ },
+ "front_contact_pad": {
+  "version": 1,
+  "since": "2026-09-19",
+  "fingerprint": {
+   "volume_mm3": 10013.59,
+   "extents": [
+    32.0,
+    32.0,
+    19.6
+   ],
+   "faces": 22,
+   "edges": 56
+  },
+  "history": [
+   {
+    "version": 1,
+    "date": "2026-09-19",
+    "note": "initial ledger, 2026-09-19: every current design at v1; the DEC-58 thigh and shank, the 2026-09-19 option parts, and the root socket printing as plate 1"
+   }
+  ]
+ },
+ "hip_carrier": {
+  "version": 1,
+  "since": "2026-09-19",
+  "fingerprint": {
+   "volume_mm3": 36584.01,
+   "extents": [
+    44.9,
+    77.7,
+    50.5
+   ],
+   "faces": 85,
+   "edges": 200
+  },
+  "history": [
+   {
+    "version": 1,
+    "date": "2026-09-19",
+    "note": "initial ledger, 2026-09-19: every current design at v1; the DEC-58 thigh and shank, the 2026-09-19 option parts, and the root socket printing as plate 1"
+   }
+  ]
+ },
+ "root_socket": {
+  "version": 1,
+  "since": "2026-09-19",
+  "fingerprint": {
+   "volume_mm3": 23617.48,
+   "extents": [
+    46.9,
+    36.7,
+    28.0
+   ],
+   "faces": 76,
+   "edges": 192
+  },
+  "history": [
+   {
+    "version": 1,
+    "date": "2026-09-19",
+    "note": "initial ledger, 2026-09-19: every current design at v1; the DEC-58 thigh and shank, the 2026-09-19 option parts, and the root socket printing as plate 1"
+   }
+  ]
+ },
+ "shank": {
+  "version": 2,
+  "since": "2026-09-19",
+  "fingerprint": {
+   "volume_mm3": 35812.73,
+   "extents": [
+    49.0,
+    46.0,
+    123.4
+   ],
+   "faces": 92,
+   "edges": 225
+  },
+  "history": [
+   {
+    "version": 1,
+    "date": "2026-09-19",
+    "note": "initial ledger, 2026-09-19: every current design at v1; the DEC-58 thigh and shank, the 2026-09-19 option parts, and the root socket printing as plate 1"
+   },
+   {
+    "version": 2,
+    "date": "2026-09-19",
+    "note": "2026-09-19: thigh v2 (tapered one piece, rounded, prints on the cup-floor plane); shank v2 (flush outer face, rounded); torso_frame v2 (DEC-60 root spacing 52.5 and DEC-61 45-degree rear face); shank_flush option now inset 0 after DEC-60"
+   }
+  ]
+ },
+ "shank_flush": {
+  "version": 2,
+  "since": "2026-09-19",
+  "fingerprint": {
+   "volume_mm3": 36461.78,
+   "extents": [
+    49.0,
+    46.0,
+    123.4
+   ],
+   "faces": 63,
+   "edges": 156
+  },
+  "history": [
+   {
+    "version": 1,
+    "date": "2026-09-19",
+    "note": "initial ledger, 2026-09-19: every current design at v1; the DEC-58 thigh and shank, the 2026-09-19 option parts, and the root socket printing as plate 1"
+   },
+   {
+    "version": 2,
+    "date": "2026-09-19",
+    "note": "2026-09-19: thigh v2 (tapered one piece, rounded, prints on the cup-floor plane); shank v2 (flush outer face, rounded); torso_frame v2 (DEC-60 root spacing 52.5 and DEC-61 45-degree rear face); shank_flush option now inset 0 after DEC-60"
+   }
+  ]
+ },
+ "shoulder_carrier": {
+  "version": 1,
+  "since": "2026-09-19",
+  "fingerprint": {
+   "volume_mm3": 39148.13,
+   "extents": [
+    44.9,
+    88.1,
+    50.5
+   ],
+   "faces": 102,
+   "edges": 255
+  },
+  "history": [
+   {
+    "version": 1,
+    "date": "2026-09-19",
+    "note": "initial ledger, 2026-09-19: every current design at v1; the DEC-58 thigh and shank, the 2026-09-19 option parts, and the root socket printing as plate 1"
+   }
+  ]
+ },
+ "thigh": {
+  "version": 2,
+  "since": "2026-09-19",
+  "fingerprint": {
+   "volume_mm3": 45966.34,
+   "extents": [
+    44.9,
+    72.9,
+    109.8
+   ],
+   "faces": 114,
+   "edges": 271
+  },
+  "history": [
+   {
+    "version": 1,
+    "date": "2026-09-19",
+    "note": "initial ledger, 2026-09-19: every current design at v1; the DEC-58 thigh and shank, the 2026-09-19 option parts, and the root socket printing as plate 1"
+   },
+   {
+    "version": 2,
+    "date": "2026-09-19",
+    "note": "2026-09-19: thigh v2 (tapered one piece, rounded, prints on the cup-floor plane); shank v2 (flush outer face, rounded); torso_frame v2 (DEC-60 root spacing 52.5 and DEC-61 45-degree rear face); shank_flush option now inset 0 after DEC-60"
+   }
+  ]
+ },
+ "thigh_body": {
+  "version": 1,
+  "since": "2026-09-19",
+  "fingerprint": {
+   "volume_mm3": 38567.91,
+   "extents": [
+    44.9,
+    66.6,
+    109.8
+   ],
+   "faces": 89,
+   "edges": 222
+  },
+  "history": [
+   {
+    "version": 1,
+    "date": "2026-09-19",
+    "note": "initial ledger, 2026-09-19: every current design at v1; the DEC-58 thigh and shank, the 2026-09-19 option parts, and the root socket printing as plate 1"
+   }
+  ]
+ },
+ "thigh_cheek": {
+  "version": 1,
+  "since": "2026-09-19",
+  "fingerprint": {
+   "volume_mm3": 9666.46,
+   "extents": [
+    20.8,
+    20.0,
+    86.1
+   ],
+   "faces": 33,
+   "edges": 75
+  },
+  "history": [
+   {
+    "version": 1,
+    "date": "2026-09-19",
+    "note": "initial ledger, 2026-09-19: every current design at v1; the DEC-58 thigh and shank, the 2026-09-19 option parts, and the root socket printing as plate 1"
+   }
+  ]
+ },
+ "thigh_flat": {
+  "version": 1,
+  "since": "2026-09-19",
+  "fingerprint": {
+   "volume_mm3": 46200.4,
+   "extents": [
+    44.9,
+    72.9,
+    109.8
+   ],
+   "faces": 92,
+   "edges": 225
+  },
+  "history": [
+   {
+    "version": 1,
+    "date": "2026-09-19",
+    "note": "initial ledger, 2026-09-19: every current design at v1; the DEC-58 thigh and shank, the 2026-09-19 option parts, and the root socket printing as plate 1"
+   }
+  ]
+ },
+ "thigh_frame": {
+  "version": 1,
+  "since": "2026-09-19",
+  "fingerprint": {
+   "volume_mm3": 44668.46,
+   "extents": [
+    44.9,
+    72.9,
+    109.8
+   ],
+   "faces": 98,
+   "edges": 249
+  },
+  "history": [
+   {
+    "version": 1,
+    "date": "2026-09-19",
+    "note": "initial ledger, 2026-09-19: every current design at v1; the DEC-58 thigh and shank, the 2026-09-19 option parts, and the root socket printing as plate 1"
+   }
+  ]
+ },
+ "torso_frame": {
+  "version": 3,
+  "since": "2026-09-19",
+  "fingerprint": {
+   "volume_mm3": 90025.16,
+   "extents": [
+    66.0,
+    84.5,
+    84.7
+   ],
+   "faces": 83,
+   "edges": 246
+  },
+  "history": [
+   {
+    "version": 1,
+    "date": "2026-09-19",
+    "note": "initial ledger, 2026-09-19: every current design at v1; the DEC-58 thigh and shank, the 2026-09-19 option parts, and the root socket printing as plate 1"
+   },
+   {
+    "version": 2,
+    "date": "2026-09-19",
+    "note": "2026-09-19: thigh v2 (tapered one piece, rounded, prints on the cup-floor plane); shank v2 (flush outer face, rounded); torso_frame v2 (DEC-60 root spacing 52.5 and DEC-61 45-degree rear face); shank_flush option now inset 0 after DEC-60"
+   },
+   {
+    "version": 3,
+    "date": "2026-09-19",
+    "note": "2026-09-19: torso_frame v3 \u2014 box torso restored, 45-degree pelvis plate on a rear bracket with side gussets (owner rejected the rotated-flange v2 before any print)"
+   }
+  ]
+ },
+ "tray_spacer": {
+  "version": 1,
+  "since": "2026-09-19",
+  "fingerprint": {
+   "volume_mm3": 117.62,
+   "extents": [
+    7.0,
+    7.0,
+    4.0
+   ],
+   "faces": 4,
+   "edges": 6
+  },
+  "history": [
+   {
+    "version": 1,
+    "date": "2026-09-19",
+    "note": "initial ledger, 2026-09-19: every current design at v1; the DEC-58 thigh and shank, the 2026-09-19 option parts, and the root socket printing as plate 1"
+   }
+  ]
+ },
+ "upper_arm": {
+  "version": 1,
+  "since": "2026-09-19",
+  "fingerprint": {
+   "volume_mm3": 29287.53,
+   "extents": [
+    44.9,
+    49.0,
+    62.3
+   ],
+   "faces": 100,
+   "edges": 249
+  },
+  "history": [
+   {
+    "version": 1,
+    "date": "2026-09-19",
+    "note": "initial ledger, 2026-09-19: every current design at v1; the DEC-58 thigh and shank, the 2026-09-19 option parts, and the root socket printing as plate 1"
+   }
+  ]
+ }
+}

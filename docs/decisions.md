@@ -16,90 +16,71 @@ acceptance remains open as OQ-13.
 are superseded by the [impact assessment](cad-measurement-impact.md). DEC-40 implements the corrected interface and replaces its geometry;
 physical acceptance remains open.
 
-- **DEC-58 — Rear thigh with stepped roll yoke and sideways knee socket;
-  open shank fork and filleted motor supports** (2026-09-15, implementation
-  of the maintainer's instruction to progress outward from DEC-57).
-  Keep the **85/90 mm** joint-centre lengths and the **220 mm** neutral rear
-  track. Clock servo C's case **90° about the unchanged knee shaft**, with
-  its Bottom toward the thigh's native +Y. The previous knee shelf itself
-  swept into the carrier during inward roll; trimming only the thigh slab
-  could not clear it. The roll yoke now passes 4 mm outside B's socket walls,
-  joins beyond the complete horn pads and bridges 60 mm below the roll axis.
-  Its stepped roots are R6.3, knee-socket roots R5, and the 2 mm lip and
-  outer horn-pad returns R1.5.
-  The lower leg's bridge starts 46 mm from the knee axis, leaving room to
-  fold past the thigh. R6.3 fork roots and R5 spine/face/body-ring joins are
-  formed before motor bores and screw paths are cut; the small outer fork
-  offset has an R2 return. Axial 37D insertion,
-  six M3 face screws and the bought wheel/hub stack are retained.
-  Increase the viewer's angular reserve to **2°**: its previous 1° reserve
-  left 0.013/0.020 mm³ imported-case interference at the proposed forward
-  pitch endpoints. This remains a sampled geometry check, not calibration.
-  [Rear-leg review and scoped checks](design/rear-leg/README.md).
-  Local clearance targets are provisional engineering targets, not accepted
-  walking limits. New thigh and shank printability remain `unknown`; longer
-  fork stiffness, layer strength, motor screw depth and physical fitting are
-  unverified. No slice or physical print of these parts has been made.
+- **DEC-61 — The rear pitch sockets mount on the torso's 45° face; the main
+  assembly adopts DEC-57's proposal** (2026-09-19, owner: "main viewer needs the
+  torso amended to have the 45 degree mount for pelvis sockets"). The rotation
+  is `REAR_SOCKET_TILT` (−45°, body Y) about the pitch axis, now inside
+  `pelvis.pitch_socket(front=False)`, so the modules, their captive-nut fixings,
+  the reference case, the frame-contact audit and both viewers follow it and the
+  leg's saved coordinates and joint axes are unchanged. The torso stays a box;
+  a bracket under its rear face carries the inclined 5 mm pelvis plate on two
+  side gussets, open at the back for the screws (`torso.solid`,
+  `TORSO_REAR_PLATE_X`, `TORSO_GUSSET_T`); the owner rejected a first version
+  that rotated the whole flange (revision log). The rear-leg review no longer applies a
+  tilt of its own and shows the real torso instead of a face patch. Torso shape
+  otherwise stays deferred (DEC-53, OQ-23); physical indexing, inclined-wall
+  driver access and loaded travel remain open (OQ-22).
 
-- **DEC-57 — Hold the 45° pitch-socket tilt as the proposed rear A/B
-  arrangement and progress to the thigh and motor shank** (2026-09-15,
-  maintainer approval of the socket-tilt viewer). Servo A's root socket mounts
-  on a torso face inclined 45° from the existing mount (body Y rotation −45°).
-  Retain the DEC-56 carrier and servo B's placement, both joint axes and the
-  saved rear-leg coordinates. This is the working arrangement for downstream
-  clearance design; the inclined torso walls, physical indexing and loaded
-  travel remain open. The bulkier angled-fork carrier is parked.
-  [Proposal and sampled clearance](design/carrier-orientation/README.md).
-  Physical acceptance remains open.
+- **DEC-60 — Hip pitch centres 52.5 mm apart (was 48): widen the pelvis
+  socket placement on the torso** (2026-09-19, owner: "we'll widen the placement
+  of the pelvis sockets as the easy win"). `ROOT_PITCH_Y` 24 → 26.25. Why: the
+  shank prints on its outer face, which had a 2.25 mm step between the
+  motor-mount face and the drive fork; the owner asked for the motor to move
+  inboard by that step so the face is one plane. Done by moving only the shank,
+  that narrows the track to 215.5 mm and the motor-to-motor inward-roll stop
+  from −5.5° to −4.5°; done by moving the hip roll centres out 2.25 mm per side
+  it keeps the 220 mm track, the 36 mm motor gap and every DEC-58 travel figure.
+  The torso is the deferred, unprinted part and DEC-53/OQ-23 already expected it
+  to grow wider for the neck servos; its flange and rails now follow the
+  spacing. Root modules, carriers, thigh and shank shift rigidly, so plate 1
+  (root sockets, printing) and plate 2 (hip carriers, sliced) stay valid. The
+  alternative, moving the wheel out on the shaft, puts the hub's grub screw at
+  the end of the 15.5 mm D-flat: rejected without measuring the hub.
+  The shoulder root sockets share the same spacing parameter, so the
+  placeholder DEC-49 front chain moves out with them: `BODY_SHOULDER_WIDTH_MM`
+  149 → 153.5 (front roll centres and foot centres), which are targets to
+  re-derive under DEC-54 in any case. Without that the front upper arm hit its
+  own socket at −5° roll in the full audit.
+  Physical acceptance of the widened torso remains open (OQ-23).
 
-- **DEC-56 — Refine the rear carrier before progressing to the thigh**
-  (2026-09-14, maintainer's marked viewer screenshot). Narrow the carrier
-  block from 24 to **16 mm**, flush with the fork necks, and align its top
-  with the roll socket wall ends (22 mm block depth). Crop the buried,
-  flared generic fork tails so they do not protrude through the narrower
-  block. Add **R6.3** inner fork-root fillets and **R5** block-to-socket
-  fillets after union. The outer fork's return onto the 2 mm socket lip
-  uses **R1.5**, limited by the accepted pocket, with 0.5 mm to that pocket.
-  **2 mm, 45° bevels** on the two exposed inner block edges taper out before
-  the fillet feet; an unrestricted tangent-chain chamfer cuts into the horn
-  pads. The complete horn-pad geometry, servo datums and flat build face
-  are retained. This implements the requested local refinement; it does
-  not resolve the forward-pitch shortage. The viewer gains 4.25° forward
-  adjustment, but the imported STEP still has small intersections at its
-  displayed forward endpoints. Travel and the proposed horizontal/45°
-  quadruped carrier orientation remain open under OQ-22.
-  [View and checks](design/hip-carrier-refinement.json) ·
-  [Carrier image](design/hip-carrier-refinement.png).
-  The thinner beam has less section area; unchanged whole-joint strength
-  is unverified. Printable remains `unknown`; no slice or physical print.
-  DEC-57 subsequently selects the proposed mounting arrangement and advances
-  the review to the thigh and its outstanding fixings.
+- **DEC-59 — What a banked decision is; CAD review feedback is a revision
+  note** (2026-09-18, owner, after reviewing DEC-36..58). A DEC records a
+  choice that would still hold if the current CAD were discarded — architecture,
+  layout targets, interfaces, process, purchases — or one backed by physical
+  evidence in `test-log.md`. Feedback on a render, a marked-up screenshot, a
+  choice between assistant-generated options, approval to proceed, and the
+  assistant's own geometry are **revision notes**: one dated entry in the
+  [revision log](cad-integrated-design.md#revision-log), status `unprinted`
+  until a print of that revision says otherwise. Corrections of assistant
+  errors (as DEC-41/50 were) go to `test-log.md` or the pattern doc, not here.
+  Applied retroactively: DEC-37/40/42/44/45/46/48/49/55/56/57/58 are stubbed
+  in place and their full text is in git at `82e4995`
+  (`git show 82e4995:docs/decisions.md`); their numbers are kept so existing
+  cross-references resolve. DEC-36/38/39/41/43/47/50/51/52/53/54 stand.
+  Why: between 2026-09-07 and 2026-09-15 the review loop — the owner feeding
+  designs back as unprintable or weak — banked 29 decisions with no physical
+  evidence, several superseded within a day (DEC-42 → 43) or two (DEC-38 →
+  43, with hardware already ordered, DEC-51). Decisions that record the loop
+  are what made the record feel bogus (OQ-20). Governing rule:
+  [`AGENTS.md`](../AGENTS.md#working-conventions).
 
-- **DEC-55 — Hip carrier below the pitch axis, roll servo Bottom-down beside
-  the pitch servo; thigh forks pass the roll socket** (2026-09-14, maintainer
-  choice between two rendered options, "option 2"). The DEC-49 carrier's body
-  sat on the torso side of the pitch axis, wrapped around the pitch servo's
-  upper half; with the DEC-53 module's vertical case it intersected both the
-  servo and the module in the saved upright pose (about 3 cm³ each, measured).
-  The hip carrier now has its clevis bridge under the pitch servo's nose, one
-  24 × 22 mm block from the fork tails to the roll socket, and the roll servo
-  standing Bottom-down in that socket beside the pitch servo's drive fork pad,
-  nose toward the torso. Roll centres are **128.1 mm** apart (`ROOT_ROLL_Y`
-  64.05), from 149; the rear motor-face offset grows to hold the 220 mm track.
-  The flat back is the true bottom of the part: block and socket floor on the
-  bed, forks rising. Nothing lies on the torso side of the pitch axis, so the
-  carrier clears the module and the pitch servo in both poses at rest (test),
-  and its sweep only reaches the torso near ±180° pitch. Consequence: the
-  thigh cannot pass the roll servo's nose, so its forks are pads on the horn
-  and idler, tails stopped 3 mm above the socket walls, cheeks stepped 1 mm
-  outboard of the walls, and a slab 2 mm under the socket floor that is also
-  the knee socket's shelf; the 85 mm thigh keeps its length with no room to
-  spare between roll socket and knee shelf. The shoulder keeps the DEC-49
-  carrier and 149 mm roll spacing until DEC-54's chain replaces it. The two
-  root axes still intersect. Printable: `unknown`, no slice yet. The viewer
-  search after commit gives roll −3.5° to 9.75° and quadruped pitch −2.75° to
-  96°: the roll socket under the axis is what the thigh must clear, and the
-  block shares the module walls' 18 mm radius; both are open in OQ-22.
+- **DEC-58** — *reclassified 2026-09-18 by DEC-59: CAD revision note, not a decision.* Stepped thigh yoke, knee case clocked 90°, extended shank fork (assistant geometry). Entry: [revision log](cad-integrated-design.md#revision-log) DEC-58; original text at `82e4995`.
+
+- **DEC-57** — *reclassified 2026-09-18 by DEC-59: CAD revision note, not a decision; adopted 2026-09-19 as DEC-61.* 45° tilted rear pitch socket held as the proposal, from viewer approval. Entry: [revision log](cad-integrated-design.md#revision-log) DEC-57; original text at `82e4995`.
+
+- **DEC-56** — *reclassified 2026-09-18 by DEC-59: CAD revision note, not a decision.* Carrier block 24 → 16 mm with fillets and bevels, from a marked-up screenshot. Entry: [revision log](cad-integrated-design.md#revision-log) DEC-56; original text at `82e4995`.
+
+- **DEC-55** — *reclassified 2026-09-18 by DEC-59: CAD revision note, not a decision.* Hip carrier below the pitch axis, roll servo Bottom-down ("option 2" of two renders). Entry: [revision log](cad-integrated-design.md#revision-log) DEC-55; original text at `82e4995`.
 
 - **DEC-54 — Forelimbs are roll-first: shoulder abduction servo in a root
   socket on the torso's side, axis along the spine; front and rear limb
@@ -182,40 +163,9 @@ physical acceptance remains open.
   widening its slot. Fallback collision geometry must preserve this asymmetry.
   [Interface evidence](design/so101/socket-slot-comparison.png).
 
-- **DEC-49 — Use the front carrier at all four limb roots, without its bevel**
-  (2026-09-11, maintainer trial instruction). Export one common carrier design,
-  two prints per hand: `root_carrier_left/right`, four installed carriers.
-  Both roll-centre spacings become 149 mm; each rear centre moves inward 0.1 mm
-  and its motor-face offset grows 0.1 mm, retaining 220 mm wheel track.
-  A direct substitution clears quadruped but intersects the old pelvis socket
-  and pitch case upright. Rotate each fixed rear case 90° about its existing
-  lateral pitch axis, pointing the case forward in the torso frame; use an
-  integral right-angle socket module. Move the rear mounting flange from
-  Z=40.115 to 46 mm in the torso frame, retaining bolt/pin XY positions and
-  fastener stacks. This leaves over 2 mm between the common back's radial
-  envelope and the frame screw heads; the earlier flange obstructed pitch
-  travel near upright. Update torso/tray datums together. The socket floor
-  is the print bed face. Pitch → roll, limb
-  lengths and the saved sagittal poses remain intact. Validate the resulting
-  assembly and print approach; physical acceptance remains open.
-  Remove the head placeholder from structural CAD/viewer and collision checks.
-  Head position and mounting are undecided; the 450 mm overall sizing target
-  remains an allocation, not a solved head installation.
+- **DEC-49** — *reclassified 2026-09-18 by DEC-59: CAD revision note, not a decision.* Front carrier tried at all four roots; produced the weak pelvis socket (OQ-22). Replaced by DEC-53/55. Entry: [revision log](cad-integrated-design.md#revision-log) DEC-49; original text at `82e4995`.
 
-- **DEC-48 — Manufacture the accepted layout with enclosing sockets and rounded
-  links; separate TPU front contacts** (2026-09-10, maintainer instruction).
-  Apply the DEC-44 construction principles throughout the CAD, implementing
-  DEC-45's independent root modules and DEC-47's per-part printability tags.
-  Preserve joint centres, axis order, rear ankle drives and saved poses. The
-  forearms may be flatter in section; use a separate, replaceable TPU ground
-  contact on a keyed seat with a recessed fixing and captive metal nut.
-  Preserve the agreed hand reach and rounded ground envelope. Every current
-  print requires a credible orientation/support approach before being labelled
-  assumed; successful physical prints alone can establish proven. Local
-  slicing and manufacturing records accompany the revised exports. Refresh
-  the viewer with printability tags and DEC-46 mechanical travel searches.
-  [Current part review](part-design-review.md) and
-  [manufacturing evidence](design/manufacturing/README.md).
+- **DEC-48** — *reclassified 2026-09-18 by DEC-59: CAD revision note, not a decision.* Enclosing sockets, rounded links, TPU front pads applied throughout; local slices produced. Entry: [revision log](cad-integrated-design.md#revision-log) DEC-48; original text at `82e4995`.
 
 - **DEC-47 — Track printability for every printed part** (2026-09-10,
   maintainer instruction). Each part has `printable = unknown | assumed | proven`.
@@ -226,53 +176,11 @@ physical acceptance remains open.
   per-part tags and definitions, including coupons and separate candidates.
   These tags do not assert assembly access, fit, strength or loaded operation.
 
-- **DEC-46 — Viewer sliders expose the CAD mechanical travel** (2026-09-10,
-  maintainer instruction for the **next visualizer update**). Replace the
-  arbitrary ±5° inspection ranges with conservative clearance bounds derived
-  from the current printed parts and modelled servo/hardware envelopes.
-  Bounds depend on body pose and the other joint positions; update them when
-  those change. Use the reachable interval from the current configuration,
-  stopping before interference rather than jumping across a blocked interval.
-  Any grouped control must respect the limits of every joint it moves.
-  Label these as CAD mechanical-clearance ranges, not validated loaded servo
-  limits. Regenerate bounds when geometry changes. Current viewer remains
-  unchanged until that update; determination/validation of bounds is OQ-21.
+- **DEC-46** — *reclassified 2026-09-18 by DEC-59: CAD revision note, not a decision.* Viewer sliders show sampled mechanical-clearance ranges (tooling; implemented). Entry: [revision log](cad-integrated-design.md#revision-log) DEC-46; original text at `82e4995`.
 
-- **DEC-45 — Separate left/right pitch-servo socket modules** (2026-09-10,
-  maintainer feedback and refinement). Each fixed pitch servo blocks its
-  sibling's inboard ear screws in the current pelvis and shoulder crossmembers.
-  Split each paired mount into **two independently removable socket modules**:
-  two at the pelvis and two at the shoulders. Fully fasten each servo into its
-  own socket on the bench, then attach the modules to the common rigid torso
-  frame using accessible structural fasteners and positive locating surfaces.
-  Preserve joint centres, pitch → roll order and all four ear screws per servo.
-  This is an installation/service seam justified by DEC-39. Exact module/frame
-  interfaces and fastener access remain OQ-20; existing hole positions are not
-  automatically accepted. The SO-101 under-arm/wrist-holder pair remains a
-  useful optional socket-level construction pattern, not a requirement for
-  another removable wall within every module. Current production mounts are
-  not yet revised. [Access evidence and assembly intent](root-servo-mounts.md).
+- **DEC-45** — *reclassified 2026-09-18 by DEC-59: CAD revision note, not a decision.* Paired pitch mounts split into removable socket modules; carried into DEC-53. Entry: [revision log](cad-integrated-design.md#revision-log) DEC-45; original text at `82e4995`.
 
-- **DEC-44 — Overall layout accepted; refine the manufactured parts** (2026-09-10,
-  maintainer visual review). Bank DEC-43's overall geometry as the device
-  layout: 450 mm upright head-top height, 150 mm torso, 220 mm rear track,
-  70 mm upper arms, 75 + 25 mm forearm/hand reach to Ø32 mm fixed front feet,
-  85/90 mm rear legs and the bought rear ankle-drive pair. Preserve joint
-  centres and both saved poses while reviewing construction; this accepts the
-  layout, not present part detailing or physical strength/printability.
-  Replace the boxy treatment with the SO-ARM101 upper arm's construction
-  principles: enclosing servo-base sockets, broad connected fork roots,
-  rounded exposed edges and a deliberate build face. The maintainer's
-  `IMG_7004.HEIC` is the reference; exact upstream STEP sections are retained
-  as [templates](design/so101/README.md). Review every structural part and the
-  associated coupons before propagating a revised interface. Friction fit
-  locates/supports the case; retain the four ear screws for positive retention.
-  No repeat SO-101 fit gauge is required (DEC-33). Following the roll-first
-  discussion, the maintainer accepts retaining **pitch → roll** (DEC-41):
-  upstream pitch can reorient the roll assembly as the torso changes pose.
-  Roll remains relative to the upper limb; ground alignment requires coordinated
-  pitch control, not passive stabilization. Orthogonal link construction
-  remains the manufacturing task (OQ-20). [Part critique](part-design-review.md).
+- **DEC-44** — *reclassified 2026-09-18 by DEC-59: CAD revision note, not a decision.* "Layout accepted" from a render; SO-ARM101 upper-arm construction as reference. Re-opened by DEC-52. Entry: [revision log](cad-integrated-design.md#revision-log) DEC-44; original text at `82e4995`.
 
 - **DEC-43 — Keep rear ankle wheels; build V1 with fixed front feet** (2026-09-10,
   maintainer instruction). Retain the bought pair of 37D drives and Ø80 wheels
@@ -293,29 +201,7 @@ physical acceptance remains open.
   no longer a V1 requirement. Contact transitions, traction and loaded duty
   remain to be demonstrated. [Implemented design](cad-integrated-design.md).
 
-- **DEC-42 — Four walking feet, two knee-area wheels (knee provisions superseded by DEC-43)** (2026-09-10,
-  maintainer instruction and clarification). Retain the bought pair of 37D
-  geared/encoder motors and Ø80 wheels as the **only wheels**, relocating
-  them from the ankles to the rear knee area. Each rear lower leg ends in a
-  separate foot: lower the legs for quadruped standing/walking with all wheels
-  clear of the ground; fold the lower legs up to permit wheel contact in the
-  crouched balancing/drive pose. Abort all wheeled forelimbs. Each forearm is
-  one integrated limb ending at wrist/hand reach in a fixed rounded ball foot;
-  no caster or active wrist joint is requested. Preserve hip/shoulder
-  pitch → roll, knee/elbow pitch and the twelve ST3215 limb actuators.
-  Supersedes DEC-31's ankle wheel location and DEC-36/37/38/40's front wheels.
-  Intended transition: establish rear-wheel contact, unload/fold the rear feet,
-  unload/lift front feet and establish balance on the rear pair; the exact
-  contact sequence and trajectory need design. Four-foot walking does not
-  require locked wheels as ground contacts. Power-off standing remains unproven.
-  Wheel axle offset, thigh-versus-shank carrier ownership, folded-foot clearance,
-  ground-contact geometry and gait/transition loads remain OQ-17/18/19.
-  Two wheel-drive channels/encoders suffice; cancel additional front motors,
-  wheels/hubs and drive-channel procurement. Existing CAD/viewer and generated
-  printed BOM still depict DEC-40/41 until revised. The ~400–500 mm overall
-  size goal remains; walking/standing and crouched driving heights must be
-  distinguished. No enlargement or replacement motors/servos are banked.
-  [Motor, servo and scaling assessment](two-wheel-walking.md).
+- **DEC-42** — *reclassified 2026-09-18 by DEC-59: CAD revision note, not a decision.* Knee-area wheels with folding rear feet; superseded by DEC-43 the same day. Entry: [revision log](cad-integrated-design.md#revision-log) DEC-42; original text at `82e4995`.
 
 - **DEC-41 — Hip and shoulder pitch precede roll** (2026-09-08,
   maintainer correction). DEC-40 fixed its first roll servo to the pitching
@@ -336,28 +222,7 @@ physical acceptance remains open.
   order, carrier geometry and root-axis spacing. Validate physical servo-axis
   alignment and lateral motion explicitly, as well as collision clearance.
 
-- **DEC-40 — Implement the integrated 4×4 chassis** (2026-09-08).
-  Replaces DEC-34's structural builders and frozen viewer with the compact
-  four-limb CAD under DEC-36/38/39. Each segment and orthogonal carrier is one
-  print; all twelve servos use the SO-101 four-ear saddle. A rigid 150 mm torso
-  joins integrated pelvis/shoulder crossmembers with real service seams.
-  Keep 70/75 mm front and 85/90 mm rear links, Ø80 wheels and 450 mm upright
-  height. **Revise track from 200 to 220 mm**: inward roll caused the paired
-  37D motor bodies to collide in the narrower upright assembly. Neutral motor
-  end gap becomes 36 mm; rear pitch-axis spacing becomes 135.2 mm, shoulders
-  remain 135 mm. **Move raised wrists from 60 to 100 mm forward and from 350 to 330 mm
-  high**, to clear the folded elbow and retain motor/head clearance during
-  combined joint adjustments. These are
-  explicit engineering revisions to DEC-37/38, not changes to servo fit.
-  Correct the measured flat horn/ear datums, supplied head pockets and Back
-  centre/bay clearance. Add 0.5 mm OD6 narrow washers to the Back M3×6 square
-  fixings for 2.0 mm nominal engagement; verify the stack on the rig.
-  Local supports and a two-print saddle/clevis rig replace the old flat-piece
-  export strategy. The user authorizes replacing the static review scene with
-  this CAD. Implementation, assembly and validation scope:
-  [cad-integrated-design.md](cad-integrated-design.md). Head/neck, complete
-  electronics/battery packaging, continuous loaded motion and physical
-  acceptance remain open; a digital export does not settle them.
+- **DEC-40** — *reclassified 2026-09-18 by DEC-59: CAD revision note, not a decision.* First integrated 4×4 chassis replacing DEC-34; track 200 → 220 mm. Entry: [revision log](cad-integrated-design.md#revision-log) DEC-40; original text at `82e4995`.
 
 - **DEC-39 — Integrated SO-101-style limb structures** (2026-09-08,
   maintainer feedback). Default to **one structural print per link**, taking
@@ -395,30 +260,7 @@ physical acceptance remains open.
   controlled appropriately when those wheels are airborne. OQ-17 tracks
   the remaining drive implementation and acceptance.
 
-- **DEC-37 — Resolve the conceptual dimensions into two closed poses**
-  (2026-09-08, engineering judgement authorized by the maintainer). Preserve
-  DEC-36's 70/75 mm front and 85/90 mm rear links, 150 mm torso, 35 mm neck
-  and Ø80 wheels. Use quadruped hip/shoulder axes at **175/165 mm**, a
-  **260 mm wheelbase**, and **200 mm track**. Upright hip/shoulder heights
-  become **190/340 mm**, with the head envelope ending at **450 mm**.
-  Head packaging envelope: **85 × 110 × 75 mm**, including ears in its height.
-  The conceptual 240 mm shoulder height exceeds the front leg's 185 mm
-  straight reach; 165 mm retains elbow bend. A 120 mm track makes the two
-  bought 69 mm motor bodies overlap by 64 mm; 200 mm gives **16 mm end gap**
-  with the existing direct-drive hub stack. Adopt approximately **340 mm**
-  nose–rump length rather than forcing the 340 mm dimension chain into 330.
-  Wrist wheels are **passive**, on 6 mm steel axles, two radial bearings per
-  wrist and metal axial retention; rear wheels retain the two purchased
-  drive motors. No extra motor channel or active wrist joint is added.
-  These choices resolve the drive-split and contradictory-dimension questions
-  raised in DEC-36; detailed housings, servo placement, load transfer and
-  the rise trajectory remain design work under OQ-17/18.
-  **Drive update:** DEC-38 supersedes the passive wrists and raised-wrist
-  position; DEC-39 governs part integration. The retained geometric choices
-  and [schematics and STEP masters](design/README.md) derive from one joint
-  model, with checked link closure, floor contacts and motor separation.
-  They do not establish a printable mechanism, swept clearance or physical
-  acceptance. The detailed redesign proceeds pelvis first against this master.
+- **DEC-37** — *reclassified 2026-09-18 by DEC-59: CAD revision note, not a decision.* Two closed poses from DEC-36's segment lengths (200 mm track, passive wrist wheels). Entry: [revision log](cad-integrated-design.md#revision-log) DEC-37; original text at `82e4995`.
 
 - **DEC-36 — Four wheel-ended limbs and compact koala proportions**
   (2026-09-08, maintainer instruction). Put **Ø80 mm wheels at both wrists

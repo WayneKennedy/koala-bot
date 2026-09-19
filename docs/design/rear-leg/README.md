@@ -1,5 +1,9 @@
 # Rear leg — DEC-57/58, 2026-09-15
 
+**2026-09-19:** the 45° mount is now in the main assembly (DEC-61) and the review shows
+the real torso instead of the green face patch; thigh and shank are the v2 production
+parts. The text below describes the review as first built.
+
 The maintainer selected the **45° pitch-socket mount as the proposed A/B
 arrangement**, retaining the DEC-56 carrier and servo B placement. This review
 progresses to the thigh and the lower leg's 37D motor mount. The full torso
@@ -83,7 +87,29 @@ walking and strength remain unverified.
 
 ## Manufacture and reproduction
 
-Both revised parts are **unknown printable**. Valid connected solids and
+Both revised parts are **unknown printable**. Owner review of this viewer, 2026-09-18:
+the root socket and hip carrier look right and are now `assumed`; the thigh and shank
+have good general geometry but as drawn need a lot of support, which would probably ruin
+them, so they stay `unknown` until orientation or form is revised. The shank is expected
+to be the easier fix. This is aesthetic judgement plus printability instinct, not a slice.
+
+**Thigh orientation study, 2026-09-18** ([image](thigh-orientation-study.png),
+`koala_hardware.orientation_study`, a geometry screen, not a slice). The thigh is a
+C-yoke: two parallel cheeks joined by one bridge at the knee end, the knee socket
+offset to one cheek, two horn forks at the open end. In every lying orientation
+one cheek is a 50 mm cantilever 60–70 mm up. Declared orientation (thin cheek
+down): 962 mm² bed, 2742 mm² overhang, ≈133 cm³ support, and the socket opens
+toward the bed so support fills the servo pocket. Flipped (thick cheek and socket
+wall down): 1466 mm² bed, ≈62 cm³ support, all external. Standing on the knee
+socket: 904 mm² bed, ≈48 cm³ under the bridge beyond the socket, 110 mm tall.
+Tilts lose bed contact. Orientation alone leaves 50–60 cm³ of support on a 53 g
+part; the form must change. **Both proposals are modelled and shown in this
+viewer** (left leg = option 1 frame thigh, right leg = option 2 bolted cheek) when
+built with `--thigh-options`: [thigh-options/README.md](thigh-options/README.md).
+The owner then chose a third form, one print with a tapered thick cheek for tree
+support: [thigh-flat/README.md](thigh-flat/README.md), built with `--thigh-flat`.
+
+Valid connected solids and
 watertight handed STL exports fit the 200 × 200 mm bed.
 [Export hashes and surface metrics](manufacturing.json). The thigh is
 44.9 × 109.8 × 72.9 mm in its declared orientation, with 962 mm² bed contact;

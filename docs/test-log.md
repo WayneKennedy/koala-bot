@@ -7,6 +7,33 @@ in `hardware/src/koala_hardware/params.py`, tagged with their provenance.
 Reference printer per DEC-14 (Ender-5 S1 / Klipper), PETG, the standing
 general-purpose profile recorded in [`bom.md`](bom.md).
 
+## 2026-09-19 — hip carrier v1 ×2 plate started (plate 2; in progress; result pending)
+
+`koala-hip-carrier-x2.gcode` (left + right `hip_carrier` v1, STL SHA-256 eb5a282a / ad7843e2),
+PETG, re-sliced after plate 1 with support from the bed only (no support at all results), Debian
+prusa-slicer 2.5.0, estimate 6 h 42 min / 66 g. Started via Moonraker at the owner's request,
+bed clear; bed target 80 °C. **Record here:** adhesion of the flat back, the horn-screw and
+ear-hole roofs printed as unsupported bridges, fork fit on servo B's horn and idler, socket fit
+for servo B, and whether `hip_carrier` moves to `proven`.
+
+## 2026-09-19 — root socket v1 ×4 printed (plate 1): fit passes, four M2 ear holes blocked by support
+
+First physical print of any DEC-53/55/56 part. `koala-root-socket-x4.gcode` (2 left +
+2 right `root_socket` **v1** (`hardware/part-versions.json`), STL SHA-256 298f0eff / cbd58598 from the 2026-09-18 export), PETG,
+base `ender5s1_petg.ini` + `hardware/print/manufacturing-petg.ini`, Debian prusa-slicer
+2.5.0, slicer estimate 9 h 10 min / 89 g. Started via Moonraker at the owner's request
+with the bed clear; bed target 80 °C. Plate 2 (`koala-hip-carrier-x2.gcode`) waits.
+**Result (owner, 2026-09-19, 9 h 03 min, 29.3 m of filament):** all four parts pass for
+main function. Defect: the four M2 clearance/counterbored ear-screw holes in each socket
+are completely blocked. Cause: slicer, not geometry. `manufacturing-petg.ini` enabled snug
+supports without `support_material_buildplate_only`, so PrusaSlicer grew support inside the
+horizontal Ø2.2 holes; the 3d-printing repo's own decision names that setting as the answer
+to "no supports in horizontal screw holes", and the house rule is support from the bed only.
+The profile now sets it (and a tree variant exists for the v2 legs); the hip-carrier plate,
+sliced the same way, is re-sliced before printing. **Actions:** clear the four printed
+sockets' ear holes with a 2.2 mm drill before fitting servos, or reprint. `root_socket` v1 →
+`proven` for geometry and fit, with that caveat, in `part-design-review.md`.
+
 ## 2026-09-12 — RCmall servo order arrived; STS3215 box contents (owner report, nothing measured)
 
 12 × Feetech STS3215 12 V and 4 × STS3032M 6 V, the 2026-09-01 order in

@@ -1,6 +1,6 @@
 {
-  "scene_sha256": "63e0c893db8d815b5c0d65930ca9ec4d61ef8b756ef0add54cd0019ee420b94e",
-  "engine_sha256": "0b3e0a7902d1a839c8fc142580751b86c2e70cd7e97c0f6abfd330d7236d4a91",
+  "scene_sha256": "f51068cd43a23cdc5e94f121d8dc5bfc0ef00342ba33e050e8be50ab15dc15bd",
+  "engine_sha256": "64bca0b0008824e6400ad32110c24fff3141c436ba471655aff0bd5b590415cb",
   "poses": {
     "quadruped": {
       "bounds": {
@@ -31,7 +31,7 @@
         },
         "knee": {
           "min": -96.5,
-          "max": 56.25,
+          "max": 57.5,
           "stops": [
             [
               "rear_thigh_right",
@@ -66,18 +66,21 @@
         },
         "roll": {
           "min": -5,
-          "max": 180,
+          "max": 176.5,
           "stops": [
             [
               "rear_motor_right",
               "rear_motor_left"
             ],
-            null
+            [
+              "torso_frame",
+              "rear_shank_right"
+            ]
           ]
         },
         "knee": {
           "min": -91.25,
-          "max": 61.5,
+          "max": 62.75,
           "stops": [
             [
               "rear_thigh_right",

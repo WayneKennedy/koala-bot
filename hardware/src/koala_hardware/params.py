@@ -103,7 +103,8 @@ BODY_WHEEL_DIA_MM = WHEEL_DIA  # 80 mm rear wheels
 BODY_LENGTH_TARGET_MM = 340.0  # nose to rear, closed quadruped envelope ~339.6
 BODY_WHEELBASE_TARGET_MM = 260.0 # front foot to rear wheel contact centres
 BODY_TRACK_TARGET_MM = 220.0   # DEC-40: retains clearance with inward roll and bought 69 mm motors
-BODY_SHOULDER_WIDTH_MM = 149.0
+BODY_SHOULDER_WIDTH_MM = 153.5   # [DESIGN DEC-60] was 149: the shoulder root sockets share ROOT_PITCH_Y, so the placeholder
+                                 # DEC-49 front chain moves out with them; front foot centres are targets to re-derive (DEC-54)
 BODY_QUAD_SHOULDER_HEIGHT_MM = 165.0 # axis height, from closed front-leg IK
 BODY_QUAD_HIP_HEIGHT_MM = 175.0
 BODY_QUAD_REAR_OFFSET_MM = 55.0 # rear wheel axle behind hip in quad stance
@@ -230,7 +231,8 @@ SOCKET_HEAD_CLEAR = 6.4
 LINK_BRIDGE_START = 18.0 # from proximal axis; outside nominal case nose
 LINK_BRIDGE_END = 32.0
 LINK_SPINE_HALF = 8.0
-ROOT_PITCH_Y = 24.0     # lateral first-axis centres; roll follows pitch (DEC-41)
+ROOT_PITCH_Y = 26.25    # [DESIGN DEC-60] lateral first-axis centres (52.5 mm apart, was 48): widened 2.25 per side so the
+                        # flush-faced shank keeps the 220 mm track and 36 mm motor gap; roll follows pitch (DEC-41)
 ROOT_MOUNT_Z = SOCKET_AXIS_Z + SOCKET_SHELF
 ROOT_REAR_MOUNT_Z = ROOT_MOUNT_Z  # [DESIGN DEC-53] same module at both roots; rear plate starts here
 FRAME_PLATE_T = 5.0      # torso flange thickness
@@ -268,7 +270,9 @@ HIP_SOCKET_LIP_R = 1.5              # [DESIGN DEC-56] small return at the 2 mm s
 HIP_EDGE_BEVEL = 2.0                # [DESIGN DEC-56] 45-degree bevels, tapered before the root fillets
 HIP_FORK_CLEAR = 1.0        # [DESIGN DEC-55] thigh fork cheeks outside B's socket walls
 HIP_FORK_CLIP_Z = 15.0      # [DESIGN DEC-55] pad tails end above B's socket wall tops (18.1)
-REAR_SOCKET_TILT = -45.0   # [PROPOSED DEC-57] rear torso face, body Y; isolated rear-leg review
+REAR_SOCKET_TILT = -45.0   # [DESIGN DEC-61, proposed as DEC-57] rear pitch sockets on the torso's 45 degree face, body Y about the pitch axis
+TORSO_REAR_PLATE_X = (-20.0, 22.0)  # [DESIGN DEC-61] run of the inclined pelvis plate in the flange's own frame, before the tilt: covers the 36.7 mm module plates with margin
+TORSO_GUSSET_T = 3.0                # [DESIGN DEC-61] side gussets under the rear face, outboard of the outer screw holes (|y| up to 37.95)
 THIGH_KNEE_CLOCK = 90.0    # [DESIGN] about the knee shaft; Bottom toward native +Y
 THIGH_CHEEK_CLEAR = 4.0    # [DESIGN] permits R6.3 stepped fork roots outside B's socket
 THIGH_JOIN_START = 10.5    # [DESIGN] beyond the complete proximal horn pads
@@ -282,3 +286,18 @@ SHANK_OUTER_STEP_R = 2.0  # [DESIGN] 2.25 mm motor-face offset beyond the drive 
 REAR_MOTOR_ROOT_R = 5.0    # [DESIGN] face/ring thickness at motor support joins
 FRONT_PAD_START = 96.0     # 100 mm nominal ball centre, truncated top
 FRONT_PAD_NUT_Z = 92.0
+
+# --- Thigh print-form options under review (2026-09-19; cad-integrated-design.md revision log).
+# Used only by `rear_leg_review --thigh-options`; the main assembly and BOM keep the DEC-58 thigh.
+THIGH_FOOT_T = 4.0        # [DESIGN option 1] foot closing the knee end on the drive-pad side; C's nose passes it sideways
+THIGH_BAR_CLEAR = 0.3     # [DESIGN option 1] bar top stands off the case's Side face; contact is allowed only in the pocket
+THIGH_LIP_T = 5.0         # [DESIGN option 2] cheek-piece lip over the bridge's knee-end face
+THIGH_LIP_END_Y = -12.75  # [DESIGN option 2] lip stops 2.6 mm short of C's nose (-10.1)
+THIGH_LIP_SCREW_Y = -16.5 # [DESIGN option 2] M3 along Z through the lip into the bridge; nut slot from the window face
+THIGH_END_NUT_Y = -22.8   # [DESIGN option 2] nut centre for the Y screw, inside the bridge end (2.55 mm wall to the end face)
+THIGH_END_SCREW_Z = 65.3  # [DESIGN option 2] M3 along Y through the cheek into the bridge end, head counterbored flush
+THIGH_CHAMFER_Z = 27.5    # [DESIGN option 3, owner's red line 2026-09-19] the thick cheek's outer face tapers from here to the idler pad's top edge in one flat
+# Shank motor inset (owner, 2026-09-19): the step between the motor-mount face and the drive fork's outer
+# face. Zero since DEC-60 widened ROOT_PITCH_Y: the production shank's outer print face is one plane at the
+# 220 mm track. Kept derived so a future spacing change shows up here rather than as a hidden step.
+SHANK_MOTOR_INSET = (BODY_TRACK_TARGET_MM/2 - WHEEL_W/2 - HUB_STACK - ROOT_ROLL_Y) + MOTOR_MOUNT_T - (SOCKET_DRIVE_FACE + SOCKET_PAD_T)  # 2.25

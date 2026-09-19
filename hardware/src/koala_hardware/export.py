@@ -112,8 +112,8 @@ def write_bom(bom: list[dict]) -> bool:
                 path.read_bytes()).hexdigest():
             sliced[name] = result
 
-    rows = ["| Part | Qty | Printable | Material | Size (mm) | Filament | Print time | Print notes |",
-            "|------|-----|-----------|----------|-----------|----------|-----------|-------------|"]
+    rows = ["| Part | Ver | Qty | Printable | Material | Size (mm) | Filament | Print time | Print notes |",
+            "|------|-----|-----|-----------|----------|-----------|----------|-----------|-------------|"]
     tot_vol = tot_qty = tot_secs = 0
     tot_solid = 0.0
     tot_mass = tot_solid_mass = 0.0
@@ -137,7 +137,7 @@ def write_bom(bom: list[dict]) -> bool:
         else:
             fil = f"~{r['vol'] * density * r['qty']:.0f} g (solid max)"
             tim = "-"
-        rows.append(f"| `{r['name']}` | {r['qty']} | {r.get('printable', 'unknown')} | {r.get('material', 'PETG')} | {sx:.0f} x {sy:.0f} x "
+        rows.append(f"| `{r['name']}` | v{r.get('version', 1)} | {r['qty']} | {r.get('printable', 'unknown')} | {r.get('material', 'PETG')} | {sx:.0f} x {sy:.0f} x "
                     f"{sz:.0f} | {fil} | {tim} | "
                     f"{'; '.join(note) if note else 'clean'} |")
         if not r["name"].startswith("coupon"):
@@ -157,7 +157,7 @@ def write_bom(bom: list[dict]) -> bool:
     else:
         total_filament = f"~{tot_solid_mass:.0f} g (solid max)"
         total_time = "-"
-    rows.append(f"| **Structural total** | **{tot_qty}** | | | | "
+    rows.append(f"| **Structural total** | | **{tot_qty}** | | | | "
                 f"**{total_filament}** | **{total_time}** | |")
 
     hardware = Counter()
@@ -254,7 +254,7 @@ def main():
                 print(f"         better orientations: {alts}")
                 line += f"\n    better orientations: {alts}"
             lines.append(line + "\n    " + spec["notes"])
-            bom.append({"name": name, "qty": qty, "size": size,
+            bom.append({"name": name, "version": spec.get("version", 1), "qty": qty, "size": size,
                         "vol": mesh.volume / 1000, "ok": ok,
                         "printable": spec.get("printable","unknown"),
                         "material": spec.get("material","PETG"),

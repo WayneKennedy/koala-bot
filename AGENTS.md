@@ -89,11 +89,29 @@ Changing DEC-16 or DEC-18 has consequences beyond this repo.
   put anything unresolved in `open-questions.md`. Move items between them as they resolve.
 - **Distinguish decided from open.** `decisions.md` = committed; `open-questions.md` =
   still debated. Never state an open question as settled.
+- **A DEC survives discarding the CAD, or has physical evidence** (DEC-59). Feedback on a
+  render, a marked-up screenshot, a choice between assistant-generated options, approval to
+  continue, or the assistant's own geometry is a **revision note** in
+  [`docs/cad-integrated-design.md#revision-log`](docs/cad-integrated-design.md#revision-log),
+  status `unprinted`. Never bank it as a decision. Corrections of assistant errors go to
+  `docs/test-log.md` or the pattern doc.
 - **Check what is owned before suggesting a purchase.** Read the private
   [wk-inventory `docs/stock.md`](https://github.com/WayneKennedy/wk-inventory/blob/main/docs/stock.md)
   and search the owner's invoices, and say what was found. Full rule and the owner's goal
   (fewer unused parts, more finished projects):
   [wk-inventory `AGENTS.md`](https://github.com/WayneKennedy/wk-inventory/blob/main/AGENTS.md#before-anything-is-bought).
+- **Every printed part has a version** (owner, 2026-09-19). `version` in the part's spec,
+  ledgered with a geometric fingerprint in [`hardware/part-versions.json`](hardware/part-versions.json)
+  (`uv run python -m koala_hardware.part_versions`, `--update "<what changed and why>"` after a
+  bump). A geometry change without a bump fails `tests/test_part_versions.py`. `proven` and every
+  `test-log.md` entry name the version printed; a bump resets the part to `unknown` unless the
+  entry says the change is cosmetic. Versions never go down. The generated BOM shows them.
+- **Before building on any redesign, render it from several angles and ask: does this
+  design look stupid?** (owner, 2026-09-19, after a rotated-flange torso that cut the rails,
+  broke the battery space and looked dumb reached the viewer.) `uv run python -m
+  koala_hardware.render_views <part>` writes `docs/design/parts/<part>-views.png` (iso, front,
+  side, top). Look at it, answer the question honestly in the revision log, and only then run
+  the export/audit/viewer chain. A render that would embarrass the project is a stop, not a note.
 - **Per-part printability:** maintain `unknown`, `assumed` or `proven` in
   [`docs/part-design-review.md`](docs/part-design-review.md) (DEC-47). New parts
   default to unknown; reassess after changes; proven needs a recorded print.
@@ -102,7 +120,10 @@ Changing DEC-16 or DEC-18 has consequences beyond this repo.
 
 ## Status
 
-**Phase 1 (V1 vertical slice) — DEC-57/58 proposed rear mounting and revised links, 2026-09-15.**
+**Phase 1 (V1 vertical slice) — rear-leg revision DEC-57/58, 2026-09-15; DEC-59 reclassified
+the CAD-iteration entries DEC-37..58 as revision notes on 2026-09-18.** In this paragraph
+DEC-37/40/42/44/45/46/48/49/55/56/57/58 name entries in the
+[revision log](docs/cad-integrated-design.md#revision-log), not banked decisions.
 The accepted DEC-44 overall layout is retained. Production CAD now implements
 rounded links/fork roots, enclosing servo sockets, independently removable
 left/right root socket modules, flatter forearms and separate keyed TPU contact
@@ -111,13 +132,23 @@ including six coupons; the chassis uses 24 physical prints. Every current print
 from DEC-49/50 has local slices and layer images in
 [`docs/design/manufacturing/`](docs/design/manufacturing/README.md). None is proven
 by a physical print of this revision. The later root modules, hip carriers
-and revised thighs/shanks are `unknown` printable; the other parts retain `assumed` tags.
+and revised thighs/shanks were `unknown` printable; on 2026-09-18 the owner's review of the
+rear-leg viewer moved the root modules and hip carriers to `assumed` and left the thighs and
+shanks `unknown` because as drawn they need support that would probably ruin them.
+Two print-form options for the thigh (one-piece frame standing on the socket; two-piece
+bolted cheek) are modelled and shown side by side in the rear-leg viewer for the owner to
+judge (2026-09-19, [record](docs/design/rear-leg/thigh-options/README.md)). The owner chose a
+third form from them: one print with the idler-side cheek thickened and tapered, printed on the
+cup-floor plane with tree support, and the shank's outer print face made one plane; **DEC-60** keeps
+the 220 mm track by widening the hip pitch centres to 52.5 mm on the torso. Both are the production
+`thigh`/`shank` v2 with a rounding pass ([record](docs/design/rear-leg/thigh-flat/README.md));
+not yet sliced or printed.
 Shared SO-101 fit remains accepted; no
 repeat gauge is required (DEC-33).
 
 Retain twelve ST3215s, two bought 37D rear ankle drives, 85/90 mm rear links,
 150 mm torso, 220 mm rear track and the 450 mm upright head-top sizing target.
-Hips are pitch → roll (DEC-41); shoulders are **roll → pitch**, mounted on the
+Root pitch centres are 52.5 mm apart at both ends and the placeholder front roll centres 153.5 mm (DEC-60). Hips are pitch → roll (DEC-41); shoulders are **roll → pitch**, mounted on the
 torso's sides (DEC-54), so front and rear limb geometry differ by design and
 the front lengths and foot positions are targets to re-derive. The structure is
 being redesigned torso-first, outward, with one rear leg as the vehicle
@@ -125,16 +156,16 @@ being redesigned torso-first, outward, with one rear leg as the vehicle
 M3 nuts under the servo, two prints per hand. The hip carrier sits below the
 pitch axis with the roll servo Bottom-down and the thigh's forks pass its socket
 (DEC-55). DEC-56 narrows its block to the 16 mm fork neck, adds tapered
-2 mm inner-edge bevels and internal root fillets. DEC-57 holds the **45° tilted
-pitch socket on an inclined torso face** as the proposed A/B arrangement,
-retaining that carrier. The separate [rear-leg review](docs/design/rear-leg/README.md)
-uses it; the main assembly retains the previous torso mount. DEC-58 replaces
+2 mm inner-edge bevels and internal root fillets. **DEC-61** banks the **45° tilted
+pitch socket on an inclined torso face** (proposed as DEC-57), retaining that
+carrier: the main assembly and the torso's rear flange now carry it; the separate
+[rear-leg review](docs/design/rear-leg/README.md) shows the same geometry. DEC-58 replaces
 the thigh's obstructed fork joins with a filleted stepped yoke, clocks C's
 case 90° about its unchanged knee shaft, and extends the shank's open fork.
 Local 1° checks clear ±30° roll and 0–120° knee flexion; these are not whole-robot
 walking limits. Motors, wheels and the opposite leg also constrain travel.
 The shoulder still uses the DEC-49 carrier until DEC-54's chain is
-drawn. Nothing new is sliced or printed.
+drawn. The root socket is **proven** v1 (plate 1, 2026-09-19: fit passes; ear holes need drilling because the profile lacked bed-only support, now fixed); the hip carriers are re-sliced and waiting (OQ-22).
 Drive/idler socket slots
 are 14/18.5 mm wide. Head placement is undecided and omitted from structural CAD.
 The viewer uses sampled pose-dependent mechanical-clearance ranges (DEC-46),

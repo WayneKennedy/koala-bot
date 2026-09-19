@@ -37,7 +37,8 @@ def mount_face():
 def socket_frame(pose,tilt):
     # Body Y is the lateral pitch axis in both saved poses. Rotating about
     # this axis moves the case/mounting face, not either joint centre.
-    return A.body_location(B.poses()[pose])*Rot(Y=tilt)*pelvis.pitch_socket(False)
+    # pitch_socket(False) now carries REAR_SOCKET_TILT itself (DEC-61); `tilt` is the absolute angle wanted.
+    return A.body_location(B.poses()[pose])*Rot(Y=tilt-P.REAR_SOCKET_TILT)*pelvis.pitch_socket(False)
 
 
 def main():

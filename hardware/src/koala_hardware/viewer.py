@@ -77,6 +77,8 @@ def _assembly_items(tmp: pathlib.Path, pose="quadruped", *, details=None, frames
     # centre head sit in rotationally invariant, audited contact/relief zones.
     # Test the full conservative case here; retain all hardware for other pairs.
     clipped=S._parametric_case()
+    detail_list=list(assembly.scene_details(pose=pose) if details is None else details)
+    names={d[0] for d in detail_list}
     for ref,mount,tf in (assembly.socket_frames(pose) if frames is None else frames):
         key=ref.split('_')[1]
         joint=ref.split('_')[2]
@@ -88,8 +90,10 @@ def _assembly_items(tmp: pathlib.Path, pose="quadruped", *, details=None, frames
             for r in range(3):
                 for c in range(4):matrix[r,c]=tf.wrapped.Transformation().Value(r+1,c+1)
             if side=='left':matrix=np.diag([1,-1,1,1])@matrix
-            cores[ref.replace('_right','_'+side)]=(partner+'_'+side,core,tf*collision_case if side=='right' else mirror(tf*collision_case,Plane.XZ),matrix.T.flatten().tolist())
-    for i, (name, solid, colour, group, side) in enumerate(assembly.scene_details(pose=pose) if details is None else details):
+            # The exempt partner may be split across prints (a bolted cheek carries one pad).
+            partners=[n for n in (partner+'_'+side,partner.replace('_thigh','_thigh_cheek')+'_'+side) if n in names]
+            cores[ref.replace('_right','_'+side)]=(partners if len(partners)>1 else partner+'_'+side,core,tf*collision_case if side=='right' else mirror(tf*collision_case,Plane.XZ),matrix.T.flatten().tolist())
+    for i, (name, solid, colour, group, side) in enumerate(detail_list):
         ghost = name.startswith("reference")
         bought = any("_"+s+"_" in name for s in ("motor", "shaft", "hub", "wheel"))
         tag=name.removesuffix('_right').removesuffix('_left')

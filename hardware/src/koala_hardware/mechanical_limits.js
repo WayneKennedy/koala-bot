@@ -1,3 +1,5 @@
+// A servo's exempt contact partner: one name, or several when the fork is split across prints.
+const partnerOf=(a,b)=>Array.isArray(a.contactPartner)?a.contactPartner.includes(b.name):a.contactPartner===b.name;
 /* SPDX-License-Identifier: CERN-OHL-S-2.0
  * Pose-dependent, grouped joint clearance search for the static viewer.
  * Surfaces are checked at 0.25 degree increments with a 2 degree reserve before the first hit.
@@ -44,8 +46,8 @@ function init(data) {
     let dependencies=['pitch','roll','knee'];
     if(!a.side||!b.side||(a.side===b.side&&ga.split('_')[0]===gb.split('_')[0]))
       dependencies=['pitch','roll','knee'].slice(Math.min(la,lb),Math.max(la,lb));
-    const ag=a.contactPartner===b.name?a.core:a.geometry;
-    const bg=b.contactPartner===a.name?b.core:b.geometry;
+    const ag=partnerOf(a,b)?a.core:a.geometry;
+    const bg=partnerOf(b,a)?b.core:b.geometry;
     pairs.push({a,b,ag,bg,dependencies,id:pairs.length});
   }
 }
@@ -58,7 +60,7 @@ function blocked(q) {
     let hit=null;
     if(!boxes[p.a.id].intersectsBox(boxes[p.b.id]))continue;
     {
-      const owner=p.a.contactPartner===p.b.name?p.a:p.b.contactPartner===p.a.name?p.b:null;
+      const owner=partnerOf(p.a,p.b)?p.a:partnerOf(p.b,p.a)?p.b:null;
       if(owner?.contactBoxes){
         const other=owner===p.a?p.b:p.a;
         const tf=matrices[other.id].clone().invert().multiply(matrices[owner.id])
