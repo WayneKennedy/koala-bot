@@ -1,0 +1,577 @@
+{
+  "socket_contact_mm3": 39.1282,
+  "rig_angles": 19,
+  "nominal_M2_engagement_mm": 2.8,
+  "nominal_idler_engagement_mm": 2.0,
+  "reference": "STEP + measured stack",
+  "part_designs": 18,
+  "assembly_samples": [
+    {
+      "pose": "quadruped",
+      "delta_degrees": [
+        0,
+        0,
+        0
+      ],
+      "boolean_pairs": 180
+    },
+    {
+      "pose": "quadruped",
+      "delta_degrees": [
+        -5,
+        -5,
+        -5
+      ],
+      "boolean_pairs": 68
+    },
+    {
+      "pose": "quadruped",
+      "delta_degrees": [
+        -5,
+        -5,
+        0
+      ],
+      "boolean_pairs": 0
+    },
+    {
+      "pose": "quadruped",
+      "delta_degrees": [
+        -5,
+        -5,
+        5
+      ],
+      "boolean_pairs": 12
+    },
+    {
+      "pose": "quadruped",
+      "delta_degrees": [
+        -5,
+        0,
+        -5
+      ],
+      "boolean_pairs": 8
+    },
+    {
+      "pose": "quadruped",
+      "delta_degrees": [
+        -5,
+        0,
+        0
+      ],
+      "boolean_pairs": 0
+    },
+    {
+      "pose": "quadruped",
+      "delta_degrees": [
+        -5,
+        0,
+        5
+      ],
+      "boolean_pairs": 0
+    },
+    {
+      "pose": "quadruped",
+      "delta_degrees": [
+        -5,
+        5,
+        -5
+      ],
+      "boolean_pairs": 28
+    },
+    {
+      "pose": "quadruped",
+      "delta_degrees": [
+        -5,
+        5,
+        0
+      ],
+      "boolean_pairs": 0
+    },
+    {
+      "pose": "quadruped",
+      "delta_degrees": [
+        -5,
+        5,
+        5
+      ],
+      "boolean_pairs": 0
+    },
+    {
+      "pose": "quadruped",
+      "delta_degrees": [
+        0,
+        -5,
+        -5
+      ],
+      "boolean_pairs": 8
+    },
+    {
+      "pose": "quadruped",
+      "delta_degrees": [
+        0,
+        -5,
+        0
+      ],
+      "boolean_pairs": 0
+    },
+    {
+      "pose": "quadruped",
+      "delta_degrees": [
+        0,
+        -5,
+        5
+      ],
+      "boolean_pairs": 0
+    },
+    {
+      "pose": "quadruped",
+      "delta_degrees": [
+        0,
+        0,
+        -5
+      ],
+      "boolean_pairs": 0
+    },
+    {
+      "pose": "quadruped",
+      "delta_degrees": [
+        0,
+        0,
+        5
+      ],
+      "boolean_pairs": 0
+    },
+    {
+      "pose": "quadruped",
+      "delta_degrees": [
+        0,
+        5,
+        -5
+      ],
+      "boolean_pairs": 8
+    },
+    {
+      "pose": "quadruped",
+      "delta_degrees": [
+        0,
+        5,
+        0
+      ],
+      "boolean_pairs": 0
+    },
+    {
+      "pose": "quadruped",
+      "delta_degrees": [
+        0,
+        5,
+        5
+      ],
+      "boolean_pairs": 0
+    },
+    {
+      "pose": "quadruped",
+      "delta_degrees": [
+        5,
+        -5,
+        -5
+      ],
+      "boolean_pairs": 20
+    },
+    {
+      "pose": "quadruped",
+      "delta_degrees": [
+        5,
+        -5,
+        0
+      ],
+      "boolean_pairs": 0
+    },
+    {
+      "pose": "quadruped",
+      "delta_degrees": [
+        5,
+        -5,
+        5
+      ],
+      "boolean_pairs": 0
+    },
+    {
+      "pose": "quadruped",
+      "delta_degrees": [
+        5,
+        0,
+        -5
+      ],
+      "boolean_pairs": 0
+    },
+    {
+      "pose": "quadruped",
+      "delta_degrees": [
+        5,
+        0,
+        0
+      ],
+      "boolean_pairs": 0
+    },
+    {
+      "pose": "quadruped",
+      "delta_degrees": [
+        5,
+        0,
+        5
+      ],
+      "boolean_pairs": 0
+    },
+    {
+      "pose": "quadruped",
+      "delta_degrees": [
+        5,
+        5,
+        -5
+      ],
+      "boolean_pairs": 0
+    },
+    {
+      "pose": "quadruped",
+      "delta_degrees": [
+        5,
+        5,
+        0
+      ],
+      "boolean_pairs": 0
+    },
+    {
+      "pose": "quadruped",
+      "delta_degrees": [
+        5,
+        5,
+        5
+      ],
+      "boolean_pairs": 0
+    },
+    {
+      "pose": "quadruped",
+      "delta_degrees": [
+        -5,
+        -5,
+        -5
+      ],
+      "opposed_left_pitch_bend": true,
+      "boolean_pairs": 0
+    },
+    {
+      "pose": "quadruped",
+      "delta_degrees": [
+        -5,
+        -5,
+        5
+      ],
+      "opposed_left_pitch_bend": true,
+      "boolean_pairs": 0
+    },
+    {
+      "pose": "quadruped",
+      "delta_degrees": [
+        -5,
+        5,
+        -5
+      ],
+      "opposed_left_pitch_bend": true,
+      "boolean_pairs": 0
+    },
+    {
+      "pose": "quadruped",
+      "delta_degrees": [
+        -5,
+        5,
+        5
+      ],
+      "opposed_left_pitch_bend": true,
+      "boolean_pairs": 0
+    },
+    {
+      "pose": "upright",
+      "delta_degrees": [
+        0,
+        0,
+        0
+      ],
+      "boolean_pairs": 180
+    },
+    {
+      "pose": "upright",
+      "delta_degrees": [
+        -5,
+        -5,
+        -5
+      ],
+      "boolean_pairs": 74
+    },
+    {
+      "pose": "upright",
+      "delta_degrees": [
+        -5,
+        -5,
+        0
+      ],
+      "boolean_pairs": 2
+    },
+    {
+      "pose": "upright",
+      "delta_degrees": [
+        -5,
+        -5,
+        5
+      ],
+      "boolean_pairs": 18
+    },
+    {
+      "pose": "upright",
+      "delta_degrees": [
+        -5,
+        0,
+        -5
+      ],
+      "boolean_pairs": 16
+    },
+    {
+      "pose": "upright",
+      "delta_degrees": [
+        -5,
+        0,
+        0
+      ],
+      "boolean_pairs": 0
+    },
+    {
+      "pose": "upright",
+      "delta_degrees": [
+        -5,
+        0,
+        5
+      ],
+      "boolean_pairs": 4
+    },
+    {
+      "pose": "upright",
+      "delta_degrees": [
+        -5,
+        5,
+        -5
+      ],
+      "boolean_pairs": 30
+    },
+    {
+      "pose": "upright",
+      "delta_degrees": [
+        -5,
+        5,
+        0
+      ],
+      "boolean_pairs": 4
+    },
+    {
+      "pose": "upright",
+      "delta_degrees": [
+        -5,
+        5,
+        5
+      ],
+      "boolean_pairs": 2
+    },
+    {
+      "pose": "upright",
+      "delta_degrees": [
+        0,
+        -5,
+        -5
+      ],
+      "boolean_pairs": 8
+    },
+    {
+      "pose": "upright",
+      "delta_degrees": [
+        0,
+        -5,
+        0
+      ],
+      "boolean_pairs": 0
+    },
+    {
+      "pose": "upright",
+      "delta_degrees": [
+        0,
+        -5,
+        5
+      ],
+      "boolean_pairs": 0
+    },
+    {
+      "pose": "upright",
+      "delta_degrees": [
+        0,
+        0,
+        -5
+      ],
+      "boolean_pairs": 0
+    },
+    {
+      "pose": "upright",
+      "delta_degrees": [
+        0,
+        0,
+        5
+      ],
+      "boolean_pairs": 0
+    },
+    {
+      "pose": "upright",
+      "delta_degrees": [
+        0,
+        5,
+        -5
+      ],
+      "boolean_pairs": 8
+    },
+    {
+      "pose": "upright",
+      "delta_degrees": [
+        0,
+        5,
+        0
+      ],
+      "boolean_pairs": 0
+    },
+    {
+      "pose": "upright",
+      "delta_degrees": [
+        0,
+        5,
+        5
+      ],
+      "boolean_pairs": 0
+    },
+    {
+      "pose": "upright",
+      "delta_degrees": [
+        5,
+        -5,
+        -5
+      ],
+      "boolean_pairs": 26
+    },
+    {
+      "pose": "upright",
+      "delta_degrees": [
+        5,
+        -5,
+        0
+      ],
+      "boolean_pairs": 2
+    },
+    {
+      "pose": "upright",
+      "delta_degrees": [
+        5,
+        -5,
+        5
+      ],
+      "boolean_pairs": 2
+    },
+    {
+      "pose": "upright",
+      "delta_degrees": [
+        5,
+        0,
+        -5
+      ],
+      "boolean_pairs": 0
+    },
+    {
+      "pose": "upright",
+      "delta_degrees": [
+        5,
+        0,
+        0
+      ],
+      "boolean_pairs": 0
+    },
+    {
+      "pose": "upright",
+      "delta_degrees": [
+        5,
+        0,
+        5
+      ],
+      "boolean_pairs": 0
+    },
+    {
+      "pose": "upright",
+      "delta_degrees": [
+        5,
+        5,
+        -5
+      ],
+      "boolean_pairs": 0
+    },
+    {
+      "pose": "upright",
+      "delta_degrees": [
+        5,
+        5,
+        0
+      ],
+      "boolean_pairs": 0
+    },
+    {
+      "pose": "upright",
+      "delta_degrees": [
+        5,
+        5,
+        5
+      ],
+      "boolean_pairs": 0
+    },
+    {
+      "pose": "upright",
+      "delta_degrees": [
+        -5,
+        -5,
+        -5
+      ],
+      "opposed_left_pitch_bend": true,
+      "boolean_pairs": 0
+    },
+    {
+      "pose": "upright",
+      "delta_degrees": [
+        -5,
+        -5,
+        5
+      ],
+      "opposed_left_pitch_bend": true,
+      "boolean_pairs": 0
+    },
+    {
+      "pose": "upright",
+      "delta_degrees": [
+        -5,
+        5,
+        -5
+      ],
+      "opposed_left_pitch_bend": true,
+      "boolean_pairs": 0
+    },
+    {
+      "pose": "upright",
+      "delta_degrees": [
+        -5,
+        5,
+        5
+      ],
+      "opposed_left_pitch_bend": true,
+      "boolean_pairs": 0
+    }
+  ],
+  "limits": "Nominal geometry only; no continuous sweep, tolerance expansion, complete loom, slices or physical load acceptance."
+}

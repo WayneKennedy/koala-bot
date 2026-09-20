@@ -10,7 +10,6 @@ importScripts('three-r128.min.js', 'three-mesh-bvh-0.5.23.js');
 // One degree left 0.013/0.020 mm3 of imported-case contact at the rear pitch
 // endpoints. Two degrees clears those independent solid-CAD checks (DEC-58).
 const STEP = .25, MARGIN = 0, RESERVE = 2, CEILING = 180;
-const LEVEL = {fixed:0,pitch:1,roll:2,bend:3};
 let items=[], pairs=[], joints={}, cache=new Map();
 const reflect=new THREE.Matrix4().makeScale(1,-1,1);
 function decode(s,T) { const b=atob(s), a=new Uint8Array(b.length); for(let i=0;i<b.length;i++)a[i]=b.charCodeAt(i);return new T(a.buffer); }
@@ -24,31 +23,44 @@ function geometry(it) {
 function pivot(p,a,angle) { return new THREE.Matrix4().makeTranslation(...p)
   .multiply(new THREE.Matrix4().makeRotationAxis(new THREE.Vector3(...a),angle*Math.PI/180))
   .multiply(new THREE.Matrix4().makeTranslation(...p.map(v=>-v))); }
+const command=joint=>joint==='bend'?'knee':joint;
+function chain(it) {
+  if(!it.side)return {limb:null,stages:[]};
+  const [limb,joint]=it.joint.split('_');
+  if(joint==='fixed')return {limb,stages:[]};
+  const order=joints[limb].order||['pitch','roll','bend'],stage=order.indexOf(joint);
+  if(stage<0)throw new Error('Unknown joint group: '+it.joint);
+  return {limb,stages:order.slice(0,stage+1)};
+}
+function dependencies(a,b) {
+  const ac=a.chain||chain(a),bc=b.chain||chain(b);
+  // Only a shared rigid prefix on the same limb/hand cancels from relative motion.
+  let common=0;
+  if(a.side===b.side&&ac.limb===bc.limb)
+    while(common<ac.stages.length&&ac.stages[common]===bc.stages[common])common++;
+  const moving=new Set([...ac.stages.slice(common),...bc.stages.slice(common)].map(command));
+  return ['pitch','roll','knee'].filter(k=>moving.has(k));
+}
 function transform(it,q) {
   const m=new THREE.Matrix4();if(!it.side)return m;
-  const [limb,joint]=it.joint.split('_'),d=joints[limb];
-  if(LEVEL[joint]>0)m.multiply(pivot(d.pitch,[0,1,0],q.pitch));
-  if(LEVEL[joint]>1)m.multiply(pivot(d.roll,d.roll_axis,q.roll));
-  if(LEVEL[joint]>2)m.multiply(pivot(d.bend,[0,1,0],q.knee));
+  const c=it.chain||chain(it),d=joints[c.limb];
+  for(const stage of c.stages)
+    m.multiply(pivot(d[stage],stage==='roll'?d.roll_axis:[0,1,0],q[command(stage)]));
   if(it.side<0)m.premultiply(reflect).multiply(reflect);
   return m;
 }
 function init(data) {
   joints=data.joints;cache=new Map(data.cache||[]);
-  items=data.items.map((it,i)=>({...it,id:i,geometry:geometry(it.collisionMesh||it),core:it.contactCore?geometry(it.contactCore):null}));
+  items=data.items.map((it,i)=>({...it,id:i,chain:chain(it),geometry:geometry(it.collisionMesh||it),core:it.contactCore?geometry(it.contactCore):null}));
   pairs=[];
   for(let i=0;i<items.length;i++)for(let j=i+1;j<items.length;j++){
     const a=items[i],b=items[j];
-    const ga=a.joint||'fixed',gb=b.joint||'fixed';
-    const la=LEVEL[ga.split('_').at(-1)],lb=LEVEL[gb.split('_').at(-1)];
+    const dependent=dependencies(a,b);
     // Every rigid configuration has already passed the BREP assembly audit.
-    if((la===0&&lb===0)||(a.side===b.side&&ga===gb))continue;
-    let dependencies=['pitch','roll','knee'];
-    if(!a.side||!b.side||(a.side===b.side&&ga.split('_')[0]===gb.split('_')[0]))
-      dependencies=['pitch','roll','knee'].slice(Math.min(la,lb),Math.max(la,lb));
+    if(!dependent.length)continue;
     const ag=partnerOf(a,b)?a.core:a.geometry;
     const bg=partnerOf(b,a)?b.core:b.geometry;
-    pairs.push({a,b,ag,bg,dependencies,id:pairs.length});
+    pairs.push({a,b,ag,bg,dependencies:dependent,id:pairs.length});
   }
 }
 function blocked(q) {

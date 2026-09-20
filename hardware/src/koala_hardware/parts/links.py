@@ -2,6 +2,7 @@
 """DEC-43 integral limbs with DEC-41 root joints. Native X = lateral; +Z down link."""
 from functools import lru_cache
 from math import cos, sin, radians
+import warnings
 from build123d import Pos, Rot, Plane, Sphere, Cylinder, Align, RectangleRounded, extrude, Polygon, Cone, RegularPolygon, loft, Circle, fillet, Axis, mirror, GeomType, Vertex
 from .. import params as P, servo_iface as S
 
@@ -34,7 +35,7 @@ def upper_link(length,hip=False):
                     Pos(0,0,bottom)*RectangleRounded(36,24,3)])
         part+=Pos(0,0,bottom)*S.saddle()
         return part
-    return rear_thigh_v2(length)
+    return rear_thigh_rounded(length)
 
 
 def knee_socket_frame(length,hip=False):
@@ -173,39 +174,66 @@ def thigh_lap_fixings():
 
 
 def round_convex_edges(part,radius,min_len=8.0,exclude=lambda c:False):
-    """Owner's rounding pass (2026-09-19): fillet every straight edge of at least
-    `min_len` whose two faces meet at a convex, roughly square corner, outside
-    the regions `exclude(centre)` names. Groups that the kernel refuses are
-    bisected; single edges that still fail are left sharp (count printed)."""
+    """Round selected convex corners without restoring earlier sharp geometry.
+
+    Remember the original straight segments, then reselect their surviving
+    portions on the current solid before every attempt. A neighbouring fillet
+    may shorten or consume a segment. Never reuse its old edge/topo_parent.
+    Rejected groups are bisected; rejected single edges produce a warning.
+    """
     edge_faces={}
     for f in part.faces():
         for e in f.edges():
             if e.geom_type==GeomType.LINE:
-                c=e.center();edge_faces.setdefault((round(c.X,3),round(c.Y,3),round(c.Z,3)),[]).append(f)
+                edge_faces.setdefault(e,[]).append(f)
     chosen=[]
     for e in part.edges():
         if e.geom_type!=GeomType.LINE or e.length<min_len:continue
         c=e.center()
         if exclude(c):continue
-        fs=edge_faces.get((round(c.X,3),round(c.Y,3),round(c.Z,3)),[])
+        fs=edge_faces.get(e,[])
         if len(fs)!=2:continue
-        n1=fs[0].normal_at(fs[0].center());n2=fs[1].normal_at(fs[1].center())
+        n1=fs[0].normal_at(c);n2=fs[1].normal_at(c)
         if abs(n1.dot(n2))>0.2 or part.is_inside(c+(n1+n2)*0.5):continue
-        chosen.append(e)
-    todo=[chosen];failed=0
+        chosen.append((e.position_at(0),e.position_at(1)))
+
+    def reselect(segments):
+        edges=[]
+        for e in part.edges():
+            if e.geom_type!=GeomType.LINE:continue
+            ends=(e.position_at(0),e.position_at(1))
+            for start,end in segments:
+                axis=(end-start).normalized();length=(end-start).length
+                if any((p-start).cross(axis).length>1e-5 for p in ends):continue
+                along=sorted((p-start).dot(axis) for p in ends)
+                if min(along[1],length)-max(along[0],0)>1e-5:
+                    edges.append(e);break
+        return edges
+
+    todo=[chosen];failed=[]
     while todo:
         group=todo.pop()
-        if not group:continue
-        try:part=fillet(group,radius)
-        except Exception:
-            if len(group)==1:failed+=1
-            else:todo+= [group[:len(group)//2],group[len(group)//2:]]
-    if failed:print(f'round_convex_edges: {failed} edge(s) left sharp at R{radius}')
+        edges=reselect(group)
+        if not edges:continue
+        try:
+            rounded=part.fillet(radius,edges)
+            if len(rounded.solids())!=len(part.solids()):
+                raise ValueError('rounding changed the number of solids')
+            part=rounded
+        except ValueError:
+            remaining=[(e.position_at(0),e.position_at(1)) for e in edges]
+            if len(remaining)==1:failed.extend(remaining)
+            else:todo+= [remaining[:len(remaining)//2],remaining[len(remaining)//2:]]
+    sharp=reselect(failed) if failed else []
+    if sharp:
+        centres=[tuple(round(v,3) for v in e.center()) for e in sharp]
+        warnings.warn(f'round_convex_edges: {len(sharp)} edge(s) left sharp at R{radius}; '
+                      f'centres={centres}',RuntimeWarning,stacklevel=2)
     return part
 
 
 @lru_cache
-def rear_thigh_v2(length):
+def rear_thigh_rounded(length):
     """Production thigh since 2026-09-19 (owner): the tapered one-piece form
     (`rear_thigh_flat`) with the rounding pass — R2 on the yoke, bridge and taper,
     R1.5 on the knee cup's outer edges; fork pads, joins and every interface
@@ -288,7 +316,7 @@ def motor_face(front=False,inset=0.0):
 
 
 def rear_axis_y():
-    return P.ROOT_ROLL_Y   # DEC-55 hip roll centre; the front keeps BODY_SHOULDER_WIDTH_MM/2 until DEC-54's chain is drawn
+    return P.ROOT_ROLL_Y   # Rear B roll centre; front B spacing is independent.
 
 
 @lru_cache
@@ -439,22 +467,23 @@ HORN_FASTENERS={'M3x6 supplied horn-square pan screw (bottoming to verify)':8,
 
 def spec(name,part,qty=1,orientation=None,fasteners=None,notes='',handed=False,material='PETG',printable='unknown',version=1):
     # `version` is the part's design version (part-versions.json); bump it whenever the geometry changes.
+    verification=' Loaded assembly unverified.' if printable=='proven' else ' Physical fit/load unverified.'
     return dict(name=name,part=part,qty=qty,orientation=orientation or Rot(Y=90),version=version,
                 handed=handed,fasteners=fasteners or {},supports=True,
                 printable=printable,material=material,
-                notes=notes+' Accessible local supports permitted; inspect layers. Physical fit/load unverified.')
+                notes=notes+' Accessible local supports permitted; inspect layers.'+verification)
 
 
 def upper_spec(name,length,hip=False):
-    notes=(f'One {length:g} mm thigh v2 (owner, 2026-09-19): stepped roll yoke and sideways knee socket, idler-side cheek '
+    notes=(f'One {length:g} mm thigh v3 (2026-09-19): stepped roll yoke and sideways knee socket, idler-side cheek '
            'thickened to the cup-floor plane with one flat taper to the pad, convex edges rounded R2 (cup R1.5). Prints '
-           'on the cup-floor plane with tree (organic) support under the drive-side cheek and pads. Assumed: the owner judged '
-           'the tapered form worthy of a test print; the rounding pass is unreviewed. No slice yet.' if hip else
+           'on the cup-floor plane with tree (organic) support under the drive-side cheek and pads. Corrected rounding '
+           'preserves every successful fillet group. Current bed-only organic slice reviewed; physical support removal and fit remain unknown.' if hip else
            f'One {length:g} mm link: roll-axis horn forks, bridge, spine and perpendicular knee/elbow saddle. '
            'Outer horn pad on bed; remove supports from inner fork and saddle. No structural seam bolts.')
     return spec(name,upper_link(length,hip),handed=True,orientation=Rot(X=-90) if hip else Rot(X=90),
         fasteners=HORN_FASTENERS|{'M2x5 self-tapper into servo ear':4},
-        notes=notes, printable='assumed', version=2 if hip else 1)
+        notes=notes, printable='unknown' if hip else 'assumed', version=3 if hip else 1)
 
 
 def lower_spec(name,length,front):
@@ -463,7 +492,7 @@ def lower_spec(name,length,front):
         notes=f'One {length:g} mm link v2 (owner, 2026-09-19): extended open knee fork, R6.3 fork roots, R5 motor-support roots; '
         'motor-mount face flush with the drive fork (DEC-60 spacing), convex edges rounded R2. Prints on that outer face. '
         'Slide motor from inboard; install face screws before hub and wheel. Remove support from body bore. '
-        'Assumed: owner-directed form and print face; the rounding pass is unreviewed. No slice yet.', printable='assumed', version=2)
+        'Assumed: owner-directed form and print face; the rounding pass is unreviewed. Bed-only organic v2 slices are recorded in OQ-22; physical fit and bore-roof quality remain unverified.', printable='assumed', version=2)
 
 
 def build_thigh(): return upper_spec('thigh',P.BODY_THIGH_MM,hip=True)
@@ -511,7 +540,7 @@ def build_hip_carrier():
         'Roll socket alongside with the servo Bottom down. '
         f'Roll centres {2*P.ROOT_ROLL_Y:.1f} mm apart. Flat back (block and socket floor) on the bed, forks rising; '
         'accessible local hole-roof supports. Fit all four roll ear screws before the thigh. '
-        'Assumed: owner visual review of the rear-leg viewer, 2026-09-18 (revision log); no slice or print.', printable='assumed')
+        'Assumed: owner visual review of the rear-leg viewer, 2026-09-18 (revision log). Plate 2 bed-only slices are recorded; no physical result is recorded.', printable='assumed')
 
 
 BUILDERS=[build_thigh,build_upper_arm,build_shank,build_forearm,build_root_carrier,build_hip_carrier,build_front_pad]

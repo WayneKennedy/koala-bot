@@ -1,133 +1,110 @@
-# Rear leg — DEC-57/58, 2026-09-15
+# Production rear-leg review — 2026-09-19
 
-**2026-09-19:** the 45° mount is now in the main assembly (DEC-61) and the review shows
-the real torso instead of the green face patch; thigh and shank are the v2 production
-parts. The text below describes the review as first built.
-
-The maintainer selected the **45° pitch-socket mount as the proposed A/B
-arrangement**, retaining the DEC-56 carrier and servo B placement. This review
-progresses to the thigh and the lower leg's 37D motor mount. The full torso
-remains deferred; the green surface is a patch of its proposed mounting face.
+This review shows **thigh v3, shank v2 and the complete torso frame v5** with
+DEC-61's 45° rear pitch sockets and the retained hip carriers. It uses the same
+production geometry as the main assembly. Front limbs and shoulder cassettes,
+neck envelopes, electronics, cables and guards are omitted from this rear-only
+viewer.
 
 [Live review over Tailscale](https://blake.tail13a0c0.ts.net:8443/rear-leg/) ·
 [Quadruped view](rear-leg-quadruped.png) · [Upright view](rear-leg-upright.png) ·
-[30° outward roll](rear-leg-roll-30.png) · [Structural sections](sections.png) ·
-[Thigh views](../parts/thigh_right.png) · [Shank views](../parts/shank_right.png).
+[30° outward roll](rear-leg-roll-30.png) · [Thigh v3](rear-leg-thigh-v3.png) ·
+[Structural sections](sections.png).
 
-## Geometry
+## Geometry and manufacture
 
-The **85 mm thigh**, **90 mm shank**, joint centres, saved foot positions and
-**220 mm neutral rear track** are retained. No bought actuator is added.
+The **85 mm thigh**, **90 mm shank**, **220 mm neutral rear track** and both
+bought ankle drives are retained.
 
-- **Thigh:** stepped yoke with cheeks 4 mm outside the roll socket. New joins
-  start beyond the complete horn pads; the short tails stop at 13.5 mm so
-  their corners clear the measured idler-side case pad during rotation.
-  R6.3 inner roots connect the yoke to its lower bridge. Servo C's case is
-  clocked **90° about its unchanged knee shaft**, putting its Bottom toward
-  native +Y. This clears the knee socket from the carrier's inward-roll path.
-  Knee-socket roots are R5; the 2 mm socket lip uses R1.5, with 0.5 mm left
-  to the accepted pocket. R1.5 outer pad returns keep the straight horn
-  drivers clear.
-- **Shank:** the open fork extends to a bridge 46 mm from the knee axis,
-  leaving space for the folded thigh. R6.3 fork roots and R5 spine/motor
-  face/body-ring roots are made after the structural union. The motor bore,
-  central boss clearance and six screw paths are cut afterward. The 37D
-  still slides axially in from inboard; install face screws before the hub
-  and wheel. The six M3×8 face screws retain 3 mm nominal engagement; the
-  actual available thread depth and face boss remain physical checks.
-  The small 2.25 mm step outside the drive fork has an R2 return.
+- **Thigh v3 — `unknown` printable:** the stepped yoke, R6.3 fork roots and
+  knee case clocked 90° about its unchanged shaft remain. The idler-side cheek
+  reaches the cup-floor plane through one flat taper. R2 outer rounding and
+  R1.5 cup rounding now accumulate correctly: later successful fillet groups
+  no longer restore earlier sharp edges. Horn seats and driver paths remain
+  intact. Print on the cup-floor plane with accessible tree support beneath
+  the drive-side cheek and pads. Current left/right slices have zero diagnostics;
+  inspected layers retain access for support removal. Physical removal and
+  loaded testing are still required.
+- **Shank v2 — `assumed` printable:** the extended open knee fork, R6.3 fork
+  roots and R5 motor-support roots remain. Its motor-mount outer face and
+  drive-fork outer face share one print plane. Fit the motor axially from
+  inboard and install all six face screws before the hub and wheel. Support
+  beneath the idler fork and motor-bore roof remains to be reviewed physically.
+
+Both revisions are **unprinted**. Thigh v3 has hash-matched
+[slice records](../front-redesign/slices.json) and inspected
+[left](../front-redesign/thigh_left-layers.png) /
+[right](../front-redesign/thigh_right-layers.png) layers. Shank v2 has
+[earlier recorded bed-only organic slices (OQ-22)](../../open-questions.md)
+matching the current STL hash prefixes; check its unsupported motor-bore roof
+for sag when printed.
+The separately recorded
+[root socket v1 print](../../test-log.md) does not establish their fit or strength.
+[Current exported STL hashes, dimensions and surface metrics](manufacturing.json)
+record watertight, positive-volume meshes in their declared print orientations;
+these metrics are not a slicing or physical-print result.
 
 [Thigh right STEP](thigh-right.step) · [Thigh left STEP](thigh-left.step) ·
 [Shank right STEP](shank-right.step) · [Shank left STEP](shank-left.step).
-These part exports use the declared print orientation, already on the bed.
-[Quadruped assembly STEP](rear-leg-quadruped.step) ·
-[Upright assembly STEP](rear-leg-upright.step) contain only project geometry.
-The distributable viewer uses measured case/horn envelopes; the locally
-imported vendor servo STEP is used for checks and is not redistributed.
+These part exports are already on the bed.
+[Quadruped assembly STEP](rear-leg-quadruped.step) and
+[upright assembly STEP](rear-leg-upright.step) contain only project geometry.
+The viewer distributes measured case/horn envelopes; the local vendor servo
+STEP is used for independent checks and is not redistributed.
 
 ## Clearance evidence
 
-[Solid-CAD checks and source hashes](clearance.json) record:
+[Solid-CAD checks, part versions and source hashes](clearance.json) record:
 
-- **Local thigh roll −30° to +30°, every 1°:** thigh against carrier and both
-  imported and conservative measured B case references; no intersection
-  above 0.01 mm³.
-- **Local knee flexion 0° to 120°, every 1°:** shank against thigh and both
-  C case references, with the same criterion. These are provisional design
-  targets, not calibrated servo settings or accepted walking limits.
-- All eight horn fixing bores, head/washer pockets and straight driver
-  approaches on each link are clear after the final structural unions.
-  C's ear-head/driver and nominal cable corridors clear, as do sampled
-  open-end case insertion positions. All six motor screw bores/drivers and
-  the axial motor insertion checks pass.
-- Both rear legs, motors, wheels and nominal hardware clear at the recorded
-  baseline and independent pitch/roll/knee samples in both saved body poses.
-  Full nominal assembly checks also pass with the previous torso mount.
-  The audit now checks hardware component solids individually and uses
-  hexagonal captive-nut references, fixing earlier false/missed clashes.
+- **61 local thigh-roll samples, −30° to +30° at 1°:** thigh against its carrier
+  and both imported and conservative measured B case references.
+- **121 local knee-flexion samples, 0° to 120° at 1°:** shank against the thigh
+  and both C case references.
+- Horn bores, head/washer pockets and straight driver approaches; C's ear
+  fixings, cable corridor and sampled case-insertion positions; axial motor
+  insertion and all six motor-face driver paths.
+- Broader rear-assembly samples with both legs, motors, wheels, nominal
+  hardware and the actual torso. Each sample records its own collisions;
+  local ranges do not establish whole-assembly travel.
 
-The [viewer limits](viewer-limits.json) are a separate 0.25° mesh search with
-2° reserve. The previous 1° reserve left 0.013/0.020 mm³ imported-case contact
-at the quadruped/upright forward pitch endpoints, so it was increased after
-independent checks. The search stops at the first obstruction and includes hidden parts and
-the opposite leg. The motors constrain simultaneous inward roll; the local
-±30° thigh clearance must not be read as permission for both legs to move
-inward by 30°. [Independent endpoint checks](viewer-endpoints.json) compare
-its initial bounds against the solid CAD and include combined motion samples.
-All twelve initial endpoints and four combined samples pass. Simultaneous
-inward roll is limited to −5.5° in quadruped and −5° upright with the reserve;
-the **180° outward value is the search ceiling**, not a confirmed physical
-stop. [Browser checks](browser.json) cover both cached poses, controls and
-part selection.
+Of the sixteen exploratory assembly samples, fifteen clear. Quadruped hip
+pitch −45° intersects the torso at both thighs (903.890 mm³ per side); the
+viewer limits that direction to **−28.25°**. The colliding exploratory pose is
+outside the accepted viewer range.
 
-The rear review omits the complete torso, front limbs, harnesses and guards.
-Floor contact does not constrain these inspection sliders. Real indexing,
-tolerances, motor dimensions marked for verification, loaded transitions,
-walking and strength remain unverified.
+The [viewer limits](viewer-limits.json) use 0.25° mesh samples with a 2° reserve
+before the first obstruction. Hidden parts and the opposite leg remain
+obstacles. [Independent endpoint checks](viewer-endpoints.json) check its twelve
+initial bounds and four combined configurations against solid CAD with imported
+servo cases. [Browser checks](browser.json) cover both cached poses, motion,
+current part versions and printability tags.
 
-## Manufacture and reproduction
+Any ±180° bound is the search ceiling, not a confirmed physical stop. Ground
+contact, omitted front/neck/electronics components, cables, physical indexing,
+tolerances and loaded transitions remain outside this review. Use the main
+viewer when checking the complete modelled chassis.
 
-Both revised parts are **unknown printable**. Owner review of this viewer, 2026-09-18:
-the root socket and hip carrier look right and are now `assumed`; the thigh and shank
-have good general geometry but as drawn need a lot of support, which would probably ruin
-them, so they stay `unknown` until orientation or form is revised. The shank is expected
-to be the easier fix. This is aesthetic judgement plus printability instinct, not a slice.
+## Earlier studies and reproduction
 
-**Thigh orientation study, 2026-09-18** ([image](thigh-orientation-study.png),
-`koala_hardware.orientation_study`, a geometry screen, not a slice). The thigh is a
-C-yoke: two parallel cheeks joined by one bridge at the knee end, the knee socket
-offset to one cheek, two horn forks at the open end. In every lying orientation
-one cheek is a 50 mm cantilever 60–70 mm up. Declared orientation (thin cheek
-down): 962 mm² bed, 2742 mm² overhang, ≈133 cm³ support, and the socket opens
-toward the bed so support fills the servo pocket. Flipped (thick cheek and socket
-wall down): 1466 mm² bed, ≈62 cm³ support, all external. Standing on the knee
-socket: 904 mm² bed, ≈48 cm³ under the bridge beyond the socket, 110 mm tall.
-Tilts lose bed contact. Orientation alone leaves 50–60 cm³ of support on a 53 g
-part; the form must change. **Both proposals are modelled and shown in this
-viewer** (left leg = option 1 frame thigh, right leg = option 2 bolted cheek) when
-built with `--thigh-options`: [thigh-options/README.md](thigh-options/README.md).
-The owner then chose a third form, one print with a tapered thick cheek for tree
-support: [thigh-flat/README.md](thigh-flat/README.md), built with `--thigh-flat`.
-
-Valid connected solids and
-watertight handed STL exports fit the 200 × 200 mm bed.
-[Export hashes and surface metrics](manufacturing.json). The thigh is
-44.9 × 109.8 × 72.9 mm in its declared orientation, with 962 mm² bed contact;
-the shank is 123.4 × 46 × 51.3 mm, with 1821 mm². Both need accessible local
-support and a layer/removal review. The surface screen flags 2742/2241 mm²
-respectively; it does not prove printing or structural performance. No slice
-or physical print of this revision has been made.
+The [orientation study](thigh-orientation-study.png),
+[frame-versus-bolted-cheek comparison](thigh-options/README.md) and
+[one-piece tapered-thigh study](thigh-flat/README.md) are historical evidence.
+Their archived files remain unchanged; the production viewer displays the
+current rounded thigh v3. The earlier
+[socket-angle comparison](../carrier-orientation/README.md) records the origin
+of the accepted 45° mount.
 
 From `hardware/`:
 
 ```sh
-.venv/bin/python -m unittest discover -s tests
-.venv/bin/python -m koala_hardware.export
-.venv/bin/python -m koala_hardware.rear_leg_review
+uv run python -m koala_hardware.export
+uv run python -m koala_hardware.rear_leg_review
 ```
 
-The last command builds `hardware/build/viewer/rear-leg/` on the existing
-viewer server. The separate main viewer retains its earlier torso mounting
-geometry while incorporating the revised thigh and shank. The archived
-[earlier socket-angle comparison](../carrier-orientation/README.md) remains
-available for the A/B proposal's history.
+The review command refreshes `hardware/build/viewer/rear-leg/`, clearance and
+endpoint records, project STEP exports, native sections and metrics for the
+preceding main-export STLs. Browser screenshots and `browser.json` are captured
+with `uv run --with playwright python tests/rear_viewer_smoke.py` after the viewer
+is served. Set `VIEWER_URL` and `PLAYWRIGHT_CHROMIUM` for another server or local
+browser executable. Do not use `--thigh-options` or
+`--thigh-flat` when refreshing production evidence.

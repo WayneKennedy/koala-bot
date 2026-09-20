@@ -1,0 +1,56 @@
+{
+  "tested_scene_sha256": "d0337e66180bfb67bef9f29c1a9ea4d3b45d6333ef64691bd514f23dfb773024",
+  "scene_sha256": "784f5c68492541b98af2035b1520f36210996bacec82e81b7216b1aad19f361f",
+  "changed_fields": "notes only",
+  "all_non_note_fields_identical": true,
+  "changes": [
+    {
+      "section": "quadruped",
+      "item": "rear_carrier_right"
+    },
+    {
+      "section": "quadruped",
+      "item": "rear_shank_right"
+    },
+    {
+      "section": "quadruped",
+      "item": "rear_carrier_left"
+    },
+    {
+      "section": "quadruped",
+      "item": "rear_shank_left"
+    },
+    {
+      "section": "upright",
+      "item": "rear_carrier_right"
+    },
+    {
+      "section": "upright",
+      "item": "rear_shank_right"
+    },
+    {
+      "section": "upright",
+      "item": "rear_carrier_left"
+    },
+    {
+      "section": "upright",
+      "item": "rear_shank_left"
+    },
+    {
+      "section": "parts",
+      "item": "shank"
+    },
+    {
+      "section": "parts",
+      "item": "hip_carrier"
+    }
+  ],
+  "reason": "Correct prior hip/shank slicing status and record current reviewed slices; geometry, transforms, versions, materials, printability and collision data unchanged.",
+  "browser_smoke": "pass",
+  "browser_checks": [
+    "both initial pose caches retained",
+    "hip carrier/shank slicing notes current",
+    "shoulder carrier HUD shows v3",
+    "no browser page errors"
+  ]
+}

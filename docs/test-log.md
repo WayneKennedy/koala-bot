@@ -7,6 +7,57 @@ in `hardware/src/koala_hardware/params.py`, tagged with their provenance.
 Reference printer per DEC-14 (Ender-5 S1 / Klipper), PETG, the standing
 general-purpose profile recorded in [`bom.md`](bom.md).
 
+## 2026-09-19 — forearm v2 STL roundoff persistence corrected (digital only)
+
+The forearm BREP was valid, but exported STL coordinates for coincident vertices
+could differ by floating-point roundoff. Validation already merged those
+vertices with trimesh's normal defaults; the file on disk retained the raw
+coordinates and left the slicer to repair the tiny cracks. `meshing.py` now
+writes the same merged mesh it validates when those coordinates differ.
+The merge tolerance and BREP are unchanged; this is an export correction,
+not a printed-part geometry/version change. Forearms remain v2, `unknown`.
+
+The regression checking STL closure after merging only identical coordinates
+passes, and the full Python suite passes **65 tests**. Re-exported forearms and all **11 final review slices**
+now report zero slicer diagnostics; their current STL/G-code and profile hashes
+are in [slices.json](design/front-redesign/slices.json). Selected layer review
+does not establish every layer start, physical support removal, fit or strength.
+No printer was connected for these review slices.
+
+## 2026-09-19 — shoulder cassette v1 nut-loading order corrected (digital only)
+
+The four M3 frame nuts must be loaded into the **bare cassette before attaching
+the A root**. With the root fitted, withdrawing the actual 2.4 mm hex nut by
+2 mm intersects the root by 0.6766 mm³ at both inner locations (body Y17,
+Z135/165); at 2.5 mm withdrawal the intersection is 2.0297 mm³. The previous
+written assembly order put root fitting first and was wrong. Seated nuts
+clear the root; this is a sequence correction, **not a geometry/version bump**.
+
+The complete cassette/root/A package clears the torso and opposite A module
+when removed **laterally outward**, sampled at 0/5/20/80 mm. Rearward pulling
+instead reaches the dorsal rails. `test_shoulder_service.py` protects bare
+nut loading, seated clearance and outward removal. The checks exclude the
+moving carrier/downstream limb and real cables; they do not establish physical
+nut retention, fitting or loaded strength. No part was printed for this check.
+
+## 2026-09-19 — four CAD review defects corrected (digital only)
+
+These are corrections of assistant-generated CAD/tooling, **not physical print
+results**. They do not change the accepted SO-101 fit or root socket v1's
+recorded physical status.
+
+| Review finding | Correction and verification scope |
+|---|---|
+| Rear mounting screwdrivers intersect the retained torso flange | Torso v5 cuts Ø6.6 corridors; the frame audit now probes Ø6 drivers through the actual torso and both installed root modules/hardware. Previously it omitted the torso. |
+| Split-group thigh rounding overwrites earlier fillets | Reselect edges from the updated solid for each operation. Thigh becomes v3, `unknown`; earlier v2 slices do not validate it. [Current views](design/parts/thigh-views.png). |
+| Aggregate fingerprint misses relocated holes/nuts | Schema 2 records face geometry relative to the part bounds. The real root socket's 0.5 mm mounting-pattern shift is detected; whole-part translation and small numeric noise remain tolerated. Legacy ledgers require explicit migration from unmodified historical CAD. |
+| Ledger update accepts lower versions | Reject any decrease before changing history or writing. Temporary-ledger regressions cover unchanged and changed geometry and confirm original bytes survive rejection; updates with changes require a note. |
+
+The version-guard regression group passes **12 tests**. This entry records the
+correction mechanisms and that focused result; completed assembly/export/viewer
+outcomes are tracked in the [front revision record](design/front-redesign/README.md).
+None establishes support removal, fastener fit, loaded travel or strength.
+
 ## 2026-09-19 — hip carrier v1 ×2 plate started (plate 2; in progress; result pending)
 
 `koala-hip-carrier-x2.gcode` (left + right `hip_carrier` v1, STL SHA-256 eb5a282a / ad7843e2),

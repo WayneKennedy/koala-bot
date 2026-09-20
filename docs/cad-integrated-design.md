@@ -1,131 +1,93 @@
-# Integrated chassis — DEC-43 ankle wheels and front feet
+# Integrated chassis — current CAD and acceptance scope
 
-**DEC-49/50 (2026-09-11)** implements the manufacturing refinement of the accepted
-DEC-44 layout. Enclosing sockets, rounded/tapered fork roots and link transitions,
-independent root modules, flat-section forearms and replaceable TPU contact pads
-are production CAD. DEC-53/55/56 subsequently replace the root modules and
-rear carriers; the shoulders retain the DEC-49 carrier. The shared socket
-has distinct drive/idler recesses. [Part review and printability tags](part-design-review.md).
+**2026-09-19: recessed roll-first shoulders and front limbs derived from the rear
+printability work.** This is an **unprinted revision**, recorded below rather
+than banked as a decision. The torso extends around the shoulder A servos;
+removable cassettes preserve bench access to the unchanged, physically proven
+`root_socket` v1. Front shoulders now implement **roll → pitch → elbow**;
+rear hips retain **pitch → roll → knee** and the DEC-61 inclined rear mount.
 
-**DEC-57/58, 2026-09-15:** the selected rear A/B proposal mounts the retained
-pitch socket on a **45° inclined torso face** and keeps the DEC-56 carrier.
-The [rear-leg review](design/rear-leg/README.md) uses that proposal; the main
-assembly still uses the previous torso flange. The production thigh now has
-a stepped, filleted roll yoke with unobstructed horn fixings and a knee case
-clocked 90° about its shaft. The shank has an extended open knee fork and
-filleted motor supports. The 85/90 mm centres, saved feet and 220 mm neutral
-track remain unchanged. Local 1° solid-CAD samples clear ±30° thigh roll and
-0–120° knee flexion. Full rear hardware checks and their scope are recorded in
-the review; a locomotion trajectory has not been accepted.
-
-The revised root modules, hip carriers, thighs and shanks are `unknown` printable;
-the other parts retain their recorded `assumed` tags. Earlier revisions have
-declared orientations, reviewed support access and local slices; those slices
-apply only to the matching STL hashes.
-[Slice records and layer images](design/manufacturing/README.md) are in the docs
-structure. Nothing in this revision is physically printed, fitted or load-tested.
-The unresolved head placeholder is omitted from structural CAD and the viewer.
-The head position/mount, neck, protected battery/electronics installation,
-harnesses and guards remain detailed design work.
+The current chassis uses **26 physical prints**, from **18 designs / 26 handed
+export variants** including six coupons. Changed torso, shoulder cassettes,
+front links and corrected thigh are `unknown` printable. Root socket v1 is
+`proven` with its recorded ear-hole support caveat; unchanged hip carrier v1
+and shank v2 retain their recorded `assumed` status.
+[Per-part versions and print approaches](part-design-review.md) ·
+[Front revision, images and local clearance evidence](design/front-redesign/README.md).
 
 ## Geometry and part boundaries
 
-- Upper arms **70 mm**, thighs **85 mm**, rear shanks **90 mm**, between joint
-  centres. Forearms retain the **100 mm** elbow-to-contact-centre reach
-  (75 mm forearm + 25 mm hand). The **Ø32 mm** contact envelope is now a separate
-  rounded TPU pad; no wrist articulation is added.
-- Each thigh/upper arm integrates its proximal fork and distal socket. The
-  DEC-58 thigh uses the stepped roll yoke and sideways knee case described
-  above; the upper arm retains its rounded spine and tapered
-  transition and enclosing four-ear distal socket. The accepted pocket,
-  measured ear positions and horn interfaces are preserved. Side-wall returns
-  support the case, and the open end admits the servo Bottom first.
-- Rear shanks retain integrated 37D face/body supports and open axial motor
-  insertion. Forearms use an **18 × 17.9 mm** rounded rectangular shaft with a
-  flat print face. A keyed post locates each TPU pad. An M3×20 recessed screw
-  and washer retain it against a captive metal nut in the rigid forearm.
-- **DEC-53 root module (2026-09-14) — one `root_socket` design at all four
-  roots, handed, two per hand.** Plate faces the torso: 46.9 × 36.7 × 6 mm
-  under the shoulder-style enclosing socket, the pelvis pair being the
-  shoulder pair turned 180° about the pitch axis, so the pitch case stands
-  into the torso at both roots. Four M3 nuts sit captive in the socket shelf
-  under the servo Bottom (±10 mm along the axis, ±6 mm across; 5.7 AF × 2.6 mm
-  pockets, 8.4 mm plastic under each) and the fitted servo traps them;
-  M3×16 screws drive from the torso side through the flange, plate and
-  shelf. All four ear screws are fitted on the bench (DEC-45 retained).
-  No locating pins; the torso is expected to locate the plate outline
-  (deferred, OQ-23). The rear flange returns to Z = 40.115 mm and the frame
-  spans 46.1 to 103.9 mm. **The DEC-49 carrier no longer clears this
-  module at the rear**: its back sits at the module's plate plane and its
-  corners sweep 46 mm, so the saved upright pose intersects and quadruped
-  pitch is capped near 42° until the carrier is re-derived (DEC-52, OQ-22).
-  The carrier bullets below describe the export that still exists.
-- **DEC-55 hip carrier** replaces the rear pair: body below the pitch axis,
-  roll servo Bottom-down beside the pitch servo, roll centres 128.1 mm apart,
-  flat back on the bed; the thigh's forks pass the roll socket (see DEC-55).
-  **DEC-56** narrows the block to the 16 mm fork neck, adds tapered 2 mm
-  inner-edge bevels, R6.3 fork-root and R5 socket-root fillets, plus R1.5 at
-  the narrow socket lip. The horn pads and servo datums are unchanged.
-  [Current carrier and validation](design/hip-carrier-refinement.json).
-  The [45° socket-mount proposal](design/carrier-orientation/README.md) is
-  held under DEC-57 and implemented in the separate rear-leg review. The old
-  torso mount still limits the main assembly. Root clearance alone does not
-  establish a gait.
-  The shoulder pair is still the DEC-49 carrier (`shoulder_carrier_left/right`),
-  common flat back on the bed, until DEC-54's chain replaces it. *(DEC-49
-  text follows.)* The rear flange previously moved 5.885 mm into the torso
-  (Z=46 mm) with rear cases turned 90° and right-angle socket modules;
-  that arrangement is gone.
-  The upper link's roll shaft remains perpendicular to its elbow/knee shaft;
-  DEC-58 clocks the rear case around that unchanged knee shaft.
-- The rigid torso preserves **150 mm** root spacing, shape deferred (DEC-53).
-  Sixteen M3×16 root screws pass its flanges into the four socket modules;
-  the front rails sit at X = 10–20 mm to clear them. A rounded removable tray and
-  four spacers complete the current electronics carrier.
+- **Torso v5:** the hip-to-shoulder axis separation stays **150 mm**. Its cage
+  now reaches body Z = **183.5 mm** around shoulder A; the side envelope is
+  Y = ±47 mm. Dorsal rails remain at X = −46…−36 mm and taper laterally
+  from Y = ±43 to ±29 mm over Z = 106…122 mm, opening the shoulder roll
+  sweep. Ventral rails step from X = 10…20 to 26…36 mm below the shoulders. The body frame uses X dorsal
+  negative, Y lateral and Z along the spine.
+- **Recessed shoulders:** A roll centres are **110.23 mm apart**. The enclosing
+  socket lips sit at Y = ±37 mm, **10 mm inside** the torso's ±47 mm side
+  envelope. This measurement describes the socket lip: the servo's output
+  region, horns and moving carrier still project outside it. It is an open
+  structural cage, not a flush cosmetic shoulder skin.
+- **Independent `shoulder_mount` v1 cassettes:** each carries one root socket
+  on its original four M3×16 screws. Fit those on the bench, then mount the
+  cassette through the front of the torso with four M3×20 screws into captive
+  nuts. Broad flange contact and an R1.5 internal root connect the recessed
+  module to the ventral frame. Either side removes independently.
+- **`shoulder_carrier` v3:** the A fork and enclosing B socket share one broad
+  print plane. B is **40 mm outboard of A**, placing the pitch centres
+  **190.23 mm apart**. R6.3 fork roots and straight inner-ear driver tunnels
+  preserve access without a hidden support chamber.
+- **`upper_arm` v2:** **70 mm** pitch-to-elbow centres, with parallel B/C shafts,
+  an enclosing elbow pocket and thickened cup wall coplanar with the outer
+  drive fork face. R6.3 fork roots and R2 outer rounding follow the rear
+  lessons. Seven short/narrow junction edges reject R2 and are explicitly
+  reported as sharp; fitting faces and the accepted servo interface remain.
+- **`forearm` v2:** **100 mm** elbow-to-contact reach (75 + 25 mm), a longer open
+  elbow fork, R6.3 roots, an R3-rounded taper and a broad flat native −Y print
+  face. The existing keyed **Ø32 mm TPU pad**, captive nut and recessed
+  M3×20 screw/washer interface remain; no wrist joint is added.
+- **Rear:** 85 mm thighs, 90 mm shanks, two bought 37D ankle drives and
+  **220 mm track** remain. Hip pitch centres stay **52.5 mm apart** (DEC-60).
+  Thigh v3 fixes the rounding implementation without changing joint datums;
+  shank v2 retains its flush motor/fork print face. The rear pitch sockets
+  mount on the retained **45° plate** (DEC-61). Torso v5 adds Ø6.6 clearance
+  corridors through the retained flange for straight Ø6 rear screw drivers.
+- **Neck provision:** a dorsal shoulder-cap slot and four generic M3 mounting
+  points reserve a removable cartridge for the **three small bought STS3032M**
+  servos. Published small-case envelopes are shown; purchased M dimensions,
+  fixed-lead boards, retention and 3-RPS linkage geometry remain unverified.
+  [Source dimensions, interface and limits](design/neck-provision.md).
 
-The chassis has **24 physical prints**: eight rigid limb segments, four
-carriers, four root modules, two TPU pads, torso, tray and four spacers. The
-acceptance rig remains two prints; four other generic coupons are separate.
-There are **17 unique designs / 24 handed export variants** including coupons.
+The unchanged electronics tray and four spacers remain. The two new shoulder
+cassettes account for the increase from 24 to 26 chassis prints. The neck
+reference envelopes are neither printed parts nor an accepted head installation.
 
-## Engineering changes to the skeleton layout
+## Poses, axes and silhouette
 
-The rear geometry, 450 mm upright head-top target and Ø80 ankle wheels are
-retained. The supported pose has front ball centres at (205, ±74.5, 16) mm,
-rear wheel centres at (−55, ±110, 40) mm, and ground contacts at Z=0. Front
-contact spacing is 149 mm; rear track is 220 mm. The longitudinal contact
-spacing remains 260 mm, producing a trapezoidal support footprint.
+The supported reference retains front contact centres at X/Z = **205/16 mm**
+and rear wheels at **−55/40 mm**. With unrolled shoulders, front contact spacing
+now follows the **190.23 mm** pitch spacing; rear track remains 220 mm and
+longitudinal contact spacing 260 mm. Upright, the front contacts retain the
+100 mm forward / 330 mm high reference. These are inspection poses, not a
+loaded transition or controller targets. The **450 mm upright head-top** figure
+remains a sizing allocation.
 
-A 75 mm forearm alone cannot replace the former wheel's 40 mm ground reach.
-The forearm and TPU contact extend 25 mm beyond the wrist to the ball centre, whose 16 mm radius closes
-the supported pose with 42.25° elbow flexion. Shoulder/hip heights remain
-165/175 mm. The contact is a fixed, replaceable TPU pad, with grip and wear unverified.
+Front A rotates about the torso's longitudinal axis. Its downstream B pitch
+joint and elbow follow that rotation; pitch and elbow axes remain parallel.
+Rear A instead rotates about the lateral pitch axis and carries B roll.
+The assembly and viewer therefore use different transform orders for the two
+limb pairs. Their left/right halves remain mirrored. The optional sideways
+"hug elbow" is not implemented; the current sagittal elbow preserves supported
+foreleg shortening, with the alternative still tracked in OQ-25.
 
-The raised front ball centres remain 100 mm forward of the shoulder and
-330 mm high in the upright review pose. Elbow flexion becomes 110.05° with the
-100 mm effective lower limb. These are inspection poses, not a balance
-trajectory. DEC-49 aligns both hip/shoulder roll-centre spacings at 149 mm;
-pitch-servo centres remain 48 mm apart. Rear motor end gap remains 36 mm.
-
-## Hip and shoulder axes — DEC-41 correction
-
-DEC-40 attached its roll servos to the rigid torso. Pitching that torso into
-quadruped turned their axes almost vertical: the resulting motion was yaw.
-The earlier collision checks did not test the intended degree of freedom.
-
-The physical chain is now **fixed lateral pitch → carried roll → knee/elbow
-pitch**. The roll servo travels with the pitch carrier; its axis lies in the
-sagittal plane perpendicular to the upper limb. A roll command therefore moves
-the knee/elbow sideways in both saved poses. The axis tilts with upstream pitch;
-it is not held world-horizontal through arbitrary motion. There is no yaw joint.
-
-Both root axes intersect as geometric lines. The servo bodies sit at different
-lateral positions: ±24 mm for pitch and ±74.5 mm for both hip and shoulder
-roll in DEC-49; DEC-55 places rear roll at ±64.05 mm, while the front stays
-at ±74.5 mm. There is no added link length between the intersecting axes.
-Motor-face offsets absorb the rear spacing change so wheel track stays
-220 mm. The measured servo
-interfaces and twelve-actuator budget are retained.
+The torso and cassette multi-view review finds a compact cage, broad rails,
+a shallow chest step and inward socket flanges, with no outriggers or disconnected
+features: **an acceptable structural prototype**. V5's inward dorsal taper
+narrows the upper back without adding depth or a backpack. Front parts pass their
+individual visual review. [Assembled views](design/front-redesign/body-views.png)
+also retain compact depth, with front shoulder span near the rear wheel span
+and deliberate front/rear differences. The head is still a sizing allocation;
+this is structural-prototype review, not a finished shell or gesture acceptance.
 
 ## Corrected servo interface
 
@@ -169,83 +131,95 @@ physical measurements or the confirmed SO-101 fit.
 
 ## Fasteners and assembly
 
-The generated schedule in [bom.md](bom.md) covers all twelve joints and two
-motor mounts. Candidate hardware stacks, before physical checks:
+The generated [BOM fastening schedule](bom.md) is authoritative for quantities.
+Candidate stacks still require real clamping, engagement and tool checks.
 
 | Connection | Stack / access |
 |---|---|
 | Case ears | M2×5 through 2.2 mm seat; 2.8 mm nominal penetration |
-| Front horn square | M3×6 through 3.5 mm web; 2.5 mm engagement |
-| Back horn square | M3×6, 0.5 mm narrow washer, 3.5 mm web; 2.0 mm engagement |
-| Root modules to torso | M3×16 from the torso side through the 5 mm flange, 6 mm plate and shelf into a captive M3 nut under the servo (DEC-53); length to verify |
+| Drive horn square | M3×6 through 3.5 mm web; 2.5 mm engagement |
+| Idler horn square | M3×6, 0.5 mm narrow washer, 3.5 mm web; 2.0 mm engagement |
+| Root socket to rear torso / front cassette | Four M3×16 through 5 mm flange and the unchanged socket plate/shelf into captive nuts |
+| Front cassette to torso | Four M3×20 per side, driven from the front into cassette captive nuts; Ø6 straight driver paths |
 | Motor faces | Six M3×8 through 5 mm face plate; 3 mm nominal engagement, bore depth unverified |
 | Hub | 5 mm plate + 3 mm cap head + 0.5 mm clearance + 9.5 mm hub = 18 mm nominal stack |
-| Front TPU pads | Recessed M3×20 and washer into a side-loaded captive M3 nut; key locates the pad; no printed thread |
+| Front TPU pads | Recessed M3×20 and washer into side-loaded captive nut; keyed location |
 | Tray | M3×25 through 4 mm tray, 4 mm spacer and 10 mm frame boss; washers and nut |
 
-Drop four M3 nuts into each root module's shelf pockets, fit the servo and
-all four ear screws on the bench, then offer the module to the torso and
-drive its four M3×16 from the torso side (DEC-53). Fit all
-four roll-servo ear screws in each carrier before fitting the upper link.
-Fit each elbow/knee servo into its upper link before installing the lower
-link. With its horns removed, the open end of the enclosing socket admits the servo without passing
-a fitted horn through a closed collar. Fit the horns and centre fixing, then
-seat the integral clevis and install its eight square fixings without pulling
-the forks inward. Remove the driven link again for servo replacement.
+1. **Preload all four M3 frame nuts into each bare front cassette before
+   attaching its A root.** The fitted root blocks the straight loading path
+   of the two inner nuts. Hold the nuts in place during bench assembly.
+2. Drop four M3 nuts into each root socket, then install A and all four ear
+   screws on the bench. For a front limb, bolt that complete root to the
+   preloaded cassette with four M3×16, offer the cassette to the ventral
+   crossmembers and install four front-access M3×20. For a rear limb, mount the root directly
+   to the inclined flange; its driver corridors pass through the complete torso.
+3. Fit B and all four ear screws to its carrier before installing the upper
+   link. Fit C and all four ear screws to the upper link before the lower link.
+   Insert cases Bottom-first with horns removed. Install horns/centre fixings,
+   then clevis square fixings without pulling the forks inward.
+4. Insert the forearm captive nut before fitting the keyed TPU pad. Install rear
+   motors axially from inboard, then their face screws, hubs and wheels.
 
-Install motor bodies axially from inboard, followed by face screws, hubs and
-wheels. The removable tray gives wiring access. Full harness routing, every
-tool operation with real plugs, wheel/hub retention and child-safe covers
-remain physical/detailed checks; nothing is attached with printed threads.
+Servo replacement requires removal of its driven link. Front root service
+removes the four frame screws and slides the cassette **laterally outward**
+to expose its bench screws; pulling rearward eventually hits the dorsal rails.
+No driver is expected to pass through the opposite A servo. Harness routing, actual plugs, retention and
+child-safe guards remain detailed/physical checks.
 
 ## Manufacturing and validation
 
-Every exported variant is a valid STEP and a watertight positive-volume STL
-within the 200 × 200 mm bed rule. The declared orientation is already applied
-in the STL. The [part review](part-design-review.md) records support removal
-for every design. All four carriers and the forearms have useful flat backs; the
-orthogonal upper links and motor shanks use accessible local supports. The TPU
-pad uses no support. Slice success establishes toolpaths, not physical quality.
+The [current validation record](design/cad-validation.json) links the final
+versions, exports, slices and scoped checks.
 
-The audit covers the measured interface, 19 rig angles, motor insertion,
-frame contact and 62 complete assembly samples around the saved poses. A
-separate fallback check uses the conservative caliper case. Root-module bench
-screw access and insertion are checked separately from installed frame-bolt
-access. Unit tests check the joint axes, solid/mesh integrity, fastening
-schedule and TPU/rear-wheel ground contacts.
+Each changed print has a deliberate broad bed plane and externally accessible
+support removal; [part review](part-design-review.md) records the details.
+[Current local slices and selected layers](design/front-redesign/README.md#local-slicing-and-support-review)
+cover all 11 changed handed exports, including torso v5. Inspected layers show
+broad bases and trees in open forks/cups and through the torso cage. They do
+not prove every layer start or physical support removal. These parts remain
+`unknown` and are **not physically proven**. Existing slices apply only to
+their recorded STL hashes: the sliced thigh v2 does not validate corrected
+thigh v3. OQ-22 records earlier shank v2 organic slices with hashes matching
+the current exports; their G-code and layers were not re-reviewed in this
+session's 11-slice batch. Older manufacturing-report shank slices predate v2.
 
-The viewer uses those same joint transforms. It searches the reachable interval
-from the current configuration in **0.25° increments**, with **2° additional
-reserve** before the first detected intersection. Changing a slider or body
-pose recomputes the grouped bounds; all four limbs must clear. Geometry/hardware
-and hidden parts still participate in the search. Servo cases use the
-conservative caliper profile. For a servo's own coaxial fork, its circular
-horns/centre reliefs are treated as the rotationally invariant interfaces
-checked by the rig audit; the case remains an obstacle. Full nominal hardware
-participates against other parts. The head placeholder is omitted; its unresolved placement does not constrain
-carrier geometry or travel. Body-master head outlines show sizing intent only.
+The [complete front moving-package report](design/front-redesign/driven-package-clearance.json)
+checks outward-positive shoulder roll **±30° at 2° intervals**, in both saved
+pitch/elbow configurations, including all moving front prints/cases/fixings
+against fixed A/module/cassette hardware: 2,604 solid pairs per pose, no overlap.
+The [installed-front report](design/front-redesign/installed-front-clearance.json)
+checks both fronts at five roll settings against the torso, neck envelopes,
+opposite front and nominal rear hardware with both case models: 20 configurations,
+1,236 candidate pairs, no hits. Narrower adjacent-joint/rail checks and their
+limits remain in the [front record](design/front-redesign/README.md).
 
-This is a finite-resolution mesh search, not continuous swept-volume proof.
-The ±180° search ceiling is not a calibrated servo setting. Floor contact,
-complete cables/guards, tolerances and loaded motion are not established by the
-slider bounds. [travel-endpoints.json](design/manufacturing/travel-endpoints.json)
-records an earlier revision and does not validate the current root/carrier.
-The earlier [DEC-56 checks](design/hip-carrier-refinement.json) found small
-imported-STEP intersections at the then-displayed forward pitch minima.
-DEC-58 increases the reserve to 2° and records separate
-[rear-proposal endpoint checks](design/rear-leg/viewer-endpoints.json).
-The old manufacturing endpoint report does not validate today's full chassis
-or arbitrary slider combinations; continuous travel remains OQ-21/22.
+The **65-test Python suite**, 26 handed exports, two assembly STEP exports and
+11 current-version review slices pass. Both complete nominal poses pass
+180 checked pairs each. The [62-sample primary audit](design/front-redesign/assembly-audit.json)
+and [two-pose fallback audit](design/front-redesign/assembly-audit-fallback.json)
+pass. The main browser smoke test and
+[all initial grouped-slider endpoints](design/front-redesign/viewer-endpoints.json)
+pass (24 configurations / 1,452 pairs across both case models). The
+[rear production review](design/rear-leg/README.md) also passes both browser
+poses, all 12 initial bounds and four combined configurations; its exploratory
+−45° quadruped pitch collision is outside the current viewer bound. The frame audit includes the actual torso in rear
+driver checks and distinguishes front bench root fixings from installed
+cassette fixings; service tests enforce loading cassette nuts before A.
 
-The static build includes geometry- and engine-hashed clearance caches so it
-opens without repeating the full initial search. The browser recomputes changed
-configurations in a worker; stale caches are rejected. This requires Node.js
-when building, not when viewing the static site.
+The viewer uses the same serial joint orders as the assembly, samples
+pose-dependent clearance in **0.25° increments**, and reserves **2°** before the
+first detected collision. Hidden structure and hardware still constrain travel.
+Caches are keyed by geometry and engine hashes; Node.js is needed to build them,
+not to view the site. The unresolved head geometry is omitted. This finite
+mesh search does not prove continuous motion, calibrated servo travel, cable
+clearance, ground contact or loaded balance. Historical manufacturing/viewer
+endpoint reports apply only to their own revision. Current validation outcomes
+are recorded with the [front revision evidence](design/front-redesign/README.md).
 
-Continue physical acceptance with the new joint rig, a rear leg, the pair,
-front limbs and loaded support/transition checks (OQ-12/13/17/18). Use actual
-hardware masses and the material-specific slice estimates before revising servo
-load or thermal claims.
+Continue with support removal, fitting and load/creep on the actual parts;
+head/neck, battery/electronics and loaded transitions remain OQ-17/18/21/22.
+No new repeat SO-101 fit gauge is required.
 
 ## Revision log
 
@@ -408,3 +382,49 @@ that revision. New CAD iterations go here, one entry each, never to
   `hardware/part-versions.json` with a placement-invariant fingerprint compared
   within tolerance (0.5 mm³, 0.1 mm), so rigid shifts such as DEC-60's do not
   count as changes.
+
+- **2026-09-19 recessed roll-first front revision and review corrections**
+  (owner instruction, autonomous CAD development; **unprinted**). Front A now
+  rolls about the spine; B and C have parallel pitch shafts. Torso v5 extends
+  around A to Z183.5 with 10 mm socket-lip recess, retaining 150 mm root spacing.
+  New removable shoulder cassettes v1 keep unchanged root sockets v1 bench
+  serviceable; front carrier/upper arm/forearm become v2 with broad print planes,
+  open support access and rounded load paths. Thigh v3 corrects the rounding
+  bug; rear root driver corridors now include the torso. Geometry fingerprints
+  gain internal-feature locations and updates reject version decreases;
+  [four defect corrections](test-log.md#2026-09-19--four-cad-review-defects-corrected-digital-only).
+  A dorsal cartridge interface reserves three **small STS3032M** neck servos;
+  actual mounting/linkage remains open. **Does it look stupid? No at individual
+  part review:** torso/cassettes form a compact cage with broad rails, a shallow
+  chest step and inward flanges; front links have continuous printable forms.
+  Assembled views also retain compact depth and deliberate front/rear forms;
+  the head and loaded gesture acceptance remain unresolved.
+  Changed parts are `unknown`, not physically proven. Current dimensions,
+  views and the scoped 1° local checks: [front record](design/front-redesign/README.md).
+- **2026-09-19 torso v5 clearance correction within the front revision**
+  (assistant audit finding; **unprinted**). Torso v4 cleared the nominal pose
+  but its upper dorsal rails clipped the moving front carrier at **+1° roll**.
+  Nominal/static clearance was insufficient. V5 tapers those rails from
+  Y±43 to Y±29 over Z106…122 while preserving X−46…−36, the 94 mm outer width,
+  82 mm maximum depth and 10 mm socket-lip recess. Neck-cartridge mounts move
+  +10 mm in X to (−28, +2) × Y±30 so the screws exit into open space rather
+  than the upper rails. V4's local slice is superseded by a hash-matched v5
+  slice; inspected layers show trees through the open cage. The scoped ±30°
+  roll rail sweep clears all 12 moving front-chain solids at 2° samples in both
+  poses. The final 62-sample primary and two-pose fallback audits pass;
+  the main browser smoke test and all initial grouped-slider endpoint checks
+  pass. The rear production viewer and its endpoint checks are refreshed and pass.
+- **2026-09-19 shoulder carrier v3, B offset 35 → 40 mm** (assistant viewer
+  finding; **unprinted**). The B35/v2 carrier's local joint tests and small
+  full-assembly samples passed, but the full upper-arm/A-case sweep stopped
+  at about **+6° roll**. B40 moves the pitch centres and unrolled front contacts
+  to **190.23 mm** spacing, leaving A spacing 110.23 mm, recess 10 mm and torso
+  v5 unchanged. At the examined ±28/29/30° roll samples in both saved poses,
+  the conservative A-case separation improves from 0.765 mm (B39 upper fork)
+  / 1.065 mm (B39 horn head) to **1.765 / 2.065 mm** with B40. These are sampled
+  component clearances, not loaded or continuous travel limits. The upper arm
+  and forearm remain v2; carrier geometry becomes v3. Final exports, matched
+  slices and views are regenerated; the complete-package and installed-front
+  reports pass within their stated sampled scope, as do the final 62-sample
+  primary and two-pose fallback audits. Browser/rear-viewer refresh remain
+  separate from those checks.

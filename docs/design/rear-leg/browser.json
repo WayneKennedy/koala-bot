@@ -1,22 +1,183 @@
 {
   "tailnet_url": "https://blake.tail13a0c0.ts.net:8443/rear-leg/",
+  "scene_sha256": "1be9410236a339c7a06941d00941da06ed3f6a5e593b3265347dab0bcb716065",
   "page_errors": [],
   "checks": [
     "both pose caches load",
     "2 degree reserve",
-    "printability tags",
-    "pose matrix responds to roll",
-    "part selection and notes",
+    "production versions and printability",
+    "actual torso present",
+    "30 degree rear roll changes pose matrix",
+    "thigh v3 selection and notes",
     "backdrop controls hidden"
   ],
   "poses": [
     {
       "pose": "quadruped",
-      "limits": "pitch: -51\u00b0\u2026173.75\u00b0 \u00b7 roll: -5.5\u00b0\u2026180\u00b0 \u00b7 bend: -96.5\u00b0\u202656.25\u00b0"
+      "bounds": {
+        "pitch": {
+          "min": -28.25,
+          "max": 173.75,
+          "stops": [
+            [
+              "torso_frame",
+              "rear_thigh_right"
+            ],
+            [
+              "rear_carrier_right",
+              "reference_rear_pitch_servo_right"
+            ]
+          ]
+        },
+        "roll": {
+          "min": -5.5,
+          "max": 180,
+          "stops": [
+            [
+              "rear_motor_right",
+              "rear_motor_left"
+            ],
+            null
+          ]
+        },
+        "knee": {
+          "min": -96.5,
+          "max": 57.5,
+          "stops": [
+            [
+              "rear_thigh_right",
+              "rear_shank_right"
+            ],
+            [
+              "rear_thigh_right",
+              "rear_shank_right"
+            ]
+          ]
+        }
+      },
+      "parts": {
+        "pelvis_socket_right": {
+          "version": 1,
+          "printable": "proven"
+        },
+        "pelvis_socket_left": {
+          "version": 1,
+          "printable": "proven"
+        },
+        "torso_frame": {
+          "version": 5,
+          "printable": "unknown"
+        },
+        "rear_carrier_right": {
+          "version": 1,
+          "printable": "assumed"
+        },
+        "rear_thigh_right": {
+          "version": 3,
+          "printable": "unknown"
+        },
+        "rear_shank_right": {
+          "version": 2,
+          "printable": "assumed"
+        },
+        "rear_carrier_left": {
+          "version": 1,
+          "printable": "assumed"
+        },
+        "rear_thigh_left": {
+          "version": 3,
+          "printable": "unknown"
+        },
+        "rear_shank_left": {
+          "version": 2,
+          "printable": "assumed"
+        }
+      }
     },
     {
       "pose": "upright",
-      "limits": "pitch: -125.5\u00b0\u202699.5\u00b0 \u00b7 roll: -5\u00b0\u2026180\u00b0 \u00b7 bend: -91.25\u00b0\u202661.5\u00b0"
+      "bounds": {
+        "pitch": {
+          "min": -102.75,
+          "max": 99.5,
+          "stops": [
+            [
+              "torso_frame",
+              "rear_thigh_right"
+            ],
+            [
+              "rear_carrier_right",
+              "reference_rear_pitch_servo_right"
+            ]
+          ]
+        },
+        "roll": {
+          "min": -5,
+          "max": 173,
+          "stops": [
+            [
+              "rear_motor_right",
+              "rear_motor_left"
+            ],
+            [
+              "torso_frame",
+              "rear_shank_right"
+            ]
+          ]
+        },
+        "knee": {
+          "min": -91.25,
+          "max": 62.75,
+          "stops": [
+            [
+              "rear_thigh_right",
+              "rear_shank_right"
+            ],
+            [
+              "rear_thigh_right",
+              "rear_shank_right"
+            ]
+          ]
+        }
+      },
+      "parts": {
+        "pelvis_socket_right": {
+          "version": 1,
+          "printable": "proven"
+        },
+        "pelvis_socket_left": {
+          "version": 1,
+          "printable": "proven"
+        },
+        "torso_frame": {
+          "version": 5,
+          "printable": "unknown"
+        },
+        "rear_carrier_right": {
+          "version": 1,
+          "printable": "assumed"
+        },
+        "rear_thigh_right": {
+          "version": 3,
+          "printable": "unknown"
+        },
+        "rear_shank_right": {
+          "version": 2,
+          "printable": "assumed"
+        },
+        "rear_carrier_left": {
+          "version": 1,
+          "printable": "assumed"
+        },
+        "rear_thigh_left": {
+          "version": 3,
+          "printable": "unknown"
+        },
+        "rear_shank_left": {
+          "version": 2,
+          "printable": "assumed"
+        }
+      }
     }
   ]
 }

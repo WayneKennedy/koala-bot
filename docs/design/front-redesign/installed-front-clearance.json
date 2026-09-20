@@ -1,0 +1,162 @@
+{
+  "revision": "shoulder_carrier v3, upper_arm/forearm v2, torso v5",
+  "B_offset_mm": 40.0,
+  "B_centre_spacing_mm": 190.23,
+  "source_sha256": {
+    "hardware/src/koala_hardware/assembly.py": "01042c4545f9825f20743e5df7fa7e444904e6b914017fc899bec5ef669416a5",
+    "hardware/src/koala_hardware/body_plan.py": "1a43703d6f284e2ec197a8f9188ffbd45ad9b090da5eea8fc3fc18e084144150",
+    "hardware/src/koala_hardware/params.py": "ddb12385a7c5119657b564738dfdcfbd3ea6c9edaf130cd1ae04d40fcca6b268",
+    "hardware/src/koala_hardware/servo_iface.py": "45f0306516cdab1e7ca8295aadd6fdc103cea390803092690ea276941d43a5a8",
+    "hardware/src/koala_hardware/parts/front.py": "f6f3ca985a9302ad8758a5dcd2aa593506995bdc2fb685ff4030893e7eb30bfa",
+    "hardware/src/koala_hardware/parts/pelvis.py": "ac9d622e1c9d51561867688a5984a564bf41a4497ff040c1cc2f8f26aae39977",
+    "hardware/src/koala_hardware/parts/shoulder_mount.py": "d0f59de86d2d13b1a0ec8f74d6ea13d006ed60cc8547336c4ac6866d00130504",
+    "hardware/src/koala_hardware/parts/torso.py": "0678fd7933a3860b16f39daa050f61ef7d76af128987e3ce294c5217b350233c",
+    "hardware/src/koala_hardware/parts/neck_space.py": "e195fd7b34309c2b14671b285b39346829480383c4aff7e7503ac3396e17e1a2"
+  },
+  "tolerance_mm3": 0.01,
+  "scope": "Both front limbs move together while rear limbs remain at nominal. Every pair involving a moving front item is checked against the torso, neck catalogue envelopes, fixed roots, opposite front limb and stationary rear hardware. Only owning socket contact regions are exempt.",
+  "checks": [
+    {
+      "case": "imported",
+      "pose": "quadruped",
+      "roll": -30,
+      "pairs": 62,
+      "hits": []
+    },
+    {
+      "case": "imported",
+      "pose": "quadruped",
+      "roll": -25,
+      "pairs": 60,
+      "hits": []
+    },
+    {
+      "case": "imported",
+      "pose": "quadruped",
+      "roll": 0,
+      "pairs": 42,
+      "hits": []
+    },
+    {
+      "case": "imported",
+      "pose": "quadruped",
+      "roll": 25,
+      "pairs": 64,
+      "hits": []
+    },
+    {
+      "case": "imported",
+      "pose": "quadruped",
+      "roll": 30,
+      "pairs": 72,
+      "hits": []
+    },
+    {
+      "case": "imported",
+      "pose": "upright",
+      "roll": -30,
+      "pairs": 70,
+      "hits": []
+    },
+    {
+      "case": "imported",
+      "pose": "upright",
+      "roll": -25,
+      "pairs": 62,
+      "hits": []
+    },
+    {
+      "case": "imported",
+      "pose": "upright",
+      "roll": 0,
+      "pairs": 52,
+      "hits": []
+    },
+    {
+      "case": "imported",
+      "pose": "upright",
+      "roll": 25,
+      "pairs": 64,
+      "hits": []
+    },
+    {
+      "case": "imported",
+      "pose": "upright",
+      "roll": 30,
+      "pairs": 70,
+      "hits": []
+    },
+    {
+      "case": "caliper",
+      "pose": "quadruped",
+      "roll": -30,
+      "pairs": 62,
+      "hits": []
+    },
+    {
+      "case": "caliper",
+      "pose": "quadruped",
+      "roll": -25,
+      "pairs": 60,
+      "hits": []
+    },
+    {
+      "case": "caliper",
+      "pose": "quadruped",
+      "roll": 0,
+      "pairs": 42,
+      "hits": []
+    },
+    {
+      "case": "caliper",
+      "pose": "quadruped",
+      "roll": 25,
+      "pairs": 64,
+      "hits": []
+    },
+    {
+      "case": "caliper",
+      "pose": "quadruped",
+      "roll": 30,
+      "pairs": 72,
+      "hits": []
+    },
+    {
+      "case": "caliper",
+      "pose": "upright",
+      "roll": -30,
+      "pairs": 70,
+      "hits": []
+    },
+    {
+      "case": "caliper",
+      "pose": "upright",
+      "roll": -25,
+      "pairs": 62,
+      "hits": []
+    },
+    {
+      "case": "caliper",
+      "pose": "upright",
+      "roll": 0,
+      "pairs": 52,
+      "hits": []
+    },
+    {
+      "case": "caliper",
+      "pose": "upright",
+      "roll": 25,
+      "pairs": 64,
+      "hits": []
+    },
+    {
+      "case": "caliper",
+      "pose": "upright",
+      "roll": 30,
+      "pairs": 70,
+      "hits": []
+    }
+  ],
+  "total_pairs": 1236,
+  "all_clear": true
+}

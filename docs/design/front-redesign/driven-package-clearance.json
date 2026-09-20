@@ -1,0 +1,90 @@
+{
+  "revision": "shoulder_carrier v3, upper_arm/forearm v2, torso v5",
+  "B_offset_mm": 40.0,
+  "B_centre_spacing_mm": 190.23,
+  "source_sha256": {
+    "hardware/src/koala_hardware/assembly.py": "01042c4545f9825f20743e5df7fa7e444904e6b914017fc899bec5ef669416a5",
+    "hardware/src/koala_hardware/body_plan.py": "1a43703d6f284e2ec197a8f9188ffbd45ad9b090da5eea8fc3fc18e084144150",
+    "hardware/src/koala_hardware/params.py": "ddb12385a7c5119657b564738dfdcfbd3ea6c9edaf130cd1ae04d40fcca6b268",
+    "hardware/src/koala_hardware/servo_iface.py": "45f0306516cdab1e7ca8295aadd6fdc103cea390803092690ea276941d43a5a8",
+    "hardware/src/koala_hardware/parts/front.py": "f6f3ca985a9302ad8758a5dcd2aa593506995bdc2fb685ff4030893e7eb30bfa",
+    "hardware/src/koala_hardware/parts/pelvis.py": "ac9d622e1c9d51561867688a5984a564bf41a4497ff040c1cc2f8f26aae39977",
+    "hardware/src/koala_hardware/parts/shoulder_mount.py": "d0f59de86d2d13b1a0ec8f74d6ea13d006ed60cc8547336c4ac6866d00130504",
+    "hardware/src/koala_hardware/parts/torso.py": "0678fd7933a3860b16f39daa050f61ef7d76af128987e3ce294c5217b350233c",
+    "hardware/src/koala_hardware/parts/neck_space.py": "e195fd7b34309c2b14671b285b39346829480383c4aff7e7503ac3396e17e1a2"
+  },
+  "tolerance_mm3": 0.01,
+  "scope": "Whole right front driven assembly and hardware versus its fixed A cases, module, cassette and fixings. Positive roll follows the torso spine axis. Two saved pitch/elbow configurations; finite samples, not continuous proof.",
+  "checks": [
+    {
+      "pose": "quadruped",
+      "roll_degrees": [
+        -30,
+        30
+      ],
+      "step_deg": 2,
+      "moving_items": [
+        "front_carrier_right",
+        "reference_front_pitch_servo_right",
+        "front_upper_arm_right",
+        "reference_front_elbow_servo_right",
+        "front_forearm_right",
+        "front_contact_pad_right",
+        "reference_front_roll_horn_heads_right",
+        "reference_front_pitch_horn_heads_right",
+        "reference_front_bend_horn_heads_right",
+        "reference_front_pitch_ear_heads_right",
+        "reference_front_bend_ear_heads_right",
+        "reference_front_pad_fixing_right",
+        "reference_front_pitch_servo_right_caliper",
+        "reference_front_elbow_servo_right_caliper"
+      ],
+      "fixed_items": [
+        "A module",
+        "A imported",
+        "A caliper",
+        "A ear heads",
+        "A root fixings",
+        "cassette"
+      ],
+      "poses": 31,
+      "pairs": 2604,
+      "maximum_overlap_mm3": 0
+    },
+    {
+      "pose": "upright",
+      "roll_degrees": [
+        -30,
+        30
+      ],
+      "step_deg": 2,
+      "moving_items": [
+        "front_carrier_right",
+        "reference_front_pitch_servo_right",
+        "front_upper_arm_right",
+        "reference_front_elbow_servo_right",
+        "front_forearm_right",
+        "front_contact_pad_right",
+        "reference_front_roll_horn_heads_right",
+        "reference_front_pitch_horn_heads_right",
+        "reference_front_bend_horn_heads_right",
+        "reference_front_pitch_ear_heads_right",
+        "reference_front_bend_ear_heads_right",
+        "reference_front_pad_fixing_right",
+        "reference_front_pitch_servo_right_caliper",
+        "reference_front_elbow_servo_right_caliper"
+      ],
+      "fixed_items": [
+        "A module",
+        "A imported",
+        "A caliper",
+        "A ear heads",
+        "A root fixings",
+        "cassette"
+      ],
+      "poses": 31,
+      "pairs": 2604,
+      "maximum_overlap_mm3": 0
+    }
+  ]
+}

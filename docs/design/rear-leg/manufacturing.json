@@ -2,67 +2,85 @@
   "parts": [
     {
       "part": "thigh_right",
-      "stl_sha256": "d6c281005b4ec80d0b48cc3cb2d1b76d3080168b5c129fb5c730057bca7ba681",
+      "version": 3,
+      "printable": "unknown",
+      "stl": "hardware/build/stl/thigh_right.stl",
+      "stl_sha256": "32c80a1fd24c7c2bb8b9b8182153b1b810c48674e4ae60288a68f24590bf7f52",
       "watertight": true,
       "positive_volume": true,
-      "bed_area": 962.4000244140625,
-      "overhang_area": 2742.488830371033,
+      "bed_area": 1651.7269277389003,
+      "overhang_area": 1923.5196633912317,
       "size": [
         44.900001525878906,
         109.74678039550781,
-        72.86499786376953
+        72.86499776376954
       ],
-      "height": 72.86499786376953
+      "height": 72.86499776376954,
+      "slice_record": "docs/design/front-redesign/slices.json",
+      "slice_diagnostics": []
     },
     {
       "part": "thigh_left",
-      "stl_sha256": "7e5464b186bc06be7892cdedef1d7c4d119af3491fc9a29f6302f80be29cc489",
+      "version": 3,
+      "printable": "unknown",
+      "stl": "hardware/build/stl/thigh_left.stl",
+      "stl_sha256": "0b7a6e7213c3b605108d01048e617b9c603dfe9842db2073aa4fa90b56ff99ba",
       "watertight": true,
       "positive_volume": true,
-      "bed_area": 962.4000244140625,
-      "overhang_area": 2742.488830371033,
+      "bed_area": 1651.7269277389005,
+      "overhang_area": 1923.5196633912317,
       "size": [
         44.900001525878906,
         109.74678039550781,
-        72.86499786376953
+        72.86499776376954
       ],
-      "height": 72.86499786376953
+      "height": 72.86499776376954,
+      "slice_record": "docs/design/front-redesign/slices.json",
+      "slice_diagnostics": []
     },
     {
       "part": "shank_right",
-      "stl_sha256": "d0ae0c19bf9cc44727d41cb65403e532239f777f4601d283c2bbec354b6e3ee7",
+      "version": 2,
+      "printable": "assumed",
+      "stl": "hardware/build/stl/shank_right.stl",
+      "stl_sha256": "ae2ac31130c35a356b199b55ed3587de513255d1a0fe42c142d1fc94ea8f39c6",
       "watertight": true,
       "positive_volume": true,
-      "bed_area": 1821.1920984335234,
-      "overhang_area": 2241.1506572100016,
+      "bed_area": 2215.4529103454583,
+      "overhang_area": 1712.1404336767087,
       "size": [
         123.38967895507812,
         45.99934005737305,
-        51.25
+        48.9999999
       ],
-      "height": 51.25
+      "height": 48.9999999,
+      "prior_slice_record": "docs/open-questions.md (OQ-22, 2026-09-19 bed-only organic jobs)",
+      "recorded_stl_sha256_prefix": "ae2ac311"
     },
     {
       "part": "shank_left",
-      "stl_sha256": "32635c8c2f6f41e63f0284e5bc778452490beaa0765f02fc8c8622bf5d4db060",
+      "version": 2,
+      "printable": "assumed",
+      "stl": "hardware/build/stl/shank_left.stl",
+      "stl_sha256": "335d9f745f176eb9fad89cd1a408a1f50bf8b98354e61d6a2b984074e2df0638",
       "watertight": true,
       "positive_volume": true,
-      "bed_area": 1821.1920984335234,
-      "overhang_area": 2241.1506572100016,
+      "bed_area": 2215.4529103454583,
+      "overhang_area": 1712.1404336767087,
       "size": [
         123.38967895507812,
         45.99934005737305,
-        51.25
+        48.9999999
       ],
-      "height": 51.25
+      "height": 48.9999999,
+      "prior_slice_record": "docs/open-questions.md (OQ-22, 2026-09-19 bed-only organic jobs)",
+      "recorded_stl_sha256_prefix": "335d9f74"
     }
   ],
-  "unit_tests": 29,
-  "unit_tests_passed": true,
-  "full_nominal_assembly_audit": "passes both saved poses with component-solid hardware intersections",
-  "physical_status": "unknown printable; no slice or physical print",
+  "scope": "Current main-export STLs; surface metrics are not slicing or physical-print evidence. Matching thigh slices are linked separately.",
+  "physical_status": "Thigh v3 unknown, locally sliced with inspected layers; shank v2 assumed, with prior recorded slices matching current STL hash prefixes (OQ-22). Both revisions remain unprinted.",
   "source_sha256": {
-    "hardware/src/koala_hardware/parts/links.py": "5fd946d112cb1340187a5ad8de2f45b1ab5fcddf5f44e8d1641a6f8b5eaab783",
-    "hardware/src/koala_hardware/params.py": "f69961db3d01e795ffe73b131655d19750e532d219f34003e5591644458fa8e1"
+    "hardware/src/koala_hardware/parts/links.py": "d30859b3ff6c3d617ed3a59c16d1c32ee96536012a112d9a3e5cf1073892a5fd",
+    "hardware/src/koala_hardware/params.py": "ddb12385a7c5119657b564738dfdcfbd3ea6c9edaf130cd1ae04d40fcca6b268"
   }
 }

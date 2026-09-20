@@ -22,59 +22,56 @@ Unresolved. Resolve -> move to [`decisions.md`](decisions.md).
   `architecture.md` "3S LiPo" is within its 3S-only rule (12.6 V full).
   Decide capacity once a first leg has been driven and current measured.
 
-- **OQ-25 — Elbow axis in the roll direction: the "hug".** Raised with
-  DEC-54. With the elbow axis parallel to the shoulder roll axis (along the
-  spine), the forearms fold sideways and inward: in upright with the arms
-  forward the axes are vertical and both forearms close like a hug, the
-  clinging grip a koala uses on a trunk and a possible basis for climbing;
-  in quadruped the axes are horizontal fore-aft and a front foot lifts by
-  folding the forearm inward under the body, a sprawling rather than a
-  sagittal knee. What it gives up: the forearm no longer shortens the leg in
-  the sagittal plane, so fore-aft foot placement comes from shoulder pitch
-  alone, and the front step length is bounded by that swing. Four-foot walking
-  is already experimental (DEC-43), so this is a small further bet on the
-  supported stance and the lift-to-balance transition working with a
-  sideways-folding foreleg. It also decides the shoulder block's form: with a
-  sagittal elbow, B (pitch) and C (elbow) are parallel and can share one
-  block on A's horn with a link down the upper arm, the Orion pattern; with
-  the hug elbow they are perpendicular, as B and C already are at the rear,
-  and C must sit on the upper arm. Decide before the front upper arm is
-  drawn; it changes the elbow socket's attitude and the shoulder block.
+- **OQ-25 — Optional sideways "hug" elbow.** The 2026-09-19 front prototype
+  uses **parallel B pitch / C elbow axes**, preserving sagittal leg shortening
+  for support and the lift-to-balance transition. That is the current CAD
+  implementation, not a banked rejection of the alternative. An elbow parallel
+  to A's longitudinal roll axis would fold inward for a hug but change
+  foreleg shortening, foot placement and the upper-arm/socket print form.
+  Revisit only against concrete desired gestures and supported movement;
+  assess the existing roll-first prototype first.
 
-- **OQ-23 — Torso width and neck servo packaging.** The two shoulder socket
-  modules meet at the centreline with a 0.6 mm gap (DEC-48), so the shoulder
-  girdle, where `architecture.md` mounts the three STS3032M neck servos,
-  has no room for them. DEC-53 expects a wider torso. Widening moves
-  `ROOT_PITCH_Y` (48 mm centres, DEC-41) and with it the carrier reach, the
-  149 mm roll centres and the 220 mm track (DEC-40/41/49); the head envelope
-  and neck length (DEC-37/49) are unchanged by it. Decide the width once the
-  leg (DEC-53) fixes the root module and carrier, and before the torso frame.
-  **Shank motor inset, 2026-09-19 (assistant recommendation, not decided):** the flush-face
-  shank moves each 37D inboard 2.25 mm, narrowing the track to 215.5 mm and the inward-roll
-  motor-to-motor stop from −5.5° to −4.5° (thigh-flat record). No roll requirement is defined
-  (OQ-21), the upright balance pose needs no adduction, and stance width comes from abduction,
-  so the loss is not pressing. To restore 220 mm the cheapest lever is this torso: widen the
-  hip pitch centres from 48 to 52.5 mm (`ROOT_PITCH_Y` 24 → 26.25). The torso is the deferred,
-  unprinted part already expected to grow for the neck servos; root modules, carriers, thigh
-  and shank geometry are unchanged by it (they shift rigidly), so the prints in hand and
-  planned stay valid either way. Moving the wheel out on the shaft instead (`HUB_STACK` +2.25)
-  puts the hub's grub screw at the end of the 15.5 mm D-flat on the 21 mm shaft: not without
-  measuring the hub. Decide when the torso is drawn; the thigh and shank prints do not wait.
+- **OQ-23 — Shoulder/neck and battery packaging acceptance.** The owner's
+  2026-09-19 instruction to recess front A and extend the surrounding frame is
+  implemented as an **unprinted revision**: torso sides Y±47 mm, socket lips
+  Y±37 mm (10 mm recess), A centres 110.23 mm apart and B pitch centres
+  190.23 mm apart. Frame cap Z183.5 extends around the roots while the
+  hip-to-shoulder spacing stays 150 mm. Independent front-access cassettes
+  retain bench access to the proven root modules.
+  [Current front geometry and evidence](design/front-redesign/README.md).
+  The horns/moving carrier still project; recess depth is not a flush-skin claim.
+
+  The dorsal cap has an open slot and four M3 points for a removable cartridge
+  holding the **small bought STS3032M** servos. Published 23.2×12.1×28.5 mm case
+  envelopes with 1 mm clearance fit the allocated bay; purchased M dimensions,
+  ears, fixed-lead exits, connector-board fit and complete removal paths need
+  checking. The packed upright boxes do not solve the 3-RPS axis/linkage
+  arrangement. [Neck provision and source uncertainty](design/neck-provision.md).
+  Check as-built moving A/B clearance, gestures from rest, cable loops,
+  side-battery packaging (OQ-26), head mass and load paths before acceptance.
+  The [earlier shoulder-axis study](design/shoulder-axis-review.png) explains
+  the review trigger; it predates this implemented chain.
+
+  The former shank-inset/track choice is resolved by **DEC-60**: rear pitch
+  centres are 52.5 mm apart, preserving 220 mm track with the flush shank face.
+  It is no longer a pending width choice. Neck/head placement and the 450 mm
+  sizing target remain separate from the torso extension.
 
 - **OQ-22 — Root joint construction and travel acceptance.**
-  **Current, 2026-09-15 (DEC-57/58):** hold the 45° pitch-socket mounting
-  variant as the proposed rear A/B arrangement. The new thigh has clear horn
-  bores/heads/drivers, filleted yoke roots and a knee case clocked 90° about
-  its shaft; the revised motor shank has an extended open knee fork and
-  filleted motor supports. [Rear-leg evidence](design/rear-leg/README.md).
-  The main assembly retains the previous torso mount; the separate rear-leg
-  viewer uses the proposal. Still open: complete inclined torso walls and
-  their driver access, real servo indexing and cables, physical print/support
-  removal, fork stiffness/creep, and a loaded motion trajectory. Local joint
-  clearance does not permit both rear motors to pass through each other.
-  The false cylindrical nut references and missing carrier/root printability
-  tags noted below are corrected; the full nominal CAD audit now passes both
-  saved poses. The following records describe the earlier geometry.
+  **Current, 2026-09-19:** the main assembly carries DEC-61's inclined 45°
+  rear root mount. Torso v5 adds full-length rear screwdriver corridors and
+  removable front shoulder cassettes; driver checks include the actual torso.
+  Front limbs now use roll → pitch → elbow with the rear printability lessons.
+  [Front evidence](design/front-redesign/README.md) and
+  [rear evidence](design/rear-leg/README.md) have distinct scopes.
+  Still open: support removal on current print versions, actual servo indexing,
+  cables, fastener engagement, fork stiffness/creep and loaded motion. Local
+  adjacent-joint samples do not establish whole-robot or continuous travel.
+  Root socket v1 is physically proven with the recorded ear-hole support caveat;
+  hip carrier v1 has plate 2 slices but no recorded physical result. Prior
+  shank v2 slice records below match the current STL hashes; those layers were
+  not re-reviewed in the current front/thigh/torso slice batch. The following
+  dated records apply only to their identified revisions and investigations.
 
   **Historical issue: the pelvis socket module was weak and
   hard to print.** Raised by the maintainer 2026-09-14 against the DEC-49
@@ -267,14 +264,14 @@ Unresolved. Resolve -> move to [`decisions.md`](decisions.md).
   axis ≈ 85 mm); dropping rear roll for V1 would free two ST3215s but is a
   concept change. None is required.
 
-  Decide the module construction before any root part is printed; re-run
-  frame contact and OQ-21 clearance checks for the chosen option.
+  The module construction above was subsequently replaced by DEC-53/55;
+  current acceptance remains version-specific.
   **Print planned 2026-09-19 (owner, 2026-09-18); plate 1 printed 2026-09-19, fit passes, ear holes blocked by support (profile fixed, see `test-log.md`); plate 2 re-sliced with bed-only support:** the root socket (2 per hand) and hip
   carrier (1 per hand), PETG, sliced on `printhub` (online for slicer access since
-  2026-09-18). Both are `assumed` from the owner's review of the rear-leg viewer; this print
-  is the first physical evidence for any DEC-53/55/56 part and its result goes to
-  `test-log.md`. The thigh and shank are not printed: as drawn they need support that would
-  probably ruin them (revision log, 2026-09-18).
+  2026-09-18). Root socket v1 is now `proven` with the ear-hole caveat;
+  hip carrier v1 remains `assumed` until plate 2's result is recorded. The
+  thigh/shank forms rejected on 2026-09-18 have since been replaced; see
+  [current part versions and print approaches](part-design-review.md).
   **Sliced 2026-09-18 (printhub clock 2026-09-19 00:50 BST), nothing printed:** base
   `~/slicer/ender5s1_petg.ini` plus `hardware/print/manufacturing-petg.ini` (4 perimeters,
   30 % grid, snug supports from 45°, 4 mm brim, 240/80 °C), Debian `prusa-slicer` 2.5.0 with
@@ -303,19 +300,22 @@ Unresolved. Resolve -> move to [`decisions.md`](decisions.md).
   first intersection, within a ±180° search ceiling. Servo indexing, actual
   electrical limits, tolerances, complete cables/guards and loaded operation
   remain unverified. This is a finite-resolution clearance aid, not continuous
-  swept-volume certification or a gait controller limit.
+  swept-volume certification or a gait controller limit. The 2026-09-19 front
+  roll-first/rear pitch-first chains have different transforms. Complete front
+  moving-package checks clear commanded roll ±30° at 2° samples in both saved
+  configurations; installed two-front checks cover five roll settings with
+  both case models. The 1° adjacent-joint native carrier-only range is narrower
+  evidence, not a complete limb limit. Accept continuous/load-bearing movement
+  and useful gestures separately.
 
 - **OQ-20 — Physical acceptance of the SO-101 construction adaptation.**
-  DEC-48/49/50 implement enclosing asymmetric sockets, rounded links/forks,
-  common carriers at all four roots and independent root modules. **Known
-  defect, 2026-09-14:** the `pelvis_socket` return corner is two separately
-  filleted boxes overlapped with no inside fillet (fillet-after-union rule,
-  `integrated-links.md`); its construction as a whole is OQ-22. Audit the
-  other parts for the same corner construction. Bench driver approaches, nominal
-  insertion and CAD clearances are checked; local slices support `assumed`
-  printability. Check real support removal, mounting fit, assembly/service
-  access and load/creep on the revised parts. No repeat Gauge_0 is required.
-  [Part review](part-design-review.md).
+  The current enclosing sockets, filleted fork roots, independent root modules
+  and broad print faces need physical support-removal, assembly and load/creep
+  checks. The old DEC-49 pelvis corner defect was replaced by DEC-53/55; it is
+  not a defect in the current proven root socket v1. That print establishes
+  socket geometry/fit with its ear-hole caveat, not acceptance of the complete
+  chassis. Changed shoulder parts, torso v5 and thigh v3 are `unknown`.
+  No repeat Gauge_0 is required. [Part review](part-design-review.md).
 
 - **OQ-20 — Pace and scope.** (Owner, 2026-09-18.) The design continues as a
   **background task**, paced by the owner's frontier-AI token limits rather than by the
@@ -349,7 +349,9 @@ Unresolved. Resolve -> move to [`decisions.md`](decisions.md).
   polygons, clearances, body-weight shifts and servo forces throughout. Define
   physical haunch/rest supports if needed. Head position and mounting are
   undecided; DEC-49 removes the unsupported placeholder from structural CAD
-  and clearance searches. Complete neck, battery/electronics,
+  and clearance searches. The shoulder now reserves a cartridge for three
+  small STS3032M servos ([provision](design/neck-provision.md)); its retention,
+  3-RPS linkage and head location are still open. Complete battery/electronics,
   harnesses and guards. Power-off standing needs a demonstrated support path.
 - **OQ-17 — Two-wheel drive acceptance and later gait.** Wheel location and
   bought 37D retention are settled by DEC-43; no knee-drive or belt study is

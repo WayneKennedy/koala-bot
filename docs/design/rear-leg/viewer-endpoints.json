@@ -1,13 +1,13 @@
 {
-  "scene_sha256": "f51068cd43a23cdc5e94f121d8dc5bfc0ef00342ba33e050e8be50ab15dc15bd",
-  "engine_sha256": "64bca0b0008824e6400ad32110c24fff3141c436ba471655aff0bd5b590415cb",
-  "scope": "Imported case plus measured horns; all rear solids and both legs. Nominal pocket contact only is allowed.",
+  "scene_sha256": "1be9410236a339c7a06941d00941da06ed3f6a5e593b3265347dab0bcb716065",
+  "engine_sha256": "32248a2ef5c552902f9a2abb5439deffcb5fd8c62f20c6b88e46c5331fd93f61",
+  "scope": "Imported case plus measured horns; complete production torso, all rear solids and both legs. Nominal pocket contact only is allowed. Front limbs/mounts and neck allocation are excluded.",
   "checks": [
     {
       "pose": "quadruped",
       "axis": "pitch",
       "endpoint": "min",
-      "degrees": -51,
+      "degrees": -28.25,
       "collisions": []
     },
     {
@@ -63,7 +63,7 @@
       "pose": "upright",
       "axis": "pitch",
       "endpoint": "min",
-      "degrees": -125.5,
+      "degrees": -102.75,
       "collisions": []
     },
     {
@@ -84,7 +84,7 @@
       "pose": "upright",
       "axis": "roll",
       "endpoint": "max",
-      "degrees": 176.5,
+      "degrees": 173,
       "collisions": []
     },
     {
@@ -116,5 +116,14 @@
       "collisions": []
     }
   ],
-  "all_passed": true
+  "all_passed": true,
+  "metadata_refresh": {
+    "date": "2026-09-19",
+    "scope": "Print/slice notes only; complete geometry, versions, printability, transforms, limits and collision-cache values unchanged.",
+    "notes_changed": 9,
+    "previous_scene_sha256": "972667f91b7451f29a535b0c253b5cfe80cf4608c0ade23b06b696d3abb13907",
+    "scene_sha256": "1be9410236a339c7a06941d00941da06ed3f6a5e593b3265347dab0bcb716065",
+    "previous_links_sha256": "1a899e821fc87ac9d668f356dc92df4ed1ad1fbd00d0d89e1c212ae1fb18ed68",
+    "links_sha256": "d30859b3ff6c3d617ed3a59c16d1c32ee96536012a112d9a3e5cf1073892a5fd"
+  }
 }

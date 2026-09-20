@@ -46,7 +46,14 @@ LAYOUT_W = 430.0     # mm; wrap width, chosen to read as a grid rather
 
 def _mesh(solid, tmp: pathlib.Path, i: int) -> trimesh.Trimesh:
     path = tmp / f"{i}.stl"
-    return export_mesh(solid, path, tolerance=.08, angular_tolerance=.25)
+    try:
+        return export_mesh(solid, path, tolerance=.08, angular_tolerance=.25)
+    except ValueError as exc:
+        if 'STL is not a closed positive-volume mesh' not in str(exc):raise
+        # Coarse OCC tessellation can open tiny gaps at neighbouring fillets.
+        # Retry at manufacturing resolution; retain the same closed-mesh gate.
+        # Do not patch holes or substitute an unchecked display mesh.
+        return export_mesh(solid, path)
 
 
 def _item(name: str, mesh: trimesh.Trimesh, colour: str, **extra) -> dict:
@@ -82,7 +89,9 @@ def _assembly_items(tmp: pathlib.Path, pose="quadruped", *, details=None, frames
     for ref,mount,tf in (assembly.socket_frames(pose) if frames is None else frames):
         key=ref.split('_')[1]
         joint=ref.split('_')[2]
-        partner=key+'_'+({'pitch':'carrier','roll':'upper_arm' if key=='front' else 'thigh','elbow':'forearm','knee':'shank'}[joint])
+        driven=({'roll':'carrier','pitch':'upper_arm','elbow':'forearm'} if key=='front'
+                else {'pitch':'carrier','roll':'thigh','knee':'shank'})
+        partner=key+'_'+driven[joint]
         for side in ('right','left'):
             core=tf*clipped
             if side=='left':core=mirror(core,Plane.XZ)
@@ -91,7 +100,8 @@ def _assembly_items(tmp: pathlib.Path, pose="quadruped", *, details=None, frames
                 for c in range(4):matrix[r,c]=tf.wrapped.Transformation().Value(r+1,c+1)
             if side=='left':matrix=np.diag([1,-1,1,1])@matrix
             # The exempt partner may be split across prints (a bolted cheek carries one pad).
-            partners=[n for n in (partner+'_'+side,partner.replace('_thigh','_thigh_cheek')+'_'+side) if n in names]
+            candidates=dict.fromkeys((partner+'_'+side,partner.replace('_thigh','_thigh_cheek')+'_'+side))
+            partners=[n for n in candidates if n in names]
             cores[ref.replace('_right','_'+side)]=(partners if len(partners)>1 else partner+'_'+side,core,tf*collision_case if side=='right' else mirror(tf*collision_case,Plane.XZ),matrix.T.flatten().tolist())
     for i, (name, solid, colour, group, side) in enumerate(detail_list):
         ghost = name.startswith("reference")
@@ -110,6 +120,7 @@ def _assembly_items(tmp: pathlib.Path, pose="quadruped", *, details=None, frames
                    'contactPartner':partner,'contactCore':_item(name,_mesh(core,tmp,2000+i),colour),
                    'collisionMesh':_item(name,_mesh(collision,tmp,3000+i),colour)}
         items.append(_item(name, _mesh(solid, tmp, i), colour,
+                           version=spec.get('version') if not (ghost or bought) else None,
                            printable=spec.get('printable') if not (ghost or bought) else None,
                            material=spec.get('material'),notes=spec.get('notes',''),**extra,
                            ghost=ghost,
@@ -141,6 +152,7 @@ def _part_items(tmp: pathlib.Path) -> list[dict]:
         items.append(_item(spec["name"], mesh, PART_COLOURS[n % len(PART_COLOURS)],
                            ghost=False, kind=kind,
                            notes=spec.get("notes", ""),
+                           version=spec.get("version",1),
                            printable=spec.get("printable","unknown"), material=spec.get("material","PETG"),
                            print_metrics=metrics(mesh),
                            qty=spec.get("qty", 1) * (2 if spec.get("handed") else 1)))
@@ -160,7 +172,7 @@ def build() -> pathlib.Path:
                    "track":P.BODY_TRACK_TARGET_MM,"stance":P.BODY_STANDING_HEIGHT_MM,
                    "hip_axes":2*__import__('koala_hardware.parts.links',fromlist=['rear_axis_y']).rear_axis_y(),
                    "joints":{name:assembly.joint_data(name) for name in poses},
-                   "status":"Rear thigh and shank revised; their printability is unknown. The proposed 45° rear socket mounting is in the separate rear-leg review; this full assembly retains the previous torso mount. Front chain still awaits DEC-54. Slider ranges are sampled CAD clearances, not calibrated servo limits."}}
+                   "status":"Recessed roll-first shoulders, parallel-axis front links and the 45° rear socket mounting are implemented. Revised prints remain unprinted; select each part for its version and printability. Three small neck-servo envelopes reserve packaging space; the neck mechanism remains unresolved. Slider ranges are sampled CAD clearances, not calibrated servo limits."}}
     data = OUT / "scene.json"
     data.write_text(json.dumps(scene))
     shutil.copy(HTML, OUT / "index.html")

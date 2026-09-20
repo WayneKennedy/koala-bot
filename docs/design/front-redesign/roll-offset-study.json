@@ -1,0 +1,1562 @@
+{
+  "revision": "shoulder_carrier v3, upper_arm/forearm v2, torso v5",
+  "B_offset_mm": 40.0,
+  "B_centre_spacing_mm": 190.23,
+  "source_sha256": {
+    "hardware/src/koala_hardware/assembly.py": "01042c4545f9825f20743e5df7fa7e444904e6b914017fc899bec5ef669416a5",
+    "hardware/src/koala_hardware/body_plan.py": "1a43703d6f284e2ec197a8f9188ffbd45ad9b090da5eea8fc3fc18e084144150",
+    "hardware/src/koala_hardware/params.py": "ddb12385a7c5119657b564738dfdcfbd3ea6c9edaf130cd1ae04d40fcca6b268",
+    "hardware/src/koala_hardware/servo_iface.py": "45f0306516cdab1e7ca8295aadd6fdc103cea390803092690ea276941d43a5a8",
+    "hardware/src/koala_hardware/parts/front.py": "f6f3ca985a9302ad8758a5dcd2aa593506995bdc2fb685ff4030893e7eb30bfa",
+    "hardware/src/koala_hardware/parts/pelvis.py": "ac9d622e1c9d51561867688a5984a564bf41a4497ff040c1cc2f8f26aae39977",
+    "hardware/src/koala_hardware/parts/shoulder_mount.py": "d0f59de86d2d13b1a0ec8f74d6ea13d006ed60cc8547336c4ac6866d00130504",
+    "hardware/src/koala_hardware/parts/torso.py": "0678fd7933a3860b16f39daa050f61ef7d76af128987e3ce294c5217b350233c",
+    "hardware/src/koala_hardware/parts/neck_space.py": "e195fd7b34309c2b14671b285b39346829480383c4aff7e7503ac3396e17e1a2"
+  },
+  "tolerance_mm3": 0.01,
+  "scope": "Controlled B-offset comparisons with unchanged A/root, 70/100 mm links and two saved pitch/elbow configurations.",
+  "candidates": [
+    {
+      "offset": 35,
+      "pose": "quadruped",
+      "failures": [
+        [
+          -30,
+          "upper",
+          "A imported",
+          70.524
+        ],
+        [
+          -30,
+          "upper",
+          "A caliper",
+          98.264
+        ],
+        [
+          -30,
+          "B horn screws",
+          "A imported",
+          43.216
+        ],
+        [
+          -30,
+          "B horn screws",
+          "A caliper",
+          80.888
+        ],
+        [
+          -28,
+          "upper",
+          "A imported",
+          56.086
+        ],
+        [
+          -28,
+          "upper",
+          "A caliper",
+          81.752
+        ],
+        [
+          -28,
+          "B horn screws",
+          "A imported",
+          39.327
+        ],
+        [
+          -28,
+          "B horn screws",
+          "A caliper",
+          76.351
+        ],
+        [
+          -26,
+          "upper",
+          "A imported",
+          43.295
+        ],
+        [
+          -26,
+          "upper",
+          "A caliper",
+          68.851
+        ],
+        [
+          -26,
+          "B horn screws",
+          "A imported",
+          33.909
+        ],
+        [
+          -26,
+          "B horn screws",
+          "A caliper",
+          67.052
+        ],
+        [
+          -24,
+          "upper",
+          "A imported",
+          32.191
+        ],
+        [
+          -24,
+          "upper",
+          "A caliper",
+          59.944
+        ],
+        [
+          -24,
+          "B horn screws",
+          "A imported",
+          27.301
+        ],
+        [
+          -24,
+          "B horn screws",
+          "A caliper",
+          53.804
+        ],
+        [
+          -22,
+          "upper",
+          "A imported",
+          22.871
+        ],
+        [
+          -22,
+          "upper",
+          "A caliper",
+          54.651
+        ],
+        [
+          -22,
+          "B horn screws",
+          "A imported",
+          19.944
+        ],
+        [
+          -22,
+          "B horn screws",
+          "A caliper",
+          38.689
+        ],
+        [
+          -20,
+          "upper",
+          "A imported",
+          15.385
+        ],
+        [
+          -20,
+          "upper",
+          "A caliper",
+          51.573
+        ],
+        [
+          -20,
+          "B horn screws",
+          "A imported",
+          12.753
+        ],
+        [
+          -20,
+          "B horn screws",
+          "A caliper",
+          24.979
+        ],
+        [
+          -18,
+          "upper",
+          "A imported",
+          9.686
+        ],
+        [
+          -18,
+          "upper",
+          "A caliper",
+          47.515
+        ],
+        [
+          -18,
+          "B horn screws",
+          "A imported",
+          6.498
+        ],
+        [
+          -18,
+          "B horn screws",
+          "A caliper",
+          13.743
+        ],
+        [
+          -16,
+          "upper",
+          "A imported",
+          5.371
+        ],
+        [
+          -16,
+          "upper",
+          "A caliper",
+          41.021
+        ],
+        [
+          -16,
+          "B horn screws",
+          "A imported",
+          1.903
+        ],
+        [
+          -16,
+          "B horn screws",
+          "A caliper",
+          5.554
+        ],
+        [
+          -14,
+          "upper",
+          "A imported",
+          2.142
+        ],
+        [
+          -14,
+          "upper",
+          "A caliper",
+          32.025
+        ],
+        [
+          -14,
+          "B horn screws",
+          "A caliper",
+          0.972
+        ],
+        [
+          -12,
+          "upper",
+          "A imported",
+          0.102
+        ],
+        [
+          -12,
+          "upper",
+          "A caliper",
+          20.62
+        ],
+        [
+          -10,
+          "upper",
+          "A caliper",
+          7.707
+        ],
+        [
+          -8,
+          "upper",
+          "A caliper",
+          0.073
+        ],
+        [
+          10,
+          "upper",
+          "A caliper",
+          3.342
+        ],
+        [
+          12,
+          "upper",
+          "A imported",
+          0.11
+        ],
+        [
+          12,
+          "upper",
+          "A caliper",
+          12.711
+        ],
+        [
+          14,
+          "upper",
+          "A imported",
+          2.075
+        ],
+        [
+          14,
+          "upper",
+          "A caliper",
+          22.58
+        ],
+        [
+          14,
+          "B horn screws",
+          "A caliper",
+          0.972
+        ],
+        [
+          16,
+          "upper",
+          "A imported",
+          5.243
+        ],
+        [
+          16,
+          "upper",
+          "A caliper",
+          31.579
+        ],
+        [
+          16,
+          "B horn screws",
+          "A imported",
+          1.883
+        ],
+        [
+          16,
+          "B horn screws",
+          "A caliper",
+          5.554
+        ],
+        [
+          18,
+          "upper",
+          "A imported",
+          9.514
+        ],
+        [
+          18,
+          "upper",
+          "A caliper",
+          39.101
+        ],
+        [
+          18,
+          "B horn screws",
+          "A imported",
+          6.478
+        ],
+        [
+          18,
+          "B horn screws",
+          "A caliper",
+          13.743
+        ],
+        [
+          20,
+          "upper",
+          "A imported",
+          15.142
+        ],
+        [
+          20,
+          "upper",
+          "A caliper",
+          44.787
+        ],
+        [
+          20,
+          "B horn screws",
+          "A imported",
+          12.736
+        ],
+        [
+          20,
+          "B horn screws",
+          "A caliper",
+          24.979
+        ],
+        [
+          22,
+          "upper",
+          "A imported",
+          22.497
+        ],
+        [
+          22,
+          "upper",
+          "A caliper",
+          49.731
+        ],
+        [
+          22,
+          "B horn screws",
+          "A imported",
+          19.931
+        ],
+        [
+          22,
+          "B horn screws",
+          "A caliper",
+          38.689
+        ],
+        [
+          24,
+          "upper",
+          "A imported",
+          31.675
+        ],
+        [
+          24,
+          "upper",
+          "A caliper",
+          56.815
+        ],
+        [
+          24,
+          "B horn screws",
+          "A imported",
+          27.306
+        ],
+        [
+          24,
+          "B horn screws",
+          "A caliper",
+          53.804
+        ],
+        [
+          26,
+          "upper",
+          "A imported",
+          42.778
+        ],
+        [
+          26,
+          "upper",
+          "A caliper",
+          67.148
+        ],
+        [
+          26,
+          "B horn screws",
+          "A imported",
+          33.91
+        ],
+        [
+          26,
+          "B horn screws",
+          "A caliper",
+          67.052
+        ],
+        [
+          28,
+          "upper",
+          "A imported",
+          55.684
+        ],
+        [
+          28,
+          "upper",
+          "A caliper",
+          80.937
+        ],
+        [
+          28,
+          "B horn screws",
+          "A imported",
+          39.329
+        ],
+        [
+          28,
+          "B horn screws",
+          "A caliper",
+          76.351
+        ],
+        [
+          30,
+          "upper",
+          "A imported",
+          70.284
+        ],
+        [
+          30,
+          "upper",
+          "A caliper",
+          97.924
+        ],
+        [
+          30,
+          "B horn screws",
+          "A imported",
+          43.229
+        ],
+        [
+          30,
+          "B horn screws",
+          "A caliper",
+          80.888
+        ]
+      ]
+    },
+    {
+      "offset": 35,
+      "pose": "upright",
+      "failures": [
+        [
+          -30,
+          "upper",
+          "A imported",
+          112.348
+        ],
+        [
+          -30,
+          "upper",
+          "A caliper",
+          179.676
+        ],
+        [
+          -30,
+          "B horn screws",
+          "A imported",
+          37.892
+        ],
+        [
+          -30,
+          "B horn screws",
+          "A caliper",
+          68.339
+        ],
+        [
+          -28,
+          "upper",
+          "A imported",
+          95.077
+        ],
+        [
+          -28,
+          "upper",
+          "A caliper",
+          161.203
+        ],
+        [
+          -28,
+          "B horn screws",
+          "A imported",
+          33.306
+        ],
+        [
+          -28,
+          "B horn screws",
+          "A caliper",
+          62.299
+        ],
+        [
+          -26,
+          "upper",
+          "A imported",
+          78.101
+        ],
+        [
+          -26,
+          "upper",
+          "A caliper",
+          144.955
+        ],
+        [
+          -26,
+          "B horn screws",
+          "A imported",
+          27.907
+        ],
+        [
+          -26,
+          "B horn screws",
+          "A caliper",
+          53.415
+        ],
+        [
+          -24,
+          "upper",
+          "A imported",
+          61.681
+        ],
+        [
+          -24,
+          "upper",
+          "A caliper",
+          129.096
+        ],
+        [
+          -24,
+          "B horn screws",
+          "A imported",
+          21.962
+        ],
+        [
+          -24,
+          "B horn screws",
+          "A caliper",
+          43.858
+        ],
+        [
+          -22,
+          "upper",
+          "A imported",
+          46.267
+        ],
+        [
+          -22,
+          "upper",
+          "A caliper",
+          112.643
+        ],
+        [
+          -22,
+          "B horn screws",
+          "A imported",
+          15.852
+        ],
+        [
+          -22,
+          "B horn screws",
+          "A caliper",
+          34.321
+        ],
+        [
+          -20,
+          "upper",
+          "A imported",
+          32.527
+        ],
+        [
+          -20,
+          "upper",
+          "A caliper",
+          95.765
+        ],
+        [
+          -20,
+          "B horn screws",
+          "A imported",
+          9.909
+        ],
+        [
+          -20,
+          "B horn screws",
+          "A caliper",
+          24.567
+        ],
+        [
+          -18,
+          "upper",
+          "A imported",
+          21.104
+        ],
+        [
+          -18,
+          "upper",
+          "A caliper",
+          78.682
+        ],
+        [
+          -18,
+          "B horn screws",
+          "A imported",
+          4.709
+        ],
+        [
+          -18,
+          "B horn screws",
+          "A caliper",
+          14.853
+        ],
+        [
+          -16,
+          "upper",
+          "A imported",
+          11.734
+        ],
+        [
+          -16,
+          "upper",
+          "A caliper",
+          61.447
+        ],
+        [
+          -16,
+          "B horn screws",
+          "A imported",
+          1.14
+        ],
+        [
+          -16,
+          "B horn screws",
+          "A caliper",
+          7.056
+        ],
+        [
+          -14,
+          "upper",
+          "A imported",
+          4.333
+        ],
+        [
+          -14,
+          "upper",
+          "A caliper",
+          43.501
+        ],
+        [
+          -14,
+          "B horn screws",
+          "A caliper",
+          2.301
+        ],
+        [
+          -12,
+          "upper",
+          "A imported",
+          0.25
+        ],
+        [
+          -12,
+          "upper",
+          "A caliper",
+          24.253
+        ],
+        [
+          -12,
+          "B horn screws",
+          "A caliper",
+          0.173
+        ],
+        [
+          -10,
+          "upper",
+          "A caliper",
+          7.327
+        ],
+        [
+          -8,
+          "upper",
+          "A caliper",
+          0.026
+        ],
+        [
+          10,
+          "upper",
+          "A caliper",
+          3.009
+        ],
+        [
+          12,
+          "upper",
+          "A imported",
+          0.056
+        ],
+        [
+          12,
+          "upper",
+          "A caliper",
+          11.299
+        ],
+        [
+          12,
+          "B horn screws",
+          "A caliper",
+          0.173
+        ],
+        [
+          14,
+          "upper",
+          "A imported",
+          2.812
+        ],
+        [
+          14,
+          "upper",
+          "A caliper",
+          21.301
+        ],
+        [
+          14,
+          "B horn screws",
+          "A caliper",
+          2.301
+        ],
+        [
+          16,
+          "upper",
+          "A imported",
+          7.53
+        ],
+        [
+          16,
+          "upper",
+          "A caliper",
+          31.751
+        ],
+        [
+          16,
+          "B horn screws",
+          "A imported",
+          1.516
+        ],
+        [
+          16,
+          "B horn screws",
+          "A caliper",
+          7.056
+        ],
+        [
+          18,
+          "upper",
+          "A imported",
+          14.414
+        ],
+        [
+          18,
+          "upper",
+          "A caliper",
+          43.679
+        ],
+        [
+          18,
+          "B horn screws",
+          "A imported",
+          5.054
+        ],
+        [
+          18,
+          "B horn screws",
+          "A caliper",
+          14.853
+        ],
+        [
+          20,
+          "upper",
+          "A imported",
+          23.977
+        ],
+        [
+          20,
+          "upper",
+          "A caliper",
+          57.386
+        ],
+        [
+          20,
+          "B horn screws",
+          "A imported",
+          10.133
+        ],
+        [
+          20,
+          "B horn screws",
+          "A caliper",
+          24.567
+        ],
+        [
+          22,
+          "upper",
+          "A imported",
+          36.47
+        ],
+        [
+          22,
+          "upper",
+          "A caliper",
+          72.687
+        ],
+        [
+          22,
+          "B horn screws",
+          "A imported",
+          15.88
+        ],
+        [
+          22,
+          "B horn screws",
+          "A caliper",
+          34.321
+        ],
+        [
+          24,
+          "upper",
+          "A imported",
+          51.345
+        ],
+        [
+          24,
+          "upper",
+          "A caliper",
+          89.268
+        ],
+        [
+          24,
+          "B horn screws",
+          "A imported",
+          21.854
+        ],
+        [
+          24,
+          "B horn screws",
+          "A caliper",
+          43.858
+        ],
+        [
+          26,
+          "upper",
+          "A imported",
+          67.665
+        ],
+        [
+          26,
+          "upper",
+          "A caliper",
+          106.894
+        ],
+        [
+          26,
+          "B horn screws",
+          "A imported",
+          27.683
+        ],
+        [
+          26,
+          "B horn screws",
+          "A caliper",
+          53.415
+        ],
+        [
+          28,
+          "upper",
+          "A imported",
+          84.717
+        ],
+        [
+          28,
+          "upper",
+          "A caliper",
+          126.51
+        ],
+        [
+          28,
+          "B horn screws",
+          "A imported",
+          32.986
+        ],
+        [
+          28,
+          "B horn screws",
+          "A caliper",
+          62.299
+        ],
+        [
+          30,
+          "upper",
+          "A imported",
+          102.293
+        ],
+        [
+          30,
+          "upper",
+          "A caliper",
+          149.889
+        ],
+        [
+          30,
+          "B horn screws",
+          "A imported",
+          37.534
+        ],
+        [
+          30,
+          "B horn screws",
+          "A caliper",
+          68.339
+        ]
+      ]
+    },
+    {
+      "offset": 37,
+      "pose": "quadruped",
+      "failures": [
+        [
+          -30,
+          "upper",
+          "A caliper",
+          9.631
+        ],
+        [
+          -30,
+          "B horn screws",
+          "A caliper",
+          10.237
+        ],
+        [
+          -28,
+          "upper",
+          "A caliper",
+          6.525
+        ],
+        [
+          -28,
+          "B horn screws",
+          "A caliper",
+          6.187
+        ],
+        [
+          -26,
+          "upper",
+          "A caliper",
+          4.21
+        ],
+        [
+          -26,
+          "B horn screws",
+          "A caliper",
+          2.757
+        ],
+        [
+          -24,
+          "upper",
+          "A caliper",
+          2.523
+        ],
+        [
+          -24,
+          "B horn screws",
+          "A caliper",
+          0.584
+        ],
+        [
+          -22,
+          "upper",
+          "A caliper",
+          1.088
+        ],
+        [
+          -20,
+          "upper",
+          "A caliper",
+          0.019
+        ],
+        [
+          20,
+          "upper",
+          "A caliper",
+          0.015
+        ],
+        [
+          22,
+          "upper",
+          "A caliper",
+          0.887
+        ],
+        [
+          24,
+          "upper",
+          "A caliper",
+          2.326
+        ],
+        [
+          24,
+          "B horn screws",
+          "A caliper",
+          0.584
+        ],
+        [
+          26,
+          "upper",
+          "A caliper",
+          4.16
+        ],
+        [
+          26,
+          "B horn screws",
+          "A caliper",
+          2.757
+        ],
+        [
+          28,
+          "upper",
+          "A caliper",
+          6.524
+        ],
+        [
+          28,
+          "B horn screws",
+          "A caliper",
+          6.187
+        ],
+        [
+          30,
+          "upper",
+          "A caliper",
+          9.631
+        ],
+        [
+          30,
+          "B horn screws",
+          "A caliper",
+          10.237
+        ]
+      ]
+    },
+    {
+      "offset": 37,
+      "pose": "upright",
+      "failures": [
+        [
+          -30,
+          "upper",
+          "A caliper",
+          22.251
+        ],
+        [
+          -30,
+          "B horn screws",
+          "A caliper",
+          8.459
+        ],
+        [
+          -28,
+          "upper",
+          "A caliper",
+          16.516
+        ],
+        [
+          -28,
+          "B horn screws",
+          "A caliper",
+          4.469
+        ],
+        [
+          -26,
+          "upper",
+          "A caliper",
+          11.632
+        ],
+        [
+          -26,
+          "B horn screws",
+          "A caliper",
+          1.743
+        ],
+        [
+          -24,
+          "upper",
+          "A caliper",
+          6.756
+        ],
+        [
+          -24,
+          "B horn screws",
+          "A caliper",
+          0.453
+        ],
+        [
+          -22,
+          "upper",
+          "A caliper",
+          2.193
+        ],
+        [
+          -20,
+          "upper",
+          "A caliper",
+          0.021
+        ],
+        [
+          20,
+          "upper",
+          "A caliper",
+          0.011
+        ],
+        [
+          22,
+          "upper",
+          "A caliper",
+          1.17
+        ],
+        [
+          24,
+          "upper",
+          "A caliper",
+          3.734
+        ],
+        [
+          24,
+          "B horn screws",
+          "A caliper",
+          0.453
+        ],
+        [
+          26,
+          "upper",
+          "A caliper",
+          6.43
+        ],
+        [
+          26,
+          "B horn screws",
+          "A caliper",
+          1.743
+        ],
+        [
+          28,
+          "upper",
+          "A caliper",
+          10.085
+        ],
+        [
+          28,
+          "B horn screws",
+          "A caliper",
+          4.469
+        ],
+        [
+          30,
+          "upper",
+          "A caliper",
+          16.272
+        ],
+        [
+          30,
+          "B horn screws",
+          "A caliper",
+          8.459
+        ]
+      ]
+    },
+    {
+      "offset": 38,
+      "pose": "quadruped",
+      "failures": [
+        [
+          -30,
+          "upper",
+          "A caliper",
+          0.32
+        ],
+        [
+          30,
+          "upper",
+          "A caliper",
+          0.32
+        ]
+      ]
+    },
+    {
+      "offset": 38,
+      "pose": "upright",
+      "failures": [
+        [
+          -30,
+          "upper",
+          "A caliper",
+          0.796
+        ],
+        [
+          -28,
+          "upper",
+          "A caliper",
+          0.013
+        ],
+        [
+          30,
+          "upper",
+          "A caliper",
+          0.493
+        ]
+      ]
+    },
+    {
+      "offset": 39,
+      "pose": "quadruped",
+      "failures": []
+    },
+    {
+      "offset": 39,
+      "pose": "upright",
+      "failures": []
+    },
+    {
+      "offset": 40,
+      "pose": "quadruped",
+      "failures": []
+    },
+    {
+      "offset": 40,
+      "pose": "upright",
+      "failures": []
+    },
+    {
+      "offset": 41,
+      "pose": "quadruped",
+      "failures": []
+    },
+    {
+      "offset": 41,
+      "pose": "upright",
+      "failures": []
+    },
+    {
+      "offset": 42,
+      "pose": "quadruped",
+      "failures": []
+    },
+    {
+      "offset": 42,
+      "pose": "upright",
+      "failures": []
+    }
+  ],
+  "margin_comparison": [
+    {
+      "offset_mm": 39,
+      "pose": "quadruped",
+      "moving": "front_upper_arm_right",
+      "samples": [
+        {
+          "angle": -30,
+          "distance_mm": 0.765153040720382
+        },
+        {
+          "angle": -29,
+          "distance_mm": 0.8658228522427527
+        },
+        {
+          "angle": -28,
+          "distance_mm": 0.9710112978261793
+        },
+        {
+          "angle": 28,
+          "distance_mm": 0.9710112978262215
+        },
+        {
+          "angle": 29,
+          "distance_mm": 0.8658228522427647
+        },
+        {
+          "angle": 30,
+          "distance_mm": 0.7651530407204046
+        }
+      ],
+      "minimum_mm": 0.765153040720382
+    },
+    {
+      "offset_mm": 39,
+      "pose": "quadruped",
+      "moving": "reference_front_pitch_horn_heads_right",
+      "samples": [
+        {
+          "angle": -30,
+          "distance_mm": 1.0651530407203826
+        },
+        {
+          "angle": -29,
+          "distance_mm": 1.1658228522427532
+        },
+        {
+          "angle": -28,
+          "distance_mm": 1.2710112978261805
+        },
+        {
+          "angle": 28,
+          "distance_mm": 1.271011297826221
+        },
+        {
+          "angle": 29,
+          "distance_mm": 1.165822852242765
+        },
+        {
+          "angle": 30,
+          "distance_mm": 1.0651530407204057
+        }
+      ],
+      "minimum_mm": 1.0651530407203826
+    },
+    {
+      "offset_mm": 40,
+      "pose": "quadruped",
+      "moving": "front_upper_arm_right",
+      "samples": [
+        {
+          "angle": -30,
+          "distance_mm": 1.76515304072039
+        },
+        {
+          "angle": -29,
+          "distance_mm": 1.8658228522427338
+        },
+        {
+          "angle": -28,
+          "distance_mm": 1.971011297826182
+        },
+        {
+          "angle": 28,
+          "distance_mm": 1.971011297826217
+        },
+        {
+          "angle": 29,
+          "distance_mm": 1.8658228522427573
+        },
+        {
+          "angle": 30,
+          "distance_mm": 1.7651530407204072
+        }
+      ],
+      "minimum_mm": 1.76515304072039
+    },
+    {
+      "offset_mm": 40,
+      "pose": "quadruped",
+      "moving": "reference_front_pitch_horn_heads_right",
+      "samples": [
+        {
+          "angle": -30,
+          "distance_mm": 2.065153040720391
+        },
+        {
+          "angle": -29,
+          "distance_mm": 2.165822852242734
+        },
+        {
+          "angle": -28,
+          "distance_mm": 2.271011297826183
+        },
+        {
+          "angle": 28,
+          "distance_mm": 2.271011297826218
+        },
+        {
+          "angle": 29,
+          "distance_mm": 2.165822852242759
+        },
+        {
+          "angle": 30,
+          "distance_mm": 2.065153040720408
+        }
+      ],
+      "minimum_mm": 2.065153040720391
+    },
+    {
+      "offset_mm": 39,
+      "pose": "upright",
+      "moving": "front_upper_arm_right",
+      "samples": [
+        {
+          "angle": -30,
+          "distance_mm": 0.7651530407203958
+        },
+        {
+          "angle": -29,
+          "distance_mm": 0.8658228522427432
+        },
+        {
+          "angle": -28,
+          "distance_mm": 0.9710112978262009
+        },
+        {
+          "angle": 28,
+          "distance_mm": 0.9710112978262136
+        },
+        {
+          "angle": 29,
+          "distance_mm": 0.8658228522427536
+        },
+        {
+          "angle": 30,
+          "distance_mm": 0.7651530407204054
+        }
+      ],
+      "minimum_mm": 0.7651530407203958
+    },
+    {
+      "offset_mm": 39,
+      "pose": "upright",
+      "moving": "reference_front_pitch_horn_heads_right",
+      "samples": [
+        {
+          "angle": -30,
+          "distance_mm": 1.0651530407203964
+        },
+        {
+          "angle": -29,
+          "distance_mm": 1.165822852242742
+        },
+        {
+          "angle": -28,
+          "distance_mm": 1.2710112978262018
+        },
+        {
+          "angle": 28,
+          "distance_mm": 1.2710112978262138
+        },
+        {
+          "angle": 29,
+          "distance_mm": 1.1658228522427523
+        },
+        {
+          "angle": 30,
+          "distance_mm": 1.0651530407204048
+        }
+      ],
+      "minimum_mm": 1.0651530407203964
+    },
+    {
+      "offset_mm": 40,
+      "pose": "upright",
+      "moving": "front_upper_arm_right",
+      "samples": [
+        {
+          "angle": -30,
+          "distance_mm": 1.7651530407203977
+        },
+        {
+          "angle": -29,
+          "distance_mm": 1.8658228522427438
+        },
+        {
+          "angle": -28,
+          "distance_mm": 1.9710112978262004
+        },
+        {
+          "angle": 28,
+          "distance_mm": 1.9710112978262138
+        },
+        {
+          "angle": 29,
+          "distance_mm": 1.8658228522427536
+        },
+        {
+          "angle": 30,
+          "distance_mm": 1.7651530407204066
+        }
+      ],
+      "minimum_mm": 1.7651530407203977
+    },
+    {
+      "offset_mm": 40,
+      "pose": "upright",
+      "moving": "reference_front_pitch_horn_heads_right",
+      "samples": [
+        {
+          "angle": -30,
+          "distance_mm": 2.065153040720398
+        },
+        {
+          "angle": -29,
+          "distance_mm": 2.165822852242742
+        },
+        {
+          "angle": -28,
+          "distance_mm": 2.271011297826201
+        },
+        {
+          "angle": 28,
+          "distance_mm": 2.271011297826213
+        },
+        {
+          "angle": 29,
+          "distance_mm": 2.1658228522427523
+        },
+        {
+          "angle": 30,
+          "distance_mm": 2.065153040720407
+        }
+      ],
+      "minimum_mm": 2.065153040720398
+    }
+  ],
+  "chosen_offset_mm": 40,
+  "reason": "39 mm clears the sampled configurations but leaves only 0.765 mm nominal upper-fork clearance. The selected 40 mm gives 1.765 mm clearance for a 2 mm increase in overall shoulder spacing."
+}

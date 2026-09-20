@@ -26,7 +26,7 @@
 <circle class="dot" cx="-149.66629547095766" cy="-165.0" r="4"/>
 <circle class="dot" cx="-143.98774794722365" cy="-95.23070805848253" r="4"/>
 <circle class="dot" cx="-205.0" cy="-16.0" r="4"/>
-<path d="M-167.6069705416336,-163.53980206532555 L-131.72562040028174,-166.46019793467445" stroke="#d47920" stroke-width="2"/>
+<path d="M-167.6262509274726,-163.8 L-131.70634001444273,-166.2" stroke="#d47920" stroke-width="2"/>
 <circle class="wheel" cx="-205.0" cy="-16.0" r="16.0"/>
 <circle class="dot" cx="-205.0" cy="-16.0" r="4"/>
 <text x="-165.82702170909067" y="-130.11535402924127" class="small">70</text>
@@ -62,30 +62,38 @@
 <text x="210" y="-498" class="small">FRONT / TRACK</text>
 <path class="guide" d="M285,-175.0 V-165.0 V-162.66666666666666"/>
 <rect class="shell" x="230.0" y="-237.66666666666666" width="110.0" height="75.0" rx="20"/>
-<path class="bone" d="M210.5,-175.0 V-92.02435250483727 V-40.0 H175.0"/>
-<circle class="dot" cx="210.5" cy="-175.0" r="3"/>
-<circle class="dot" cx="210.5" cy="-92.02435250483727" r="3"/>
-<circle class="dot" cx="210.5" cy="-40.0" r="3"/>
+<path class="bone" d="M258.75,-175.0 H218.7"/>
+<circle class="dot" cx="258.75" cy="-175.0" r="3"/>
+<path class="bone" d="M218.7,-175.0 V-92.02435250483727 V-40.0 H175.0"/>
+<circle class="dot" cx="218.7" cy="-175.0" r="3"/>
+<circle class="dot" cx="218.7" cy="-92.02435250483727" r="3"/>
+<circle class="dot" cx="218.7" cy="-40.0" r="3"/>
 <rect class="wheel" x="170.0" y="-80.0" width="10" height="80" rx="4"/>
-<path class="bone" d="M359.5,-175.0 V-92.02435250483727 V-40.0 H395.0"/>
-<circle class="dot" cx="359.5" cy="-175.0" r="3"/>
-<circle class="dot" cx="359.5" cy="-92.02435250483727" r="3"/>
-<circle class="dot" cx="359.5" cy="-40.0" r="3"/>
+<path class="bone" d="M311.25,-175.0 H351.3"/>
+<circle class="dot" cx="311.25" cy="-175.0" r="3"/>
+<path class="bone" d="M351.3,-175.0 V-92.02435250483727 V-40.0 H395.0"/>
+<circle class="dot" cx="351.3" cy="-175.0" r="3"/>
+<circle class="dot" cx="351.3" cy="-92.02435250483727" r="3"/>
+<circle class="dot" cx="351.3" cy="-40.0" r="3"/>
 <rect class="wheel" x="390.0" y="-80.0" width="10" height="80" rx="4"/>
-<path class="bone" d="M210.5,-165.0 V-95.23070805848253 V-16.0 H210.5"/>
-<circle class="dot" cx="210.5" cy="-165.0" r="3"/>
-<circle class="dot" cx="210.5" cy="-95.23070805848253" r="3"/>
-<circle class="dot" cx="210.5" cy="-16.0" r="3"/>
-<circle class="wheel" cx="210.5" cy="-16.0" r="16.0"/>
-<path class="bone" d="M359.5,-165.0 V-95.23070805848253 V-16.0 H359.5"/>
-<circle class="dot" cx="359.5" cy="-165.0" r="3"/>
-<circle class="dot" cx="359.5" cy="-95.23070805848253" r="3"/>
-<circle class="dot" cx="359.5" cy="-16.0" r="3"/>
-<circle class="wheel" cx="359.5" cy="-16.0" r="16.0"/>
+<path class="bone" d="M229.885,-165.0 H189.885"/>
+<circle class="dot" cx="229.885" cy="-165.0" r="3"/>
+<path class="bone" d="M189.885,-165.0 V-95.23070805848253 V-16.0 H189.885"/>
+<circle class="dot" cx="189.885" cy="-165.0" r="3"/>
+<circle class="dot" cx="189.885" cy="-95.23070805848253" r="3"/>
+<circle class="dot" cx="189.885" cy="-16.0" r="3"/>
+<circle class="wheel" cx="189.885" cy="-16.0" r="16.0"/>
+<path class="bone" d="M340.115,-165.0 H380.115"/>
+<circle class="dot" cx="340.115" cy="-165.0" r="3"/>
+<path class="bone" d="M380.115,-165.0 V-95.23070805848253 V-16.0 H380.115"/>
+<circle class="dot" cx="380.115" cy="-165.0" r="3"/>
+<circle class="dot" cx="380.115" cy="-95.23070805848253" r="3"/>
+<circle class="dot" cx="380.115" cy="-16.0" r="3"/>
+<circle class="wheel" cx="380.115" cy="-16.0" r="16.0"/>
 <path class="guide" d="M175.0,0 H395.0 M175.0,10 v15 M395.0,10 v15 M175.0,20 H395.0"/>
 <text x="242" y="35" class="small">220 wheel-centre track</text>
-<text x="190" y="-487" class="small">Roll centres: 149 shoulder · 149 hip</text>
-<text x="190" y="-476" class="small">Pitch servo centres: 48 · pitch → roll → knee/elbow</text>
+<text x="190" y="-487" class="small">Front: roll 110.23 → pitch 190.23 → elbow</text>
+<text x="190" y="-476" class="small">Rear: pitch 52.5 → roll 132.6 → knee</text>
 <text x="195" y="-465" class="small">Rear: Ø80 drives ×2 · Front: Ø32 fixed feet</text>
 <text x="195" y="-454" class="small">Opposed motor end gap: 36</text>
 <text x="-320" y="65" class="small">Engineering master only: no actuator torque, collision-free transition or physical fit acceptance is implied.</text>

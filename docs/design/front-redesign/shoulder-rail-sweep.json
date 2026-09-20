@@ -1,0 +1,74 @@
+{
+  "date": "2026-09-19",
+  "rail": "X -46..-36, |Y| 25..33, Z122..183.5; transition from |Y|39..47 at Z106",
+  "shoulder_pitch_offset_mm": 40.0,
+  "shoulder_carrier_version": 3,
+  "torso_version": 5,
+  "poses": {
+    "quadruped": {
+      "moving_items": [
+        "front_carrier_right",
+        "reference_front_pitch_servo_right",
+        "front_upper_arm_right",
+        "reference_front_elbow_servo_right",
+        "front_forearm_right",
+        "front_contact_pad_right",
+        "reference_front_roll_horn_heads_right",
+        "reference_front_pitch_horn_heads_right",
+        "reference_front_bend_horn_heads_right",
+        "reference_front_pitch_ear_heads_right",
+        "reference_front_bend_ear_heads_right",
+        "reference_front_pad_fixing_right"
+      ],
+      "roll_samples": 31,
+      "angles": [
+        -30,
+        30
+      ],
+      "mirror": "Both symmetric rails tested; right chain mirrors to left."
+    },
+    "upright": {
+      "moving_items": [
+        "front_carrier_right",
+        "reference_front_pitch_servo_right",
+        "front_upper_arm_right",
+        "reference_front_elbow_servo_right",
+        "front_forearm_right",
+        "front_contact_pad_right",
+        "reference_front_roll_horn_heads_right",
+        "reference_front_pitch_horn_heads_right",
+        "reference_front_bend_horn_heads_right",
+        "reference_front_pitch_ear_heads_right",
+        "reference_front_bend_ear_heads_right",
+        "reference_front_pad_fixing_right"
+      ],
+      "roll_samples": 31,
+      "angles": [
+        -30,
+        30
+      ],
+      "mirror": "Both symmetric rails tested; right chain mirrors to left."
+    }
+  },
+  "hits": [],
+  "scope": "Only the dorsal rails and transition lofts against the complete moving front chain in the two saved poses. This does not establish whole-body, ground, cable or loaded travel limits; the viewer separately computes pose-dependent whole-body geometry limits.",
+  "method": "Solid BREP intersections with STEP servo references plus measured interfaces. Nominal shoulder pitch and elbow angles; right chain tested against both rails and left follows by reflection.",
+  "candidate": "Unfilleted rail envelopes conservatively enclose the implemented torso_frame v5 rails.",
+  "step_degrees": 2,
+  "intersection_volume_tolerance_mm3": 0.01,
+  "source_sha256": {
+    "hardware/src/koala_hardware/assembly.py": "01042c4545f9825f20743e5df7fa7e444904e6b914017fc899bec5ef669416a5",
+    "hardware/src/koala_hardware/body_plan.py": "1a43703d6f284e2ec197a8f9188ffbd45ad9b090da5eea8fc3fc18e084144150",
+    "hardware/src/koala_hardware/params.py": "ddb12385a7c5119657b564738dfdcfbd3ea6c9edaf130cd1ae04d40fcca6b268",
+    "hardware/src/koala_hardware/parts/front.py": "f6f3ca985a9302ad8758a5dcd2aa593506995bdc2fb685ff4030893e7eb30bfa",
+    "hardware/src/koala_hardware/parts/links.py": "d30859b3ff6c3d617ed3a59c16d1c32ee96536012a112d9a3e5cf1073892a5fd",
+    "hardware/src/koala_hardware/parts/torso.py": "0678fd7933a3860b16f39daa050f61ef7d76af128987e3ce294c5217b350233c"
+  },
+  "source_metadata_refresh": {
+    "date": "2026-09-19",
+    "source": "hardware/src/koala_hardware/parts/links.py",
+    "audited_sha256": "1a899e821fc87ac9d668f356dc92df4ed1ad1fbd00d0d89e1c212ae1fb18ed68",
+    "current_sha256": "d30859b3ff6c3d617ed3a59c16d1c32ee96536012a112d9a3e5cf1073892a5fd",
+    "change": "Only hip-carrier and shank printability notes changed to acknowledge prior slice records. Geometry unchanged; this sweep was not repeated for the metadata-only edit."
+  }
+}

@@ -103,8 +103,6 @@ BODY_WHEEL_DIA_MM = WHEEL_DIA  # 80 mm rear wheels
 BODY_LENGTH_TARGET_MM = 340.0  # nose to rear, closed quadruped envelope ~339.6
 BODY_WHEELBASE_TARGET_MM = 260.0 # front foot to rear wheel contact centres
 BODY_TRACK_TARGET_MM = 220.0   # DEC-40: retains clearance with inward roll and bought 69 mm motors
-BODY_SHOULDER_WIDTH_MM = 153.5   # [DESIGN DEC-60] was 149: the shoulder root sockets share ROOT_PITCH_Y, so the placeholder
-                                 # DEC-49 front chain moves out with them; front foot centres are targets to re-derive (DEC-54)
 BODY_QUAD_SHOULDER_HEIGHT_MM = 165.0 # axis height, from closed front-leg IK
 BODY_QUAD_HIP_HEIGHT_MM = 175.0
 BODY_QUAD_REAR_OFFSET_MM = 55.0 # rear wheel axle behind hip in quad stance
@@ -301,3 +299,13 @@ THIGH_CHAMFER_Z = 27.5    # [DESIGN option 3, owner's red line 2026-09-19] the t
 # face. Zero since DEC-60 widened ROOT_PITCH_Y: the production shank's outer print face is one plane at the
 # 220 mm track. Kept derived so a future spacing change shows up here rather than as a hidden step.
 SHANK_MOTOR_INSET = (BODY_TRACK_TARGET_MM/2 - WHEEL_W/2 - HUB_STACK - ROOT_ROLL_Y) + MOTOR_MOUNT_T - (SOCKET_DRIVE_FACE + SOCKET_PAD_T)  # 2.25
+
+# Recessed roll-first shoulders, owner-authorised 2026-09-19. Body +Z is spine,
+# +Y right, +X ventral. Original 150 mm hip/shoulder spacing is retained.
+SHOULDER_PITCH_OFFSET = 40.0  # complete front package clears A through +/-30 deg; 1.765 mm minimum caliper-case gap
+SHOULDER_A_Y = SOCKET_AXIS_Z + SOCKET_SHELF + ROOT_PLATE_T + FRAME_PLATE_T + CAP_M3_H + 1.0
+BODY_SHOULDER_WIDTH_MM = 2*(SHOULDER_A_Y+SHOULDER_PITCH_OFFSET)  # [DESIGN 2026-09-19] front B pitch centres
+TORSO_HALF_WIDTH = 47.0
+SHOULDER_SOCKET_RECESS = TORSO_HALF_WIDTH - (SHOULDER_A_Y - SOCKET_AXIS_Z + SOCKET_DEPTH)  # 10 mm
+TORSO_SHOULDER_TOP = 183.5
+SHOULDER_CASSETTE_BOLTS = tuple((y,z) for y in (17.0,30.0) for z in (135.0,165.0))

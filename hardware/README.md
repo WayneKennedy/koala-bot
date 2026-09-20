@@ -1,27 +1,30 @@
 # hardware/
 
-Parametric build123d CAD, CERN-OHL-S-2.0. **DEC-49/50 implements enclosing sockets, rounded links, rear ankle drives
-and flat-section forearms with replaceable TPU contact pads**, retaining the DEC-41
-pitch → roll joints. Knee-wheel relocation is deferred. Design,
-assembly, dimensions and remaining acceptance gates:
+Parametric build123d CAD, CERN-OHL-S-2.0. Current 2026-09-19 CAD implements
+recessed **roll → pitch → elbow** front limbs and **pitch → roll → knee** rear
+limbs, with rear ankle drives and replaceable TPU front pads. Design, assembly,
+dimensions and remaining acceptance gates:
 [cad-integrated-design.md](../docs/cad-integrated-design.md).
 
 ## Current CAD
 
-**DEC-57/58:** the proposed rear A/B mount tilts the pitch socket 45° and
-retains the refined carrier. The thigh has a filleted roll yoke and a knee
-case clocked 90° about its shaft; the shank has an extended open fork and
-filleted motor supports. [Rear-leg review](../docs/design/rear-leg/README.md)
-contains its clearance evidence and separate viewer. The main assembly
-retains the previous torso flange while the inclined torso walls are deferred.
+The torso now wraps the front A volume, with a **10 mm socket-lip recess**,
+removable front-access shoulder cassettes and a cap at body Z183.5; the
+hip-to-shoulder axis separation remains **150 mm**. The front carrier, upper arm
+and forearm apply the rear redesign's broad print planes, open forks and
+accessible supports. Front B/C shafts are parallel. The main assembly carries
+DEC-61's **45° rear pitch socket mount**, with rear driver corridors through the
+actual torso. [Front revision and evidence](../docs/design/front-redesign/README.md).
 
-`params.py` supplies the body and interface dimensions. `servo_iface.py`
-implements the four-ear SO-101 saddle, flat horn interfaces and hardware
-references. `parts/links.py` builds integrated upper/lower links and orthogonal
-carriers; `pelvis.py`, `torso.py` and `e_tray.py` complete the present chassis.
-The root chain is pitch → roll → knee/elbow (DEC-41); the pitch carrier holds
-the roll servo, and upper links have perpendicular end axes.
-`body_plan.py` supplies the same joint centres to schematics and `assembly.py`.
+`params.py` supplies body/interface dimensions. `servo_iface.py` implements the
+measured four-ear SO-101 saddle and horn references. `parts/links.py` carries the
+rear links/carriers; `parts/front.py` implements the front chain,
+`parts/shoulder_mount.py` its independent cassettes, and `parts/pelvis.py` the
+unchanged proven root socket. `parts/torso.py` and `parts/e_tray.py` complete the
+chassis. `parts/neck_space.py` reserves small STS3032M neck-servo space and a
+cartridge interface; it does not build an accepted 3-RPS mechanism or neck print.
+`body_plan.py` and `assembly.py` share the declared pose geometry; front and rear
+use different serial joint transforms.
 
 Source paths above are relative to `src/koala_hardware/`. All commands below
 run from `hardware/`:
@@ -51,7 +54,7 @@ They are not a reason to reintroduce unnecessary structural seams.
 
 `audit.py` checks the measured interface, selected screw/tool paths, motor
 insertion, real frame contacts and sampled full assemblies including nominal
-heads. `--fallback` uses the conservative stepped case instead of the optional
+fastener heads. `--fallback` uses the conservative stepped case instead of the optional
 local STEP. Reports are `build/audit.json` and `build/audit-fallback.json`.
 Samples are not continuous motion, loaded operating limits or physical fit.
 Head placement and mounting are undecided; the placeholder is omitted from
@@ -66,11 +69,13 @@ printed parts and nominal hardware. The static build warms geometry/engine-hashe
 caches using Node.js. A browser worker recomputes bounds after each change.
 The search uses 0.25° samples and a 2° reserve before the first obstruction;
 these are not calibrated servo or loaded operating limits. Ground contact and
-complete harnesses are outside the search. The earlier
-`docs/design/manufacturing/travel-endpoints.json` predates the current links;
-current rear-proposal checks are in `docs/design/rear-leg/viewer-endpoints.json`.
+complete harnesses are outside the search. Current main-viewer browser and
+solid-CAD endpoint checks are in the
+[front revision evidence](../docs/design/front-redesign/README.md#digital-evidence-and-limits).
+The earlier `docs/design/manufacturing/travel-endpoints.json` predates the
+current links; each report validates only its recorded revision.
 
-Build the rear proposal with `uv run python -m koala_hardware.rear_leg_review`
+Build the separate rear-leg review with `uv run python -m koala_hardware.rear_leg_review`
 (add `--thigh-options` for the 2026-09-19 thigh print-form comparison, left leg
 option 1, right leg option 2: [record](../docs/design/rear-leg/thigh-options/README.md);
 `--thigh-flat` for the owner's chosen one-piece tapered thigh on both legs:
@@ -112,18 +117,19 @@ it is not a packed print plate. Bought references are not printable parts.
 ## Physical acceptance
 
 The maintainer confirms ST3215 fit in SO-101 parts in PLA+/PETG (DEC-33).
-There is no repeat-gauge/caliper prerequisite. Start with the **two**
-`coupon_socket_*` prints: four-ear saddle and integrated double fork.
-Check insertion/removal, all M2/M3 engagements, centre-head/boss clearance,
-Back washers, axial preload and real connector access. Log the fit in
-[the test log](../docs/test-log.md) before a full leg is printed.
+There is no repeat-gauge/caliper prerequisite. The two `coupon_socket_*`
+designs remain available to investigate a specific new fit issue. Check the
+current assembly's insertion/removal, M2/M3 engagement, centre-head/boss
+clearance, Back washers, axial preload and real connector access. Log results
+by exact print version in [the test log](../docs/test-log.md).
 
-Next: one rear leg, the pair, front limbs, documented load/creep and transition
-checks. The additional drive units require an updated measured mass/CoM and
-power budget. No digital check closes these gates.
+Root socket v1 is physically proven with its recorded ear-hole support caveat;
+hip carrier v1 has plate 2 slices but no recorded physical result. Continue with version-specific fitting,
+one rear leg, the pair, front limbs and documented load/creep/transition checks.
+Actual masses, CoM and power budgets remain open. No digital check closes these gates.
 
 `slice_remote.py` must not run on the printer host while printing is active.
-This CAD update does not slice or start a print. Generic motor/hole/insert
+Local slicing does not submit or start a print. Generic motor/hole/insert
 coupons remain available; record results, including no change, in the test log
 and store calibrated constants in `params.py`.
 
@@ -134,5 +140,8 @@ reads the shared printer profile from the sibling 3d-printing checkout and adds
 `print/manufacturing-*.ini` project settings (support from the bed only, never off the part:
 the house rule, learned on plate 1; `-tree.ini` for organic support, one part per job). It records exact STL hashes and
 layer-path images in `docs/design/manufacturing/`. It never submits a print.
-Every current design is `assumed`; none is physically `proven` at this revision.
+Changed torso v5, shoulder mount v1, front carrier v3, upper arm/forearm v2 and
+thigh v3 remain `unknown`; local toolpaths alone do not establish physical
+printability. Root socket v1 is `proven` with its documented caveat; unchanged
+parts retain their recorded tags. See [the part review](../docs/part-design-review.md).
 TPU settings are provisional until matched to the actual spool.

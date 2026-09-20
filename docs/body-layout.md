@@ -1,7 +1,9 @@
-# Body layout — DEC-43/44
+# Body layout — retained proportions and current joint spacing
 
-The maintainer accepted this overall layout under DEC-44 (2026-09-10).
-Manufactured-part detailing is reviewed separately in [part-design-review.md](part-design-review.md).
+The overall proportions originate in DEC-43/44 (2026-09-10; DEC-44 is now a
+revision note under DEC-59). The 2026-09-19 recessed front revision preserves
+the sagittal targets while changing shoulder spacing and the surrounding frame.
+[Current design](cad-integrated-design.md) · [Printability](part-design-review.md).
 
 [Supported pose PNG](design/body-quadruped.png) · [Upright PNG](design/body-upright.png).
 SVGs, STEP references and joint coordinates are alongside them in
@@ -20,9 +22,9 @@ No servo interface is scaled to achieve body proportions.
 
 | Feature | Dimension (mm) |
 |---|---:|
-| Upright head-top height | 450 |
-| Head envelope, length × width × height | 85 × 110 × 75 |
-| Neck, shoulder to head-envelope base | 35 |
+| Upright head-top target | 450 |
+| Head envelope allocation, length × width × height | 85 × 110 × 75 |
+| Neck allocation, shoulder to head-envelope base | 35; mechanism unresolved |
 | Torso, hip to shoulder | 150 |
 | Rump allowance behind hip along torso | 70 |
 | Upper arm / elbow-to-wrist forearm | 70 / 75 |
@@ -31,9 +33,11 @@ No servo interface is scaled to achieve body proportions.
 | Thigh / shank | 85 / 90 |
 | Rear ankle wheels | 2 × Ø80, nominal width 10 |
 | Rear wheel-centre track | 220 |
-| Front ball-centre spacing | 149 |
-| Hip / shoulder roll-centre spacing | 149 / 149 (DEC-49 common carrier) |
-| Hip/shoulder pitch-servo centre spacing | 48 |
+| Front ball-centre spacing, unrolled reference | 190.23 |
+| Rear B roll / front A roll-centre spacing | 132.6 / 110.23 |
+| Rear A pitch / front B pitch-centre spacing | 52.5 / 190.23 |
+| Shoulder frame cap, body Z | 183.5 |
+| Shoulder frame width / socket-lip recess | 94 / 10 per side |
 | Supported front–rear contact spacing | 260 |
 | Supported hip / shoulder height | 175 / 165 |
 | Supported head-top / approximate nose–rump length | 237.7 / 340 |
@@ -49,11 +53,12 @@ DEC-48 uses a flat-section rigid forearm and separate keyed TPU contact pad,
 without another joint. The nominal ball centre and contact envelope are retained.
 
 In supported stance, rear wheel centres are (−55, ±110, 40), front ball centres
-(205, ±74.5, 16), hip root X/Z (0, 175) and shoulder root X/Z (149.666, 165).
+(205, ±95.115, 16), hip root X/Z (0, 175) and shoulder root X/Z (149.666, 165).
 Both contact types reach Z=0. The footprint is a trapezoid, narrower at the
 front. Knee flexion is 67.22° and elbow flexion 42.25°; limbs are not straight.
 
-Upright, hip 190 + torso 150 + neck 35 + head 75 = 450 mm. Rear axles are
+The upright sizing allocation remains hip 190 + torso 150 + neck 35 + head 75
+= 450 mm; extending the frame to wrap A does not itself solve head placement. Rear axles are
 at X=0, Z=40; front ball centres are raised to X=100, Z=330. Knee flexion
 is 62.03° and elbow flexion 110.05°. Head position and mounting remain undecided; the drawn envelope is a sizing
 allocation and is omitted from the structural CAD/viewer (DEC-49).
@@ -65,7 +70,9 @@ Keep the bought 37D pair at the ankles. Each motor face is 23 mm inboard of
 the wheel centre; each motor body extends 69 mm farther inward. At 220 mm
 track the opposed motor end gap is 36 mm. DEC-40 widened the earlier 200 mm
 track to clear inward roll; DEC-41 corrected pitch → roll at the hips; DEC-54
-makes the shoulders roll → pitch, mounted on the torso's sides.
+makes the shoulders roll → pitch. The current front sockets are recessed
+10 mm at their lips into the extended torso envelope and mount on independent
+service cassettes; this does not move the hip-to-shoulder axis spacing.
 The 120 mm conceptual track would overlap the motors by 64 mm.
 
 The twelve ST3215s and two wheel-drive channels remain. Front ball feet add

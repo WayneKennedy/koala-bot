@@ -1,67 +1,60 @@
-# Part construction and printability — DEC-49/50
+# Part construction and printability
 
-The accepted DEC-44 layout now has enclosing servo sockets, tapered and rounded
-fork roots, rounded structural transitions, independent root-servo modules and
-flatter forearms with replaceable TPU contact pads. Joint centres, pitch → roll
-order, rear ankle drives and the two saved body poses are retained. DEC-49
-aligns rear roll spacing with the 149 mm front spacing for common carriers;
-DEC-50 corrects unequal drive/idler socket slots.
-
-[Individual part images](design/README.md#individual-structural-prints) ·
-[Slice records and layer images](design/manufacturing/README.md) ·
-[SO-101 source templates](design/so101/README.md).
+Current 2026-09-19 revision: recessed **roll → pitch** front shoulders, parallel
+pitch/elbow front links and the retained **pitch → roll** rear legs. Broad print
+faces, enclosing sockets, open forks, filleted roots and accessible support
+removal carry the rear redesign lessons into the front limbs.
+[Design and assembly](cad-integrated-design.md) ·
+[Front revision and views](design/front-redesign/README.md) ·
+[Current slices](design/front-redesign/README.md#local-slicing-and-support-review) ·
+[Earlier manufacturing records](design/manufacturing/README.md).
 
 ## Printability tags — DEC-47
 
-Every part also carries a **design version** (`v1` for everything as of 2026-09-19;
-[`hardware/part-versions.json`](../hardware/part-versions.json), shown in the BOM). A
-`proven` tag is proven for the version printed; a version bump reassesses the tag.
+Every printed design has a monotonically increasing version in
+[`part-versions.json`](../hardware/part-versions.json), shown in the generated
+BOM. Geometry changes require a version bump and reassessment. A `proven` tag
+belongs to the version actually printed; earlier slices and prints do not
+transfer automatically.
 
-The thighs and shanks are **v2, `assumed`** (2026-09-19): the owner reviewed the DEC-58 parts on
-2026-09-18, found their general geometry good but the parts as drawn would need a lot of
-support, which would probably ruin them (aesthetic judgement plus printability instinct,
-not a slice; the shank is expected to be the easier fix). The root modules and hip carriers became
-**`assumed`** in the same review (they look right; orientation and support are recorded
-below). The other rows retain **`assumed`**. Earlier local slices apply only to their
-matching STL hashes. These are **17 designs / 24 handed export variants**,
-including six coupons. The robot uses 24 physical structural prints, including
-two TPU pads and four tray spacers. Nothing in this revision has been printed.
+- `unknown`: the current revision has not established a reviewed manufacturing
+  outcome; bed contact, layer starts or support removal still need validation.
+- `assumed`: a credible print approach is recorded, without a successful
+  physical print of that version. A surface-area screen alone is insufficient.
+- `proven`: a physical print of that version is recorded in [the test log](test-log.md),
+  with its relevant settings and limitations.
 
-- `unknown`: the current revision lacks a reviewed print approach, or bed
-  contact, layer starts or support removal remain unresolved. New parts default
-  to this status.
-- `assumed`: a credible print approach is recorded; no successful physical
-  print of that revision is recorded. A surface-area screen alone is insufficient.
-- `proven`: a successful physical print of the relevant revision is recorded
-  in [the test log](test-log.md), with orientation, material and support/settings
-  identified to the extent known.
-
-Both mirrored variants share a row unless evidence differs. Reassess the tag
-when geometry or orientation changes. Assembly access, fit, strength, traction
-and loaded joint travel are separate checks. Accepted SO-101 fit remains valid;
-it does not prove a complete derived Koala print. The older printed ladder
-revision does not establish `proven` for the current ladder.
+There are **18 designs / 26 handed export variants**, including six coupons.
+The chassis uses **26 physical prints**. **Root socket v1 alone is proven**;
+the new/changed parts below remain `unknown`. The unchanged hip carriers have
+plate 2 slices; no physical result is recorded here. OQ-22 records earlier
+shank v2 organic slices with hashes matching the current exports; they were
+not re-reviewed in this session's 11-slice batch. Sliced thigh v2 is superseded
+by v3.
 
 ## Current structural parts
 
-Native orientation descriptions refer to each builder's part frame. Exports
-are already oriented and translated onto the bed. PETG review slices use snug
-supports and a brim; supports must be removed before fitting hardware. TPU uses
-no support. See the recorded overrides and actual deposited-path images.
+The table identifies the declared bed face, not a claim of support-free printing.
+[Current local slices](design/front-redesign/README.md#local-slicing-and-support-review)
+cover all 11 final changed handed exports, including carrier v3 and torso v5,
+with matching STL hashes and inspected selected layers. They do not prove every layer start, physical support removal or fit.
+STLs already carry the declared orientation. PETG support must grow from the bed only;
+review layer starts and removal access before printing. TPU uses no support.
 
-| Part / quantity | Printable | Material | Construction and print approach |
+| Part / version / physical quantity | Printable | Material | Construction and print approach |
 |---|---|---|---|
-| `root_socket_left/right` / 4 (two of each hand) | `proven` | PETG | **Proven v1, 2026-09-19 (plate 1, PETG):** four printed, all pass for main function. The M2 ear holes came out blocked by support because the profile lacked bed-only support (fixed; `test-log.md`): drill 2.2 mm or reprint. DEC-53: one root module at all four roots; the pelvis pair is the shoulder pair turned 180° about the pitch axis. Flat 6 mm plate face down, socket opening up; nut pockets open into the shelf and bridge nothing; ear-hole roofs use accessible local support. Replaces `pelvis_socket` and `shoulder_socket` (the pelvis corner defect with them). No slice yet. |
-| `shoulder_carrier_left/right` / 2 | `assumed` | PETG | DEC-49 front carrier, retained until DEC-54's roll-first shoulder chain replaces it. Flat back down; accessible local hole-roof supports. |
-| `hip_carrier_left/right` / 2 | `assumed` | PETG | Assumed: owner visual review of the rear-leg viewer, 2026-09-18. DEC-55/56: 16 mm fork-width block below the pitch axis, tapered 2 mm inner-edge bevels; R6.3 fork roots, R5 socket roots and R1.5 at the narrow socket lip. Roll servo Bottom-down. Block and socket floor share the flat bed face (2080 mm²); 50.5 mm build height. Valid solid and closed handed meshes; support removal, strength and slicing remain unverified. [Current view](design/hip-carrier-refinement.png). |
-| `thigh_left/right` / 2 | `assumed` | PETG | **v2 (2026-09-19):** the DEC-58 yoke with the idler-side cheek thickened to the cup-floor plane, one flat taper to the idler pad (owner's red line), convex edges rounded R2 (cup R1.5). Prints on the cup-floor plane, tree (organic) support under the drive-side cheek and both pads, 1986 mm² bed contact, 73 mm high. Assumed on the owner's judgement that the tapered form is worth a test print; the rounding pass is unreviewed. Straight servo insertion unchanged. [Record](design/rear-leg/thigh-flat/README.md). No slice yet. |
-| `upper_arm_left/right` / 2 | `assumed` | PETG | The same interface family at 70 mm centres. Rounded transition sized for the shorter link. Outer horn pad down; accessible fork/socket supports. |
-| `shank_left/right` / 2 | `assumed` | PETG | **v2 (2026-09-19):** 90 mm knee-to-ankle centres, extended open knee fork, R6.3 fork roots, R5 motor roots; motor-mount face flush with the drive fork's outer face (DEC-60 spacing, no step), convex edges rounded R2. Prints on that outer face, 2612 mm² bed contact, 49 mm high; support under the idler fork and the motor bore roof. Assumed on the owner-directed form and print face; the rounding pass is unreviewed. [Record](design/rear-leg/thigh-flat/README.md). No slice yet. |
-| `forearm_left/right` / 2 | `assumed` | PETG | Rounded 18 × 17.9 mm shaft section with a flat native −Y bed face, integral fork and keyed pad seat. Local support under hole roofs, nut slot and projecting key is externally accessible. Insert the metal nut before attaching the pad. |
-| `front_contact_pad` / 2 | `assumed` | TPU | Rounded contact preserves the 100 mm elbow-to-ball centre and Ø32 mm ground envelope. Truncated mating face down; keyed cavity tapers to the through-hole without a flat roof. No supports; recessed screw/washer, replaceable pad. Material settings remain provisional. |
-| `torso_frame` / 1 | `assumed` | PETG | Rounded rail corners, continuous flanges and integral module locating pins. Declared side face down; snug supports under opposing rails and flange roofs can be removed through the open cage. |
-| `e_tray` / 1 | `assumed` | PETG | Flat rounded plate with tapered stand-off roots and strap slots. Flat face down; no support intrinsically required. Two-drive electronics packaging remains open. |
-| `tray_spacer` / 4 | `assumed` | PETG | Simple annular spacers, flat face down. Group or use brim for their small contact area. |
+| `root_socket` v1 / 4, two per hand | `proven` | PETG | Plate 1, 2026-09-19: all four fit. Ear holes blocked by the old support profile need clearing with a 2.2 mm drill or reprinting; bed-only support is now configured. Flat plate down, socket up. Four captive shelf nuts and bench-fitted ear screws. Geometry unchanged; front installation now uses a removable cassette. |
+| `shoulder_mount` v1 / 2, handed | `unknown` | PETG | Independent recessed-A cassette. Broad body-Y = 4 face down; open flange nut pockets and bore roofs need accessible local bed-only support. Filleted root joins a wide front flange. Preload four cassette frame nuts before bench-fitting the root socket with four M3×16; four front-access M3×20 secure it to the torso. Remove laterally outward. [Views](design/parts/shoulder_mount-views.png). |
+| `shoulder_carrier` v3 / 2, handed | `unknown` | PETG | A roll fork and B socket share a broad planar block/cup floor; print that face down. R6.3 fork roots, open ear-driver tunnels and no hidden support chamber. Fit B and all four ear screws before the arm. [Views](design/parts/shoulder_carrier-views.png). |
+| `hip_carrier` v1 / 2, handed | `assumed` | PETG | Owner visual review, 2026-09-18; plate 2 sliced, physical result unrecorded. DEC-55/56 block below A, 16 mm fork neck, tapered inner bevels, R6.3 fork roots, R5 socket roots and R1.5 lip. Block/socket floor down. Actual support removal, fitted travel and load/creep remain open. |
+| `thigh` v3 / 2, handed | `unknown` | PETG | Tapered one-piece DEC-58 yoke and sideways knee socket retained. Corrected rounding now keeps earlier successful fillets instead of overwriting them. Cup-floor plane down; accessible tree support under the opposite cheek and pads. v2 G-code does not validate v3. [Current views](design/parts/thigh-views.png); [earlier print-form rationale](design/rear-leg/thigh-flat/README.md). |
+| `upper_arm` v2 / 2, handed | `unknown` | PETG | 70 mm centres, parallel pitch/elbow axes, enclosing C socket. Thickened drive cup wall and outer fork share the bed plane; support under the opposite fork and open cup remains removable. R6.3 roots/R2 outer rounding; seven short/narrow junction edges remain sharp and are reported. [Views](design/parts/upper_arm-views.png). |
+| `shank` v2 / 2, handed | `assumed` | PETG | 90 mm centres, extended open fork and flush motor/drive-fork face on bed. R6.3 fork roots, R5 motor roots, R2 outer rounding. Existing v2 bed-only organic slices retained; the unsupported motor-bore crown needs physical inspection for sag and insertion. [Record](design/rear-leg/thigh-flat/README.md). |
+| `forearm` v2 / 2, handed | `unknown` | PETG | 100 mm elbow-to-pad centre, long open fork, R6.3 roots/R3 taper corners and broad native −Y bed face. Fork/hole/nut-slot roofs remain accessible for support removal. Insert the captive nut before the unchanged keyed pad. [Views](design/parts/forearm-views.png). |
+| `front_contact_pad` v1 / 2 | `assumed` | TPU | Ø32 rounded contact; truncated mating face down, tapered keyed cavity, recessed screw/washer. No support. Grade, traction and wear remain unverified. |
+| `torso_frame` v5 / 1 | `unknown` | PETG | Cage extends to shoulder cap Z183.5, with 10 mm socket-lip recess, front cassette crossmembers, inward-tapering dorsal shoulder rails, neck-cartridge slot and rear driver corridors. Dorsal face down; opposite rails/cap/flange roofs need bed-only supports removable through the cage. No locating pins are claimed. [Views](design/parts/torso_frame-views.png). |
+| `e_tray` v1 / 1 | `assumed` | PETG | Flat rounded plate, tapered stand-offs and strap slots. Flat down; no intrinsic support. Complete electronics packaging remains open. |
+| `tray_spacer` v1 / 4 | `assumed` | PETG | Annular spacers, flat down; brim or grouping for small bed contact. |
 
 ## Coupons
 
@@ -74,27 +67,27 @@ no support. See the recorded overrides and actual deposited-path images.
 | `coupon_ladder` | `assumed` | PETG | Flat labelled slab; the earlier printed revision remains separate evidence. |
 | `coupon_seam` | `assumed` | PETG | Two flat pieces in one export; generic insert/seam practice, not a required structural joint in this design. |
 
-## What was taken from SO-101
+## What was taken from SO-101 and the rear redesign
 
-The [Upper arm photo](design/so101/IMG_7004.png) and exact upstream STEP
-sections establish the construction references: an enclosing pocket, rounded
-external transitions, broad fork roots and a deliberate build face. The new
-Koala pocket restores Side-wall returns around the accepted 34.9 × 24.7 mm
-interface; all four ear screws remain. The 36.4 mm horn span, 3.5 mm screw-bearing
-web, supplied-head counterbores and Back washers are retained.
+The [source templates](design/so101/README.md) establish enclosing sockets,
+measured ear/horn datums, broad fork roots and deliberate print planes. The
+accepted 34.9 × 24.7 mm pocket, four ear screws, 36.4 mm horn span, 3.5 mm
+bearing webs and idler washers remain. Reusing those interfaces does not prove
+fit or strength of a complete Koala link; no repeat Gauge_0 is required.
 
-The fork nose stays R10.4 to preserve connector clearance; the wider roots
-begin farther from the axis. Copying SO-101's entire 63.4 mm outside fork width
-would conflict with the compact layout. Likewise, retained pitch → roll makes
-upper-link end axes perpendicular: those parts use accessible local supports.
-They are not claimed to reproduce the source arm's support-free orientation.
+Rear links taught the practical distinction between a flat face somewhere on a
+part and a useful continuous bed face. The front carrier shares its block/cup
+floor, the upper arm thickens its cup wall to the fork plane, and the forearm
+has a broad flat shaft. Open forks keep support reachable. The front's parallel
+pitch/elbow axes permit a different form from the rear's orthogonal axes.
 
-The root mounts implement DEC-45: fully secure each servo into its own module
-on the bench, then install the module using two frame bolts outside the servo
-footprint. Pins on the torso engage blind module pockets. The old installed
-inboard ear-screw obstruction is avoided by that assembly sequence.
+Root servos are fully secured on the bench. Load the cassette's four frame nuts
+before attaching its front root; otherwise the root obstructs the inner nuts'
+straight loading paths. Remove the complete cassette laterally outward for service. Recessing the front sockets led to
+separate removable cassettes because installed access between opposing servos
+would be poor. Each cassette has four frame screws and broad bearing surfaces;
+it is a service seam with a defined purpose. Tool access, physical support
+removal, stiffness/creep and complete harness clearance still need acceptance.
 
-The [front-carrier flat-back study](design/front-carrier/README.md) is retained
-as historical evidence; its build-face principle is now implemented at all
-four roots, with the head-clearance bevel removed. Current
-production exports and slice records supersede the study's candidate status.
+The earlier [flat-back study](design/front-carrier/README.md) and manufacturing
+images are historical unless their version and STL hash match the current part.

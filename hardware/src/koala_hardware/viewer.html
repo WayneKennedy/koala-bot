@@ -144,9 +144,9 @@ canvas { display: block; }
     </div>
     <div id="pose">
       <label>Body pose <select id="body-pose"><option value="quadruped">Supported · front feet</option><option value="upright">Upright · head pending</option></select></label>
-      <label>Root pitch adjustment <output id="pitch-value">0°</output>
+      <label>Shoulder / hip pitch <output id="pitch-value">0°</output>
         <input id="pitch" type="range" min="0" max="0" value="0" step="0.25" disabled></label>
-      <label>Limb roll (sideways) <output id="roll-value">0°</output>
+      <label>Shoulder / hip roll <output id="roll-value">0°</output>
         <input id="roll" type="range" min="0" max="0" value="0" step="0.25" disabled></label>
       <label>Knee / elbow adjustment <output id="knee-value">0°</output>
         <input id="knee" type="range" min="0" max="0" value="0" step="0.25" disabled></label>
@@ -402,24 +402,31 @@ function pivotRotation(x, y, z, axis, angle) {
     .multiply(new THREE.Matrix4().makeRotationAxis(axis, angle))
     .multiply(new THREE.Matrix4().makeTranslation(-x, -y, -z));
 }
+function poseTransform(it,joints,q) {
+  const matrix=new THREE.Matrix4();
+  if(!it.side)return matrix;
+  const [key,group]=it.joint.split('_'),d=joints[key];
+  if(group==='fixed')return matrix;
+  const order=d.order||['pitch','roll','bend'],last=order.indexOf(group);
+  if(last<0)throw new Error('Unknown joint group: '+it.joint);
+  for(const joint of order.slice(0,last+1)) {
+    const axis=joint==='roll'?d.roll_axis:[0,1,0],angle=q[joint==='bend'?'knee':joint];
+    matrix.multiply(pivotRotation(...d[joint],new THREE.Vector3(...axis),angle*Math.PI/180));
+  }
+  if(it.side===-1) {
+    const reflect=new THREE.Matrix4().makeScale(1,-1,1);
+    matrix.premultiply(reflect).multiply(reflect);
+  }
+  return matrix;
+}
 function applyPose() {
   const pitch=Number($("#pitch").value),roll=Number($("#roll").value),knee=Number($("#knee").value);
   for (const [id,v] of [["pitch",pitch],["roll",roll],["knee",knee]]) $("#"+id+"-value").textContent=v+"°";
   if (mode!=="assembly") return;
-  const rad=Math.PI/180, joints=DATA.meta.joints[poseName];
-  const reflect=new THREE.Matrix4().makeScale(1,-1,1);
+  const joints=DATA.meta.joints[poseName];
   for (const mesh of meshes) {
-    const it=mesh.userData; mesh.matrixAutoUpdate=false; mesh.matrix.identity();
-    if (it.side) {
-      const [key,group]=it.joint.split("_"),d=joints[key];
-      const r=pivotRotation(...d.roll,new THREE.Vector3(...d.roll_axis),roll*rad);
-      const h=pivotRotation(...d.pitch,new THREE.Vector3(0,1,0),pitch*rad);
-      const k=pivotRotation(...d.bend,new THREE.Vector3(0,1,0),knee*rad);
-      if(group!=="fixed")mesh.matrix.multiply(h);
-      if(group==="roll"||group==="bend")mesh.matrix.multiply(r);
-      if(group==="bend")mesh.matrix.multiply(k);
-      if(it.side===-1)mesh.matrix.premultiply(reflect).multiply(reflect);
-    }
+    mesh.matrixAutoUpdate=false;
+    mesh.matrix.copy(poseTransform(mesh.userData,joints,{pitch,roll,knee}));
     mesh.matrixWorldNeedsUpdate=true;
   }
 }
@@ -491,7 +498,7 @@ function buildList() {
       b.className = "row";
       b.setAttribute("aria-pressed", it.hidden ? "false" : "true");
       b.innerHTML = `<i class="dot" style="background:${it.colour}"></i>` +
-        `<span>${it.name}</span>` +
+        `<span>${it.name}${it.version ? " · v"+it.version : ""}</span>` +
         `<span class="qty">${it.printable || (it.qty ? "×" + it.qty : "")}</span>`;
       b.onclick = (e) => {
         if (e.shiftKey) { it.hidden = !it.hidden; }
@@ -514,7 +521,7 @@ function setHud(it) {
     : [["Bed ref", `${m.bed[0]}×${m.bed[1]} mm`],
        ["Parts", String(DATA.parts.length)]];
   const sel = it
-    ? `<div><b>${it.name}</b><span id="sel">${it.size.join(" × ")} mm${it.printable ? " · printable: "+it.printable+" · "+it.material : ""}</span></div>`
+    ? `<div><b>${it.name}${it.version ? " · v"+it.version : ""}</b><span id="sel">${it.size.join(" × ")} mm${it.printable ? " · printable: "+it.printable+" · "+it.material : ""}</span></div>`
     : `<div><b>Selection</b><span id="sel">click to solo · shift-click to hide</span></div>`;
   $("#hud").innerHTML = sel + stats.map(
     ([k, v]) => `<div><b>${k}</b><span>${v}</span></div>`).join("");
@@ -522,7 +529,7 @@ function setHud(it) {
     (it.print_metrics ? " Bed contact " + it.print_metrics.bed_area.toFixed(0) +
      " mm²; flagged overhang " + it.print_metrics.overhang_area.toFixed(0) +
      " mm². Layout is a comparison, not one printable plate. Layers are horizontal." : "")
-    : "Select a part for its current printability, material and print notes.";
+    : DATA.meta.status || "Select a part for its current version, printability, material and print notes.";
 }
 
 /* ---- controls ---- */

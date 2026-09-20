@@ -73,9 +73,10 @@ def fixing_envelopes(front=False):
 def build():
     return L.spec('root_socket',root_socket(),qty=2,handed=True,orientation=Rot(),
         fasteners={'M2x5 self-tapper into servo ear':4,f'{P.ROOT_SCREW} root screw, from the torso side':4,'M3 nut, captive under the servo':4},
-        notes='One root module for all four limb roots, two per hand; the pelvis pair is the shoulder pair turned '
-        '180 deg about the pitch axis. Drop four M3 nuts into the shelf pockets, then fit the servo and all four ear '
-        'screws on the bench; the servo traps the nuts. Offer the module to the torso and drive four M3x16 from the '
-        'torso side. Flat plate face down, socket opening up; ear-hole roofs use accessible local support. '
-        'Unverified: STS3215 Bottom flatness over the pockets, cable exit past the plate, nut fit. '
-        'Assumed: owner visual review of the rear-leg viewer, 2026-09-18 (revision log); no slice or print.', printable='assumed')
+        notes='Proven v1, plate 1, PETG, 2026-09-19: four printed and main fit passed. Ear holes need drilling to '
+        '2.2 mm on those prints because support entered them; bed-only support is now set for reprints. '
+        'One unchanged module at all four roots, two per hand. Drop four M3 nuts into the shelf, then fit the '
+        'servo and all four ear screws on the bench. Rear modules bolt to the inclined torso flange; front '
+        'modules bolt to removable shoulder cassettes on the bench before the cassettes enter the frame. '
+        'Use four M3x16 per module. Flat plate face down, socket opening up; accessible ear-roof support. '
+        'Cable routing, screw bottoming and loaded retention remain unverified.', printable='proven')

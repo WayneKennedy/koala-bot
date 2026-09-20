@@ -1,33 +1,23 @@
-# Engineering drawings and CAD — DEC-49/50
+# Engineering drawings and CAD
 
-**DEC-49/50 common carriers and asymmetric sockets:** [SO-101 templates and comparison images](so101/README.md)
-and [part-by-part critique and printability tags](../part-design-review.md).
-[Front-carrier flat-back comparison](front-carrier/comparison.png) ·
-[Study notes and STEP](front-carrier/README.md). The overall layout below
-is accepted; the revised details are implemented. [Slice evidence and layer
-images](manufacturing/README.md) support `assumed` printability for every part.
+**Current 2026-09-19 revision:** [recessed roll-first front limbs](front-redesign/README.md),
+[small-servo neck provision](neck-provision.md),
+[design and assembly](../cad-integrated-design.md), and
+[part-by-part printability](../part-design-review.md). The torso wraps the front
+A modules while retaining 150 mm hip-to-shoulder spacing. New front parts and
+changed torso/thigh remain unprinted; older slices validate only matching hashes.
 
-Current assets show rear ankle drives and fixed rounded front feet.
-[Design and assembly](../cad-integrated-design.md).
+The [rear-leg record](rear-leg/README.md) documents DEC-57/58's origins and later
+print-form studies. DEC-61's inclined rear mount is now implemented in the main
+assembly. Current thigh v3 corrects rounding; shank v2 is unchanged. Earlier
+[carrier-orientation alternatives](carrier-orientation/README.md) and
+[front-carrier flat-back study](front-carrier/README.md) are historical, not
+competing current mounts.
 
-**Current rear carrier — DEC-56:** [viewer close-up](hip-carrier-refinement.png),
-[four views](parts/hip_carrier_right.png) and
-[geometry/travel checks](hip-carrier-refinement.json). The earlier common-carrier
-images below predate the rear carrier replacement. This revision is `unknown`
-printable and has not been sliced or printed.
-
-**Rear leg, DEC-57/58:** [current thigh/shank and 45° A/B proposal](rear-leg/README.md).
-This includes the revised roll yoke, sideways knee socket, open shank fork,
-motor mount, STEP exports and sampled clearance evidence. Printability is unknown.
-
-**Rear carrier orientation studies:** [horizontal / 45° side-view study](carrier-orientation/README.md).
-This compares placements of the existing carrier around the fixed pitch root;
-the selected production orientation is still DEC-55.
-The clarified proposal has a separate [connected candidate](carrier-orientation/angled-fork.html):
-45° rearward forks, retained roll-socket placement and a common flat print base.
-The maintainer has since reopened the choice: [tilt the pitch socket on an
-inclined torso face](carrier-orientation/pitch-socket-tilt.html), retaining the
-simpler current carrier. DEC-57 selects its 45° variant as the proposed arrangement.
+[SO-101 source templates and interface comparison](so101/README.md) retain the
+measured construction reference. [Manufacturing records](manufacturing/README.md)
+distinguish local slices from physical proof; root socket v1 is proven with its
+recorded ear-hole caveat.
 
 **Historical knee packaging study, deferred by DEC-43:**
 [PNG](knee-packaging.png) · [SVG](knee-packaging.svg) ·
@@ -48,9 +38,9 @@ repo path on blake.
 The master drawings and detailed CAD share their joint centres: 70 mm upper
 arms, 75 mm forearms plus 25 mm hand extensions to Ø32 mm ball centres,
 85/90 mm rear links, 150 mm torso, 450 mm upright height and 220 mm rear track.
-Front ball centres are 149 mm apart and 260 mm ahead of the rear wheels in
-supported stance. Only the rear Ø80 wheels are driven. Hip and shoulder
-joints retain pitch → roll (DEC-41). The body-master head outline is a sizing allocation only; it is omitted from
+Unrolled front ball centres are now 190.23 mm apart and 260 mm ahead of the
+rear wheels in supported stance. Only the rear Ø80 wheels are driven. Front
+shoulders are roll → pitch; rear hips remain pitch → roll. The body-master head outline is a sizing allocation only; it is omitted from
 the structural CAD and viewer because position and mounting are undecided.
 
 [Joint coordinates](body-plan.json) · [Design and assembly](../cad-integrated-design.md) ·
@@ -58,21 +48,23 @@ the structural CAD and viewer because position and mounting are undecided.
 
 ## Individual structural prints
 
-These four-view images show the exported print orientation; they are not packed
-plates. Left/right STL and STEP files are generated separately where needed.
+Exporter PNGs show the print orientation; files ending `-views.png` show native
+CAD coordinates for shape review. Current [layer plots](front-redesign/README.md#local-slicing-and-support-review)
+show the chosen bed faces. Left/right STL and STEP files are generated separately.
 
 | Print | Image |
 |---|---|
-| Independent pelvis socket | [PNG](parts/pelvis_socket_right.png) |
-| Independent shoulder socket | [PNG](parts/shoulder_socket_right.png) |
-| Common hip/shoulder carrier (two per hand) | [PNG](parts/root_carrier_right.png) |
+| Proven root socket v1 (four physical prints) | [PNG](parts/root_socket_right.png) |
+| Recessed shoulder cassette v1 | [Four views](parts/shoulder_mount-views.png) |
+| Roll-first shoulder carrier v3 | [Four views](parts/shoulder_carrier-views.png) |
+| Rear hip carrier v1 | [PNG](parts/hip_carrier_right.png) |
 | Drive/idler socket slots | [PNG](so101/socket-slot-comparison.png) |
-| Thigh, 85 mm | [PNG](parts/thigh_right.png) |
-| Upper arm, 70 mm | [PNG](parts/upper_arm_right.png) |
-| Shank, 90 mm | [PNG](parts/shank_right.png) |
-| Flat-section forearm and keyed hand end | [PNG](parts/forearm_right.png) |
+| Corrected thigh v3, 85 mm | [Four views](parts/thigh-views.png) |
+| Upper arm v2, 70 mm | [Four views](parts/upper_arm-views.png) |
+| Shank v2, 90 mm | [PNG](parts/shank_right.png) |
+| Forearm v2 and keyed hand end | [Four views](parts/forearm-views.png) |
 | Replaceable Ø32 TPU contact | [PNG](parts/front_contact_pad.png) |
-| Rigid torso frame | [PNG](parts/torso_frame.png) |
+| Extended torso v5 | [Four views](parts/torso_frame-views.png) |
 | Electronics tray | [PNG](parts/e_tray.png) |
 | Two-print acceptance rig | [Saddle](parts/coupon_socket_saddle.png) · [Fork](parts/coupon_socket_fork.png) |
 

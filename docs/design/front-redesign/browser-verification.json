@@ -1,0 +1,151 @@
+{
+  "status": "pass",
+  "checked_at": "2026-09-19T23:48:24.422499+00:00",
+  "browser": "Google Chrome for Testing 151.0.7922.34 (headless SwiftShader)",
+  "viewport_pixels": [
+    1600,
+    1100
+  ],
+  "scene_sha256": "784f5c68492541b98af2035b1520f36210996bacec82e81b7216b1aad19f361f",
+  "engine_sha256": "32248a2ef5c552902f9a2abb5439deffcb5fd8c62f20c6b88e46c5331fd93f61",
+  "test_script": "hardware/tests/viewer_smoke.py",
+  "test_script_sha256": "59c3484d0e380d33f099f8263d52848f2a229ed10d0a4062a374791d8f500ae1",
+  "command": "PLAYWRIGHT_CHROMIUM=/home/wkenn/.cache/ms-playwright/chromium-1234/chrome-linux64/chrome VIEWER_URL=http://127.0.0.1:8017/ uv run --with playwright python tests/viewer_smoke.py",
+  "stdout": "PASS both body poses, backdrop alignment, mirrored CAD/browser motion, parts and reset",
+  "initial_pose_bounds": {
+    "quadruped": {
+      "bounds": {
+        "pitch": {
+          "min": -28.25,
+          "max": 107.5,
+          "stops": [
+            [
+              "torso_frame",
+              "rear_thigh_right"
+            ],
+            [
+              "front_carrier_right",
+              "front_upper_arm_right"
+            ]
+          ]
+        },
+        "roll": {
+          "min": -5.5,
+          "max": 29.25,
+          "stops": [
+            [
+              "rear_motor_right",
+              "rear_motor_left"
+            ],
+            [
+              "shoulder_socket_right",
+              "front_carrier_right"
+            ]
+          ]
+        },
+        "knee": {
+          "min": -77,
+          "max": 57.5,
+          "stops": [
+            [
+              "front_upper_arm_right",
+              "front_forearm_right"
+            ],
+            [
+              "rear_thigh_right",
+              "rear_shank_right"
+            ]
+          ]
+        }
+      },
+      "step": 0.25,
+      "angular_reserve_degrees": 2,
+      "search_ceiling": 180
+    },
+    "upright": {
+      "bounds": {
+        "pitch": {
+          "min": -102.75,
+          "max": 33.5,
+          "stops": [
+            [
+              "torso_frame",
+              "rear_thigh_right"
+            ],
+            [
+              "front_carrier_right",
+              "front_upper_arm_right"
+            ]
+          ]
+        },
+        "roll": {
+          "min": -5,
+          "max": 29.25,
+          "stops": [
+            [
+              "rear_motor_right",
+              "rear_motor_left"
+            ],
+            [
+              "shoulder_socket_right",
+              "front_carrier_right"
+            ]
+          ]
+        },
+        "knee": {
+          "min": -9.25,
+          "max": 62.75,
+          "stops": [
+            [
+              "front_upper_arm_right",
+              "front_forearm_right"
+            ],
+            [
+              "rear_thigh_right",
+              "rear_shank_right"
+            ]
+          ]
+        }
+      },
+      "step": 0.25,
+      "angular_reserve_degrees": 2,
+      "search_ceiling": 180
+    }
+  },
+  "checks": [
+    "Both saved poses load and render; no browser page errors or WebGL context loss.",
+    "Orthographic side backdrop follows each pose and aligns with the rear pitch axis.",
+    "All assembly rows and per-part printability tags match current CAD.",
+    "Pitch +2, roll -2 and knee +2 each trigger a completed mechanical-clearance search; coupled bounds change.",
+    "Mirrored front/rear mesh bounds match CAD within 0.2 mm after combined slider motion.",
+    "Reset returns adjustments to zero.",
+    "Parts view selects one thigh and shows printability; front contact pad shows TPU.",
+    "Current iso and side captures inspected visually and copied to canonical docs images."
+  ],
+  "visual_review": "Compact torso depth and broad but coherent shoulders retained. Recessed A sockets are enclosed by the shoulder frame; front forks sit near the rear wheel outside width. Upright and supported silhouettes remain coherent. The unresolved head/neck mechanism is omitted; its packaging reservation remains in CAD.",
+  "screenshots": {
+    "docs/design/cad-quadruped.png": {
+      "sha256": "86b17415169e35bfebc15accc33ef9a4e3ac6185831bc626502327d87c96f6de",
+      "pose": "quadruped",
+      "view": "iso"
+    },
+    "docs/design/cad-quadruped-side.png": {
+      "sha256": "287c642715ae6185ea8ed70e5a9c4d3e9f59be059c338e90ad2f87230c4beb61",
+      "pose": "quadruped",
+      "view": "side"
+    },
+    "docs/design/cad-upright.png": {
+      "sha256": "3196dcbc6bf77398c7f7fbc2a064cb8250dc039bdadfe458c2c57f9be3c0b711",
+      "pose": "upright",
+      "view": "iso"
+    },
+    "docs/design/cad-upright-side.png": {
+      "sha256": "05adbd803d17ac0bafc422450c87f7ce3251da96d43121612a957a136e2f20d1",
+      "pose": "upright",
+      "view": "side"
+    }
+  },
+  "limits": "Browser collision ranges are discrete nominal geometry checks with a 2 degree reserve, not calibrated servo, continuous, wiring or loaded-motion acceptance.",
+  "tested_scene_sha256": "d0337e66180bfb67bef9f29c1a9ea4d3b45d6333ef64691bd514f23dfb773024",
+  "metadata_refresh": "viewer-metadata-refresh.json: notes only; every non-note scene field verified identical and a focused browser check rerun."
+}

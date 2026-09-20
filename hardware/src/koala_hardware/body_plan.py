@@ -132,8 +132,9 @@ def svg(name,pose):
         for p in (limb.root,limb.bend,limb.axle):dot(p)
         dx=(limb.bend.x-limb.root.x)/limb.upper
         dz=(limb.bend.z-limb.root.z)/limb.upper
-        a=Point(limb.root.x-18*dz,limb.root.z+18*dx)
-        b=Point(limb.root.x+18*dz,limb.root.z-18*dx)
+        rx,rz=(cos(t),sin(t)) if key=='front' else (-dz,dx)
+        a=Point(limb.root.x+18*rx,limb.root.z+18*rz)
+        b=Point(limb.root.x-18*rx,limb.root.z-18*rz)
         bits.append(f'<path d="M{-a.x},{-a.z} L{-b.x},{-b.z}" stroke="#d47920" stroke-width="2"/>')
         p=limb.axle;radius=P.WHEEL_DIA/2 if key=='rear' else P.BODY_FRONT_FOOT_RADIUS_MM
         bits.append(f'<circle class="wheel" cx="{-p.x}" cy="{-p.z}" r="{radius}"/>');dot(p)
@@ -156,6 +157,9 @@ def svg(name,pose):
         l=pose[key]
         for side in (-1,1):
             x0=285+side*roots;x1=285+side*P.BODY_TRACK_TARGET_MM/2 if key=='rear' else x0
+            primary=285+side*(P.SHOULDER_A_Y if key=='front' else P.ROOT_PITCH_Y)
+            bits.append(f'<path class="bone" d="M{primary},{-l.root.z} H{x0}"/>')
+            bits.append(f'<circle class="dot" cx="{primary}" cy="{-l.root.z}" r="3"/>')
             bits.append(f'<path class="bone" d="M{x0},{-l.root.z} V{-l.bend.z} V{-l.axle.z} H{x1}"/>')
             for p in (l.root,l.bend,l.axle):
                 bits.append(f'<circle class="dot" cx="{x0}" cy="{-p.z}" r="3"/>')
@@ -166,8 +170,8 @@ def svg(name,pose):
     lo=285-P.BODY_TRACK_TARGET_MM/2; hi=285+P.BODY_TRACK_TARGET_MM/2
     bits.append(f'<path class="guide" d="M{lo},0 H{hi} M{lo},10 v15 M{hi},10 v15 M{lo},20 H{hi}"/>')
     txt(242,35,f'{P.BODY_TRACK_TARGET_MM:g} wheel-centre track',True)
-    txt(190,-487,f'Roll centres: {P.BODY_SHOULDER_WIDTH_MM:g} shoulder · {2*rear_axis_y():g} hip',True)
-    txt(190,-476,f'Pitch servo centres: {2*P.ROOT_PITCH_Y:g} · pitch → roll → knee/elbow',True)
+    txt(190,-487,f'Front: roll {2*P.SHOULDER_A_Y:g} → pitch {P.BODY_SHOULDER_WIDTH_MM:g} → elbow',True)
+    txt(190,-476,f'Rear: pitch {2*P.ROOT_PITCH_Y:g} → roll {2*rear_axis_y():g} → knee',True)
     txt(195,-465,'Rear: Ø80 drives ×2 · Front: Ø32 fixed feet',True)
     txt(195,-454,f'Opposed motor end gap: {check()["motor_end_gap_mm"]:g}',True)
     txt(-320,65,'Engineering master only: no actuator torque, collision-free transition or physical fit acceptance is implied.',True)
@@ -175,7 +179,7 @@ def svg(name,pose):
 
 
 def rear_axis_y():
-    return P.BODY_SHOULDER_WIDTH_MM/2
+    return P.ROOT_ROLL_Y
 
 
 def cad_items(name,pose):

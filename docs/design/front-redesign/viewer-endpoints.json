@@ -1,0 +1,435 @@
+{
+  "status": "pass",
+  "scope": "BREP checks of all 12 initial grouped viewer slider endpoints for each of the imported STEP and conservative caliper cases. Every complete assembly obstacle and audit owning-socket contact exemption is included. Static pairs are cached only within one case model using the joint-order-aware audit cache.",
+  "scene_sha256": "784f5c68492541b98af2035b1520f36210996bacec82e81b7216b1aad19f361f",
+  "engine_sha256": "32248a2ef5c552902f9a2abb5439deffcb5fd8c62f20c6b88e46c5331fd93f61",
+  "source_sha256": {
+    "hardware/src/koala_hardware/audit.py": "99044d339a40f8503a0c05f62983b958ce377203110fc52aad144eff184ffc31",
+    "hardware/src/koala_hardware/assembly.py": "01042c4545f9825f20743e5df7fa7e444904e6b914017fc899bec5ef669416a5",
+    "hardware/src/koala_hardware/params.py": "ddb12385a7c5119657b564738dfdcfbd3ea6c9edaf130cd1ae04d40fcca6b268",
+    "hardware/src/koala_hardware/parts/front.py": "f6f3ca985a9302ad8758a5dcd2aa593506995bdc2fb685ff4030893e7eb30bfa",
+    "hardware/src/koala_hardware/parts/torso.py": "0678fd7933a3860b16f39daa050f61ef7d76af128987e3ce294c5217b350233c",
+    "hardware/src/koala_hardware/parts/shoulder_mount.py": "d0f59de86d2d13b1a0ec8f74d6ea13d006ed60cc8547336c4ac6866d00130504",
+    "hardware/src/koala_hardware/parts/neck_space.py": "e195fd7b34309c2b14671b285b39346829480383c4aff7e7503ac3396e17e1a2"
+  },
+  "initial_pose_bounds": {
+    "quadruped": {
+      "bounds": {
+        "pitch": {
+          "min": -28.25,
+          "max": 107.5,
+          "stops": [
+            [
+              "torso_frame",
+              "rear_thigh_right"
+            ],
+            [
+              "front_carrier_right",
+              "front_upper_arm_right"
+            ]
+          ]
+        },
+        "roll": {
+          "min": -5.5,
+          "max": 29.25,
+          "stops": [
+            [
+              "rear_motor_right",
+              "rear_motor_left"
+            ],
+            [
+              "shoulder_socket_right",
+              "front_carrier_right"
+            ]
+          ]
+        },
+        "knee": {
+          "min": -77,
+          "max": 57.5,
+          "stops": [
+            [
+              "front_upper_arm_right",
+              "front_forearm_right"
+            ],
+            [
+              "rear_thigh_right",
+              "rear_shank_right"
+            ]
+          ]
+        }
+      },
+      "step": 0.25,
+      "angular_reserve_degrees": 2,
+      "search_ceiling": 180
+    },
+    "upright": {
+      "bounds": {
+        "pitch": {
+          "min": -102.75,
+          "max": 33.5,
+          "stops": [
+            [
+              "torso_frame",
+              "rear_thigh_right"
+            ],
+            [
+              "front_carrier_right",
+              "front_upper_arm_right"
+            ]
+          ]
+        },
+        "roll": {
+          "min": -5,
+          "max": 29.25,
+          "stops": [
+            [
+              "rear_motor_right",
+              "rear_motor_left"
+            ],
+            [
+              "shoulder_socket_right",
+              "front_carrier_right"
+            ]
+          ]
+        },
+        "knee": {
+          "min": -9.25,
+          "max": 62.75,
+          "stops": [
+            [
+              "front_upper_arm_right",
+              "front_forearm_right"
+            ],
+            [
+              "rear_thigh_right",
+              "rear_shank_right"
+            ]
+          ]
+        }
+      },
+      "step": 0.25,
+      "angular_reserve_degrees": 2,
+      "search_ceiling": 180
+    }
+  },
+  "configuration_count": 24,
+  "boolean_pairs": 1452,
+  "samples": [
+    {
+      "case_model": "imported_step",
+      "pose": "quadruped",
+      "axis": "pitch",
+      "endpoint": "min",
+      "delta_degrees": [
+        0.0,
+        -28.25,
+        0.0
+      ],
+      "boolean_pairs": 184,
+      "result": "pass"
+    },
+    {
+      "case_model": "imported_step",
+      "pose": "quadruped",
+      "axis": "pitch",
+      "endpoint": "max",
+      "delta_degrees": [
+        0.0,
+        107.5,
+        0.0
+      ],
+      "boolean_pairs": 34,
+      "result": "pass"
+    },
+    {
+      "case_model": "imported_step",
+      "pose": "quadruped",
+      "axis": "roll",
+      "endpoint": "min",
+      "delta_degrees": [
+        -5.5,
+        0.0,
+        0.0
+      ],
+      "boolean_pairs": 54,
+      "result": "pass"
+    },
+    {
+      "case_model": "imported_step",
+      "pose": "quadruped",
+      "axis": "roll",
+      "endpoint": "max",
+      "delta_degrees": [
+        29.25,
+        0.0,
+        0.0
+      ],
+      "boolean_pairs": 52,
+      "result": "pass"
+    },
+    {
+      "case_model": "imported_step",
+      "pose": "quadruped",
+      "axis": "knee",
+      "endpoint": "min",
+      "delta_degrees": [
+        0.0,
+        0.0,
+        -77
+      ],
+      "boolean_pairs": 26,
+      "result": "pass"
+    },
+    {
+      "case_model": "imported_step",
+      "pose": "quadruped",
+      "axis": "knee",
+      "endpoint": "max",
+      "delta_degrees": [
+        0.0,
+        0.0,
+        57.5
+      ],
+      "boolean_pairs": 20,
+      "result": "pass"
+    },
+    {
+      "case_model": "imported_step",
+      "pose": "upright",
+      "axis": "pitch",
+      "endpoint": "min",
+      "delta_degrees": [
+        0.0,
+        -102.75,
+        0.0
+      ],
+      "boolean_pairs": 178,
+      "result": "pass"
+    },
+    {
+      "case_model": "imported_step",
+      "pose": "upright",
+      "axis": "pitch",
+      "endpoint": "max",
+      "delta_degrees": [
+        0.0,
+        33.5,
+        0.0
+      ],
+      "boolean_pairs": 22,
+      "result": "pass"
+    },
+    {
+      "case_model": "imported_step",
+      "pose": "upright",
+      "axis": "roll",
+      "endpoint": "min",
+      "delta_degrees": [
+        -5,
+        0.0,
+        0.0
+      ],
+      "boolean_pairs": 62,
+      "result": "pass"
+    },
+    {
+      "case_model": "imported_step",
+      "pose": "upright",
+      "axis": "roll",
+      "endpoint": "max",
+      "delta_degrees": [
+        29.25,
+        0.0,
+        0.0
+      ],
+      "boolean_pairs": 46,
+      "result": "pass"
+    },
+    {
+      "case_model": "imported_step",
+      "pose": "upright",
+      "axis": "knee",
+      "endpoint": "min",
+      "delta_degrees": [
+        0.0,
+        0.0,
+        -9.25
+      ],
+      "boolean_pairs": 32,
+      "result": "pass"
+    },
+    {
+      "case_model": "imported_step",
+      "pose": "upright",
+      "axis": "knee",
+      "endpoint": "max",
+      "delta_degrees": [
+        0.0,
+        0.0,
+        62.75
+      ],
+      "boolean_pairs": 16,
+      "result": "pass"
+    },
+    {
+      "case_model": "conservative_caliper",
+      "pose": "quadruped",
+      "axis": "pitch",
+      "endpoint": "min",
+      "delta_degrees": [
+        0.0,
+        -28.25,
+        0.0
+      ],
+      "boolean_pairs": 184,
+      "result": "pass"
+    },
+    {
+      "case_model": "conservative_caliper",
+      "pose": "quadruped",
+      "axis": "pitch",
+      "endpoint": "max",
+      "delta_degrees": [
+        0.0,
+        107.5,
+        0.0
+      ],
+      "boolean_pairs": 34,
+      "result": "pass"
+    },
+    {
+      "case_model": "conservative_caliper",
+      "pose": "quadruped",
+      "axis": "roll",
+      "endpoint": "min",
+      "delta_degrees": [
+        -5.5,
+        0.0,
+        0.0
+      ],
+      "boolean_pairs": 54,
+      "result": "pass"
+    },
+    {
+      "case_model": "conservative_caliper",
+      "pose": "quadruped",
+      "axis": "roll",
+      "endpoint": "max",
+      "delta_degrees": [
+        29.25,
+        0.0,
+        0.0
+      ],
+      "boolean_pairs": 52,
+      "result": "pass"
+    },
+    {
+      "case_model": "conservative_caliper",
+      "pose": "quadruped",
+      "axis": "knee",
+      "endpoint": "min",
+      "delta_degrees": [
+        0.0,
+        0.0,
+        -77
+      ],
+      "boolean_pairs": 26,
+      "result": "pass"
+    },
+    {
+      "case_model": "conservative_caliper",
+      "pose": "quadruped",
+      "axis": "knee",
+      "endpoint": "max",
+      "delta_degrees": [
+        0.0,
+        0.0,
+        57.5
+      ],
+      "boolean_pairs": 20,
+      "result": "pass"
+    },
+    {
+      "case_model": "conservative_caliper",
+      "pose": "upright",
+      "axis": "pitch",
+      "endpoint": "min",
+      "delta_degrees": [
+        0.0,
+        -102.75,
+        0.0
+      ],
+      "boolean_pairs": 180,
+      "result": "pass"
+    },
+    {
+      "case_model": "conservative_caliper",
+      "pose": "upright",
+      "axis": "pitch",
+      "endpoint": "max",
+      "delta_degrees": [
+        0.0,
+        33.5,
+        0.0
+      ],
+      "boolean_pairs": 22,
+      "result": "pass"
+    },
+    {
+      "case_model": "conservative_caliper",
+      "pose": "upright",
+      "axis": "roll",
+      "endpoint": "min",
+      "delta_degrees": [
+        -5,
+        0.0,
+        0.0
+      ],
+      "boolean_pairs": 62,
+      "result": "pass"
+    },
+    {
+      "case_model": "conservative_caliper",
+      "pose": "upright",
+      "axis": "roll",
+      "endpoint": "max",
+      "delta_degrees": [
+        29.25,
+        0.0,
+        0.0
+      ],
+      "boolean_pairs": 46,
+      "result": "pass"
+    },
+    {
+      "case_model": "conservative_caliper",
+      "pose": "upright",
+      "axis": "knee",
+      "endpoint": "min",
+      "delta_degrees": [
+        0.0,
+        0.0,
+        -9.25
+      ],
+      "boolean_pairs": 30,
+      "result": "pass"
+    },
+    {
+      "case_model": "conservative_caliper",
+      "pose": "upright",
+      "axis": "knee",
+      "endpoint": "max",
+      "delta_degrees": [
+        0.0,
+        0.0,
+        62.75
+      ],
+      "boolean_pairs": 16,
+      "result": "pass"
+    }
+  ],
+  "limits": "Discrete nominal-clearance checks of the displayed endpoints; not continuous, tolerance-expanded, load, wiring or calibrated servo limits.",
+  "case_model_note": "Conservative-case verification clears both servo-reference and assembly nominal-scene caches before rebuilding all cases; imported and conservative checks run against separate scenes.",
+  "tested_scene_sha256": "d0337e66180bfb67bef9f29c1a9ea4d3b45d6333ef64691bd514f23dfb773024",
+  "metadata_refresh": "viewer-metadata-refresh.json: notes only; every non-note scene field verified identical."
+}

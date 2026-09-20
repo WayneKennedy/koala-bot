@@ -1,9 +1,10 @@
 # SPDX-License-Identifier: CERN-OHL-S-2.0
-"""Rear-leg clearance and viewer for the DEC-57 proposed 45-degree A/B mount.
+"""Production rear-leg clearance and viewer with the DEC-61 45-degree mount.
 
 Run from hardware: .venv/bin/python -m koala_hardware.rear_leg_review
-The completed torso, front legs, cables and loaded locomotion are outside this
-review. The main assembly retains its previous torso mounting datum.
+The actual production torso is included. Front limbs, their mounting hardware,
+the neck allocation, cables and loaded locomotion are outside this review.
+The two optional thigh studies retain their historical geometry and status.
 """
 from functools import lru_cache
 from pathlib import Path
@@ -18,8 +19,7 @@ import subprocess
 import tempfile
 from build123d import Pos, Rot, Plane, mirror, Compound, export_step
 from . import assembly as A, body_plan as B, params as P, servo_iface as S, audit
-from .parts import links as L, pelvis
-from .pitch_socket_tilt_study import mount_face, socket_frame
+from .parts import links as L, pelvis, torso, neck_space
 
 ROOT=Path(__file__).resolve().parents[3]
 OUT=ROOT/'docs/design/rear-leg'
@@ -122,7 +122,7 @@ def collisions(pose='quadruped',roll=0,pitch=0,knee=0,cache=None):
 
 
 def validate():
-    result={'status':'proposed rear assembly; CAD clearance only','local_roll':[],'local_knee':[],
+    result={'status':'production rear assembly with complete torso; CAD clearance only','local_roll':[],'local_knee':[],
             'assembly':[],'access':{},'source_sha256':{}}
     thigh=L.upper_link(P.BODY_THIGH_MM,True);shank=L.lower_link(P.BODY_SHANK_MM,False,P.SHANK_MOTOR_INSET if THIGH_FLAT else 0.0)
     if THIGH_OPTIONS:
@@ -131,7 +131,10 @@ def validate():
         result['status']='thigh print-form options (left: frame, right: split); CAD clearance only'
     elif THIGH_FLAT:
         variants={'flat':L.rear_thigh_flat(P.BODY_THIGH_MM)};result['status']='option 3 one-piece tapered thigh on both legs; CAD clearance only'
-    else:variants={'thigh':thigh}
+    else:
+        variants={'thigh':thigh}
+        specs=[f() for f in (pelvis.build,L.build_hip_carrier,L.build_thigh,L.build_shank,torso.build)]
+        result['parts']={s['name']:{'version':s['version'],'printable':s['printable']} for s in specs}
     ct=Pos(-P.ROOT_ROLL_Y,0,0)*Rot(Z=-90)
     with patch.object(S,'case_model',return_value=None):fallback=S.socket_reference.__wrapped__()
     obstacles={'carrier':ct*L.carrier(), 'B imported case':ct*L.roll_socket_frame(P.ROOT_ROLL_Y)*S.socket_reference(),
@@ -202,9 +205,10 @@ def validate():
         assert not result['assembly'][-len(samples)]['collisions'],'nominal rear assembly must clear'
     result['limits']=['The local ranges check the named printed link and adjacent case/carrier; they are not full-robot motion limits.',
                       'Both rear legs, wheels and hardware constrain the separate viewer dynamically. Hidden parts remain obstacles.',
-                      'Complete torso/front legs, cables, floor constraints, tolerances, physical indexing and loaded walking remain unverified.',
-                      'No new slicing or physical print. Motor face boss and screw depth remain supplier/physical checks.']
-    for file in (Path(__file__),Path(L.__file__),Path(P.__file__),Path(S.__file__),Path(A.__file__),Path(pelvis.__file__),Path(audit.__file__)):
+                      'The complete production torso is included; front limbs/mounts, neck allocation, cables, floor constraints, tolerances, physical indexing and loaded walking are outside this rear-only review.',
+                      ('No new slicing or physical print. Motor face boss and screw depth remain supplier/physical checks.' if THIGH_OPTIONS or THIGH_FLAT else
+                       'Thigh v3 has hash-matched local slices and inspected layers; shank v2 has prior recorded bed-only organic slices matching current STL hash prefixes (OQ-22). Both remain unprinted. Root socket v1 has separate physical evidence. Motor face boss and screw depth remain supplier/physical checks.')]
+    for file in (Path(__file__),Path(L.__file__),Path(P.__file__),Path(S.__file__),Path(A.__file__),Path(B.__file__),Path(pelvis.__file__),Path(torso.__file__),Path(neck_space.__file__),Path(audit.__file__)):
         result['source_sha256'][str(file.relative_to(ROOT))]=hashlib.sha256(file.read_bytes()).hexdigest()
     if S._ST3215_STEP.exists():result['local_case_reference_sha256']=hashlib.sha256(S._ST3215_STEP.read_bytes()).hexdigest()
     (out_dir()/'clearance.json').write_text(json.dumps(result,indent=2)+'\n')
@@ -232,18 +236,20 @@ def build_viewer():
                 # Lay out the prints on separate 200 mm bed diagrams.
                 mesh.apply_translation((-mesh.bounds[0][0]+index*140,-mesh.bounds[0][1],-mesh.bounds[0][2]))
                 parts.append(V._item(spec['name'],mesh,colour,kind='printed',
-                                    printable=spec.get('printable','unknown'),qty=2,notes=spec['notes'],material='PETG'))
+                                    printable=spec.get('printable','unknown'),qty=2,notes=spec['notes'],material='PETG',
+                                    **({'version':spec['version']} if not (THIGH_OPTIONS or THIGH_FLAT) else {})))
         A.nominal_details.cache_clear();nominal.cache_clear()
     data={'poses':poses,'parts':parts,'meta':{'ground_z':0,'grid':20,'bed':[200,200],
           'track':P.BODY_TRACK_TARGET_MM-(2*P.SHANK_MOTOR_INSET if THIGH_FLAT else 0),'stance':P.BODY_STANDING_HEIGHT_MM,'hip_axes':2*L.rear_axis_y(),
           'joints':{name:A.joint_data(name) for name in poses},
           'status':(f'Option 3 (owner, 2026-09-19) on both legs: one-piece DEC-58 thigh, idler-side cheek thickened to the cup-floor plane with a single flat taper to the pad; prints on that plane with tree support. Shank with the 37D moved inboard {P.SHANK_MOTOR_INSET:g} mm so its outer print face is one plane: track {P.BODY_TRACK_TARGET_MM-2*P.SHANK_MOTOR_INSET:g} mm here. Everything else as DEC-57/58. Unprinted; strength unverified.' if THIGH_FLAT else
                     'Thigh print-form options (2026-09-19): LEFT leg = option 1, one print with a closed knee-end frame, stands on the socket to print; RIGHT leg = option 2, body plus bolted cheek piece (pink), both lie flat. Everything else as DEC-57/58. Unprinted; strength unverified.' if THIGH_OPTIONS else
-                    'DEC-57 proposal: 45° A socket mount; retained B carrier. Revised thigh and motor shank. Rear assembly only; torso shown as a face patch. Printability unknown. Sampled mechanical ranges; floor, cables, front limbs and loaded motion unverified.')}}
+                    'Production rear assembly: DEC-61 45° A socket mount, retained B carrier, thigh v3 and shank v2 with the complete torso frame. Thigh v3 is unknown printable; shank v2 assumed; both unprinted. Sampled mechanical ranges include the torso and both legs. Front limbs/mounts, neck allocation, floor, cables and loaded motion are outside this review.')}}
     (LIVE/'scene.json').write_text(json.dumps(data))
     title='Rear leg · option 3 tapered thigh' if THIGH_FLAT else 'Rear leg · thigh options (L: frame, R: split)' if THIGH_OPTIONS else 'Rear leg · DEC-61 45° mount'
     html=V.HTML.read_text().replace('<title>Koala V1</title>',f'<title>Koala {title.lower()}</title>').replace('<h1>Koala V1</h1>',f'<h1>{title}</h1>')
     html=html.replace('Supported · front feet','Quadruped').replace('Upright · head pending','Upright').replace('Knee / elbow adjustment','Knee adjustment')
+    html=html.replace('Shoulder / hip pitch','Hip pitch').replace('Shoulder / hip roll','Hip roll')
     (LIVE/'index.html').write_text(html)
     for name in ('mechanical_limits.js',):shutil.copy(V.HTML.with_name(name),LIVE/name)
     for file in (ROOT/'hardware/vendor/viewer').iterdir():
@@ -268,7 +274,7 @@ def build_viewer():
         right=Pos(0,0,-right.bounding_box().min.Z)*right
         export_step(right,out_dir()/f'{name}-right.step')
         export_step(mirror(right,Plane.XZ),out_dir()/f'{name}-left.step')
-    print('wrote proposed rear-leg viewer',LIVE,flush=True)
+    print('wrote rear-leg viewer',LIVE,flush=True)
 
 
 def validate_viewer_endpoints():
@@ -286,10 +292,62 @@ def validate_viewer_endpoints():
             rows.append({'pose':pose,'roll':roll,'pitch':pitch,'knee_delta':knee,'collisions':hits})
             print('combined sample',pose,roll,pitch,knee,hits,flush=True)
     result={'scene_sha256':data['scene_sha256'],'engine_sha256':data['engine_sha256'],
-            'scope':'Imported case plus measured horns; all rear solids and both legs. Nominal pocket contact only is allowed.',
+            'scope':'Imported case plus measured horns; complete production torso, all rear solids and both legs. Nominal pocket contact only is allowed. Front limbs/mounts and neck allocation are excluded.',
             'checks':rows,'all_passed':all(not r['collisions'] for r in rows)}
     (out_dir()/'viewer-endpoints.json').write_text(json.dumps(result,indent=2)+'\n')
     assert result['all_passed'],'Rear viewer endpoints or combined samples intersect; inspect viewer-endpoints.json'
+
+
+def production_records():
+    """Current exported-mesh metrics and native sections; historical studies stay separate.
+
+    Run the main export first, as documented, so the recorded STL hashes name
+    the actual files users print rather than another temporary triangulation.
+    """
+    import trimesh
+    import matplotlib
+    matplotlib.use('Agg')
+    import matplotlib.pyplot as plt
+    from build123d import section
+    from .printability import metrics
+    specs=[L.build_thigh(),L.build_shank()];rows=[]
+    for spec in specs:
+        for side in ('right','left'):
+            name=f"{spec['name']}_{side}";path=A.ROOT/'build/stl'/f'{name}.stl'
+            mesh=trimesh.load(path,force='mesh')
+            assert mesh.is_watertight and mesh.volume>0,name
+            rows.append({'part':name,'version':spec['version'],'printable':spec['printable'],
+                         'stl':str(path.relative_to(ROOT)),'stl_sha256':hashlib.sha256(path.read_bytes()).hexdigest(),
+                         'watertight':True,'positive_volume':True,**metrics(mesh)})
+    slice_path=ROOT/'docs/design/front-redesign/slices.json'
+    slices=json.loads(slice_path.read_text())
+    for row in rows:
+        if row['part'].startswith('thigh_'):
+            record=next(x for x in slices['parts'] if x['name']==row['part'])
+            assert record['version']==row['version'] and record['stl_sha256']==row['stl_sha256'],row['part']
+            row['slice_record']=str(slice_path.relative_to(ROOT))
+            row['slice_diagnostics']=record['diagnostics']
+        else:
+            prefix={'shank_left':'335d9f74','shank_right':'ae2ac311'}[row['part']]
+            assert row['stl_sha256'].startswith(prefix),row['part']
+            row['prior_slice_record']='docs/open-questions.md (OQ-22, 2026-09-19 bed-only organic jobs)'
+            row['recorded_stl_sha256_prefix']=prefix
+    result={'parts':rows,'scope':'Current main-export STLs; surface metrics are not slicing or physical-print evidence. Matching thigh slices are linked separately.',
+            'physical_status':'Thigh v3 unknown, locally sliced with inspected layers; shank v2 assumed, with prior recorded slices matching current STL hash prefixes (OQ-22). Both revisions remain unprinted.',
+            'source_sha256':{str(Path(m.__file__).relative_to(ROOT)):hashlib.sha256(Path(m.__file__).read_bytes()).hexdigest()
+                             for m in (L,P)}}
+    (OUT/'manufacturing.json').write_text(json.dumps(result,indent=2)+'\n')
+    fig,axes=plt.subplots(1,2,figsize=(12,8))
+    for ax,spec,plane,column,label in zip(axes,specs,(Plane.YZ,Plane.XZ),(1,0),('X = 0','Y = 0')):
+        for edge in section(spec['part'],section_by=plane).edges():
+            count=max(2,int(edge.length*4)+1)
+            points=[tuple(edge.position_at(i/(count-1))) for i in range(count)]
+            ax.plot([p[column] for p in points],[p[2] for p in points],color='#285a72',linewidth=1.5)
+        ax.set_title(f"{spec['name']} v{spec['version']} · {label}")
+        ax.set_xlabel(('Y' if column else 'X')+' (mm)');ax.set_ylabel('Z down link (mm)')
+        ax.set_aspect('equal');ax.invert_yaxis();ax.grid(alpha=.2)
+    fig.suptitle('Production rear-link sections · generated solids\nSupport removal and loaded strength unverified')
+    fig.tight_layout();fig.savefig(OUT/'sections.png',dpi=130);plt.close(fig)
 
 
 def main():
@@ -303,6 +361,7 @@ def main():
     if not args.viewer_only:validate()
     build_viewer()
     validate_viewer_endpoints()
+    if not (THIGH_OPTIONS or THIGH_FLAT):production_records()
 
 
 if __name__=='__main__':main()

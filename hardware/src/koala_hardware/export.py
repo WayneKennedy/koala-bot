@@ -173,7 +173,8 @@ def write_bom(bom: list[dict]) -> bool:
     if sliced:
         preamble = (f"Figures with a matching STL hash are **slicer estimates** using "
                     f"the recorded PETG/TPU review settings "
-                    f"(`docs/design/manufacturing/slices.json`); changed or unsliced "
+                    f"(`docs/design/manufacturing/slices.json` and "
+                    f"`docs/design/front-redesign/slices.json`); changed or unsliced "
                     f"parts fall back to a labelled solid-geometry upper "
                     f"bound. All structural parts printed solid would be "
                     f"{tot_solid_mass:.0f} g.")

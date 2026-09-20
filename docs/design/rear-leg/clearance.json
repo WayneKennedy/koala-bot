@@ -1,492 +1,492 @@
 {
-  "status": "proposed rear assembly; CAD clearance only",
+  "status": "production rear assembly with complete torso; CAD clearance only",
   "local_roll": [
     {
       "degrees": -30,
       "intersection_mm3": {
-        "thigh vs carrier": 0.0,
-        "thigh vs B imported case": 0.0,
-        "thigh vs B measured case": 0.0
+        "thigh vs carrier": 0,
+        "thigh vs B imported case": 0,
+        "thigh vs B measured case": 0
       }
     },
     {
       "degrees": -29,
       "intersection_mm3": {
-        "thigh vs carrier": 0.0,
-        "thigh vs B imported case": 0.0,
-        "thigh vs B measured case": 0.0
+        "thigh vs carrier": 0,
+        "thigh vs B imported case": 0,
+        "thigh vs B measured case": 0
       }
     },
     {
       "degrees": -28,
       "intersection_mm3": {
-        "thigh vs carrier": 0.0,
-        "thigh vs B imported case": 0.0,
-        "thigh vs B measured case": 0.0
+        "thigh vs carrier": 0,
+        "thigh vs B imported case": 0,
+        "thigh vs B measured case": 0
       }
     },
     {
       "degrees": -27,
       "intersection_mm3": {
-        "thigh vs carrier": 0.0,
-        "thigh vs B imported case": 0.0,
-        "thigh vs B measured case": 0.0
+        "thigh vs carrier": 0,
+        "thigh vs B imported case": 0,
+        "thigh vs B measured case": 0
       }
     },
     {
       "degrees": -26,
       "intersection_mm3": {
-        "thigh vs carrier": 0.0,
-        "thigh vs B imported case": 0.0,
-        "thigh vs B measured case": 0.0
+        "thigh vs carrier": 0,
+        "thigh vs B imported case": 0,
+        "thigh vs B measured case": 0
       }
     },
     {
       "degrees": -25,
       "intersection_mm3": {
-        "thigh vs carrier": 0.0,
-        "thigh vs B imported case": 0.0,
-        "thigh vs B measured case": 0.0
+        "thigh vs carrier": 0,
+        "thigh vs B imported case": 0,
+        "thigh vs B measured case": 0
       }
     },
     {
       "degrees": -24,
       "intersection_mm3": {
-        "thigh vs carrier": 0.0,
-        "thigh vs B imported case": 0.0,
-        "thigh vs B measured case": 0.0
+        "thigh vs carrier": 0,
+        "thigh vs B imported case": 0,
+        "thigh vs B measured case": 0
       }
     },
     {
       "degrees": -23,
       "intersection_mm3": {
-        "thigh vs carrier": 0.0,
-        "thigh vs B imported case": 0.0,
-        "thigh vs B measured case": 0.0
+        "thigh vs carrier": 0,
+        "thigh vs B imported case": 0,
+        "thigh vs B measured case": 0
       }
     },
     {
       "degrees": -22,
       "intersection_mm3": {
-        "thigh vs carrier": 0.0,
-        "thigh vs B imported case": 0.0,
-        "thigh vs B measured case": 0.0
+        "thigh vs carrier": 0,
+        "thigh vs B imported case": 0,
+        "thigh vs B measured case": 0
       }
     },
     {
       "degrees": -21,
       "intersection_mm3": {
-        "thigh vs carrier": 0.0,
-        "thigh vs B imported case": 0.0,
-        "thigh vs B measured case": 0.0
+        "thigh vs carrier": 0,
+        "thigh vs B imported case": 0,
+        "thigh vs B measured case": 0
       }
     },
     {
       "degrees": -20,
       "intersection_mm3": {
-        "thigh vs carrier": 0.0,
-        "thigh vs B imported case": 0.0,
-        "thigh vs B measured case": 0.0
+        "thigh vs carrier": 0,
+        "thigh vs B imported case": 0,
+        "thigh vs B measured case": 0
       }
     },
     {
       "degrees": -19,
       "intersection_mm3": {
-        "thigh vs carrier": 0.0,
-        "thigh vs B imported case": 0.0,
-        "thigh vs B measured case": 0.0
+        "thigh vs carrier": 0,
+        "thigh vs B imported case": 0,
+        "thigh vs B measured case": 0
       }
     },
     {
       "degrees": -18,
       "intersection_mm3": {
-        "thigh vs carrier": 0.0,
-        "thigh vs B imported case": 0.0,
-        "thigh vs B measured case": 0.0
+        "thigh vs carrier": 0,
+        "thigh vs B imported case": 0,
+        "thigh vs B measured case": 0
       }
     },
     {
       "degrees": -17,
       "intersection_mm3": {
-        "thigh vs carrier": 0.0,
-        "thigh vs B imported case": 0.0,
-        "thigh vs B measured case": 0.0
+        "thigh vs carrier": 0,
+        "thigh vs B imported case": 0,
+        "thigh vs B measured case": 0
       }
     },
     {
       "degrees": -16,
       "intersection_mm3": {
-        "thigh vs carrier": 0.0,
-        "thigh vs B imported case": 0.0,
-        "thigh vs B measured case": 0.0
+        "thigh vs carrier": 0,
+        "thigh vs B imported case": 0,
+        "thigh vs B measured case": 0
       }
     },
     {
       "degrees": -15,
       "intersection_mm3": {
-        "thigh vs carrier": 0.0,
-        "thigh vs B imported case": 0.0,
-        "thigh vs B measured case": 0.0
+        "thigh vs carrier": 0,
+        "thigh vs B imported case": 0,
+        "thigh vs B measured case": 0
       }
     },
     {
       "degrees": -14,
       "intersection_mm3": {
-        "thigh vs carrier": 0.0,
-        "thigh vs B imported case": 0.0,
-        "thigh vs B measured case": 0.0
+        "thigh vs carrier": 0,
+        "thigh vs B imported case": 0,
+        "thigh vs B measured case": 0
       }
     },
     {
       "degrees": -13,
       "intersection_mm3": {
-        "thigh vs carrier": 0.0,
-        "thigh vs B imported case": 0.0,
-        "thigh vs B measured case": 0.0
+        "thigh vs carrier": 0,
+        "thigh vs B imported case": 0,
+        "thigh vs B measured case": 0
       }
     },
     {
       "degrees": -12,
       "intersection_mm3": {
-        "thigh vs carrier": 0.0,
-        "thigh vs B imported case": 0.0,
-        "thigh vs B measured case": 0.0
+        "thigh vs carrier": 0,
+        "thigh vs B imported case": 0,
+        "thigh vs B measured case": 0
       }
     },
     {
       "degrees": -11,
       "intersection_mm3": {
-        "thigh vs carrier": 0.0,
-        "thigh vs B imported case": 0.0,
-        "thigh vs B measured case": 0.0
+        "thigh vs carrier": 0,
+        "thigh vs B imported case": 0,
+        "thigh vs B measured case": 0
       }
     },
     {
       "degrees": -10,
       "intersection_mm3": {
-        "thigh vs carrier": 0.0,
-        "thigh vs B imported case": 0.0,
-        "thigh vs B measured case": 0.0
+        "thigh vs carrier": 0,
+        "thigh vs B imported case": 0,
+        "thigh vs B measured case": 0
       }
     },
     {
       "degrees": -9,
       "intersection_mm3": {
-        "thigh vs carrier": 0.0,
-        "thigh vs B imported case": 0.0,
-        "thigh vs B measured case": 0.0
+        "thigh vs carrier": 0,
+        "thigh vs B imported case": 0,
+        "thigh vs B measured case": 0
       }
     },
     {
       "degrees": -8,
       "intersection_mm3": {
-        "thigh vs carrier": 0.0,
-        "thigh vs B imported case": 0.0,
-        "thigh vs B measured case": 0.0
+        "thigh vs carrier": 0,
+        "thigh vs B imported case": 0,
+        "thigh vs B measured case": 0
       }
     },
     {
       "degrees": -7,
       "intersection_mm3": {
-        "thigh vs carrier": 0.0,
-        "thigh vs B imported case": 0.0,
-        "thigh vs B measured case": 0.0
+        "thigh vs carrier": 0,
+        "thigh vs B imported case": 0,
+        "thigh vs B measured case": 0
       }
     },
     {
       "degrees": -6,
       "intersection_mm3": {
-        "thigh vs carrier": 0.0,
-        "thigh vs B imported case": 0.0,
-        "thigh vs B measured case": 0.0
+        "thigh vs carrier": 0,
+        "thigh vs B imported case": 0,
+        "thigh vs B measured case": 0
       }
     },
     {
       "degrees": -5,
       "intersection_mm3": {
-        "thigh vs carrier": 0.0,
-        "thigh vs B imported case": 0.0,
-        "thigh vs B measured case": 0.0
+        "thigh vs carrier": 0,
+        "thigh vs B imported case": 0,
+        "thigh vs B measured case": 0
       }
     },
     {
       "degrees": -4,
       "intersection_mm3": {
-        "thigh vs carrier": 0.0,
-        "thigh vs B imported case": 0.0,
-        "thigh vs B measured case": 0.0
+        "thigh vs carrier": 0,
+        "thigh vs B imported case": 0,
+        "thigh vs B measured case": 0
       }
     },
     {
       "degrees": -3,
       "intersection_mm3": {
-        "thigh vs carrier": 0.0,
-        "thigh vs B imported case": 0.0,
-        "thigh vs B measured case": 0.0
+        "thigh vs carrier": 0,
+        "thigh vs B imported case": 0,
+        "thigh vs B measured case": 0
       }
     },
     {
       "degrees": -2,
       "intersection_mm3": {
-        "thigh vs carrier": 0.0,
-        "thigh vs B imported case": 0.0,
-        "thigh vs B measured case": 0.0
+        "thigh vs carrier": 0,
+        "thigh vs B imported case": 0,
+        "thigh vs B measured case": 0
       }
     },
     {
       "degrees": -1,
       "intersection_mm3": {
-        "thigh vs carrier": 0.0,
-        "thigh vs B imported case": 0.0,
-        "thigh vs B measured case": 0.0
+        "thigh vs carrier": 0,
+        "thigh vs B imported case": 0,
+        "thigh vs B measured case": 0
       }
     },
     {
       "degrees": 0,
       "intersection_mm3": {
-        "thigh vs carrier": 0.0,
-        "thigh vs B imported case": 0.0,
-        "thigh vs B measured case": 0.0
+        "thigh vs carrier": 0,
+        "thigh vs B imported case": 0,
+        "thigh vs B measured case": 0
       }
     },
     {
       "degrees": 1,
       "intersection_mm3": {
-        "thigh vs carrier": 0.0,
-        "thigh vs B imported case": 0.0,
-        "thigh vs B measured case": 0.0
+        "thigh vs carrier": 0,
+        "thigh vs B imported case": 0,
+        "thigh vs B measured case": 0
       }
     },
     {
       "degrees": 2,
       "intersection_mm3": {
-        "thigh vs carrier": 0.0,
-        "thigh vs B imported case": 0.0,
-        "thigh vs B measured case": 0.0
+        "thigh vs carrier": 0,
+        "thigh vs B imported case": 0,
+        "thigh vs B measured case": 0
       }
     },
     {
       "degrees": 3,
       "intersection_mm3": {
-        "thigh vs carrier": 0.0,
-        "thigh vs B imported case": 0.0,
-        "thigh vs B measured case": 0.0
+        "thigh vs carrier": 0,
+        "thigh vs B imported case": 0,
+        "thigh vs B measured case": 0
       }
     },
     {
       "degrees": 4,
       "intersection_mm3": {
-        "thigh vs carrier": 0.0,
-        "thigh vs B imported case": 0.0,
-        "thigh vs B measured case": 0.0
+        "thigh vs carrier": 0,
+        "thigh vs B imported case": 0,
+        "thigh vs B measured case": 0
       }
     },
     {
       "degrees": 5,
       "intersection_mm3": {
-        "thigh vs carrier": 0.0,
-        "thigh vs B imported case": 0.0,
-        "thigh vs B measured case": 0.0
+        "thigh vs carrier": 0,
+        "thigh vs B imported case": 0,
+        "thigh vs B measured case": 0
       }
     },
     {
       "degrees": 6,
       "intersection_mm3": {
-        "thigh vs carrier": 0.0,
-        "thigh vs B imported case": 0.0,
-        "thigh vs B measured case": 0.0
+        "thigh vs carrier": 0,
+        "thigh vs B imported case": 0,
+        "thigh vs B measured case": 0
       }
     },
     {
       "degrees": 7,
       "intersection_mm3": {
-        "thigh vs carrier": 0.0,
-        "thigh vs B imported case": 0.0,
-        "thigh vs B measured case": 0.0
+        "thigh vs carrier": 0,
+        "thigh vs B imported case": 0,
+        "thigh vs B measured case": 0
       }
     },
     {
       "degrees": 8,
       "intersection_mm3": {
-        "thigh vs carrier": 0.0,
-        "thigh vs B imported case": 0.0,
-        "thigh vs B measured case": 0.0
+        "thigh vs carrier": 0,
+        "thigh vs B imported case": 0,
+        "thigh vs B measured case": 0
       }
     },
     {
       "degrees": 9,
       "intersection_mm3": {
-        "thigh vs carrier": 0.0,
-        "thigh vs B imported case": 0.0,
-        "thigh vs B measured case": 0.0
+        "thigh vs carrier": 0,
+        "thigh vs B imported case": 0,
+        "thigh vs B measured case": 0
       }
     },
     {
       "degrees": 10,
       "intersection_mm3": {
-        "thigh vs carrier": 0.0,
-        "thigh vs B imported case": 0.0,
-        "thigh vs B measured case": 0.0
+        "thigh vs carrier": 0,
+        "thigh vs B imported case": 0,
+        "thigh vs B measured case": 0
       }
     },
     {
       "degrees": 11,
       "intersection_mm3": {
-        "thigh vs carrier": 0.0,
-        "thigh vs B imported case": 0.0,
-        "thigh vs B measured case": 0.0
+        "thigh vs carrier": 0,
+        "thigh vs B imported case": 0,
+        "thigh vs B measured case": 0
       }
     },
     {
       "degrees": 12,
       "intersection_mm3": {
-        "thigh vs carrier": 0.0,
-        "thigh vs B imported case": 0.0,
-        "thigh vs B measured case": 0.0
+        "thigh vs carrier": 0,
+        "thigh vs B imported case": 0,
+        "thigh vs B measured case": 0
       }
     },
     {
       "degrees": 13,
       "intersection_mm3": {
-        "thigh vs carrier": 0.0,
-        "thigh vs B imported case": 0.0,
-        "thigh vs B measured case": 0.0
+        "thigh vs carrier": 0,
+        "thigh vs B imported case": 0,
+        "thigh vs B measured case": 0
       }
     },
     {
       "degrees": 14,
       "intersection_mm3": {
-        "thigh vs carrier": 0.0,
-        "thigh vs B imported case": 0.0,
-        "thigh vs B measured case": 0.0
+        "thigh vs carrier": 0,
+        "thigh vs B imported case": 0,
+        "thigh vs B measured case": 0
       }
     },
     {
       "degrees": 15,
       "intersection_mm3": {
-        "thigh vs carrier": 0.0,
-        "thigh vs B imported case": 0.0,
-        "thigh vs B measured case": 0.0
+        "thigh vs carrier": 0,
+        "thigh vs B imported case": 0,
+        "thigh vs B measured case": 0
       }
     },
     {
       "degrees": 16,
       "intersection_mm3": {
-        "thigh vs carrier": 0.0,
-        "thigh vs B imported case": 0.0,
-        "thigh vs B measured case": 0.0
+        "thigh vs carrier": 0,
+        "thigh vs B imported case": 0,
+        "thigh vs B measured case": 0
       }
     },
     {
       "degrees": 17,
       "intersection_mm3": {
-        "thigh vs carrier": 0.0,
-        "thigh vs B imported case": 0.0,
-        "thigh vs B measured case": 0.0
+        "thigh vs carrier": 0,
+        "thigh vs B imported case": 0,
+        "thigh vs B measured case": 0
       }
     },
     {
       "degrees": 18,
       "intersection_mm3": {
-        "thigh vs carrier": 0.0,
-        "thigh vs B imported case": 0.0,
-        "thigh vs B measured case": 0.0
+        "thigh vs carrier": 0,
+        "thigh vs B imported case": 0,
+        "thigh vs B measured case": 0
       }
     },
     {
       "degrees": 19,
       "intersection_mm3": {
-        "thigh vs carrier": 0.0,
-        "thigh vs B imported case": 0.0,
-        "thigh vs B measured case": 0.0
+        "thigh vs carrier": 0,
+        "thigh vs B imported case": 0,
+        "thigh vs B measured case": 0
       }
     },
     {
       "degrees": 20,
       "intersection_mm3": {
-        "thigh vs carrier": 0.0,
-        "thigh vs B imported case": 0.0,
-        "thigh vs B measured case": 0.0
+        "thigh vs carrier": 0,
+        "thigh vs B imported case": 0,
+        "thigh vs B measured case": 0
       }
     },
     {
       "degrees": 21,
       "intersection_mm3": {
-        "thigh vs carrier": 0.0,
-        "thigh vs B imported case": 0.0,
-        "thigh vs B measured case": 0.0
+        "thigh vs carrier": 0,
+        "thigh vs B imported case": 0,
+        "thigh vs B measured case": 0
       }
     },
     {
       "degrees": 22,
       "intersection_mm3": {
-        "thigh vs carrier": 0.0,
-        "thigh vs B imported case": 0.0,
-        "thigh vs B measured case": 0.0
+        "thigh vs carrier": 0,
+        "thigh vs B imported case": 0,
+        "thigh vs B measured case": 0
       }
     },
     {
       "degrees": 23,
       "intersection_mm3": {
-        "thigh vs carrier": 0.0,
-        "thigh vs B imported case": 0.0,
-        "thigh vs B measured case": 0.0
+        "thigh vs carrier": 0,
+        "thigh vs B imported case": 0,
+        "thigh vs B measured case": 0
       }
     },
     {
       "degrees": 24,
       "intersection_mm3": {
-        "thigh vs carrier": 0.0,
-        "thigh vs B imported case": 0.0,
-        "thigh vs B measured case": 0.0
+        "thigh vs carrier": 0,
+        "thigh vs B imported case": 0,
+        "thigh vs B measured case": 0
       }
     },
     {
       "degrees": 25,
       "intersection_mm3": {
-        "thigh vs carrier": 0.0,
-        "thigh vs B imported case": 0.0,
-        "thigh vs B measured case": 0.0
+        "thigh vs carrier": 0,
+        "thigh vs B imported case": 0,
+        "thigh vs B measured case": 0
       }
     },
     {
       "degrees": 26,
       "intersection_mm3": {
-        "thigh vs carrier": 0.0,
-        "thigh vs B imported case": 0.0,
-        "thigh vs B measured case": 0.0
+        "thigh vs carrier": 0,
+        "thigh vs B imported case": 0,
+        "thigh vs B measured case": 0
       }
     },
     {
       "degrees": 27,
       "intersection_mm3": {
-        "thigh vs carrier": 0.0,
-        "thigh vs B imported case": 0.0,
-        "thigh vs B measured case": 0.0
+        "thigh vs carrier": 0,
+        "thigh vs B imported case": 0,
+        "thigh vs B measured case": 0
       }
     },
     {
       "degrees": 28,
       "intersection_mm3": {
-        "thigh vs carrier": 0.0,
-        "thigh vs B imported case": 0.0,
-        "thigh vs B measured case": 0.0
+        "thigh vs carrier": 0,
+        "thigh vs B imported case": 0,
+        "thigh vs B measured case": 0
       }
     },
     {
       "degrees": 29,
       "intersection_mm3": {
-        "thigh vs carrier": 0.0,
-        "thigh vs B imported case": 0.0,
-        "thigh vs B measured case": 0.0
+        "thigh vs carrier": 0,
+        "thigh vs B imported case": 0,
+        "thigh vs B measured case": 0
       }
     },
     {
       "degrees": 30,
       "intersection_mm3": {
-        "thigh vs carrier": 0.0,
-        "thigh vs B imported case": 0.0,
-        "thigh vs B measured case": 0.0
+        "thigh vs carrier": 0,
+        "thigh vs B imported case": 0,
+        "thigh vs B measured case": 0
       }
     }
   ],
@@ -494,969 +494,969 @@
     {
       "degrees": 0,
       "intersection_mm3": {
-        "thigh": 0.0,
-        "C imported case": 0.0,
-        "C measured case": 0.0
+        "thigh": 0,
+        "C imported case": 0,
+        "C measured case": 0
       }
     },
     {
       "degrees": 1,
       "intersection_mm3": {
-        "thigh": 0.0,
-        "C imported case": 0.0,
-        "C measured case": 0.0
+        "thigh": 0,
+        "C imported case": 0,
+        "C measured case": 0
       }
     },
     {
       "degrees": 2,
       "intersection_mm3": {
-        "thigh": 0.0,
-        "C imported case": 0.0,
-        "C measured case": 0.0
+        "thigh": 0,
+        "C imported case": 0,
+        "C measured case": 0
       }
     },
     {
       "degrees": 3,
       "intersection_mm3": {
-        "thigh": 0.0,
-        "C imported case": 0.0,
-        "C measured case": 0.0
+        "thigh": 0,
+        "C imported case": 0,
+        "C measured case": 0
       }
     },
     {
       "degrees": 4,
       "intersection_mm3": {
-        "thigh": 0.0,
-        "C imported case": 0.0,
-        "C measured case": 0.0
+        "thigh": 0,
+        "C imported case": 0,
+        "C measured case": 0
       }
     },
     {
       "degrees": 5,
       "intersection_mm3": {
-        "thigh": 0.0,
-        "C imported case": 0.0,
-        "C measured case": 0.0
+        "thigh": 0,
+        "C imported case": 0,
+        "C measured case": 0
       }
     },
     {
       "degrees": 6,
       "intersection_mm3": {
-        "thigh": 0.0,
-        "C imported case": 0.0,
-        "C measured case": 0.0
+        "thigh": 0,
+        "C imported case": 0,
+        "C measured case": 0
       }
     },
     {
       "degrees": 7,
       "intersection_mm3": {
-        "thigh": 0.0,
-        "C imported case": 0.0,
-        "C measured case": 0.0
+        "thigh": 0,
+        "C imported case": 0,
+        "C measured case": 0
       }
     },
     {
       "degrees": 8,
       "intersection_mm3": {
-        "thigh": 0.0,
-        "C imported case": 0.0,
-        "C measured case": 0.0
+        "thigh": 0,
+        "C imported case": 0,
+        "C measured case": 0
       }
     },
     {
       "degrees": 9,
       "intersection_mm3": {
-        "thigh": 0.0,
-        "C imported case": 0.0,
-        "C measured case": 0.0
+        "thigh": 0,
+        "C imported case": 0,
+        "C measured case": 0
       }
     },
     {
       "degrees": 10,
       "intersection_mm3": {
-        "thigh": 0.0,
-        "C imported case": 0.0,
-        "C measured case": 0.0
+        "thigh": 0,
+        "C imported case": 0,
+        "C measured case": 0
       }
     },
     {
       "degrees": 11,
       "intersection_mm3": {
-        "thigh": 0.0,
-        "C imported case": 0.0,
-        "C measured case": 0.0
+        "thigh": 0,
+        "C imported case": 0,
+        "C measured case": 0
       }
     },
     {
       "degrees": 12,
       "intersection_mm3": {
-        "thigh": 0.0,
-        "C imported case": 0.0,
-        "C measured case": 0.0
+        "thigh": 0,
+        "C imported case": 0,
+        "C measured case": 0
       }
     },
     {
       "degrees": 13,
       "intersection_mm3": {
-        "thigh": 0.0,
-        "C imported case": 0.0,
-        "C measured case": 0.0
+        "thigh": 0,
+        "C imported case": 0,
+        "C measured case": 0
       }
     },
     {
       "degrees": 14,
       "intersection_mm3": {
-        "thigh": 0.0,
-        "C imported case": 0.0,
-        "C measured case": 0.0
+        "thigh": 0,
+        "C imported case": 0,
+        "C measured case": 0
       }
     },
     {
       "degrees": 15,
       "intersection_mm3": {
-        "thigh": 0.0,
-        "C imported case": 0.0,
-        "C measured case": 0.0
+        "thigh": 0,
+        "C imported case": 0,
+        "C measured case": 0
       }
     },
     {
       "degrees": 16,
       "intersection_mm3": {
-        "thigh": 0.0,
-        "C imported case": 0.0,
-        "C measured case": 0.0
+        "thigh": 0,
+        "C imported case": 0,
+        "C measured case": 0
       }
     },
     {
       "degrees": 17,
       "intersection_mm3": {
-        "thigh": 0.0,
-        "C imported case": 0.0,
-        "C measured case": 0.0
+        "thigh": 0,
+        "C imported case": 0,
+        "C measured case": 0
       }
     },
     {
       "degrees": 18,
       "intersection_mm3": {
-        "thigh": 0.0,
-        "C imported case": 0.0,
-        "C measured case": 0.0
+        "thigh": 0,
+        "C imported case": 0,
+        "C measured case": 0
       }
     },
     {
       "degrees": 19,
       "intersection_mm3": {
-        "thigh": 0.0,
-        "C imported case": 0.0,
-        "C measured case": 0.0
+        "thigh": 0,
+        "C imported case": 0,
+        "C measured case": 0
       }
     },
     {
       "degrees": 20,
       "intersection_mm3": {
-        "thigh": 0.0,
-        "C imported case": 0.0,
-        "C measured case": 0.0
+        "thigh": 0,
+        "C imported case": 0,
+        "C measured case": 0
       }
     },
     {
       "degrees": 21,
       "intersection_mm3": {
-        "thigh": 0.0,
-        "C imported case": 0.0,
-        "C measured case": 0.0
+        "thigh": 0,
+        "C imported case": 0,
+        "C measured case": 0
       }
     },
     {
       "degrees": 22,
       "intersection_mm3": {
-        "thigh": 0.0,
-        "C imported case": 0.0,
-        "C measured case": 0.0
+        "thigh": 0,
+        "C imported case": 0,
+        "C measured case": 0
       }
     },
     {
       "degrees": 23,
       "intersection_mm3": {
-        "thigh": 0.0,
-        "C imported case": 0.0,
-        "C measured case": 0.0
+        "thigh": 0,
+        "C imported case": 0,
+        "C measured case": 0
       }
     },
     {
       "degrees": 24,
       "intersection_mm3": {
-        "thigh": 0.0,
-        "C imported case": 0.0,
-        "C measured case": 0.0
+        "thigh": 0,
+        "C imported case": 0,
+        "C measured case": 0
       }
     },
     {
       "degrees": 25,
       "intersection_mm3": {
-        "thigh": 0.0,
-        "C imported case": 0.0,
-        "C measured case": 0.0
+        "thigh": 0,
+        "C imported case": 0,
+        "C measured case": 0
       }
     },
     {
       "degrees": 26,
       "intersection_mm3": {
-        "thigh": 0.0,
-        "C imported case": 0.0,
-        "C measured case": 0.0
+        "thigh": 0,
+        "C imported case": 0,
+        "C measured case": 0
       }
     },
     {
       "degrees": 27,
       "intersection_mm3": {
-        "thigh": 0.0,
-        "C imported case": 0.0,
-        "C measured case": 0.0
+        "thigh": 0,
+        "C imported case": 0,
+        "C measured case": 0
       }
     },
     {
       "degrees": 28,
       "intersection_mm3": {
-        "thigh": 0.0,
-        "C imported case": 0.0,
-        "C measured case": 0.0
+        "thigh": 0,
+        "C imported case": 0,
+        "C measured case": 0
       }
     },
     {
       "degrees": 29,
       "intersection_mm3": {
-        "thigh": 0.0,
-        "C imported case": 0.0,
-        "C measured case": 0.0
+        "thigh": 0,
+        "C imported case": 0,
+        "C measured case": 0
       }
     },
     {
       "degrees": 30,
       "intersection_mm3": {
-        "thigh": 0.0,
-        "C imported case": 0.0,
-        "C measured case": 0.0
+        "thigh": 0,
+        "C imported case": 0,
+        "C measured case": 0
       }
     },
     {
       "degrees": 31,
       "intersection_mm3": {
-        "thigh": 0.0,
-        "C imported case": 0.0,
-        "C measured case": 0.0
+        "thigh": 0,
+        "C imported case": 0,
+        "C measured case": 0
       }
     },
     {
       "degrees": 32,
       "intersection_mm3": {
-        "thigh": 0.0,
-        "C imported case": 0.0,
-        "C measured case": 0.0
+        "thigh": 0,
+        "C imported case": 0,
+        "C measured case": 0
       }
     },
     {
       "degrees": 33,
       "intersection_mm3": {
-        "thigh": 0.0,
-        "C imported case": 0.0,
-        "C measured case": 0.0
+        "thigh": 0,
+        "C imported case": 0,
+        "C measured case": 0
       }
     },
     {
       "degrees": 34,
       "intersection_mm3": {
-        "thigh": 0.0,
-        "C imported case": 0.0,
-        "C measured case": 0.0
+        "thigh": 0,
+        "C imported case": 0,
+        "C measured case": 0
       }
     },
     {
       "degrees": 35,
       "intersection_mm3": {
-        "thigh": 0.0,
-        "C imported case": 0.0,
-        "C measured case": 0.0
+        "thigh": 0,
+        "C imported case": 0,
+        "C measured case": 0
       }
     },
     {
       "degrees": 36,
       "intersection_mm3": {
-        "thigh": 0.0,
-        "C imported case": 0.0,
-        "C measured case": 0.0
+        "thigh": 0,
+        "C imported case": 0,
+        "C measured case": 0
       }
     },
     {
       "degrees": 37,
       "intersection_mm3": {
-        "thigh": 0.0,
-        "C imported case": 0.0,
-        "C measured case": 0.0
+        "thigh": 0,
+        "C imported case": 0,
+        "C measured case": 0
       }
     },
     {
       "degrees": 38,
       "intersection_mm3": {
-        "thigh": 0.0,
-        "C imported case": 0.0,
-        "C measured case": 0.0
+        "thigh": 0,
+        "C imported case": 0,
+        "C measured case": 0
       }
     },
     {
       "degrees": 39,
       "intersection_mm3": {
-        "thigh": 0.0,
-        "C imported case": 0.0,
-        "C measured case": 0.0
+        "thigh": 0,
+        "C imported case": 0,
+        "C measured case": 0
       }
     },
     {
       "degrees": 40,
       "intersection_mm3": {
-        "thigh": 0.0,
-        "C imported case": 0.0,
-        "C measured case": 0.0
+        "thigh": 0,
+        "C imported case": 0,
+        "C measured case": 0
       }
     },
     {
       "degrees": 41,
       "intersection_mm3": {
-        "thigh": 0.0,
-        "C imported case": 0.0,
-        "C measured case": 0.0
+        "thigh": 0,
+        "C imported case": 0,
+        "C measured case": 0
       }
     },
     {
       "degrees": 42,
       "intersection_mm3": {
-        "thigh": 0.0,
-        "C imported case": 0.0,
-        "C measured case": 0.0
+        "thigh": 0,
+        "C imported case": 0,
+        "C measured case": 0
       }
     },
     {
       "degrees": 43,
       "intersection_mm3": {
-        "thigh": 0.0,
-        "C imported case": 0.0,
-        "C measured case": 0.0
+        "thigh": 0,
+        "C imported case": 0,
+        "C measured case": 0
       }
     },
     {
       "degrees": 44,
       "intersection_mm3": {
-        "thigh": 0.0,
-        "C imported case": 0.0,
-        "C measured case": 0.0
+        "thigh": 0,
+        "C imported case": 0,
+        "C measured case": 0
       }
     },
     {
       "degrees": 45,
       "intersection_mm3": {
-        "thigh": 0.0,
-        "C imported case": 0.0,
-        "C measured case": 0.0
+        "thigh": 0,
+        "C imported case": 0,
+        "C measured case": 0
       }
     },
     {
       "degrees": 46,
       "intersection_mm3": {
-        "thigh": 0.0,
-        "C imported case": 0.0,
-        "C measured case": 0.0
+        "thigh": 0,
+        "C imported case": 0,
+        "C measured case": 0
       }
     },
     {
       "degrees": 47,
       "intersection_mm3": {
-        "thigh": 0.0,
-        "C imported case": 0.0,
-        "C measured case": 0.0
+        "thigh": 0,
+        "C imported case": 0,
+        "C measured case": 0
       }
     },
     {
       "degrees": 48,
       "intersection_mm3": {
-        "thigh": 0.0,
-        "C imported case": 0.0,
-        "C measured case": 0.0
+        "thigh": 0,
+        "C imported case": 0,
+        "C measured case": 0
       }
     },
     {
       "degrees": 49,
       "intersection_mm3": {
-        "thigh": 0.0,
-        "C imported case": 0.0,
-        "C measured case": 0.0
+        "thigh": 0,
+        "C imported case": 0,
+        "C measured case": 0
       }
     },
     {
       "degrees": 50,
       "intersection_mm3": {
-        "thigh": 0.0,
-        "C imported case": 0.0,
-        "C measured case": 0.0
+        "thigh": 0,
+        "C imported case": 0,
+        "C measured case": 0
       }
     },
     {
       "degrees": 51,
       "intersection_mm3": {
-        "thigh": 0.0,
-        "C imported case": 0.0,
-        "C measured case": 0.0
+        "thigh": 0,
+        "C imported case": 0,
+        "C measured case": 0
       }
     },
     {
       "degrees": 52,
       "intersection_mm3": {
-        "thigh": 0.0,
-        "C imported case": 0.0,
-        "C measured case": 0.0
+        "thigh": 0,
+        "C imported case": 0,
+        "C measured case": 0
       }
     },
     {
       "degrees": 53,
       "intersection_mm3": {
-        "thigh": 0.0,
-        "C imported case": 0.0,
-        "C measured case": 0.0
+        "thigh": 0,
+        "C imported case": 0,
+        "C measured case": 0
       }
     },
     {
       "degrees": 54,
       "intersection_mm3": {
-        "thigh": 0.0,
-        "C imported case": 0.0,
-        "C measured case": 0.0
+        "thigh": 0,
+        "C imported case": 0,
+        "C measured case": 0
       }
     },
     {
       "degrees": 55,
       "intersection_mm3": {
-        "thigh": 0.0,
-        "C imported case": 0.0,
-        "C measured case": 0.0
+        "thigh": 0,
+        "C imported case": 0,
+        "C measured case": 0
       }
     },
     {
       "degrees": 56,
       "intersection_mm3": {
-        "thigh": 0.0,
-        "C imported case": 0.0,
-        "C measured case": 0.0
+        "thigh": 0,
+        "C imported case": 0,
+        "C measured case": 0
       }
     },
     {
       "degrees": 57,
       "intersection_mm3": {
-        "thigh": 0.0,
-        "C imported case": 0.0,
-        "C measured case": 0.0
+        "thigh": 0,
+        "C imported case": 0,
+        "C measured case": 0
       }
     },
     {
       "degrees": 58,
       "intersection_mm3": {
-        "thigh": 0.0,
-        "C imported case": 0.0,
-        "C measured case": 0.0
+        "thigh": 0,
+        "C imported case": 0,
+        "C measured case": 0
       }
     },
     {
       "degrees": 59,
       "intersection_mm3": {
-        "thigh": 0.0,
-        "C imported case": 0.0,
-        "C measured case": 0.0
+        "thigh": 0,
+        "C imported case": 0,
+        "C measured case": 0
       }
     },
     {
       "degrees": 60,
       "intersection_mm3": {
-        "thigh": 0.0,
-        "C imported case": 0.0,
-        "C measured case": 0.0
+        "thigh": 0,
+        "C imported case": 0,
+        "C measured case": 0
       }
     },
     {
       "degrees": 61,
       "intersection_mm3": {
-        "thigh": 0.0,
-        "C imported case": 0.0,
-        "C measured case": 0.0
+        "thigh": 0,
+        "C imported case": 0,
+        "C measured case": 0
       }
     },
     {
       "degrees": 62,
       "intersection_mm3": {
-        "thigh": 0.0,
-        "C imported case": 0.0,
-        "C measured case": 0.0
+        "thigh": 0,
+        "C imported case": 0,
+        "C measured case": 0
       }
     },
     {
       "degrees": 63,
       "intersection_mm3": {
-        "thigh": 0.0,
-        "C imported case": 0.0,
-        "C measured case": 0.0
+        "thigh": 0,
+        "C imported case": 0,
+        "C measured case": 0
       }
     },
     {
       "degrees": 64,
       "intersection_mm3": {
-        "thigh": 0.0,
-        "C imported case": 0.0,
-        "C measured case": 0.0
+        "thigh": 0,
+        "C imported case": 0,
+        "C measured case": 0
       }
     },
     {
       "degrees": 65,
       "intersection_mm3": {
-        "thigh": 0.0,
-        "C imported case": 0.0,
-        "C measured case": 0.0
+        "thigh": 0,
+        "C imported case": 0,
+        "C measured case": 0
       }
     },
     {
       "degrees": 66,
       "intersection_mm3": {
-        "thigh": 0.0,
-        "C imported case": 0.0,
-        "C measured case": 0.0
+        "thigh": 0,
+        "C imported case": 0,
+        "C measured case": 0
       }
     },
     {
       "degrees": 67,
       "intersection_mm3": {
-        "thigh": 0.0,
-        "C imported case": 0.0,
-        "C measured case": 0.0
+        "thigh": 0,
+        "C imported case": 0,
+        "C measured case": 0
       }
     },
     {
       "degrees": 68,
       "intersection_mm3": {
-        "thigh": 0.0,
-        "C imported case": 0.0,
-        "C measured case": 0.0
+        "thigh": 0,
+        "C imported case": 0,
+        "C measured case": 0
       }
     },
     {
       "degrees": 69,
       "intersection_mm3": {
-        "thigh": 0.0,
-        "C imported case": 0.0,
-        "C measured case": 0.0
+        "thigh": 0,
+        "C imported case": 0,
+        "C measured case": 0
       }
     },
     {
       "degrees": 70,
       "intersection_mm3": {
-        "thigh": 0.0,
-        "C imported case": 0.0,
-        "C measured case": 0.0
+        "thigh": 0,
+        "C imported case": 0,
+        "C measured case": 0
       }
     },
     {
       "degrees": 71,
       "intersection_mm3": {
-        "thigh": 0.0,
-        "C imported case": 0.0,
-        "C measured case": 0.0
+        "thigh": 0,
+        "C imported case": 0,
+        "C measured case": 0
       }
     },
     {
       "degrees": 72,
       "intersection_mm3": {
-        "thigh": 0.0,
-        "C imported case": 0.0,
-        "C measured case": 0.0
+        "thigh": 0,
+        "C imported case": 0,
+        "C measured case": 0
       }
     },
     {
       "degrees": 73,
       "intersection_mm3": {
-        "thigh": 0.0,
-        "C imported case": 0.0,
-        "C measured case": 0.0
+        "thigh": 0,
+        "C imported case": 0,
+        "C measured case": 0
       }
     },
     {
       "degrees": 74,
       "intersection_mm3": {
-        "thigh": 0.0,
-        "C imported case": 0.0,
-        "C measured case": 0.0
+        "thigh": 0,
+        "C imported case": 0,
+        "C measured case": 0
       }
     },
     {
       "degrees": 75,
       "intersection_mm3": {
-        "thigh": 0.0,
-        "C imported case": 0.0,
-        "C measured case": 0.0
+        "thigh": 0,
+        "C imported case": 0,
+        "C measured case": 0
       }
     },
     {
       "degrees": 76,
       "intersection_mm3": {
-        "thigh": 0.0,
-        "C imported case": 0.0,
-        "C measured case": 0.0
+        "thigh": 0,
+        "C imported case": 0,
+        "C measured case": 0
       }
     },
     {
       "degrees": 77,
       "intersection_mm3": {
-        "thigh": 0.0,
-        "C imported case": 0.0,
-        "C measured case": 0.0
+        "thigh": 0,
+        "C imported case": 0,
+        "C measured case": 0
       }
     },
     {
       "degrees": 78,
       "intersection_mm3": {
-        "thigh": 0.0,
-        "C imported case": 0.0,
-        "C measured case": 0.0
+        "thigh": 0,
+        "C imported case": 0,
+        "C measured case": 0
       }
     },
     {
       "degrees": 79,
       "intersection_mm3": {
-        "thigh": 0.0,
-        "C imported case": 0.0,
-        "C measured case": 0.0
+        "thigh": 0,
+        "C imported case": 0,
+        "C measured case": 0
       }
     },
     {
       "degrees": 80,
       "intersection_mm3": {
-        "thigh": 0.0,
-        "C imported case": 0.0,
-        "C measured case": 0.0
+        "thigh": 0,
+        "C imported case": 0,
+        "C measured case": 0
       }
     },
     {
       "degrees": 81,
       "intersection_mm3": {
-        "thigh": 0.0,
-        "C imported case": 0.0,
-        "C measured case": 0.0
+        "thigh": 0,
+        "C imported case": 0,
+        "C measured case": 0
       }
     },
     {
       "degrees": 82,
       "intersection_mm3": {
-        "thigh": 0.0,
-        "C imported case": 0.0,
-        "C measured case": 0.0
+        "thigh": 0,
+        "C imported case": 0,
+        "C measured case": 0
       }
     },
     {
       "degrees": 83,
       "intersection_mm3": {
-        "thigh": 0.0,
-        "C imported case": 0.0,
-        "C measured case": 0.0
+        "thigh": 0,
+        "C imported case": 0,
+        "C measured case": 0
       }
     },
     {
       "degrees": 84,
       "intersection_mm3": {
-        "thigh": 0.0,
-        "C imported case": 0.0,
-        "C measured case": 0.0
+        "thigh": 0,
+        "C imported case": 0,
+        "C measured case": 0
       }
     },
     {
       "degrees": 85,
       "intersection_mm3": {
-        "thigh": 0.0,
-        "C imported case": 0.0,
-        "C measured case": 0.0
+        "thigh": 0,
+        "C imported case": 0,
+        "C measured case": 0
       }
     },
     {
       "degrees": 86,
       "intersection_mm3": {
-        "thigh": 0.0,
-        "C imported case": 0.0,
-        "C measured case": 0.0
+        "thigh": 0,
+        "C imported case": 0,
+        "C measured case": 0
       }
     },
     {
       "degrees": 87,
       "intersection_mm3": {
-        "thigh": 0.0,
-        "C imported case": 0.0,
-        "C measured case": 0.0
+        "thigh": 0,
+        "C imported case": 0,
+        "C measured case": 0
       }
     },
     {
       "degrees": 88,
       "intersection_mm3": {
-        "thigh": 0.0,
-        "C imported case": 0.0,
-        "C measured case": 0.0
+        "thigh": 0,
+        "C imported case": 0,
+        "C measured case": 0
       }
     },
     {
       "degrees": 89,
       "intersection_mm3": {
-        "thigh": 0.0,
-        "C imported case": 0.0,
-        "C measured case": 0.0
+        "thigh": 0,
+        "C imported case": 0,
+        "C measured case": 0
       }
     },
     {
       "degrees": 90,
       "intersection_mm3": {
-        "thigh": 0.0,
-        "C imported case": 0.0,
-        "C measured case": 0.0
+        "thigh": 0,
+        "C imported case": 0,
+        "C measured case": 0
       }
     },
     {
       "degrees": 91,
       "intersection_mm3": {
-        "thigh": 0.0,
-        "C imported case": 0.0,
-        "C measured case": 0.0
+        "thigh": 0,
+        "C imported case": 0,
+        "C measured case": 0
       }
     },
     {
       "degrees": 92,
       "intersection_mm3": {
-        "thigh": 0.0,
-        "C imported case": 0.0,
-        "C measured case": 0.0
+        "thigh": 0,
+        "C imported case": 0,
+        "C measured case": 0
       }
     },
     {
       "degrees": 93,
       "intersection_mm3": {
-        "thigh": 0.0,
-        "C imported case": 0.0,
-        "C measured case": 0.0
+        "thigh": 0,
+        "C imported case": 0,
+        "C measured case": 0
       }
     },
     {
       "degrees": 94,
       "intersection_mm3": {
-        "thigh": 0.0,
-        "C imported case": 0.0,
-        "C measured case": 0.0
+        "thigh": 0,
+        "C imported case": 0,
+        "C measured case": 0
       }
     },
     {
       "degrees": 95,
       "intersection_mm3": {
-        "thigh": 0.0,
-        "C imported case": 0.0,
-        "C measured case": 0.0
+        "thigh": 0,
+        "C imported case": 0,
+        "C measured case": 0
       }
     },
     {
       "degrees": 96,
       "intersection_mm3": {
-        "thigh": 0.0,
-        "C imported case": 0.0,
-        "C measured case": 0.0
+        "thigh": 0,
+        "C imported case": 0,
+        "C measured case": 0
       }
     },
     {
       "degrees": 97,
       "intersection_mm3": {
-        "thigh": 0.0,
-        "C imported case": 0.0,
-        "C measured case": 0.0
+        "thigh": 0,
+        "C imported case": 0,
+        "C measured case": 0
       }
     },
     {
       "degrees": 98,
       "intersection_mm3": {
-        "thigh": 0.0,
-        "C imported case": 0.0,
-        "C measured case": 0.0
+        "thigh": 0,
+        "C imported case": 0,
+        "C measured case": 0
       }
     },
     {
       "degrees": 99,
       "intersection_mm3": {
-        "thigh": 0.0,
-        "C imported case": 0.0,
-        "C measured case": 0.0
+        "thigh": 0,
+        "C imported case": 0,
+        "C measured case": 0
       }
     },
     {
       "degrees": 100,
       "intersection_mm3": {
-        "thigh": 0.0,
-        "C imported case": 0.0,
-        "C measured case": 0.0
+        "thigh": 0,
+        "C imported case": 0,
+        "C measured case": 0
       }
     },
     {
       "degrees": 101,
       "intersection_mm3": {
-        "thigh": 0.0,
-        "C imported case": 0.0,
-        "C measured case": 0.0
+        "thigh": 0,
+        "C imported case": 0,
+        "C measured case": 0
       }
     },
     {
       "degrees": 102,
       "intersection_mm3": {
-        "thigh": 0.0,
-        "C imported case": 0.0,
-        "C measured case": 0.0
+        "thigh": 0,
+        "C imported case": 0,
+        "C measured case": 0
       }
     },
     {
       "degrees": 103,
       "intersection_mm3": {
-        "thigh": 0.0,
-        "C imported case": 0.0,
-        "C measured case": 0.0
+        "thigh": 0,
+        "C imported case": 0,
+        "C measured case": 0
       }
     },
     {
       "degrees": 104,
       "intersection_mm3": {
-        "thigh": 0.0,
-        "C imported case": 0.0,
-        "C measured case": 0.0
+        "thigh": 0,
+        "C imported case": 0,
+        "C measured case": 0
       }
     },
     {
       "degrees": 105,
       "intersection_mm3": {
-        "thigh": 0.0,
-        "C imported case": 0.0,
-        "C measured case": 0.0
+        "thigh": 0,
+        "C imported case": 0,
+        "C measured case": 0
       }
     },
     {
       "degrees": 106,
       "intersection_mm3": {
-        "thigh": 0.0,
-        "C imported case": 0.0,
-        "C measured case": 0.0
+        "thigh": 0,
+        "C imported case": 0,
+        "C measured case": 0
       }
     },
     {
       "degrees": 107,
       "intersection_mm3": {
-        "thigh": 0.0,
-        "C imported case": 0.0,
-        "C measured case": 0.0
+        "thigh": 0,
+        "C imported case": 0,
+        "C measured case": 0
       }
     },
     {
       "degrees": 108,
       "intersection_mm3": {
-        "thigh": 0.0,
-        "C imported case": 0.0,
-        "C measured case": 0.0
+        "thigh": 0,
+        "C imported case": 0,
+        "C measured case": 0
       }
     },
     {
       "degrees": 109,
       "intersection_mm3": {
-        "thigh": 0.0,
-        "C imported case": 0.0,
-        "C measured case": 0.0
+        "thigh": 0,
+        "C imported case": 0,
+        "C measured case": 0
       }
     },
     {
       "degrees": 110,
       "intersection_mm3": {
-        "thigh": 0.0,
-        "C imported case": 0.0,
-        "C measured case": 0.0
+        "thigh": 0,
+        "C imported case": 0,
+        "C measured case": 0
       }
     },
     {
       "degrees": 111,
       "intersection_mm3": {
-        "thigh": 0.0,
-        "C imported case": 0.0,
-        "C measured case": 0.0
+        "thigh": 0,
+        "C imported case": 0,
+        "C measured case": 0
       }
     },
     {
       "degrees": 112,
       "intersection_mm3": {
-        "thigh": 0.0,
-        "C imported case": 0.0,
-        "C measured case": 0.0
+        "thigh": 0,
+        "C imported case": 0,
+        "C measured case": 0
       }
     },
     {
       "degrees": 113,
       "intersection_mm3": {
-        "thigh": 0.0,
-        "C imported case": 0.0,
-        "C measured case": 0.0
+        "thigh": 0,
+        "C imported case": 0,
+        "C measured case": 0
       }
     },
     {
       "degrees": 114,
       "intersection_mm3": {
-        "thigh": 0.0,
-        "C imported case": 0.0,
-        "C measured case": 0.0
+        "thigh": 0,
+        "C imported case": 0,
+        "C measured case": 0
       }
     },
     {
       "degrees": 115,
       "intersection_mm3": {
-        "thigh": 0.0,
-        "C imported case": 0.0,
-        "C measured case": 0.0
+        "thigh": 0,
+        "C imported case": 0,
+        "C measured case": 0
       }
     },
     {
       "degrees": 116,
       "intersection_mm3": {
-        "thigh": 0.0,
-        "C imported case": 0.0,
-        "C measured case": 0.0
+        "thigh": 0,
+        "C imported case": 0,
+        "C measured case": 0
       }
     },
     {
       "degrees": 117,
       "intersection_mm3": {
-        "thigh": 0.0,
-        "C imported case": 0.0,
-        "C measured case": 0.0
+        "thigh": 0,
+        "C imported case": 0,
+        "C measured case": 0
       }
     },
     {
       "degrees": 118,
       "intersection_mm3": {
-        "thigh": 0.0,
-        "C imported case": 0.0,
-        "C measured case": 0.0
+        "thigh": 0,
+        "C imported case": 0,
+        "C measured case": 0
       }
     },
     {
       "degrees": 119,
       "intersection_mm3": {
-        "thigh": 0.0,
-        "C imported case": 0.0,
-        "C measured case": 0.0
+        "thigh": 0,
+        "C imported case": 0,
+        "C measured case": 0
       }
     },
     {
       "degrees": 120,
       "intersection_mm3": {
-        "thigh": 0.0,
-        "C imported case": 0.0,
-        "C measured case": 0.0
+        "thigh": 0,
+        "C imported case": 0,
+        "C measured case": 0
       }
     }
   ],
@@ -1480,7 +1480,22 @@
       "roll": 0,
       "pitch": -45,
       "knee_delta": 0,
-      "collisions": []
+      "collisions": [
+        {
+          "parts": [
+            "torso_frame",
+            "rear_thigh_right"
+          ],
+          "intersection_mm3": 903.890116
+        },
+        {
+          "parts": [
+            "torso_frame",
+            "rear_thigh_left"
+          ],
+          "intersection_mm3": 903.890116
+        }
+      ]
     },
     {
       "pose": "quadruped",
@@ -1576,68 +1591,102 @@
   ],
   "access": {
     "checks_mm3": {
-      "thigh_horn_heads": 0.0,
-      "thigh_drive_-4.95_-4.95_bore": 0.0,
-      "thigh_drive_-4.95_-4.95_driver": 0.0,
-      "thigh_drive_-4.95_4.95_bore": 0.0,
-      "thigh_drive_-4.95_4.95_driver": 0.0,
-      "thigh_drive_4.95_-4.95_bore": 0.0,
-      "thigh_drive_4.95_-4.95_driver": 0.0,
-      "thigh_drive_4.95_4.95_bore": 0.0,
-      "thigh_drive_4.95_4.95_driver": 0.0,
-      "thigh_idler_-4.95_-4.95_bore": 0.0,
-      "thigh_idler_-4.95_-4.95_driver": 0.0,
-      "thigh_idler_-4.95_4.95_bore": 0.0,
-      "thigh_idler_-4.95_4.95_driver": 0.0,
-      "thigh_idler_4.95_-4.95_bore": 0.0,
-      "thigh_idler_4.95_-4.95_driver": 0.0,
-      "thigh_idler_4.95_4.95_bore": 0.0,
-      "thigh_idler_4.95_4.95_driver": 0.0,
-      "shank_horn_heads": 0.0,
-      "shank_drive_-4.95_-4.95_bore": 0.0,
-      "shank_drive_-4.95_-4.95_driver": 0.0,
-      "shank_drive_-4.95_4.95_bore": 0.0,
-      "shank_drive_-4.95_4.95_driver": 0.0,
-      "shank_drive_4.95_-4.95_bore": 0.0,
-      "shank_drive_4.95_-4.95_driver": 0.0,
-      "shank_drive_4.95_4.95_bore": 0.0,
-      "shank_drive_4.95_4.95_driver": 0.0,
-      "shank_idler_-4.95_-4.95_bore": 0.0,
-      "shank_idler_-4.95_-4.95_driver": 0.0,
-      "shank_idler_-4.95_4.95_bore": 0.0,
-      "shank_idler_-4.95_4.95_driver": 0.0,
-      "shank_idler_4.95_-4.95_bore": 0.0,
-      "shank_idler_4.95_-4.95_driver": 0.0,
-      "shank_idler_4.95_4.95_bore": 0.0,
-      "shank_idler_4.95_4.95_driver": 0.0,
-      "thigh_C_drive_lug_driverVector: (X=35, Y=-10.25, Z=5.8)": 0.0,
-      "thigh_C_drive_lug_driverVector: (X=35, Y=10.25, Z=5.8)": 0.0,
-      "thigh_C_idler_lug_driverVector: (X=-34, Y=-10.25, Z=2.25)": 0.0,
-      "thigh_C_idler_lug_driverVector: (X=-34, Y=10.25, Z=2.25)": 0.0,
-      "thigh_C_cableVector: (X=-31.225, Y=0, Z=21.65)": 0.0,
-      "thigh_C_ear_heads": 0.0,
-      "thigh_C_insertion_0": 0.0,
-      "thigh_C_insertion_5": 0.0,
-      "thigh_C_insertion_15": 0.0,
-      "thigh_C_insertion_25": 0.0,
-      "thigh_C_insertion_50": 0.0
+      "thigh_horn_heads": 0,
+      "thigh_drive_-4.95_-4.95_bore": 0,
+      "thigh_drive_-4.95_-4.95_driver": 0,
+      "thigh_drive_-4.95_4.95_bore": 0,
+      "thigh_drive_-4.95_4.95_driver": 0,
+      "thigh_drive_4.95_-4.95_bore": 0,
+      "thigh_drive_4.95_-4.95_driver": 0,
+      "thigh_drive_4.95_4.95_bore": 0,
+      "thigh_drive_4.95_4.95_driver": 0,
+      "thigh_idler_-4.95_-4.95_bore": 0,
+      "thigh_idler_-4.95_-4.95_driver": 0,
+      "thigh_idler_-4.95_4.95_bore": 0,
+      "thigh_idler_-4.95_4.95_driver": 0,
+      "thigh_idler_4.95_-4.95_bore": 0,
+      "thigh_idler_4.95_-4.95_driver": 0,
+      "thigh_idler_4.95_4.95_bore": 0,
+      "thigh_idler_4.95_4.95_driver": 0,
+      "shank_horn_heads": 0,
+      "shank_drive_-4.95_-4.95_bore": 0,
+      "shank_drive_-4.95_-4.95_driver": 0,
+      "shank_drive_-4.95_4.95_bore": 0,
+      "shank_drive_-4.95_4.95_driver": 0,
+      "shank_drive_4.95_-4.95_bore": 0,
+      "shank_drive_4.95_-4.95_driver": 0,
+      "shank_drive_4.95_4.95_bore": 0,
+      "shank_drive_4.95_4.95_driver": 0,
+      "shank_idler_-4.95_-4.95_bore": 0,
+      "shank_idler_-4.95_-4.95_driver": 0,
+      "shank_idler_-4.95_4.95_bore": 0,
+      "shank_idler_-4.95_4.95_driver": 0,
+      "shank_idler_4.95_-4.95_bore": 0,
+      "shank_idler_4.95_-4.95_driver": 0,
+      "shank_idler_4.95_4.95_bore": 0,
+      "shank_idler_4.95_4.95_driver": 0,
+      "thigh_C_drive_lug_driverVector: (X=35, Y=-10.25, Z=5.8)": 0,
+      "thigh_C_drive_lug_driverVector: (X=35, Y=10.25, Z=5.8)": 0,
+      "thigh_C_idler_lug_driverVector: (X=-34, Y=-10.25, Z=2.25)": 0,
+      "thigh_C_idler_lug_driverVector: (X=-34, Y=10.25, Z=2.25)": 0,
+      "thigh_C_cableVector: (X=-31.225, Y=0, Z=21.65)": 0,
+      "thigh_C_ear_heads": 0,
+      "thigh_C_insertion_0": 0,
+      "thigh_C_insertion_5": 0,
+      "thigh_C_insertion_15": 0,
+      "thigh_C_insertion_25": 0,
+      "thigh_C_insertion_50": 0
     },
     "motor_insertion_and_six_face_drivers": "pass"
   },
   "source_sha256": {
-    "hardware/src/koala_hardware/rear_leg_review.py": "c620be283f687ce946bae119749a178450037c0ebe6e478ce6576415f3ef0aa0",
-    "hardware/src/koala_hardware/parts/links.py": "6ebbd4baa011272b1149cc5314d8a970ece133230479bcee5962cdfad0cac4ad",
-    "hardware/src/koala_hardware/params.py": "012c16ac1f4e3a4238d678c9796c668527aeacd047e2d2c8f02dff0f42042751",
+    "hardware/src/koala_hardware/rear_leg_review.py": "3983712df5622cfbac9e110532761c9843c384061cfb489a09364998d4d1c74e",
+    "hardware/src/koala_hardware/parts/links.py": "d30859b3ff6c3d617ed3a59c16d1c32ee96536012a112d9a3e5cf1073892a5fd",
+    "hardware/src/koala_hardware/params.py": "ddb12385a7c5119657b564738dfdcfbd3ea6c9edaf130cd1ae04d40fcca6b268",
     "hardware/src/koala_hardware/servo_iface.py": "45f0306516cdab1e7ca8295aadd6fdc103cea390803092690ea276941d43a5a8",
-    "hardware/src/koala_hardware/assembly.py": "0acf3523e3a02a56736d72125ecf68e9f145f7d752f51c71bf5b5e50c8a266c6",
-    "hardware/src/koala_hardware/parts/pelvis.py": "9382a256cd036566babc5ca4de548aa8d16339bf775217614b63b586a87eab80",
-    "hardware/src/koala_hardware/audit.py": "2c127f45e84ecd0f77e87c5b2532503dd439cc9c08eaa81bd59e603f7cc13b4c"
+    "hardware/src/koala_hardware/assembly.py": "01042c4545f9825f20743e5df7fa7e444904e6b914017fc899bec5ef669416a5",
+    "hardware/src/koala_hardware/body_plan.py": "1a43703d6f284e2ec197a8f9188ffbd45ad9b090da5eea8fc3fc18e084144150",
+    "hardware/src/koala_hardware/parts/pelvis.py": "ac9d622e1c9d51561867688a5984a564bf41a4497ff040c1cc2f8f26aae39977",
+    "hardware/src/koala_hardware/parts/torso.py": "0678fd7933a3860b16f39daa050f61ef7d76af128987e3ce294c5217b350233c",
+    "hardware/src/koala_hardware/parts/neck_space.py": "e195fd7b34309c2b14671b285b39346829480383c4aff7e7503ac3396e17e1a2",
+    "hardware/src/koala_hardware/audit.py": "99044d339a40f8503a0c05f62983b958ce377203110fc52aad144eff184ffc31"
+  },
+  "parts": {
+    "root_socket": {
+      "version": 1,
+      "printable": "proven"
+    },
+    "hip_carrier": {
+      "version": 1,
+      "printable": "assumed"
+    },
+    "thigh": {
+      "version": 3,
+      "printable": "unknown"
+    },
+    "shank": {
+      "version": 2,
+      "printable": "assumed"
+    },
+    "torso_frame": {
+      "version": 5,
+      "printable": "unknown"
+    }
   },
   "limits": [
     "The local ranges check the named printed link and adjacent case/carrier; they are not full-robot motion limits.",
     "Both rear legs, wheels and hardware constrain the separate viewer dynamically. Hidden parts remain obstacles.",
-    "Complete torso/front legs, cables, floor constraints, tolerances, physical indexing and loaded walking remain unverified.",
-    "No new slicing or physical print. Motor face boss and screw depth remain supplier/physical checks."
+    "The complete production torso is included; front limbs/mounts, neck allocation, cables, floor constraints, tolerances, physical indexing and loaded walking are outside this rear-only review.",
+    "Thigh v3 has hash-matched local slices and inspected layers; shank v2 has prior recorded bed-only organic slices matching current STL hash prefixes (OQ-22). Both remain unprinted. Root socket v1 has separate physical evidence. Motor face boss and screw depth remain supplier/physical checks."
   ],
-  "local_case_reference_sha256": "77668e64549bd0845843aa75b561afbcedfd4bc4d66d12732993cb1afd07f2b8"
+  "local_case_reference_sha256": "77668e64549bd0845843aa75b561afbcedfd4bc4d66d12732993cb1afd07f2b8",
+  "metadata_refresh": {
+    "date": "2026-09-19",
+    "scope": "Print/slice notes only; complete geometry, versions, printability, transforms, limits and collision-cache values unchanged.",
+    "notes_changed": 9,
+    "previous_scene_sha256": "972667f91b7451f29a535b0c253b5cfe80cf4608c0ade23b06b696d3abb13907",
+    "scene_sha256": "1be9410236a339c7a06941d00941da06ed3f6a5e593b3265347dab0bcb716065",
+    "previous_links_sha256": "1a899e821fc87ac9d668f356dc92df4ed1ad1fbd00d0d89e1c212ae1fb18ed68",
+    "links_sha256": "d30859b3ff6c3d617ed3a59c16d1c32ee96536012a112d9a3e5cf1073892a5fd"
+  }
 }

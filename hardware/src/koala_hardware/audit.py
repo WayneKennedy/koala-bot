@@ -1,5 +1,5 @@
 # SPDX-License-Identifier: CERN-OHL-S-2.0
-"""Nominal CAD checks for DEC-40/41, not a continuous or tolerance-expanded proof."""
+"""Assembly and service-access CAD checks, not a continuous or tolerance-expanded proof."""
 import argparse
 import itertools
 import json
@@ -9,7 +9,7 @@ from contextlib import nullcontext
 from math import cos,sin,radians
 from build123d import Pos,Rot,Plane,mirror,Cylinder,Align
 from . import params as P,servo_iface as S,assembly as A,validation
-from .parts import all_builders,links as L,pelvis,torso,e_tray
+from .parts import all_builders,links as L,pelvis,torso,e_tray,shoulder_mount
 
 
 def volume(s):return sum(p.volume for p in s.solids()) if s is not None else 0.0
@@ -96,29 +96,30 @@ def fit_pairs(pose,angles=(0,0,0),asymmetric=False):
 def wheel_hardware(n):return any('_'+s+'_' in n for s in ('motor','shaft','hub','wheel'))
 
 
+def relative_configuration(joints,ga,sa,gb,sb,angles,asymmetric=False):
+    """Joint values affecting a pair after cancelling its shared rigid prefix."""
+    def chain(group,side):
+        if not side or group.endswith('fixed'):return None,[]
+        limb,joint=group.split('_',1)
+        order=joints[limb].get('order',('pitch','roll','bend'))
+        return limb,order[:order.index(joint)+1]
+    limb_a,a=chain(ga,sa);limb_b,b=chain(gb,sb);common=0
+    if sa==sb and limb_a==limb_b:
+        while common<min(len(a),len(b)) and a[common]==b[common]:common+=1
+    values=dict(zip(('roll','pitch','bend'),angles))
+    return tuple((joint,-values[joint] if asymmetric and side==-1 and joint!='roll' else values[joint])
+                 for stages,side in ((a,sa),(b,sb)) for joint in stages[common:])
+
+
 def check_scene(pose,angles=(0,0,0),static_cache=None,asymmetric=False):
     # Optimal BREP bounds are expensive for imported cases; calculate once.
     items=[(n,s,g,side,s.bounding_box(optimal=False)) for n,s,c,g,side in A.scene_details(*angles,pose=pose,asymmetric=asymmetric)]
-    fits=fit_pairs(pose,angles,asymmetric);fail=[];count=0
+    fits=fit_pairs(pose,angles,asymmetric);joints=A.joint_data(pose);fail=[];count=0
     for (n,a,ga,sa,ba),(m,b,gb,sb,bb) in itertools.combinations(items,2):
         if not bounds_overlap(ba,bb):continue
         # Only coaxial purchased pieces of the SAME wheel intentionally overlap.
         if wheel_hardware(n) and wheel_hardware(m) and n.split('_')[0]==m.split('_')[0] and n.split('_')[-1]==m.split('_')[-1]:continue
-        # Cache relative configurations, not just whole-scene angles. A common
-        # rigid parent transform cannot change an intersection. Across different
-        # limbs retain all three angles and the left/right asymmetry flag.
-        common_limb=sa==sb and sa!=0 and ga.split('_')[0]==gb.split('_')[0]
-        global_fixed=ga.endswith('fixed') and gb.endswith('fixed')
-        if global_fixed:
-            relative=()
-        elif common_limb or ga=='fixed' or gb=='fixed':
-            levels={'fixed':0,'pitch':1,'roll':2,'bend':3}
-            lo,hi=sorted((levels[ga.split('_')[-1]],levels[gb.split('_')[-1]]))
-            side=sa or sb
-            effective=(angles[0],*(-a for a in angles[1:])) if asymmetric and side==-1 else angles
-            relative=(effective[1],effective[0],effective[2])[lo:hi]
-        else:
-            relative=(*angles,asymmetric)
+        relative=relative_configuration(joints,ga,sa,gb,sb,angles,asymmetric)
         key=(pose,n,m,relative)
         if static_cache is not None and key in static_cache:continue
         count+=1
@@ -148,19 +149,57 @@ def check_motor_insertion():
 
 
 def check_frame():
-    # Each seam has actual face contact and a clear full-depth screw shaft.
+    """Bench root access and installed rear/front fixings, including the torso."""
     assert abs(torso.LOW-(P.ROOT_REAR_MOUNT_Z+P.ROOT_PLATE_T))<1e-9
-    assert abs(torso.HIGH-(P.BODY_TORSO_LENGTH_MM-P.ROOT_MOUNT_Z-P.ROOT_PLATE_T))<1e-9
-    assert torso.solid().distance_to(pelvis.solid())<1e-6
-    assert torso.solid().distance_to(Pos(0,0,P.BODY_TORSO_LENGTH_MM)*pelvis.solid(True))<1e-6
-    # DEC-53: the shaft runs from beyond the torso flange to the nut pocket, socket frame.
-    z0=-P.SOCKET_SHELF-P.ROOT_PLATE_T-P.FRAME_PLATE_T-1; z1=-(P.NUT_M3_T+P.NUT_POCKET_CLEAR)+0.05
-    for front in (False,True):
-        base=pelvis.solid(front); shift=Pos(0,0,P.BODY_TORSO_LENGTH_MM if front else 0)
+    frame=torso.solid();rear_tf=pelvis.pitch_socket(False);front_tf=shoulder_mount.socket_frame()
+    root_seat=-P.SOCKET_SHELF-P.ROOT_PLATE_T
+    zhead=root_seat-P.FRAME_PLATE_T;z1=-(P.NUT_M3_T+P.NUT_POCKET_CLEAR)+.05
+    right=[('rear module',pelvis.module(False)),('rear servo',rear_tf*S.socket_reference()),
+           ('shoulder cassette',shoulder_mount.solid()),('front module',shoulder_mount.module()),
+           ('front servo',front_tf*S.socket_reference())]
+    obstacles=[('torso',frame)]+[(name+' '+hand,p if side==1 else mirror(p,Plane.XZ))
+        for hand,side in (('right',1),('left',-1)) for name,p in right]
+
+    def bearing(a,b,seat,direction,label):
+        # A 0.1 mm slab on each side of the mating plane must contain broad
+        # bearing material around the screw, not merely a tangent edge.
+        for part,start in ((a,-.1),(b,0)):
+            probe=seat*direction*Pos(0,0,start)*Cylinder(4,.1,align=(Align.CENTER,Align.CENTER,Align.MIN))
+            assert overlap(part,probe)>3,label+' lacks a broad bearing seat'
+
+    for label,tf,module,base in (('rear',rear_tf,pelvis.module(False),frame),
+                                 ('front bench',front_tf,shoulder_mount.module(),shoulder_mount.solid())):
+        assert module.distance_to(base)<1e-6,label+' module does not touch its flange'
+        clear(base,module,label+' root interference')
+        for name,probe in S.socket_keepouts()[1:]:clear(module,tf*probe,label+' module '+name)
+        for shift in (0,5,15,25,50):
+            clear(module,tf*Pos(0,0,shift)*S._parametric_case(),label+' module insertion')
         for a,b in pelvis.nut_xy():
-            shaft=pelvis.pitch_socket(front)*Pos(a,b,z0)*Cylinder((P.CLEAR_HOLE_M3-.02)/2,z1-z0,align=(Align.CENTER,Align.CENTER,Align.MIN))
-            for s_ in (shaft,mirror(shaft,Plane.XZ)):
-                clear(base,s_,'root module screw');clear(torso.solid(),shift*s_,'torso flange screw')
+            bearing(base,module,tf*Pos(a,b,root_seat),Pos(),label+' root')
+            shaft=tf*Pos(a,b,zhead)*Cylinder((P.CLEAR_HOLE_M3-.02)/2,z1-zhead,align=(Align.CENTER,Align.CENTER,Align.MIN))
+            driver=tf*Pos(a,b,zhead-40)*Cylinder(3,40,align=(Align.CENTER,Align.CENTER,Align.MIN))
+            head=tf*Pos(a,b,zhead-3)*Cylinder(3,3,align=(Align.CENTER,Align.CENTER,Align.MIN))
+            if label=='rear':
+                for hand,side in (('right',1),('left',-1)):
+                    for probe,kind in ((shaft,'shaft'),(head,'head'),(driver,'driver')):
+                        probe=probe if side==1 else mirror(probe,Plane.XZ)
+                        for name,part in obstacles:clear(part,probe,f'rear {hand} {name} {kind}')
+            else:
+                # Fit these recessed root screws before installing the cassette.
+                for name,part in (('cassette',base),('module',module),('servo',tf*S.socket_reference())):
+                    for probe,kind in ((shaft,'shaft'),(head,'head'),(driver,'driver')):
+                        clear(part,probe,f'front bench {name} {kind}')
+
+    clear(shoulder_mount.solid(),frame,'shoulder cassette/frame interference')
+    for y,z in P.SHOULDER_CASSETTE_BOLTS:
+        bearing(shoulder_mount.solid(),frame,Pos(26,y,z),Rot(Y=90),'shoulder cassette/frame')
+        for hand,side in (('right',1),('left',-1)):
+            # M3x20 measured from the X=36 under-head plane: include the
+            # 4 mm protruding beyond the cassette's X=20 back/nut entrance.
+            for probe,kind in ((S._x_hole(16,36,side*y,z,P.CLEAR_HOLE_M3-.02),'shaft'),
+                               (S._x_hole(36,39,side*y,z,6),'head'),
+                               (S._x_hole(36,76,side*y,z,6),'driver')):
+                for name,part in obstacles:clear(part,probe,f'front {hand} {name} {kind}')
 
 
 def main():
