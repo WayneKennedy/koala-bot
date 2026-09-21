@@ -36,7 +36,7 @@ courier VAT or handling charge was found in the mail.
 
 | Part | Qty | £ inc VAT | Role |
 |------|-----|-----------|------|
-| Feetech STS3215 12V 30 kg 6-pack (listed with FE-URT-1 — **none shipped**, 2026-09-12) | 2 | 84.95 ea | 12 limb joints (DEC-31). **Four reallocated to SO-ARM101 2026-09-12, permanently**; eight remain. **Backfill 6-pack ordered 2026-09-14** (AliExpress #3076088966873179, £103.15 paid; shipped 2026-09-15, not delivered as of 2026-09-17) — see `bom.md` |
+| Feetech STS3215 12V 30 kg 6-pack (listed with FE-URT-1 — **none shipped**, 2026-09-12) | 2 | 84.95 ea | 12 limb joints (DEC-31). **Four reallocated to SO-ARM101 2026-09-12, permanently**; eight remain. **Backfill 6-pack ordered 2026-09-14** (AliExpress #3076088966873179, £103.15 paid; shipped 2026-09-15, in UK customs with the final courier on 2026-09-21, expected within 2–3 days (owner)) — see `bom.md` |
 | Feetech STS3032M 6V 4.5 kg metal-case 4-pack (DEC-22) | 1 | 78.38 | 3 neck (3-RPS) + 1 spare |
 | STS3215 metal bracket set | 1 | 6.03 | dimensional reference - **brackets are printed** (DEC-21). Arrived 2026-09-12; the servos themselves ship without brackets |
 
