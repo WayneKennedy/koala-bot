@@ -362,8 +362,8 @@ Unresolved. Resolve -> move to [`decisions.md`](decisions.md).
 - **OQ-16 — Limb physical acceptance.** Twelve STS3215s needed; **all twelve are in hand,
   with two spare** — four of the first pack went to SO-ARM101 permanently on 2026-09-12 and
   the backfill 6-pack ordered 2026-09-14 **arrived 2026-09-22** (owner; `bom.md`). Supply is
-  no longer part of this question; **the new units' firmware is unread** (must be 3.10 before
-  they share a bus, `sourcing.md`). Removing front
+  no longer part of this question; the new units' firmware is unread, expected 3.10 and read
+  when their IDs are set (`sourcing.md`). Removing front
   drives reduces arm swing loads; rear wheel mass remains at the ankles.
   Establish actual mass/CoM, continuous torque/temperature, ground reactions
   and printed joint strength for support and transition. Digital collision

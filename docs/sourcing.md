@@ -43,10 +43,11 @@ courier VAT or handling charge was found in the mail.
 Neck servos are 6V -> a separate 6V bus segment from the 12V limb bus (same STS protocol).
 
 **Arrived 2026-09-12** — 12 × STS3215 and 4 × STS3032M, counts confirmed by the owner.
-**Backfill pack arrived 2026-09-22** — 6 × STS3215 (owner). Box contents not yet listed, and
-**their firmware has not been read**: every servo on one bus must run 3.10
-([wk-robotics `common.md`](https://github.com/WayneKennedy/wk-robotics/blob/main/docs/common.md#holdings-and-electrical-operation)),
-and packs have shipped 3.9 as well as 3.10.
+**Backfill pack arrived 2026-09-22** — 6 × STS3215 (owner). Box contents not yet listed.
+Firmware unread, and **expected to be 3.10**: the only 3.9 units the family has found are the
+two Waveshare/Amazon ones, while every Feetech unit read so far shipped 3.10. It is read when
+their IDs are assigned, not as a separate step (owner, 2026-09-22); a bus must be all-3.10
+([wk-robotics `common.md`](https://github.com/WayneKennedy/wk-robotics/blob/main/docs/common.md#holdings-and-electrical-operation)).
 **Each STS3215 ships with a drive horn, an idler horn, M3×6 pan-head horn screws and
 M2×6 self-tapping case screws — and no serial-bus adapter.** The listing's FE-URT-1 was
 not in either 6-pack; the family's adapters cover it (Waveshare Bus Servo Adapter (A),
