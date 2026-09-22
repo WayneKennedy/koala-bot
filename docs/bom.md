@@ -42,7 +42,7 @@ in the mail.
 
 | Part | Qty | £ | Role |
 |------|-----|---|------|
-| Feetech STS3215 12V 30 kg.cm 6-pack | 2 | 84.95 ea | 12 limb joints (6 arm, 4 hip, 2 knee — DEC-31). **Eight in hand**: four went to SO-ARM101 on 2026-09-12 ([wk-soarm101 DEC-09](https://github.com/WayneKennedy/wk-soarm101/blob/main/docs/decisions.md)), so four short — **a further 6-pack ordered 2026-09-14** (AliExpress #3076088966873179, £103.15 paid; shipped 2026-09-15, in UK customs with the final courier on 2026-09-21, expected within 2–3 days (owner)) to backfill; the four in the arm stay there permanently. On arrival: 14 in hand, 12 fitted, 2 spare (OQ-16) |
+| Feetech STS3215 12V 30 kg.cm 6-pack | 3 | 84.95 ea ×2, 103.15 ×1 | 12 limb joints (6 arm, 4 hip, 2 knee — DEC-31). Four of the first twelve went to SO-ARM101 on 2026-09-12 ([wk-soarm101 DEC-09](https://github.com/WayneKennedy/wk-soarm101/blob/main/docs/decisions.md)) and stay there permanently; the backfill 6-pack ordered 2026-09-14 **arrived 2026-09-22** (owner). **14 in hand: 12 for the limbs, 2 spare** — the supply half of OQ-16 is closed. **The six new units' firmware is unread**; all on one bus must be 3.10 (`sourcing.md`) |
 | Feetech STS3032M 6V 4.5 kg.cm 4-pack | 1 | 78.38 | 3 neck (3-RPS) + 1 spare. Fixed single cable — chains board-to-board through the supplied 3-port connector boards and link cable, not servo-to-servo (`test-log.md` 2026-09-12) |
 | STS3215 metal bracket set | 1 | 6.03 | dimensional reference (DEC-21) |
 

@@ -359,9 +359,11 @@ Unresolved. Resolve -> move to [`decisions.md`](decisions.md).
   and rear-pair balance recovery on the assembled robot. Uneven-terrain stepping
   with wheel-feet, including wheel holding and traction, remains a later
   experiment. [Historical motor comparison](drive-motor-sizing.md).
-- **OQ-16 — Limb physical acceptance.** Twelve STS3215s needed — **eight in hand**
-  since four went to SO-ARM101 permanently on 2026-09-12; **a 6-pack was ordered on
-  2026-09-14** to backfill (AliExpress, shipped 2026-09-15, in UK customs with the final courier on 2026-09-21, expected within 2–3 days (owner); `bom.md`). Removing front
+- **OQ-16 — Limb physical acceptance.** Twelve STS3215s needed; **all twelve are in hand,
+  with two spare** — four of the first pack went to SO-ARM101 permanently on 2026-09-12 and
+  the backfill 6-pack ordered 2026-09-14 **arrived 2026-09-22** (owner; `bom.md`). Supply is
+  no longer part of this question; **the new units' firmware is unread** (must be 3.10 before
+  they share a bus, `sourcing.md`). Removing front
   drives reduces arm swing loads; rear wheel mass remains at the ankles.
   Establish actual mass/CoM, continuous torque/temperature, ground reactions
   and printed joint strength for support and transition. Digital collision

@@ -36,13 +36,17 @@ courier VAT or handling charge was found in the mail.
 
 | Part | Qty | £ inc VAT | Role |
 |------|-----|-----------|------|
-| Feetech STS3215 12V 30 kg 6-pack (listed with FE-URT-1 — **none shipped**, 2026-09-12) | 2 | 84.95 ea | 12 limb joints (DEC-31). **Four reallocated to SO-ARM101 2026-09-12, permanently**; eight remain. **Backfill 6-pack ordered 2026-09-14** (AliExpress #3076088966873179, £103.15 paid; shipped 2026-09-15, in UK customs with the final courier on 2026-09-21, expected within 2–3 days (owner)) — see `bom.md` |
+| Feetech STS3215 12V 30 kg 6-pack (listed with FE-URT-1 — **none shipped**, 2026-09-12) | 2 | 84.95 ea | 12 limb joints (DEC-31). **Four reallocated to SO-ARM101 2026-09-12, permanently**; eight remain. **Backfill 6-pack ordered 2026-09-14 and delivered 2026-09-22** (AliExpress #3076088966873179, £103.15 paid; shipped 2026-09-15, cleared UK customs and arrived 2026-09-22, owner) — 14 STS3215 now in hand; see `bom.md` |
 | Feetech STS3032M 6V 4.5 kg metal-case 4-pack (DEC-22) | 1 | 78.38 | 3 neck (3-RPS) + 1 spare |
 | STS3215 metal bracket set | 1 | 6.03 | dimensional reference - **brackets are printed** (DEC-21). Arrived 2026-09-12; the servos themselves ship without brackets |
 
 Neck servos are 6V -> a separate 6V bus segment from the 12V limb bus (same STS protocol).
 
 **Arrived 2026-09-12** — 12 × STS3215 and 4 × STS3032M, counts confirmed by the owner.
+**Backfill pack arrived 2026-09-22** — 6 × STS3215 (owner). Box contents not yet listed, and
+**their firmware has not been read**: every servo on one bus must run 3.10
+([wk-robotics `common.md`](https://github.com/WayneKennedy/wk-robotics/blob/main/docs/common.md#holdings-and-electrical-operation)),
+and packs have shipped 3.9 as well as 3.10.
 **Each STS3215 ships with a drive horn, an idler horn, M3×6 pan-head horn screws and
 M2×6 self-tapping case screws — and no serial-bus adapter.** The listing's FE-URT-1 was
 not in either 6-pack; the family's adapters cover it (Waveshare Bus Servo Adapter (A),
