@@ -96,10 +96,14 @@ head/body split as the two tiers.
   CAD (workspace, collisions, singularities) or a loop-capable sim.
 - **Physics** - Gazebo (ROS2-native) or PyBullet / MuJoCo for balance & gait.
   **MuJoCo, started 2026-09-23:** `hardware/src/koala_hardware/mjcf.py` writes
-  `hardware/sim/koala_walking_crude.xml`, the four-foot build (DEC-62) as capsules, a box and
-  four sphere feet at the CAD's joint centres and axes, twelve position actuators. Solid-volume
-  masses (1.67 kg with servos, no battery or electronics), shared-slider clearance ranges, and
-  Open Duck's 7.4 V servo fit as a placeholder — every one labelled in the file. It loads, and
-  stands on four feet for 3 s under zero control (MuJoCo 3.14, 2026-09-23). The route to a
-  policy — mesh links, the 12 V actuator model, a Playground environment — is the family
+  `hardware/sim/koala_walking.xml`, the four-foot build (DEC-62) at the CAD's joint centres and axes:
+  one visual mesh per rigid body (its prints unioned with its servo cases at the CAD socket frames,
+  `hardware/sim/meshes/`), per-body mass, CoM and inertia tensor from the BREP solids, four sphere
+  feet and a torso box as the only contacts, twelve position actuators. Prints weigh what the slicer
+  estimated where `docs/bom.md`'s hash-matched slice exists, else solid PETG/TPU (an upper bound);
+  each servo is a 55 g box. 1.51 kg, no battery or electronics (`--crude` keeps the capsule visuals
+  with the same inertia). Placeholders, each labelled in the file: joint ranges (the viewer's
+  shared-slider clearance bounds, not per-joint or servo limits) and Open Duck's 7.4 V servo fit.
+  `mjcf_check.py` (MuJoCo 3.14, 2026-09-23): loads, CoM inside the foot polygon, stands 3 s under
+  zero control. The route to a policy — the 12 V actuator model, a Playground environment — is the family
   thread in [wk-robotics `docs/status.md`](https://github.com/WayneKennedy/wk-robotics/blob/main/docs/status.md#a-sim-model-of-koala-bots-four-foot-build-via-known-good-examples--opened-2026-09-23).

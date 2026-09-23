@@ -1,7 +1,7 @@
 {
- "model": "koala_walking_crude.xml",
+ "model": "koala_walking.xml",
  "pose": "walking",
- "crude": true,
+ "crude": false,
  "total_g": 1514.6458227731155,
  "com_world_mm": [
   80.71315761733021,
@@ -213,6 +213,10 @@
      "mass_g": 55.0,
      "source": "servo box"
     }
+   },
+   "mesh": {
+    "kind": "union",
+    "bytes": 626984
    }
   },
   "rear_right_carrier": {
@@ -231,6 +235,10 @@
      "mass_g": 55.0,
      "source": "servo box"
     }
+   },
+   "mesh": {
+    "kind": "union",
+    "bytes": 157084
    }
   },
   "rear_right_upper": {
@@ -249,6 +257,10 @@
      "mass_g": 55.0,
      "source": "servo box"
     }
+   },
+   "mesh": {
+    "kind": "union",
+    "bytes": 231134
    }
   },
   "rear_right_lower": {
@@ -267,6 +279,10 @@
      "mass_g": 7.452,
      "source": "slicer manufacturing/slices.json"
     }
+   },
+   "mesh": {
+    "kind": "union",
+    "bytes": 135084
    }
   },
   "rear_left_carrier": {
@@ -285,6 +301,10 @@
      "mass_g": 55.0,
      "source": "servo box"
     }
+   },
+   "mesh": {
+    "kind": "union",
+    "bytes": 157084
    }
   },
   "rear_left_upper": {
@@ -303,6 +323,10 @@
      "mass_g": 55.0,
      "source": "servo box"
     }
+   },
+   "mesh": {
+    "kind": "union",
+    "bytes": 231134
    }
   },
   "rear_left_lower": {
@@ -321,6 +345,10 @@
      "mass_g": 7.452,
      "source": "slicer manufacturing/slices.json"
     }
+   },
+   "mesh": {
+    "kind": "union",
+    "bytes": 135084
    }
   },
   "front_right_carrier": {
@@ -339,6 +367,10 @@
      "mass_g": 55.0,
      "source": "servo box"
     }
+   },
+   "mesh": {
+    "kind": "union",
+    "bytes": 191884
    }
   },
   "front_right_upper": {
@@ -357,6 +389,10 @@
      "mass_g": 55.0,
      "source": "servo box"
     }
+   },
+   "mesh": {
+    "kind": "union",
+    "bytes": 201084
    }
   },
   "front_right_lower": {
@@ -375,6 +411,10 @@
      "mass_g": 7.452,
      "source": "slicer manufacturing/slices.json"
     }
+   },
+   "mesh": {
+    "kind": "union",
+    "bytes": 134284
    }
   },
   "front_left_carrier": {
@@ -393,6 +433,10 @@
      "mass_g": 55.0,
      "source": "servo box"
     }
+   },
+   "mesh": {
+    "kind": "union",
+    "bytes": 191884
    }
   },
   "front_left_upper": {
@@ -411,6 +455,10 @@
      "mass_g": 55.0,
      "source": "servo box"
     }
+   },
+   "mesh": {
+    "kind": "union",
+    "bytes": 201084
    }
   },
   "front_left_lower": {
@@ -429,6 +477,10 @@
      "mass_g": 7.452,
      "source": "slicer manufacturing/slices.json"
     }
+   },
+   "mesh": {
+    "kind": "union",
+    "bytes": 134284
    }
   }
  },

@@ -43,10 +43,14 @@ uv run python -m koala_hardware.audit --fallback --nominal-only
 uv run python -m unittest discover -s tests
 uv run python -m koala_hardware.body_plan --output ../docs/design --cad
 uv run python -m koala_hardware.viewer --build
-uv run python -m koala_hardware.mjcf          # crude MuJoCo model -> sim/ (docs/architecture.md)
+uv run python -m koala_hardware.mjcf          # MuJoCo model -> sim/koala_walking.xml + meshes/ (--crude: capsule visuals); docs/architecture.md
 ```
 
 Exports: `build/stl/`, `build/step/`, `build/renders/`, `build/manifest.txt`.
+`sim/` holds the generated MuJoCo model: one visual STL per rigid body in `sim/meshes/` (2.7 MB,
+committed; regenerate after any CAD change), explicit per-body inertia from the BREP, and the
+assumptions in the XML header. `mjcf_check.py` loads it from any venv that has MuJoCo (not a
+dependency here) and reports masses, CoM against the feet, a 3 s stand and a render.
 Full assemblies are `build/step/koala-walking.step`, `koala-quadruped.step` and `koala-upright.step`.
 Every handed print has explicit left/right files. Removed part outputs are
 pruned. The exporter regenerates the printed and fastening blocks in
