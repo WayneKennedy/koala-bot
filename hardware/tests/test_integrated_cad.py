@@ -161,9 +161,9 @@ class IntegratedCADTests(unittest.TestCase):
 
     def test_fastening_schedule_covers_twelve_joints_and_two_motors(self):
         from collections import Counter
+        from koala_hardware.parts import configuration_specs
         total=Counter();names=[]
-        for builder in all_builders():
-            d=builder()
+        for d in configuration_specs('wheeled'):
             if d['name'].startswith('coupon'):continue
             qty=d['qty']*(2 if d.get('handed') else 1)
             total.update({k:v*qty for k,v in d['fasteners'].items()});names.append(d['name'])

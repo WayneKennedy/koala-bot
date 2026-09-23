@@ -1,0 +1,35 @@
+{
+  "date": "2026-09-21",
+  "source_sha256": {
+    "hardware/src/koala_hardware/assembly.py": "3499e181f6cfcf82c2e672434df01411e28b65fe9fe89f7b4fe3857fa25821e2",
+    "hardware/src/koala_hardware/body_plan.py": "66eda453764c836b64e0ed77030d98ea9bc7d910323408fb1ff9336e8f98719a",
+    "hardware/src/koala_hardware/params.py": "bf17cf7a95105cf5cda590018d64c51db16c965e503a823aac1dda810f337652",
+    "hardware/src/koala_hardware/parts/front.py": "4ffb082b2b4d8e79b584d6095aa285680b3b07b988f78d513f0a88c886211080",
+    "hardware/src/koala_hardware/parts/links.py": "18518472ca6277105d4bb25573c5d475a8c6c4353fcb0f6803a8903fd85b418a",
+    "hardware/src/koala_hardware/parts/foot_shank.py": "df5391d299042d90829bcc6371325d6f189050bde15b8daa7a2d7b026f095064",
+    "hardware/src/koala_hardware/parts/__init__.py": "da01e47be7d24f7813584b3245966444275338bfe3fe2bba598ae06788fc56e0"
+  },
+  "exports": {
+    "foot_shank_left": {
+      "version": 1,
+      "STL_sha256": "71f616909271d87aa1014edefbcc94eef897c7ad65596abbcd82fe4568afa104"
+    },
+    "foot_shank_right": {
+      "version": 1,
+      "STL_sha256": "eeae3452093b84271e236cb784f66887019540fbf292e9efbc5d87fb7f562b71"
+    },
+    "front_contact_pad": {
+      "version": 1,
+      "STL_sha256": "9d501073b0732572d2736cae6d86ebf08841942c8138d905962c9b4b31a760d6"
+    },
+    "shank_left": {
+      "version": 2,
+      "STL_sha256": "335d9f745f176eb9fad89cd1a408a1f50bf8b98354e61d6a2b984074e2df0638"
+    },
+    "shank_right": {
+      "version": 2,
+      "STL_sha256": "ae2ac31130c35a356b199b55ed3587de513255d1a0fe42c142d1fc94ea8f39c6"
+    }
+  },
+  "scope": "Geometry/version and export hashes for the walking revision. No physical print."
+}

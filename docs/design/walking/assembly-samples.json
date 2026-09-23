@@ -1,0 +1,258 @@
+{
+  "scope": "Walking configuration: 27 combinations at -5/0/5 degrees of shared roll/pitch/bend controls, plus four opposed-left pitch/bend samples. Includes all nominal hardware. No floor, continuous travel, cable or loaded check.",
+  "samples": [
+    {
+      "delta_degrees": [
+        -5,
+        -5,
+        -5
+      ],
+      "boolean_pairs": 182
+    },
+    {
+      "delta_degrees": [
+        -5,
+        -5,
+        0
+      ],
+      "boolean_pairs": 12
+    },
+    {
+      "delta_degrees": [
+        -5,
+        -5,
+        5
+      ],
+      "boolean_pairs": 12
+    },
+    {
+      "delta_degrees": [
+        -5,
+        0,
+        -5
+      ],
+      "boolean_pairs": 26
+    },
+    {
+      "delta_degrees": [
+        -5,
+        0,
+        0
+      ],
+      "boolean_pairs": 0
+    },
+    {
+      "delta_degrees": [
+        -5,
+        0,
+        5
+      ],
+      "boolean_pairs": 0
+    },
+    {
+      "delta_degrees": [
+        -5,
+        5,
+        -5
+      ],
+      "boolean_pairs": 26
+    },
+    {
+      "delta_degrees": [
+        -5,
+        5,
+        0
+      ],
+      "boolean_pairs": 0
+    },
+    {
+      "delta_degrees": [
+        -5,
+        5,
+        5
+      ],
+      "boolean_pairs": 0
+    },
+    {
+      "delta_degrees": [
+        0,
+        -5,
+        -5
+      ],
+      "boolean_pairs": 26
+    },
+    {
+      "delta_degrees": [
+        0,
+        -5,
+        0
+      ],
+      "boolean_pairs": 0
+    },
+    {
+      "delta_degrees": [
+        0,
+        -5,
+        5
+      ],
+      "boolean_pairs": 0
+    },
+    {
+      "delta_degrees": [
+        0,
+        0,
+        -5
+      ],
+      "boolean_pairs": 8
+    },
+    {
+      "delta_degrees": [
+        0,
+        0,
+        0
+      ],
+      "boolean_pairs": 0
+    },
+    {
+      "delta_degrees": [
+        0,
+        0,
+        5
+      ],
+      "boolean_pairs": 0
+    },
+    {
+      "delta_degrees": [
+        0,
+        5,
+        -5
+      ],
+      "boolean_pairs": 8
+    },
+    {
+      "delta_degrees": [
+        0,
+        5,
+        0
+      ],
+      "boolean_pairs": 0
+    },
+    {
+      "delta_degrees": [
+        0,
+        5,
+        5
+      ],
+      "boolean_pairs": 0
+    },
+    {
+      "delta_degrees": [
+        5,
+        -5,
+        -5
+      ],
+      "boolean_pairs": 20
+    },
+    {
+      "delta_degrees": [
+        5,
+        -5,
+        0
+      ],
+      "boolean_pairs": 0
+    },
+    {
+      "delta_degrees": [
+        5,
+        -5,
+        5
+      ],
+      "boolean_pairs": 0
+    },
+    {
+      "delta_degrees": [
+        5,
+        0,
+        -5
+      ],
+      "boolean_pairs": 0
+    },
+    {
+      "delta_degrees": [
+        5,
+        0,
+        0
+      ],
+      "boolean_pairs": 0
+    },
+    {
+      "delta_degrees": [
+        5,
+        0,
+        5
+      ],
+      "boolean_pairs": 0
+    },
+    {
+      "delta_degrees": [
+        5,
+        5,
+        -5
+      ],
+      "boolean_pairs": 0
+    },
+    {
+      "delta_degrees": [
+        5,
+        5,
+        0
+      ],
+      "boolean_pairs": 0
+    },
+    {
+      "delta_degrees": [
+        5,
+        5,
+        5
+      ],
+      "boolean_pairs": 0
+    },
+    {
+      "delta_degrees": [
+        -5,
+        -5,
+        -5
+      ],
+      "opposed_left_pitch_bend": true,
+      "boolean_pairs": 0
+    },
+    {
+      "delta_degrees": [
+        -5,
+        -5,
+        5
+      ],
+      "opposed_left_pitch_bend": true,
+      "boolean_pairs": 0
+    },
+    {
+      "delta_degrees": [
+        -5,
+        5,
+        -5
+      ],
+      "opposed_left_pitch_bend": true,
+      "boolean_pairs": 0
+    },
+    {
+      "delta_degrees": [
+        -5,
+        5,
+        5
+      ],
+      "opposed_left_pitch_bend": true,
+      "boolean_pairs": 0
+    }
+  ],
+  "all_passed": true
+}

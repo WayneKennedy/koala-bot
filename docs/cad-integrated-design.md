@@ -1,5 +1,10 @@
 # Integrated chassis — current CAD and acceptance scope
 
+**2026-09-21: interchangeable footed rear shanks for the first walking build
+(DEC-62).** `foot_shank` v1 fits the existing knees and accepts the unchanged
+front TPU pad. The wheeled `shank` v2 remains available. See the
+[walking build, files and checks](design/walking/README.md).
+
 **2026-09-19: recessed roll-first shoulders and front limbs derived from the rear
 printability work.** This is an **unprinted revision**, recorded below rather
 than banked as a decision. The torso extends around the shoulder A servos;
@@ -7,8 +12,9 @@ removable cassettes preserve bench access to the unchanged, physically proven
 `root_socket` v1. Front shoulders now implement **roll → pitch → elbow**;
 rear hips retain **pitch → roll → knee** and the DEC-61 inclined rear mount.
 
-The current chassis uses **26 physical prints**, from **18 designs / 26 handed
-export variants** including six coupons. Changed torso, shoulder cassettes,
+The chassis uses **28 physical prints walking / 26 wheeled**, from
+**19 designs / 28 handed export variants** including six coupons and both
+rear-shank alternatives. Changed torso, shoulder cassettes,
 front links and corrected thigh are `unknown` printable. Root socket v1 is
 `proven` with its recorded ear-hole support caveat; unchanged hip carrier v1
 and shank v2 retain their recorded `assumed` status.
@@ -52,6 +58,12 @@ and shank v2 retain their recorded `assumed` status.
   shank v2 retains its flush motor/fork print face. The rear pitch sockets
   mount on the retained **45° plate** (DEC-61). Torso v5 adds Ø6.6 clearance
   corridors through the retained flange for straight Ø6 rear screw drivers.
+- **Walking rear alternative:** `foot_shank` v1 retains 90 mm from knee to
+  contact centre and uses `front_contact_pad` v1, with no drive motor, shaft,
+  hub or wheel. The pads sit on the shanks' centreline: **132.6 mm rear contact
+  spacing** at neutral roll. The 220 mm track applies to wheels. Both
+  configurations use the same knee horns and upper chassis; exchange the
+  complete shanks, then select/calibrate the matching kinematics and mass model.
 - **Neck provision:** a dorsal shoulder-cap slot and four generic M3 mounting
   points reserve a removable cartridge for the **three small bought STS3032M**
   servos. Published small-case envelopes are shown; purchased M dimensions,
@@ -63,6 +75,12 @@ cassettes account for the increase from 24 to 26 chassis prints. The neck
 reference envelopes are neither printed parts nor an accepted head installation.
 
 ## Poses, axes and silhouette
+
+The separate **walking** reference keeps the supported torso/front limb pose
+and rear contact X = −55 mm, but lowers the rear ball centres to Z = 16 mm
+and re-solves the knees for 85/90 mm links. All four TPU contacts meet Z = 0.
+This is a standing CAD reference for training, not a demonstrated walking gait.
+The two wheeled poses below remain unchanged.
 
 The supported reference retains front contact centres at X/Z = **205/16 mm**
 and rear wheels at **−55/40 mm**. With unrolled shoulders, front contact spacing
@@ -158,8 +176,12 @@ Candidate stacks still require real clamping, engagement and tool checks.
    link. Fit C and all four ear screws to the upper link before the lower link.
    Insert cases Bottom-first with horns removed. Install horns/centre fixings,
    then clevis square fixings without pulling the forks inward.
-4. Insert the forearm captive nut before fitting the keyed TPU pad. Install rear
-   motors axially from inboard, then their face screws, hubs and wheels.
+4. Insert each footed lower link's captive nut before fitting the keyed TPU pad.
+   For walking, fit a handed `foot_shank` at each rear knee using the same
+   drive/idler horns, square screws, centre retention and idler washers as
+   `shank`. For the wheeled build, install rear motors axially from inboard,
+   then their face screws, hubs and wheels. Exchange whole shanks with the
+   robot supported and power isolated; the knee servos stay in the thighs.
 
 Servo replacement requires removal of its driven link. Front root service
 removes the four frame screws and slides the cassette **laterally outward**
@@ -194,7 +216,7 @@ opposite front and nominal rear hardware with both case models: 20 configuration
 1,236 candidate pairs, no hits. Narrower adjacent-joint/rail checks and their
 limits remain in the [front record](design/front-redesign/README.md).
 
-The **65-test Python suite**, 26 handed exports, two assembly STEP exports and
+For the **2026-09-19 wheeled revision**, the 65-test Python suite, 26 handed exports, two assembly STEP exports and
 11 current-version review slices pass. Both complete nominal poses pass
 180 checked pairs each. The [62-sample primary audit](design/front-redesign/assembly-audit.json)
 and [two-pose fallback audit](design/front-redesign/assembly-audit-fallback.json)
@@ -206,6 +228,12 @@ poses, all 12 initial bounds and four combined configurations; its exploratory
 −45° quadruped pitch collision is outside the current viewer bound. The frame audit includes the actual torso in rear
 driver checks and distinguishes front bench root fixings from installed
 cassette fixings; service tests enforce loading cassette nuts before A.
+
+The **2026-09-21 walking addition** brings the suite to 71 passing tests,
+28 handed exports and three assembly STEP configurations. Both new shanks
+have version/hash-matched local slices; nominal primary/fallback audits,
+31 nearby walking samples and 12 walking viewer-endpoint checks pass.
+[Walking evidence and its limits](design/walking/README.md).
 
 The viewer uses the same serial joint orders as the assembly, samples
 pose-dependent clearance in **0.25° increments**, and reserves **2°** before the
@@ -222,6 +250,20 @@ head/neck, battery/electronics and loaded transitions remain OQ-17/18/21/22.
 No new repeat SO-101 fit gauge is required.
 
 ## Revision log
+
+- **2026-09-21 footed rear shank v1 — unprinted.** Implements DEC-62 with a
+  separate `foot_shank`, 90 mm from knee axis to TPU ball centre. The long
+  open fork retains the knee's horn span, bores, head recesses and driver
+  access. The shared front lower-link construction is shortened at its taper
+  and terminal seat; `forearm` v2 and `front_contact_pad` v1 geometry stay
+  unchanged. No motor ring or drive hardware is included. The same pad key,
+  captive nut and recessed M3×20/washer fasten the rear TPU pad.
+  **Visual gate:** inspected iso, side, end and top in
+  [four views](design/parts/foot_shank-views.png) before export/audit/viewer.
+  Does it look stupid? **No:** it reads as the front foot's shorter counterpart,
+  with a continuous tapered shaft, open knee fork and useful broad print face;
+  no redundant motor bracket remains. This is assistant shape review, not
+  physical acceptance. Printability starts `unknown`.
 
 Dated notes on **unprinted** geometry, reclassified out of `decisions.md` by
 DEC-59 (2026-09-18). Entries keep their original DEC numbers so existing

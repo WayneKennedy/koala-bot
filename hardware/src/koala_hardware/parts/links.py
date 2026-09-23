@@ -497,7 +497,8 @@ def lower_spec(name,length,front):
 
 def build_thigh(): return upper_spec('thigh',P.BODY_THIGH_MM,hip=True)
 def build_upper_arm(): return upper_spec('upper_arm',P.BODY_UPPER_ARM_MM)
-def build_shank(): return lower_spec('shank',P.BODY_SHANK_MM,False)
+def build_shank():
+    return lower_spec('shank',P.BODY_SHANK_MM,False) | {'configurations':('wheeled',)}
 def front_pad():
     length=P.BODY_FOREARM_MM+P.BODY_HAND_MM
     part=Pos(0,0,length)*Sphere(P.BODY_FRONT_FOOT_RADIUS_MM)
@@ -513,7 +514,7 @@ def front_pad():
 
 def build_forearm():
     return spec('forearm',lower_link(P.BODY_FOREARM_MM+P.BODY_HAND_MM,True),handed=True,orientation=Rot(X=90),
-        fasteners=HORN_FASTENERS|{'M3x20 front-pad screw':1,'M3 nut':1,'M3 plain washer':1},
+        fasteners=HORN_FASTENERS|{'M3x20 TPU-pad screw':1,'M3 nut':1,'M3 plain washer':1},
         notes='One flat-section forearm; elbow fork and keyed TPU-pad seat. Broad native -Y face on bed. '
         'Insert captive M3 nut from side; fit pad and recessed M3x20 screw with washer. '
         'Local support under nut-slot roof and fork hole roofs is accessible from outside.', printable='assumed')
@@ -521,9 +522,9 @@ def build_forearm():
 
 def build_front_pad():
     return spec('front_contact_pad',front_pad(),qty=2,orientation=Rot(),material='TPU',
-        notes='Replaceable rounded TPU ground contact at the accepted 100 mm elbow-to-ball centre. '
+        notes='Common rounded TPU ground contact: front forearm or interchangeable rear foot_shank. '
         'Truncated mating face on bed; tapered keyed cavity avoids a flat internal roof. '
-        'No support intended; recessed screw/washer remains above contact surface. Traction/wear untested.', printable='assumed')
+        'No support intended; recessed screw/washer remains above contact surface. Traction/wear untested.', printable='assumed') | {'configuration_qty':{'walking':4,'wheeled':2}}
 
 def build_root_carrier():
     return spec('shoulder_carrier',carrier(True),qty=1,handed=True,orientation=Rot(),

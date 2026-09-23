@@ -14,8 +14,9 @@ with sync_playwright() as p:
     page.wait_for_selector('#loading',state='detached',timeout=60000)
     page.wait_for_function('renderer.info.render.triangles>0')
     page.wait_for_function('referenceMesh!==null')
+    assert page.locator('#body-pose').input_value()=='walking'
     saw_bound_change=False
-    for pose in ('quadruped','upright'):
+    for pose in ('walking','quadruped','upright'):
         page.locator('#body-pose').select_option(pose)
         page.wait_for_function('referenceMesh.material.map.image.src.endsWith("backdrop-"+poseName+".svg")')
         page.wait_for_function('!limitState.pending',timeout=180000)
@@ -24,7 +25,11 @@ with sync_playwright() as p:
         assert any(v['max']>5 or v['min']< -5 for v in initial.values())
         assert all(page.evaluate('DATA.poses[poseName].filter(i=>i.kind==="printed").map(i=>["unknown","assumed","proven"].includes(i.printable))'))
         assert page.locator('.row').count()==len(build_scene(pose=pose))
-        assert '2 powered wheels' in page.locator('#hud').inner_text()
+        assert ('0 powered wheels' if pose=='walking' else '2 powered wheels') in page.locator('#hud').inner_text()
+        if pose=='walking':
+            assert page.evaluate('DATA.poses.walking.filter(i=>i.name.startsWith("rear_shank_")).every(i=>i.version===1 && i.printable==="unknown")')
+            assert page.evaluate('DATA.poses.walking.filter(i=>i.name.includes("contact_pad_")).length')==4
+            assert '132.6 mm' in page.locator('#hud').inner_text()
         page.locator('[data-view="side"]').click()
         assert page.evaluate('camera.isOrthographicCamera && referenceMesh.visible')
         assert page.evaluate('''() => {
@@ -79,4 +84,4 @@ with sync_playwright() as p:
     assert not page.evaluate('renderer.getContext().isContextLost()')
     assert not errors,errors
     browser.close()
-    print('PASS both body poses, backdrop alignment, mirrored CAD/browser motion, parts and reset')
+    print('PASS walking and both wheeled poses, backdrop alignment, mirrored CAD/browser motion, parts and reset')

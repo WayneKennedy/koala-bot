@@ -260,7 +260,7 @@ HORN_IDLER_WASHER_OD = 6.0 # [DESIGN] procure matching narrow washer
 ROOT_MODULE_GAP = 0.6       # removable left/right socket plates (retained as a minimum)
 # DEC-55 hip carrier (option 2): body below the pitch axis, roll servo B Bottom-down
 # beside the pitch servo's drive fork pad; the thigh's forks pass B's socket.
-ROOT_ROLL_Y = ROOT_PITCH_Y + SOCKET_DRIVE_FACE + SOCKET_PAD_T + SOCKET_CASE_Y/2 + SOCKET_CLEAR + 2.0  # [DESIGN DEC-55] hip roll centre, 64.05
+ROOT_ROLL_Y = ROOT_PITCH_Y + SOCKET_DRIVE_FACE + SOCKET_PAD_T + SOCKET_CASE_Y/2 + SOCKET_CLEAR + 2.0  # [DESIGN DEC-55/60] hip roll centre, 66.3
 HIP_BLOCK_HALF_W = SOCKET_ARM_HALF_W  # [DESIGN DEC-56] 16 mm block, flush with the fork necks
 HIP_FORK_ROOT_R = SOCKET_PAD_T       # [DESIGN DEC-56] R6.3 inside each pitch fork root
 HIP_SOCKET_ROOT_R = SOCKET_WALL     # [DESIGN DEC-56] R5 external block-to-socket roots

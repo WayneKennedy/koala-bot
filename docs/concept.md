@@ -17,7 +17,9 @@ bodies**. The defining split between members is **wheel-vs-gripper limb-ends**
 
 A ground-based companion with **two rear ankle wheels and two replaceable rounded TPU
 front contacts**, articulating knees and a two-wheel balancing/drive mode
-(DEC-31/41/43). The compact koala baseline is **450 mm upright head-top height**,
+(DEC-31/41/43). **The first build uses four TPU feet to train quadruped walking
+(DEC-62): interchangeable rear shanks omit the motors and wheels.** The
+wheeled configuration remains the V1 end goal. The compact koala baseline is **450 mm upright head-top height**,
 within the ~400–500 mm overall size goal (DEC-15). Head mounting and position
 are unresolved; this height is a sizing allocation, not a solved installation. The supported quadruped pose
 is lower. These poses are CAD references; loaded transitions and locomotion
@@ -33,14 +35,17 @@ maximises who can build it, even though the reference printer is 220 mm).
 | Front limbs x2 (arms *and* forelegs) | 3 each | STS3215 bus servo | shoulder **roll → pitch** → elbow (DEC-54; elbow axis direction OQ-25); flatter integrated forearm ending in a replaceable TPU contact at wrist/hand reach; support and gesture; 75 mm forearm + 25 mm hand to Ø32 mm ball centre (DEC-43) |
 | Rear leg hips x2 | 2 each | STS3215 bus servo | **pitch + roll**, in that serial order (DEC-41); active lean and leg placement with a rigid torso |
 | Rear knees x2 | 1 each | STS3215 bus servo | **active in V1** (DEC-31) — articulating knee between thigh and shank; with the hips it sets ride height, crouch and stand |
-| Rear ankle wheels x2 | continuous spin | Bought 37D 12V geared DC + encoder | integrated 90 mm shanks retain ankle drives; no separate rear walking feet |
+| Rear lower links x2 | fixed foot initially; continuous wheel spin later | Twelve limb servos retained; bought 37D drives fitted in wheeled configuration | interchangeable footed / wheeled shanks at the knee (DEC-62); rear TPU pads identical to front |
 | Head / neck | 3 | micro servo + CF pushrod | **3-RPS parallel** (pitch/roll/heave); *yaw delegated to the base* |
 | Torso | 0 (V1) | - | **rigid strut** in V1; interfaces pre-designed for a single 3-DOF platform later |
 
-V1 actuator count: **12 STS3215** (6 arm + 4 hip + 2 knee; twelve bought, no spare — OQ-16) + **3 micro** (head) + **2 DC** (rear drive; bought pair retained).
+V1 actuator count: **12 STS3215** (6 arm + 4 hip + 2 knee; stock/acceptance — OQ-16) + **3 micro** (head) + **2 DC** in the wheeled configuration (bought pair retained, omitted from the walking build).
 
 ### Locomotion
 
+- **Walking first:** four fixed rounded TPU contacts, with the existing three
+  servo joints per limb. Train and validate quadruped walking before fitting
+  wheeled shanks; ground contact, loaded gait and traction need physical evidence.
 - **Supported stance:** front ball feet and rear wheel-feet provide four
   contacts. Standing without active balancing is intended; power-off standing
   is not established. Uneven-terrain stepping with wheel-feet is a later gait

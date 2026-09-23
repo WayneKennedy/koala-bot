@@ -6,6 +6,12 @@ limbs, with rear ankle drives and replaceable TPU front pads. Design, assembly,
 dimensions and remaining acceptance gates:
 [cad-integrated-design.md](../docs/cad-integrated-design.md).
 
+**2026-09-21:** the first build uses four TPU feet (DEC-62). `foot_shank` v1
+replaces each complete wheeled rear shank at the existing knee; the same
+`front_contact_pad` v1 fits all four feet. The default viewer configuration is
+`walking`; `quadruped` and `upright` retain the wheeled geometry.
+[Print files, assembly and evidence](../docs/design/walking/README.md).
+
 ## Current CAD
 
 The torso now wraps the front A volume, with a **10 mm socket-lip recess**,
@@ -40,7 +46,7 @@ uv run python -m koala_hardware.viewer --build
 ```
 
 Exports: `build/stl/`, `build/step/`, `build/renders/`, `build/manifest.txt`.
-Full assemblies are `build/step/koala-quadruped.step` and `koala-upright.step`.
+Full assemblies are `build/step/koala-walking.step`, `koala-quadruped.step` and `koala-upright.step`.
 Every handed print has explicit left/right files. Removed part outputs are
 pruned. The exporter regenerates the printed and fastening blocks in
 [the BOM](../docs/bom.md); never hand-edit them. Slice results count only when
@@ -87,7 +93,7 @@ the existing server then exposes it at
 (DEC-35), served by [systemd/koala-viewer.service](systemd/koala-viewer.service).
 It serves a static build. After source changes, run `viewer --build` on blake
 and reload; a service restart also rebuilds. The body selector switches between
-quadruped and upright snapshots. Sliders apply joint adjustments, **not a
+walking, wheeled quadruped and wheeled upright snapshots. Sliders apply joint adjustments, **not a
 validated rise trajectory or safe operating limits**.
 
 For a local viewer:

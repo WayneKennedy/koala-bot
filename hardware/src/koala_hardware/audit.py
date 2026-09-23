@@ -217,7 +217,7 @@ def main():
         cache=set();samples=[]
         angles=[(0,0,0)]
         if not args.nominal_only:angles += [q for q in itertools.product((-5,0,5),repeat=3) if q!=(0,0,0)]
-        for pose in ('quadruped','upright'):
+        for pose in A.B.poses():
             for q in angles:
                 count=check_scene(pose,q,cache);samples.append({'pose':pose,'delta_degrees':q,'boolean_pairs':count})
                 print('PASS assembly',pose,q,count,'pairs',flush=True)

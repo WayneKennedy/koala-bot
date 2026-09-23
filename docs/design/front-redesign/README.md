@@ -76,8 +76,10 @@ straight insertion paths. Then bolt the root to the cassette on the bench and
 attach the complete cassette to the ventral frame with four front-access screws.
 For root service, remove those frame screws and slide the cassette **laterally
 outward**, keeping the opposite A module installed. The seam has a service purpose; links remain single prints.
-The robot now uses 26 physical prints from 18 designs / 26 handed exports,
-including six separate coupon designs in the design/export count.
+This 2026-09-19 wheeled revision uses 26 physical prints from 18 designs /
+26 handed exports, including six coupon designs. The later
+[walking addition](../walking/README.md) adds an interchangeable rear-shank
+design and two extra TPU pads for that configuration.
 
 ## Local slicing and support review
 

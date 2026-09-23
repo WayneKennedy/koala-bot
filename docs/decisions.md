@@ -16,6 +16,19 @@ acceptance remains open as OQ-13.
 are superseded by the [impact assessment](cad-measurement-impact.md). DEC-40 implements the corrected interface and replaces its geometry;
 physical acceptance remains open.
 
+- **DEC-62 — Build a four-foot walking robot first; retain interchangeable
+  wheeled rear shanks as the end goal** (2026-09-21, owner). The first build
+  uses rear shanks without the drive motors or wheels, terminating in the
+  same form of replaceable TPU foot as the front limbs, to train quadruped
+  walking. Exchange complete lower links at the existing knee interfaces;
+  the torso, hips, thighs and twelve limb servos serve both configurations.
+  The bought rear drives and wheeled shanks remain the intended V1 endpoint.
+  This amends DEC-43's exclusion of rear walking feet and the implementation
+  order, without moving the wheels to the knees or adding an ankle DOF.
+  Specific geometry and its unprinted status belong in the
+  [revision log](cad-integrated-design.md#revision-log). Physical walking,
+  loads and TPU acceptance remain open (OQ-16/17/19).
+
 - **DEC-61 — The rear pitch sockets mount on the torso's 45° face; the main
   assembly adopts DEC-57's proposal** (2026-09-19, owner: "main viewer needs the
   torso amended to have the 45 degree mount for pelvis sockets"). The rotation

@@ -1,0 +1,39 @@
+{
+  "date": "2026-09-21",
+  "python_suite": {
+    "command": "uv run python -m unittest discover -s tests -v",
+    "passed": 71,
+    "elapsed_seconds": 139.075
+  },
+  "final_targeted_checks": {
+    "command": "uv run python -m unittest tests.test_foot_shank tests.test_body_plan tests.test_part_versions.PartVersions -v",
+    "passed": 10
+  },
+  "javascript": {
+    "command": "node tests/test_viewer_joint_order.cjs",
+    "result": "pass"
+  },
+  "browser": {
+    "command": "VIEWER_URL=http://127.0.0.1:8021/ uv run --with playwright python tests/viewer_smoke.py",
+    "chromium": "/home/wkenn/.cache/ms-playwright/chromium-1234/chrome-linux64/chrome",
+    "result": "pass",
+    "configurations": [
+      "walking",
+      "quadruped",
+      "upright"
+    ],
+    "scope": "Initial selector, printed versions/status, four pads/no drive motors in walking mode, nominal screenshots, body backdrop, mirrored CAD/browser motion at roll -2/pitch +2/bend +2 degrees, parts and reset; no browser errors."
+  },
+  "limits": "Digital geometry, sampled clearance and local slicing only. No part was printed and no walking controller or gait has been validated.",
+  "viewer_build": {
+    "result": "pass",
+    "poses": [
+      "quadruped",
+      "upright",
+      "walking"
+    ],
+    "scene_sha256": "c471296bccb0073fa57fa3ca889ccc78dbac341c45a6c287d5d130bed027bfca",
+    "engine_sha256": "32248a2ef5c552902f9a2abb5439deffcb5fd8c62f20c6b88e46c5331fd93f61",
+    "cached_bounds_match_independent_walking_checks": true
+  }
+}

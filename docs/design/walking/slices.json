@@ -1,0 +1,40 @@
+{
+  "date": "2026-09-21",
+  "slicer": "PrusaSlicer-2.7.2+UNKNOWN based on Slic3r (with GUI support)",
+  "source": "Ubuntu noble prusa-slicer 2.7.2+dfsg-1build2; temporary extracted executable and dependencies, no host installation",
+  "profile": "/home/wkenn/Code/3d-printing/reference/ender5s1_petg_koala.ini",
+  "profile_sha256": "0a10583179ece5787b095862cdfe8169a86e9ea51ed75275e999c20f28e44503",
+  "overrides": "hardware/print/manufacturing-petg-tree.ini",
+  "overrides_sha256": "d53bef741dcb2c7c99714b7205b920723967f3f47dc6e6c668b26e3efeabeba8",
+  "scope": "Local review slices only. Organic support from bed only. No printer connected or physical acceptance. All changed parts remain unknown.",
+  "parts": [
+    {
+      "name": "foot_shank_left",
+      "version": 1,
+      "printable": "unknown",
+      "material": "PETG",
+      "stl_sha256": "71f616909271d87aa1014edefbcc94eef897c7ad65596abbcd82fe4568afa104",
+      "gcode_sha256": "bbb2f74902117f101e03074002248ba0f914f806061ffc54ba8f45f3afd886aa",
+      "gcode": "build/manufacturing/foot_shank_left-v1-tree.gcode",
+      "filament_cm3": 23.94,
+      "print_time": "2h 59m 44s",
+      "diagnostics": [],
+      "facet_diagnostic_count": 0,
+      "layers": 104
+    },
+    {
+      "name": "foot_shank_right",
+      "version": 1,
+      "printable": "unknown",
+      "material": "PETG",
+      "stl_sha256": "eeae3452093b84271e236cb784f66887019540fbf292e9efbc5d87fb7f562b71",
+      "gcode_sha256": "2b7f18aa940e42e819fc8820caa2606d949f1e71e29d0bba28585830d4e924fe",
+      "gcode": "build/manufacturing/foot_shank_right-v1-tree.gcode",
+      "filament_cm3": 23.95,
+      "print_time": "2h 59m 49s",
+      "diagnostics": [],
+      "facet_diagnostic_count": 0,
+      "layers": 104
+    }
+  ]
+}

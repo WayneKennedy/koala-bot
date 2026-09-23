@@ -338,7 +338,11 @@ Unresolved. Resolve -> move to [`decisions.md`](decisions.md).
   the `root_socket` module — the smallest new part, on every limb's load path — recorded
   in `test-log.md`; no further revision note until it has been handled.
 
-- **OQ-19 — Front-foot contact acceptance.** DEC-43 fixes the rear ankle-wheel
+- **OQ-19 — TPU-foot contact acceptance (front and rear).** DEC-62 reuses the
+  unchanged front pad on interchangeable rear walking shanks. Validate the
+  four-contact stance, pad retention, loaded deformation and grip during
+  walking; front slice evidence does not prove rear-foot loading.
+  DEC-43 fixes the wheeled configuration's rear ankle-wheel
   location and retains current size. The CAD uses a 75 mm forearm plus 25 mm
   hand to a fixed Ø32 mm ball centre, with both front feet on the floor in the
   supported pose. DEC-48 selects separate TPU pads with keyed seats and recessed
@@ -353,7 +357,13 @@ Unresolved. Resolve -> move to [`decisions.md`](decisions.md).
   small STS3032M servos ([provision](design/neck-provision.md)); its retention,
   3-RPS linkage and head location are still open. Complete battery/electronics,
   harnesses and guards. Power-off standing needs a demonstrated support path.
-- **OQ-17 — Two-wheel drive acceptance and later gait.** Wheel location and
+- **OQ-17 — Four-foot walking first; two-wheel drive acceptance later.** DEC-62
+  puts quadruped training on TPU-footed rear shanks before wheel integration.
+  Establish gait/controller or training setup, mass/inertia model, joint
+  calibration, loaded stance and stepping with four TPU contacts. The new
+  standing CAD reference and sampled clearance checks do not establish a gait.
+  Recalibrate contact geometry and mass assumptions when exchanging shanks.
+  Wheel location and
   bought 37D retention are settled by DEC-43; no knee-drive or belt study is
   required for V1. Establish actual drive current/thermal duty, axle/hub loads
   and rear-pair balance recovery on the assembled robot. Uneven-terrain stepping
@@ -364,7 +374,8 @@ Unresolved. Resolve -> move to [`decisions.md`](decisions.md).
   the backfill 6-pack ordered 2026-09-14 **arrived 2026-09-22** (owner; `bom.md`). Supply is
   no longer part of this question; the new units' firmware is unread, expected 3.10 and read
   when their IDs are set (`sourcing.md`). Removing front
-  drives reduces arm swing loads; rear wheel mass remains at the ankles.
+  drives reduces arm swing loads; rear wheel mass is absent in the first
+  walking build and returns at the ankles with wheeled shanks (DEC-62).
   Establish actual mass/CoM, continuous torque/temperature, ground reactions
   and printed joint strength for support and transition. Digital collision
   checks do not validate loaded motion. Fit one joint, then complete limbs

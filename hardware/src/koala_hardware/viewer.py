@@ -110,7 +110,9 @@ def _assembly_items(tmp: pathlib.Path, pose="quadruped", *, details=None, frames
         tag={'rear_carrier':'hip_carrier','front_carrier':'shoulder_carrier',
              'pelvis_socket':'root_socket','shoulder_socket':'root_socket',
              'front_contact_pad':'front_contact_pad','rear_thigh':'thigh',
-             'rear_shank':'shank','front_upper_arm':'upper_arm','front_forearm':'forearm'}.get(tag,tag)
+             'rear_shank':'foot_shank' if pose=='walking' else 'shank',
+             'rear_contact_pad':'front_contact_pad',
+             'front_upper_arm':'upper_arm','front_forearm':'forearm'}.get(tag,tag)
         if tag.startswith('tray_spacer_'):tag='tray_spacer'
         spec=specs.get(tag,{})
         extra={}
@@ -155,7 +157,8 @@ def _part_items(tmp: pathlib.Path) -> list[dict]:
                            version=spec.get("version",1),
                            printable=spec.get("printable","unknown"), material=spec.get("material","PETG"),
                            print_metrics=metrics(mesh),
-                           qty=spec.get("qty", 1) * (2 if spec.get("handed") else 1)))
+                           qty=spec.get('configuration_qty',{}).get('walking',spec.get("qty", 1))
+                           * (2 if spec.get("handed") else 1)))
         x += w + PART_GAP
         row_h = max(row_h, d)
     return items
@@ -170,9 +173,10 @@ def build() -> pathlib.Path:
                "parts":_part_items(tmp),"meta":{
                    "ground_z":0,"grid":GRID_STEP,"bed":[P.BED_X,P.BED_Y],
                    "track":P.BODY_TRACK_TARGET_MM,"stance":P.BODY_STANDING_HEIGHT_MM,
+                   "pose_track":{name:2*P.ROOT_ROLL_Y if name=='walking' else P.BODY_TRACK_TARGET_MM for name in poses},
                    "hip_axes":2*__import__('koala_hardware.parts.links',fromlist=['rear_axis_y']).rear_axis_y(),
                    "joints":{name:assembly.joint_data(name) for name in poses},
-                   "status":"Recessed roll-first shoulders, parallel-axis front links and the 45° rear socket mounting are implemented. Revised prints remain unprinted; select each part for its version and printability. Three small neck-servo envelopes reserve packaging space; the neck mechanism remains unresolved. Slider ranges are sampled CAD clearances, not calibrated servo limits."}}
+                   "status":"First build: four TPU feet for quadruped walking (DEC-62). Swap rear shanks at the knees for the retained wheeled configurations. Footed shanks are unprinted; select each part for its version and printability. Walking, loaded movement and TPU traction remain unverified. Slider ranges are sampled CAD clearances, not calibrated servo limits."}}
     data = OUT / "scene.json"
     data.write_text(json.dumps(scene))
     shutil.copy(HTML, OUT / "index.html")
@@ -198,13 +202,13 @@ def write_backdrops(out):
         (out/name).unlink(missing_ok=True)
     variants=[]
     for name,pose in body_plan.poses().items():
-        bounds=(-305,-270,430,300) if name=='quadruped' else (-175,-475,285,505)
+        bounds=(-305,-270,430,300) if name!='upright' else (-175,-475,285,505)
         bits=[f'<svg xmlns="http://www.w3.org/2000/svg" width="{2*bounds[2]}" height="{2*bounds[3]}" viewBox="{" ".join(map(str,bounds))}">']
         for key in ('rear','front'):
             l=pose[key]
             points=' '.join(f'{-p.x},{-p.z}' for p in (l.root,l.bend,l.axle))
             bits.append(f'<polyline points="{points}" fill="none" stroke="#73aea4" stroke-width="2" stroke-dasharray="4 3"/>')
-            radius=P.WHEEL_DIA/2 if key=='rear' else P.BODY_FRONT_FOOT_RADIUS_MM
+            radius=P.WHEEL_DIA/2 if key=='rear' and name!='walking' else P.BODY_FRONT_FOOT_RADIUS_MM
             bits.append(f'<circle cx="{-l.axle.x}" cy="{-l.axle.z}" r="{radius}" fill="none" stroke="#73aea4"/>')
         h,s=pose['rear'].root,pose['front'].root
         bits.append(f'<path d="M{-h.x},{-h.z} L{-s.x},{-s.z}" stroke="#73aea4" stroke-width="3"/>')

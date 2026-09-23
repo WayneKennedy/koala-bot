@@ -1,7 +1,7 @@
 <svg xmlns="http://www.w3.org/2000/svg" viewBox="-340 -510 790 580" width="1580" height="1160">
 <style>text{font-family:Arial,sans-serif;fill:#253d48;font-size:8px}.small{font-size:6.5px}.bone{fill:none;stroke:#16867c;stroke-width:5;stroke-linecap:round}.shell{fill:#dce8e7;stroke:#829a99;stroke-width:1;stroke-dasharray:4 3}.wheel{fill:#e1e5e8;stroke:#3c515e;stroke-width:2}.guide{fill:none;stroke:#8b9da3;stroke-width:.6}.dot{fill:#f4b769;stroke:#273f49;stroke-width:1.2}</style>
 <rect x="-340" y="-510" width="790" height="580" fill="#f7faf9"/>
-<text x="-320" y="-487" class="">KOALA V1 · REAR WHEELS + FRONT FEET · QUADRUPED</text>
+<text x="-320" y="-487" class="">KOALA V1 · FOUR TPU FEET · DEC-62 · WALKING</text>
 <text x="-320" y="-474" class="small">Dimensionally closed layout · mm · Front ← · circles: joints / terminal centres · orange lines: roll axes</text>
 <text x="-320" y="-461" class="small">Head outline is sizing intent only; position/mount undecided. Structural CAD omits it; loaded motion unverified.</text>
 <ellipse class="shell" cx="-39.91101212558871" cy="-172.33333333333334" rx="110.0" ry="45" transform="rotate(-3.822553729274344 -39.91101212558871 -172.33333333333334)"/>
@@ -10,17 +10,17 @@
 <path class="bone" d="M-149.66629547095766,-165.0 L-184.58843108084778,-162.66666666666666"/>
 <circle class="dot" cx="-184.58843108084778" cy="-162.66666666666666" r="4"/>
 <text x="-21.911012125588712" y="-184.33333333333334" class="small">Torso 150</text>
-<path class="bone" d="M0,-175.0 L-18.440225669944912,-92.02435250483727"/>
-<path class="bone" d="M-18.440225669944912,-92.02435250483727 L55.0,-40.0"/>
+<path class="bone" d="M0,-175.0 L3.9048921487800428,-90.08974256718807"/>
+<path class="bone" d="M3.9048921487800428,-90.08974256718807 L55.0,-16.0"/>
 <circle class="dot" cx="0" cy="-175.0" r="4"/>
-<circle class="dot" cx="-18.440225669944912" cy="-92.02435250483727" r="4"/>
-<circle class="dot" cx="55.0" cy="-40.0" r="4"/>
-<path d="M-17.57131358721093,-178.9049889654001 L17.57131358721093,-171.0950110345999" stroke="#d47920" stroke-width="2"/>
-<circle class="wheel" cx="55.0" cy="-40.0" r="40.0"/>
-<circle class="dot" cx="55.0" cy="-40.0" r="4"/>
-<text x="-28.220112834972454" y="-133.51217625241864" class="small">85</text>
-<text x="-0.7201128349724542" y="-66.01217625241864" class="small">90</text>
-<text x="19.0" y="15.0" class="small">Ankle drive</text>
+<circle class="dot" cx="3.9048921487800428" cy="-90.08974256718807" r="4"/>
+<circle class="dot" cx="55.0" cy="-16.0" r="4"/>
+<path d="M-17.980995691654293,-174.17308166261128 L17.980995691654293,-175.82691833738872" stroke="#d47920" stroke-width="2"/>
+<circle class="wheel" cx="55.0" cy="-16.0" r="16.0"/>
+<circle class="dot" cx="55.0" cy="-16.0" r="4"/>
+<text x="-17.04755392560998" y="-132.54487128359403" class="small">85</text>
+<text x="10.452446074390021" y="-53.044871283594034" class="small">90</text>
+<text x="19.0" y="39.0" class="small">TPU contact pad</text>
 <path class="bone" d="M-149.66629547095766,-165.0 L-143.98774794722365,-95.23070805848253"/>
 <path class="bone" d="M-143.98774794722365,-95.23070805848253 L-205.0,-16.0"/>
 <circle class="dot" cx="-149.66629547095766" cy="-165.0" r="4"/>
@@ -64,18 +64,18 @@
 <rect class="shell" x="230.0" y="-237.66666666666666" width="110.0" height="75.0" rx="20"/>
 <path class="bone" d="M258.75,-175.0 H218.7"/>
 <circle class="dot" cx="258.75" cy="-175.0" r="3"/>
-<path class="bone" d="M218.7,-175.0 V-92.02435250483727 V-40.0 H175.0"/>
+<path class="bone" d="M218.7,-175.0 V-90.08974256718807 V-16.0 H218.7"/>
 <circle class="dot" cx="218.7" cy="-175.0" r="3"/>
-<circle class="dot" cx="218.7" cy="-92.02435250483727" r="3"/>
-<circle class="dot" cx="218.7" cy="-40.0" r="3"/>
-<rect class="wheel" x="170.0" y="-80.0" width="10" height="80" rx="4"/>
+<circle class="dot" cx="218.7" cy="-90.08974256718807" r="3"/>
+<circle class="dot" cx="218.7" cy="-16.0" r="3"/>
+<circle class="wheel" cx="218.7" cy="-16.0" r="16.0"/>
 <path class="bone" d="M311.25,-175.0 H351.3"/>
 <circle class="dot" cx="311.25" cy="-175.0" r="3"/>
-<path class="bone" d="M351.3,-175.0 V-92.02435250483727 V-40.0 H395.0"/>
+<path class="bone" d="M351.3,-175.0 V-90.08974256718807 V-16.0 H351.3"/>
 <circle class="dot" cx="351.3" cy="-175.0" r="3"/>
-<circle class="dot" cx="351.3" cy="-92.02435250483727" r="3"/>
-<circle class="dot" cx="351.3" cy="-40.0" r="3"/>
-<rect class="wheel" x="390.0" y="-80.0" width="10" height="80" rx="4"/>
+<circle class="dot" cx="351.3" cy="-90.08974256718807" r="3"/>
+<circle class="dot" cx="351.3" cy="-16.0" r="3"/>
+<circle class="wheel" cx="351.3" cy="-16.0" r="16.0"/>
 <path class="bone" d="M229.885,-165.0 H189.885"/>
 <circle class="dot" cx="229.885" cy="-165.0" r="3"/>
 <path class="bone" d="M189.885,-165.0 V-95.23070805848253 V-16.0 H189.885"/>
@@ -90,11 +90,11 @@
 <circle class="dot" cx="380.115" cy="-95.23070805848253" r="3"/>
 <circle class="dot" cx="380.115" cy="-16.0" r="3"/>
 <circle class="wheel" cx="380.115" cy="-16.0" r="16.0"/>
-<path class="guide" d="M175.0,0 H395.0 M175.0,10 v15 M395.0,10 v15 M175.0,20 H395.0"/>
-<text x="242" y="35" class="small">220 rear wheel-centre track</text>
+<path class="guide" d="M218.7,0 H351.3 M218.7,10 v15 M351.3,10 v15 M218.7,20 H351.3"/>
+<text x="242" y="35" class="small">132.6 rear foot-centre track</text>
 <text x="190" y="-487" class="small">Front: roll 110.23 → pitch 190.23 → elbow</text>
 <text x="190" y="-476" class="small">Rear: pitch 52.5 → roll 132.6 → knee</text>
-<text x="195" y="-465" class="small">Rear: Ø80 drives ×2 · Front: Ø32 fixed feet</text>
-<text x="195" y="-454" class="small">Opposed motor end gap: 36</text>
+<text x="195" y="-465" class="small">Four Ø32 fixed TPU feet</text>
+<text x="195" y="-454" class="small">No drive motors fitted</text>
 <text x="-320" y="65" class="small">Engineering master only: no actuator torque, collision-free transition or physical fit acceptance is implied.</text>
 </svg>

@@ -25,7 +25,7 @@ class Point:
 class Limb:
     root: Point
     bend: Point
-    axle: Point  # terminal centre: rear axle or fixed front ball centre
+    axle: Point  # terminal centre: axle or fixed TPU ball centre
     upper: float
     lower: float
     flexion: float
@@ -66,6 +66,11 @@ def poses():
         out[name]={'rear':solve(h,r,P.BODY_THIGH_MM,P.BODY_SHANK_MM,1),
                    'front':solve(s,f,P.BODY_UPPER_ARM_MM,P.BODY_FOREARM_MM+P.BODY_HAND_MM,-1),
                    'neck':neck,'body_angle':degrees(theta)}
+    # Walking is a separate configuration: keep the upper chassis and contact
+    # X targets, solve the rear knee for the smaller pad's centre height.
+    walking_rear=Point(rear.x,P.BODY_FRONT_FOOT_RADIUS_MM)
+    out['walking']=out['quadruped'] | {
+        'rear':solve(hip,walking_rear,P.BODY_THIGH_MM,P.BODY_SHANK_MM,1)}
     return out
 
 
@@ -85,7 +90,8 @@ def check():
             assert 0<limb.flexion<150
         assert abs(pose['rear'].root.distance(pose['front'].root)-P.BODY_TORSO_LENGTH_MM)<1e-8
         assert abs(pose['front'].root.distance(pose['neck'])-P.BODY_NECK_LENGTH_MM)<1e-8
-        assert abs(pose['rear'].axle.z-P.WHEEL_DIA/2)<1e-8
+        radius=P.BODY_FRONT_FOOT_RADIUS_MM if name=='walking' else P.WHEEL_DIA/2
+        assert abs(pose['rear'].axle.z-radius)<1e-8
     q=data['quadruped']; u=data['upright']
     assert abs(q['front'].axle.z-P.BODY_FRONT_FOOT_RADIUS_MM)<1e-8
     assert abs(q['front'].axle.x-q['rear'].axle.x-P.BODY_WHEELBASE_TARGET_MM)<1e-8
@@ -97,6 +103,8 @@ def check():
     assert gap>=P.BODY_MOTOR_GAP_MIN_MM
     assert u['front'].axle.z>P.BODY_FRONT_FOOT_RADIUS_MM
     return {'drive_motor_count':P.BODY_DRIVE_MOTOR_COUNT,
+            'configuration_counts':{'walking':{'drive_motors':0,'TPU_pads':4},
+                                    'wheeled':{'drive_motors':2,'TPU_pads':2}},
             'front_foot_radius_mm':P.BODY_FRONT_FOOT_RADIUS_MM,
             'motor_end_gap_mm':gap,'poses':data}
 
@@ -111,7 +119,8 @@ def svg(name,pose):
     def dot(p):bits.append(f'<circle class="dot" cx="{-p.x}" cy="{-p.z}" r="4"/>')
     def dimension(x,z0,z1,label):
         bits.append(f'<path class="guide" d="M{x},{-z0} V{-z1} M{x-3},{-z0} h6 M{x-3},{-z1} h6"/>');txt(x+5,-(z0+z1)/2,label,True)
-    txt(-320,-487,f'KOALA V1 · REAR WHEELS + FRONT FEET · DEC-49/50 · {name.upper()}')
+    walking=name=='walking'
+    txt(-320,-487,f'KOALA V1 · {"FOUR TPU FEET · DEC-62" if walking else "REAR WHEELS + FRONT FEET"} · {name.upper()}')
     txt(-320,-474,'Dimensionally closed layout · mm · Front ← · circles: joints / terminal centres · orange lines: roll axes',True)
     txt(-320,-461,'Head outline is sizing intent only; position/mount undecided. Structural CAD omits it; loaded motion unverified.',True)
     hip,shoulder=pose['rear'].root,pose['front'].root
@@ -136,11 +145,11 @@ def svg(name,pose):
         a=Point(limb.root.x+18*rx,limb.root.z+18*rz)
         b=Point(limb.root.x-18*rx,limb.root.z-18*rz)
         bits.append(f'<path d="M{-a.x},{-a.z} L{-b.x},{-b.z}" stroke="#d47920" stroke-width="2"/>')
-        p=limb.axle;radius=P.WHEEL_DIA/2 if key=='rear' else P.BODY_FRONT_FOOT_RADIUS_MM
+        p=limb.axle;radius=P.WHEEL_DIA/2 if key=='rear' and not walking else P.BODY_FRONT_FOOT_RADIUS_MM
         bits.append(f'<circle class="wheel" cx="{-p.x}" cy="{-p.z}" r="{radius}"/>');dot(p)
         for a,b,n in ((limb.root,limb.bend,limb.upper),(limb.bend,limb.axle,limb.lower)):
             txt(-(a.x+b.x)/2-19,-(a.z+b.z)/2,'100 (75+25)' if key=='front' and n==limb.lower else f'{n:g}',True)
-        txt(-p.x-36,-p.z+(55 if key=='rear' else 32),'Ankle drive' if key=='rear' else 'TPU contact pad',True)
+        txt(-p.x-36,-p.z+(55 if key=='rear' else 32),'Ankle drive' if key=='rear' and not walking else 'TPU contact pad',True)
     path(Point(-130,0),Point(310,0),'guide')
     for h in range(0,451,50):
         path(Point(320,h),Point(315,h),'guide');txt(-312,-h+2,str(h),True)
@@ -148,7 +157,7 @@ def svg(name,pose):
     dimension(-290,0,shoulder.z,f'Shoulder {shoulder.z:g}')
     if name=='upright':dimension(156,0,450,'450 overall')
     else:
-        txt(-215,42,'Front foot–rear wheel centres: 260',True)
+        txt(-215,42,'Front–rear contact centres: 260',True)
         txt(-215,53,'Head-top envelope: 237.7 · approximate nose–rump length: 340',True)
     txt(210,-498,'FRONT / TRACK',True)
     bits.append(f'<path class="guide" d="M285,{-hip.z} V{-shoulder.z} V{-neck.z}"/>')
@@ -156,24 +165,25 @@ def svg(name,pose):
     for key,roots in [('rear',rear_axis_y()),('front',P.BODY_SHOULDER_WIDTH_MM/2)]:
         l=pose[key]
         for side in (-1,1):
-            x0=285+side*roots;x1=285+side*P.BODY_TRACK_TARGET_MM/2 if key=='rear' else x0
+            x0=285+side*roots;x1=285+side*P.BODY_TRACK_TARGET_MM/2 if key=='rear' and not walking else x0
             primary=285+side*(P.SHOULDER_A_Y if key=='front' else P.ROOT_PITCH_Y)
             bits.append(f'<path class="bone" d="M{primary},{-l.root.z} H{x0}"/>')
             bits.append(f'<circle class="dot" cx="{primary}" cy="{-l.root.z}" r="3"/>')
             bits.append(f'<path class="bone" d="M{x0},{-l.root.z} V{-l.bend.z} V{-l.axle.z} H{x1}"/>')
             for p in (l.root,l.bend,l.axle):
                 bits.append(f'<circle class="dot" cx="{x0}" cy="{-p.z}" r="3"/>')
-            if key=='rear':
+            if key=='rear' and not walking:
                 bits.append(f'<rect class="wheel" x="{x1-5}" y="{-l.axle.z-40}" width="10" height="80" rx="4"/>')
             else:
                 bits.append(f'<circle class="wheel" cx="{x1}" cy="{-l.axle.z}" r="{P.BODY_FRONT_FOOT_RADIUS_MM}"/>')
-    lo=285-P.BODY_TRACK_TARGET_MM/2; hi=285+P.BODY_TRACK_TARGET_MM/2
+    track=2*rear_axis_y() if walking else P.BODY_TRACK_TARGET_MM
+    lo=285-track/2; hi=285+track/2
     bits.append(f'<path class="guide" d="M{lo},0 H{hi} M{lo},10 v15 M{hi},10 v15 M{lo},20 H{hi}"/>')
-    txt(242,35,f'{P.BODY_TRACK_TARGET_MM:g} wheel-centre track',True)
+    txt(242,35,f'{track:g} rear {"foot" if walking else "wheel"}-centre track',True)
     txt(190,-487,f'Front: roll {2*P.SHOULDER_A_Y:g} → pitch {P.BODY_SHOULDER_WIDTH_MM:g} → elbow',True)
     txt(190,-476,f'Rear: pitch {2*P.ROOT_PITCH_Y:g} → roll {2*rear_axis_y():g} → knee',True)
-    txt(195,-465,'Rear: Ø80 drives ×2 · Front: Ø32 fixed feet',True)
-    txt(195,-454,f'Opposed motor end gap: {check()["motor_end_gap_mm"]:g}',True)
+    txt(195,-465,'Four Ø32 fixed TPU feet' if walking else 'Rear: Ø80 drives ×2 · Front: Ø32 fixed feet',True)
+    txt(195,-454,'No drive motors fitted' if walking else f'Opposed motor end gap: {check()["motor_end_gap_mm"]:g}',True)
     txt(-320,65,'Engineering master only: no actuator torque, collision-free transition or physical fit acceptance is implied.',True)
     bits.append('</svg>');return '\n'.join(bits)
 
@@ -199,14 +209,14 @@ def cad_items(name,pose):
             rod(l.root,l.bend,y,f'{key}_upper_{side}');rod(l.bend,l.axle,y,f'{key}_lower_{side}')
             for i,p in enumerate((l.root,l.bend,l.axle)):
                 out.append((f'{key}_axis_{i}_{side}',Pos(p.x,y,p.z)*Sphere(7)))
-            if key=='front':
-                out.append((f'front_foot_{side}',Pos(l.axle.x,y,l.axle.z)*Sphere(P.BODY_FRONT_FOOT_RADIUS_MM)))
+            if key=='front' or name=='walking':
+                out.append((f'{key}_foot_{side}',Pos(l.axle.x,y,l.axle.z)*Sphere(P.BODY_FRONT_FOOT_RADIUS_MM)))
                 continue
             wy=side*P.BODY_TRACK_TARGET_MM/2
             axial(l.axle,wy-P.WHEEL_W/2,P.WHEEL_W,P.WHEEL_DIA/2,f'{key}_wheel_{side}')
             axial(l.axle,min(y,wy),abs(wy-y),3,f'{key}_axle_{side}')
         lo,hi=motor_intervals()[0 if side==-1 else 1]
-        for key in ('rear',):
+        for key in (() if name=='walking' else ('rear',)):
             axial(pose[key].axle,lo,hi-lo,P.MOTOR_DIA/2,f'{key}_motor_{side}')
     rod(pose['rear'].root,pose['front'].root,0,'torso_axis',8)
     rod(pose['front'].root,pose['neck'],0,'neck_axis',5)
@@ -241,7 +251,7 @@ def render_pngs(output):
         browser=p.chromium.launch(headless=True,
             executable_path=os.environ.get('PLAYWRIGHT_CHROMIUM'),args=['--no-sandbox'])
         page=browser.new_page(viewport={'width':1580,'height':1160},device_scale_factor=2)
-        for name in ('quadruped','upright'):
+        for name in poses():
             page.goto((output/f'body-{name}.svg').as_uri())
             page.locator('svg').screenshot(path=str(output/f'body-{name}.png'))
         browser.close()

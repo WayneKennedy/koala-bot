@@ -1,5 +1,9 @@
 # Engineering drawings and CAD
 
+**2026-09-21 addition:** [walking first build](walking/README.md), with four
+identical TPU feet and interchangeable `foot_shank` v1 rear links. The main
+viewer opens in this configuration; the wheeled snapshots remain selectable.
+
 **Current 2026-09-19 revision:** [recessed roll-first front limbs](front-redesign/README.md),
 [small-servo neck provision](neck-provision.md),
 [design and assembly](../cad-integrated-design.md), and
@@ -62,6 +66,7 @@ show the chosen bed faces. Left/right STL and STEP files are generated separatel
 | Corrected thigh v3, 85 mm | [Four views](parts/thigh-views.png) |
 | Upper arm v2, 70 mm | [Four views](parts/upper_arm-views.png) |
 | Shank v2, 90 mm | [PNG](parts/shank_right.png) |
+| Footed rear shank v1, 90 mm | [Four views](parts/foot_shank-views.png) |
 | Forearm v2 and keyed hand end | [Four views](parts/forearm-views.png) |
 | Replaceable Ø32 TPU contact | [PNG](parts/front_contact_pad.png) |
 | Extended torso v5 | [Four views](parts/torso_frame-views.png) |
@@ -69,7 +74,7 @@ show the chosen bed faces. Left/right STL and STEP files are generated separatel
 | Two-print acceptance rig | [Saddle](parts/coupon_socket_saddle.png) · [Fork](parts/coupon_socket_fork.png) |
 
 Full structural STEP assemblies are generated in
-`hardware/build/step/koala-quadruped.step` and `koala-upright.step`; the current
+`hardware/build/step/koala-walking.step`, `koala-quadruped.step` and `koala-upright.step`; the current
 part STL/STEP sets are in `hardware/build/stl/` and `hardware/build/step/`.
 These build outputs also exist on blake. Original upstream reference STEPs
 remain unchanged in `hardware/vendor/`; they are not koala prints.

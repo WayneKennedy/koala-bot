@@ -5,6 +5,12 @@ revision note under DEC-59). The 2026-09-19 recessed front revision preserves
 the sagittal targets while changing shoulder spacing and the surrounding frame.
 [Current design](cad-integrated-design.md) · [Printability](part-design-review.md).
 
+**DEC-62, 2026-09-21:** the first build substitutes footed rear shanks and the
+same Ø32 TPU pads as the front. Knee-to-pad centres remain 90 mm; neutral rear
+foot spacing is 132.6 mm. A separate [walking reference](design/body-walking.svg)
+re-solves the knees with pad centres at Z16. The wheeled dimensions and poses
+below remain the intended final configuration.
+
 [Supported pose PNG](design/body-quadruped.png) · [Upright PNG](design/body-upright.png).
 SVGs, STEP references and joint coordinates are alongside them in
 [docs/design](design/README.md), viewable independently in iPad Files.
@@ -78,7 +84,8 @@ The 120 mm conceptual track would overlap the motors by 64 mm.
 The twelve ST3215s and two wheel-drive channels remain. Front ball feet add
 no actuator, caster or wheel. Supported stance and rear-wheel balance/drive
 are V1 targets; uneven-terrain stepping with wheel-feet is a later experiment.
-Four separate walking feet with wheels off the ground are not required.
+DEC-62 adds four-foot walking as the first build, with the rear wheels and
+motors omitted rather than carried clear of the ground.
 
 ## Implementation and limits
 

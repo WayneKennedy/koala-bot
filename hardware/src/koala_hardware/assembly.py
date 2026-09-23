@@ -9,7 +9,7 @@ from math import radians, sin, cos
 from pathlib import Path
 from build123d import Pos, Rot, Plane, mirror, Box, Align, Compound, export_step
 from . import params as P, servo_iface as S, body_plan as B
-from .parts import pelvis, links as L, front as F, shoulder_mount as SM, neck_space, e_tray, torso
+from .parts import pelvis, links as L, front as F, foot_shank as FS, shoulder_mount as SM, neck_space, e_tray, torso
 
 ROOT=Path(__file__).resolve().parents[2]
 GROUND_Z=0.0
@@ -53,6 +53,7 @@ def joint_data(pose_name='quadruped'):
 @lru_cache
 def nominal_details(pose_name='quadruped'):
     pose=B.poses()[pose_name];body=body_location(pose)
+    walking=pose_name=='walking'
     items=[]
     def add(n,p,c,g='fixed',side=0): items.append((n,p,c,g,side))
     for front in (False,True):
@@ -87,7 +88,7 @@ def nominal_details(pose_name='quadruped'):
            ('reference_pitch_servo',body*pelvis.pitch_socket(False)*S.socket_reference(),'#e8d44d','fixed'),
            ('thigh',upper*L.upper_link(limb.upper,True),'#c98fd9','roll'),
            ('reference_knee_servo',upper*L.knee_socket_frame(limb.upper,True)*S.socket_reference(),'#e8d44d','roll'),
-           ('shank',lower*L.lower_link(limb.lower,False),'#8fd9c9','bend')]
+           ('shank',lower*(FS.solid() if walking else L.lower_link(limb.lower,False)),'#8fd9c9','bend')]
     for label,tf,g in [('roll',roll,'roll'),('pitch',roll_frame*L.pitch_fork_frame(),'pitch'),('bend',lower,'bend')]:
         local.append(('reference_'+label+'_horn_heads',tf*S.horn_head_envelopes(),'#aaaaaa',g))
     for label,tf,g in [('roll',roll_frame*L.roll_socket_frame(y),'pitch'),('pitch',body*pelvis.pitch_socket(False),'fixed'),('bend',upper*L.knee_socket_frame(limb.upper,True),'roll')]:
@@ -97,13 +98,16 @@ def nominal_details(pose_name='quadruped'):
     for i in range(6):
         a=radians(60*i+30)
         heads.append(S._x_hole(face+P.MOTOR_MOUNT_T,face+P.MOTOR_MOUNT_T+P.CAP_M3_H,P.MOTOR_BCD/2*cos(a),limb.lower+P.MOTOR_BCD/2*sin(a),P.CAP_M3_DIA))
-    local.append(('reference_motor_heads',lower*Compound(children=heads),'#aaaaaa','bend'))
+    if not walking:local.append(('reference_motor_heads',lower*Compound(children=heads),'#aaaaaa','bend'))
     for name,x0,x1,dia,col in [
         ('motor',face-P.MOTOR_BODY_LEN,face,P.MOTOR_DIA,'#777777'),
         ('shaft',face,face+P.MOTOR_SHAFT_LEN,P.MOTOR_SHAFT_DIA,'#aaaaaa'),
         ('hub',face+P.HUB_STACK-P.HUB_T,face+P.HUB_STACK,P.HUB_DIA,'#bbbbbb'),
         ('wheel',face+P.HUB_STACK,face+P.HUB_STACK+P.WHEEL_W,P.WHEEL_DIA,'#555555')]:
-        local.append((name,lower*S._x_hole(x0,x1,0,limb.lower,dia),col,'bend'))
+        if not walking:local.append((name,lower*S._x_hole(x0,x1,0,limb.lower,dia),col,'bend'))
+    if walking:
+        local += [('contact_pad',lower*FS.pad_location()*L.front_pad(),'#555f66','bend'),
+                  ('reference_pad_fixing',lower*FS.pad_location()*pad_fixing(),'#aaaaaa','bend')]
     for side in (1,-1):
         for name,p,c,g in local:
             n=('reference_rear_'+name.removeprefix('reference_') if name.startswith('reference_') else 'rear_'+name)
@@ -124,14 +128,18 @@ def nominal_details(pose_name='quadruped'):
         local.append(('reference_front_'+label+'_horn_heads',tf*S.horn_head_envelopes(),'#aaaaaa',g))
     for label,tf,g in [('roll',a_frame,'fixed'),('pitch',b_frame,'roll'),('bend',c_frame,'pitch')]:
         local.append(('reference_front_'+label+'_ear_heads',tf*S.ear_head_envelopes(),'#aaaaaa',g))
-    from build123d import Cylinder,Align,RegularPolygon,extrude
-    pad_fix=Pos(0,0,110)*Cylinder(3,2.5,align=(Align.CENTER,Align.CENTER,Align.MIN))
-    pad_fix+=Pos(0,0,P.FRONT_PAD_NUT_Z)*extrude(RegularPolygon(3.175,6,rotation=30),amount=2.4)
-    local.append(('reference_front_pad_fixing',lower*pad_fix,'#aaaaaa','bend'))
+    local.append(('reference_front_pad_fixing',lower*pad_fixing(),'#aaaaaa','bend'))
     for side in (1,-1):
         for name,p,c,g in local:add(name+('_right' if side==1 else '_left'),p if side==1 else mirror(p,Plane.XZ),c,'front_'+g,side)
     # Neck items reserve catalogue-sized space; head/linkage acceptance remains open.
     return items
+
+
+def pad_fixing():
+    """Existing front-pad nut and recessed head/washer reference, shared rear."""
+    from build123d import Cylinder,Align,RegularPolygon,extrude
+    part=Pos(0,0,110)*Cylinder(3,2.5,align=(Align.CENTER,Align.CENTER,Align.MIN))
+    return part+Pos(0,0,P.FRONT_PAD_NUT_Z)*extrude(RegularPolygon(3.175,6,rotation=30),amount=2.4)
 
 
 def joint_transform(d,j,roll=0.,pitch=0.,knee=0.):

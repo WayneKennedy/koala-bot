@@ -10,6 +10,10 @@ record**. See [`docs/roadmap.md`](docs/roadmap.md) for direction and
 
 ## What it is
 
+**Build order (DEC-62):** first train quadruped walking with four TPU feet.
+[Footed rear shanks](docs/design/walking/README.md) interchange at the existing
+knees with the wheeled shanks; wheels remain the V1 end goal.
+
 The first family member, **Koala (V1)**, is a **self-balancing, wheel-footed
 companion** roughly the size and shape of a koala, printable in **PETG on a
 200×200 mm bed**. It sits between *locomotion showpiece* and *desk companion*:

@@ -120,6 +120,15 @@ Changing DEC-16 or DEC-18 has consequences beyond this repo.
 
 ## Status
 
+**2026-09-21 — walking first (DEC-62):** build with four identical
+`front_contact_pad` v1 TPU feet and new handed `foot_shank` v1 rear links,
+without rear drive hardware. Swap complete rear shanks at the retained knees
+for the wheeled V1 end goal; `shank` v2 geometry is unchanged. The walking
+reference uses 90 mm knee-to-pad centres and 132.6 mm rear foot spacing at
+neutral roll; 220 mm remains the wheel track. The viewer opens in `walking`
+and retains both wheeled poses. New shanks are `unknown`/unprinted.
+[Files, assembly and evidence](docs/design/walking/README.md).
+
 **Phase 1 (V1 vertical slice), current CAD 2026-09-19:** recessed **roll → pitch**
 front shoulders now complement the retained **pitch → roll** rear legs. This is
 an **unprinted revision**, recorded in
@@ -157,8 +166,8 @@ bed-only slices and selected layer plots in the
 Those support the proposed print approach without proving physical removal or
 strength; changed parts remain `unknown`.
 
-There are **18 designs / 26 handed exports** including six coupons; the robot
-uses **26 physical prints**. The [front record](docs/design/front-redesign/README.md)
+There are **19 designs / 28 handed exports** including six coupons and both
+rear-shank alternatives; the robot uses **28 physical prints walking / 26 wheeled**. The [front record](docs/design/front-redesign/README.md)
 contains views and full front moving-package roll checks at ±30°/2° in both
 saved configurations, plus installed two-front checks at five roll settings.
 The 1° adjacent-joint report has narrower carrier-only roll scope; it does not

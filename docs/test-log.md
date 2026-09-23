@@ -7,6 +7,15 @@ in `hardware/src/koala_hardware/params.py`, tagged with their provenance.
 Reference printer per DEC-14 (Ender-5 S1 / Klipper), PETG, the standing
 general-purpose profile recorded in [`bom.md`](bom.md).
 
+## 2026-09-21 — rear roll-spacing comment corrected (no print)
+
+The `ROOT_ROLL_Y` expression already includes DEC-60's widened hip spacing,
+but its trailing comment still said 64.05 mm. Evaluating it gives **66.3 mm**
+per side, so centreline rear walking feet are **132.6 mm** apart at neutral
+roll. The initial assistant estimate of 128.1 mm was wrong. Corrected the
+comment and current walking documentation; no geometry or existing print
+version changes. New `foot_shank` v1 remains unprinted/`unknown`.
+
 ## 2026-09-19 — forearm v2 STL roundoff persistence corrected (digital only)
 
 The forearm BREP was valid, but exported STL coordinates for coincident vertices

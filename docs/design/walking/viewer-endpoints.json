@@ -1,0 +1,237 @@
+{
+  "status": "pass",
+  "scope": "BREP checks of all six initial walking viewer slider endpoints for each of the imported STEP and conservative caliper cases. Every complete assembly obstacle and audit owning-socket contact exemption is included. Static pairs are cached only within one case model using the joint-order-aware audit cache.",
+  "scene_sha256": "36183a79799da7f9ef5d58a47e7972615f75dd444e9e87585656e53a1d119653",
+  "engine_sha256": "32248a2ef5c552902f9a2abb5439deffcb5fd8c62f20c6b88e46c5331fd93f61",
+  "source_sha256": {
+    "hardware/src/koala_hardware/audit.py": "12cea014f7396723a238ba008961bc6f30151069c9a0386eab4c894f8d14f50e",
+    "hardware/src/koala_hardware/assembly.py": "3499e181f6cfcf82c2e672434df01411e28b65fe9fe89f7b4fe3857fa25821e2",
+    "hardware/src/koala_hardware/params.py": "bf17cf7a95105cf5cda590018d64c51db16c965e503a823aac1dda810f337652",
+    "hardware/src/koala_hardware/parts/front.py": "4ffb082b2b4d8e79b584d6095aa285680b3b07b988f78d513f0a88c886211080",
+    "hardware/src/koala_hardware/parts/foot_shank.py": "df5391d299042d90829bcc6371325d6f189050bde15b8daa7a2d7b026f095064",
+    "hardware/src/koala_hardware/parts/links.py": "18518472ca6277105d4bb25573c5d475a8c6c4353fcb0f6803a8903fd85b418a",
+    "hardware/src/koala_hardware/body_plan.py": "66eda453764c836b64e0ed77030d98ea9bc7d910323408fb1ff9336e8f98719a",
+    "hardware/src/koala_hardware/parts/torso.py": "0678fd7933a3860b16f39daa050f61ef7d76af128987e3ce294c5217b350233c",
+    "hardware/src/koala_hardware/parts/shoulder_mount.py": "d0f59de86d2d13b1a0ec8f74d6ea13d006ed60cc8547336c4ac6866d00130504",
+    "hardware/src/koala_hardware/parts/neck_space.py": "e195fd7b34309c2b14671b285b39346829480383c4aff7e7503ac3396e17e1a2"
+  },
+  "initial_pose_bounds": {
+    "walking": {
+      "bounds": {
+        "pitch": {
+          "min": -43.5,
+          "max": 107.5,
+          "stops": [
+            [
+              "torso_frame",
+              "rear_thigh_right"
+            ],
+            [
+              "front_carrier_right",
+              "front_upper_arm_right"
+            ]
+          ]
+        },
+        "roll": {
+          "min": -16,
+          "max": 29.25,
+          "stops": [
+            [
+              "rear_contact_pad_right",
+              "rear_contact_pad_left"
+            ],
+            [
+              "shoulder_socket_right",
+              "front_carrier_right"
+            ]
+          ]
+        },
+        "knee": {
+          "min": -61.25,
+          "max": 89.25,
+          "stops": [
+            [
+              "rear_thigh_right",
+              "rear_shank_right"
+            ],
+            [
+              "rear_thigh_right",
+              "rear_shank_right"
+            ]
+          ]
+        }
+      },
+      "step": 0.25,
+      "angular_reserve_degrees": 2,
+      "search_ceiling": 180
+    }
+  },
+  "configuration_count": 12,
+  "boolean_pairs": 716,
+  "samples": [
+    {
+      "case_model": "imported_step",
+      "pose": "walking",
+      "axis": "pitch",
+      "endpoint": "min",
+      "delta_degrees": [
+        0.0,
+        -43.5,
+        0.0
+      ],
+      "boolean_pairs": 190,
+      "result": "pass"
+    },
+    {
+      "case_model": "imported_step",
+      "pose": "walking",
+      "axis": "pitch",
+      "endpoint": "max",
+      "delta_degrees": [
+        0.0,
+        107.5,
+        0.0
+      ],
+      "boolean_pairs": 36,
+      "result": "pass"
+    },
+    {
+      "case_model": "imported_step",
+      "pose": "walking",
+      "axis": "roll",
+      "endpoint": "min",
+      "delta_degrees": [
+        -16,
+        0.0,
+        0.0
+      ],
+      "boolean_pairs": 50,
+      "result": "pass"
+    },
+    {
+      "case_model": "imported_step",
+      "pose": "walking",
+      "axis": "roll",
+      "endpoint": "max",
+      "delta_degrees": [
+        29.25,
+        0.0,
+        0.0
+      ],
+      "boolean_pairs": 40,
+      "result": "pass"
+    },
+    {
+      "case_model": "imported_step",
+      "pose": "walking",
+      "axis": "knee",
+      "endpoint": "min",
+      "delta_degrees": [
+        0.0,
+        0.0,
+        -61.25
+      ],
+      "boolean_pairs": 24,
+      "result": "pass"
+    },
+    {
+      "case_model": "imported_step",
+      "pose": "walking",
+      "axis": "knee",
+      "endpoint": "max",
+      "delta_degrees": [
+        0.0,
+        0.0,
+        89.25
+      ],
+      "boolean_pairs": 18,
+      "result": "pass"
+    },
+    {
+      "case_model": "conservative_caliper",
+      "pose": "walking",
+      "axis": "pitch",
+      "endpoint": "min",
+      "delta_degrees": [
+        0.0,
+        -43.5,
+        0.0
+      ],
+      "boolean_pairs": 190,
+      "result": "pass"
+    },
+    {
+      "case_model": "conservative_caliper",
+      "pose": "walking",
+      "axis": "pitch",
+      "endpoint": "max",
+      "delta_degrees": [
+        0.0,
+        107.5,
+        0.0
+      ],
+      "boolean_pairs": 36,
+      "result": "pass"
+    },
+    {
+      "case_model": "conservative_caliper",
+      "pose": "walking",
+      "axis": "roll",
+      "endpoint": "min",
+      "delta_degrees": [
+        -16,
+        0.0,
+        0.0
+      ],
+      "boolean_pairs": 50,
+      "result": "pass"
+    },
+    {
+      "case_model": "conservative_caliper",
+      "pose": "walking",
+      "axis": "roll",
+      "endpoint": "max",
+      "delta_degrees": [
+        29.25,
+        0.0,
+        0.0
+      ],
+      "boolean_pairs": 40,
+      "result": "pass"
+    },
+    {
+      "case_model": "conservative_caliper",
+      "pose": "walking",
+      "axis": "knee",
+      "endpoint": "min",
+      "delta_degrees": [
+        0.0,
+        0.0,
+        -61.25
+      ],
+      "boolean_pairs": 24,
+      "result": "pass"
+    },
+    {
+      "case_model": "conservative_caliper",
+      "pose": "walking",
+      "axis": "knee",
+      "endpoint": "max",
+      "delta_degrees": [
+        0.0,
+        0.0,
+        89.25
+      ],
+      "boolean_pairs": 18,
+      "result": "pass"
+    }
+  ],
+  "elapsed_seconds": 99.184,
+  "limits": "Discrete nominal-clearance checks of the displayed endpoints; not continuous, tolerance-expanded, load, wiring or calibrated servo limits.",
+  "metadata_refresh": {
+    "scene_sha256": "c471296bccb0073fa57fa3ca889ccc78dbac341c45a6c287d5d130bed027bfca",
+    "geometry_and_joint_data_identical": true,
+    "change": "Only shared TPU-pad description and part-catalogue quantity changed after endpoint checks; all assembly geometry, collision meshes and joint data are byte-identical.",
+    "recomputed_walking_bounds_identical": true
+  }
+}

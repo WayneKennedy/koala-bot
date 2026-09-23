@@ -8,6 +8,10 @@ questions resolved enough to start CAD (hardware ordered; OQ-03/04/09/10 remain
 but don't block the lower body).
 
 ## Phase 1 - Koala V1 (the vertical slice) *(current)*
+**DEC-62, 2026-09-21:** build and train quadruped walking on four TPU feet first.
+Swap complete rear shanks at the existing knees for the retained wheeled V1
+endpoint; twelve limb joints and the upper chassis serve both builds.
+
 1. **CAD** - parametric body in code-CAD; parts <= 200 mm; export URDF.
    *DEC-43, 2026-09-10:* retain rear ankle drives and replace front drives with
    integrated forearms/rounded feet. The supported and upright CAD poses share
@@ -24,18 +28,20 @@ but don't block the lower body).
 2. **Prototype prints** - corrected joint rig, integrated links (DEC-39), one
    rear leg, the pair, passive-foot forelimbs, torso and neck; fit/load
    evidence at each stage.
-3. **Electronics bring-up** - MCU balance loop (2-wheel inverted pendulum, IMU +
-   encoders); STS3215 bus + IDs; motor driver; power rail.
+3. **Electronics bring-up** - STS3215 bus + IDs, power rail and IMU; four-foot
+   support and walking training. Bring up the motor driver, encoders and MCU
+   balance loop with the wheeled shanks later.
 4. **Brain** - Pi 5 + ROS2; micro-ROS bridge; vision (camera-eyes); LLM personality.
-5. **Integration** - supported stance, front-foot lift and rear-wheel balance/drive;
+5. **Integration** - loaded four-foot walking first; then exchange rear shanks,
+   supported stance, front-foot lift and rear-wheel balance/drive;
    validated rise/lower load transfer, leaning, gesture and look-at-you.
 6. **Deliverables** - full BOM, build guide, one polished video.
 **Exit:** a working, self-balancing, documented Koala anyone can reproduce.
 
 ## Phase 2 - Koala V1.x upgrades
 - Activate the **3-DOF torso platform** (drop actuators into the pre-built interfaces).
-- **Gait experiments** on the articulated legs — the knees themselves are V1
-  (DEC-31); stepping, and any ankle DOF or articulated foot, stay gated on need.
+- **Wheel-foot gait experiments** on the articulated legs — four-TPU-foot
+  walking moves into Phase 1 (DEC-62); any ankle DOF stays gated on need.
 - Optional **animatronic ears**; screen-eyes polish.
 
 ## Phase 3 - the Family

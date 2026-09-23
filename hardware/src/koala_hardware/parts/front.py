@@ -103,8 +103,15 @@ def upper_arm(length=P.BODY_UPPER_ARM_MM):
 
 
 @lru_cache
-def forearm():
-    """Long open elbow fork and a tapered flat shaft to the existing TPU key."""
+def forearm(length=P.BODY_FOREARM_MM+P.BODY_HAND_MM):
+    """Common footed lower link: 100 mm front, 90 mm interchangeable rear.
+
+    Only the distal taper and pad seat move with length. Proximal fork and
+    horn interfaces stay fixed, and the front default preserves v2 geometry.
+    """
+    shift=length-(P.BODY_FOREARM_MM+P.BODY_HAND_MM)
+    pad_start=P.FRONT_PAD_START+shift
+    taper_end=74+shift
     a=P.SOCKET_ARM_HALF_W
     x0=P.SOCKET_IDLER_FACE-P.SOCKET_PAD_T
     x1=P.SOCKET_DRIVE_FACE+P.SOCKET_PAD_T
@@ -114,10 +121,10 @@ def forearm():
     part+=S._box(x0,x1,-a,a,FORK_START,FORK_START+4)
     # Flat native -Y surface continues from the broad shaft to the fork nose.
     profile=Plane.XZ*Polygon((x0,FORK_START),(x1,FORK_START),(x1,FORK_END),
-                             (9,74),(9,P.FRONT_PAD_START),(-9,P.FRONT_PAD_START),
-                             (-9,74),(x0,FORK_END),align=None)
+                             (9,taper_end),(9,pad_start),(-9,pad_start),
+                             (-9,taper_end),(x0,FORK_END),align=None)
     face=profile.faces()[0]
-    corners=[v for v in face.vertices() if any(abs(v.Z-z)<1e-5 for z in (FORK_END,74))]
+    corners=[v for v in face.vertices() if any(abs(v.Z-z)<1e-5 for z in (FORK_END,taper_end))]
     profile=face.fillet_2d(3,corners)
     part+=Pos(0,P.SOCKET_PLATE_R,0)*extrude(profile,amount=2*P.SOCKET_PLATE_R)
     part=L._root_fillet(part,
@@ -127,11 +134,12 @@ def forearm():
     # Reuse only the terminal pad key, nut slot and bore; the old short fork
     # and shaft do not participate in this longer elbow-clearance geometry.
     terminal=L.lower_link(P.BODY_FOREARM_MM+P.BODY_HAND_MM,True)
-    part+=terminal&S._box(-15,15,-15,15,80,110)
+    part+=Pos(0,0,shift)*(terminal&S._box(-15,15,-15,15,80,110))
     from build123d import Cylinder, Align, RegularPolygon
-    nut=Pos(0,0,P.FRONT_PAD_NUT_Z)*extrude(RegularPolygon(3.3,6,rotation=30),amount=2.6)
-    part-=nut+S._box(0,12,-2.9,2.9,P.FRONT_PAD_NUT_Z,P.FRONT_PAD_NUT_Z+2.6)
-    part-=Pos(0,0,90)*Cylinder(P.CLEAR_HOLE_M3/2,15,align=(Align.CENTER,Align.CENTER,Align.MIN))
+    nut_z=P.FRONT_PAD_NUT_Z+shift
+    nut=Pos(0,0,nut_z)*extrude(RegularPolygon(3.3,6,rotation=30),amount=2.6)
+    part-=nut+S._box(0,12,-2.9,2.9,nut_z,nut_z+2.6)
+    part-=Pos(0,0,90+shift)*Cylinder(P.CLEAR_HOLE_M3/2,15,align=(Align.CENTER,Align.CENTER,Align.MIN))
     return part
 
 
@@ -158,7 +166,7 @@ def build_upper_arm():
 
 def build_forearm():
     return L.spec('forearm',forearm(),handed=True,orientation=Rot(X=90),version=2,
-        fasteners=L.HORN_FASTENERS|{'M3x20 front-pad screw':1,'M3 nut':1,'M3 plain washer':1},
+        fasteners=L.HORN_FASTENERS|{'M3x20 TPU-pad screw':1,'M3 nut':1,'M3 plain washer':1},
         notes='100 mm elbow-to-contact: long open fork, R6.3 roots, R3 taper corners, flat '
         'shaft and unchanged keyed TPU contact. Broad native -Y face down; '
         'fork, nut-slot and hole-roof support remains externally accessible. '

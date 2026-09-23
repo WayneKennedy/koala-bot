@@ -1,5 +1,15 @@
 {
   "drive_motor_count": 2,
+  "configuration_counts": {
+    "walking": {
+      "drive_motors": 0,
+      "TPU_pads": 4
+    },
+    "wheeled": {
+      "drive_motors": 2,
+      "TPU_pads": 2
+    }
+  },
   "front_foot_radius_mm": 16.0,
   "motor_end_gap_mm": 36.0,
   "poses": {
@@ -84,6 +94,47 @@
         "z": 375.0
       },
       "body_angle": 90.0
+    },
+    "walking": {
+      "rear": {
+        "root": {
+          "x": 0,
+          "z": 175.0
+        },
+        "bend": {
+          "x": -3.9048921487800428,
+          "z": 90.08974256718807
+        },
+        "axle": {
+          "x": -55.0,
+          "z": 16.0
+        },
+        "upper": 85.0,
+        "lower": 90.0,
+        "flexion": 31.958535484541784
+      },
+      "front": {
+        "root": {
+          "x": 149.66629547095766,
+          "z": 165.0
+        },
+        "bend": {
+          "x": 143.98774794722365,
+          "z": 95.23070805848253
+        },
+        "axle": {
+          "x": 205.0,
+          "z": 16.0
+        },
+        "upper": 70.0,
+        "lower": 100.0,
+        "flexion": 42.25142993724063
+      },
+      "neck": {
+        "x": 184.58843108084778,
+        "z": 162.66666666666666
+      },
+      "body_angle": -3.822553729274344
     }
   }
 }
