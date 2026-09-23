@@ -43,6 +43,7 @@ uv run python -m koala_hardware.audit --fallback --nominal-only
 uv run python -m unittest discover -s tests
 uv run python -m koala_hardware.body_plan --output ../docs/design --cad
 uv run python -m koala_hardware.viewer --build
+uv run python -m koala_hardware.mjcf          # crude MuJoCo model -> sim/ (docs/architecture.md)
 ```
 
 Exports: `build/stl/`, `build/step/`, `build/renders/`, `build/manifest.txt`.
