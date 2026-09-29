@@ -26,6 +26,9 @@ physical acceptance remains open.
   [Implementation, revision layout and validation](freecad.md). Local kernel
   differences belong in the CAD revision log and exact part versions, not a
   new mechanical decision.
+  Owner follow-up: commit the conversion as a benchmark before geometry edits
+  and remove superseded standalone CAD exports; preserve required source inputs.
+  [Benchmark and retention scope](freecad.md).
 
 - **DEC-62 — Build a four-foot walking robot first; retain interchangeable
   wheeled rear shanks as the end goal** (2026-09-21, owner). The first build

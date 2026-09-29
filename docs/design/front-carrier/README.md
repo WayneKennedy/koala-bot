@@ -5,7 +5,7 @@ The common flat-back approach is implemented without the historical bevel in
 `root_carrier_left/right`, two of each hand at front and rear; current status and exports are linked from
 the [part review](../../part-design-review.md).
 
-[Comparison PNG](comparison.png) · [Candidate STEP](flat-back-candidate.step) ·
+[Comparison PNG](comparison.png) · [Candidate FCStd](../../../hardware/freecad/references/0116530139181f6e/docs__design__front-carrier__flat-back-candidate.FCStd) ·
 [Candidate STL](flat-back-candidate.stl) ·
 [Current print orientation STL](current-print-orientation.stl) ·
 [Measured results and clearance scope](study.json).

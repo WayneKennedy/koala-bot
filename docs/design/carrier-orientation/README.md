@@ -10,7 +10,7 @@ A/B arrangement** and advanced to the [rear thigh and shank](../rear-leg/README.
 The angled-fork candidate is parked.
 
 [Rotate/compare socket tilts](pitch-socket-tilt.html) ·
-[45° placement STEP](pitch-socket-45.step) · [Checks](pitch-socket-tilt.json) ·
+[45° placement FCStd](../../../hardware/freecad/references/842f324a147b6823/docs__design__carrier-orientation__pitch-socket-45.FCStd) · [Checks](pitch-socket-tilt.json) ·
 [CAD/check builder](../../../hardware/src/koala_hardware/pitch_socket_tilt_study.py).
 The local server provides the same preview at `/pitch-socket-tilt.html`.
 
@@ -52,7 +52,7 @@ The connection to the roll socket and its print orientation are the questions
 to resolve. The fork direction need not set the roll socket's angle.
 
 [Rotatable candidate](angled-fork.html) · [Fitted view](angled-fork-assembly.png) ·
-[Print orientation](angled-fork-print.png) · [Candidate STEP](angled-fork.step) ·
+[Print orientation](angled-fork-print.png) · [Candidate FCStd](../../../hardware/freecad/references/d378833f23642f94/docs__design__carrier-orientation__angled-fork.FCStd) ·
 [Checks and hashes](angled-fork.json) ·
 [Reproducible CAD/check builder](../../../hardware/src/koala_hardware/carrier_fork_study.py).
 The running local viewer also serves the study at `/angled-fork.html`.

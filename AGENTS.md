@@ -27,7 +27,7 @@ and morphology: [`docs/concept.md`](docs/concept.md).
 
 - [`docs/concept.md`](docs/concept.md) — vision, morphology, design principles.
 - [`docs/body-layout.md`](docs/body-layout.md) — DEC-43/44 accepted device layout,
-  resolved dimensions and engineering choices; viewable PNG/SVG/STEP masters
+  resolved dimensions and engineering choices; viewable PNG/SVG/FreeCAD masters
   live in [`docs/design/`](docs/design/README.md).
 - [`docs/cad-integrated-design.md`](docs/cad-integrated-design.md) — current
   implemented chassis, assembly sequence and validation scope.

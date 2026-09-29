@@ -9,8 +9,8 @@
 
 | Extract | Exact source geometry | Purpose |
 |---|---|---|
-| Enclosed servo-base socket | [STEP](upper_socket_source.step) · [STL](upper_socket_source.stl) | Floor, enclosing walls, entry reliefs, stepped pocket and ear-screw seats |
-| Robust horn fork and root | [STEP](upper_fork_source.step) · [STL](upper_fork_source.stl) | Connected broad cheeks, rounded tips, root web and horn-hole details |
+| Enclosed servo-base socket | [FCStd](../../../hardware/freecad/references/899abc4835343a2a/docs__design__so101__upper_socket_source.FCStd) · [STL](upper_socket_source.stl) | Floor, enclosing walls, entry reliefs, stepped pocket and ear-screw seats |
+| Robust horn fork and root | [FCStd](../../../hardware/freecad/references/a00d3c1372eba8bd/docs__design__so101__upper_fork_source.FCStd) · [STL](upper_fork_source.stl) | Connected broad cheeks, rounded tips, root web and horn-hole details |
 
 These are **reference templates**, not finished koala prints. Cropping isolates
 regions of the source part; the cut planes are not proposed assembly seams.
@@ -55,9 +55,9 @@ production geometry, regenerate the printed BOM, or operate a slicer/printer.
 [Root access evidence](root-access-study.json) ·
 [Engineering assessment](../../root-servo-mounts.md).
 
-- [Under-arm socket STEP](under_socket_source.step) / [STL](under_socket_source.stl):
+- [Under-arm socket FCStd](../../../hardware/freecad/references/aed104cf7d720d55/docs__design__so101__under_socket_source.FCStd) / [STL](under_socket_source.stl):
   cropped from the original `Under_arm_SO101.step` at native X = −24.85 mm.
-- [Wrist-holder STEP](wrist_holder_source.step) / [STL](wrist_holder_source.stl):
+- [Wrist-holder FCStd](../../../hardware/freecad/references/e58d86502535a5a4/docs__design__so101__wrist_holder_source.FCStd) / [STL](wrist_holder_source.stl):
   the complete `Motor_holder_SO101_Wrist` shape, without resizing.
 
 Both retain native upstream coordinates and the Apache-2.0 licence above.

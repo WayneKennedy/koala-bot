@@ -44,11 +44,11 @@ The separately recorded
 record watertight, positive-volume meshes in their declared print orientations;
 these metrics are not a slicing or physical-print result.
 
-[Thigh right STEP](thigh-right.step) · [Thigh left STEP](thigh-left.step) ·
-[Shank right STEP](shank-right.step) · [Shank left STEP](shank-left.step).
+[Thigh right FCStd](../../../hardware/freecad/references/45445ce22e89a3f7/docs__design__rear-leg__thigh-right.FCStd) · [Thigh left FCStd](../../../hardware/freecad/references/f07b1d419f9f26df/docs__design__rear-leg__thigh-left.FCStd) ·
+[Shank right FCStd](../../../hardware/freecad/references/6c2eac81e1e5f9ed/docs__design__rear-leg__shank-right.FCStd) · [Shank left FCStd](../../../hardware/freecad/references/df997fed83cd6ba1/docs__design__rear-leg__shank-left.FCStd).
 These part exports are already on the bed.
-[Quadruped assembly STEP](rear-leg-quadruped.step) and
-[upright assembly STEP](rear-leg-upright.step) contain only project geometry.
+[Quadruped assembly FCStd](../../../hardware/freecad/references/635fb8551fd735c9/docs__design__rear-leg__rear-leg-quadruped.FCStd) and
+[upright assembly FCStd](../../../hardware/freecad/references/b01caeb2f8b2f136/docs__design__rear-leg__rear-leg-upright.FCStd) contain only project geometry.
 The viewer distributes measured case/horn envelopes; the local vendor servo
 STEP is used for independent checks and is not redistributed.
 

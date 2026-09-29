@@ -14,8 +14,8 @@ robot. Wheeled shank v2 remains the V1 end goal.
 
 | Print | Qty for walking | Files |
 |---|---:|---|
-| `foot_shank_left` v1, PETG | 1 | [STL](../../../hardware/build/stl/foot_shank_left.stl) · [STEP](foot_shank_left-v1.step) |
-| `foot_shank_right` v1, PETG | 1 | [STL](../../../hardware/build/stl/foot_shank_right.stl) · [STEP](foot_shank_right-v1.step) |
+| `foot_shank_left` v1, PETG | 1 | [STL](../../../hardware/build/stl/foot_shank_left.stl) · [FCStd](../../../hardware/freecad/references/227d822576ed7e68/docs__design__walking__foot_shank_left-v1.FCStd) |
+| `foot_shank_right` v1, PETG | 1 | [STL](../../../hardware/build/stl/foot_shank_right.stl) · [FCStd](../../../hardware/freecad/references/e53d35b44c9cba21/docs__design__walking__foot_shank_right-v1.FCStd) |
 | `front_contact_pad` v1, TPU | 4 total | [STL](../../../hardware/build/stl/front_contact_pad.stl) |
 
 STLs are generated local build outputs; run the exporter after cloning.

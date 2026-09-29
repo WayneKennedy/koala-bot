@@ -28,6 +28,14 @@ DEFAULT=ROOT/'freecad'
 def sha(path):return hashlib.sha256(Path(path).read_bytes()).hexdigest()
 
 
+def reference_inputs(repo,out):
+    """External STEP inputs only; never recursively import our frozen archive."""
+    for rel in subprocess.check_output(['git','ls-files','*.step','*.stp'],cwd=repo,text=True).splitlines():
+        path=repo/rel
+        if path.is_relative_to(DEFAULT) or path.is_relative_to(out):continue
+        yield rel,path
+
+
 def source_files():
     package=Path(__file__).resolve().parent
     return {str(p.relative_to(package.parent)):p for p in sorted(package.rglob('*.py'))}
@@ -217,8 +225,8 @@ def build(out,only=None,include_references=True):
                    'builder':'koala_hardware.freecad_studies:pitch_socket_45'}))
     if include_references:
         repo=ROOT.parent
-        for rel in subprocess.check_output(['git','ls-files','*.step','*.stp'],cwd=repo,text=True).splitlines():
-            path=repo/rel;digest=sha(path);name=rel.removesuffix(path.suffix).replace('/','__')
+        for rel,path in reference_inputs(repo,out):
+            digest=sha(path);name=rel.removesuffix(path.suffix).replace('/','__')
             archived=f'reference-sources/{digest}/{path.name}'
             target=out/archived
             if target.exists():

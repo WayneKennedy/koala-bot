@@ -12,6 +12,14 @@ from koala_hardware.freecad_document import make_document, validate_document
 
 
 class FreeCADTests(unittest.TestCase):
+    def test_reference_inventory_does_not_reimport_archived_step_inputs(self):
+        from unittest.mock import patch
+        from koala_hardware.freecad_build import reference_inputs,ROOT,DEFAULT
+        tracked='hardware/vendor/example.step\nhardware/freecad/reference-sources/hash/example.step\ncustom-archive/reference-sources/hash/example.step\n'
+        with patch('koala_hardware.freecad_build.subprocess.check_output',return_value=tracked):
+            inputs=list(reference_inputs(ROOT.parent,ROOT.parent/'custom-archive'))
+        self.assertEqual([rel for rel,path in inputs],['hardware/vendor/example.step'])
+
     def test_native_cylinder_edit_changes_the_saved_spacer(self):
         spec=e_tray.build_spacer()
         doc,final=make_document('NativeHistoryTest',spec['part'])

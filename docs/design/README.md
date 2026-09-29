@@ -42,7 +42,7 @@ repo path on blake.
 | Scalable body master | [SVG](body-quadruped.svg) | [SVG](body-upright.svg) |
 | Actual structural CAD, side | [PNG](cad-quadruped-side.png) | [PNG](cad-upright-side.png) |
 | Actual structural CAD, perspective | [PNG](cad-quadruped.png) | [PNG](cad-upright.png) |
-| Kinematic STEP reference | [STEP](body-quadruped.step) | [STEP](body-upright.step) |
+| Kinematic FreeCAD reference | [FCStd](../../hardware/freecad/references/a6b86da674f3133e/docs__design__body-quadruped.FCStd) | [FCStd](../../hardware/freecad/references/aba9e5a28ac666aa/docs__design__body-upright.FCStd) |
 
 The master drawings and detailed CAD share their joint centres: 70 mm upper
 arms, 75 mm forearms plus 25 mm hand extensions to Ø32 mm ball centres,

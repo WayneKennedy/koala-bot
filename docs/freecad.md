@@ -5,6 +5,13 @@ collaboration artefacts; carry GUI changes back into Python before releasing a
 revision. [Decision](decisions.md) · [current geometry](cad-integrated-design.md) ·
 [version/printability rules](part-design-review.md).
 
+Conversion benchmark: Git `9e6ded8`, before the proposed flat-depth lower-link
+change. Superseded STEP exports under `docs/design/` are removed from the working
+tree and retained in Git history; their links now open converted FCStd references.
+Vendor originals and frozen `reference-sources/` inputs remain required for
+reproducible Python replays. Simulation meshes remain runtime assets. Future
+STEP exports under `docs/design/` are local, ignored derivatives.
+
 ## Build and open
 
 From `hardware/`, with FreeCAD installed:
@@ -58,7 +65,7 @@ orientation, retaining the established manufacturing convention.
   These replay retained generators with this revision's parameters; older STEP
   exports remain frozen separately. The five versioned link studies are under
   `parts/` and remain alternatives, not production prints.
-- `hardware/freecad/references/`: all Git-tracked STEP assets, including historic
+- `hardware/freecad/references/`: the migration’s Git-tracked STEP assets, including historic
   exports and upstream templates, preserved as explicitly labelled imported
   references. Their original authoring histories cannot be recovered from STEP.
   Their Python scripts reproduce the import from `reference-sources/` and verify
