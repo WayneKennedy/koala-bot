@@ -6,7 +6,7 @@ frame, so recessed root screws never need a driver through the opposite servo.
 """
 from functools import lru_cache
 from math import sqrt
-from build123d import Pos, Rot, Plane, Cylinder, Align, RectangleRounded, RegularPolygon, extrude, fillet, GeomType
+from koala_hardware.cad import Pos, Rot, Plane, Cylinder, Align, RectangleRounded, RegularPolygon, extrude, fillet, GeomType
 from .. import params as P, servo_iface as S
 from . import links as L, pelvis
 
@@ -61,7 +61,7 @@ def frame_fixings():
     for y,z in P.SHOULDER_CASSETTE_BOLTS:
         parts.append(S._x_hole(36,39,y,z,6))
         parts.append(Pos(20.1,y,z)*Rot(Y=90)*extrude(RegularPolygon(P.NUT_M3_AF/sqrt(3),6),amount=P.NUT_M3_T))
-    from build123d import Compound
+    from koala_hardware.cad import Compound
     return Compound(children=parts)
 
 

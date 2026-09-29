@@ -5,7 +5,7 @@ import unittest
 from pathlib import Path
 from unittest.mock import patch
 
-from build123d import Pos, Rot, Cylinder, Align, Plane, mirror
+from koala_hardware.cad import Pos, Rot, Cylinder, Align, Plane, mirror
 
 from koala_hardware import params as P, servo_iface as S
 from koala_hardware.audit import clear, volume
@@ -28,16 +28,15 @@ class FrontCADTests(unittest.TestCase):
                 self.assertGreater(metrics(mesh)['bed_area'],minimum_bed[d['name']])
                 self.assertLess(mesh.extents[2],maximum_height[d['name']])
                 self.assertLess(max(mesh.extents[:2]),200)
-                self.assertEqual(d['version'],3 if d['name']=='shoulder_carrier' else 2)
+                self.assertEqual(d['version'],4 if d['name']=='shoulder_carrier' else 2)
                 self.assertEqual(d['printable'],'unknown')
 
     def test_viewer_tessellation_of_the_installed_carrier_remains_closed(self):
         from koala_hardware import assembly as A,body_plan,viewer
-        from OCP.BRepTools import BRepTools
         carrier=A.body_location(body_plan.poses()['quadruped'])*SM.carrier_frame()*F.carrier()
         # Earlier manufacturing exports cache a finer mesh on the same OCC
         # faces. Start cold so the viewer cannot accidentally inherit it.
-        BRepTools.Clean_s(carrier.wrapped)
+        carrier.clean_mesh()
         with tempfile.TemporaryDirectory() as td:
             mesh=viewer._mesh(carrier,Path(td),0)
         self.assertTrue(mesh.is_watertight)
@@ -164,7 +163,7 @@ class FrontCADTests(unittest.TestCase):
             for side in ('right','left'):
                 name=f'reference_front_{joint}_servo_{side}'
                 self.assertEqual(items[name]['contactPartner'],f'front_{driven}_{side}')
-                self.assertEqual(items[f'front_{driven}_{side}']['version'],3 if driven=='carrier' else 2)
+                self.assertEqual(items[f'front_{driven}_{side}']['version'],4 if driven=='carrier' else 2)
 
 
 if __name__=='__main__':unittest.main()

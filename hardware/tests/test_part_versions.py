@@ -6,7 +6,7 @@ import tempfile
 import unittest
 from unittest.mock import patch
 
-from build123d import Pos
+from koala_hardware.cad import Pos
 from koala_hardware import part_versions as V
 from koala_hardware.parts import pelvis
 

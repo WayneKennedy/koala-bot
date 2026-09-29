@@ -1,7 +1,7 @@
 # SPDX-License-Identifier: CERN-OHL-S-2.0
 """Regression checks for structural decomposition and the measured interface."""
 import unittest
-from build123d import Pos
+from koala_hardware.cad import Pos
 from koala_hardware import params as P,servo_iface as S
 from koala_hardware.parts import all_builders,links as L,front as F,shoulder_mount
 from koala_hardware.audit import volume
@@ -12,7 +12,7 @@ class IntegratedCADTests(unittest.TestCase):
         import tempfile
         from pathlib import Path
         import trimesh
-        from build123d import export_stl
+        from koala_hardware.cad import export_stl
         with tempfile.TemporaryDirectory() as td:
             path=Path(td)/'saddle.stl'
             export_stl(S.saddle(),path)
@@ -42,7 +42,7 @@ class IntegratedCADTests(unittest.TestCase):
 
     def test_socket_slots_match_the_asymmetric_so101_template(self):
         from koala_hardware.so101_templates import socket_template
-        from build123d import GeomType
+        from koala_hardware.cad import GeomType
         # Read the actual planar recess faces, independently of the builder.
         def slots(part,x):
             out={}
@@ -71,7 +71,7 @@ class IntegratedCADTests(unittest.TestCase):
             self.assertNotIn('reference_head_envelope',shapes)
             for key in ('front','rear'):
                 limb=body[key];d=builders[key]
-                from build123d import Rot
+                from koala_hardware.cad import Rot
                 tf=(A.body_location(body)*shoulder_mount.carrier_frame() if key=='front'
                     else A.segment_frame(limb.root,limb.bend,0)*Rot(Z=-90))
                 part=tf.inverse()*shapes[key+'_carrier_right']
@@ -97,7 +97,7 @@ class IntegratedCADTests(unittest.TestCase):
                 self.assertLess(overlap(d[a],d[b]),.01,f'{pose}: {a} vs {b}')
 
     def test_hip_carrier_refinement_preserves_horn_pads_and_servo_access(self):
-        from build123d import Plane,mirror
+        from koala_hardware.cad import Plane,mirror
         from koala_hardware.audit import clear
         part=L.carrier(False)
         forks=mirror(L.pitch_fork_frame()*(L.fork('drive')+L.fork('idler')),Plane.XY)
@@ -121,7 +121,7 @@ class IntegratedCADTests(unittest.TestCase):
             self.assertEqual(len(part.solids()),1)
 
     def test_rear_links_keep_complete_horn_pads_and_driver_paths(self):
-        from build123d import Rot,Cylinder,Align
+        from koala_hardware.cad import Rot,Cylinder,Align
         from koala_hardware.audit import clear
         for part,tf,core in ((L.upper_link(85,True),Rot(Z=-90),S._box(-6,6,-40,40,-12,P.SOCKET_PLATE_R)),
                              (L.lower_link(90),Pos(),S._box(-40,40,-6,6,-12,P.SOCKET_PLATE_R))):
@@ -140,7 +140,7 @@ class IntegratedCADTests(unittest.TestCase):
                               'rear horn driver through stepped fork')
 
     def test_rear_thigh_roll_and_knee_folding_clear_the_adjacent_joint(self):
-        from build123d import Rot
+        from koala_hardware.cad import Rot
         from koala_hardware.audit import clear
         from unittest.mock import patch
         thigh=L.upper_link(85,True);shank=L.lower_link(90)
@@ -189,7 +189,7 @@ class IntegratedCADTests(unittest.TestCase):
                 self.assertGreaterEqual(solid.bounding_box().min.Z,-1e-5,n)
 
     def test_independent_root_modules_allow_bench_and_frame_driver_access(self):
-        from build123d import Plane,mirror
+        from koala_hardware.cad import Plane,mirror
         from koala_hardware.parts import pelvis
         from koala_hardware.audit import clear,check_frame
         for module in (pelvis.module(False),shoulder_mount.module()):
@@ -218,8 +218,7 @@ class IntegratedCADTests(unittest.TestCase):
                 clear(shapes['torso_frame'],carrier,f'{pose} shoulder rail / carrier at roll {angle}')
 
     def test_front_joint_lengths_contact_reach_and_socket_recess(self):
-        from build123d import Vector,GeomType
-        from OCP.BRepAdaptor import BRepAdaptor_Surface
+        from koala_hardware.cad import Vector,GeomType
         from koala_hardware import assembly as A,body_plan as B
         from koala_hardware.parts import torso
         for pose,body in B.poses().items():
@@ -230,7 +229,7 @@ class IntegratedCADTests(unittest.TestCase):
             pad=shapes['front_contact_pad_right']
             spheres=[f for f in pad.faces() if f.geom_type==GeomType.SPHERE]
             self.assertTrue(spheres)
-            contact=Vector(BRepAdaptor_Surface(spheres[0].wrapped).Sphere().Location().Coord())
+            contact=Vector(spheres[0].fc.Surface.Center)
             self.assertAlmostEqual((contact-elbow).length,100)
             roll_body=(A.body_location(body).inverse()*Pos(*origins['reference_front_roll_servo_right'])).position
             self.assertAlmostEqual(roll_body.Z,150)

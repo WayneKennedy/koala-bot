@@ -5,7 +5,7 @@ Each coupon verifies one [VERIFY] constant in params.py against the real
 hardware; adjust the constant, regenerate, reprint until it fits.
 """
 import math
-from build123d import Box, Cylinder, Part, Pos, Rot, Align, Text, extrude
+from koala_hardware.cad import Box, Cylinder, Part, Pos, Rot, Align, Text, extrude
 from .. import params as P
 from .. import fasteners as F
 

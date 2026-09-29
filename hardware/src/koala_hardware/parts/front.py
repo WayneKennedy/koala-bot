@@ -8,7 +8,7 @@ All dimensions are design allocations, not evidence of printed fit or loads.
 """
 from functools import lru_cache
 
-from build123d import Pos, Rot, Plane, mirror, extrude, Polygon
+from koala_hardware.cad import Pos, Rot, Plane, mirror, extrude, Polygon
 
 from .. import params as P, servo_iface as S
 from . import links as L
@@ -135,7 +135,7 @@ def forearm(length=P.BODY_FOREARM_MM+P.BODY_HAND_MM):
     # and shaft do not participate in this longer elbow-clearance geometry.
     terminal=L.lower_link(P.BODY_FOREARM_MM+P.BODY_HAND_MM,True)
     part+=Pos(0,0,shift)*(terminal&S._box(-15,15,-15,15,80,110))
-    from build123d import Cylinder, Align, RegularPolygon
+    from koala_hardware.cad import Cylinder, Align, RegularPolygon
     nut_z=P.FRONT_PAD_NUT_Z+shift
     nut=Pos(0,0,nut_z)*extrude(RegularPolygon(3.3,6,rotation=30),amount=2.6)
     part-=nut+S._box(0,12,-2.9,2.9,nut_z,nut_z+2.6)
@@ -144,7 +144,7 @@ def forearm(length=P.BODY_FOREARM_MM+P.BODY_HAND_MM):
 
 
 def build_carrier():
-    return L.spec('shoulder_carrier',carrier(),handed=True,orientation=Rot(),version=3,
+    return L.spec('shoulder_carrier',carrier(),handed=True,orientation=Rot(),version=4,
         fasteners=L.HORN_FASTENERS|{'M2x5 self-tapper into servo ear':4},
         notes='Roll-first shoulder: longitudinal A fork, B pitch 40 mm outboard. '
         'The complete moving upper fork and horn screws clear A at +/-30 degrees; '

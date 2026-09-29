@@ -1,8 +1,8 @@
 # SPDX-License-Identifier: CERN-OHL-S-2.0
 """Guard declared print versions against unrecorded geometry changes.
 
-    uv run python -m koala_hardware.part_versions
-    uv run python -m koala_hardware.part_versions --update "what changed and why"
+    ./freecad-run -m koala_hardware.part_versions
+    ./freecad-run -m koala_hardware.part_versions --update "what changed and why"
 
 Fingerprints include each face's position relative to the part bounds, so moving
 holes within an unchanged outer envelope is a design change; translating the
@@ -26,12 +26,12 @@ import os
 import pathlib
 import tempfile
 
-from build123d import CenterOf
+from koala_hardware.cad import CenterOf
 from .parts import all_builders, links as L
 
 ROOT = pathlib.Path(__file__).resolve().parents[2]
 MANIFEST = ROOT / 'part-versions.json'
-FINGERPRINT_SCHEMA = 2
+FINGERPRINT_SCHEMA = 3  # FreeCAD topology / geometry descriptors; migration evidence in freecad/migration/
 OPTION_BUILDERS = [L.option_thigh_frame, L.option_thigh_split_body,
                    L.option_thigh_split_cheek, L.option_thigh_flat, L.option_shank_flush]
 

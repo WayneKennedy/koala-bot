@@ -11,7 +11,7 @@ independent feature families (test-log 2026-09-02). Nominal printed-part
 interfaces are adopted from SO-101; no pocket derives from a servo model.
 """
 from functools import lru_cache
-from build123d import Box, Cylinder, Part, Pos, Rot, Align, Axis, fillet, RectangleRounded, extrude, Polygon
+from koala_hardware.cad import Box, Cylinder, Part, Pos, Rot, Align, Axis, fillet, RectangleRounded, extrude, Polygon
 from . import params as P
 
 # Restart primitive frame: X = output axis, Y = case width, Z = case length.
@@ -125,7 +125,7 @@ def clevis_plate(side: str):
 
 
 def plate_location(side):
-    from build123d import Plane
+    from koala_hardware.cad import Plane
     if side=='drive':
         return Plane(origin=(P.SOCKET_DRIVE_FACE,0,P.SOCKET_AXIS_Z),x_dir=(0,1,0),z_dir=(1,0,0)).location
     if side=='idler':
@@ -152,7 +152,7 @@ def case_model() -> Part | None:
     """
     if not _ST3215_STEP.exists():
         return None
-    from build123d import import_step, Plane
+    from koala_hardware.cad import import_step, Plane
     model = import_step(str(_ST3215_STEP))
     loc = Plane(origin=(_ST3215_POCKET_SHIFT, 0, _ST3215_BOTTOM_X),
                 x_dir=(0, 0, -1), z_dir=(0, -1, 0)).location
@@ -239,7 +239,7 @@ def horn_head_envelopes():
     Output-axis frame, matching an integral link. Threads are not solid
     envelopes; engagement is accounted for separately in the fastening stack.
     """
-    from build123d import Compound
+    from koala_hardware.cad import Compound
     items=[]
     for side in ('drive','idler'):
         tf=Pos(0,0,-P.SOCKET_AXIS_Z)*plate_location(side)
@@ -254,7 +254,7 @@ def horn_head_envelopes():
 @lru_cache
 def ear_head_envelopes():
     """Four case-lug heads, case datum. Driver paths are separate keep-outs."""
-    from build123d import Compound
+    from koala_hardware.cad import Compound
     items=[]
     for side in ('drive','idler'):
         face=ear_face(side);z=P.SOCKET_LUG_DRIVE_Z if side=='drive' else P.SOCKET_LUG_BACK_Z

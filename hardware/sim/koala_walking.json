@@ -2,131 +2,131 @@
  "model": "koala_walking.xml",
  "pose": "walking",
  "crude": false,
- "total_g": 1514.6458227731155,
+ "total_g": 1672.9478986638587,
  "com_world_mm": [
-  80.71315761733021,
-  0.014429718615847405,
-  144.7873320244372
+  82.31280172770856,
+  0.002541944502575491,
+  140.05996789226228
  ],
  "prints_g": {
   "root_socket_right": {
-   "mass_g": 29.994205250456748,
-   "solid_g": 29.994205250456748,
+   "mass_g": 29.99420525321165,
+   "solid_g": 29.99420525321165,
    "source": "solid PETG",
    "material": "PETG"
   },
   "root_socket_left": {
-   "mass_g": 29.994205250456748,
-   "solid_g": 29.994205250456748,
+   "mass_g": 29.994205253211643,
+   "solid_g": 29.994205253211643,
    "source": "solid PETG",
    "material": "PETG"
   },
   "shoulder_mount_right": {
-   "mass_g": 16.0528,
-   "solid_g": 20.231792193989964,
-   "source": "slicer front-redesign/slices.json",
+   "mass_g": 20.231792194416396,
+   "solid_g": 20.231792194416396,
+   "source": "solid PETG",
    "material": "PETG"
   },
   "shoulder_mount_left": {
-   "mass_g": 16.0528,
-   "solid_g": 20.231792193989975,
-   "source": "slicer front-redesign/slices.json",
+   "mass_g": 20.231792194416403,
+   "solid_g": 20.231792194416403,
+   "source": "solid PETG",
    "material": "PETG"
   },
   "torso_frame": {
-   "mass_g": 164.7063,
-   "solid_g": 175.93092377435542,
-   "source": "slicer front-redesign/slices.json",
+   "mass_g": 175.93092377435497,
+   "solid_g": 175.93092377435497,
+   "source": "solid PETG",
    "material": "PETG"
   },
   "e_tray": {
-   "mass_g": 42.596609466578165,
-   "solid_g": 42.596609466578165,
+   "mass_g": 42.59660946657816,
+   "solid_g": 42.59660946657816,
    "source": "solid PETG",
    "material": "PETG"
   },
   "tray_spacer": {
-   "mass_g": 0.20320000000000002,
-   "solid_g": 0.14937896076701038,
-   "source": "slicer manufacturing/slices.json",
+   "mass_g": 0.14937896076701043,
+   "solid_g": 0.14937896076701043,
+   "source": "solid PETG",
    "material": "PETG"
   },
   "hip_carrier_right": {
-   "mass_g": 46.46169615235526,
-   "solid_g": 46.46169615235526,
+   "mass_g": 46.46169615459851,
+   "solid_g": 46.46169615459851,
    "source": "solid PETG",
    "material": "PETG"
   },
   "thigh_right": {
-   "mass_g": 50.0634,
-   "solid_g": 57.81365989923102,
-   "source": "slicer front-redesign/slices.json",
+   "mass_g": 57.81365989953451,
+   "solid_g": 57.81365989953451,
+   "source": "solid PETG",
    "material": "PETG"
   },
   "foot_shank_right": {
-   "mass_g": 30.4165,
-   "solid_g": 45.06178572242263,
-   "source": "slicer walking/slices.json",
+   "mass_g": 45.06178569457897,
+   "solid_g": 45.06178569457897,
+   "source": "solid PETG",
    "material": "PETG"
   },
   "front_contact_pad": {
-   "mass_g": 7.452,
-   "solid_g": 12.016305835728422,
-   "source": "slicer manufacturing/slices.json",
+   "mass_g": 12.016305829835456,
+   "solid_g": 12.016305829835456,
+   "source": "solid TPU",
    "material": "TPU"
   },
   "hip_carrier_left": {
-   "mass_g": 46.46169615235527,
-   "solid_g": 46.46169615235527,
+   "mass_g": 46.461696154598535,
+   "solid_g": 46.461696154598535,
    "source": "solid PETG",
    "material": "PETG"
   },
   "thigh_left": {
-   "mass_g": 49.695100000000004,
-   "solid_g": 57.813659899231034,
-   "source": "slicer front-redesign/slices.json",
+   "mass_g": 57.81365989953356,
+   "solid_g": 57.81365989953356,
+   "source": "solid PETG",
    "material": "PETG"
   },
   "foot_shank_left": {
-   "mass_g": 30.4038,
-   "solid_g": 45.06178572242263,
-   "source": "slicer walking/slices.json",
+   "mass_g": 45.06178569457899,
+   "solid_g": 45.06178569457899,
+   "source": "solid PETG",
    "material": "PETG"
   },
   "shoulder_carrier_right": {
-   "mass_g": 39.4843,
-   "solid_g": 50.78965963152658,
-   "source": "slicer front-redesign/slices.json",
+   "mass_g": 50.789728876843895,
+   "solid_g": 50.789728876843895,
+   "source": "solid PETG",
    "material": "PETG"
   },
   "upper_arm_right": {
-   "mass_g": 32.0421,
-   "solid_g": 38.62059415976956,
-   "source": "slicer front-redesign/slices.json",
+   "mass_g": 38.620594109283644,
+   "solid_g": 38.620594109283644,
+   "source": "solid PETG",
    "material": "PETG"
   },
   "forearm_right": {
-   "mass_g": 33.9979,
-   "solid_g": 53.91114571457756,
-   "source": "slicer front-redesign/slices.json",
+   "mass_g": 53.91114569457893,
+   "solid_g": 53.91114569457893,
+   "source": "solid PETG",
    "material": "PETG"
   },
   "shoulder_carrier_left": {
-   "mass_g": 39.522400000000005,
-   "solid_g": 50.78965963152657,
-   "source": "slicer front-redesign/slices.json",
+   "mass_g": 50.789728876843895,
+   "solid_g": 50.789728876843895,
+   "source": "solid PETG",
    "material": "PETG"
   },
   "upper_arm_left": {
-   "mass_g": 32.0929,
-   "solid_g": 38.62059415976956,
-   "source": "slicer front-redesign/slices.json",
+   "mass_g": 38.620594109283644,
+   "solid_g": 38.620594109283644,
+   "source": "solid PETG",
    "material": "PETG"
   },
   "forearm_left": {
-   "mass_g": 33.9979,
-   "solid_g": 53.91114571457755,
-   "source": "slicer front-redesign/slices.json",
+   "mass_g": 53.911145694578956,
+   "solid_g": 53.911145694578956,
+   "source": "solid PETG",
    "material": "PETG"
   }
  },
@@ -142,60 +142,60 @@
  },
  "bodies": {
   "torso": {
-   "mass_g": 580.198130468405,
+   "mass_g": 599.5654544856807,
    "com_world_mm": [
-    93.19344809498749,
-    0.007329463991197777,
-    178.64435390346793
+    94.25022928120792,
+    0.007092704695099671,
+    178.23236817976883
    ],
    "items": {
     "pelvis_socket_right": {
-     "mass_g": 29.994205250456734,
+     "mass_g": 29.9942052532117,
      "source": "solid PETG"
     },
     "pelvis_socket_left": {
-     "mass_g": 29.994205250456716,
+     "mass_g": 29.994205253211693,
      "source": "solid PETG"
     },
     "shoulder_socket_right": {
-     "mass_g": 29.994205250456748,
+     "mass_g": 29.99420525321165,
      "source": "solid PETG"
     },
     "shoulder_mount_right": {
-     "mass_g": 16.0528,
-     "source": "slicer front-redesign/slices.json"
+     "mass_g": 20.231792194416396,
+     "source": "solid PETG"
     },
     "shoulder_socket_left": {
-     "mass_g": 29.994205250456748,
+     "mass_g": 29.994205253211643,
      "source": "solid PETG"
     },
     "shoulder_mount_left": {
-     "mass_g": 16.0528,
-     "source": "slicer front-redesign/slices.json"
+     "mass_g": 20.231792194416403,
+     "source": "solid PETG"
     },
     "torso_frame": {
-     "mass_g": 164.7063,
-     "source": "slicer front-redesign/slices.json"
+     "mass_g": 175.93092377435497,
+     "source": "solid PETG"
     },
     "e_tray": {
-     "mass_g": 42.596609466578165,
+     "mass_g": 42.59660946657816,
      "source": "solid PETG"
     },
     "tray_spacer_0": {
-     "mass_g": 0.20320000000000002,
-     "source": "slicer manufacturing/slices.json"
+     "mass_g": 0.14937896076701046,
+     "source": "solid PETG"
     },
     "tray_spacer_1": {
-     "mass_g": 0.20320000000000002,
-     "source": "slicer manufacturing/slices.json"
+     "mass_g": 0.14937896076701043,
+     "source": "solid PETG"
     },
     "tray_spacer_2": {
-     "mass_g": 0.20320000000000002,
-     "source": "slicer manufacturing/slices.json"
+     "mass_g": 0.14937896076701046,
+     "source": "solid PETG"
     },
     "tray_spacer_3": {
-     "mass_g": 0.20320000000000002,
-     "source": "slicer manufacturing/slices.json"
+     "mass_g": 0.14937896076701043,
+     "source": "solid PETG"
     },
     "reference_rear_pitch_servo_right": {
      "mass_g": 55.0,
@@ -216,19 +216,19 @@
    },
    "mesh": {
     "kind": "union",
-    "bytes": 626984
+    "bytes": 621384
    }
   },
   "rear_right_carrier": {
-   "mass_g": 101.46169615235526,
+   "mass_g": 101.46169615459851,
    "com_world_mm": [
-    -0.8368419785102101,
-    55.365436606659,
-    155.9885823876866
+    -0.8368419785223442,
+    55.36543660655519,
+    155.98858238743597
    ],
    "items": {
     "rear_carrier_right": {
-     "mass_g": 46.46169615235526,
+     "mass_g": 46.46169615459851,
      "source": "solid PETG"
     },
     "reference_rear_roll_servo_right": {
@@ -238,20 +238,20 @@
    },
    "mesh": {
     "kind": "union",
-    "bytes": 157084
+    "bytes": 158484
    }
   },
   "rear_right_upper": {
-   "mass_g": 105.0634,
+   "mass_g": 112.81365989953451,
    "com_world_mm": [
-    10.218926229325621,
-    66.26868999281385,
-    103.23254406025436
+    10.342478235303055,
+    66.26635615283864,
+    104.26782366674874
    ],
    "items": {
     "rear_thigh_right": {
-     "mass_g": 50.0634,
-     "source": "slicer front-redesign/slices.json"
+     "mass_g": 57.81365989953451,
+     "source": "solid PETG"
     },
     "reference_rear_knee_servo_right": {
      "mass_g": 55.0,
@@ -260,41 +260,41 @@
    },
    "mesh": {
     "kind": "union",
-    "bytes": 231134
+    "bytes": 231684
    }
   },
   "rear_right_lower": {
-   "mass_g": 37.8685,
+   "mass_g": 57.078091524414454,
    "com_world_mm": [
-    -36.83490154429333,
-    66.9275473198756,
-    42.34004554910456
+    -37.184647892762804,
+    66.91681411151212,
+    41.83290077813834
    ],
    "items": {
     "rear_shank_right": {
-     "mass_g": 30.4165,
-     "source": "slicer walking/slices.json"
+     "mass_g": 45.06178569457897,
+     "source": "solid PETG"
     },
     "rear_contact_pad_right": {
-     "mass_g": 7.452,
-     "source": "slicer manufacturing/slices.json"
+     "mass_g": 12.016305829835483,
+     "source": "solid TPU"
     }
    },
    "mesh": {
     "kind": "union",
-    "bytes": 135084
+    "bytes": 156284
    }
   },
   "rear_left_carrier": {
-   "mass_g": 101.46169615235527,
+   "mass_g": 101.46169615459854,
    "com_world_mm": [
-    -0.8368419785102107,
-    -55.36543660665901,
-    155.98858238768653
+    -0.836841978522345,
+    -55.36543660655517,
+    155.98858238743594
    ],
    "items": {
     "rear_carrier_left": {
-     "mass_g": 46.46169615235527,
+     "mass_g": 46.461696154598535,
      "source": "solid PETG"
     },
     "reference_rear_roll_servo_left": {
@@ -304,20 +304,20 @@
    },
    "mesh": {
     "kind": "union",
-    "bytes": 157084
+    "bytes": 158484
    }
   },
   "rear_left_upper": {
-   "mass_g": 104.6951,
+   "mass_g": 112.81365989953356,
    "com_world_mm": [
-    10.21259962627611,
-    -66.2688109971348,
-    103.17953154092798
+    10.342478235302888,
+    -66.26635615283872,
+    104.26782366674833
    ],
    "items": {
     "rear_thigh_left": {
-     "mass_g": 49.695100000000004,
-     "source": "slicer front-redesign/slices.json"
+     "mass_g": 57.81365989953356,
+     "source": "solid PETG"
     },
     "reference_rear_knee_servo_left": {
      "mass_g": 55.0,
@@ -326,42 +326,42 @@
    },
    "mesh": {
     "kind": "union",
-    "bytes": 231134
+    "bytes": 231684
    }
   },
   "rear_left_lower": {
-   "mass_g": 37.8558,
+   "mass_g": 57.078091524414475,
    "com_world_mm": [
-    -36.83658230083952,
-    -66.92749573987086,
-    42.337608391712216
+    -37.18464789276281,
+    -66.91681411151205,
+    41.83290077813834
    ],
    "items": {
     "rear_shank_left": {
-     "mass_g": 30.4038,
-     "source": "slicer walking/slices.json"
+     "mass_g": 45.06178569457899,
+     "source": "solid PETG"
     },
     "rear_contact_pad_left": {
-     "mass_g": 7.452,
-     "source": "slicer manufacturing/slices.json"
+     "mass_g": 12.016305829835485,
+     "source": "solid TPU"
     }
    },
    "mesh": {
     "kind": "union",
-    "bytes": 135084
+    "bytes": 156284
    }
   },
   "front_right_carrier": {
-   "mass_g": 94.48429999999999,
+   "mass_g": 105.7897288768439,
    "com_world_mm": [
-    150.60592611468542,
-    85.25230795318527,
-    184.04469979168425
+    150.62176035181776,
+    83.7841299685371,
+    185.023088405589
    ],
    "items": {
     "front_carrier_right": {
-     "mass_g": 39.4843,
-     "source": "slicer front-redesign/slices.json"
+     "mass_g": 50.789728876843895,
+     "source": "solid PETG"
     },
     "reference_front_pitch_servo_right": {
      "mass_g": 55.0,
@@ -370,20 +370,20 @@
    },
    "mesh": {
     "kind": "union",
-    "bytes": 191884
+    "bytes": 196384
    }
   },
   "front_right_upper": {
-   "mass_g": 87.0421,
+   "mass_g": 93.62059410928364,
    "com_world_mm": [
-    145.87029067350653,
-    95.73911052436898,
-    118.3605089010312
+    145.9750456920357,
+    95.8143868256079,
+    119.64757804677171
    ],
    "items": {
     "front_upper_arm_right": {
-     "mass_g": 32.0421,
-     "source": "slicer front-redesign/slices.json"
+     "mass_g": 38.620594109283644,
+     "source": "solid PETG"
     },
     "reference_front_elbow_servo_right": {
      "mass_g": 55.0,
@@ -392,42 +392,42 @@
    },
    "mesh": {
     "kind": "union",
-    "bytes": 201084
+    "bytes": 203884
    }
   },
   "front_right_lower": {
-   "mass_g": 41.4499,
+   "mass_g": 65.9274515244144,
    "com_world_mm": [
-    182.51890157477263,
-    95.744606042363,
-    45.19402720605702
+    182.5943656694467,
+    95.74270061906023,
+    45.096029285622315
    ],
    "items": {
     "front_forearm_right": {
-     "mass_g": 33.9979,
-     "source": "slicer front-redesign/slices.json"
+     "mass_g": 53.91114569457893,
+     "source": "solid PETG"
     },
     "front_contact_pad_right": {
-     "mass_g": 7.452,
-     "source": "slicer manufacturing/slices.json"
+     "mass_g": 12.016305829835469,
+     "source": "solid TPU"
     }
    },
    "mesh": {
     "kind": "union",
-    "bytes": 134284
+    "bytes": 155384
    }
   },
   "front_left_carrier": {
-   "mass_g": 94.5224,
+   "mass_g": 105.7897288768439,
    "com_world_mm": [
-    150.60598579770087,
-    -85.24677032292834,
-    184.04839007439548
+    150.62176035181776,
+    -83.7841299685371,
+    185.02308840558896
    ],
    "items": {
     "front_carrier_left": {
-     "mass_g": 39.522400000000005,
-     "source": "slicer front-redesign/slices.json"
+     "mass_g": 50.789728876843895,
+     "source": "solid PETG"
     },
     "reference_front_pitch_servo_left": {
      "mass_g": 55.0,
@@ -436,20 +436,20 @@
    },
    "mesh": {
     "kind": "union",
-    "bytes": 191884
+    "bytes": 196384
    }
   },
   "front_left_upper": {
-   "mass_g": 87.0929,
+   "mass_g": 93.62059410928364,
    "com_world_mm": [
-    145.87116023578807,
-    -95.73973538646982,
-    118.37119275014393
+    145.9750456920357,
+    -95.81438682560784,
+    119.64757804677171
    ],
    "items": {
     "front_upper_arm_left": {
-     "mass_g": 32.0929,
-     "source": "slicer front-redesign/slices.json"
+     "mass_g": 38.620594109283644,
+     "source": "solid PETG"
     },
     "reference_front_elbow_servo_left": {
      "mass_g": 55.0,
@@ -458,29 +458,29 @@
    },
    "mesh": {
     "kind": "union",
-    "bytes": 201084
+    "bytes": 203884
    }
   },
   "front_left_lower": {
-   "mass_g": 41.4499,
+   "mass_g": 65.92745152441441,
    "com_world_mm": [
-    182.5189015747725,
-    -95.74460604236296,
-    45.19402720605697
+    182.59436566944672,
+    -95.74270061906032,
+    45.0960292856223
    ],
    "items": {
     "front_forearm_left": {
-     "mass_g": 33.9979,
-     "source": "slicer front-redesign/slices.json"
+     "mass_g": 53.911145694578956,
+     "source": "solid PETG"
     },
     "front_contact_pad_left": {
-     "mass_g": 7.452,
-     "source": "slicer manufacturing/slices.json"
+     "mass_g": 12.016305829835456,
+     "source": "solid TPU"
     }
    },
    "mesh": {
     "kind": "union",
-    "bytes": 134284
+    "bytes": 155484
    }
   }
  },

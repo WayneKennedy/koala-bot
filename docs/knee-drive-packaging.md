@@ -35,7 +35,7 @@ Scaling the robot modestly taller does not remove this axial-length problem.
 
 ## Offset direct-drive sample
 
-A build123d study retains the current motor face location and wheel track,
+A Python geometry study retains the current motor face location and wheel track,
 and moves the motor/wheel axis fore/aft **in the thigh frame**, perpendicular
 to the thigh. The servo reference uses the imported case with measured horns;
 the actual integrated thigh is included. The lower-leg proxy is the current
@@ -86,7 +86,7 @@ this study nor the previous DEC-40/41 audit validates a DEC-42 complete robot.
 Reproduce the numerical study and SVG from `hardware/`:
 
 ```sh
-uv run python -m koala_hardware.knee_packaging
+./freecad-run -m koala_hardware.knee_packaging
 ```
 
 The SVG is a dimensioned snapshot guarded against changes to its hardware

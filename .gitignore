@@ -10,6 +10,9 @@ __pycache__/
 .venv/
 # CAD scratch
 *.FCStd1
+*.FCBak
+*.rebuilt.FCStd
+*.replaced.FCStd
 *.f3d~
 # Local-only reference material (unlicensed third-party images - kept out of the repo)
 docs/inspiration/*

@@ -590,7 +590,7 @@ fetch("scene.json?" + Date.now()).then(r=>r.text()).then(async text=>{
 }).catch((e) => {
   $("#loading").textContent =
     "scene.json did not load (" + e.message + "). Serve this page with " +
-    "`uv run python -m koala_hardware.viewer`; opening the file directly " +
+    "`./freecad-run -m koala_hardware.viewer`; opening the file directly " +
     "will not work.";
 });
 </script>

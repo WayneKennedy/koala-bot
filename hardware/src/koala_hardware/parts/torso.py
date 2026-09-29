@@ -1,7 +1,7 @@
 # SPDX-License-Identifier: CERN-OHL-S-2.0
 """Rigid V1 torso frame. Real crossmember contact; head remains an envelope."""
 from functools import lru_cache
-from build123d import Pos, Rot, Cylinder, Align, Axis, fillet, Rectangle, loft, Plane, mirror
+from koala_hardware.cad import Pos, Rot, Cylinder, Align, Axis, fillet, Rectangle, loft, Plane, mirror
 from .. import params as P, servo_iface as S
 from . import links as L, pelvis, neck_space
 

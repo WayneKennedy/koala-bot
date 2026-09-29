@@ -2,7 +2,7 @@
 """Tessellate BREP solids without collapsed pole triangles."""
 import numpy as np
 import trimesh
-from build123d import export_stl
+from koala_hardware.cad import export_stl
 
 
 def export_mesh(solid,path,**kwargs):

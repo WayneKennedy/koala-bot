@@ -1,9 +1,9 @@
 # SPDX-License-Identifier: CERN-OHL-S-2.0
 """Local 3D viewer for the lower-body assembly and the printed parts.
 
-    uv run python -m koala_hardware.viewer            # build, serve, open
-    uv run python -m koala_hardware.viewer --build    # regenerate data only
-    uv run python -m koala_hardware.viewer --port N   # default 8017
+    ./freecad-run -m koala_hardware.viewer            # build, serve, open
+    ./freecad-run -m koala_hardware.viewer --build    # regenerate data only
+    ./freecad-run -m koala_hardware.viewer --port N   # default 8017
 
 Writes build/viewer/scene.json next to the checked-in viewer.html, so any
 harness can refresh the geometry and just reload the browser tab. The viewer
@@ -19,11 +19,11 @@ import pathlib
 import shutil
 import tempfile
 import webbrowser
-import subprocess
+from . import host_tools as subprocess
 
 import numpy as np
 import trimesh
-from build123d import export_stl, Plane, mirror
+from koala_hardware.cad import export_stl, Plane, mirror
 
 from . import assembly
 from . import params as P, servo_iface as S
@@ -97,7 +97,7 @@ def _assembly_items(tmp: pathlib.Path, pose="quadruped", *, details=None, frames
             if side=='left':core=mirror(core,Plane.XZ)
             matrix=np.eye(4)
             for r in range(3):
-                for c in range(4):matrix[r,c]=tf.wrapped.Transformation().Value(r+1,c+1)
+                for c in range(4):matrix[r,c]=tf.matrix()[r][c]
             if side=='left':matrix=np.diag([1,-1,1,1])@matrix
             # The exempt partner may be split across prints (a bolted cheek carries one pad).
             candidates=dict.fromkeys((partner+'_'+side,partner.replace('_thigh','_thigh_cheek')+'_'+side))

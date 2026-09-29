@@ -43,7 +43,7 @@ features and the complete current-part orientation inventory.
 From `hardware/`:
 
 ```sh
-uv run python -m koala_hardware.so101_templates
+./freecad-run -m koala_hardware.so101_templates
 ```
 
 This writes only the study assets in `docs/design/so101/`. It does not replace
@@ -69,5 +69,5 @@ These are references for a revised mount, not new production parts.
 Regenerate from `hardware/` with:
 
 ```sh
-uv run python -m koala_hardware.root_socket_access
+./freecad-run -m koala_hardware.root_socket_access
 ```

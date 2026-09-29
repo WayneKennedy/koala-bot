@@ -97,8 +97,8 @@ of the accepted 45° mount.
 From `hardware/`:
 
 ```sh
-uv run python -m koala_hardware.export
-uv run python -m koala_hardware.rear_leg_review
+./freecad-run -m koala_hardware.export
+./freecad-run -m koala_hardware.rear_leg_review
 ```
 
 The review command refreshes `hardware/build/viewer/rear-leg/`, clearance and

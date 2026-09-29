@@ -22,8 +22,8 @@ in `hardware/build/manufacturing/`, not a job submitted to the printer.
 Regenerate locally from the repository root (requires PrusaSlicer):
 
 ```sh
-uv run --directory hardware python -m koala_hardware.export
-uv run --directory hardware python -m koala_hardware.manufacturing_slices
+hardware/freecad-run -m koala_hardware.export
+hardware/freecad-run -m koala_hardware.manufacturing_slices
 ```
 
 Supply `--profile /path/to/shared.ini` if the sibling checkout is elsewhere.

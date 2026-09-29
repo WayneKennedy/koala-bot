@@ -10,7 +10,7 @@ from pathlib import Path
 import hashlib
 import json
 
-from build123d import (Plane, Pos, Rot, Polygon, Vertex, Cylinder, Align,
+from koala_hardware.cad import (Plane, Pos, Rot, Polygon, Vertex, Cylinder, Align,
                       extrude, loft, mirror, fillet, GeomType, export_step)
 from . import params as P, servo_iface as S, body_plan as B, assembly as A, audit
 from .parts import links as L, pelvis

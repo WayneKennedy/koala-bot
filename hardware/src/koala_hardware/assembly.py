@@ -7,7 +7,7 @@ Delta angles are inspection controls, not tested controller limits.
 from functools import lru_cache
 from math import radians, sin, cos
 from pathlib import Path
-from build123d import Pos, Rot, Plane, mirror, Box, Align, Compound, export_step
+from koala_hardware.cad import Pos, Rot, Plane, mirror, Box, Align, Compound, export_step
 from . import params as P, servo_iface as S, body_plan as B
 from .parts import pelvis, links as L, front as F, foot_shank as FS, shoulder_mount as SM, neck_space, e_tray, torso
 
@@ -26,7 +26,7 @@ def segment_frame(a,b,y):
 def pivot(point,axis,angle):
     p=Pos(*point)
     # Pitch is lateral; downstream roll is perpendicular to the thigh in its sagittal plane.
-    from build123d import Axis, Location
+    from koala_hardware.cad import Axis, Location
     return p*Location((0,0,0),axis,angle)*p.inverse()
 
 
@@ -137,7 +137,7 @@ def nominal_details(pose_name='quadruped'):
 
 def pad_fixing():
     """Existing front-pad nut and recessed head/washer reference, shared rear."""
-    from build123d import Cylinder,Align,RegularPolygon,extrude
+    from koala_hardware.cad import Cylinder,Align,RegularPolygon,extrude
     part=Pos(0,0,110)*Cylinder(3,2.5,align=(Align.CENTER,Align.CENTER,Align.MIN))
     return part+Pos(0,0,P.FRONT_PAD_NUT_Z)*extrude(RegularPolygon(3.175,6,rotation=30),amount=2.4)
 
@@ -182,6 +182,8 @@ def main():
             s=s.moved(Pos());s.label=n;children.append(s)
         export_step(Compound(children=children),out/f'koala-{pose}.step')
         print('wrote',out/f'koala-{pose}.step',flush=True)
+    from .freecad_build import build, DEFAULT
+    build(DEFAULT, only='assemblies/', include_references=False)
 
 
 if __name__=='__main__':main()

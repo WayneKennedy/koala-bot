@@ -1,0 +1,59 @@
+{
+  "date": "2026-09-29",
+  "scope": "Native lower-link solids compared with their reflection in native XZ (Y sign reversed). Boolean subtraction and two-sided sampled skins; not a new length, motion or physical-fit validation.",
+  "models": {
+    "forearm": {
+      "version": 2,
+      "joint_to_pad_centre_mm": 100,
+      "comparison_to_mirror": {
+        "old_volume_mm3": 42449.72101935348,
+        "native_volume_mm3": 42449.721019353485,
+        "volume_delta_mm3": 7.275957614183426e-12,
+        "removed_boolean_mm3": 0.0,
+        "added_boolean_mm3": 0.0,
+        "old_solids": 1,
+        "native_solids": 1,
+        "valid": true,
+        "max_bounds_delta_mm": 2.3092638912203256e-14,
+        "old_to_native": {
+          "samples": 741,
+          "max_distance_mm": 1.2040974267679998e-12
+        },
+        "native_to_old": {
+          "samples": 741,
+          "max_distance_mm": 1.2040974267679998e-12
+        }
+      }
+    },
+    "foot_shank": {
+      "version": 1,
+      "joint_to_pad_centre_mm": 90,
+      "comparison_to_mirror": {
+        "old_volume_mm3": 35481.72101935347,
+        "native_volume_mm3": 35481.72101935348,
+        "volume_delta_mm3": 7.275957614183426e-12,
+        "removed_boolean_mm3": 0.0,
+        "added_boolean_mm3": 0.0,
+        "old_solids": 1,
+        "native_solids": 1,
+        "valid": true,
+        "max_bounds_delta_mm": 1.9539925233402755e-14,
+        "old_to_native": {
+          "samples": 741,
+          "max_distance_mm": 1.2040974267679998e-12
+        },
+        "native_to_old": {
+          "samples": 741,
+          "max_distance_mm": 1.2040974267679998e-12
+        }
+      }
+    }
+  },
+  "source_sha256": {
+    "hardware/src/koala_hardware/parts/front.py": "0169b0b925b8e8db10762c088997e8f48a573f34f3323740844276fa3c09332a",
+    "hardware/src/koala_hardware/parts/foot_shank.py": "b8d258c08614fbe1aabcfe6d099e1264a6e0b6d01730d0085478b4dc1fe99697",
+    "hardware/src/koala_hardware/parts/links.py": "66f0e355a6d427cd319dc0b39d7a01d8239160822eaaf65ad3f8825bd87fb704",
+    "hardware/src/koala_hardware/params.py": "bf17cf7a95105cf5cda590018d64c51db16c965e503a823aac1dda810f337652",
+    "hardware/src/koala_hardware/cad.py": "16a76945e5615d32889589cf6e958a53eee96fdb510342f3eba0b7a9b1d82c36"
+  }
+}

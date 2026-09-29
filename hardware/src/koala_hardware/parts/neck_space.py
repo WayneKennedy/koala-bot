@@ -9,7 +9,7 @@ measurement. Sources and remaining work: docs/design/neck-provision.md.
 Coordinates are the torso frame: X dorsal negative, Y lateral, Z along spine.
 Callers supply cap_z if the shoulder cap datum changes.
 """
-from build123d import Align, Compound, Cylinder, Pos
+from koala_hardware.cad import Align, Compound, Cylinder, Pos
 from .. import params as P, servo_iface as S
 
 CAP_Z = P.TORSO_SHOULDER_TOP

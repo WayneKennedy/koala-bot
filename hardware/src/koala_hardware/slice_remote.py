@@ -6,7 +6,7 @@ headlessly: PrusaSlicer CLI on the Pi with a fixed profile, reachable over
 Tailscale. This asks that pipeline what each part *actually* costs, rather
 than estimating from solid volume.
 
-    uv run python -m koala_hardware.slice_remote [host] [--force]
+    ./freecad-run -m koala_hardware.slice_remote [host] [--force]
 
 Writes build/slice-cache.json, which `export` folds into docs/bom.md. It is
 optional: with no cache the BOM simply omits the measured columns, so the CAD

@@ -1,0 +1,536 @@
+{
+  "freecad_version": "1.1.3",
+  "occt_version": "7.8.1",
+  "legacy_git_commit": "640674481ea299191077560e15505c0a88ac33be",
+  "scope": "Current designs and five versioned study designs, native right-hand frames. Surface samples are not a continuous proof.",
+  "parts": {
+    "root_socket": {
+      "old_volume_mm3": 23617.484449178544,
+      "native_volume_mm3": 23617.484451347762,
+      "volume_delta_mm3": 2.1692176233045757e-06,
+      "removed_boolean_mm3": 0.0,
+      "added_boolean_mm3": 0.0,
+      "old_solids": 1,
+      "native_solids": 1,
+      "valid": true,
+      "max_bounds_delta_mm": 1.1368683772161603e-13,
+      "old_to_native": {
+        "samples": 776,
+        "max_distance_mm": 2.442358917808171e-09
+      },
+      "native_to_old": {
+        "samples": 776,
+        "max_distance_mm": 2.442358917808171e-09
+      },
+      "old_version": 1,
+      "native_version": 1,
+      "baseline_sha256": "1c6cb7826fb3b2a9aa293021934cb392b48b9b687e45c68821042d66886678a9"
+    },
+    "thigh": {
+      "old_volume_mm3": 45522.566849788214,
+      "native_volume_mm3": 45522.56685002718,
+      "volume_delta_mm3": 2.3896427592262626e-07,
+      "removed_boolean_mm3": 0.18225307312796132,
+      "added_boolean_mm3": 0.1822530729488309,
+      "old_solids": 1,
+      "native_solids": 1,
+      "valid": true,
+      "max_bounds_delta_mm": 2.2737367544323206e-13,
+      "old_to_native": {
+        "samples": 1385,
+        "max_distance_mm": 0.05496754300155097
+      },
+      "native_to_old": {
+        "samples": 1389,
+        "max_distance_mm": 0.05496754300155474
+      },
+      "old_version": 3,
+      "native_version": 4,
+      "baseline_sha256": "25b9a6224111badabb361abefdef17982c7d55d13f00ff6184874a7d12dd7073"
+    },
+    "shank": {
+      "old_volume_mm3": 35812.729844022455,
+      "native_volume_mm3": 35812.73830215014,
+      "volume_delta_mm3": 0.008458127682388294,
+      "removed_boolean_mm3": 0.0,
+      "added_boolean_mm3": 0.0,
+      "old_solids": 1,
+      "native_solids": 1,
+      "valid": true,
+      "max_bounds_delta_mm": 3.552713678800501e-15,
+      "old_to_native": {
+        "samples": 902,
+        "max_distance_mm": 7.346309428740023e-13
+      },
+      "native_to_old": {
+        "samples": 908,
+        "max_distance_mm": 5.046330898753177e-13
+      },
+      "old_version": 2,
+      "native_version": 2,
+      "baseline_sha256": "43913c88d5fbeddaf62b8c57870de0ea8eb70c11c377c966c7de2825f12be9f3"
+    },
+    "foot_shank": {
+      "old_volume_mm3": 35481.72104127763,
+      "native_volume_mm3": 35481.72101935347,
+      "volume_delta_mm3": -2.192416286561638e-05,
+      "removed_boolean_mm3": 0.0,
+      "added_boolean_mm3": 0.0,
+      "old_solids": 1,
+      "native_solids": 1,
+      "valid": true,
+      "max_bounds_delta_mm": 9.999999406318238e-08,
+      "old_to_native": {
+        "samples": 737,
+        "max_distance_mm": 8.709693197328127e-08
+      },
+      "native_to_old": {
+        "samples": 741,
+        "max_distance_mm": 8.709693229038589e-08
+      },
+      "old_version": 1,
+      "native_version": 1,
+      "baseline_sha256": "19a5e3f091e7855adbc4d4f24d2345cda772004266fca3d2dbb7df7d8a7eac87"
+    },
+    "hip_carrier": {
+      "old_volume_mm3": 36584.01271838996,
+      "native_volume_mm3": 36584.01272015631,
+      "volume_delta_mm3": 1.7663478502072394e-06,
+      "removed_boolean_mm3": 0.0,
+      "added_boolean_mm3": 0.0,
+      "old_solids": 1,
+      "native_solids": 1,
+      "valid": true,
+      "max_bounds_delta_mm": 2.4158453015843406e-13,
+      "old_to_native": {
+        "samples": 836,
+        "max_distance_mm": 2.442358917808171e-09
+      },
+      "native_to_old": {
+        "samples": 842,
+        "max_distance_mm": 2.442351062296068e-09
+      },
+      "old_version": 1,
+      "native_version": 1,
+      "baseline_sha256": "ff168eb52590ba84f164e328b98d912dd377ef6edf41c8e68b8e207ceb8ab916"
+    },
+    "front_contact_pad": {
+      "old_volume_mm3": 10013.58819644032,
+      "native_volume_mm3": 10013.588191529563,
+      "volume_delta_mm3": -4.910756615572609e-06,
+      "removed_boolean_mm3": 0.0,
+      "added_boolean_mm3": 0.0,
+      "old_solids": 1,
+      "native_solids": 1,
+      "valid": true,
+      "max_bounds_delta_mm": 0.0,
+      "old_to_native": {
+        "samples": 224,
+        "max_distance_mm": 8.110153107415289e-08
+      },
+      "native_to_old": {
+        "samples": 224,
+        "max_distance_mm": 8.414547992997888e-08
+      },
+      "old_version": 1,
+      "native_version": 1,
+      "baseline_sha256": "1bc4c0dd762aac67c29ce47165c75a1f708c8dfcc8159d58ab6ffcb05fc5d3be"
+    },
+    "shoulder_carrier": {
+      "old_volume_mm3": 39991.85797758,
+      "native_volume_mm3": 39991.912501451836,
+      "volume_delta_mm3": 0.05452387183322571,
+      "removed_boolean_mm3": 0.0,
+      "added_boolean_mm3": 0.0,
+      "old_solids": 1,
+      "native_solids": 1,
+      "valid": true,
+      "max_bounds_delta_mm": 7.105427357601002e-15,
+      "old_to_native": {
+        "samples": 1029,
+        "max_distance_mm": 0.0063485935302674355
+      },
+      "native_to_old": {
+        "samples": 1033,
+        "max_distance_mm": 0.006365785239442373
+      },
+      "old_version": 3,
+      "native_version": 4,
+      "baseline_sha256": "1d4993933d43b765dde259521dbe58ecce9aea2a2977100aa4b885a2f5f3d185"
+    },
+    "upper_arm": {
+      "old_volume_mm3": 30409.91666123588,
+      "native_volume_mm3": 30409.916621483204,
+      "volume_delta_mm3": -3.9752674638293684e-05,
+      "removed_boolean_mm3": 29159.694262218945,
+      "added_boolean_mm3": 29086.6294913311,
+      "old_solids": 1,
+      "native_solids": 1,
+      "valid": true,
+      "max_bounds_delta_mm": 2.398081733190338e-13,
+      "old_to_native": {
+        "samples": 1328,
+        "max_distance_mm": 2.5119306891056023e-09
+      },
+      "native_to_old": {
+        "samples": 1332,
+        "max_distance_mm": 2.5119289515664205e-09
+      },
+      "old_version": 2,
+      "native_version": 2,
+      "baseline_sha256": "48268020c5e428fdba4745fa5be2aeec046f8bb7c841b2d06ceff4f20279d489"
+    },
+    "forearm": {
+      "old_volume_mm3": 42449.72103510046,
+      "native_volume_mm3": 42449.72101935348,
+      "volume_delta_mm3": -1.5746983990538865e-05,
+      "removed_boolean_mm3": 0.0,
+      "added_boolean_mm3": 0.0,
+      "old_solids": 1,
+      "native_solids": 1,
+      "valid": true,
+      "max_bounds_delta_mm": 9.999999406318238e-08,
+      "old_to_native": {
+        "samples": 737,
+        "max_distance_mm": 8.709693197328127e-08
+      },
+      "native_to_old": {
+        "samples": 741,
+        "max_distance_mm": 8.709693229038589e-08
+      },
+      "old_version": 2,
+      "native_version": 2,
+      "baseline_sha256": "2ebaffead8e8d4ea13dcc13588ed4a4fba2d263f6d425624e10881a76767d8a8"
+    },
+    "shoulder_mount": {
+      "old_volume_mm3": 15930.545034637777,
+      "native_volume_mm3": 15930.545034973537,
+      "volume_delta_mm3": 3.3575997804291546e-07,
+      "removed_boolean_mm3": 0.0,
+      "added_boolean_mm3": 0.0,
+      "old_solids": 1,
+      "native_solids": 1,
+      "valid": true,
+      "max_bounds_delta_mm": 1.2789769243681803e-13,
+      "old_to_native": {
+        "samples": 559,
+        "max_distance_mm": 1.8821417729162018e-09
+      },
+      "native_to_old": {
+        "samples": 559,
+        "max_distance_mm": 1.8821519093987226e-09
+      },
+      "old_version": 1,
+      "native_version": 1,
+      "baseline_sha256": "519fcb9d907c27427f9117c177a2cebef7c064035a44d218e503f75afebab5dd"
+    },
+    "torso_frame": {
+      "old_volume_mm3": 138528.2864365006,
+      "native_volume_mm3": 138528.28643650003,
+      "volume_delta_mm3": -5.820766091346741e-10,
+      "removed_boolean_mm3": 0.0,
+      "added_boolean_mm3": 0.0,
+      "old_solids": 1,
+      "native_solids": 1,
+      "valid": true,
+      "max_bounds_delta_mm": 9.999999406318238e-08,
+      "old_to_native": {
+        "samples": 1468,
+        "max_distance_mm": 4.334893061090282e-13
+      },
+      "native_to_old": {
+        "samples": 1468,
+        "max_distance_mm": 4.334893061090282e-13
+      },
+      "old_version": 5,
+      "native_version": 5,
+      "baseline_sha256": "c10c38f730bea29bf53047f4b463198d59878a12137d6b1c9dd1a1e18a889c89"
+    },
+    "e_tray": {
+      "old_volume_mm3": 33540.63737525839,
+      "native_volume_mm3": 33540.6373752584,
+      "volume_delta_mm3": 7.275957614183426e-12,
+      "removed_boolean_mm3": 0.0,
+      "added_boolean_mm3": 0.0,
+      "old_solids": 1,
+      "native_solids": 1,
+      "valid": true,
+      "max_bounds_delta_mm": 0.0,
+      "old_to_native": {
+        "samples": 576,
+        "max_distance_mm": 4.6321719119665155e-14
+      },
+      "native_to_old": {
+        "samples": 576,
+        "max_distance_mm": 4.6321719119665155e-14
+      },
+      "old_version": 1,
+      "native_version": 1,
+      "baseline_sha256": "b2c76048e566cd57aae5962fe36f24e2d7ee2a1e66603edaed090e91e8a73b0b"
+    },
+    "tray_spacer": {
+      "old_volume_mm3": 117.62122895040193,
+      "native_volume_mm3": 117.62122895040187,
+      "volume_delta_mm3": -5.684341886080802e-14,
+      "removed_boolean_mm3": 0.0,
+      "added_boolean_mm3": 0.0,
+      "old_solids": 1,
+      "native_solids": 1,
+      "valid": true,
+      "max_bounds_delta_mm": 0.0,
+      "old_to_native": {
+        "samples": 38,
+        "max_distance_mm": 1.9721522630525295e-31
+      },
+      "native_to_old": {
+        "samples": 38,
+        "max_distance_mm": 1.9721522630525295e-31
+      },
+      "old_version": 1,
+      "native_version": 1,
+      "baseline_sha256": "fa7942945fd900ec9ed2ec3272a9bcff144d3d178cb4fe48c50f8d1ef6e6e9f4"
+    },
+    "coupon_socket_saddle": {
+      "old_volume_mm3": 13970.199287708161,
+      "native_volume_mm3": 13970.19928947446,
+      "volume_delta_mm3": 1.7662987374933437e-06,
+      "removed_boolean_mm3": 0.0,
+      "added_boolean_mm3": 0.0,
+      "old_solids": 1,
+      "native_solids": 1,
+      "valid": true,
+      "max_bounds_delta_mm": 2.398081733190338e-13,
+      "old_to_native": {
+        "samples": 352,
+        "max_distance_mm": 2.442358917808171e-09
+      },
+      "native_to_old": {
+        "samples": 352,
+        "max_distance_mm": 2.442358917808171e-09
+      },
+      "old_version": 1,
+      "native_version": 1,
+      "baseline_sha256": "68f41e512c204ecb2f185f66972729ebd2f2ac6b57cc06d49d87b67b98652f55"
+    },
+    "coupon_socket_fork": {
+      "old_volume_mm3": 16288.54171187303,
+      "native_volume_mm3": 16288.541711872957,
+      "volume_delta_mm3": -7.275957614183426e-11,
+      "removed_boolean_mm3": 0.0,
+      "added_boolean_mm3": 0.0,
+      "old_solids": 1,
+      "native_solids": 1,
+      "valid": true,
+      "max_bounds_delta_mm": 3.552713678800501e-15,
+      "old_to_native": {
+        "samples": 641,
+        "max_distance_mm": 5.046330898753177e-13
+      },
+      "native_to_old": {
+        "samples": 645,
+        "max_distance_mm": 5.046330898753177e-13
+      },
+      "old_version": 1,
+      "native_version": 1,
+      "baseline_sha256": "fde9fb0b8a9afed81c7b1b84ae04e6e6dd932dee5b954758e74285beb8e266e1"
+    },
+    "coupon_motor_ring": {
+      "old_volume_mm3": 7738.685183587741,
+      "native_volume_mm3": 7738.685183587738,
+      "volume_delta_mm3": -3.637978807091713e-12,
+      "removed_boolean_mm3": 0.0,
+      "added_boolean_mm3": 0.0,
+      "old_solids": 1,
+      "native_solids": 1,
+      "valid": true,
+      "max_bounds_delta_mm": 0.0,
+      "old_to_native": {
+        "samples": 100,
+        "max_distance_mm": 5.9580819677934555e-15
+      },
+      "native_to_old": {
+        "samples": 100,
+        "max_distance_mm": 5.9580819677934555e-15
+      },
+      "old_version": 1,
+      "native_version": 1,
+      "baseline_sha256": "7e9613cbcbe8916446ee7526c2516f59c951cf5c6e55eb910f3d829580e6929c"
+    },
+    "coupon_motor_bore": {
+      "old_volume_mm3": 20605.199958440397,
+      "native_volume_mm3": 20605.199958731093,
+      "volume_delta_mm3": 2.906963345594704e-07,
+      "removed_boolean_mm3": 0.0,
+      "added_boolean_mm3": 0.0,
+      "old_solids": 1,
+      "native_solids": 1,
+      "valid": true,
+      "max_bounds_delta_mm": 0.0,
+      "old_to_native": {
+        "samples": 2093,
+        "max_distance_mm": 4.440892098500626e-14
+      },
+      "native_to_old": {
+        "samples": 2093,
+        "max_distance_mm": 4.440892098500626e-14
+      },
+      "old_version": 1,
+      "native_version": 1,
+      "baseline_sha256": "c90fc65f7acf5b3f035e0d5ee74b826176db3efc65c3ed7fa5ded1bea1cc0bf3"
+    },
+    "coupon_ladder": {
+      "old_volume_mm3": 53538.5461873265,
+      "native_volume_mm3": 53538.546188023254,
+      "volume_delta_mm3": 6.96752977091819e-07,
+      "removed_boolean_mm3": 0.0,
+      "added_boolean_mm3": 0.0,
+      "old_solids": 1,
+      "native_solids": 1,
+      "valid": true,
+      "max_bounds_delta_mm": 0.0,
+      "old_to_native": {
+        "samples": 536,
+        "max_distance_mm": 7.944109290391274e-15
+      },
+      "native_to_old": {
+        "samples": 536,
+        "max_distance_mm": 7.944109290391274e-15
+      },
+      "old_version": 1,
+      "native_version": 1,
+      "baseline_sha256": "a519ad3d4c289ba32b6e588cba9ded9f5341b8fb92d424c9c243a6ebde53f4d7"
+    },
+    "coupon_seam": {
+      "old_volume_mm3": 17056.423272608397,
+      "native_volume_mm3": 17056.4232726084,
+      "volume_delta_mm3": 3.637978807091713e-12,
+      "removed_boolean_mm3": 0.0,
+      "added_boolean_mm3": 0.0,
+      "old_solids": 2,
+      "native_solids": 2,
+      "valid": true,
+      "max_bounds_delta_mm": 2.7755575615628914e-16,
+      "old_to_native": {
+        "samples": 326,
+        "max_distance_mm": 8.881784197001252e-16
+      },
+      "native_to_old": {
+        "samples": 326,
+        "max_distance_mm": 6.661338147750939e-16
+      },
+      "old_version": 1,
+      "native_version": 1,
+      "baseline_sha256": "e70a46190646f0915ef0a9143cafa8b2ed7e16a5129d7a4f5a15f75488246cd9"
+    },
+    "thigh_frame": {
+      "old_volume_mm3": 44668.462132416586,
+      "native_volume_mm3": 44668.46213315884,
+      "volume_delta_mm3": 7.422568160109222e-07,
+      "removed_boolean_mm3": 0.0,
+      "added_boolean_mm3": 0.0,
+      "old_solids": 1,
+      "native_solids": 1,
+      "valid": true,
+      "max_bounds_delta_mm": 2.2737367544323206e-13,
+      "old_to_native": {
+        "samples": 984,
+        "max_distance_mm": 2.442358917808171e-09
+      },
+      "native_to_old": {
+        "samples": 988,
+        "max_distance_mm": 2.442358917808171e-09
+      },
+      "old_version": 1,
+      "native_version": 1,
+      "baseline_sha256": "024c3e9434dbd2d2f2d50103490cdc477b8c062f774b77ec24e78c3b66f37432"
+    },
+    "thigh_body": {
+      "old_volume_mm3": 38567.91145824887,
+      "native_volume_mm3": 38567.91145905206,
+      "volume_delta_mm3": 8.031929610297084e-07,
+      "removed_boolean_mm3": 0.0,
+      "added_boolean_mm3": 0.0,
+      "old_solids": 1,
+      "native_solids": 1,
+      "valid": true,
+      "max_bounds_delta_mm": 2.2737367544323206e-13,
+      "old_to_native": {
+        "samples": 900,
+        "max_distance_mm": 2.442358917808171e-09
+      },
+      "native_to_old": {
+        "samples": 902,
+        "max_distance_mm": 2.442358917808171e-09
+      },
+      "old_version": 1,
+      "native_version": 1,
+      "baseline_sha256": "bab12bcda48e37133a91d411b5a8068593116534225de6ef136ab1a6b68ef204"
+    },
+    "thigh_cheek": {
+      "old_volume_mm3": 9666.46246787727,
+      "native_volume_mm3": 9666.46246787727,
+      "volume_delta_mm3": 0.0,
+      "removed_boolean_mm3": 0.0,
+      "added_boolean_mm3": 0.0,
+      "old_solids": 1,
+      "native_solids": 1,
+      "valid": true,
+      "max_bounds_delta_mm": 8.881784197001252e-15,
+      "old_to_native": {
+        "samples": 318,
+        "max_distance_mm": 5.092679057328393e-13
+      },
+      "native_to_old": {
+        "samples": 320,
+        "max_distance_mm": 5.092679057328393e-13
+      },
+      "old_version": 1,
+      "native_version": 1,
+      "baseline_sha256": "9a542640b4130975496ce2e22ee0f41a7237a7a95b24f5ac4c7170e2e3d09ab1"
+    },
+    "thigh_flat": {
+      "old_volume_mm3": 46200.404098941086,
+      "native_volume_mm3": 46200.40409972474,
+      "volume_delta_mm3": 7.836570148356259e-07,
+      "removed_boolean_mm3": 0.0,
+      "added_boolean_mm3": 0.0,
+      "old_solids": 1,
+      "native_solids": 1,
+      "valid": true,
+      "max_bounds_delta_mm": 2.2737367544323206e-13,
+      "old_to_native": {
+        "samples": 918,
+        "max_distance_mm": 2.442358917808171e-09
+      },
+      "native_to_old": {
+        "samples": 922,
+        "max_distance_mm": 2.442358917808171e-09
+      },
+      "old_version": 1,
+      "native_version": 1,
+      "baseline_sha256": "92c649c7874dfd5f3c30303700c3c1e72190dc4cd04edd408a24b9ef9b39401c"
+    },
+    "shank_flush": {
+      "old_volume_mm3": 36461.77862758535,
+      "native_volume_mm3": 36461.78774834632,
+      "volume_delta_mm3": 0.00912076097301906,
+      "removed_boolean_mm3": 0.0,
+      "added_boolean_mm3": 0.0,
+      "old_solids": 1,
+      "native_solids": 1,
+      "valid": true,
+      "max_bounds_delta_mm": 3.552713678800501e-15,
+      "old_to_native": {
+        "samples": 612,
+        "max_distance_mm": 7.346051707580712e-13
+      },
+      "native_to_old": {
+        "samples": 618,
+        "max_distance_mm": 5.046330898753177e-13
+      },
+      "old_version": 2,
+      "native_version": 2,
+      "baseline_sha256": "f7ca5fc4e3849af85956e64fbd7887670579a83abdda3782ea36832cacf891f8"
+    }
+  }
+}

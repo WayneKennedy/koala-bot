@@ -227,6 +227,10 @@ upstream measurement record; they are not a current defect list.
 
 ## Reproducing the STEP measurements
 
+The snippet below records the original build123d measurement environment. For
+current native FreeCAD measurements, use `koala_hardware.so101_templates` through
+the [FreeCAD workflow](freecad.md); retain the pinned upstream source hashes.
+
 From `hardware/`, with the STEPs downloaded from upstream `STEP/SO101/` into `$D`:
 
 ```sh

@@ -45,3 +45,6 @@ cross-referenced, greppable — and every artefact meets the **4Cs**
 
 Tri-licensed — `CERN-OHL-S-2.0` (hardware) · `MIT` (software) · `CC-BY-SA-4.0`
 (docs). See [`LICENSING.md`](LICENSING.md). Full licence texts are in `LICENSES/`.
+
+CAD now uses native FreeCAD generators with revision-paired Python/FCStd files (DEC-63):
+[workflow and artefacts](docs/freecad.md).

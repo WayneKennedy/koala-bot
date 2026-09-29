@@ -1,12 +1,13 @@
 # SPDX-License-Identifier: CERN-OHL-S-2.0
 """Build current STEP/STL parts, four-view PNGs and the generated chassis BOM.
 
-Usage:  uv run python -m koala_hardware.export [name-filter]
+Usage:  ./freecad-run -m koala_hardware.export [name-filter]
 Outputs: build/stl/*.stl, build/renders/*.png, build/manifest.txt
 The build FAILS (exit 1) if any part exceeds the print bed in its declared
 print orientation, has an undeclared support need, or violates a critical assembly datum.
 DEC-39 allows explicitly declared supports; surface screens remain advisory.
 """
+import argparse
 import hashlib
 from collections import Counter
 import json
@@ -18,7 +19,7 @@ import matplotlib.pyplot as plt
 from mpl_toolkits.mplot3d.art3d import Poly3DCollection
 import numpy as np
 import trimesh
-from build123d import export_stl, export_step, mirror, Plane, Pos
+from koala_hardware.cad import export_stl, export_step, mirror, Plane, Pos
 from . import params as P
 from . import printability as PR
 from . import validation
@@ -224,7 +225,11 @@ def write_bom(bom: list[dict]) -> bool:
 
 
 def main():
-    name_filter = sys.argv[1] if len(sys.argv) > 1 else ""
+    parser=argparse.ArgumentParser(description=__doc__)
+    parser.add_argument('name_filter',nargs='?',default='')
+    parser.add_argument('--formats-only',action='store_true',help='Refresh STEP/STL/BOM only; keep the separately validated FreeCAD release')
+    args=parser.parse_args()
+    name_filter=args.name_filter
     layout = validation.check_layout()
     print(f"[OK  ] assembly layout: {', '.join(layout)}")
     STL.mkdir(parents=True, exist_ok=True)
@@ -305,6 +310,9 @@ def main():
         print("updated docs/bom.md (printed parts)")
 
     (ROOT / "build" / "manifest.txt").write_text("\n".join(lines) + "\n")
+    if not failures and not args.formats_only:
+        from .freecad_build import build, DEFAULT
+        build(DEFAULT, only=name_filter or None, include_references=False)
     if failures:
         print(f"\nFAILURES (bed fit / surface geometry screen): {failures}")
         sys.exit(1)

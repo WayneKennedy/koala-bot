@@ -1,5 +1,11 @@
 # Integrated chassis — current CAD and acceptance scope
 
+**2026-09-29: native FreeCAD migration (DEC-63).** Thigh and shoulder carrier
+are v4, `unknown`/unprinted; local kernel corner-blend differences are recorded
+in the revision log below. Other physical versions and all interface dimensions
+are retained. [Workflow and evidence](freecad.md). Dated manufacturing evidence
+below describes its recorded pre-migration versions.
+
 **2026-09-21: interchangeable footed rear shanks for the first walking build
 (DEC-62).** `foot_shank` v1 fits the existing knees and accepts the unchanged
 front TPU pad. The wheeled `shank` v2 remains available. See the
@@ -470,3 +476,15 @@ that revision. New CAD iterations go here, one entry each, never to
   reports pass within their stated sampled scope, as do the final 62-sample
   primary and two-pose fallback audits. Browser/rear-viewer refresh remain
   separate from those checks.
+
+- **2026-09-29 native FreeCAD migration** (owner toolchain instruction; **unprinted**).
+  All current part/assembly generators use FreeCAD-native construction histories.
+  FreeCAD 1.1.3 / OCCT 7.8.1 produces small local corner-blend differences from
+  the former OCCT 7.9.3 backend: thigh becomes **v4**, shoulder carrier **v4**;
+  both remain `unknown`. The comparison report records the sampled distances;
+  interfaces, link datums and print planes are retained. Native save/reopen/full
+  recompute is mandatory. **Does it look stupid? No:** the multi-view thigh
+  retains its continuous tapered load path and open yoke; the shoulder carrier
+  retains its compact fork/block/socket form. This is a toolchain migration,
+  not physical fit or strength evidence. Earlier v3 slices do not validate v4.
+  [Migration report and sources](../hardware/freecad/migration/README.md).

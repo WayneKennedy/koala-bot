@@ -5,7 +5,7 @@ Native X is the knee shaft; +Z runs from knee to pad centre. The shared
 front lower-link construction preserves its open fork and keyed pad seat.
 No ankle joint, wheel mounting or drive-motor hardware is present.
 """
-from build123d import Pos, Rot
+from koala_hardware.cad import Pos, Rot
 from .. import params as P
 from . import front, links as L
 

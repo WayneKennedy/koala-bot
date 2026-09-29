@@ -99,14 +99,14 @@ retention, traction and wear remain unverified. Nothing was printed.
 From `hardware/`, regenerate CAD and checks:
 
 ```sh
-uv run python -m koala_hardware.render_views foot_shank
-uv run python -m koala_hardware.export
-uv run python -m koala_hardware.assembly
-uv run python -m koala_hardware.audit --nominal-only
-uv run python -m koala_hardware.audit --fallback --nominal-only
-uv run python -m unittest discover -s tests
-uv run python -m koala_hardware.body_plan --output ../docs/design --cad --png
-uv run python -m koala_hardware.viewer --build
+./freecad-run -m koala_hardware.render_views foot_shank
+./freecad-run -m koala_hardware.export
+./freecad-run -m koala_hardware.assembly
+./freecad-run -m koala_hardware.audit --nominal-only
+./freecad-run -m koala_hardware.audit --fallback --nominal-only
+./freecad-run -m unittest discover -s tests
+./freecad-run -m koala_hardware.body_plan --output ../docs/design --cad --png
+./freecad-run -m koala_hardware.viewer --build
 ```
 
 For either exported shank, the local slice command is:

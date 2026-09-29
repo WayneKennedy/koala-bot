@@ -102,13 +102,13 @@ Changing DEC-16 or DEC-18 has consequences beyond this repo.
   [wk-inventory `AGENTS.md`](https://github.com/WayneKennedy/wk-inventory/blob/main/AGENTS.md#before-anything-is-bought).
 - **Every printed part has a version** (owner, 2026-09-19). `version` in the part's spec,
   ledgered with a geometric fingerprint in [`hardware/part-versions.json`](hardware/part-versions.json)
-  (`uv run python -m koala_hardware.part_versions`, `--update "<what changed and why>"` after a
+  (`./freecad-run -m koala_hardware.part_versions`, `--update "<what changed and why>"` after a
   bump). A geometry change without a bump fails `tests/test_part_versions.py`. `proven` and every
   `test-log.md` entry name the version printed; a bump resets the part to `unknown` unless the
   entry says the change is cosmetic. Versions never go down. The generated BOM shows them.
 - **Before building on any redesign, render it from several angles and ask: does this
   design look stupid?** (owner, 2026-09-19, after a rotated-flange torso that cut the rails,
-  broke the battery space and looked dumb reached the viewer.) `uv run python -m
+  broke the battery space and looked dumb reached the viewer.) `./freecad-run -m
   koala_hardware.render_views <part>` writes `docs/design/parts/<part>-views.png` (iso, front,
   side, top). Look at it, answer the question honestly in the revision log, and only then run
   the export/audit/viewer chain. A render that would embarrass the project is a stop, not a note.
@@ -119,6 +119,17 @@ Changing DEC-16 or DEC-18 has consequences beyond this repo.
   to task* · *every part ≤ 200×200 mm* · *finish V1 end-to-end before the family*.
 
 ## Status
+
+**2026-09-29 — FreeCAD migration (DEC-63):** Python is canonical; native FCStd
+feature histories and matching replay scripts are archived per revision in
+`hardware/freecad/`. Read [the FreeCAD workflow](docs/freecad.md) before CAD work.
+Use `hardware/freecad-run`, not the uv interpreter, for geometry commands.
+Thigh and shoulder carrier are now **v4**, `unknown`/unprinted, recording local
+kernel-dependent corner-blend differences. Current dimensions/interfaces are
+retained. Earlier v3 slices below are historical. Native Part trees include
+Sketcher profiles; they are not PartDesign Bodies. Preserve GUI edits before
+regeneration; never edit archived source snapshots. The dated status below
+records the pre-migration manufacturing evidence.
 
 **2026-09-21 — walking first (DEC-62):** build with four identical
 `front_contact_pad` v1 TPU feet and new handed `foot_shank` v1 rear links,

@@ -11,7 +11,7 @@ import json
 import tempfile
 from math import acos, degrees
 from unittest.mock import patch
-from build123d import (Pos, Rot, Plane, RectangleRounded, Cylinder, Align,
+from koala_hardware.cad import (Pos, Rot, Plane, RectangleRounded, Cylinder, Align,
                       extrude, mirror, Compound, export_step)
 from . import params as P, servo_iface as S, assembly as A, body_plan as B, audit
 from .parts import links as L, pelvis, torso

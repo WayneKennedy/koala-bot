@@ -1,7 +1,7 @@
 # SPDX-License-Identifier: CERN-OHL-S-2.0
 """Removable electronics tray attached to the rigid torso, outside its rails."""
 from functools import lru_cache
-from build123d import Cylinder, Pos, Rot, Align, Axis, fillet, Cone
+from koala_hardware.cad import Cylinder, Pos, Rot, Align, Axis, fillet, Cone
 from .. import params as P, servo_iface as S
 from . import links as L, torso as T
 
@@ -24,7 +24,7 @@ def solid():
 
 
 def location():
-    from build123d import Plane
+    from koala_hardware.cad import Plane
     return Plane(origin=(-50,0,(T.LOW+T.HIGH)/2),x_dir=(0,1,0),z_dir=(-1,0,0)).location
 
 

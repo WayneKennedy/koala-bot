@@ -2,10 +2,10 @@
 """DEC-23 joint primitives: insert bosses, clearance holes, seam pairs.
 
 Convention: functions return either a solid to union (bosses) or a cutter
-solid to subtract (holes), always positioned via build123d `Pos`/`Rot` by
+solid to subtract (holes), always positioned via native `Pos`/`Rot` by
 the caller.
 """
-from build123d import Box, Cylinder, Part, Pos, Align
+from koala_hardware.cad import Box, Cylinder, Part, Pos, Align
 from . import params as P
 
 

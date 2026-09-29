@@ -1,0 +1,38 @@
+{
+  "socket_contact_mm3": 0,
+  "rig_angles": 19,
+  "nominal_M2_engagement_mm": 2.8,
+  "nominal_idler_engagement_mm": 2.0,
+  "reference": "parametric",
+  "part_designs": 19,
+  "assembly_samples": [
+    {
+      "pose": "quadruped",
+      "delta_degrees": [
+        0,
+        0,
+        0
+      ],
+      "boolean_pairs": 180
+    },
+    {
+      "pose": "upright",
+      "delta_degrees": [
+        0,
+        0,
+        0
+      ],
+      "boolean_pairs": 180
+    },
+    {
+      "pose": "walking",
+      "delta_degrees": [
+        0,
+        0,
+        0
+      ],
+      "boolean_pairs": 178
+    }
+  ],
+  "limits": "Nominal geometry only; no continuous sweep, tolerance expansion, complete loom, slices or physical load acceptance."
+}

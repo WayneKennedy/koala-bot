@@ -6,7 +6,7 @@ STEP/STL assets retain Apache-2.0 licensing; source shapes are not resized.
 """
 from pathlib import Path
 import hashlib,json,tempfile,shutil
-from build123d import import_step,export_step,Plane,mirror,Pos
+from koala_hardware.cad import import_step,export_step,Plane,mirror,Pos
 from . import params as P,servo_iface as S
 from .parts import pelvis
 from .audit import overlap

@@ -6,7 +6,7 @@ import tempfile
 import unittest
 from unittest.mock import patch
 
-from build123d import Pos, Rot, Cylinder, Align
+from koala_hardware.cad import Pos, Rot, Cylinder, Align
 from koala_hardware import assembly as A, body_plan as B, params as P, servo_iface as S
 from koala_hardware.audit import clear, volume
 from koala_hardware.meshing import export_mesh

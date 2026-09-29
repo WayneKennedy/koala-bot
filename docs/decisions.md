@@ -16,6 +16,17 @@ acceptance remains open as OQ-13.
 are superseded by the [impact assessment](cad-measurement-impact.md). DEC-40 implements the corrected interface and replaces its geometry;
 physical acceptance remains open.
 
+- **DEC-63 — Native FreeCAD generation; Python remains canonical** (2026-09-29,
+  owner). Replace the build123d CAD backend with native FreeCAD generators and
+  feature histories for interactive human/AI inspection and design. Store each
+  revision's Python and resulting FCStd together, preserving the Python
+  dependency closure. Carry GUI edits back into Python before rebuilding;
+  preserve existing documents and earlier revisions. The owner explicitly chose
+  native generators over exporting opaque solids from the previous backend.
+  [Implementation, revision layout and validation](freecad.md). Local kernel
+  differences belong in the CAD revision log and exact part versions, not a
+  new mechanical decision.
+
 - **DEC-62 — Build a four-foot walking robot first; retain interchangeable
   wheeled rear shanks as the end goal** (2026-09-21, owner). The first build
   uses rear shanks without the drive motors or wheels, terminating in the
@@ -433,7 +444,8 @@ physical acceptance remains open.
   actuators 6->3 (cost + mass, and mass sits high on the pendulum). **Rigid struts in V1**;
   pelvis & shoulder-girdle interfaces pre-designed to accept the 3 actuators later.
 - **DEC-09 - PETG; every part <= 200x200 mm; parametric code-CAD.** Design to the commonest
-  bed for reproducibility; `build123d`/`CadQuery` so body-is-source-code.
+  bed for reproducibility; body-is-source-code. The original `build123d`/`CadQuery`
+  backend choice is superseded by **DEC-63** (native FreeCAD, Python canonical).
 - **DEC-10 - Tri-licence:** CERN-OHL-S-2.0 (hardware), MIT (software), CC-BY-SA-4.0
   (docs/models). See [`../LICENSING.md`](../LICENSING.md).
 - **DEC-11 - Vertical-slice discipline:** finish V1 end-to-end (design->print->BOM->

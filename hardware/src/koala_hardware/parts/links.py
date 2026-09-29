@@ -3,7 +3,7 @@
 from functools import lru_cache
 from math import cos, sin, radians
 import warnings
-from build123d import Pos, Rot, Plane, Sphere, Cylinder, Align, RectangleRounded, extrude, Polygon, Cone, RegularPolygon, loft, Circle, fillet, Axis, mirror, GeomType, Vertex
+from koala_hardware.cad import Pos, Rot, Plane, Sphere, Cylinder, Align, RectangleRounded, extrude, Polygon, Cone, RegularPolygon, loft, Circle, fillet, Axis, mirror, GeomType, Vertex
 from .. import params as P, servo_iface as S
 
 AXIS=Pos(0,0,-P.SOCKET_AXIS_Z)
@@ -118,7 +118,7 @@ def rear_thigh_frame(length):
 
 def _slot(y_or_z_center,axis,x=0.0):
     """Captive M3 nut slot entered from the bridge's window face (Z=THIGH_BRIDGE_START)."""
-    from build123d import RegularPolygon
+    from koala_hardware.cad import RegularPolygon
     r=(P.NUT_M3_AF+0.2)/2/cos(radians(30))
     if axis=='Z':   # nut axis along Z at (x, y): hex in XY, slot rises from the window face
         return Pos(x,y_or_z_center,P.THIGH_BRIDGE_START-1)*extrude(RegularPolygon(r,6,rotation=0),amount=P.NUT_M3_T+1.2)
@@ -142,7 +142,7 @@ def rear_thigh_split(length):
     through the cheek (head counterbored flush). Servo C is fitted before the
     cheek piece. Returns (body, cheek).
     """
-    from build123d import Cylinder,Align
+    from koala_hardware.cad import Cylinder,Align
     d=_thigh_dims(length);a=d['a'];outer=-d['sx']-d['t'];inner=-d['sx']
     full=rear_thigh(length)
     region=S._box(-30,30,-60,inner,-40,120)+S._box(-30,30,-60,-P.SOCKET_DRIVE_FACE+0.4,-40,20)
@@ -161,7 +161,7 @@ def rear_thigh_split(length):
 @lru_cache
 def thigh_lap_fixings():
     """Reference solids for option 2's two screws and captive nuts."""
-    from build123d import Cylinder,Align,RegularPolygon
+    from koala_hardware.cad import Cylinder,Align,RegularPolygon
     d=_thigh_dims(P.BODY_THIGH_MM);outer=-d['sx']-d['t'];top=d['bottom']+P.THIGH_LIP_T
     ys=P.THIGH_LIP_SCREW_Y;zs=P.THIGH_END_SCREW_Z;yn=P.THIGH_END_NUT_Y
     s=Pos(0,ys,P.THIGH_BRIDGE_START)*Cylinder(1.5,top-P.THIGH_BRIDGE_START,align=(Align.CENTER,Align.CENTER,Align.MIN))
@@ -257,7 +257,7 @@ def rear_thigh_flat(length):
     The drive-side cheek and both pads stay as DEC-58; the print relies on tree
     support under them.
     """
-    from build123d import Polygon
+    from koala_hardware.cad import Polygon
     d=_thigh_dims(length);a=d['a']
     part=rear_thigh(length)+S._box(-a,a,d['sx']+d['t'],d['back'],P.THIGH_JOIN_START,d['bottom'])
     y0=-P.SOCKET_IDLER_FACE+P.SOCKET_PAD_T+0.1;z0=-P.SOCKET_PLATE_R-1     # just outside the pad's outer top edge
@@ -483,7 +483,7 @@ def upper_spec(name,length,hip=False):
            'Outer horn pad on bed; remove supports from inner fork and saddle. No structural seam bolts.')
     return spec(name,upper_link(length,hip),handed=True,orientation=Rot(X=-90) if hip else Rot(X=90),
         fasteners=HORN_FASTENERS|{'M2x5 self-tapper into servo ear':4},
-        notes=notes, printable='unknown' if hip else 'assumed', version=3 if hip else 1)
+        notes=notes, printable='unknown' if hip else 'assumed', version=4 if hip else 1)
 
 
 def lower_spec(name,length,front):

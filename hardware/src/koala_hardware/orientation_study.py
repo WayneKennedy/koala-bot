@@ -3,9 +3,10 @@
 a support-volume estimate (overhang area × drop to the part or bed) for a set of
 candidate orientations, with faces coloured in a two-view PNG.
 
-    uv run --with rtree python -m koala_hardware.orientation_study thigh_right
-    uv run --with rtree python -m koala_hardware.orientation_study --thigh-options   # the 2026-09-19 option prints
+    ./freecad-run -m koala_hardware.orientation_study thigh_right
+    ./freecad-run -m koala_hardware.orientation_study --thigh-options   # the 2026-09-19 option prints
 
+Install optional `rtree` into FreeCAD’s Python environment before running.
 It is a screen for choosing what to slice, not a slice: it ignores bridging,
 support style and perimeters. Run `export` first; reads build/stl/<name>.stl and
 writes docs/design/rear-leg/<name>-orientation-study.png.

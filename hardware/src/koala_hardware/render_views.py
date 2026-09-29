@@ -2,8 +2,8 @@
 """Multi-view render of one part for the "does this design look stupid?" gate
 (owner, 2026-09-19): iso, front, side and top, shaded, no bed or colouring.
 
-    uv run python -m koala_hardware.render_views torso_frame            # a production part (all_builders name)
-    uv run python -m koala_hardware.render_views thigh_flat --option    # an option builder in links
+    ./freecad-run -m koala_hardware.render_views torso_frame            # a production part (all_builders name)
+    ./freecad-run -m koala_hardware.render_views thigh_flat --option    # an option builder in links
 
 Writes docs/design/parts/<name>-views.png. Look at it before running the build
 chain, and say in the revision log whether it passed the question.

@@ -3,7 +3,7 @@
 from math import sqrt
 import unittest
 
-from build123d import Compound, Plane, Pos, RegularPolygon, Rot, extrude, mirror
+from koala_hardware.cad import Compound, Plane, Pos, RegularPolygon, Rot, extrude, mirror
 from koala_hardware import params as P, servo_iface as S
 from koala_hardware.audit import clear, volume
 from koala_hardware.parts import shoulder_mount as M, torso

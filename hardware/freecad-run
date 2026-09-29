@@ -1,0 +1,61 @@
+#!/usr/bin/env python3
+"""Run a Python module/script with the installed FreeCAD interpreter.
+
+Usage: ./freecad-run -m koala_hardware.freecad_build
+       ./freecad-run -m unittest discover -s tests
+Set FREECAD_CMD to a FreeCADCmd executable to override automatic detection.
+"""
+import os
+from pathlib import Path
+import shutil
+import subprocess
+import sys
+import secrets
+import threading
+from multiprocessing.connection import Listener
+
+root=Path(__file__).resolve().parent
+if len(sys.argv)<2:raise SystemExit(__doc__)
+command=os.environ.get('FREECAD_CMD') or shutil.which('FreeCADCmd') or shutil.which('freecadcmd')
+base=[command] if command else ['flatpak','run','--command=FreeCADCmd','org.freecad.FreeCAD']
+args=sys.argv[1:]
+# Flatpak's /usr is its runtime, not the host's Node/slicer installation.
+# Keep this bridge scoped to the two existing pipeline helpers and this run.
+authkey=secrets.token_bytes(32)
+listener=Listener(('127.0.0.1',0),authkey=authkey)
+os.environ['KOALA_HOST_TOOLS']=str(listener.address[1])
+os.environ['KOALA_HOST_KEY']=authkey.hex()
+def host_helpers():
+    while True:
+        try:
+            with listener.accept() as connection:
+                command,options=connection.recv()
+                try:
+                    if not command or command[0] not in ('node','prusa-slicer'):
+                        raise ValueError('Unsupported host helper')
+                    if set(options)-{'cwd','timeout'}:raise ValueError('Unsupported subprocess options')
+                    if command[0]=='node' and os.environ.get('NODE_CMD'):
+                        command=[os.environ['NODE_CMD'],*command[1:]]
+                    result=subprocess.run(command,capture_output=True,text=True,**options)
+                    connection.send(dict(returncode=result.returncode,stdout=result.stdout,stderr=result.stderr))
+                except Exception as error:connection.send({'error':str(error)})
+        except (OSError,EOFError):return
+threading.Thread(target=host_helpers,daemon=True).start()
+code=f'''import sys,runpy,os,traceback
+sys.path[:0]={[str(root/'src'),str(root/'build/freecad-python')]!r}
+sys.argv={args!r}
+try:
+    if sys.argv[0]=='-m':
+        module=sys.argv[1];sys.argv=sys.argv[1:];runpy.run_module(module,run_name='__main__')
+    else:
+        script=sys.argv[0];runpy.run_path(script,run_name='__main__')
+except SystemExit as e:
+    sys.stdout.flush();sys.stderr.flush();os._exit(e.code if isinstance(e.code,int) else (1 if e.code else 0))
+except BaseException:
+    traceback.print_exc();sys.stdout.flush();sys.stderr.flush();os._exit(1)
+'''
+try:
+    status=subprocess.call(base+['-c',code])
+finally:
+    listener.close()
+raise SystemExit(status)

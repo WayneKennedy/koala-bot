@@ -7,7 +7,7 @@ from pathlib import Path
 from unittest.mock import patch
 from contextlib import nullcontext
 from math import cos,sin,radians
-from build123d import Pos,Rot,Plane,mirror,Cylinder,Align
+from koala_hardware.cad import Pos,Rot,Plane,mirror,Cylinder,Align
 from . import params as P,servo_iface as S,assembly as A,validation
 from .parts import all_builders,links as L,pelvis,torso,e_tray,shoulder_mount
 

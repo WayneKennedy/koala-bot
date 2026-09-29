@@ -194,7 +194,7 @@ def rear_axis_y():
 
 def cad_items(name,pose):
     """Review solids for the actual joint centres and bought-wheel/motor envelopes."""
-    from build123d import Cylinder, Box, Sphere, Plane, Pos, Align
+    from koala_hardware.cad import Cylinder, Box, Sphere, Plane, Pos, Align
     out=[]
     def rod(a,b,y,label,r=5):
         length=a.distance(b)
@@ -235,7 +235,7 @@ def write(output, with_cad=False):
     for name,pose in result['poses'].items():
         (output/f'body-{name}.svg').write_text(svg(name,pose))
         if with_cad:
-            from build123d import Compound, export_step
+            from koala_hardware.cad import Compound, export_step
             solids=[]
             for label,solid in cad_items(name,pose):solid.label=label;solids.append(solid)
             export_step(Compound(children=solids),str(output/f'body-{name}.step'))

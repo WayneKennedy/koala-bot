@@ -7,7 +7,7 @@ positive-Y motor offsets. No drive carrier, foot or complete robot is solved.
 """
 import json
 from pathlib import Path
-from build123d import Pos,Rot
+from koala_hardware.cad import Pos,Rot
 from . import params as P,servo_iface as S
 from .parts import links as L
 from .audit import overlap

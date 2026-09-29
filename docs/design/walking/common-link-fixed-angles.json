@@ -1,0 +1,44 @@
+{
+  "current_rear_knee_xz_mm": [
+    -3.9048921487800428,
+    90.08974256718807
+  ],
+  "current_rear_pad_xz_mm": [
+    -55.0,
+    16.0
+  ],
+  "front_pad_xz_mm": [
+    205.0,
+    16.0
+  ],
+  "rear_pad_with_100mm_link_same_body_and_joints_xz_mm": [
+    -60.67723420569111,
+    7.767806381423547
+  ],
+  "rear_pad_delta_xz_mm": [
+    -5.677234205691106,
+    -8.232193618576453
+  ],
+  "rigid_body_pitch_delta_deg": -1.7747816691777627,
+  "settled_rear_hip_xz_mm": [
+    5.022702823866571,
+    181.27274613235062
+  ],
+  "settled_front_shoulder_xz_mm": [
+    154.30749338928302,
+    166.64225380161363
+  ],
+  "settled_rear_knee_xz_mm": [
+    -1.5100572804563366,
+    96.52415885551535
+  ],
+  "rear_front_pad_spacing_mm": 265.8047437254636,
+  "scope": "Geometric standing-pose calculation with unchanged joint angles and ideal spherical pads on flat ground. Not a clearance, stability, loaded or gait check.",
+  "date": "2026-09-29",
+  "replacement_length_mm": 100,
+  "existing_length_mm": 90,
+  "source_sha256": {
+    "hardware/src/koala_hardware/body_plan.py": "cea7b5326dc576e1aac7b21fdb2c5966e74ebc49f62d9abea896a638ede179d3",
+    "hardware/src/koala_hardware/params.py": "bf17cf7a95105cf5cda590018d64c51db16c965e503a823aac1dda810f337652"
+  }
+}

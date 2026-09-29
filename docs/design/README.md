@@ -1,5 +1,10 @@
 # Engineering drawings and CAD
 
+**2026-09-29:** [native FreeCAD workflow](../freecad.md) and
+[revision-paired model index](../../hardware/freecad/README.md). Thigh and
+shoulder carrier are now v4, unprinted. Dated records below retain their original
+versions; their slices apply only to matching STL hashes.
+
 **2026-09-21 addition:** [walking first build](walking/README.md), with four
 identical TPU feet and interchangeable `foot_shank` v1 rear links. The main
 viewer opens in this configuration; the wheeled snapshots remain selectable.
@@ -13,7 +18,7 @@ changed torso/thigh remain unprinted; older slices validate only matching hashes
 
 The [rear-leg record](rear-leg/README.md) documents DEC-57/58's origins and later
 print-form studies. DEC-61's inclined rear mount is now implemented in the main
-assembly. Current thigh v3 corrects rounding; shank v2 is unchanged. Earlier
+assembly. The pre-migration thigh v3 corrected rounding; shank v2 is unchanged. Earlier
 [carrier-orientation alternatives](carrier-orientation/README.md) and
 [front-carrier flat-back study](front-carrier/README.md) are historical, not
 competing current mounts.
@@ -84,13 +89,14 @@ remain unchanged in `hardware/vendor/`; they are not koala prints.
 From `hardware/`:
 
 ```sh
-uv run python -m koala_hardware.export
-uv run python -m koala_hardware.manufacturing_slices
-uv run python -m koala_hardware.assembly
-uv run python -m koala_hardware.audit
-uv run python -m koala_hardware.audit --fallback --nominal-only
-uv run --with playwright python -m koala_hardware.body_plan --output ../docs/design --cad --png
-uv run python -m koala_hardware.viewer --build
+./freecad-run -m koala_hardware.export
+./freecad-run -m koala_hardware.manufacturing_slices
+./freecad-run -m koala_hardware.assembly
+./freecad-run -m koala_hardware.audit
+./freecad-run -m koala_hardware.audit --fallback --nominal-only
+./freecad-run -m koala_hardware.body_plan --output ../docs/design --cad
+uv run --with playwright python -m koala_hardware.body_plan --output ../docs/design --png
+./freecad-run -m koala_hardware.viewer --build
 ```
 
 PNG rendering requires Playwright Chromium, or `PLAYWRIGHT_CHROMIUM` set to an

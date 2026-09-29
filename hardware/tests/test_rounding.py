@@ -4,7 +4,7 @@ from math import pi
 import unittest
 from unittest.mock import patch
 
-from build123d import Box, Part, Solid
+from koala_hardware.cad import Box, Part, Solid
 from koala_hardware import params as P
 from koala_hardware.parts import links as L
 

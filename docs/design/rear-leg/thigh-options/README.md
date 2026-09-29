@@ -2,7 +2,7 @@
 
 Two ways to make the DEC-58 rear thigh printable, modelled side by side for the
 owner to judge in the [rear-leg viewer](https://blake.tail13a0c0.ts.net:8443/rear-leg/)
-(Tailscale; rebuilt with `uv run python -m koala_hardware.rear_leg_review --thigh-options`).
+(Tailscale; rebuilt with `./freecad-run -m koala_hardware.rear_leg_review --thigh-options`).
 **Left leg = option 1, right leg = option 2.** Screenshots: [quadruped](viewer-quadruped.png) · [upright](viewer-upright.png) · [parts tab](viewer-parts.png). Everything else is DEC-57/58: joint
 centres, 85/90 mm links, pads, cup, knee clocking, the yoke window and the
 45° root mount. The main assembly, BOM and the DEC-58 exports are untouched;

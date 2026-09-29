@@ -1,6 +1,6 @@
 # SPDX-License-Identifier: CERN-OHL-S-2.0
 """Two-print acceptance rig uses the production saddle and integral clevis."""
-from build123d import Rot
+from koala_hardware.cad import Rot
 from .. import servo_iface as S
 from . import links as L
 

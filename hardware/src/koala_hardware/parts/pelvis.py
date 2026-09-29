@@ -7,7 +7,7 @@ side. A rear module is a front module turned 180 deg about the pitch axis, so th
 case stands into the torso at both roots. Bench assembled before frame fitting."""
 from functools import lru_cache
 from math import sqrt
-from build123d import Pos, Rot, Plane, mirror, Axis, Cylinder, Align, extrude, RectangleRounded, RegularPolygon
+from koala_hardware.cad import Pos, Rot, Plane, mirror, Axis, Cylinder, Align, extrude, RectangleRounded, RegularPolygon
 from .. import params as P, servo_iface as S
 from . import links as L
 

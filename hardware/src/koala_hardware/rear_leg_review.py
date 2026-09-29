@@ -15,9 +15,9 @@ import argparse
 import hashlib
 import json
 import shutil
-import subprocess
+from . import host_tools as subprocess
 import tempfile
-from build123d import Pos, Rot, Plane, mirror, Compound, export_step
+from koala_hardware.cad import Pos, Rot, Plane, mirror, Compound, export_step
 from . import assembly as A, body_plan as B, params as P, servo_iface as S, audit
 from .parts import links as L, pelvis, torso, neck_space
 
@@ -162,7 +162,7 @@ def validate():
             plate=tf*L.AXIS*S.plate_location(side)
             for x in (-4.95,4.95):
                 for y in (-4.95,4.95):
-                    from build123d import Cylinder,Align
+                    from koala_hardware.cad import Cylinder,Align
                     for label,z,r,h in [('bore',-1,(P.CLEAR_HOLE_M3-.02)/2,P.SOCKET_PAD_T+2),
                                          ('driver',P.SOCKET_PLATE_T+.5,P.SOCKET_HEAD_CLEAR/2-.01,35)]:
                         probe=plate*Pos(x,y,z)*Cylinder(r,h,align=(Align.CENTER,Align.CENTER,Align.MIN))
@@ -308,7 +308,7 @@ def production_records():
     import matplotlib
     matplotlib.use('Agg')
     import matplotlib.pyplot as plt
-    from build123d import section
+    from koala_hardware.cad import section
     from .printability import metrics
     specs=[L.build_thigh(),L.build_shank()];rows=[]
     for spec in specs:

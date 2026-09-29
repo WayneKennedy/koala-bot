@@ -78,7 +78,7 @@ Closest prior art: **Swiss-Mile / ANYmal-on-wheels** ([`references.md`](referenc
    preference, with accessible local supports allowed. Sliced-layer and physical
    validation remain necessary; the surface-area
    screen alone does not prove it (DEC-29).
-4. **Body-as-source-code.** Parametric code-CAD (`build123d` / `CadQuery`) so `bed_size`
+4. **Body-as-source-code.** Native FreeCAD Python generators (DEC-63; [workflow](freecad.md)) so `bed_size`
    and `scale` are parameters, geometry lives in-repo, and it can export URDF.
 5. **Finish V1 end-to-end before the family** — design -> print -> BOM -> firmware ->
    app -> docs -> one video.

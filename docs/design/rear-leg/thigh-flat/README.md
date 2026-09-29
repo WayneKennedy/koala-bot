@@ -22,7 +22,7 @@ and to the join's outer face and reaches the cheek's outer face 27.5 mm down the
 link, so pad, join and cheek read as one surface. Volume 46.2 cm³ (+4.7 on DEC-58).
 Joint centres, pads, cup, knee clocking, window, the 45° root mount and the
 straight servo insertion are unchanged. Both legs use it in the rear-leg viewer
-(`uv run python -m koala_hardware.rear_leg_review --thigh-flat`).
+(`./freecad-run -m koala_hardware.rear_leg_review --thigh-flat`).
 
 Print orientation `Rot(X=-90)`: bed contact 1986 mm², height 73 mm, geometry
 screen ≈57 cm³ of support ([screen](../thigh-options/print-orientations.png),

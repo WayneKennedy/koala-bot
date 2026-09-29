@@ -1,5 +1,9 @@
 # Part construction and printability
 
+**2026-09-29 FreeCAD migration:** thigh and shoulder carrier are v4, unknown.
+Local corner-blend changes and retained interfaces: [migration](freecad.md).
+Earlier dated slice evidence below applies only to its recorded versions.
+
 Current 2026-09-19 revision: recessed **roll → pitch** front shoulders, parallel
 pitch/elbow front links and the retained **pitch → roll** rear legs. Broad print
 faces, enclosing sockets, open forks, filleted roots and accessible support
@@ -46,9 +50,9 @@ review layer starts and removal access before printing. TPU uses no support.
 |---|---|---|---|
 | `root_socket` v1 / 4, two per hand | `proven` | PETG | Plate 1, 2026-09-19: all four fit. Ear holes blocked by the old support profile need clearing with a 2.2 mm drill or reprinting; bed-only support is now configured. Flat plate down, socket up. Four captive shelf nuts and bench-fitted ear screws. Geometry unchanged; front installation now uses a removable cassette. |
 | `shoulder_mount` v1 / 2, handed | `unknown` | PETG | Independent recessed-A cassette. Broad body-Y = 4 face down; open flange nut pockets and bore roofs need accessible local bed-only support. Filleted root joins a wide front flange. Preload four cassette frame nuts before bench-fitting the root socket with four M3×16; four front-access M3×20 secure it to the torso. Remove laterally outward. [Views](design/parts/shoulder_mount-views.png). |
-| `shoulder_carrier` v3 / 2, handed | `unknown` | PETG | A roll fork and B socket share a broad planar block/cup floor; print that face down. R6.3 fork roots, open ear-driver tunnels and no hidden support chamber. Fit B and all four ear screws before the arm. [Views](design/parts/shoulder_carrier-views.png). |
+| `shoulder_carrier` v4 / 2, handed | `unknown` | PETG | A roll fork and B socket share a broad planar block/cup floor; print that face down. R6.3 fork roots, open ear-driver tunnels and no hidden support chamber. Fit B and all four ear screws before the arm. [Views](design/parts/shoulder_carrier-views.png). |
 | `hip_carrier` v1 / 2, handed | `assumed` | PETG | Owner visual review, 2026-09-18; plate 2 sliced, physical result unrecorded. DEC-55/56 block below A, 16 mm fork neck, tapered inner bevels, R6.3 fork roots, R5 socket roots and R1.5 lip. Block/socket floor down. Actual support removal, fitted travel and load/creep remain open. |
-| `thigh` v3 / 2, handed | `unknown` | PETG | Tapered one-piece DEC-58 yoke and sideways knee socket retained. Corrected rounding now keeps earlier successful fillets instead of overwriting them. Cup-floor plane down; accessible tree support under the opposite cheek and pads. v2 G-code does not validate v3. [Current views](design/parts/thigh-views.png); [earlier print-form rationale](design/rear-leg/thigh-flat/README.md). |
+| `thigh` v4 / 2, handed | `unknown` | PETG | Tapered one-piece DEC-58 yoke and sideways knee socket retained. Corrected rounding now keeps earlier successful fillets instead of overwriting them. Cup-floor plane down; accessible tree support under the opposite cheek and pads. Earlier G-code does not validate v4. [Current views](design/parts/thigh-views.png); [earlier print-form rationale](design/rear-leg/thigh-flat/README.md). |
 | `upper_arm` v2 / 2, handed | `unknown` | PETG | 70 mm centres, parallel pitch/elbow axes, enclosing C socket. Thickened drive cup wall and outer fork share the bed plane; support under the opposite fork and open cup remains removable. R6.3 roots/R2 outer rounding; seven short/narrow junction edges remain sharp and are reported. [Views](design/parts/upper_arm-views.png). |
 | `shank` v2 / 2, handed | `assumed` | PETG | 90 mm centres, extended open fork and flush motor/drive-fork face on bed. R6.3 fork roots, R5 motor roots, R2 outer rounding. Existing v2 bed-only organic slices retained; the unsupported motor-bore crown needs physical inspection for sag and insertion. [Record](design/rear-leg/thigh-flat/README.md). |
 | `foot_shank` v1 / 2, handed, walking alternative | `unknown` | PETG | 90 mm knee-to-pad centre; shared knee horn interfaces and front TPU pad key. Long open fork, R6.3 roots and rounded taper; broad native −Y face down. Fork bores and nut-slot roof need accessible local support. New print, no inherited physical proof. [Views and checks](design/walking/README.md). |

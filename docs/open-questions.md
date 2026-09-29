@@ -2,6 +2,32 @@
 
 Unresolved. Resolve -> move to [`decisions.md`](decisions.md).
 
+- **OQ-27 — One common footed lower link for all four limbs?** Owner prefers
+  modularity and asked about four identical prints (2026-09-29); no geometry
+  change selected yet. Current front `forearm` v2 has 100 mm elbow-to-pad reach;
+  rear `foot_shank` v1 calls the same `front.forearm(length)` generator at 90 mm.
+  Fork/horn interfaces, pad key and fixings are shared; all four TPU pads already
+  are the same `front_contact_pad` v1. Both existing rigid links are symmetric
+  across native XZ: zero bilateral boolean difference and maximum sampled skin
+  difference 1.21e-12 mm. Thus their left/right exports do not require physically
+  distinct prints (manufacturing orientations differ by a rigid rotation).
+  [Source-hashed symmetry check](design/walking/common-lower-link-check.json).
+  A common **100 mm** link is a candidate that retains the current front reach;
+  it would lengthen only the walking rear links by 10 mm. **No knee relocation
+  is mechanically required.** Current knee coordinates are the solver's result
+  for selected torso/foot positions and segment lengths, not an independent
+  mounting constraint. With existing joint angles, the longer rear links put
+  the pads 5.677 mm farther back and 8.232 mm lower relative to the unchanged
+  torso pose. Ideal spherical pads can all meet flat ground by pitching the
+  complete robot 1.775° nose-down about the front pad-centre axis; rear hip
+  rises 6.273 mm and front/rear contact spacing becomes 265.805 mm (was 260).
+  [Fixed-angle calculation and scope](design/walking/common-link-fixed-angles.json).
+  Choose whether to retain joint angles or the former torso/foot targets;
+  only the latter requires solving different knee positions. Implementation
+  still needs the actual walking length represented separately from the retained
+  90 mm wheeled shank, clearance/travel checks, mass/kinematics, print versions
+  and BOM updates. This calculation is not a loaded-standing or gait validation.
+
 - **OQ-26 — Battery: capacity undecided; inclination is 3S2P Li-ion 21700,
   half on each torso side, removable for charging.** Maintainer, 2026-09-14.
   Capacity waits on a power budget that does not exist yet: the only figure

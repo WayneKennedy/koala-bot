@@ -13,8 +13,8 @@ After=network.target
 [Service]
 WorkingDirectory=/home/wkenn/Code/koala-bot/hardware
 Environment=PATH=/home/wkenn/.local/bin:/usr/local/bin:/usr/bin:/bin
-ExecStartPre=-/home/wkenn/.local/bin/uv run python -m koala_hardware.viewer --build
-ExecStart=/home/wkenn/.local/bin/uv run python -m koala_hardware.viewer --serve --no-open --port 8017
+ExecStartPre=-/home/wkenn/Code/koala-bot/hardware/freecad-run -m koala_hardware.viewer --build
+ExecStart=/home/wkenn/Code/koala-bot/hardware/freecad-run -m koala_hardware.viewer --serve --no-open --port 8017
 TimeoutStartSec=900
 Restart=always
 RestartSec=5

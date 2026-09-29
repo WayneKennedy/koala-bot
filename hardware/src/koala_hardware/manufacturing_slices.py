@@ -6,7 +6,8 @@ Koala-specific settings. G-code is review-only until material/fit validation.
 """
 from pathlib import Path
 from concurrent.futures import ThreadPoolExecutor
-import argparse, hashlib, json, re, subprocess
+import argparse, hashlib, json, re
+from . import host_tools as subprocess
 import matplotlib
 matplotlib.use('Agg')
 import matplotlib.pyplot as plt

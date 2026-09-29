@@ -1,8 +1,8 @@
 """MuJoCo MJCF of the four-foot walking build (DEC-62), from the CAD's solids and kinematic frames.
 
-    uv run python -m koala_hardware.mjcf              # sim/koala_walking.xml + .json + meshes/*.stl
-    uv run python -m koala_hardware.mjcf --crude      # sim/koala_walking_crude.xml: capsule visuals, same inertia
-    uv run python -m koala_hardware.mjcf OUT.xml      # elsewhere (meshes/ beside it)
+    ./freecad-run -m koala_hardware.mjcf              # sim/koala_walking.xml + .json + meshes/*.stl
+    ./freecad-run -m koala_hardware.mjcf --crude      # sim/koala_walking_crude.xml: capsule visuals, same inertia
+    ./freecad-run -m koala_hardware.mjcf OUT.xml      # elsewhere (meshes/ beside it)
 
 Bodies are the CAD's rigid groups (assembly.nominal_details): every print of a group plus the servo
 case(s) its socket frames place, unioned and exported as one visual STL per body in that body's
@@ -10,7 +10,7 @@ joint frame. Inertia is computed per solid from the BREP and summed per body: pr
 density (the slicer's filament volume where a docs/design/*/slices.json record matches the current
 STL hash, exactly as the BOM does; else solid PETG/TPU, an upper bound), each servo as a
 SERVO_MASS box of the case dimensions at its socket. Omitted: fasteners, horn/ear screw heads,
-the unbought neck-servo envelopes, battery, electronics, head and cables. Contacts are the four
+the reserved neck-servo envelopes, battery, electronics, head and cables. Contacts are the four
 sphere feet and a torso box for fall detection. Joint ranges are the viewer's shared-slider
 clearance bounds (no per-joint search exists), and the actuator is Open Duck's BAM fit of the
 7.4 V STS3215 until the 12 V unit is identified (wk-robotics docs/status.md, "A sim model of
@@ -20,8 +20,7 @@ MuJoCo, which is not a dependency of this package: mjcf_check.py runs from any v
 import hashlib, json, sys, tempfile
 from pathlib import Path
 import numpy as np
-from build123d import Box, Pos, Plane, Align, CenterOf, Compound, mirror, export_stl
-from OCP.BRepTools import BRepTools
+from koala_hardware.cad import Box, Pos, Plane, Align, CenterOf, Compound, mirror, export_stl
 from koala_hardware import assembly as A, body_plan as B, params as P
 from koala_hardware.export import DENSITY                       # g/cm3 PETG 1.27, TPU 1.2 (provisional)
 from koala_hardware.meshing import export_mesh
@@ -185,7 +184,7 @@ def write_mesh(bodies, name, path):
     except Exception as e:                                         # boolean failure: ship the shells unfused
         shape = Compound(children=[s for it in b['items'] for s in it['visual'].solids()]); kind = f'compound ({e})'
     shape = Pos(*(-b['origin'])) * shape
-    BRepTools.Clean_s(shape.wrapped)                               # drop any finer cached triangulation
+    shape.clean_mesh()                               # drop any finer cached triangulation
     export_stl(shape, str(path), tolerance=MESH_TOL[0], angular_tolerance=MESH_TOL[1])
     return kind, path.stat().st_size
 
@@ -221,7 +220,7 @@ def build(out, crude=False, pose_name='walking'):
     w('  <!-- visuals: ' + ('CRUDE capsules between joint centres, not the prints' if crude else
       f'one STL per body in meshes/ (mm, scaled), the body\'s prints unioned with its servo case(s) at the CAD socket frames; tolerance {MESH_TOL[0]} mm / {MESH_TOL[1]} rad') + ' -->')
     w(f'  <!-- inertia: per solid from the CAD BREP, summed per body. Prints at an effective density: slicer filament volume x PETG {DENSITY["PETG"]} / TPU {DENSITY["TPU"]} g/cm3 where the current STL hash matches a docs/design/*/slices.json record ({", ".join(sliced)}); otherwise SOLID density, an upper bound ({", ".join(solid)}). Each servo a {SERVO_G:g} g [SPEC] uniform box {SERVO_CASE[0]} x {SERVO_CASE[1]} x {SERVO_CASE[2]} mm at its socket. -->')
-    w(f'  <!-- omitted mass: fasteners, horn/ear screw heads, neck servo envelopes (unbought), battery, electronics, head, cables. Total {total/1000:.3f} kg; CoM world {v3(com)} m in this pose. -->')
+    w(f'  <!-- omitted mass: fasteners, horn/ear screw heads, neck servo envelopes (reserved case envelopes), battery, electronics, head, cables. Total {total/1000:.3f} kg; CoM world {v3(com)} m in this pose. -->')
     w('  <!-- contacts: four sphere feet (contype 1) and a torso box (contype 2) for fall detection only; link meshes do not collide -->')
     w('  <!-- joint ranges: the viewer\'s shared-slider clearance bounds (viewer-endpoints.json), one slider per axis for all limbs; no per-joint search exists. NOT servo limits -->')
     w('  <!-- actuator: Open Duck 7.4 V BAM placeholder, NOT the 12 V unit -->')

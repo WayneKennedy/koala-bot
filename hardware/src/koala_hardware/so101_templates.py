@@ -9,7 +9,7 @@ from functools import lru_cache
 import hashlib
 import json
 import numpy as np
-from build123d import import_step, export_step, Pos, Rot, Plane, GeomType
+from koala_hardware.cad import import_step, export_step, Pos, Rot, Plane, GeomType
 from . import servo_iface as S, printability as PR
 from .meshing import export_mesh
 

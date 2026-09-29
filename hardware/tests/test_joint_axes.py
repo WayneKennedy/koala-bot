@@ -2,7 +2,7 @@
 """Actual axes and parent order for rear hips and roll-first shoulders."""
 import unittest
 from math import radians, sin
-from build123d import Pos, Vector
+from koala_hardware.cad import Pos, Vector
 from koala_hardware import assembly as A, body_plan as B, params as P
 
 
@@ -68,7 +68,7 @@ class JointAxisTests(unittest.TestCase):
 
     def test_audit_cache_tracks_front_pitch_after_roll(self):
         from unittest.mock import patch
-        from build123d import Box,Compound
+        from koala_hardware.cad import Box,Compound
         from koala_hardware.audit import check_scene
         # A fork's bounding box contains a clear window. Moving the next stage
         # into either cheek must invalidate the cached no-contact result.
