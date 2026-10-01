@@ -7,6 +7,23 @@ in `hardware/src/koala_hardware/params.py`, tagged with their provenance.
 Reference printer per DEC-14 (Ender-5 S1 / Klipper), PETG, the standing
 general-purpose profile recorded in [`bom.md`](bom.md).
 
+## 2026-10-01 — flat-link draft corrected (no print)
+
+The assistant misread the requested removal of a step as filling the fork
+neck from 16 to 20.8 mm and widening the TPU key. This introduced a front
+elbow collision and an unnecessary pad revision. Owner explicitly clarified
+removal only. Restored benchmark forearm v2, foot shank v1 and pad v1; no
+published version or archived pair was changed. Unpublished provisional
+v3/v2/v2 draft identifiers do not supersede these benchmark designs.
+
+The subsequent removal-only study is rejected: a 16 mm trim cuts through the
+head-recess rims and reduces the solid stem section modulus. It supplies no
+physical strength evidence. [Reproducible study](design/flat-link-removal/README.md).
+
+Later on 2026-10-01, the owner selected the 20.8 mm profile with restricted
+bend travel. The resulting forearm v3, foot shank v2 and matching pad v2 are
+now the current, unprinted revision. [Accepted revision](design/flat-links/README.md).
+
 ## 2026-09-21 — rear roll-spacing comment corrected (no print)
 
 The `ROOT_ROLL_Y` expression already includes DEC-60's widened hip spacing,

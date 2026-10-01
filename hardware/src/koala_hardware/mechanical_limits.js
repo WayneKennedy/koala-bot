@@ -106,6 +106,12 @@ function bounds(q) {
       if(stop)last=q[axis]+sign*Math.max(0,Math.abs(last-q[axis])-RESERVE);
       limits.push(last);stops.push(stop);
     }
+    // Intersect geometry search with the source-defined local bend reserve.
+    // These bounds already include their reserve; do not subtract it twice.
+    if(axis==='knee') for(const d of Object.values(joints)) if(d.bend_limits){
+      limits[0]=Math.max(limits[0],d.bend_limits[0]-d.bend_angle);
+      limits[1]=Math.min(limits[1],d.bend_limits[1]-d.bend_angle);
+    }
     result[axis]={min:limits[0],max:limits[1],stops};
     postMessage({progress:axis,result:result[axis]});
   }

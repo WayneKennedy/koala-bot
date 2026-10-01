@@ -284,6 +284,8 @@ SHANK_OUTER_STEP_R = 2.0  # [DESIGN] 2.25 mm motor-face offset beyond the drive 
 REAR_MOTOR_ROOT_R = 5.0    # [DESIGN] face/ring thickness at motor support joins
 FRONT_PAD_START = 96.0     # 100 mm nominal ball centre, truncated top
 FRONT_PAD_NUT_Z = 92.0
+FRONT_PAD_KEY_DEPTH = 2*SOCKET_PLATE_R  # [DESIGN] full 20.8 mm depth through footed link and key; matching TPU v2 cavity
+FRONT_PAD_KEY_HEIGHT = 3.5  # [DESIGN] leaves 10.3 mm for the widened TPU cavity roof to taper to the unchanged screw seat
 
 # --- Thigh print-form options under review (2026-09-19; cad-integrated-design.md revision log).
 # Used only by `rear_leg_review --thigh-options`; the main assembly and BOM keep the DEC-58 thigh.

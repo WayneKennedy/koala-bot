@@ -1,0 +1,39 @@
+{
+  "date": "2026-10-01",
+  "source_revision": "aeb4e11ef28feee4ead6594a028a344da8e0cb43916fd4397e2f80319524d862",
+  "owner_acceptance": "Maximum-fold visual inspection passed; no additional fold travel needed or wanted. Current forearm v3, foot_shank v2 and matching front_contact_pad v2 accepted, unprinted.",
+  "python_tests": {
+    "passed": 81,
+    "command": "hardware/freecad-run -m unittest discover -s hardware/tests"
+  },
+  "javascript_regression": {
+    "passed": true,
+    "command": "node hardware/tests/test_viewer_joint_order.cjs"
+  },
+  "archive": {
+    "new_pairs": 11,
+    "total_pairs": 101,
+    "all_pair_hashes_verified": true,
+    "all_frozen_source_hashes_verified": true,
+    "new_frozen_python_matches_current": true,
+    "new_documents_save_reopen_recompute": "passed during build",
+    "benchmark_commit": "bc702fa",
+    "benchmark_pairs_unchanged": 90,
+    "benchmark_frozen_files_unchanged": 83
+  },
+  "clearance_source_check": {
+    "geometry_and_placement_sources_match": true,
+    "subsequent_non_geometry_changes": [
+      "freecad_build.py",
+      "mjcf.py"
+    ],
+    "explanation": "Clearance report retains check-time hashes. Later changes add assembly review metadata/exports and simulation ranges; geometric dependencies are unchanged."
+  },
+  "evidence_sha256": {
+    "simulation-check.json": "ff78f21dbf84f0a7521051fb7db357742e38f2a4d285a37a78fc974888109e59",
+    "nominal-audit.json": "a059723632178ef16470a1c299a511903509557d8fb8dcc5979339ceeabad003",
+    "bend-clearance.json": "8c48f0c69335bd3be26e27e83e00759a9effaaa32416e54e76cbaa5b354cde75",
+    "viewer-limits.json": "1fada64f6a430ace21623c1bb62d2ffca9dcf10938870b11396c88ca16c92861"
+  },
+  "limits": "Sampled CAD inspection and visual design acceptance. No physical strength, printability, loaded gait or servo calibration claim."
+}

@@ -2,11 +2,11 @@
  "model": "koala_walking_crude.xml",
  "pose": "walking",
  "crude": true,
- "total_g": 1672.9478986638587,
+ "total_g": 1683.3397569677084,
  "com_world_mm": [
-  82.31280172770856,
-  0.002541944502575491,
-  140.05996789226228
+  82.23316967434084,
+  0.0025262521701293734,
+  139.730937637678
  ],
  "prints_g": {
   "root_socket_right": {
@@ -64,14 +64,14 @@
    "material": "PETG"
   },
   "foot_shank_right": {
-   "mass_g": 45.06178569457897,
-   "solid_g": 45.06178569457897,
+   "mass_g": 48.237581757623275,
+   "solid_g": 48.237581757623275,
    "source": "solid PETG",
    "material": "PETG"
   },
   "front_contact_pad": {
-   "mass_g": 12.016305829835456,
-   "solid_g": 12.016305829835456,
+   "mass_g": 11.438474342753596,
+   "solid_g": 11.438474342753596,
    "source": "solid TPU",
    "material": "TPU"
   },
@@ -88,8 +88,8 @@
    "material": "PETG"
   },
   "foot_shank_left": {
-   "mass_g": 45.06178569457899,
-   "solid_g": 45.06178569457899,
+   "mass_g": 48.23758175762327,
+   "solid_g": 48.23758175762327,
    "source": "solid PETG",
    "material": "PETG"
   },
@@ -106,8 +106,8 @@
    "material": "PETG"
   },
   "forearm_right": {
-   "mass_g": 53.91114569457893,
-   "solid_g": 53.91114569457893,
+   "mass_g": 57.086941757623265,
+   "solid_g": 57.086941757623265,
    "source": "solid PETG",
    "material": "PETG"
   },
@@ -124,8 +124,8 @@
    "material": "PETG"
   },
   "forearm_left": {
-   "mass_g": 53.911145694578956,
-   "solid_g": 53.911145694578956,
+   "mass_g": 57.086941757623215,
+   "solid_g": 57.086941757623215,
    "source": "solid PETG",
    "material": "PETG"
   }
@@ -252,19 +252,19 @@
    }
   },
   "rear_right_lower": {
-   "mass_g": 57.078091524414454,
+   "mass_g": 59.67605610037688,
    "com_world_mm": [
-    -37.184647892762804,
-    66.91681411151212,
-    41.83290077813834
+    -35.94851585638228,
+    66.9560801723983,
+    43.625336653287846
    ],
    "items": {
     "rear_shank_right": {
-     "mass_g": 45.06178569457897,
+     "mass_g": 48.237581757623275,
      "source": "solid PETG"
     },
     "rear_contact_pad_right": {
-     "mass_g": 12.016305829835483,
+     "mass_g": 11.438474342753606,
      "source": "solid TPU"
     }
    }
@@ -306,19 +306,19 @@
    }
   },
   "rear_left_lower": {
-   "mass_g": 57.078091524414475,
+   "mass_g": 59.67605610037687,
    "com_world_mm": [
-    -37.18464789276281,
-    -66.91681411151205,
-    41.83290077813834
+    -35.948515856382315,
+    -66.95608017239842,
+    43.62533665328781
    ],
    "items": {
     "rear_shank_left": {
-     "mass_g": 45.06178569457899,
+     "mass_g": 48.23758175762327,
      "source": "solid PETG"
     },
     "rear_contact_pad_left": {
-     "mass_g": 12.016305829835485,
+     "mass_g": 11.438474342753604,
      "source": "solid TPU"
     }
    }
@@ -360,19 +360,19 @@
    }
   },
   "front_right_lower": {
-   "mass_g": 65.9274515244144,
+   "mass_g": 68.52541610037686,
    "com_world_mm": [
-    182.5943656694467,
-    95.74270061906023,
-    45.096029285622315
+    181.26830009678739,
+    95.77648313397309,
+    46.81806233171128
    ],
    "items": {
     "front_forearm_right": {
-     "mass_g": 53.91114569457893,
+     "mass_g": 57.086941757623265,
      "source": "solid PETG"
     },
     "front_contact_pad_right": {
-     "mass_g": 12.016305829835469,
+     "mass_g": 11.438474342753599,
      "source": "solid TPU"
     }
    }
@@ -414,39 +414,75 @@
    }
   },
   "front_left_lower": {
-   "mass_g": 65.92745152441441,
+   "mass_g": 68.52541610037682,
    "com_world_mm": [
-    182.59436566944672,
-    -95.74270061906032,
-    45.0960292856223
+    181.26830009678733,
+    -95.77648313397309,
+    46.81806233171129
    ],
    "items": {
     "front_forearm_left": {
-     "mass_g": 53.911145694578956,
+     "mass_g": 57.086941757623215,
      "source": "solid PETG"
     },
     "front_contact_pad_left": {
-     "mass_g": 12.016305829835456,
+     "mass_g": 11.438474342753596,
      "source": "solid TPU"
     }
    }
   }
  },
  "joint_ranges_deg": {
-  "pitch": [
+  "rear_right_hip_pitch": [
    -43.5,
    107.5
   ],
-  "roll": [
+  "rear_right_hip_roll": [
    -16.0,
    29.25
   ],
-  "bend": [
-   -61.25,
-   89.25
+  "rear_right_knee": [
+   -54.70853548454175,
+   89.29146451545824
+  ],
+  "rear_left_hip_pitch": [
+   -43.5,
+   107.5
+  ],
+  "rear_left_hip_roll": [
+   -16.0,
+   29.25
+  ],
+  "rear_left_knee": [
+   -54.70853548454175,
+   89.29146451545824
+  ],
+  "front_right_shoulder_roll": [
+   -16.0,
+   29.25
+  ],
+  "front_right_shoulder_pitch": [
+   -43.5,
+   107.5
+  ],
+  "front_right_elbow": [
+   -70.49857006275934,
+   155.00142993724066
+  ],
+  "front_left_shoulder_roll": [
+   -16.0,
+   29.25
+  ],
+  "front_left_shoulder_pitch": [
+   -43.5,
+   107.5
+  ],
+  "front_left_elbow": [
+   -70.49857006275934,
+   155.00142993724066
   ]
  },
- "joint_ranges_source": "docs/design/walking/viewer-endpoints.json initial_pose_bounds.walking (shared slider, not per joint)",
+ "joint_ranges_source": "bend_limits.py for individual bends; RANGE for shared-slider pitch/roll; docs/design/flat-links/",
  "actuator": "Open Duck 7.4 V BAM placeholder",
  "omitted": "fasteners, screw heads, neck envelopes, battery, electronics, head, cables"
 }

@@ -1,0 +1,26 @@
+{
+  "benchmark_commit": "9e6ded8",
+  "source_snapshot": "3c52315ce49d97f40a771f66ae916768eb8f4695231bf536658e58c5a67ac477",
+  "generator_sha256": "bcaa2130d1f16921bf04decd382e7d4ccab0c9004fc6dea4ceffd01aad89a3e4",
+  "lower_link": "forearm v2, 100 mm",
+  "upper_link": "upper_arm v2, 70 mm",
+  "transform": "Translate Z=70 mm * Rotate X=angle; same as collision review",
+  "scope": "Plastic lower link vs printed upper-arm cup only; exact static poses, not a full travel or loaded validation.",
+  "samples": [
+    {
+      "angle_deg": 110,
+      "overlap_mm3": 0.0,
+      "minimum_separation_mm": 4.1145427688133775
+    },
+    {
+      "angle_deg": 115,
+      "overlap_mm3": 0.0,
+      "minimum_separation_mm": 2.3531935061898657
+    },
+    {
+      "angle_deg": 120,
+      "overlap_mm3": 0.0,
+      "minimum_separation_mm": 0.5130501895551046
+    }
+  ]
+}

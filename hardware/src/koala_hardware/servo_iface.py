@@ -97,20 +97,25 @@ def saddle():
 
 
 @lru_cache
-def clevis_plate(side: str):
+def clevis_plate(side: str, full_depth=False):
     """Native XY plate, contact at Z=0; +Y runs along the driven link.
 
     Flat horn contact, 3.5 mm web, 2.8 mm head recesses. A 10.4 mm circular
     root clears the Back bay in every angular orientation; the four bolt pads
-    fit within it. A narrower tail connects it to the integral bridge.
+    fit within it. The default narrower tail connects it to the integral bridge;
+    footed lower links use a full-diameter tail for coplanar print faces.
     """
     if side not in ('drive','idler'): raise ValueError(side)
     t=P.SOCKET_PAD_T
     part=Cylinder(P.SOCKET_PLATE_R,t,align=(Align.CENTER,Align.CENTER,Align.MIN))
     # Broad, tapered fork roots with rounded end corners, within a compact
     # envelope; keep the R10.4 nose for the measured connector corridor.
-    tail=extrude(Polygon((-8,0),(8,0),(8,22),(10.4,28),(10.4,32),(-10.4,32),(-10.4,28),(-8,22),align=None),amount=t)
-    tail=fillet(tail.edges().filter_by(Axis.Z),2)
+    if full_depth:
+        r=P.SOCKET_PLATE_R
+        tail=_box(-r,r,0,32,0,t)
+    else:
+        tail=extrude(Polygon((-8,0),(8,0),(8,22),(10.4,28),(10.4,32),(-10.4,32),(-10.4,28),(-8,22),align=None),amount=t)
+        tail=fillet(tail.edges().filter_by(Axis.Z),2)
     part+=tail
     for a in (-P.SERVO_DRIVE_SQ/2,P.SERVO_DRIVE_SQ/2):
         for b in (-P.SERVO_DRIVE_SQ/2,P.SERVO_DRIVE_SQ/2):

@@ -120,6 +120,14 @@ Changing DEC-16 or DEC-18 has consequences beyond this repo.
 
 ## Status
 
+**2026-10-01 — full-depth footed links:** owner selected forearm v3 and foot
+shank v2 at 20.8 mm depth with matching TPU pad v2; all unknown/unprinted.
+Respect the servo-pocket travel boundary. `bend_limits.py` defines the CAD
+inspection bounds; native whole-robot endpoint poses and evidence are in
+[flat-links](docs/design/flat-links/README.md). These suspended review poses
+are not grounded stances or calibrated/loaded motion limits. The 90/100 mm
+rear/front lengths remain distinct; common length is still OQ-27.
+
 **2026-09-29 — FreeCAD migration (DEC-63):** Python is canonical; native FCStd
 feature histories and matching replay scripts are archived per revision in
 `hardware/freecad/`. Read [the FreeCAD workflow](docs/freecad.md) before CAD work.

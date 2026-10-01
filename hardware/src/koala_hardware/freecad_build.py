@@ -102,10 +102,11 @@ def construct(meta,archive=None):
             'SourceBuilder':meta['builder'],'Hand':meta.get('hand','none'),
             'SourceOfTruth':'Python; carry GUI edits back into the generator before rebuilding'})
     if kind=='assembly':
-        from .assembly import nominal_details
+        from .assembly import nominal_details, bend_review_details
         d=App.newDocument(meta['name']);history=History(d);items=[]
         groups={}
-        for name,shape,colour,joint,side in nominal_details(meta['pose']):
+        details=bend_review_details(meta['bend_review']) if meta.get('bend_review') else nominal_details(meta['pose'])
+        for name,shape,colour,joint,side in details:
             obj=history.add(shape);obj.Label=name
             obj.addProperty('App::PropertyString','JointGroup','Koala');obj.JointGroup=joint
             obj.addProperty('App::PropertyString','Role','Koala');obj.Role='reference' if name.startswith('reference') else 'component'
@@ -115,6 +116,12 @@ def construct(meta,archive=None):
             if App.GuiUp:obj.ViewObject.ShapeColor=tuple(int(colour[i:i+2],16)/255 for i in (1,3,5))
             items.append((obj,shape))
         result=d.addObject('Part::Compound','Assembly');result.Links=[o for o,s in items]
+        if meta.get('bend_review'):
+            from .bend_limits import REVIEW_POSES
+            result.addProperty('App::PropertyString','InspectionStatus','Koala')
+            result.InspectionStatus='Suspended bend endpoint pose; hips/shoulders fixed. Unprinted; not a grounded or loaded stance.'
+            result.addProperty('App::PropertyString','SignedBendDegrees','Koala')
+            result.SignedBendDegrees=json.dumps(REVIEW_POSES[meta['bend_review']])
         validate_document(d,result,solids=sum(len(s.solids()) for o,s in items))
         for o in d.Objects:o.Visibility=False
         for o,s in items:o.Visibility=True
@@ -209,6 +216,11 @@ def build(out,only=None,include_references=True):
     for pose in ('walking','quadruped','upright'):
         name='koala-'+pose
         models.append((f'assemblies/{revision[:16]}/{name}',{'kind':'assembly','name':name,'pose':pose}))
+    from .bend_limits import REVIEW_POSES
+    for review in REVIEW_POSES:
+        name='koala-walking-'+review
+        models.append((f'assemblies/{revision[:16]}/{name}',
+                       {'kind':'assembly','name':name,'pose':'walking','bend_review':review}))
     for name,builder in (('angled-fork','koala_hardware.carrier_fork_study:candidate'),('pitch-mount-face','koala_hardware.pitch_socket_tilt_study:mount_face')):
         models.append((f'studies/{revision[:16]}/{name}',{'kind':'study','name':name,'builder':builder}))
     for pose in ('walking','quadruped','upright'):

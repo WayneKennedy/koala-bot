@@ -5,12 +5,15 @@ collaboration artefacts; carry GUI changes back into Python before releasing a
 revision. [Decision](decisions.md) · [current geometry](cad-integrated-design.md) ·
 [version/printability rules](part-design-review.md).
 
-Conversion benchmark: Git `9e6ded8`, before the proposed flat-depth lower-link
+Conversion benchmark: Git `9e6ded8`, before the flat-depth lower-link
 change. Superseded STEP exports under `docs/design/` are removed from the working
 tree and retained in Git history; their links now open converted FCStd references.
 Vendor originals and frozen `reference-sources/` inputs remain required for
 reproducible Python replays. Simulation meshes remain runtime assets. Future
 STEP exports under `docs/design/` are local, ignored derivatives.
+
+Current lower-link revision and maximum-bend assemblies:
+[20.8 mm footed links](design/flat-links/README.md).
 
 ## Build and open
 

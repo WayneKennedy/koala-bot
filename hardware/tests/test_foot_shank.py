@@ -19,7 +19,7 @@ class FootShankTests(unittest.TestCase):
         d=FS.build();part=d['part']
         self.assertTrue(part.is_valid)
         self.assertEqual(len(part.solids()),1)
-        self.assertEqual(d['version'],1)
+        self.assertEqual(d['version'],2)
         self.assertEqual(d['printable'],'unknown')
         with tempfile.TemporaryDirectory() as td:
             mesh=export_mesh(d['orientation']*part,Path(td)/'foot.stl')
@@ -41,6 +41,27 @@ class FootShankTests(unittest.TestCase):
                     clear(part,frame*Pos(x,y,4)*Cylinder(3.19,35,
                           align=(Align.CENTER,Align.CENTER,Align.MIN)),'footed knee driver')
 
+    def test_both_print_faces_continue_through_fork_shaft_and_pad_key(self):
+        for length in (90,100):
+            part=F.forearm(length)
+            self.assertAlmostEqual(part.bounding_box().size.Y,2*P.SOCKET_PLATE_R)
+            samples=[(P.SOCKET_DRIVE_FACE+P.SOCKET_PAD_T/2,z) for z in (15,25,40)]
+            samples += [(3,z) for z in (52,length-12,length-5,
+                                      P.FRONT_PAD_START+length-100+P.FRONT_PAD_KEY_HEIGHT-.2)]
+            for x,z in samples:
+                for side in (-1,1):
+                    y=side*(P.SOCKET_PLATE_R-.1)
+                    probe=S._box(x-.04,x+.04,y-.04,y+.04,z-.04,z+.04)
+                    self.assertLess(volume(probe-part),1e-8,(length,x,y,z))
+
+    def test_widened_tpu_cavity_retains_a_printable_roof_and_clear_key(self):
+        with tempfile.TemporaryDirectory() as td:
+            mesh=export_mesh(L.front_pad(),Path(td)/'pad.stl')
+        self.assertTrue(mesh.is_watertight)
+        self.assertLess(metrics(mesh)['overhang_area'],10)
+        clear(F.forearm(),L.front_pad(),'flat-depth key / revised TPU cavity')
+        clear(L.front_pad(),A.pad_fixing(),'unchanged pad screw and nut')
+
     def test_identical_pad_key_and_nut_access_without_drive_bracket(self):
         shift=FS.pad_location();part=part_at_front=shift.inverse()*FS.solid()
         region=S._box(-15,15,-15,15,80,110)
@@ -49,8 +70,13 @@ class FootShankTests(unittest.TestCase):
         clear(part,L.front_pad(),'existing TPU pad/key')
         clear(part,A.pad_fixing(),'existing pad head and nut')
         clear(part,S._box(0,25,-2.8,2.8,P.FRONT_PAD_NUT_Z+.1,P.FRONT_PAD_NUT_Z+2.5),'nut side insertion')
-        # The full 37D ring cannot silently survive under a new part name.
-        self.assertLess(FS.solid().volume,L.lower_link(P.BODY_SHANK_MM).volume)
+        # Check the actual motor-ring location rather than total material volume:
+        # the full-depth foot can contain more material than a wheeled shank.
+        face=L.motor_face(False,inset=P.SHANK_MOTOR_INSET)
+        clear(FS.solid(),S._box(face,face+P.MOTOR_MOUNT_T,
+                              -P.MOTOR_MOUNT_R,P.MOTOR_MOUNT_R,
+                              P.BODY_SHANK_MM-P.MOTOR_MOUNT_R,
+                              P.BODY_SHANK_MM+P.MOTOR_MOUNT_R),'walking foot has no motor ring')
 
     def test_local_knee_sweep_with_pad_and_both_case_models(self):
         with patch.object(S,'case_model',return_value=None):fallback=S.socket_reference.__wrapped__()

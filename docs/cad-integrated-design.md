@@ -1,5 +1,12 @@
 # Integrated chassis — current CAD and acceptance scope
 
+**2026-10-01: full-depth footed links accepted.** Forearm v3 and rear foot
+shank v2 retain 100/90 mm reaches, with 20.8 mm depth through the fork, stem
+and key. Both use TPU pad v2. All three changed designs are `unknown`/unprinted.
+Servo-pocket travel is respected using explicit bend limits and separate
+whole-robot endpoint poses. [Files, limits and evidence](design/flat-links/README.md).
+Earlier dated sections below retain their historical geometry descriptions.
+
 **2026-09-29: native FreeCAD migration (DEC-63).** Thigh and shoulder carrier
 are v4, `unknown`/unprinted; local kernel corner-blend differences are recorded
 in the revision log below. Other physical versions and all interface dimensions
@@ -488,3 +495,36 @@ that revision. New CAD iterations go here, one entry each, never to
   retains its compact fork/block/socket form. This is a toolchain migration,
   not physical fit or strength evidence. Earlier v3 slices do not validate v4.
   [Migration report and sources](../hardware/freecad/migration/README.md).
+
+- **2026-09-29 additive flat-depth draft — withdrawn 2026-10-01** (**unprinted**).
+  The assistant widened the 16 mm fork neck to 20.8 mm and changed the TPU key
+  and cavity. The resulting front elbow overlap was 34.081 mm³ at 120°.
+  Owner clarified that the change must only remove material. The unpublished
+  forearm v3 / foot-shank v2 / pad v2 draft is discarded; no archived release
+  changed. Original forearm v2, foot-shank v1 and pad v1 geometry, generators,
+  tests and ledger are restored. [Correction](test-log.md#2026-10-01--flat-link-draft-corrected-no-print).
+- **2026-10-01 removal-only trial — rejected** (**unprinted**). Trimming the
+  benchmark to the 16 mm fork-neck depth adds zero volume, but opens the horn
+  screw-head recesses and reduces the stem section modulus. **Does it look
+  stupid? Yes:** multi-view inspection shows notched screw-pocket rims; the
+  flatter exterior does not justify losing those walls. No manufacturing or
+  assembly release follows. Native FCStd studies and their Python source are
+  retained for review, with the strength limits and unresolved intended cut in
+  the [study record](design/flat-link-removal/README.md).
+- **2026-10-01 20.8 mm footed links accepted with restricted bend travel**
+  (owner geometry instruction; **unprinted**). Owner selected the earlier full
+  20.8 mm profile and requested robot poses at the resulting travel limits.
+  Owner subsequently passed the maximum-fold robot pose and confirmed no
+  additional fold travel is needed or wanted. Bank forearm v3, foot shank v2
+  and matching pad v2 as the accepted current CAD revision, still unprinted.
+  Owner also reports visually inspecting SO-ARM models and observing the same
+  servo-pocket travel constraint; this is a visual comparison, not measured
+  or physical validation of Koala. Restore forearm v3, foot shank v2 and matching
+  TPU pad v2; retain the 100/90 mm lengths and 36.4 mm fork spacing. The pad's
+  wider cavity and 3.5 mm key engagement remain unprinted/unknown. The cup stays
+  unchanged. **Does it look stupid? No:** renewed four-view inspection shows
+  continuous print faces, intact horn-pocket rims, rounded roots and a tapered
+  TPU cavity roof. CAD bend limits and assembly endpoint evidence are recorded
+  in [flat-links](design/flat-links/README.md); these are inspection bounds with
+  reserve, not calibrated servo or loaded gait limits. The removal-only study
+  remains rejected and is superseded as the active design direction.

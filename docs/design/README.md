@@ -1,5 +1,9 @@
 # Engineering drawings and CAD
 
+**2026-10-01:** [20.8 mm footed links and bend-stop inspection poses](flat-links/README.md),
+including the owner’s SO-ARM visual comparison, measured CAD bounds and current
+Python/FCStd pairs. Forearm v3, foot shank v2 and matching pad v2 remain unprinted.
+
 **2026-09-29:** [native FreeCAD workflow](../freecad.md) and
 [revision-paired model index](../../hardware/freecad/README.md). Thigh and
 shoulder carrier are now v4, unprinted. Dated records below retain their original

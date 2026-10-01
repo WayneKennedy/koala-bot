@@ -9,8 +9,8 @@ from .. import params as P, servo_iface as S
 AXIS=Pos(0,0,-P.SOCKET_AXIS_Z)
 
 
-def fork(side):
-    return AXIS*S.plate_location(side)*S.clevis_plate(side)
+def fork(side,full_depth=False):
+    return AXIS*S.plate_location(side)*S.clevis_plate(side,full_depth)
 
 
 @lru_cache
@@ -327,7 +327,7 @@ def lower_link(length,front=False,inset=0.0,rounded=True):
         shaft=Pos(0,-1.45,P.LINK_BRIDGE_START)*extrude(
             RectangleRounded(18,17.9,3),amount=P.FRONT_PAD_START-P.LINK_BRIDGE_START)
         part=clevis()+shaft
-        part+=Pos(0,0,P.FRONT_PAD_START)*extrude(RectangleRounded(11,12,1),amount=7)
+        part+=Pos(0,0,P.FRONT_PAD_START)*extrude(RectangleRounded(11,P.FRONT_PAD_KEY_DEPTH,1),amount=P.FRONT_PAD_KEY_HEIGHT)
         # Captive metal M3 nut, inserted through the side before pad installation.
         nut=Pos(0,0,P.FRONT_PAD_NUT_Z)*extrude(RegularPolygon(3.3,6,rotation=30),amount=2.6)
         part-=nut+S._box(0,12,-2.9,2.9,P.FRONT_PAD_NUT_Z,P.FRONT_PAD_NUT_Z+2.6)
@@ -505,8 +505,9 @@ def front_pad():
     part &= S._box(-20,20,-20,20,P.FRONT_PAD_START,length+20)
     # Keyed cavity, opening on the bed. Its roof tapers to the through bore
     # at <=45 degrees instead of bridging a closed TPU socket.
-    part-=Pos(0,0,P.FRONT_PAD_START-1)*extrude(RectangleRounded(11.6,12.6,1),amount=8.3)
-    part-=loft([Pos(0,0,103.2)*RectangleRounded(11.6,12.6,1),Pos(0,0,110)*Circle(P.CLEAR_HOLE_M3/2)])
+    part-=Pos(0,0,P.FRONT_PAD_START-1)*extrude(RectangleRounded(11.6,P.FRONT_PAD_KEY_DEPTH+.6,1),amount=P.FRONT_PAD_KEY_HEIGHT+1.3)
+    roof_start=P.FRONT_PAD_START+P.FRONT_PAD_KEY_HEIGHT+.2
+    part-=loft([Pos(0,0,roof_start)*RectangleRounded(11.6,P.FRONT_PAD_KEY_DEPTH+.6,1),Pos(0,0,110)*Circle(P.CLEAR_HOLE_M3/2)])
     part-=Pos(0,0,103)*Cylinder(P.CLEAR_HOLE_M3/2,20,align=(Align.CENTER,Align.CENTER,Align.MIN))
     part-=Pos(0,0,110)*Cylinder(3.6,12,align=(Align.CENTER,Align.CENTER,Align.MIN))
     return part
@@ -524,7 +525,9 @@ def build_front_pad():
     return spec('front_contact_pad',front_pad(),qty=2,orientation=Rot(),material='TPU',
         notes='Common rounded TPU ground contact: front forearm or interchangeable rear foot_shank. '
         'Truncated mating face on bed; tapered keyed cavity avoids a flat internal roof. '
-        'No support intended; recessed screw/washer remains above contact surface. Traction/wear untested.', printable='assumed') | {'configuration_qty':{'walking':4,'wheeled':2}}
+        'v2 cavity fits the 20.8 mm-deep, 3.5 mm-high flat lower-link key; v1 pads do not fit that key. '
+        'No support intended; recessed screw/washer remains above contact surface. Traction/wear untested.',
+        printable='unknown',version=2) | {'configuration_qty':{'walking':4,'wheeled':2}}
 
 def build_root_carrier():
     return spec('shoulder_carrier',carrier(True),qty=1,handed=True,orientation=Rot(),

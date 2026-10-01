@@ -48,5 +48,11 @@ init({joints,items:[{...packed,...item('front_roll'),name:'carrier'},
 assert.ok(blocked({pitch:0,roll:0,knee:0}));
 assert.equal(blocked({pitch:90,roll:0,knee:0}),null);
 assert.ok(blocked({pitch:0,roll:45,knee:0}));
+// Local signed bend limits constrain the shared slider without a second reserve.
+init({items:[],joints:{front:{...datum,bend_angle:-42,bend_limits:[-112.75,112.75]},
+                      rear:{...datum,bend_angle:32,bend_limits:[-22.75,121.25]}}});
+const constrained=bounds({pitch:0,roll:0,knee:0}).bounds.knee;
+assert.equal(constrained.min,-54.75);
+assert.equal(constrained.max,89.25);
 `,context);
 console.log('PASS front/rear joint order, mirrored viewer/worker transforms, historical scenes and collision cache');

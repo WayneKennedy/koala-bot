@@ -1,0 +1,96 @@
+{
+  "benchmark_commit": "9e6ded8",
+  "source_snapshot": "3c52315ce49d97f40a771f66ae916768eb8f4695231bf536658e58c5a67ac477",
+  "generator_sha256": "24ea4a8dad5183d185bd0a739089863997f214ebd2d0a570056bbd8343c76d88",
+  "scope": "Geometric section comparison only. Solid homogeneous beam section ratios are not FFF part strength, a material model, FEA, or a safety factor. No load test or printed material calibration has been performed.",
+  "trials": [
+    {
+      "name": "removal_trial_L90_D16",
+      "length_mm": 90,
+      "depth_mm": 16.0,
+      "baseline_volume_mm3": 35481.72101935347,
+      "volume_mm3": 29397.27298244102,
+      "added_volume_mm3": 0.0,
+      "removed_volume_mm3": 6084.448036912482,
+      "head_recess_to_cut_plane_mm": -0.15000000000000036,
+      "section_z_mm": 70,
+      "baseline_section": {
+        "area_mm2": 374.39999999997787,
+        "Ix_mm4": 13498.367999999877,
+        "Iy_mm4": 10108.800000000023,
+        "Zx_mm3": 1297.9199999999873,
+        "Zy_mm3": 1123.2000000000003
+      },
+      "trial_section": {
+        "area_mm2": 287.9999999999826,
+        "Ix_mm4": 6143.999999999991,
+        "Iy_mm4": 7776.000000000107,
+        "Zx_mm3": 767.9999999999984,
+        "Zy_mm3": 864.0000000000095
+      },
+      "section_ratios": {
+        "area_mm2": 0.7692307692307683,
+        "Ix_mm4": 0.4551661356395119,
+        "Iy_mm4": 0.7692307692307782,
+        "Zx_mm3": 0.5917159763313655,
+        "Zy_mm3": 0.7692307692307776
+      },
+      "print_screen": {
+        "bed_area": 1812.6836266036507,
+        "overhang_area": 340.1195658266217,
+        "size": [
+          49.0,
+          103.39999961853027,
+          16.0
+        ],
+        "height": 16.0
+      },
+      "mesh_watertight": true,
+      "status": "REJECTED: not a strength-validated or released part"
+    },
+    {
+      "name": "removal_trial_L100_D16",
+      "length_mm": 100,
+      "depth_mm": 16.0,
+      "baseline_volume_mm3": 42449.72101935348,
+      "volume_mm3": 34757.27298244103,
+      "added_volume_mm3": 0.0,
+      "removed_volume_mm3": 7692.44803691248,
+      "head_recess_to_cut_plane_mm": -0.15000000000000036,
+      "section_z_mm": 80,
+      "baseline_section": {
+        "area_mm2": 374.3999999999778,
+        "Ix_mm4": 13498.367999999586,
+        "Iy_mm4": 10108.800000000314,
+        "Zx_mm3": 1297.9199999999594,
+        "Zy_mm3": 1123.2000000000328
+      },
+      "trial_section": {
+        "area_mm2": 287.9999999999826,
+        "Ix_mm4": 6143.999999999118,
+        "Iy_mm4": 7775.999999998943,
+        "Zx_mm3": 767.9999999998894,
+        "Zy_mm3": 863.9999999998804
+      },
+      "section_ratios": {
+        "area_mm2": 0.7692307692307684,
+        "Ix_mm4": 0.455166135639457,
+        "Iy_mm4": 0.7692307692306408,
+        "Zx_mm3": 0.5917159763312942,
+        "Zy_mm3": 0.7692307692306403
+      },
+      "print_screen": {
+        "bed_area": 2147.683595419853,
+        "overhang_area": 340.1195658266217,
+        "size": [
+          49.0,
+          113.39999961853027,
+          16.0
+        ],
+        "height": 16.0
+      },
+      "mesh_watertight": true,
+      "status": "REJECTED: not a strength-validated or released part"
+    }
+  ]
+}

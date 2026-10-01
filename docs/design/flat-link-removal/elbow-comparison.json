@@ -1,0 +1,46 @@
+{
+  "original_overlap_mm3": 0.0,
+  "original_clearance_mm": 0.5130501895551046,
+  "additive_overlap_mm3": 34.0814910369013,
+  "camera": "#Inventor V2.1 ascii\n\n\nOrthographicCamera {\n  viewportMapping ADJUST_CAMERA\n  position 1.421592 -20.78229 20.831108\n  orientation 0.048127215 0.36157134 0.93110144  1.9327505\n  nearDistance -72.815819\n  farDistance 77.018623\n  aspectRatio 1\n  focalDistance 1\n  height 161.00951\n\n}\n",
+  "current_vs_benchmark_source_matches": {
+    "parts/front.py": true,
+    "parts/links.py": true,
+    "params.py": true,
+    "servo_iface.py": true
+  },
+  "contact_point_checks": [
+    {
+      "world_point_mm": [
+        21.261798640593835,
+        -12.771670695076464,
+        51.246535738106466
+      ],
+      "lower_link_native_point_mm": [
+        21.261798640593835,
+        -9.855141112225155,
+        20.437323401652243
+      ],
+      "inside_upper_arm": true,
+      "inside_modified_lower_link": true,
+      "inside_original_lower_link": false
+    },
+    {
+      "world_point_mm": [
+        -19.54599909511357,
+        -13.024234899899602,
+        51.17828443775128
+      ],
+      "lower_link_native_point_mm": [
+        -19.54599909511357,
+        -9.787966369762508,
+        20.690176069293287
+      ],
+      "inside_upper_arm": true,
+      "inside_modified_lower_link": true,
+      "inside_original_lower_link": false
+    }
+  ],
+  "draft_fcstd_sha256": "5c7459c8353c2d9b1547a1f1255827da14ab238e24ae8970d4bd141cd6dcc8c6",
+  "scope": "One common benchmark upper-arm solid used against both lower links at identical X=120 deg / Z=70 mm placement. Inner fork spacing is 36.4 mm in both."
+}

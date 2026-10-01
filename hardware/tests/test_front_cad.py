@@ -28,7 +28,7 @@ class FrontCADTests(unittest.TestCase):
                 self.assertGreater(metrics(mesh)['bed_area'],minimum_bed[d['name']])
                 self.assertLess(mesh.extents[2],maximum_height[d['name']])
                 self.assertLess(max(mesh.extents[:2]),200)
-                self.assertEqual(d['version'],4 if d['name']=='shoulder_carrier' else 2)
+                self.assertEqual(d['version'],{'shoulder_carrier':4,'upper_arm':2,'forearm':3}[d['name']])
                 self.assertEqual(d['printable'],'unknown')
 
     def test_viewer_tessellation_of_the_installed_carrier_remains_closed(self):
@@ -85,7 +85,9 @@ class FrontCADTests(unittest.TestCase):
                 moving=F.pitch_link_frame()*Rot(X=angle)*upper
                 for obstacle,label in ((carrier,'carrier'),(a,'A'),(b,'B'),(root,'A module')):
                     clear(moving,obstacle,'front local pitch / '+label)
-            for angle in range(0,121,15):
+            from koala_hardware.bend_limits import SIGNED_BEND_LIMITS
+            low,high=SIGNED_BEND_LIMITS['front']
+            for angle in [low, *range(-110,111,10), high]:
                 moving=Pos(0,0,P.BODY_UPPER_ARM_MM)*Rot(X=angle)*forearm
                 clear(moving,upper,'front local elbow / upper arm')
                 clear(moving,c,'front local elbow / C')
@@ -163,7 +165,7 @@ class FrontCADTests(unittest.TestCase):
             for side in ('right','left'):
                 name=f'reference_front_{joint}_servo_{side}'
                 self.assertEqual(items[name]['contactPartner'],f'front_{driven}_{side}')
-                self.assertEqual(items[f'front_{driven}_{side}']['version'],4 if driven=='carrier' else 2)
+                self.assertEqual(items[f'front_{driven}_{side}']['version'],{'carrier':4,'upper_arm':2,'forearm':3}[driven])
 
 
 if __name__=='__main__':unittest.main()

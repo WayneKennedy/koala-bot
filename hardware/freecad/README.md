@@ -1,10 +1,32 @@
-# FreeCAD revision archive — 2026-09-29
+# FreeCAD revision archive
 
 [Workflow](../../docs/freecad.md) · [machine-readable manifest](manifest.json) · [migration evidence](migration/README.md)
 
-Python is authoritative. Each link below pairs a replay script with its saved document; frozen dependencies are in `sources/`. This index records the migration release; the manifest is authoritative for later builds.
+Python is authoritative. Each link below pairs a replay script with its saved document; frozen dependencies are in `sources/`. The current accepted revision is listed first; the migration benchmark remains below. The manifest is authoritative.
 
 Native documents contain recomputable Part/Sketcher feature histories. Historical/vendor STEP references retain imported solids and source provenance; their original histories are unavailable.
+
+## Accepted 20.8 mm links — 2026-10-01
+
+[Acceptance, bend limits and validation](../../docs/design/flat-links/README.md).
+The owner passed the maximum-fold pose; no additional fold travel is wanted.
+These 11 new pairs retain the original 90 benchmark pairs unchanged. Parts remain unprinted.
+
+| Model | Version | Python | FreeCAD |
+|---|---|---|---|
+| `forearm_right` | v3 | [Python](parts/forearm/v3/aeb4e11ef28feee4/forearm_right.py) | [FCStd](parts/forearm/v3/aeb4e11ef28feee4/forearm_right.FCStd) |
+| `forearm_left` | v3 | [Python](parts/forearm/v3/aeb4e11ef28feee4/forearm_left.py) | [FCStd](parts/forearm/v3/aeb4e11ef28feee4/forearm_left.FCStd) |
+| `foot_shank_right` | v2 | [Python](parts/foot_shank/v2/aeb4e11ef28feee4/foot_shank_right.py) | [FCStd](parts/foot_shank/v2/aeb4e11ef28feee4/foot_shank_right.FCStd) |
+| `foot_shank_left` | v2 | [Python](parts/foot_shank/v2/aeb4e11ef28feee4/foot_shank_left.py) | [FCStd](parts/foot_shank/v2/aeb4e11ef28feee4/foot_shank_left.FCStd) |
+| `front_contact_pad` | v2 | [Python](parts/front_contact_pad/v2/aeb4e11ef28feee4/front_contact_pad.py) | [FCStd](parts/front_contact_pad/v2/aeb4e11ef28feee4/front_contact_pad.FCStd) |
+| `koala-walking` | — | [Python](assemblies/aeb4e11ef28feee4/koala-walking.py) | [FCStd](assemblies/aeb4e11ef28feee4/koala-walking.FCStd) |
+| `koala-quadruped` | — | [Python](assemblies/aeb4e11ef28feee4/koala-quadruped.py) | [FCStd](assemblies/aeb4e11ef28feee4/koala-quadruped.FCStd) |
+| `koala-upright` | — | [Python](assemblies/aeb4e11ef28feee4/koala-upright.py) | [FCStd](assemblies/aeb4e11ef28feee4/koala-upright.FCStd) |
+| `koala-walking-max-fold` | — | [Python](assemblies/aeb4e11ef28feee4/koala-walking-max-fold.py) | [FCStd](assemblies/aeb4e11ef28feee4/koala-walking-max-fold.FCStd) |
+| `koala-walking-bend-min` | — | [Python](assemblies/aeb4e11ef28feee4/koala-walking-bend-min.py) | [FCStd](assemblies/aeb4e11ef28feee4/koala-walking-bend-min.FCStd) |
+| `koala-walking-bend-max` | — | [Python](assemblies/aeb4e11ef28feee4/koala-walking-bend-max.py) | [FCStd](assemblies/aeb4e11ef28feee4/koala-walking-bend-max.FCStd) |
+
+## Migration benchmark — 2026-09-29
 
 ## Native assemblies
 

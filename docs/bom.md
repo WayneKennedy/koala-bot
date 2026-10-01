@@ -127,11 +127,11 @@ No current hash-matched slice results, so filament is the **solid-geometry upper
 | Part | Ver | Qty | Printable | Material | Size (mm) | Filament | Print time | Print notes |
 |------|-----|-----|-----------|----------|-----------|----------|-----------|-------------|
 | `e_tray` | v1 | 1 | assumed | PETG | 96 x 88 x 9 | ~43 g (solid max) | - | clean |
-| `foot_shank_left` | v1 | 1 | unknown | PETG | 49 x 103 x 21 | ~45 g (solid max) | - | 1030 mm2 flagged overhang; inspect slice |
-| `foot_shank_right` | v1 | 1 | unknown | PETG | 49 x 103 x 21 | ~45 g (solid max) | - | 1030 mm2 flagged overhang; inspect slice |
-| `forearm_left` | v2 | 1 | unknown | PETG | 49 x 113 x 21 | ~54 g (solid max) | - | 1030 mm2 flagged overhang; inspect slice |
-| `forearm_right` | v2 | 1 | unknown | PETG | 49 x 113 x 21 | ~54 g (solid max) | - | 1030 mm2 flagged overhang; inspect slice |
-| `front_contact_pad` | v1 | 4 | assumed | TPU | 32 x 32 x 20 | ~48 g (solid max) | - | 3 mm2 flagged overhang; inspect slice |
+| `foot_shank_left` | v2 | 1 | unknown | PETG | 49 x 100 x 21 | ~48 g (solid max) | - | 357 mm2 flagged overhang; inspect slice |
+| `foot_shank_right` | v2 | 1 | unknown | PETG | 49 x 100 x 21 | ~48 g (solid max) | - | 357 mm2 flagged overhang; inspect slice |
+| `forearm_left` | v3 | 1 | unknown | PETG | 49 x 110 x 21 | ~57 g (solid max) | - | 357 mm2 flagged overhang; inspect slice |
+| `forearm_right` | v3 | 1 | unknown | PETG | 49 x 110 x 21 | ~57 g (solid max) | - | 357 mm2 flagged overhang; inspect slice |
+| `front_contact_pad` | v2 | 4 | unknown | TPU | 32 x 32 x 20 | ~46 g (solid max) | - | 5 mm2 flagged overhang; inspect slice |
 | `hip_carrier_left` | v1 | 1 | assumed | PETG | 45 x 78 x 51 | ~46 g (solid max) | - | 286 mm2 flagged overhang; inspect slice |
 | `hip_carrier_right` | v1 | 1 | assumed | PETG | 45 x 78 x 51 | ~46 g (solid max) | - | 286 mm2 flagged overhang; inspect slice |
 | `root_socket_left` | v1 | 2 | proven | PETG | 47 x 37 x 28 | ~60 g (solid max) | - | 68 mm2 flagged overhang; inspect slice |
@@ -152,7 +152,7 @@ No current hash-matched slice results, so filament is the **solid-geometry upper
 | `coupon_seam` | v1 | 1 | assumed | PETG | 60 x 75 x 13 | ~22 g (solid max) | - | 38 mm2 flagged overhang; inspect slice |
 | `coupon_socket_fork` | v1 | 1 | assumed | PETG | 42 x 21 x 49 | ~21 g (solid max) | - | 568 mm2 flagged overhang; inspect slice |
 | `coupon_socket_saddle` | v1 | 1 | assumed | PETG | 45 x 29 x 22 | ~18 g (solid max) | - | 68 mm2 flagged overhang; inspect slice |
-| **Structural total** | | **28** | | | | **~1013 g (solid max)** | **-** | |
+| **Structural total** | | **28** | | | | **~1024 g (solid max)** | **-** | |
 
 **Wheeled alternative (exchange at both knees).** Replace the two `foot_shank` prints and their two rear TPU pads with the following prints. Keep the two front pads and the shared upper chassis. Fit the retained motor/hub/wheel pairs. Quantities below are alternatives, excluded from the walking total.
 

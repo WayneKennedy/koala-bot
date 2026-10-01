@@ -4,7 +4,7 @@ Unresolved. Resolve -> move to [`decisions.md`](decisions.md).
 
 - **OQ-27 — One common footed lower link for all four limbs?** Owner prefers
   modularity and asked about four identical prints (2026-09-29); no geometry
-  change selected yet. Current front `forearm` v2 has 100 mm elbow-to-pad reach;
+  common length selected yet. At benchmark `9e6ded8`, front `forearm` v2 has 100 mm elbow-to-pad reach;
   rear `foot_shank` v1 calls the same `front.forearm(length)` generator at 90 mm.
   Fork/horn interfaces, pad key and fixings are shared; all four TPU pads already
   are the same `front_contact_pad` v1. Both existing rigid links are symmetric
@@ -27,6 +27,12 @@ Unresolved. Resolve -> move to [`decisions.md`](decisions.md).
   still needs the actual walking length represented separately from the retained
   90 mm wheeled shank, clearance/travel checks, mass/kinematics, print versions
   and BOM updates. This calculation is not a loaded-standing or gait validation.
+  After reviewing the interference and removal-only study, the owner selected
+  the **20.8 mm full-depth links with restricted bend travel** (2026-10-01).
+  That resolves the profile direction; a single common link length is still
+  undecided. The selected revision retains separate 100/90 mm front/rear
+  lengths. [Current revision and travel evidence](design/flat-links/README.md).
+
 
 - **OQ-26 — Battery: capacity undecided; inclination is 3S2P Li-ion 21700,
   half on each torso side, removable for charging.** Maintainer, 2026-09-14.

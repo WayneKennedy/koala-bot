@@ -243,7 +243,8 @@ class IntegratedCADTests(unittest.TestCase):
             self.assertEqual(specs[name]['printable'],'unknown',name)
         self.assertEqual(specs['root_socket']['version'],1)
         self.assertEqual(specs['root_socket']['printable'],'proven')
-        self.assertEqual(specs['front_contact_pad']['version'],1)
+        self.assertEqual(specs['front_contact_pad']['version'],2)
+        self.assertEqual(specs['front_contact_pad']['printable'],'unknown')
 
     def test_corrected_flat_horn_faces_clear_measured_centres(self):
         reference=S.socket_reference()

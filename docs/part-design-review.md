@@ -1,5 +1,11 @@
 # Part construction and printability
 
+**2026-10-01:** owner selected full 20.8 mm footed links and restricted bend
+travel. Forearm v3, foot shank v2 and TPU pad v2 are **unknown**/unprinted.
+Pad v1 does not fit the widened key; the new key has 3.5 mm engagement. The
+[accepted revision record](design/flat-links/README.md) distinguishes sampled
+CAD clearance from physical print, strength and loaded-motion acceptance.
+
 **2026-09-29 FreeCAD migration:** thigh and shoulder carrier are v4, unknown.
 Local corner-blend changes and retained interfaces: [migration](freecad.md).
 Earlier dated slice evidence below applies only to its recorded versions.
@@ -55,9 +61,9 @@ review layer starts and removal access before printing. TPU uses no support.
 | `thigh` v4 / 2, handed | `unknown` | PETG | Tapered one-piece DEC-58 yoke and sideways knee socket retained. Corrected rounding now keeps earlier successful fillets instead of overwriting them. Cup-floor plane down; accessible tree support under the opposite cheek and pads. Earlier G-code does not validate v4. [Current views](design/parts/thigh-views.png); [earlier print-form rationale](design/rear-leg/thigh-flat/README.md). |
 | `upper_arm` v2 / 2, handed | `unknown` | PETG | 70 mm centres, parallel pitch/elbow axes, enclosing C socket. Thickened drive cup wall and outer fork share the bed plane; support under the opposite fork and open cup remains removable. R6.3 roots/R2 outer rounding; seven short/narrow junction edges remain sharp and are reported. [Views](design/parts/upper_arm-views.png). |
 | `shank` v2 / 2, handed | `assumed` | PETG | 90 mm centres, extended open fork and flush motor/drive-fork face on bed. R6.3 fork roots, R5 motor roots, R2 outer rounding. Existing v2 bed-only organic slices retained; the unsupported motor-bore crown needs physical inspection for sag and insertion. [Record](design/rear-leg/thigh-flat/README.md). |
-| `foot_shank` v1 / 2, handed, walking alternative | `unknown` | PETG | 90 mm knee-to-pad centre; shared knee horn interfaces and front TPU pad key. Long open fork, R6.3 roots and rounded taper; broad native −Y face down. Fork bores and nut-slot roof need accessible local support. New print, no inherited physical proof. [Views and checks](design/walking/README.md). |
-| `forearm` v2 / 2, handed | `unknown` | PETG | 100 mm elbow-to-pad centre, long open fork, R6.3 roots/R3 taper corners and broad native −Y bed face. Fork/hole/nut-slot roofs remain accessible for support removal. Insert the captive nut before the unchanged keyed pad. [Views](design/parts/forearm-views.png). |
-| `front_contact_pad` v1 / 4 walking, 2 wheeled | `assumed` | TPU | Same Ø32 rounded contact on every footed limb; truncated mating face down, tapered keyed cavity, recessed screw/washer. No support. Geometry unchanged; grade, traction and wear remain unverified. |
+| `foot_shank` v2 / 2, handed, walking alternative | `unknown` | PETG | 90 mm knee-to-pad centre, full 20.8 mm depth and matching TPU pad v2. Native −Y face down; fork bores and nut-slot roof need accessible local support. [Current geometry and restricted travel](design/flat-links/README.md). |
+| `forearm` v3 / 2, handed | `unknown` | PETG | 100 mm elbow-to-pad centre, full 20.8 mm depth, R6.3 roots/R3 taper corners. Native −Y face down; accessible fork/hole/nut-slot supports. Fit captive nut before TPU pad v2. [Current geometry and restricted travel](design/flat-links/README.md). |
+| `front_contact_pad` v2 / 4 walking, 2 wheeled | `unknown` | TPU | Retained Ø32 exterior and fixings; wider keyed cavity for the 20.8 mm link, 3.5 mm key engagement and longer tapered roof. Mating face on bed. No support intended; actual print, retention, traction and wear unverified. [Current revision](design/flat-links/README.md). |
 | `torso_frame` v5 / 1 | `unknown` | PETG | Cage extends to shoulder cap Z183.5, with 10 mm socket-lip recess, front cassette crossmembers, inward-tapering dorsal shoulder rails, neck-cartridge slot and rear driver corridors. Dorsal face down; opposite rails/cap/flange roofs need bed-only supports removable through the cage. No locating pins are claimed. [Views](design/parts/torso_frame-views.png). |
 | `e_tray` v1 / 1 | `assumed` | PETG | Flat rounded plate, tapered stand-offs and strap slots. Flat down; no intrinsic support. Complete electronics packaging remains open. |
 | `tray_spacer` v1 / 4 | `assumed` | PETG | Annular spacers, flat down; brim or grouping for small bed contact. |

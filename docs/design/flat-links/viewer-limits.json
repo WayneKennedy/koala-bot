@@ -1,0 +1,162 @@
+{
+  "scene_sha256": "146e096753b38f01482e6495778eb4678f3436aaafaba879f0f8955ae9d6ba32",
+  "engine_sha256": "6d451812954209951a1279bc138e59683c8ddb8b306304459a1186c63c21d159",
+  "poses": {
+    "quadruped": {
+      "bounds": {
+        "bounds": {
+          "pitch": {
+            "min": -28.25,
+            "max": 107.5,
+            "stops": [
+              [
+                "torso_frame",
+                "rear_thigh_right"
+              ],
+              [
+                "front_carrier_right",
+                "front_upper_arm_right"
+              ]
+            ]
+          },
+          "roll": {
+            "min": -5.5,
+            "max": 29.25,
+            "stops": [
+              [
+                "rear_motor_right",
+                "rear_motor_left"
+              ],
+              [
+                "shoulder_socket_right",
+                "front_carrier_right"
+              ]
+            ]
+          },
+          "knee": {
+            "min": -70.49857006275934,
+            "max": 57.5,
+            "stops": [
+              [
+                "front_upper_arm_right",
+                "front_forearm_right"
+              ],
+              [
+                "rear_thigh_right",
+                "rear_shank_right"
+              ]
+            ]
+          }
+        },
+        "step": 0.25,
+        "angular_reserve_degrees": 2,
+        "search_ceiling": 180
+      },
+      "pose_sha256": "64ebd44bbf31b79585559034d7987c5113f3df601342ed59447c4ee797fdfcf8"
+    },
+    "upright": {
+      "bounds": {
+        "bounds": {
+          "pitch": {
+            "min": -102.75,
+            "max": 33.5,
+            "stops": [
+              [
+                "torso_frame",
+                "rear_thigh_right"
+              ],
+              [
+                "front_carrier_right",
+                "front_upper_arm_right"
+              ]
+            ]
+          },
+          "roll": {
+            "min": -5,
+            "max": 29.25,
+            "stops": [
+              [
+                "rear_motor_right",
+                "rear_motor_left"
+              ],
+              [
+                "shoulder_socket_right",
+                "front_carrier_right"
+              ]
+            ]
+          },
+          "knee": {
+            "min": -2.698957433494087,
+            "max": 62.75,
+            "stops": [
+              [
+                "front_upper_arm_right",
+                "front_forearm_right"
+              ],
+              [
+                "rear_thigh_right",
+                "rear_shank_right"
+              ]
+            ]
+          }
+        },
+        "step": 0.25,
+        "angular_reserve_degrees": 2,
+        "search_ceiling": 180
+      },
+      "pose_sha256": "9213c126e7a52a86273050d53c221f14ce6f01202c5c3eff498490a1bdd23ca2"
+    },
+    "walking": {
+      "bounds": {
+        "bounds": {
+          "pitch": {
+            "min": -43.5,
+            "max": 107.5,
+            "stops": [
+              [
+                "torso_frame",
+                "rear_thigh_right"
+              ],
+              [
+                "front_carrier_right",
+                "front_upper_arm_right"
+              ]
+            ]
+          },
+          "roll": {
+            "min": -16,
+            "max": 29.25,
+            "stops": [
+              [
+                "rear_contact_pad_right",
+                "rear_contact_pad_left"
+              ],
+              [
+                "shoulder_socket_right",
+                "front_carrier_right"
+              ]
+            ]
+          },
+          "knee": {
+            "min": -54.70853548454175,
+            "max": 89.25,
+            "stops": [
+              [
+                "rear_thigh_right",
+                "rear_shank_right"
+              ],
+              [
+                "rear_thigh_right",
+                "rear_shank_right"
+              ]
+            ]
+          }
+        },
+        "step": 0.25,
+        "angular_reserve_degrees": 2,
+        "search_ceiling": 180
+      },
+      "pose_sha256": "5f1aa65f5ccb8deae584cd2a267ba56edb7c9ef3a3eb9c9915866fd1efe9ff6e"
+    }
+  }
+}

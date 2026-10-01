@@ -106,16 +106,16 @@ def upper_arm(length=P.BODY_UPPER_ARM_MM):
 def forearm(length=P.BODY_FOREARM_MM+P.BODY_HAND_MM):
     """Common footed lower link: 100 mm front, 90 mm interchangeable rear.
 
-    Only the distal taper and pad seat move with length. Proximal fork and
-    horn interfaces stay fixed, and the front default preserves v2 geometry.
+    Only the distal taper and pad seat move with length. Horn interfaces stay
+    fixed; both broad faces continue at the horn-surround depth through the key.
     """
     shift=length-(P.BODY_FOREARM_MM+P.BODY_HAND_MM)
     pad_start=P.FRONT_PAD_START+shift
     taper_end=74+shift
-    a=P.SOCKET_ARM_HALF_W
+    a=P.SOCKET_PLATE_R
     x0=P.SOCKET_IDLER_FACE-P.SOCKET_PAD_T
     x1=P.SOCKET_DRIVE_FACE+P.SOCKET_PAD_T
-    part=(L.fork('drive')+L.fork('idler'))&S._box(-30,30,-30,30,-12,20)
+    part=(L.fork('drive',full_depth=True)+L.fork('idler',full_depth=True))&S._box(-30,30,-30,30,-12,20)
     for lo,hi in ((x0,P.SOCKET_IDLER_FACE),(P.SOCKET_DRIVE_FACE,x1)):
         part+=S._box(lo,hi,-a,a,20,FORK_START+4)
     part+=S._box(x0,x1,-a,a,FORK_START,FORK_START+4)
@@ -165,10 +165,11 @@ def build_upper_arm():
 
 
 def build_forearm():
-    return L.spec('forearm',forearm(),handed=True,orientation=Rot(X=90),version=2,
+    return L.spec('forearm',forearm(),handed=True,orientation=Rot(X=90),version=3,
         fasteners=L.HORN_FASTENERS|{'M3x20 TPU-pad screw':1,'M3 nut':1,'M3 plain washer':1},
         notes='100 mm elbow-to-contact: long open fork, R6.3 roots, R3 taper corners, flat '
-        'shaft and unchanged keyed TPU contact. Broad native -Y face down; '
+        'shaft and 20.8 mm full-depth key for TPU pad v2. Both native Y faces are '
+        'coplanar from the horn surround through fork, shaft and key; native -Y face down. '
         'fork, nut-slot and hole-roof support remains externally accessible. '
         'Insert the captive nut before fitting the pad. Unprinted.')
 

@@ -47,6 +47,11 @@ def joint_data(pose_name='quadruped'):
             # the spine; motor calibration supplies that polarity reversal.
             out[key]['roll_axis']=list((body*Pos(0,0,1)).position-body.position)
             out[key]['pitch']=[limb.root.x,y,limb.root.z]
+    from .bend_limits import SIGNED_BEND_LIMITS, nominal_angle
+    for key in ('front', 'rear'):
+        if key == 'front' or pose_name == 'walking':
+            out[key]['bend_angle'] = nominal_angle(pose[key])
+            out[key]['bend_limits'] = list(SIGNED_BEND_LIMITS[key])
     return out
 
 
@@ -165,6 +170,25 @@ def scene_details(roll=0.,pitch=0.,knee=0.,pose='quadruped',asymmetric=False):
             sign=-1 if asymmetric and side==-1 else 1
             tf=joint_transform(d,j,roll,sign*pitch,sign*knee)
             p=tf*p
+            if side==-1:p=mirror(p,Plane.XZ)
+        out.append((n,p,c,g,side))
+    return out
+
+
+def bend_review_details(review='max-fold'):
+    """Walking robot with independent bend endpoints; shoulders/hips retained.
+
+    Suspended inspection poses, not grounded or dynamically balanced stances.
+    """
+    from .bend_limits import REVIEW_POSES, nominal_angle
+    targets=REVIEW_POSES[review]
+    pose=B.poses()['walking'];joints=joint_data('walking');out=[]
+    for n,p,c,g,side in nominal_details('walking'):
+        if side and g.endswith('_bend'):
+            key=g.split('_')[0]
+            if side==-1:p=mirror(p,Plane.XZ)
+            delta=targets[key]-nominal_angle(pose[key])
+            p=joint_transform(joints[key],'bend',knee=delta)*p
             if side==-1:p=mirror(p,Plane.XZ)
         out.append((n,p,c,g,side))
     return out

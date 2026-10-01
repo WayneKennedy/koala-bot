@@ -12,7 +12,7 @@ STL hash, exactly as the BOM does; else solid PETG/TPU, an upper bound), each se
 SERVO_MASS box of the case dimensions at its socket. Omitted: fasteners, horn/ear screw heads,
 the reserved neck-servo envelopes, battery, electronics, head and cables. Contacts are the four
 sphere feet and a torso box for fall detection. Joint ranges are the viewer's shared-slider
-clearance bounds (no per-joint search exists), and the actuator is Open Duck's BAM fit of the
+clearance bounds for pitch/roll; each bend uses its local pocket-limited range, and the actuator is Open Duck's BAM fit of the
 7.4 V STS3215 until the 12 V unit is identified (wk-robotics docs/status.md, "A sim model of
 koala-bot's four-foot build"). Nothing here is verified against hardware. Loading the output needs
 MuJoCo, which is not a dependency of this package: mjcf_check.py runs from any venv that has it.
@@ -22,6 +22,7 @@ from pathlib import Path
 import numpy as np
 from koala_hardware.cad import Box, Pos, Plane, Align, CenterOf, Compound, mirror, export_stl
 from koala_hardware import assembly as A, body_plan as B, params as P
+from koala_hardware.bend_limits import delta_bounds
 from koala_hardware.export import DENSITY                       # g/cm3 PETG 1.27, TPU 1.2 (provisional)
 from koala_hardware.meshing import export_mesh
 from koala_hardware.parts import configuration_specs, links, torso
@@ -35,7 +36,7 @@ MESH_TOL = (0.2, 0.6)                                            # export_stl li
 # Shared-control clearance bounds in the walking pose (degrees, relative to the pose),
 # docs/design/walking/viewer-endpoints.json "initial_pose_bounds.walking". These are
 # sampled CAD clearances for ONE shared slider driving all limbs, not servo limits.
-RANGE = {'pitch': (-43.5, 107.5), 'roll': (-16.0, 29.25), 'bend': (-61.25, 89.25)}
+RANGE = {'pitch': (-43.5, 107.5), 'roll': (-16.0, 29.25)}
 # Placeholder actuator: Open Duck's BAM fit of the 7.4 V STS3215
 # (Open_Duck_Playground/.../open_duck_mini_v2.xml:45-49). 12 V fit is plan step 1.
 SERVO_CLASS = dict(damping=0.56, frictionloss=0.068, armature=0.027, kp=13.37, force=3.23)
@@ -122,7 +123,7 @@ def collect(pose_name='walking'):
                 centre = np.array(d[stage]) * [1, side, 1]
                 axis = side * np.array(d['roll_axis']) if stage == 'roll' else np.array([0., 1., 0.])  # mirrored roll: same axis, opposite sign
                 bodies[body] = {'origin': centre, 'parent': prev, 'items': [], 'side': side, 'key': key,
-                                'joint': {'name': f'{key}_{sname}_{JOINT_NAMES[key][stage]}', 'axis': axis, 'range': RANGE[stage]}}
+                                'joint': {'name': f'{key}_{sname}_{JOINT_NAMES[key][stage]}', 'axis': axis, 'range': delta_bounds(pose[key],key) if stage=='bend' else RANGE[stage]}}
                 group_of[(f'{key}_{stage}', side)] = body
                 prev = body
     boxes = servo_boxes(pose_name)
@@ -222,7 +223,7 @@ def build(out, crude=False, pose_name='walking'):
     w(f'  <!-- inertia: per solid from the CAD BREP, summed per body. Prints at an effective density: slicer filament volume x PETG {DENSITY["PETG"]} / TPU {DENSITY["TPU"]} g/cm3 where the current STL hash matches a docs/design/*/slices.json record ({", ".join(sliced)}); otherwise SOLID density, an upper bound ({", ".join(solid)}). Each servo a {SERVO_G:g} g [SPEC] uniform box {SERVO_CASE[0]} x {SERVO_CASE[1]} x {SERVO_CASE[2]} mm at its socket. -->')
     w(f'  <!-- omitted mass: fasteners, horn/ear screw heads, neck servo envelopes (reserved case envelopes), battery, electronics, head, cables. Total {total/1000:.3f} kg; CoM world {v3(com)} m in this pose. -->')
     w('  <!-- contacts: four sphere feet (contype 1) and a torso box (contype 2) for fall detection only; link meshes do not collide -->')
-    w('  <!-- joint ranges: the viewer\'s shared-slider clearance bounds (viewer-endpoints.json), one slider per axis for all limbs; no per-joint search exists. NOT servo limits -->')
+    w('  <!-- joint ranges: pitch/roll use sampled shared-slider bounds; each bend uses its source-defined local pocket range. Not calibrated servo or arbitrary combined-pose limits. -->')
     w('  <!-- actuator: Open Duck 7.4 V BAM placeholder, NOT the 12 V unit -->')
     w('  <!-- CAD "right" is +Y (params.py body +Y right). With X forward / Z up that is the robot LEFT in a right-handed frame; names below follow the CAD. -->')
     w('  <compiler angle="degree" meshdir="meshes"/>')
@@ -302,7 +303,8 @@ def build(out, crude=False, pose_name='walking'):
         'bodies': {n: {'mass_g': b['mass_g'], 'com_world_mm': b['com'].tolist(),
                        'items': {it['name']: {'mass_g': it['mass_g'], 'source': it['source']} for it in b['items']},
                        **({'mesh': {'kind': meshes[n][0], 'bytes': meshes[n][1]}} if meshes else {})} for n, b in bodies.items()},
-        'joint_ranges_deg': RANGE, 'joint_ranges_source': 'docs/design/walking/viewer-endpoints.json initial_pose_bounds.walking (shared slider, not per joint)',
+        'joint_ranges_deg': {b['joint']['name']:b['joint']['range'] for b in bodies.values() if b['joint']},
+        'joint_ranges_source': 'bend_limits.py for individual bends; RANGE for shared-slider pitch/roll; docs/design/flat-links/',
         'actuator': 'Open Duck 7.4 V BAM placeholder', 'omitted': 'fasteners, screw heads, neck envelopes, battery, electronics, head, cables'}
     out.with_suffix('.json').write_text(json.dumps(record, indent=1) + '\n')
     print(f'wrote {out} | total {total:.0f} g | CoM world mm {np.round(com, 1).tolist()}'
