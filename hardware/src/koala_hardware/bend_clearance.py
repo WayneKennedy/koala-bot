@@ -21,8 +21,10 @@ def local_geometry(key):
     moving=(F.forearm()+L.front_pad()+A.pad_fixing()) if front else FS.solid()+FS.pad_location()*(L.front_pad()+A.pad_fixing())
     moving+=S.horn_head_envelopes()
     cup=F.upper_arm() if front else L.upper_link(length,True)
-    return length,moving,[('printed_cup',cup),('vendor_case',frame*S.socket_reference()),
-                         ('fallback_case',frame*fallback),('ear_heads',frame*S.ear_head_envelopes())]
+    obstacles=[('printed_cup',cup),('fallback_case',frame*fallback),
+               ('ear_heads',frame*S.ear_head_envelopes())]
+    if S.case_model() is not None:obstacles.append(('vendor_case',frame*S.socket_reference()))
+    return length,moving,obstacles
 
 
 def local_sample(key, angle, geometry=None):
@@ -33,8 +35,9 @@ def local_sample(key, angle, geometry=None):
             'printed_cup_gap_mm':placed.fc.distToShape(obstacles[0][1].fc)[0]}
 
 
-def main():
-    report={'angular_reserve_deg':ANGULAR_RESERVE_DEG,'signed_limits_deg':SIGNED_BEND_LIMITS,
+def main(output=None):
+    vendor_available=S.case_model() is not None
+    report={'vendor_case_available':vendor_available,'angular_reserve_deg':ANGULAR_RESERVE_DEG,'signed_limits_deg':SIGNED_BEND_LIMITS,
             'angle_convention':'Native X rotation from straight links; front flexion is negative, rear flexion positive.',
             'interior_step_deg':1.,'boundary_step_deg':.25,'local':{},'installed':[]}
     for key,(lo,hi) in SIGNED_BEND_LIMITS.items():
@@ -51,7 +54,7 @@ def main():
             assert max(hit['overlap_mm3'].values())>.01,(key,first)
         report['local'][key]={'clear_samples':samples,'boundary_samples':boundaries}
         print('PASS local',key,lo,hi,len(samples),'clear samples',flush=True)
-    for fallback in (False,True):
+    for fallback in ((False,True) if vendor_available else (True,)):
         with patch.object(S,'case_model',return_value=None) if fallback else patch.object(S,'case_model',wraps=S.case_model):
             S.socket_reference.cache_clear();A.nominal_details.cache_clear()
             for name,targets in REVIEW_POSES.items():
@@ -63,9 +66,14 @@ def main():
     package=Path(__file__).resolve().parent
     report['source_sha256']={str(p.relative_to(package)):hashlib.sha256(p.read_bytes()).hexdigest()
                              for p in sorted(package.rglob('*.py'))}
-    report['scope']='Local footed packages including pads/fixings/horn heads against owning cups, both case envelopes and ear heads; whole walking robot at three endpoint combinations with fixed hips/shoulders. No continuous path, arbitrary combined joints, complete cables, floor contact or loaded validation.'
-    out=package.parents[2]/'docs/design/flat-links/bend-clearance.json'
+    report['scope']='Local footed packages including pads/fixings/horn heads against owning cups, available case envelopes and ear heads (vendor availability recorded explicitly); whole walking robot at three endpoint combinations with fixed hips/shoulders. No continuous path, arbitrary combined joints, complete cables, floor contact or loaded validation.'
+    out=Path(output) if output else package.parents[2]/'docs/design/flat-links/bend-clearance.json'
+    out.parent.mkdir(parents=True,exist_ok=True)
     out.write_text(json.dumps(report,indent=2)+'\n')
     print('Wrote',out,flush=True)
 
-if __name__=='__main__':main()
+if __name__=='__main__':
+    import argparse
+    parser=argparse.ArgumentParser(description=__doc__)
+    parser.add_argument('--output',help='Write a new revision report without replacing earlier evidence')
+    main(parser.parse_args().output)

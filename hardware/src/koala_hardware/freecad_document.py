@@ -128,7 +128,7 @@ def validate_document(doc, final, expected=None, solids=1):
         delta=abs(s.Volume-expected.Volume)
         if delta>max(.01,abs(expected.Volume)*1e-7):bad.append(f'Feature tree volume differs by {delta} mm3')
         for key in ('XMin','XMax','YMin','YMax','ZMin','ZMax'):
-            if abs(getattr(s.optimalBoundingBox(),key)-getattr(expected.optimalBoundingBox(),key))>1e-5:bad.append('Feature tree bounds differ: '+key)
+            if abs(getattr(s.optimalBoundingBox(False),key)-getattr(expected.optimalBoundingBox(False),key))>1e-5:bad.append('Feature tree bounds differ: '+key)
     if bad:raise ValueError('\n'.join(bad))
 
 
@@ -150,3 +150,23 @@ def make_document(name,shape,metadata=None):
         return doc,final
     except BaseException:
         App.closeDocument(doc.Name);raise
+
+
+def recomputed_part(part):
+    """Evaluate a recipe through native features before downstream CAD checks.
+
+    OCCT fillet corner solutions can differ after upstream sketch/boolean
+    reconstruction despite near-identical input volumes. The native tree is
+    authoritative: return its evaluated solid with the same editable recipe.
+    Never substitute an imported/baked feature in the released history.
+    """
+    from .cad import Part as CADPart
+    previous=App.ActiveDocument
+    doc=App.newDocument('NativeEvaluation')
+    try:
+        final=History(doc).add(part)
+        validate_document(doc,final,solids=len(part.solids()))
+        return CADPart(final.Shape.copy(),part.recipe,part.label)
+    finally:
+        App.closeDocument(doc.Name)
+        if previous:App.setActiveDocument(previous.Name)

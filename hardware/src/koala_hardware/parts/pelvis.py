@@ -35,16 +35,20 @@ def plate_outline():
 def root_socket():
     """Socket frame: Z up from the servo Bottom; shelf -5..0; plate below it."""
     w,d=plate_outline(); t=P.ROOT_PLATE_T
-    plate=Pos(0,0,-P.SOCKET_SHELF-t)*extrude(RectangleRounded(w,d,4),amount=t)
+    plate=Pos(0,0,-P.SOCKET_SHELF-t)*extrude(RectangleRounded(w,d,P.FAMILY_EDGE_RADIUS),amount=t)
     # Union first, then features: no separately rounded bodies overlapped
     # (integrated-links rule, 2026-09-14).
-    part=plate+S.saddle()
+    part=plate+S.saddle(P.FAMILY_EDGE_RADIUS)
     pocket_d=P.NUT_M3_T+P.NUT_POCKET_CLEAR
     r=(P.NUT_M3_AF+P.NUT_POCKET_CLEAR)/sqrt(3)
     for a,b in nut_xy():
         part-=Pos(a,b,-pocket_d)*extrude(RegularPolygon(r,6),amount=pocket_d+0.01)
         part-=Pos(a,b,-P.SOCKET_SHELF-t-1)*Cylinder(P.CLEAR_HOLE_M3/2,P.SOCKET_SHELF+t+2,align=(Align.CENTER,Align.CENTER,Align.MIN))
-    return part
+    from ..rounding import exterior
+    protect=S._box(-100,100,-100,100,-P.SOCKET_SHELF-t,-P.SOCKET_SHELF-t+.15)
+    for a,b in nut_xy():
+        protect+=Pos(a,b,-P.SOCKET_SHELF-t)*Cylinder(4,P.SOCKET_SHELF+t,align=(Align.CENTER,Align.CENTER,Align.MIN))
+    return exterior(part,exclude=lambda c:c.Z>-P.SOCKET_SHELF+.01,protect=protect,label='root_socket')
 
 
 @lru_cache
@@ -71,12 +75,11 @@ def fixing_envelopes(front=False):
 
 
 def build():
-    return L.spec('root_socket',root_socket(),qty=2,handed=True,orientation=Rot(),
+    return L.spec('root_socket',root_socket(),qty=2,handed=True,orientation=Rot(),version=2,
         fasteners={'M2x5 self-tapper into servo ear':4,f'{P.ROOT_SCREW} root screw, from the torso side':4,'M3 nut, captive under the servo':4},
-        notes='Proven v1, plate 1, PETG, 2026-09-19: four printed and main fit passed. Ear holes need drilling to '
-        '2.2 mm on those prints because support entered them; bed-only support is now set for reprints. '
-        'One unchanged module at all four roots, two per hand. Drop four M3 nuts into the shelf, then fit the '
+        notes='R3 exterior revision v2 is unknown/unprinted; v1 plate-1 fit evidence remains historical. '
+        'One common module at all four roots, two per hand. Drop four M3 nuts into the shelf, then fit the '
         'servo and all four ear screws on the bench. Rear modules bolt to the inclined torso flange; front '
         'modules bolt to removable shoulder cassettes on the bench before the cassettes enter the frame. '
         'Use four M3x16 per module. Flat plate face down, socket opening up; accessible ear-roof support. '
-        'Cable routing, screw bottoming and loaded retention remain unverified.', printable='proven')
+        'Cable routing, screw bottoming and loaded retention remain unverified.', printable='unknown')

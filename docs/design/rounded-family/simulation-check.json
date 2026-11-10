@@ -1,0 +1,16 @@
+[
+  {
+    "model": "koala_walking",
+    "loads": true,
+    "actuators": 12,
+    "range_checks": 12,
+    "scope": "Load, home forward kinematics and exported range agreement only; no loaded gait test."
+  },
+  {
+    "model": "koala_walking_crude",
+    "loads": true,
+    "actuators": 12,
+    "range_checks": 12,
+    "scope": "Load, home forward kinematics and exported range agreement only; no loaded gait test."
+  }
+]

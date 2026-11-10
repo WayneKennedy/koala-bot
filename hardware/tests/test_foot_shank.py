@@ -19,7 +19,7 @@ class FootShankTests(unittest.TestCase):
         d=FS.build();part=d['part']
         self.assertTrue(part.is_valid)
         self.assertEqual(len(part.solids()),1)
-        self.assertEqual(d['version'],2)
+        self.assertEqual(d['version'],4)
         self.assertEqual(d['printable'],'unknown')
         with tempfile.TemporaryDirectory() as td:
             mesh=export_mesh(d['orientation']*part,Path(td)/'foot.stl')
@@ -30,8 +30,9 @@ class FootShankTests(unittest.TestCase):
 
     def test_interchangeable_knee_seats_holes_heads_and_driver_access(self):
         part=FS.solid()
-        core=S._box(-40,40,-6,6,-12,P.SOCKET_PLATE_R)
-        expected=(L.fork('drive')+L.fork('idler'))&core
+        from koala_hardware.rounding import horn_material
+        core=horn_material()
+        expected=(L.fork('drive',family=False)+L.fork('idler',family=False))&core
         self.assertLess(volume(expected-part)+volume((part&core)-expected),.01)
         for head in S.horn_head_envelopes().solids():clear(part,head,'footed knee head')
         for side in ('drive','idler'):
@@ -44,7 +45,7 @@ class FootShankTests(unittest.TestCase):
     def test_both_print_faces_continue_through_fork_shaft_and_pad_key(self):
         for length in (90,100):
             part=F.forearm(length)
-            self.assertAlmostEqual(part.bounding_box().size.Y,2*P.SOCKET_PLATE_R)
+            self.assertAlmostEqual(part.bounding_box().size.Y,2*P.SOCKET_PLATE_R,delta=1e-6)
             samples=[(P.SOCKET_DRIVE_FACE+P.SOCKET_PAD_T/2,z) for z in (15,25,40)]
             samples += [(3,z) for z in (52,length-12,length-5,
                                       P.FRONT_PAD_START+length-100+P.FRONT_PAD_KEY_HEIGHT-.2)]

@@ -30,13 +30,13 @@ class ShoulderService(unittest.TestCase):
                                    ('root', self.root), ('servo', self.servo)):
                 clear(nut, obstacle, f'cassette nut {index} seated / {name}')
 
-    def test_inner_nuts_must_be_loaded_before_root_is_attached(self):
-        # A 2.4 mm nut must withdraw at least 2.5 mm to clear its pocket.
-        # The fitted root obstructs that straight path for the inner nut row;
-        # this is why the documented order is nuts, root, complete cassette.
+    def test_straight_nut_loading_path_is_obstructed_with_root_attached(self):
+        # R3 root rounding clears the former 2.5 mm witness position.
+        # At 6 mm the straight loading path still intersects the root. Retain
+        # bench preloading; this does not rule out a tilted hand-insertion path.
         for nut, (y, z) in zip(self.nuts, P.SHOULDER_CASSETTE_BOLTS):
             if y == 17:
-                overlap = (Pos(-2.5, 0, 0) * nut) & self.root
+                overlap = (Pos(-6, 0, 0) * nut) & self.root
                 self.assertGreater(volume(overlap), 0.01, (y, z))
 
     def test_complete_a_module_can_be_removed_laterally(self):

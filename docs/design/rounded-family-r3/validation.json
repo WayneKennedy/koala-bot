@@ -1,0 +1,37 @@
+{
+  "date": "2026-10-01",
+  "source_revision": "4b63c47db7e3590dd09bcc79fb98eb584f9a2e695e4738f2d99379e83c384ac1",
+  "status": "R3 review revision; all eleven changed production designs unknown/unprinted. Remaining edge rejections are recorded separately from functional exceptions.",
+  "python_tests": {
+    "passed": 85
+  },
+  "javascript_regression": {
+    "passed": true,
+    "command": "node hardware/tests/test_viewer_joint_order.cjs"
+  },
+  "archive": {
+    "new_pairs": 28,
+    "total_pairs": 150,
+    "previous_pairs_unchanged": 122,
+    "all_pair_hashes_verified": true,
+    "all_frozen_source_hashes_verified": true,
+    "current_frozen_python_matches_current": true,
+    "save_reopen_full_recompute": "passed during build"
+  },
+  "vendor_case_available": false,
+  "evidence_sha256": {
+    "geometry.json": "a4124654e8fad540b04ee43a6dc45adc1a5cdf9966053e267729ffef29ca14ca",
+    "edge-exceptions.json": "cdd1caf8162d89cb1030baa077c87da85faa4d1157510ad6331127339c5f801b",
+    "grouped-trials.json": "9102b5578609b5c701c0068296bad077c197e7f67cf041a6095d4efafc874e9b",
+    "bend-clearance.json": "adc511f2595e635bf11f0837b00b7dc22453a22a1d265a635b585a9e32f23885",
+    "nominal-audit.json": "4697af46e4f12d5d2bcacb7900d3f661192e2bc220f7ab5fecf27f5e27e987fa",
+    "viewer-limits.json": "845e2c311138b2ac715ef5fa797bd7c297a8b5e18461870c28445ba5e02c4d82",
+    "simulation-check.json": "ff78f21dbf84f0a7521051fb7db357742e38f2a4d285a37a78fc974888109e59",
+    "assembly.png": "8a990444bea689e9ffb252035fdb98507d724b64a31a55b3ad15adeffc91cfff",
+    "max-fold.png": "0f670e751e0770f00d6572c0f702702bf56c46349cd5192dbc118ed6def1af8c",
+    "thigh-native.png": "2b20e6545be2d5e7eda640bcd773faff50f86b0b24482e6f822cbaeb66aab5be",
+    "forearm-native.png": "df134cea8ef0185ebe2b89bb76737ace207b2b9a39fdd4f6ceebdba65666c68c",
+    "python-tests.json": "85472a5a55924afaa8b143bc9fa14578952a4991a61db253ba78fa95f98fbabe"
+  },
+  "limits": "Sampled measured-parametric CAD clearances and mesh checks. No physical strength, adhesion, support removal, loaded gait or servo calibration validation."
+}

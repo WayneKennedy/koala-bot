@@ -17,6 +17,14 @@ class BendLimitTests(unittest.TestCase):
                 row=local_sample(key,angle,geometry)
                 self.assertGreater(row['overlap_mm3']['printed_cup'],.01,(key,row))
 
+    def test_missing_vendor_file_is_not_reported_as_a_second_case_model(self):
+        from unittest.mock import patch
+        from koala_hardware import servo_iface as S
+        with patch.object(S,'case_model',return_value=None):
+            names=[name for name,_ in local_geometry('front')[2]]
+        self.assertIn('fallback_case',names)
+        self.assertNotIn('vendor_case',names)
+
     def test_actual_front_folds_negative_and_nominal_poses_remain_inside_limits(self):
         for pose in B.poses().values():
             self.assertLess(nominal_angle(pose['front']),0)

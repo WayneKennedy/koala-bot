@@ -75,7 +75,12 @@ class IntegratedCADTests(unittest.TestCase):
                 tf=(A.body_location(body)*shoulder_mount.carrier_frame() if key=='front'
                     else A.segment_frame(limb.root,limb.bend,0)*Rot(Z=-90))
                 part=tf.inverse()*shapes[key+'_carrier_right']
-                self.assertLess(volume(part-d['part'])+volume(d['part']-part),.01)
+                # Boolean subtraction of coincident fillet surfaces can stall OCCT.
+                # Compare every face descriptor and absolute placement instead.
+                from koala_hardware.part_versions import fingerprint,same
+                self.assertTrue(same(fingerprint(part),fingerprint(d['part'])),(pose,key))
+                for actual,expected in zip(part.bounding_box().min,d['part'].bounding_box().min):
+                    self.assertAlmostEqual(actual,expected,delta=1e-6)
         import tempfile
         from pathlib import Path
         from koala_hardware.meshing import export_mesh
@@ -84,7 +89,9 @@ class IntegratedCADTests(unittest.TestCase):
             for key,d in builders.items():
                 mesh=export_mesh(d['orientation']*d['part'],Path(td)/f'{key}.stl')
                 self.assertTrue(mesh.is_watertight)
-                self.assertGreater(metrics(mesh)['bed_area'],1900)
+                # R4 hip perimeter reduces contact, but retains a broad flat base.
+                # This is a geometric screen; adhesion remains a print test.
+                self.assertGreater(metrics(mesh)['bed_area'],1200 if key=='rear' else 1900)
 
     def test_hip_carrier_and_thigh_clear_the_root_and_each_other_at_rest(self):
         from koala_hardware import assembly as A
@@ -100,10 +107,10 @@ class IntegratedCADTests(unittest.TestCase):
         from koala_hardware.cad import Plane,mirror
         from koala_hardware.audit import clear
         part=L.carrier(False)
-        forks=mirror(L.pitch_fork_frame()*(L.fork('drive')+L.fork('idler')),Plane.XY)
-        # A bevel following tangent edges can silently cut into a screw pad.
-        # Compare the complete horn region, including its web and recesses.
-        region=S._box(-30,30,-10,100,-P.SOCKET_PLATE_R-1,P.SOCKET_PLATE_R)
+        from koala_hardware.rounding import horn_material
+        forks=mirror(L.pitch_fork_frame()*(L.fork('drive',family=False)+L.fork('idler',family=False)),Plane.XY)
+        # R3 may open the outer recess rim; all bearing and contact material stays.
+        region=mirror(L.pitch_fork_frame()*horn_material(),Plane.XY)
         self.assertLess(volume((part-forks)&region)+volume((forks-part)&region),.01)
         heads=mirror(L.pitch_fork_frame()*S.horn_head_envelopes(),Plane.XY)
         for head in heads.solids(): clear(part,head,'hip pitch horn head/washer')
@@ -125,11 +132,10 @@ class IntegratedCADTests(unittest.TestCase):
         from koala_hardware.audit import clear
         for part,tf,core in ((L.upper_link(85,True),Rot(Z=-90),S._box(-6,6,-40,40,-12,P.SOCKET_PLATE_R)),
                              (L.lower_link(90),Pos(),S._box(-40,40,-6,6,-12,P.SOCKET_PLATE_R))):
-            expected=tf*(L.fork('drive')+L.fork('idler'))
-            # Retain every original pad seat and web: the arms' core (inner 12 of the
-            # 16 mm width) must be complete. The v2 rounding pass (2026-09-19) may
-            # round the arms' outer corners R2; the outer return fillets may add
-            # material. The independent head/driver checks below still apply.
+            from koala_hardware.rounding import horn_material
+            core=tf*horn_material()
+            expected=tf*(L.fork('drive',family=False)+L.fork('idler',family=False))
+            # Preserve the original mating contact and full screw-bearing columns.
             self.assertLess(volume((expected-part)&core),.01)
             for head in (tf*S.horn_head_envelopes()).solids():clear(part,head,'rear horn head/washer')
             for side in ('drive','idler'):
@@ -241,8 +247,8 @@ class IntegratedCADTests(unittest.TestCase):
         specs={f()['name']:f() for f in all_builders()}
         for name in ('shoulder_carrier','upper_arm','forearm','shoulder_mount','torso_frame','thigh'):
             self.assertEqual(specs[name]['printable'],'unknown',name)
-        self.assertEqual(specs['root_socket']['version'],1)
-        self.assertEqual(specs['root_socket']['printable'],'proven')
+        self.assertEqual(specs['root_socket']['version'],2)
+        self.assertEqual(specs['root_socket']['printable'],'unknown')
         self.assertEqual(specs['front_contact_pad']['version'],2)
         self.assertEqual(specs['front_contact_pad']['printable'],'unknown')
 

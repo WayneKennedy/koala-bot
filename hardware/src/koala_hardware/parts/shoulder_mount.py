@@ -32,7 +32,7 @@ def root_fixings():
 @lru_cache
 def solid():
     tf=socket_frame();w,d=pelvis.plate_outline()
-    part=tf*Pos(0,0,-P.SOCKET_SHELF-P.ROOT_PLATE_T-P.FRAME_PLATE_T)*extrude(RectangleRounded(w,d,4),amount=P.FRAME_PLATE_T)
+    part=tf*Pos(0,0,-P.SOCKET_SHELF-P.ROOT_PLATE_T-P.FRAME_PLATE_T)*extrude(RectangleRounded(w,d,P.FAMILY_EDGE_RADIUS),amount=P.FRAME_PLATE_T)
     # Flat Y=4 build face; continuous web carries the module to a broad front
     # flange. The two cassettes have 2 mm between their root screw heads.
     part+=S._box(16,26,4,9,130,170)
@@ -53,7 +53,14 @@ def solid():
     edges=[e for e in part.edges() if e.geom_type==GeomType.LINE and e.length>30
            and abs(e.center().Y-36)<1e-6 and any(abs(e.center().X-x)<1e-6 for x in (20,26))]
     if edges:part=fillet(edges,1.5)
-    return part
+    from ..rounding import exterior
+    protect=S._box(25.85,26.1,-100,100,0,200)
+    protect+=tf*S._box(-100,100,-100,100,-P.SOCKET_SHELF-P.ROOT_PLATE_T-.15,-P.SOCKET_SHELF-P.ROOT_PLATE_T+.01)
+    for y,z in P.SHOULDER_CASSETTE_BOLTS:
+        protect+=S._x_hole(20,26,y,z,8)
+    for a,b in pelvis.nut_xy():
+        protect+=tf*Pos(a,b,-17)*Cylinder(4,7,align=(Align.CENTER,Align.CENTER,Align.MIN))
+    return exterior(part,protect=protect,label='shoulder_mount')
 
 
 def frame_fixings():
@@ -66,9 +73,9 @@ def frame_fixings():
 
 
 def build():
-    return L.spec('shoulder_mount',solid(),handed=True,orientation=Rot(X=90),
+    return L.spec('shoulder_mount',solid(),handed=True,orientation=Rot(X=90),version=2,
         fasteners={'M3x20 shoulder cassette-to-frame screw':4,'M3 nut, captive in shoulder cassette':4},
         notes='Removable recessed A mounting cassette. Y=4 broad face on bed; open flange nut pockets and bore roofs need accessible bed-only support. '
-        'On the bench, preload all four cassette nuts before bolting the unchanged root_socket v1 onto it with four M3x16. '
+        'On the bench, preload all four cassette nuts before bolting the root_socket v2 onto it with four M3x16. '
         'Slide the complete module in from the side and secure it with four front-access M3x20. Withdraw laterally outward for root service. '
         '10 mm recess measured from torso side envelope to enclosing socket lip; A horns and moving carrier remain outside.',printable='unknown')

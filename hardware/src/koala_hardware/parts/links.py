@@ -5,18 +5,19 @@ from math import cos, sin, radians
 import warnings
 from koala_hardware.cad import Pos, Rot, Plane, Sphere, Cylinder, Align, RectangleRounded, extrude, Polygon, Cone, RegularPolygon, loft, Circle, fillet, Axis, mirror, GeomType, Vertex
 from .. import params as P, servo_iface as S
+from ..rounding import exterior, horn_material
 
 AXIS=Pos(0,0,-P.SOCKET_AXIS_Z)
 
 
-def fork(side,full_depth=False):
-    return AXIS*S.plate_location(side)*S.clevis_plate(side,full_depth)
+def fork(side,full_depth=False,family=True,round_rim=True):
+    return AXIS*S.plate_location(side)*S.clevis_plate(side,full_depth,family=family and not full_depth,round_rim=round_rim)
 
 
 @lru_cache
-def clevis():
+def clevis(family=True):
     # Both cheeks and the bridge are one connected print. No seam fasteners.
-    return (fork('drive')+fork('idler')+S._box(
+    return (fork('drive',family=family)+fork('idler',family=family)+S._box(
         P.SOCKET_IDLER_FACE-P.SOCKET_PAD_T,P.SOCKET_DRIVE_FACE+P.SOCKET_PAD_T,
         -P.SOCKET_ARM_HALF_W,P.SOCKET_ARM_HALF_W,
         P.LINK_BRIDGE_START,P.LINK_BRIDGE_END))
@@ -50,14 +51,21 @@ def _root_fillet(part,selector,radius,count,label):
 
 
 @lru_cache
-def rear_thigh(length):
-    """Stepped roll yoke and sideways knee socket; joint centres retained."""
+def rear_thigh(length,exterior_radius=2.0,horn_leadin=False):
+    """Roll yoke and knee socket; optional thick horn lead-ins retain datums."""
     clip=P.THIGH_PAD_TAIL_Z
     sx=P.SOCKET_CASE_X/2+P.SOCKET_CLEAR+P.SOCKET_WALL+P.THIGH_CHEEK_CLEAR
     t=P.SOCKET_PAD_T; a=P.SOCKET_ARM_HALF_W
-    # New structure starts beyond the entire horn region; adding cheeks must
-    # never fill the four lower bores/head recesses again.
-    part=(Rot(Z=-90)*(fork('drive')+fork('idler')))&S._box(-30,30,-40,40,-P.SOCKET_PLATE_R-1,clip)
+    # Historical cheeks start beyond the horn region. Production lead-ins
+    # deliberately cover the screw pattern, then receive extended access wells.
+    if horn_leadin:
+        # Solid stock over the complete horn pattern; bore after shaping.
+        pads=[Rot(Z=-90)*AXIS*S.plate_location(side)*S.clevis_plate(
+            side,family=True,round_rim=False,thickness=30,drill=False)
+            for side in ('drive','idler')]
+        part=(pads[0]+pads[1])&S._box(-30,30,-60,60,-P.SOCKET_PLATE_R-1,clip)
+    else:
+        part=(Rot(Z=-90)*(fork('drive',family=exterior_radius==P.FAMILY_EDGE_RADIUS)+fork('idler',family=exterior_radius==P.FAMILY_EDGE_RADIUS)))&S._box(-30,30,-40,40,-P.SOCKET_PLATE_R-1,clip)
     bottom=length-(P.SOCKET_CASE_Y/2+P.SOCKET_CLEAR+2)
     bridge=P.THIGH_BRIDGE_START; back=P.SOCKET_AXIS_Z+P.SOCKET_SHELF
     for sign in (-1,1):
@@ -66,7 +74,7 @@ def rear_thigh(length):
         join=S._box(-a,a,min(sign*pad_face,sign*(sx+t)),max(sign*pad_face,sign*(sx+t)),P.THIGH_JOIN_START,clip)
         part+=cheek+join
     part+=S._box(-a,a,-sx-t,back,bridge,bottom)
-    part+=knee_socket_frame(length,True)*S.saddle()
+    part+=knee_socket_frame(length,True)*S.saddle(exterior_radius)
     for z,ys in [(clip,(-sx,sx)),(bridge,(-sx,sx)),(bridge,(sx+t,))]:
         part=_root_fillet(part,lambda e:abs(e.length-2*a)<1e-5 and abs(e.center().Z-z)<1e-5
                           and any(abs(e.center().Y-y)<1e-5 for y in ys),
@@ -78,9 +86,13 @@ def rear_thigh(length):
     lip=P.SOCKET_AXIS_Z-P.SOCKET_DEPTH
     part=_root_fillet(part,lambda e:abs(e.center().Y-lip)<1e-5 and abs(e.center().Z-bottom)<1e-5
                       and abs(e.center().X)<1e-5,P.HIP_SOCKET_LIP_R,1,'thigh socket lip')
-    for y in (-P.SOCKET_DRIVE_FACE-t,-P.SOCKET_IDLER_FACE+t):
-        part=_root_fillet(part,lambda e:abs(e.center().Y-y)<1e-5 and abs(e.center().Z-P.THIGH_JOIN_START)<1e-5
-                          and abs(e.length-2*a)<1e-5,P.THIGH_PAD_RETURN_R,1,'thigh outer pad return')
+    if exterior_radius!=P.FAMILY_EDGE_RADIUS:
+        for y in (-P.SOCKET_DRIVE_FACE-t,-P.SOCKET_IDLER_FACE+t):
+            part=_root_fillet(part,lambda e:abs(e.center().Y-y)<1e-5 and abs(e.center().Z-P.THIGH_JOIN_START)<1e-5
+                              and e.length>5,P.THIGH_PAD_RETURN_R,1,'thigh outer pad return')
+    if horn_leadin:
+        part+=S._box(-a,a,sx+t,back,P.THIGH_JOIN_START,bottom)
+        part=_shape_thigh_leadin(part,length)
     return part
 
 
@@ -173,7 +185,7 @@ def thigh_lap_fixings():
     return s
 
 
-def round_convex_edges(part,radius,min_len=8.0,exclude=lambda c:False):
+def round_convex_edges(part,radius,min_len=8.0,exclude=lambda c:False,select=lambda e:True,protect=None,check_mesh=False):
     """Round selected convex corners without restoring earlier sharp geometry.
 
     Remember the original straight segments, then reselect their surviving
@@ -188,7 +200,7 @@ def round_convex_edges(part,radius,min_len=8.0,exclude=lambda c:False):
                 edge_faces.setdefault(e,[]).append(f)
     chosen=[]
     for e in part.edges():
-        if e.geom_type!=GeomType.LINE or e.length<min_len:continue
+        if e.geom_type!=GeomType.LINE or e.length<min_len or not select(e):continue
         c=e.center()
         if exclude(c):continue
         fs=edge_faces.get(e,[])
@@ -210,6 +222,7 @@ def round_convex_edges(part,radius,min_len=8.0,exclude=lambda c:False):
                     edges.append(e);break
         return edges
 
+    protected=part.fc.common(protect.fc) if protect is not None else None
     todo=[chosen];failed=[]
     while todo:
         group=todo.pop()
@@ -219,6 +232,17 @@ def round_convex_edges(part,radius,min_len=8.0,exclude=lambda c:False):
             rounded=part.fillet(radius,edges)
             if len(rounded.solids())!=len(part.solids()):
                 raise ValueError('rounding changed the number of solids')
+            if protected is not None:
+                try:
+                    lost=protected.cut(rounded.fc)
+                    if lost.isNull() or lost.Volume>.001:
+                        raise ValueError('fillet enters a protected interface')
+                except Exception as exc:
+                    raise ValueError('protected-region check failed') from exc
+            if check_mesh:
+                from ..meshing import closed_shape_mesh
+                if not closed_shape_mesh(rounded):
+                    raise ValueError('fillet produces an open or non-manifold mesh')
             part=rounded
         except ValueError:
             remaining=[(e.position_at(0),e.position_at(1)) for e in edges]
@@ -235,19 +259,89 @@ def round_convex_edges(part,radius,min_len=8.0,exclude=lambda c:False):
 @lru_cache
 def rear_thigh_rounded(length):
     """Production thigh since 2026-09-19 (owner): the tapered one-piece form
-    (`rear_thigh_flat`) with the rounding pass — R2 on the yoke, bridge and taper,
-    R1.5 on the knee cup's outer edges; fork pads, joins and every interface
-    face untouched. Printed on the cup-floor plane with tree support."""
+    (`rear_thigh_flat`) with the rounding pass — R3 where feasible on the yoke, bridge and taper,
+    R1.5 on the thin knee-cup edges. Thick horn lead-ins span the screw
+    pattern; deeper counterbores retain the original bearing-seat planes.
+    Printed on the cup-floor plane with tree support."""
     d=_thigh_dims(length)
     cup=lambda c:c.Z>d['bottom']-0.1 and c.Y>d['wall']-0.1          # the knee cup, entry plane included
     entry=lambda c:abs(c.Y-d['wall'])<0.1                            # pocket entry lip: interface, stays sharp
     cup_outer=lambda c:cup(c) and not entry(c) and (abs(c.X)>22.0 or c.Y>d['back']-0.1)   # wall and floor outer faces only
-    part=round_convex_edges(rear_thigh_flat(length),2.0,exclude=lambda c:c.Z<14 or cup(c))
-    return round_convex_edges(part,1.5,exclude=lambda c:not cup_outer(c))
+    guard=Rot(Z=-90)*horn_material()
+    original=rear_thigh_flat(length,P.FAMILY_EDGE_RADIUS)
+    rounded=exterior(original,exclude=lambda c:cup(c) or c.Z<14,
+        protect=guard,native_inputs=False,label='thigh-frame',grouped=True)
+    part=exterior(_bore_thigh_horns(rear_thigh(length,P.FAMILY_EDGE_RADIUS,horn_leadin=True)),
+        exclude=lambda c:cup(c) or c.Z<14,protect=guard,native_inputs=False,label='thigh',grouped=True)
+    # Retain the established inner-window R3 cuts. The thicker horn merges a
+    # tangent chain that otherwise makes the generic pass reject these edges.
+    # Follow the existing R6.3 inner root, rather than clipping the fillet
+    # removal with a rectangular boundary that creates small triangular nicks.
+    r=P.REAR_FORK_ROOT_R;rr=r+P.FAMILY_EDGE_RADIUS
+    centre=d['sx']-r;z=P.THIGH_PAD_TAIL_Z+r;w=d['a']+1
+    window=S._box(-w,w,-d['sx']-3,d['sx']+3,z,P.THIGH_BRIDGE_START+3)
+    root_mask=S._box(-w,w,-centre,centre,z-rr,z)
+    for y in (-centre,centre):
+        root_mask+=Pos(-w,y,z)*Rot(Y=90)*Cylinder(rr,2*w,align=(Align.CENTER,Align.CENTER,Align.MIN))
+    window+=root_mask&S._box(-w,w,-60,60,z-rr,z)
+    part-=(original-rounded)&window
+    from ..freecad_document import recomputed_part
+    return recomputed_part(round_convex_edges(part,1.5,exclude=lambda c:not cup_outer(c)))
+
+
+
+def _shape_thigh_leadin(part,length):
+    """Thick outer necks spanning the screw pattern, with tangent R3 rims."""
+    import FreeCAD as App
+    import Part as FC
+    from koala_hardware.cad import Part as CadPart
+    from ..freecad_document import recomputed_part
+    d=_thigh_dims(length);start=-P.SOCKET_PLATE_R
+    profiles=[]
+    for sign,face,outer,end in (
+        (-1,P.SOCKET_DRIVE_FACE+P.SOCKET_PAD_T,d['sx']+d['t'],25.),
+        (1,-P.SOCKET_IDLER_FACE+P.SOCKET_PAD_T,d['back'],27.5),
+    ):
+        span=end-start;curve=FC.BezierCurve()
+        curve.setPoles([App.Vector(sign*face,start,0),App.Vector(sign*face,start+span/3,0),
+                        App.Vector(sign*outer,end-span/3,0),App.Vector(sign*outer,end,0)])
+        points=[App.Vector(sign*outer,end,0),App.Vector(sign*70,end,0),
+                App.Vector(sign*70,start-10,0),App.Vector(sign*face,start-10,0),App.Vector(sign*face,start,0)]
+        profile=CadPart(FC.Face(FC.Wire([curve.toShape()]+[FC.makeLine(p,q) for p,q in zip(points,points[1:])])),('Profile',))
+        part-=extrude(Plane.YZ*profile,amount=30,both=True)
+        profiles.append((sign,face,outer,span))
+    def outer_edge(edge):
+        if edge.center().Z>=0:return False
+        for sign,face,outer,span in profiles:
+            def on_curve(p):
+                u=(p.Z-start)/span
+                y=sign*(face+(outer-face)*u*u*(3-2*u))
+                return 0<=u<=1 and abs(p.Y-y)<1e-4
+            if all(on_curve(edge.position_at(t)) for t in (0,.25,.5,.75,1)):return True
+        return False
+    rims=[e for e in part.edges() if outer_edge(e)]
+    if not rims:raise ValueError('No outer thigh horn rim found')
+    return recomputed_part(fillet(rims,P.FAMILY_EDGE_RADIUS))
+
+
+def _bore_thigh_horns(part):
+    """Extend access wells through the lead-ins; retain original seat depths."""
+    for side in ('drive','idler'):
+        frame=Rot(Z=-90)*AXIS*S.plate_location(side)
+        for x in (-P.SERVO_DRIVE_SQ/2,P.SERVO_DRIVE_SQ/2):
+            for y in (-P.SERVO_DRIVE_SQ/2,P.SERVO_DRIVE_SQ/2):
+                part-=frame*Pos(x,y,-1)*Cylinder(P.CLEAR_HOLE_M3/2,62,align=(Align.CENTER,Align.CENTER,Align.MIN))
+                part-=frame*Pos(x,y,P.SOCKET_PLATE_T)*Cylinder(P.SOCKET_HEAD_CLEAR/2,60,align=(Align.CENTER,Align.CENTER,Align.MIN))
+        if side=='drive':
+            part-=frame*Cylinder(3.2/2,60,align=(Align.CENTER,Align.CENTER,Align.MIN))
+            part-=frame*Cylinder((P.HORN_SCREW_HEAD_DIA+.6)/2,P.HORN_SCREW_HEAD_H+.4,align=(Align.CENTER,Align.CENTER,Align.MIN))
+        else:
+            part-=frame*Cylinder((P.SOCKET_BOSS_DIA+.6)/2,P.SOCKET_IDLER_BOSS_PROUD+.4,align=(Align.CENTER,Align.CENTER,Align.MIN))
+    return part
 
 
 @lru_cache
-def rear_thigh_flat(length):
+def rear_thigh_flat(length,exterior_radius=2.0):
     """Option 3 (owner, 2026-09-19): one print of the DEC-58 thigh, lying on the cup-floor plane.
 
     The idler-side cheek is thickened out to the cup-floor plane so cup floor and
@@ -259,7 +353,7 @@ def rear_thigh_flat(length):
     """
     from koala_hardware.cad import Polygon
     d=_thigh_dims(length);a=d['a']
-    part=rear_thigh(length)+S._box(-a,a,d['sx']+d['t'],d['back'],P.THIGH_JOIN_START,d['bottom'])
+    part=rear_thigh(length,exterior_radius)+S._box(-a,a,d['sx']+d['t'],d['back'],P.THIGH_JOIN_START,d['bottom'])
     y0=-P.SOCKET_IDLER_FACE+P.SOCKET_PAD_T+0.1;z0=-P.SOCKET_PLATE_R-1     # just outside the pad's outer top edge
     y1=d['back'];z1=P.THIGH_CHAMFER_Z
     cut=extrude(Plane.YZ*Polygon((y0,z0),(y1,z1),(y1+60,z1),(y1+60,z0-60),(y0,z0-60)),amount=30,both=True)
@@ -333,14 +427,15 @@ def lower_link(length,front=False,inset=0.0,rounded=True):
         part-=nut+S._box(0,12,-2.9,2.9,P.FRONT_PAD_NUT_Z,P.FRONT_PAD_NUT_Z+2.6)
         part-=Pos(0,0,90)*Cylinder(P.CLEAR_HOLE_M3/2,15,align=(Align.CENTER,Align.CENTER,Align.MIN))
         return part
-    part=motor_shank(length,inset)
+    part=motor_shank(length,inset,family=rounded)
     if not rounded:return part
-    # Owner's rounding pass: R2 on the spine, bridge and fork necks; pads, motor face and ring untouched.
-    return round_convex_edges(part,2.0,exclude=lambda c:c.Z<14 or c.Z>length-P.MOTOR_MOUNT_R-2)
+    # Family R3 exterior; retain horn material, motor face and supporting ring.
+    return exterior(part,exclude=lambda c:c.Z>length-P.MOTOR_MOUNT_R-2,
+        protect=horn_material()+S._box(-60,60,-60,60,length-P.MOTOR_MOUNT_R-2,length+50),label='shank')
 
 
 @lru_cache
-def motor_shank(length,inset=0.0):
+def motor_shank(length,inset=0.0,family=True):
     """Open knee fork, filleted spine, 37D face and axial body support.
 
     `inset` moves the motor inboard (owner's 2026-09-19 shank option): at
@@ -350,7 +445,7 @@ def motor_shank(length,inset=0.0):
     inner=face-P.MOTOR_SUPPORT_OFFSET
     a=P.SOCKET_ARM_HALF_W; start=P.SHANK_BRIDGE_START; end=P.SHANK_BRIDGE_END
     # Crop generic flared tails before extending the straight fork necks.
-    part=(fork('drive')+fork('idler'))&S._box(-30,30,-30,30,-P.SOCKET_PLATE_R-1,20)
+    part=(fork('drive',family=family)+fork('idler',family=family))&S._box(-30,30,-30,30,-P.SOCKET_PLATE_R-1,20)
     for lo,hi in [(P.SOCKET_IDLER_FACE-P.SOCKET_PAD_T,P.SOCKET_IDLER_FACE),
                   (P.SOCKET_DRIVE_FACE,P.SOCKET_DRIVE_FACE+P.SOCKET_PAD_T)]:
         part+=S._box(lo,hi,-a,a,20,end)
@@ -426,23 +521,26 @@ def hip_carrier():
     roots=(P.ROOT_PITCH_Y+P.SOCKET_IDLER_FACE,P.ROOT_PITCH_Y+P.SOCKET_DRIVE_FACE)
     # The generic fork tails flare below this junction. Crop them before
     # adding the narrower block, so buried tails cannot protrude through it.
-    forks=mirror(pitch_fork_frame()*(fork('drive')+fork('idler')),Plane.XY)
+    forks=mirror(pitch_fork_frame()*(fork('drive',round_rim=False)+fork('idler',round_rim=False)),Plane.XY)
     r=P.SOCKET_PLATE_R+1
     forks &= S._box(-r,r,inner-1,socket_y+1,-r,top)
-    part=(forks+S._box(-w,w,inner,socket_y+1,top,floor)+
-          roll_socket_frame(P.ROOT_ROLL_Y)*S.saddle())
+    part=(S._box(-w,w,inner,socket_y+1,top,floor)+
+          roll_socket_frame(P.ROOT_ROLL_Y)*S.saddle(P.FAMILY_EDGE_RADIUS))
     # Fillet the assembled structural joins, selected by their datums rather
     # than OCC edge numbers. Mating pocket corners remain the accepted saddle.
+    edges=[e for e in part.edges() if e.geom_type==GeomType.LINE
+           and abs(abs(e.center().X)-w)<1e-5 and abs(e.center().Y-socket_y)<1e-5
+           and abs(e.length-(floor-top))<1e-5]
+    if len(edges)!=2: raise ValueError('Hip carrier: expected two block/socket roots')
+    # Build the block/socket root before adding the forks. This keeps the
+    # native fillet independent of the horn-profile tangent chain on reopen.
+    part=fillet(edges,P.HIP_SOCKET_ROOT_R)
+    part=forks+part
     edges=[e for e in part.edges() if e.geom_type==GeomType.LINE
            and abs(e.center().Z-top)<1e-5 and abs(e.length-2*w)<1e-5
            and any(abs(e.center().Y-y)<1e-5 for y in roots)]
     if len(edges)!=2: raise ValueError('Hip carrier: expected two inner fork roots')
     part=fillet(edges,P.HIP_FORK_ROOT_R)
-    edges=[e for e in part.edges() if e.geom_type==GeomType.LINE
-           and abs(abs(e.center().X)-w)<1e-5 and abs(e.center().Y-socket_y)<1e-5
-           and abs(e.length-(floor-top))<1e-5]
-    if len(edges)!=2: raise ValueError('Hip carrier: expected two block/socket roots')
-    part=fillet(edges,P.HIP_SOCKET_ROOT_R)
     edges=[e for e in part.edges() if e.geom_type==GeomType.LINE
            and abs(e.center().X)<1e-5 and abs(e.center().Y-socket_y)<1e-5
            and abs(e.center().Z-top)<1e-5]
@@ -456,7 +554,9 @@ def hip_carrier():
     profile=Plane.XZ*Polygon((w-b,top),(w,top+b),(w,top),align=None)
     bevel=loft([Vertex(w,start,top),Pos(0,start+b,0)*profile,
                 Pos(0,end-b,0)*profile,Vertex(w,end,top)],ruled=True)
-    return part-bevel-mirror(bevel,Plane.YZ)
+    part=part-bevel-mirror(bevel,Plane.YZ)
+    return exterior(part,exclude=lambda c:c.Y>socket_y-1,
+        protect=mirror(pitch_fork_frame()*horn_material(),Plane.XY),label='hip_carrier',verify_each=True)
 
 
 HORN_FASTENERS={'M3x6 supplied horn-square pan screw (bottoming to verify)':8,
@@ -475,24 +575,25 @@ def spec(name,part,qty=1,orientation=None,fasteners=None,notes='',handed=False,m
 
 
 def upper_spec(name,length,hip=False):
-    notes=(f'One {length:g} mm thigh v3 (2026-09-19): stepped roll yoke and sideways knee socket, idler-side cheek '
-           'thickened to the cup-floor plane with one flat taper to the pad, convex edges rounded R2 (cup R1.5). Prints '
-           'on the cup-floor plane with tree (organic) support under the drive-side cheek and pads. Corrected rounding '
-           'preserves every successful fillet group. Current bed-only organic slice reviewed; physical support removal and fit remain unknown.' if hip else
+    notes=(f'One {length:g} mm thigh: stepped roll yoke and sideways knee socket, idler-side cheek '
+           'thickened to the cup-floor print plane; both lead-ins extend across the horn screw pattern with deeper counterbores. Family R3 exposed edges, '
+           'R3 outer horn rims and retained R1.5 thin cup edges; horn contacts and screw web protected. '
+           'Accessible organic support under the opposite cheek and pads. New rounding is unprinted; '
+           'earlier slices do not validate this revision.'  if hip else
            f'One {length:g} mm link: roll-axis horn forks, bridge, spine and perpendicular knee/elbow saddle. '
            'Outer horn pad on bed; remove supports from inner fork and saddle. No structural seam bolts.')
     return spec(name,upper_link(length,hip),handed=True,orientation=Rot(X=-90) if hip else Rot(X=90),
         fasteners=HORN_FASTENERS|{'M2x5 self-tapper into servo ear':4},
-        notes=notes, printable='unknown' if hip else 'assumed', version=4 if hip else 1)
+        notes=notes, printable='unknown' if hip else 'assumed', version=7 if hip else 1)
 
 
 def lower_spec(name,length,front):
     return spec(name,lower_link(length,front),handed=True,
         fasteners=HORN_FASTENERS|{'M3x8 motor-face screw (depth to verify)':6},
-        notes=f'One {length:g} mm link v2 (owner, 2026-09-19): extended open knee fork, R6.3 fork roots, R5 motor-support roots; '
-        'motor-mount face flush with the drive fork (DEC-60 spacing), convex edges rounded R2. Prints on that outer face. '
+        notes=f'One {length:g} mm link: extended open knee fork, R6.3 fork roots, R5 motor-support roots; '
+        'motor-mount face flush with the drive fork (DEC-60 spacing), family R3 exposed edges with protected interface exceptions. Prints on that outer face. '
         'Slide motor from inboard; install face screws before hub and wheel. Remove support from body bore. '
-        'Assumed: owner-directed form and print face; the rounding pass is unreviewed. Bed-only organic v2 slices are recorded in OQ-22; physical fit and bore-roof quality remain unverified.', printable='assumed', version=2)
+        'Horn pads and motor interface retained. Earlier v2 slices do not validate this rounding; physical fit and bore-roof quality remain unverified.', printable='unknown', version=4)
 
 
 def build_thigh(): return upper_spec('thigh',P.BODY_THIGH_MM,hip=True)
@@ -537,14 +638,14 @@ def build_root_carrier():
 
 
 def build_hip_carrier():
-    return spec('hip_carrier',carrier(False),qty=1,handed=True,orientation=Rot(X=180),
+    return spec('hip_carrier',carrier(False),qty=1,handed=True,orientation=Rot(X=180),version=3,
         fasteners=HORN_FASTENERS|{'M2x5 self-tapper into servo ear':4},
         notes='DEC-55/56 hip carrier: fork-width 16 mm block, tapered 2 mm inner-edge bevels, '
-        'R6.3 fork-root and R5 socket-root fillets, R1.5 at the narrow socket lip. '
+        'R3 exposed block edges where feasible; horn material protected; broad planar bed retained. R6.3 fork-root and R5 socket-root fillets, R1.5 at the narrow socket lip. '
         'Roll socket alongside with the servo Bottom down. '
         f'Roll centres {2*P.ROOT_ROLL_Y:.1f} mm apart. Flat back (block and socket floor) on the bed, forks rising; '
         'accessible local hole-roof supports. Fit all four roll ear screws before the thigh. '
-        'Assumed: owner visual review of the rear-leg viewer, 2026-09-18 (revision log). Plate 2 bed-only slices are recorded; no physical result is recorded.', printable='assumed')
+        'New rounding is unprinted; the earlier v1 plate-2 slices do not validate this revision.', printable='unknown')
 
 
 BUILDERS=[build_thigh,build_upper_arm,build_shank,build_forearm,build_root_carrier,build_hip_carrier,build_front_pad]

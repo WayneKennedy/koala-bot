@@ -52,7 +52,7 @@ def ear_holes(part, side, ys):
 
 
 @lru_cache
-def saddle():
+def saddle(exterior_radius=2.0):
     """Enclosing four-ear pocket; slides onto the servo Bottom before assembly.
 
     Side returns retain the accepted Gauge_0 pocket. The open top remains
@@ -84,7 +84,7 @@ def saddle():
         part += _box(-x,x,a,b,-P.SOCKET_SHELF,P.SOCKET_DEPTH)
     # Round the outside without changing the stepped contact surfaces.
     outside=Pos(0,0,-P.SOCKET_SHELF)*extrude(
-        RectangleRounded(2*(x+P.SOCKET_WALL),2*y,2),
+        RectangleRounded(2*(x+P.SOCKET_WALL),2*y,exterior_radius),
         amount=P.SOCKET_DEPTH+P.SOCKET_SHELF)
     part &= outside
     # Floor also needs the low Back screw's counterbore continuation.
@@ -97,16 +97,18 @@ def saddle():
 
 
 @lru_cache
-def clevis_plate(side: str, full_depth=False):
+def clevis_plate(side: str, full_depth=False, family=False, round_rim=True, thickness=None, drill=True):
     """Native XY plate, contact at Z=0; +Y runs along the driven link.
 
     Flat horn contact, 3.5 mm web, 2.8 mm head recesses. A 10.4 mm circular
     root clears the Back bay in every angular orientation; the four bolt pads
     fit within it. The default narrower tail connects it to the integral bridge;
     footed lower links use a full-diameter tail for coplanar print faces.
+    Optional undrilled/thicker stock supports integral lead-ins; callers must
+    restore the same contact, bearing-seat and screw-access geometry.
     """
     if side not in ('drive','idler'): raise ValueError(side)
-    t=P.SOCKET_PAD_T
+    t=P.SOCKET_PAD_T if thickness is None else thickness
     part=Cylinder(P.SOCKET_PLATE_R,t,align=(Align.CENTER,Align.CENTER,Align.MIN))
     # Broad, tapered fork roots with rounded end corners, within a compact
     # envelope; keep the R10.4 nose for the measured connector corridor.
@@ -115,8 +117,19 @@ def clevis_plate(side: str, full_depth=False):
         tail=_box(-r,r,0,32,0,t)
     else:
         tail=extrude(Polygon((-8,0),(8,0),(8,22),(10.4,28),(10.4,32),(-10.4,32),(-10.4,28),(-8,22),align=None),amount=t)
-        tail=fillet(tail.edges().filter_by(Axis.Z),2)
+        tail=fillet(tail.edges().filter_by(Axis.Z),P.FAMILY_EDGE_RADIUS if family else 2)
     part+=tail
+    if family and not full_depth:
+        # Smooth the concave circle-to-neck junction before rounding its rim.
+        # The added root blend stays inside the existing 20.8 mm nose envelope.
+        neck=[e for e in part.edges().filter_by(Axis.Z)
+              if abs(e.center().X)>7.9 and 5<e.center().Y<8]
+        if len(neck)!=2:raise ValueError('Expected two horn-to-neck junctions')
+        part=fillet(neck,P.FAMILY_EDGE_RADIUS)
+        if round_rim:
+            outer=[e for e in part.edges() if abs(e.center().Z-t)<1e-5]
+            part=fillet(outer,P.FAMILY_EDGE_RADIUS)
+    if not drill:return part
     for a in (-P.SERVO_DRIVE_SQ/2,P.SERVO_DRIVE_SQ/2):
         for b in (-P.SERVO_DRIVE_SQ/2,P.SERVO_DRIVE_SQ/2):
             part-=Pos(a,b,-1)*Cylinder(P.CLEAR_HOLE_M3/2,t+2,align=(Align.CENTER,Align.CENTER,Align.MIN))

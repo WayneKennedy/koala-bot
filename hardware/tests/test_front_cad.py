@@ -16,7 +16,9 @@ from koala_hardware.printability import metrics
 
 class FrontCADTests(unittest.TestCase):
     def test_all_three_prints_are_connected_closed_and_have_real_bed_faces(self):
-        minimum_bed={'shoulder_carrier':2000,'upper_arm':900,'forearm':1400}
+        # R3 fork rims reduce the upper-arm contact patch to about 845 mm².
+        # Guard a broad remaining face; this does not certify bed adhesion.
+        minimum_bed={'shoulder_carrier':2000,'upper_arm':800,'forearm':1400}
         maximum_height={'shoulder_carrier':51,'upper_arm':49.1,'forearm':21}
         with tempfile.TemporaryDirectory() as td:
             for build in F.BUILDERS:
@@ -28,7 +30,7 @@ class FrontCADTests(unittest.TestCase):
                 self.assertGreater(metrics(mesh)['bed_area'],minimum_bed[d['name']])
                 self.assertLess(mesh.extents[2],maximum_height[d['name']])
                 self.assertLess(max(mesh.extents[:2]),200)
-                self.assertEqual(d['version'],{'shoulder_carrier':4,'upper_arm':2,'forearm':3}[d['name']])
+                self.assertEqual(d['version'],{'shoulder_carrier':6,'upper_arm':4,'forearm':5}[d['name']])
                 self.assertEqual(d['printable'],'unknown')
 
     def test_viewer_tessellation_of_the_installed_carrier_remains_closed(self):
@@ -52,12 +54,24 @@ class FrontCADTests(unittest.TestCase):
             for head in (tf*S.ear_head_envelopes()).solids():
                 clear(part,head,'front seated ear screw')
 
+    def test_torso_rounding_preserves_cassette_mating_faces_and_bolt_webs(self):
+        expected=None
+        for a,b in ((4,36),(-36,-4)):
+            for z in (130,160):
+                slab=S._box(26,26.15,a,b,z,z+10)
+                expected=slab if expected is None else expected+slab
+        for y,z in P.SHOULDER_CASSETTE_BOLTS:
+            for sign in (-1,1):expected-=S._x_hole(25,37,sign*y,z,P.CLEAR_HOLE_M3)
+        self.assertLess(volume(expected-torso.solid()),.001)
+
     def test_horn_interfaces_and_straight_square_driver_paths_are_complete(self):
-        core=S._box(-40,40,-6,6,-12,P.SOCKET_PLATE_R)
-        expected=L.fork('drive')+L.fork('idler')
+        from koala_hardware.rounding import horn_material
+        core=horn_material()
+        expected=L.fork('drive',family=False)+L.fork('idler',family=False)
         for part,pads in ((F.carrier(),mirror(expected,Plane.XY)),
                           (F.upper_arm(),expected),(F.forearm(),expected)):
-            self.assertLess(volume((pads&core)-part),.01)
+            guard=mirror(core,Plane.XY) if part is F.carrier() else core
+            self.assertLess(volume((pads&guard)-part),.01)
             for head in S.horn_head_envelopes().solids():
                 clear(part,head,'front horn head and washer')
             for side in ('drive','idler'):
@@ -165,7 +179,7 @@ class FrontCADTests(unittest.TestCase):
             for side in ('right','left'):
                 name=f'reference_front_{joint}_servo_{side}'
                 self.assertEqual(items[name]['contactPartner'],f'front_{driven}_{side}')
-                self.assertEqual(items[f'front_{driven}_{side}']['version'],{'carrier':4,'upper_arm':2,'forearm':3}[driven])
+                self.assertEqual(items[f'front_{driven}_{side}']['version'],{'carrier':6,'upper_arm':4,'forearm':5}[driven])
 
 
 if __name__=='__main__':unittest.main()

@@ -1,0 +1,2526 @@
+[
+  {
+    "label": "root_socket",
+    "radius_mm": 3.0,
+    "candidates": 8,
+    "accepted_edges": 1,
+    "rejected": [
+      {
+        "centre_mm": [
+          0.0,
+          14.35,
+          -5.0
+        ],
+        "reason": "fillet R3.0: 15StdFail_NotDone BRep_API: command not done"
+      },
+      {
+        "centre_mm": [
+          0.0,
+          -14.35,
+          -5.0
+        ],
+        "reason": "fillet R3.0: 15StdFail_NotDone BRep_API: command not done"
+      },
+      {
+        "centre_mm": [
+          -23.449999999999996,
+          0.0,
+          -11.0
+        ],
+        "reason": "local R3 corner intersects bearing/contact material"
+      },
+      {
+        "centre_mm": [
+          0.0,
+          18.35,
+          -11.0
+        ],
+        "reason": "local R3 corner intersects bearing/contact material"
+      },
+      {
+        "centre_mm": [
+          -3.552713678800501e-15,
+          -18.35,
+          -11.0
+        ],
+        "reason": "local R3 corner intersects bearing/contact material"
+      },
+      {
+        "centre_mm": [
+          23.449999999999996,
+          0.0,
+          -11.0
+        ],
+        "reason": "local R3 corner intersects bearing/contact material"
+      }
+    ],
+    "protected_loss_mm3": 0.0,
+    "direct_native_volume_delta_mm3": 0.0
+  },
+  {
+    "label": "thigh",
+    "radius_mm": 3.0,
+    "candidates": 30,
+    "accepted_edges": 18,
+    "rejected": [
+      {
+        "centre_mm": [
+          -11.978451781553897,
+          18.11499999999999,
+          70.54453156465351
+        ],
+        "reason": "fillet R3.0: 15StdFail_NotDone BRep_API: command not done"
+      },
+      {
+        "centre_mm": [
+          11.978451781553897,
+          18.11499999999999,
+          70.54453156465351
+        ],
+        "reason": "fillet R3.0: 15StdFail_NotDone BRep_API: command not done"
+      }
+    ],
+    "protected_loss_mm3": 0.0,
+    "direct_native_volume_delta_mm3": -0.0007714343373663723
+  },
+  {
+    "label": "shank",
+    "radius_mm": 3.0,
+    "candidates": 29,
+    "accepted_edges": 1,
+    "rejected": [
+      {
+        "centre_mm": [
+          25.700000000000003,
+          -8.0,
+          42.60040323236275
+        ],
+        "reason": "would remove protected bearing/contact material"
+      },
+      {
+        "centre_mm": [
+          25.700000000000003,
+          8.0,
+          42.60040323236275
+        ],
+        "reason": "would remove protected bearing/contact material"
+      },
+      {
+        "centre_mm": [
+          -23.3,
+          -8.0,
+          36.499999999999986
+        ],
+        "reason": "mesh is not closed"
+      },
+      {
+        "centre_mm": [
+          -23.3,
+          8.0,
+          36.499999999999986
+        ],
+        "reason": "mesh is not closed"
+      },
+      {
+        "centre_mm": [
+          19.4,
+          -8.0,
+          23.676225293941798
+        ],
+        "reason": "would remove protected bearing/contact material"
+      },
+      {
+        "centre_mm": [
+          19.4,
+          8.0,
+          23.6762252939418
+        ],
+        "reason": "would remove protected bearing/contact material"
+      },
+      {
+        "centre_mm": [
+          -17.0,
+          8.0,
+          23.6762252939418
+        ],
+        "reason": "would remove protected bearing/contact material"
+      },
+      {
+        "centre_mm": [
+          -17.0,
+          -8.0,
+          23.676225293941798
+        ],
+        "reason": "would remove protected bearing/contact material"
+      },
+      {
+        "centre_mm": [
+          1.1999999999999993,
+          -8.0,
+          46.0
+        ],
+        "reason": "would remove protected bearing/contact material"
+      },
+      {
+        "centre_mm": [
+          1.1999999999999993,
+          8.0,
+          46.0
+        ],
+        "reason": "would remove protected bearing/contact material"
+      },
+      {
+        "centre_mm": [
+          -16.800000000000004,
+          8.0,
+          56.0
+        ],
+        "reason": "would remove protected bearing/contact material"
+      },
+      {
+        "centre_mm": [
+          -16.800000000000004,
+          -8.0,
+          56.0
+        ],
+        "reason": "would remove protected bearing/contact material"
+      },
+      {
+        "centre_mm": [
+          17.554772721475253,
+          8.0,
+          44.154772721475254
+        ],
+        "reason": "would remove protected bearing/contact material"
+      },
+      {
+        "centre_mm": [
+          17.55477272147526,
+          -8.0,
+          44.154772721475254
+        ],
+        "reason": "would remove protected bearing/contact material"
+      },
+      {
+        "centre_mm": [
+          -15.15477272147525,
+          -8.0,
+          44.154772721475254
+        ],
+        "reason": "would remove protected bearing/contact material"
+      },
+      {
+        "centre_mm": [
+          -15.15477272147525,
+          8.0,
+          44.154772721475254
+        ],
+        "reason": "would remove protected bearing/contact material"
+      },
+      {
+        "centre_mm": [
+          -9.76446609406726,
+          -8.0,
+          57.46446609406724
+        ],
+        "reason": "would remove protected bearing/contact material"
+      },
+      {
+        "centre_mm": [
+          -9.76446609406726,
+          8.0,
+          57.46446609406724
+        ],
+        "reason": "would remove protected bearing/contact material"
+      },
+      {
+        "centre_mm": [
+          -8.299999999999997,
+          -8.0,
+          63.10040323236274
+        ],
+        "reason": "would remove protected bearing/contact material"
+      },
+      {
+        "centre_mm": [
+          -8.299999999999997,
+          8.0,
+          63.10040323236274
+        ],
+        "reason": "would remove protected bearing/contact material"
+      },
+      {
+        "centre_mm": [
+          -21.8,
+          -8.0,
+          20.0
+        ],
+        "reason": "fillet R3.0: 15StdFail_NotDone BRep_API: command not done"
+      },
+      {
+        "centre_mm": [
+          24.2,
+          -8.0,
+          20.0
+        ],
+        "reason": "fillet R3.0: 15StdFail_NotDone BRep_API: command not done"
+      },
+      {
+        "centre_mm": [
+          25.7,
+          -6.5,
+          20.0
+        ],
+        "reason": "fillet R3.0: 15StdFail_NotDone BRep_API: command not done"
+      },
+      {
+        "centre_mm": [
+          25.7,
+          6.5,
+          20.0
+        ],
+        "reason": "fillet R3.0: 15StdFail_NotDone BRep_API: command not done"
+      },
+      {
+        "centre_mm": [
+          -23.3,
+          -6.5,
+          20.0
+        ],
+        "reason": "fillet R3.0: 15StdFail_NotDone BRep_API: command not done"
+      },
+      {
+        "centre_mm": [
+          -23.3,
+          6.5,
+          20.0
+        ],
+        "reason": "fillet R3.0: 15StdFail_NotDone BRep_API: command not done"
+      },
+      {
+        "centre_mm": [
+          24.2,
+          8.0,
+          20.0
+        ],
+        "reason": "fillet R3.0: 15StdFail_NotDone BRep_API: command not done"
+      },
+      {
+        "centre_mm": [
+          -21.8,
+          8.0,
+          20.0
+        ],
+        "reason": "fillet R3.0: 15StdFail_NotDone BRep_API: command not done"
+      },
+      {
+        "centre_mm": [
+          -17.0,
+          -9.9234081771711,
+          3.1122291286558186
+        ],
+        "reason": "local R3 corner intersects bearing/contact material"
+      },
+      {
+        "centre_mm": [
+          -17.0,
+          3.1122291286558132,
+          -9.923408177171103
+        ],
+        "reason": "local R3 corner intersects bearing/contact material"
+      },
+      {
+        "centre_mm": [
+          19.4,
+          -3.1122291286558132,
+          -9.923408177171103
+        ],
+        "reason": "local R3 corner intersects bearing/contact material"
+      },
+      {
+        "centre_mm": [
+          19.4,
+          9.9234081771711,
+          3.1122291286558186
+        ],
+        "reason": "local R3 corner intersects bearing/contact material"
+      }
+    ],
+    "protected_loss_mm3": 0.0,
+    "direct_native_volume_delta_mm3": 0.0
+  },
+  {
+    "label": "footed_link_90",
+    "radius_mm": 3.0,
+    "candidates": 24,
+    "accepted_edges": 2,
+    "rejected": [
+      {
+        "centre_mm": [
+          19.4,
+          -10.4,
+          19.85
+        ],
+        "reason": "would remove protected bearing/contact material"
+      },
+      {
+        "centre_mm": [
+          -17.0,
+          -10.4,
+          19.85
+        ],
+        "reason": "would remove protected bearing/contact material"
+      },
+      {
+        "centre_mm": [
+          -17.0,
+          10.4,
+          19.85
+        ],
+        "reason": "would remove protected bearing/contact material"
+      },
+      {
+        "centre_mm": [
+          19.4,
+          10.4,
+          19.85
+        ],
+        "reason": "would remove protected bearing/contact material"
+      },
+      {
+        "centre_mm": [
+          1.1999999999999993,
+          -10.4,
+          46.0
+        ],
+        "reason": "would remove protected bearing/contact material"
+      },
+      {
+        "centre_mm": [
+          1.1999999999999993,
+          10.4,
+          46.0
+        ],
+        "reason": "would remove protected bearing/contact material"
+      },
+      {
+        "centre_mm": [
+          17.554772721475253,
+          -10.399999999999997,
+          44.154772721475254
+        ],
+        "reason": "would remove protected bearing/contact material"
+      },
+      {
+        "centre_mm": [
+          -15.154772721475254,
+          -10.399999999999995,
+          44.154772721475254
+        ],
+        "reason": "would remove protected bearing/contact material"
+      },
+      {
+        "centre_mm": [
+          -15.154772721475254,
+          10.400000000000007,
+          44.154772721475254
+        ],
+        "reason": "would remove protected bearing/contact material"
+      },
+      {
+        "centre_mm": [
+          17.554772721475253,
+          10.400000000000007,
+          44.154772721475254
+        ],
+        "reason": "would remove protected bearing/contact material"
+      },
+      {
+        "centre_mm": [
+          19.4,
+          -1.910449006669871e-15,
+          -10.4
+        ],
+        "reason": "local R3 corner intersects bearing/contact material"
+      },
+      {
+        "centre_mm": [
+          -17.0,
+          1.910449006669871e-15,
+          -10.4
+        ],
+        "reason": "local R3 corner intersects bearing/contact material"
+      }
+    ],
+    "protected_loss_mm3": 0.0,
+    "direct_native_volume_delta_mm3": 0.0
+  },
+  {
+    "label": "hip_carrier",
+    "radius_mm": 3.0,
+    "candidates": 25,
+    "accepted_edges": 6,
+    "rejected": [
+      {
+        "centre_mm": [
+          8.000000000000002,
+          43.804772721475246,
+          16.26977272147525
+        ],
+        "reason": "fillet R3.0: 15StdFail_NotDone BRep_API: command not done"
+      },
+      {
+        "centre_mm": [
+          -8.000000000000002,
+          11.095227278524753,
+          16.26977272147525
+        ],
+        "reason": "fillet R3.0: 15StdFail_NotDone BRep_API: command not done"
+      },
+      {
+        "centre_mm": [
+          7.999999999999999,
+          11.09522727852475,
+          16.26977272147525
+        ],
+        "reason": "fillet R3.0: 15StdFail_NotDone BRep_API: command not done"
+      },
+      {
+        "centre_mm": [
+          -7.999999999999999,
+          43.80477272147525,
+          16.269772721475245
+        ],
+        "reason": "fillet R3.0: 15StdFail_NotDone BRep_API: command not done"
+      },
+      {
+        "centre_mm": [
+          -9.464466094067262,
+          50.48553390593274,
+          18.114999999999995
+        ],
+        "reason": "fillet R3.0: 15StdFail_NotDone BRep_API: command not done"
+      },
+      {
+        "centre_mm": [
+          9.464466094067262,
+          50.48553390593274,
+          18.114999999999995
+        ],
+        "reason": "fillet R3.0: 15StdFail_NotDone BRep_API: command not done"
+      },
+      {
+        "centre_mm": [
+          -7.999999999999995,
+          49.45,
+          18.114999999999995
+        ],
+        "reason": "Fillet009: BRep_API: command not done\nFinal shape: invalid or wrong solid count"
+      },
+      {
+        "centre_mm": [
+          8.000000000000005,
+          49.45,
+          18.114999999999995
+        ],
+        "reason": "fillet R3.0: invalid fillet"
+      },
+      {
+        "centre_mm": [
+          -7.999999999999996,
+          45.65,
+          9.733725293941797
+        ],
+        "reason": "fillet R3.0: 15StdFail_NotDone BRep_API: command not done"
+      },
+      {
+        "centre_mm": [
+          7.9999999999999964,
+          9.249999999999998,
+          9.733725293941797
+        ],
+        "reason": "fillet R3.0: 15StdFail_NotDone BRep_API: command not done"
+      },
+      {
+        "centre_mm": [
+          -8.000000000000004,
+          9.250000000000002,
+          9.733725293941797
+        ],
+        "reason": "fillet R3.0: 15StdFail_NotDone BRep_API: command not done"
+      },
+      {
+        "centre_mm": [
+          8.000000000000004,
+          45.64999999999999,
+          9.733725293941797
+        ],
+        "reason": "fillet R3.0: 15StdFail_NotDone BRep_API: command not done"
+      },
+      {
+        "centre_mm": [
+          9.923408177171103,
+          45.65,
+          3.1122291286558186
+        ],
+        "reason": "local R3 corner intersects bearing/contact material"
+      },
+      {
+        "centre_mm": [
+          -3.112229128655809,
+          45.65,
+          -9.923408177171103
+        ],
+        "reason": "local R3 corner intersects bearing/contact material"
+      },
+      {
+        "centre_mm": [
+          -9.923408177171103,
+          9.250000000000002,
+          3.1122291286558186
+        ],
+        "reason": "local R3 corner intersects bearing/contact material"
+      },
+      {
+        "centre_mm": [
+          3.1122291286558097,
+          9.25,
+          -9.923408177171103
+        ],
+        "reason": "local R3 corner intersects bearing/contact material"
+      }
+    ],
+    "protected_loss_mm3": 0.0,
+    "direct_native_volume_delta_mm3": 0.0
+  },
+  {
+    "label": "shoulder_carrier",
+    "radius_mm": 3.0,
+    "candidates": 24,
+    "accepted_edges": 5,
+    "rejected": [
+      {
+        "centre_mm": [
+          1.2000000000000028,
+          -8.0,
+          -24.0
+        ],
+        "reason": "fillet R3.0: 21Standard_ProgramError TopOpeBRepDS_DataStructure::Point"
+      },
+      {
+        "centre_mm": [
+          -15.499999999999995,
+          8.0,
+          -24.0
+        ],
+        "reason": "fillet R3.0: 15StdFail_NotDone BRep_API: command not done"
+      },
+      {
+        "centre_mm": [
+          17.900000000000002,
+          8.0,
+          -24.0
+        ],
+        "reason": "fillet R3.0: 15StdFail_NotDone BRep_API: command not done"
+      },
+      {
+        "centre_mm": [
+          -17.0,
+          8.0,
+          -12.6762252939418
+        ],
+        "reason": "fillet R3.0: invalid fillet"
+      },
+      {
+        "centre_mm": [
+          19.4,
+          8.0,
+          -12.676225293941801
+        ],
+        "reason": "fillet R3.0: invalid fillet"
+      },
+      {
+        "centre_mm": [
+          -17.0,
+          -8.0,
+          -12.6762252939418
+        ],
+        "reason": "fillet R3.0: invalid fillet"
+      },
+      {
+        "centre_mm": [
+          19.4,
+          -8.0,
+          -12.6762252939418
+        ],
+        "reason": "fillet R3.0: invalid fillet"
+      },
+      {
+        "centre_mm": [
+          -15.154772721475247,
+          8.0,
+          -22.154772721475254
+        ],
+        "reason": "fillet R3.0: invalid fillet"
+      },
+      {
+        "centre_mm": [
+          17.55477272147525,
+          8.0,
+          -22.154772721475254
+        ],
+        "reason": "fillet R3.0: 15StdFail_NotDone BRep_API: command not done"
+      },
+      {
+        "centre_mm": [
+          -15.154772721475247,
+          -8.0,
+          -22.154772721475254
+        ],
+        "reason": "fillet R3.0: 15StdFail_NotDone BRep_API: command not done"
+      },
+      {
+        "centre_mm": [
+          17.55477272147525,
+          -8.0,
+          -22.154772721475254
+        ],
+        "reason": "fillet R3.0: invalid fillet"
+      },
+      {
+        "centre_mm": [
+          19.4,
+          -3.1122291286558132,
+          9.923408177171103
+        ],
+        "reason": "local R3 corner intersects bearing/contact material"
+      },
+      {
+        "centre_mm": [
+          19.4,
+          9.9234081771711,
+          -3.1122291286558186
+        ],
+        "reason": "local R3 corner intersects bearing/contact material"
+      },
+      {
+        "centre_mm": [
+          -17.0,
+          -9.9234081771711,
+          -3.1122291286558186
+        ],
+        "reason": "local R3 corner intersects bearing/contact material"
+      },
+      {
+        "centre_mm": [
+          -17.0,
+          3.1122291286558132,
+          9.923408177171103
+        ],
+        "reason": "local R3 corner intersects bearing/contact material"
+      }
+    ],
+    "protected_loss_mm3": 0.0,
+    "direct_native_volume_delta_mm3": 0.0
+  },
+  {
+    "label": "upper_arm",
+    "radius_mm": 3.0,
+    "candidates": 60,
+    "accepted_edges": 7,
+    "rejected": [
+      {
+        "centre_mm": [
+          1.1999999999999993,
+          -8.0,
+          18.0
+        ],
+        "reason": "would remove protected bearing/contact material"
+      },
+      {
+        "centre_mm": [
+          1.1999999999999993,
+          8.0,
+          18.0
+        ],
+        "reason": "would remove protected bearing/contact material"
+      },
+      {
+        "centre_mm": [
+          -22.45,
+          0.0,
+          51.885000000000005
+        ],
+        "reason": "fillet R3.0: 15StdFail_NotDone BRep_API: command not done"
+      },
+      {
+        "centre_mm": [
+          25.7,
+          -12.35,
+          40.885000000000005
+        ],
+        "reason": "fillet R3.0: 15StdFail_NotDone BRep_API: command not done"
+      },
+      {
+        "centre_mm": [
+          25.7,
+          12.35,
+          40.885000000000005
+        ],
+        "reason": "fillet R3.0: 15StdFail_NotDone BRep_API: command not done"
+      },
+      {
+        "centre_mm": [
+          -23.3,
+          -8.0,
+          24.942500000000003
+        ],
+        "reason": "fillet R3.0: 15StdFail_NotDone BRep_API: command not done"
+      },
+      {
+        "centre_mm": [
+          -23.3,
+          8.0,
+          24.942500000000003
+        ],
+        "reason": "fillet R3.0: 15StdFail_NotDone BRep_API: command not done"
+      },
+      {
+        "centre_mm": [
+          -22.45,
+          4.440892098500626e-16,
+          34.885000000000005
+        ],
+        "reason": "fillet R3.0: 15StdFail_NotDone BRep_API: command not done"
+      },
+      {
+        "centre_mm": [
+          -23.3,
+          0.0,
+          34.885000000000005
+        ],
+        "reason": "fillet R3.0: 15StdFail_NotDone BRep_API: command not done"
+      },
+      {
+        "centre_mm": [
+          -15.154772721475252,
+          -8.0,
+          16.15477272147525
+        ],
+        "reason": "would remove protected bearing/contact material"
+      },
+      {
+        "centre_mm": [
+          17.554772721475253,
+          8.0,
+          16.15477272147525
+        ],
+        "reason": "would remove protected bearing/contact material"
+      },
+      {
+        "centre_mm": [
+          -15.154772721475252,
+          8.0,
+          16.15477272147525
+        ],
+        "reason": "would remove protected bearing/contact material"
+      },
+      {
+        "centre_mm": [
+          17.554772721475253,
+          -8.0,
+          16.15477272147525
+        ],
+        "reason": "would remove protected bearing/contact material"
+      },
+      {
+        "centre_mm": [
+          19.4,
+          -8.0,
+          25.653626394649123
+        ],
+        "reason": "fillet R3.0: 15StdFail_NotDone BRep_API: command not done"
+      },
+      {
+        "centre_mm": [
+          -17.0,
+          -8.0,
+          25.653626394649123
+        ],
+        "reason": "fillet R3.0: 15StdFail_NotDone BRep_API: command not done"
+      },
+      {
+        "centre_mm": [
+          19.4,
+          8.0,
+          25.653626394649123
+        ],
+        "reason": "fillet R3.0: 15StdFail_NotDone BRep_API: command not done"
+      },
+      {
+        "centre_mm": [
+          -17.0,
+          8.0,
+          25.653626394649123
+        ],
+        "reason": "fillet R3.0: 15StdFail_NotDone BRep_API: command not done"
+      },
+      {
+        "centre_mm": [
+          19.4,
+          -9.2,
+          25.0
+        ],
+        "reason": "fillet R3.0: 15StdFail_NotDone BRep_API: command not done"
+      },
+      {
+        "centre_mm": [
+          -17.0,
+          9.2,
+          25.0
+        ],
+        "reason": "fillet R3.0: 15StdFail_NotDone BRep_API: command not done"
+      },
+      {
+        "centre_mm": [
+          -17.0,
+          -9.2,
+          25.0
+        ],
+        "reason": "fillet R3.0: 15StdFail_NotDone BRep_API: command not done"
+      },
+      {
+        "centre_mm": [
+          19.4,
+          9.2,
+          25.0
+        ],
+        "reason": "fillet R3.0: 15StdFail_NotDone BRep_API: command not done"
+      },
+      {
+        "centre_mm": [
+          19.4,
+          -8.0,
+          9.6762252939418
+        ],
+        "reason": "would remove protected bearing/contact material"
+      },
+      {
+        "centre_mm": [
+          -17.0,
+          8.0,
+          9.6762252939418
+        ],
+        "reason": "would remove protected bearing/contact material"
+      },
+      {
+        "centre_mm": [
+          -17.0,
+          -8.0,
+          9.6762252939418
+        ],
+        "reason": "would remove protected bearing/contact material"
+      },
+      {
+        "centre_mm": [
+          19.4,
+          8.0,
+          9.6762252939418
+        ],
+        "reason": "would remove protected bearing/contact material"
+      },
+      {
+        "centre_mm": [
+          -22.45,
+          -8.0,
+          31.444685112641373
+        ],
+        "reason": "fillet R3.0: 15StdFail_NotDone BRep_API: command not done"
+      },
+      {
+        "centre_mm": [
+          -22.45,
+          8.0,
+          31.444685112641373
+        ],
+        "reason": "fillet R3.0: 15StdFail_NotDone BRep_API: command not done"
+      },
+      {
+        "centre_mm": [
+          -21.799999999999997,
+          -8.0,
+          18.0
+        ],
+        "reason": "fillet R3.0: 15StdFail_NotDone BRep_API: command not done"
+      },
+      {
+        "centre_mm": [
+          -21.799999999999997,
+          8.0,
+          18.0
+        ],
+        "reason": "fillet R3.0: 15StdFail_NotDone BRep_API: command not done"
+      },
+      {
+        "centre_mm": [
+          24.2,
+          -8.0,
+          18.0
+        ],
+        "reason": "fillet R3.0: 15StdFail_NotDone BRep_API: command not done"
+      },
+      {
+        "centre_mm": [
+          25.7,
+          -6.5,
+          18.0
+        ],
+        "reason": "fillet R3.0: 15StdFail_NotDone BRep_API: command not done"
+      },
+      {
+        "centre_mm": [
+          25.7,
+          6.5,
+          18.0
+        ],
+        "reason": "fillet R3.0: 15StdFail_NotDone BRep_API: command not done"
+      },
+      {
+        "centre_mm": [
+          -23.3,
+          -6.5,
+          18.0
+        ],
+        "reason": "fillet R3.0: 15StdFail_NotDone BRep_API: command not done"
+      },
+      {
+        "centre_mm": [
+          -23.3,
+          6.5,
+          18.0
+        ],
+        "reason": "fillet R3.0: 15StdFail_NotDone BRep_API: command not done"
+      },
+      {
+        "centre_mm": [
+          24.2,
+          8.0,
+          18.0
+        ],
+        "reason": "fillet R3.0: 15StdFail_NotDone BRep_API: command not done"
+      },
+      {
+        "centre_mm": [
+          -22.45,
+          10.322928662927746,
+          29.885000000000005
+        ],
+        "reason": "fillet R3.0: 15StdFail_NotDone BRep_API: command not done"
+      },
+      {
+        "centre_mm": [
+          -22.45,
+          -10.322928662927772,
+          29.885000000000005
+        ],
+        "reason": "fillet R3.0: 15StdFail_NotDone BRep_API: command not done"
+      },
+      {
+        "centre_mm": [
+          19.4,
+          -10.4,
+          28.78887360535088
+        ],
+        "reason": "fillet R3.0: 15StdFail_NotDone BRep_API: command not done"
+      },
+      {
+        "centre_mm": [
+          -17.0,
+          -10.4,
+          28.78887360535088
+        ],
+        "reason": "fillet R3.0: 15StdFail_NotDone BRep_API: command not done"
+      },
+      {
+        "centre_mm": [
+          25.63938769133981,
+          -8.0,
+          28.78887360535088
+        ],
+        "reason": "fillet R3.0: 15StdFail_NotDone BRep_API: command not done"
+      },
+      {
+        "centre_mm": [
+          -23.23938769133981,
+          -8.0,
+          28.78887360535088
+        ],
+        "reason": "fillet R3.0: 15StdFail_NotDone BRep_API: command not done"
+      },
+      {
+        "centre_mm": [
+          19.4,
+          10.4,
+          28.78887360535088
+        ],
+        "reason": "fillet R3.0: 15StdFail_NotDone BRep_API: command not done"
+      },
+      {
+        "centre_mm": [
+          -17.0,
+          10.4,
+          28.78887360535088
+        ],
+        "reason": "fillet R3.0: 15StdFail_NotDone BRep_API: command not done"
+      },
+      {
+        "centre_mm": [
+          25.63938769133981,
+          8.0,
+          28.78887360535088
+        ],
+        "reason": "fillet R3.0: 15StdFail_NotDone BRep_API: command not done"
+      },
+      {
+        "centre_mm": [
+          -23.23938769133981,
+          8.0,
+          28.78887360535088
+        ],
+        "reason": "fillet R3.0: 15StdFail_NotDone BRep_API: command not done"
+      },
+      {
+        "centre_mm": [
+          -17.0,
+          -9.923408177171101,
+          3.1122291286558146
+        ],
+        "reason": "local R3 corner intersects bearing/contact material"
+      },
+      {
+        "centre_mm": [
+          -17.0,
+          3.1122291286558132,
+          -9.923408177171103
+        ],
+        "reason": "local R3 corner intersects bearing/contact material"
+      },
+      {
+        "centre_mm": [
+          19.4,
+          9.923408177171101,
+          3.1122291286558146
+        ],
+        "reason": "local R3 corner intersects bearing/contact material"
+      },
+      {
+        "centre_mm": [
+          19.4,
+          -3.1122291286558132,
+          -9.923408177171103
+        ],
+        "reason": "local R3 corner intersects bearing/contact material"
+      }
+    ],
+    "protected_loss_mm3": 0.0,
+    "direct_native_volume_delta_mm3": -0.0006904493930051103
+  },
+  {
+    "label": "footed_link_100",
+    "radius_mm": 3.0,
+    "candidates": 24,
+    "accepted_edges": 2,
+    "rejected": [
+      {
+        "centre_mm": [
+          19.4,
+          -10.4,
+          19.85
+        ],
+        "reason": "would remove protected bearing/contact material"
+      },
+      {
+        "centre_mm": [
+          -17.0,
+          -10.4,
+          19.85
+        ],
+        "reason": "would remove protected bearing/contact material"
+      },
+      {
+        "centre_mm": [
+          -17.0,
+          10.4,
+          19.85
+        ],
+        "reason": "would remove protected bearing/contact material"
+      },
+      {
+        "centre_mm": [
+          19.4,
+          10.4,
+          19.85
+        ],
+        "reason": "would remove protected bearing/contact material"
+      },
+      {
+        "centre_mm": [
+          1.1999999999999993,
+          -10.4,
+          46.0
+        ],
+        "reason": "would remove protected bearing/contact material"
+      },
+      {
+        "centre_mm": [
+          1.1999999999999993,
+          10.4,
+          46.0
+        ],
+        "reason": "would remove protected bearing/contact material"
+      },
+      {
+        "centre_mm": [
+          17.554772721475253,
+          -10.399999999999991,
+          44.154772721475254
+        ],
+        "reason": "would remove protected bearing/contact material"
+      },
+      {
+        "centre_mm": [
+          -15.154772721475254,
+          -10.399999999999991,
+          44.154772721475254
+        ],
+        "reason": "would remove protected bearing/contact material"
+      },
+      {
+        "centre_mm": [
+          -15.154772721475254,
+          10.40000000000001,
+          44.154772721475254
+        ],
+        "reason": "would remove protected bearing/contact material"
+      },
+      {
+        "centre_mm": [
+          17.554772721475253,
+          10.400000000000011,
+          44.154772721475254
+        ],
+        "reason": "would remove protected bearing/contact material"
+      },
+      {
+        "centre_mm": [
+          19.4,
+          -1.910449006669871e-15,
+          -10.4
+        ],
+        "reason": "local R3 corner intersects bearing/contact material"
+      },
+      {
+        "centre_mm": [
+          -17.0,
+          1.910449006669871e-15,
+          -10.4
+        ],
+        "reason": "local R3 corner intersects bearing/contact material"
+      }
+    ],
+    "protected_loss_mm3": 0.0,
+    "direct_native_volume_delta_mm3": 0.0
+  },
+  {
+    "label": "shoulder_mount",
+    "radius_mm": 3.0,
+    "candidates": 13,
+    "accepted_edges": 1,
+    "rejected": [
+      {
+        "centre_mm": [
+          20.0,
+          22.5,
+          170.0
+        ],
+        "reason": "fillet R3.0: invalid fillet"
+      },
+      {
+        "centre_mm": [
+          20.0,
+          22.5,
+          130.0
+        ],
+        "reason": "fillet R3.0: 15StdFail_NotDone BRep_API: command not done"
+      },
+      {
+        "centre_mm": [
+          22.175000000000004,
+          4.0,
+          170.0
+        ],
+        "reason": "would remove protected bearing/contact material"
+      },
+      {
+        "centre_mm": [
+          22.175000000000008,
+          4.0,
+          130.0
+        ],
+        "reason": "would remove protected bearing/contact material"
+      },
+      {
+        "centre_mm": [
+          18.35000000000001,
+          7.999999999999999,
+          170.0
+        ],
+        "reason": "fillet R3.0: 15StdFail_NotDone BRep_API: command not done"
+      },
+      {
+        "centre_mm": [
+          18.35000000000002,
+          7.999999999999999,
+          130.0
+        ],
+        "reason": "fillet R3.0: 15StdFail_NotDone BRep_API: command not done"
+      },
+      {
+        "centre_mm": [
+          23.0,
+          36.0,
+          170.0
+        ],
+        "reason": "fillet R3.0: invalid fillet"
+      },
+      {
+        "centre_mm": [
+          23.0,
+          36.0,
+          130.0
+        ],
+        "reason": "fillet R3.0: 15StdFail_NotDone BRep_API: command not done"
+      },
+      {
+        "centre_mm": [
+          18.425000000000008,
+          9.0,
+          130.0
+        ],
+        "reason": "local R3 corner intersects bearing/contact material"
+      },
+      {
+        "centre_mm": [
+          26.0,
+          19.25,
+          130.0
+        ],
+        "reason": "local R3 corner intersects bearing/contact material"
+      },
+      {
+        "centre_mm": [
+          20.0,
+          32.849999999999994,
+          135.0
+        ],
+        "reason": "local R3 corner intersects bearing/contact material"
+      },
+      {
+        "centre_mm": [
+          20.0,
+          31.424999999999997,
+          137.46817240078565
+        ],
+        "reason": "local R3 corner intersects bearing/contact material"
+      },
+      {
+        "centre_mm": [
+          20.0,
+          31.425000000000004,
+          132.53182759921435
+        ],
+        "reason": "local R3 corner intersects bearing/contact material"
+      },
+      {
+        "centre_mm": [
+          20.0,
+          28.574999999999996,
+          137.46817240078565
+        ],
+        "reason": "local R3 corner intersects bearing/contact material"
+      },
+      {
+        "centre_mm": [
+          20.0,
+          28.574999999999996,
+          132.53182759921435
+        ],
+        "reason": "local R3 corner intersects bearing/contact material"
+      },
+      {
+        "centre_mm": [
+          20.0,
+          27.150000000000002,
+          135.0
+        ],
+        "reason": "local R3 corner intersects bearing/contact material"
+      },
+      {
+        "centre_mm": [
+          20.0,
+          32.849999999999994,
+          165.0
+        ],
+        "reason": "local R3 corner intersects bearing/contact material"
+      },
+      {
+        "centre_mm": [
+          20.0,
+          31.424999999999997,
+          167.46817240078565
+        ],
+        "reason": "local R3 corner intersects bearing/contact material"
+      },
+      {
+        "centre_mm": [
+          20.0,
+          28.575000000000003,
+          167.46817240078565
+        ],
+        "reason": "local R3 corner intersects bearing/contact material"
+      },
+      {
+        "centre_mm": [
+          20.0,
+          27.150000000000002,
+          165.0
+        ],
+        "reason": "local R3 corner intersects bearing/contact material"
+      },
+      {
+        "centre_mm": [
+          20.0,
+          28.574999999999992,
+          162.53182759921435
+        ],
+        "reason": "local R3 corner intersects bearing/contact material"
+      },
+      {
+        "centre_mm": [
+          20.0,
+          31.424999999999997,
+          162.53182759921435
+        ],
+        "reason": "local R3 corner intersects bearing/contact material"
+      },
+      {
+        "centre_mm": [
+          20.0,
+          19.85,
+          135.0
+        ],
+        "reason": "local R3 corner intersects bearing/contact material"
+      },
+      {
+        "centre_mm": [
+          20.0,
+          18.424999999999997,
+          137.46817240078565
+        ],
+        "reason": "local R3 corner intersects bearing/contact material"
+      },
+      {
+        "centre_mm": [
+          20.0,
+          18.425,
+          132.53182759921435
+        ],
+        "reason": "local R3 corner intersects bearing/contact material"
+      },
+      {
+        "centre_mm": [
+          20.0,
+          15.575,
+          137.46817240078565
+        ],
+        "reason": "local R3 corner intersects bearing/contact material"
+      },
+      {
+        "centre_mm": [
+          20.0,
+          15.575,
+          132.53182759921435
+        ],
+        "reason": "local R3 corner intersects bearing/contact material"
+      },
+      {
+        "centre_mm": [
+          20.0,
+          14.149999999999999,
+          135.0
+        ],
+        "reason": "local R3 corner intersects bearing/contact material"
+      },
+      {
+        "centre_mm": [
+          20.0,
+          19.850000000000005,
+          165.0
+        ],
+        "reason": "local R3 corner intersects bearing/contact material"
+      },
+      {
+        "centre_mm": [
+          20.0,
+          18.425,
+          167.46817240078565
+        ],
+        "reason": "local R3 corner intersects bearing/contact material"
+      },
+      {
+        "centre_mm": [
+          20.0,
+          18.425,
+          162.53182759921435
+        ],
+        "reason": "local R3 corner intersects bearing/contact material"
+      },
+      {
+        "centre_mm": [
+          20.0,
+          15.575000000000001,
+          167.46817240078565
+        ],
+        "reason": "local R3 corner intersects bearing/contact material"
+      },
+      {
+        "centre_mm": [
+          20.0,
+          15.574999999999998,
+          162.53182759921435
+        ],
+        "reason": "local R3 corner intersects bearing/contact material"
+      },
+      {
+        "centre_mm": [
+          20.0,
+          14.15,
+          165.0
+        ],
+        "reason": "local R3 corner intersects bearing/contact material"
+      },
+      {
+        "centre_mm": [
+          18.350000000000016,
+          9.000000000000004,
+          129.775
+        ],
+        "reason": "local R3 corner intersects bearing/contact material"
+      },
+      {
+        "centre_mm": [
+          18.425000000000004,
+          9.0,
+          170.0
+        ],
+        "reason": "local R3 corner intersects bearing/contact material"
+      },
+      {
+        "centre_mm": [
+          18.35000000000001,
+          9.000000000000004,
+          170.225
+        ],
+        "reason": "local R3 corner intersects bearing/contact material"
+      },
+      {
+        "centre_mm": [
+          1.5987211554602254e-14,
+          9.0,
+          126.55
+        ],
+        "reason": "local R3 corner intersects bearing/contact material"
+      },
+      {
+        "centre_mm": [
+          5.329070518200751e-15,
+          9.0,
+          173.45
+        ],
+        "reason": "local R3 corner intersects bearing/contact material"
+      },
+      {
+        "centre_mm": [
+          -18.34999999999999,
+          8.999999999999996,
+          150.0
+        ],
+        "reason": "local R3 corner intersects bearing/contact material"
+      },
+      {
+        "centre_mm": [
+          26.0,
+          4.0,
+          150.0
+        ],
+        "reason": "local R3 corner intersects bearing/contact material"
+      },
+      {
+        "centre_mm": [
+          26.0,
+          19.25,
+          170.0
+        ],
+        "reason": "local R3 corner intersects bearing/contact material"
+      },
+      {
+        "centre_mm": [
+          21.299999999999997,
+          32.85,
+          136.64544826719043
+        ],
+        "reason": "local R3 corner intersects bearing/contact material"
+      },
+      {
+        "centre_mm": [
+          22.599999999999998,
+          32.85,
+          135.0
+        ],
+        "reason": "local R3 corner intersects bearing/contact material"
+      },
+      {
+        "centre_mm": [
+          21.3,
+          32.85,
+          133.35455173280957
+        ],
+        "reason": "local R3 corner intersects bearing/contact material"
+      },
+      {
+        "centre_mm": [
+          21.299999999999997,
+          30.0,
+          138.29089653438086
+        ],
+        "reason": "local R3 corner intersects bearing/contact material"
+      },
+      {
+        "centre_mm": [
+          22.599999999999998,
+          31.425,
+          137.46817240078565
+        ],
+        "reason": "local R3 corner intersects bearing/contact material"
+      },
+      {
+        "centre_mm": [
+          22.599999999999998,
+          31.425,
+          132.53182759921435
+        ],
+        "reason": "local R3 corner intersects bearing/contact material"
+      },
+      {
+        "centre_mm": [
+          21.3,
+          30.0,
+          131.70910346561914
+        ],
+        "reason": "local R3 corner intersects bearing/contact material"
+      },
+      {
+        "centre_mm": [
+          21.299999999999997,
+          27.150000000000002,
+          136.64544826719043
+        ],
+        "reason": "local R3 corner intersects bearing/contact material"
+      },
+      {
+        "centre_mm": [
+          22.599999999999998,
+          28.575,
+          137.46817240078565
+        ],
+        "reason": "local R3 corner intersects bearing/contact material"
+      },
+      {
+        "centre_mm": [
+          22.599999999999998,
+          28.575,
+          132.53182759921435
+        ],
+        "reason": "local R3 corner intersects bearing/contact material"
+      },
+      {
+        "centre_mm": [
+          21.3,
+          27.15,
+          133.35455173280957
+        ],
+        "reason": "local R3 corner intersects bearing/contact material"
+      },
+      {
+        "centre_mm": [
+          22.599999999999998,
+          27.15,
+          135.0
+        ],
+        "reason": "local R3 corner intersects bearing/contact material"
+      },
+      {
+        "centre_mm": [
+          21.299999999999997,
+          32.85,
+          166.64544826719043
+        ],
+        "reason": "local R3 corner intersects bearing/contact material"
+      },
+      {
+        "centre_mm": [
+          22.599999999999998,
+          32.85,
+          165.0
+        ],
+        "reason": "local R3 corner intersects bearing/contact material"
+      },
+      {
+        "centre_mm": [
+          21.3,
+          32.85,
+          163.35455173280957
+        ],
+        "reason": "local R3 corner intersects bearing/contact material"
+      },
+      {
+        "centre_mm": [
+          21.299999999999997,
+          30.0,
+          168.29089653438086
+        ],
+        "reason": "local R3 corner intersects bearing/contact material"
+      },
+      {
+        "centre_mm": [
+          22.599999999999998,
+          31.425,
+          167.46817240078565
+        ],
+        "reason": "local R3 corner intersects bearing/contact material"
+      },
+      {
+        "centre_mm": [
+          21.299999999999997,
+          27.150000000000002,
+          166.64544826719043
+        ],
+        "reason": "local R3 corner intersects bearing/contact material"
+      },
+      {
+        "centre_mm": [
+          22.599999999999998,
+          28.575,
+          167.46817240078565
+        ],
+        "reason": "local R3 corner intersects bearing/contact material"
+      },
+      {
+        "centre_mm": [
+          21.3,
+          27.15,
+          163.35455173280957
+        ],
+        "reason": "local R3 corner intersects bearing/contact material"
+      },
+      {
+        "centre_mm": [
+          22.599999999999998,
+          27.15,
+          165.0
+        ],
+        "reason": "local R3 corner intersects bearing/contact material"
+      },
+      {
+        "centre_mm": [
+          21.3,
+          30.0,
+          161.70910346561914
+        ],
+        "reason": "local R3 corner intersects bearing/contact material"
+      },
+      {
+        "centre_mm": [
+          22.599999999999998,
+          28.575,
+          162.53182759921435
+        ],
+        "reason": "local R3 corner intersects bearing/contact material"
+      },
+      {
+        "centre_mm": [
+          22.599999999999998,
+          31.425,
+          162.53182759921435
+        ],
+        "reason": "local R3 corner intersects bearing/contact material"
+      },
+      {
+        "centre_mm": [
+          21.299999999999997,
+          19.85,
+          136.64544826719043
+        ],
+        "reason": "local R3 corner intersects bearing/contact material"
+      },
+      {
+        "centre_mm": [
+          22.599999999999998,
+          19.85,
+          135.0
+        ],
+        "reason": "local R3 corner intersects bearing/contact material"
+      },
+      {
+        "centre_mm": [
+          21.3,
+          19.85,
+          133.35455173280957
+        ],
+        "reason": "local R3 corner intersects bearing/contact material"
+      },
+      {
+        "centre_mm": [
+          21.299999999999997,
+          17.0,
+          138.29089653438086
+        ],
+        "reason": "local R3 corner intersects bearing/contact material"
+      },
+      {
+        "centre_mm": [
+          22.599999999999998,
+          18.425,
+          137.46817240078565
+        ],
+        "reason": "local R3 corner intersects bearing/contact material"
+      },
+      {
+        "centre_mm": [
+          22.599999999999998,
+          18.425,
+          132.53182759921435
+        ],
+        "reason": "local R3 corner intersects bearing/contact material"
+      },
+      {
+        "centre_mm": [
+          21.3,
+          17.0,
+          131.70910346561914
+        ],
+        "reason": "local R3 corner intersects bearing/contact material"
+      },
+      {
+        "centre_mm": [
+          21.299999999999997,
+          14.15,
+          136.64544826719043
+        ],
+        "reason": "local R3 corner intersects bearing/contact material"
+      },
+      {
+        "centre_mm": [
+          22.599999999999998,
+          15.575000000000001,
+          137.46817240078565
+        ],
+        "reason": "local R3 corner intersects bearing/contact material"
+      },
+      {
+        "centre_mm": [
+          22.599999999999998,
+          15.575,
+          132.53182759921435
+        ],
+        "reason": "local R3 corner intersects bearing/contact material"
+      },
+      {
+        "centre_mm": [
+          21.3,
+          14.15,
+          133.35455173280957
+        ],
+        "reason": "local R3 corner intersects bearing/contact material"
+      },
+      {
+        "centre_mm": [
+          22.599999999999998,
+          14.15,
+          135.0
+        ],
+        "reason": "local R3 corner intersects bearing/contact material"
+      },
+      {
+        "centre_mm": [
+          21.299999999999997,
+          19.85,
+          166.64544826719043
+        ],
+        "reason": "local R3 corner intersects bearing/contact material"
+      },
+      {
+        "centre_mm": [
+          22.599999999999998,
+          19.85,
+          165.0
+        ],
+        "reason": "local R3 corner intersects bearing/contact material"
+      },
+      {
+        "centre_mm": [
+          21.3,
+          19.85,
+          163.35455173280957
+        ],
+        "reason": "local R3 corner intersects bearing/contact material"
+      },
+      {
+        "centre_mm": [
+          21.299999999999997,
+          17.0,
+          168.29089653438086
+        ],
+        "reason": "local R3 corner intersects bearing/contact material"
+      },
+      {
+        "centre_mm": [
+          22.599999999999998,
+          18.425,
+          167.46817240078565
+        ],
+        "reason": "local R3 corner intersects bearing/contact material"
+      },
+      {
+        "centre_mm": [
+          22.599999999999998,
+          18.425,
+          162.53182759921435
+        ],
+        "reason": "local R3 corner intersects bearing/contact material"
+      },
+      {
+        "centre_mm": [
+          21.3,
+          17.0,
+          161.70910346561914
+        ],
+        "reason": "local R3 corner intersects bearing/contact material"
+      },
+      {
+        "centre_mm": [
+          21.299999999999997,
+          14.15,
+          166.64544826719043
+        ],
+        "reason": "local R3 corner intersects bearing/contact material"
+      },
+      {
+        "centre_mm": [
+          22.599999999999998,
+          15.575000000000001,
+          167.46817240078565
+        ],
+        "reason": "local R3 corner intersects bearing/contact material"
+      },
+      {
+        "centre_mm": [
+          22.599999999999998,
+          15.575,
+          162.53182759921435
+        ],
+        "reason": "local R3 corner intersects bearing/contact material"
+      },
+      {
+        "centre_mm": [
+          21.3,
+          14.15,
+          163.35455173280957
+        ],
+        "reason": "local R3 corner intersects bearing/contact material"
+      },
+      {
+        "centre_mm": [
+          22.599999999999998,
+          14.15,
+          165.0
+        ],
+        "reason": "local R3 corner intersects bearing/contact material"
+      }
+    ],
+    "protected_loss_mm3": 0.0,
+    "direct_native_volume_delta_mm3": 0.0
+  },
+  {
+    "label": "torso_R3",
+    "radius_mm": 3.0,
+    "candidates": 136,
+    "accepted_edges": 61,
+    "rejected": [
+      {
+        "centre_mm": [
+          36.0,
+          0.0,
+          170.0
+        ],
+        "reason": "would remove protected bearing/contact material"
+      },
+      {
+        "centre_mm": [
+          36.0,
+          0.0,
+          140.0
+        ],
+        "reason": "would remove protected bearing/contact material"
+      },
+      {
+        "centre_mm": [
+          36.0,
+          0.0,
+          160.0
+        ],
+        "reason": "would remove protected bearing/contact material"
+      },
+      {
+        "centre_mm": [
+          36.0,
+          0.0,
+          130.0
+        ],
+        "reason": "would remove protected bearing/contact material"
+      },
+      {
+        "centre_mm": [
+          26.0,
+          0.0,
+          160.0
+        ],
+        "reason": "would remove protected bearing/contact material"
+      },
+      {
+        "centre_mm": [
+          26.0,
+          0.0,
+          140.0
+        ],
+        "reason": "would remove protected bearing/contact material"
+      },
+      {
+        "centre_mm": [
+          26.0,
+          0.0,
+          130.0
+        ],
+        "reason": "would remove protected bearing/contact material"
+      },
+      {
+        "centre_mm": [
+          26.0,
+          0.0,
+          170.0
+        ],
+        "reason": "would remove protected bearing/contact material"
+      },
+      {
+        "centre_mm": [
+          -36.0,
+          -38.5,
+          115.71428571428571
+        ],
+        "reason": "fillet R3.0: 15StdFail_NotDone BRep_API: command not done"
+      },
+      {
+        "centre_mm": [
+          -46.0,
+          38.5,
+          115.71428571428571
+        ],
+        "reason": "fillet R3.0: 15StdFail_NotDone BRep_API: command not done"
+      },
+      {
+        "centre_mm": [
+          -46.0,
+          -38.5,
+          115.71428571428571
+        ],
+        "reason": "fillet R3.0: 15StdFail_NotDone BRep_API: command not done"
+      },
+      {
+        "centre_mm": [
+          -36.0,
+          38.5,
+          115.71428571428571
+        ],
+        "reason": "fillet R3.0: 15StdFail_NotDone BRep_API: command not done"
+      },
+      {
+        "centre_mm": [
+          28.178143368972037,
+          -39.0,
+          124.13360752672902
+        ],
+        "reason": "fillet R3.0: 15StdFail_NotDone BRep_API: command not done"
+      },
+      {
+        "centre_mm": [
+          19.5,
+          39.0,
+          125.125
+        ],
+        "reason": "fillet R3.0: 15StdFail_NotDone BRep_API: command not done"
+      },
+      {
+        "centre_mm": [
+          26.67814336897202,
+          -47.0,
+          123.00860752672901
+        ],
+        "reason": "fillet R3.0: 15StdFail_NotDone BRep_API: command not done"
+      },
+      {
+        "centre_mm": [
+          19.5,
+          47.0,
+          125.125
+        ],
+        "reason": "fillet R3.0: 15StdFail_NotDone BRep_API: command not done"
+      },
+      {
+        "centre_mm": [
+          -36.0,
+          -31.5,
+          53.114999999999995
+        ],
+        "reason": "would remove protected bearing/contact material"
+      },
+      {
+        "centre_mm": [
+          -36.0,
+          -31.5,
+          63.114999999999995
+        ],
+        "reason": "would remove protected bearing/contact material"
+      },
+      {
+        "centre_mm": [
+          -36.0,
+          -31.5,
+          86.885
+        ],
+        "reason": "would remove protected bearing/contact material"
+      },
+      {
+        "centre_mm": [
+          -36.0,
+          -30.0,
+          96.885
+        ],
+        "reason": "would remove protected bearing/contact material"
+      },
+      {
+        "centre_mm": [
+          -46.0,
+          31.5,
+          53.114999999999995
+        ],
+        "reason": "would remove protected bearing/contact material"
+      },
+      {
+        "centre_mm": [
+          -46.0,
+          -31.5,
+          53.114999999999995
+        ],
+        "reason": "would remove protected bearing/contact material"
+      },
+      {
+        "centre_mm": [
+          -46.0,
+          31.5,
+          63.114999999999995
+        ],
+        "reason": "would remove protected bearing/contact material"
+      },
+      {
+        "centre_mm": [
+          -46.0,
+          -31.5,
+          63.114999999999995
+        ],
+        "reason": "would remove protected bearing/contact material"
+      },
+      {
+        "centre_mm": [
+          -46.0,
+          -31.5,
+          86.885
+        ],
+        "reason": "would remove protected bearing/contact material"
+      },
+      {
+        "centre_mm": [
+          -46.0,
+          30.0,
+          96.885
+        ],
+        "reason": "would remove protected bearing/contact material"
+      },
+      {
+        "centre_mm": [
+          -46.0,
+          -30.0,
+          96.885
+        ],
+        "reason": "would remove protected bearing/contact material"
+      },
+      {
+        "centre_mm": [
+          -46.0,
+          31.5,
+          86.885
+        ],
+        "reason": "would remove protected bearing/contact material"
+      },
+      {
+        "centre_mm": [
+          -36.0,
+          30.0,
+          96.885
+        ],
+        "reason": "would remove protected bearing/contact material"
+      },
+      {
+        "centre_mm": [
+          -36.0,
+          31.5,
+          86.885
+        ],
+        "reason": "would remove protected bearing/contact material"
+      },
+      {
+        "centre_mm": [
+          -36.0,
+          31.5,
+          63.114999999999995
+        ],
+        "reason": "would remove protected bearing/contact material"
+      },
+      {
+        "centre_mm": [
+          -36.0,
+          31.5,
+          53.114999999999995
+        ],
+        "reason": "would remove protected bearing/contact material"
+      },
+      {
+        "centre_mm": [
+          31.0,
+          -39.0,
+          160.0
+        ],
+        "reason": "fillet R3.0: 15StdFail_NotDone BRep_API: command not done"
+      },
+      {
+        "centre_mm": [
+          31.0,
+          -39.0,
+          140.0
+        ],
+        "reason": "fillet R3.0: 15StdFail_NotDone BRep_API: command not done"
+      },
+      {
+        "centre_mm": [
+          31.0,
+          39.0,
+          160.0
+        ],
+        "reason": "fillet R3.0: 15StdFail_NotDone BRep_API: command not done"
+      },
+      {
+        "centre_mm": [
+          31.0,
+          39.0,
+          140.0
+        ],
+        "reason": "fillet R3.0: 15StdFail_NotDone BRep_API: command not done"
+      },
+      {
+        "centre_mm": [
+          33.50000000000001,
+          -39.0,
+          130.0
+        ],
+        "reason": "fillet R3.0: 15StdFail_NotDone BRep_API: command not done"
+      },
+      {
+        "centre_mm": [
+          28.5,
+          39.0,
+          130.0
+        ],
+        "reason": "fillet R3.0: 15StdFail_NotDone BRep_API: command not done"
+      },
+      {
+        "centre_mm": [
+          -41.0,
+          -39.0,
+          53.114999999999995
+        ],
+        "reason": "fillet R3.0: 15StdFail_NotDone BRep_API: command not done"
+      },
+      {
+        "centre_mm": [
+          -36.0,
+          -21.0,
+          58.114999999999995
+        ],
+        "reason": "would remove protected bearing/contact material"
+      },
+      {
+        "centre_mm": [
+          -41.0,
+          -39.0,
+          63.114999999999995
+        ],
+        "reason": "fillet R3.0: 15StdFail_NotDone BRep_API: command not done"
+      },
+      {
+        "centre_mm": [
+          -41.0,
+          -39.0,
+          86.885
+        ],
+        "reason": "fillet R3.0: 15StdFail_NotDone BRep_API: command not done"
+      },
+      {
+        "centre_mm": [
+          -36.0,
+          -21.0,
+          91.885
+        ],
+        "reason": "would remove protected bearing/contact material"
+      },
+      {
+        "centre_mm": [
+          -41.0,
+          -39.0,
+          106.0
+        ],
+        "reason": "fillet R3.0: 15StdFail_NotDone BRep_API: command not done"
+      },
+      {
+        "centre_mm": [
+          -41.0,
+          -33.0,
+          122.0
+        ],
+        "reason": "fillet R3.0: 15StdFail_NotDone BRep_API: command not done"
+      },
+      {
+        "centre_mm": [
+          -41.0,
+          -47.0,
+          106.0
+        ],
+        "reason": "fillet R3.0: 15StdFail_NotDone BRep_API: command not done"
+      },
+      {
+        "centre_mm": [
+          -41.0,
+          39.0,
+          106.0
+        ],
+        "reason": "fillet R3.0: 15StdFail_NotDone BRep_API: command not done"
+      },
+      {
+        "centre_mm": [
+          -41.0,
+          33.0,
+          122.0
+        ],
+        "reason": "fillet R3.0: 15StdFail_NotDone BRep_API: command not done"
+      },
+      {
+        "centre_mm": [
+          -41.0,
+          47.0,
+          106.0
+        ],
+        "reason": "fillet R3.0: 15StdFail_NotDone BRep_API: command not done"
+      },
+      {
+        "centre_mm": [
+          -41.0,
+          39.0,
+          53.114999999999995
+        ],
+        "reason": "fillet R3.0: 15StdFail_NotDone BRep_API: command not done"
+      },
+      {
+        "centre_mm": [
+          -46.0,
+          21.0,
+          58.114999999999995
+        ],
+        "reason": "would remove protected bearing/contact material"
+      },
+      {
+        "centre_mm": [
+          -46.0,
+          -21.0,
+          58.114999999999995
+        ],
+        "reason": "would remove protected bearing/contact material"
+      },
+      {
+        "centre_mm": [
+          -46.0,
+          21.0,
+          91.885
+        ],
+        "reason": "would remove protected bearing/contact material"
+      },
+      {
+        "centre_mm": [
+          -46.0,
+          -21.0,
+          91.885
+        ],
+        "reason": "would remove protected bearing/contact material"
+      },
+      {
+        "centre_mm": [
+          -36.0,
+          21.0,
+          91.885
+        ],
+        "reason": "would remove protected bearing/contact material"
+      },
+      {
+        "centre_mm": [
+          -36.0,
+          21.0,
+          58.114999999999995
+        ],
+        "reason": "would remove protected bearing/contact material"
+      },
+      {
+        "centre_mm": [
+          -41.0,
+          39.0,
+          63.114999999999995
+        ],
+        "reason": "fillet R3.0: 15StdFail_NotDone BRep_API: command not done"
+      },
+      {
+        "centre_mm": [
+          -41.0,
+          39.0,
+          86.885
+        ],
+        "reason": "fillet R3.0: 15StdFail_NotDone BRep_API: command not done"
+      },
+      {
+        "centre_mm": [
+          -36.0,
+          -39.0,
+          102.94250000000001
+        ],
+        "reason": "would remove protected bearing/contact material"
+      },
+      {
+        "centre_mm": [
+          -46.0,
+          39.0,
+          102.94250000000001
+        ],
+        "reason": "would remove protected bearing/contact material"
+      },
+      {
+        "centre_mm": [
+          -46.0,
+          -39.0,
+          102.94250000000001
+        ],
+        "reason": "would remove protected bearing/contact material"
+      },
+      {
+        "centre_mm": [
+          -36.0,
+          39.0,
+          102.94250000000001
+        ],
+        "reason": "would remove protected bearing/contact material"
+      },
+      {
+        "centre_mm": [
+          36.0,
+          39.0,
+          175.75
+        ],
+        "reason": "would remove protected bearing/contact material"
+      },
+      {
+        "centre_mm": [
+          36.0,
+          -39.0,
+          175.75
+        ],
+        "reason": "would remove protected bearing/contact material"
+      },
+      {
+        "centre_mm": [
+          26.0,
+          -39.0,
+          175.75
+        ],
+        "reason": "would remove protected bearing/contact material"
+      },
+      {
+        "centre_mm": [
+          26.0,
+          39.0,
+          175.75
+        ],
+        "reason": "would remove protected bearing/contact material"
+      },
+      {
+        "centre_mm": [
+          36.0,
+          -41.5,
+          130.0
+        ],
+        "reason": "fillet R3.0: 15StdFail_NotDone BRep_API: command not done"
+      },
+      {
+        "centre_mm": [
+          36.0,
+          39.75,
+          130.0
+        ],
+        "reason": "fillet R3.0: 15StdFail_NotDone BRep_API: command not done"
+      },
+      {
+        "centre_mm": [
+          10.0,
+          43.0,
+          118.0
+        ],
+        "reason": "fillet R3.0: 15StdFail_NotDone BRep_API: command not done"
+      }
+    ],
+    "protected_loss_mm3": 0.0,
+    "direct_native_volume_delta_mm3": -0.0001566332794027403
+  }
+]

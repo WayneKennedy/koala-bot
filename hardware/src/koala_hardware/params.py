@@ -311,3 +311,6 @@ TORSO_HALF_WIDTH = 47.0
 SHOULDER_SOCKET_RECESS = TORSO_HALF_WIDTH - (SHOULDER_A_Y - SOCKET_AXIS_Z + SOCKET_DEPTH)  # 10 mm
 TORSO_SHOULDER_TOP = 183.5
 SHOULDER_CASSETTE_BOLTS = tuple((y,z) for y in (17.0,30.0) for z in (135.0,165.0))
+
+# [OWNER 2026-10-01] Rounded family exterior; interfaces may require smaller radii.
+FAMILY_EDGE_RADIUS = 3.0

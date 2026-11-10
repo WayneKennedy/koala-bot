@@ -179,7 +179,7 @@ class Part:
     def faces(self): return self._subshapes('Faces')
     def vertices(self): return self._subshapes('Vertexes')
     def solids(self): return self._subshapes('Solids') if self else ShapeList()
-    def bounding_box(self, optimal=True): return Bounds(self.fc.optimalBoundingBox() if optimal else self.fc.BoundBox)
+    def bounding_box(self, optimal=True): return Bounds(self.fc.optimalBoundingBox(False) if optimal else self.fc.BoundBox)
     def center(self, kind=CenterOf.GEOMETRY):
         if kind==CenterOf.BOUNDING_BOX:return self.bounding_box().center()
         if self.fc.ShapeType=='Vertex':return Vector(self.fc.Point)

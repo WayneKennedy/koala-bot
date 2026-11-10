@@ -1,0 +1,39 @@
+{
+  "date": "2026-10-01",
+  "source_revision": "0db97d8f34c2d2898e0b49f06e187aba66a6104653dd6ec79657da1ce2636ef3",
+  "status": "R4 exterior revision ready for review; all changed designs unknown/unprinted.",
+  "python_tests": {
+    "passed": 83,
+    "execution_groups": [
+      29,
+      54
+    ],
+    "command": "hardware/freecad-run -m unittest discover -s hardware/tests"
+  },
+  "javascript_regression": {
+    "passed": true,
+    "command": "node hardware/tests/test_viewer_joint_order.cjs"
+  },
+  "archive": {
+    "new_pairs": 21,
+    "total_pairs": 122,
+    "all_pair_hashes_verified": true,
+    "all_frozen_source_hashes_verified": true,
+    "new_frozen_python_matches_current": true,
+    "new_documents_save_reopen_recompute": "passed during build",
+    "previous_checkpoint": "9fdc04e",
+    "previous_pairs_unchanged": 101,
+    "previous_frozen_files_unchanged": 131
+  },
+  "evidence_sha256": {
+    "geometry.json": "954d48992abead05cd66dc36daa3188282cc65091f159c56d040f6733b2f138e",
+    "bend-clearance.json": "d870626212a897e87495d5e057173cf424814aae41f54673217d82d77a5c53b2",
+    "nominal-audit.json": "a059723632178ef16470a1c299a511903509557d8fb8dcc5979339ceeabad003",
+    "viewer-limits.json": "5160281f18a5b72dbd439a3cc735ff9a4ef347ecd77fa98e0660de916e6c94aa",
+    "simulation-check.json": "ff78f21dbf84f0a7521051fb7db357742e38f2a4d285a37a78fc974888109e59",
+    "assembly.png": "35a7ebb8fc9553831a921f5f1f2d2e3c1c9c175c77f0713f4b6092f362ebbf91",
+    "max-fold.png": "b25395ce1689732d2c93cda0c1c986666660452d34dff0beee896902ddd8fd6d",
+    "python-tests.json": "735e0f7612c49f25183f3596d82544b608ffe3ee8d3cd195454ba81150daadc5"
+  },
+  "limits": "Sampled CAD and mesh checks only; no physical strength, adhesion, support removal, loaded gait or servo calibration validation."
+}

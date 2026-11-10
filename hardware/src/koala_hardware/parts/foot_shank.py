@@ -19,13 +19,13 @@ def pad_location():
 
 
 def build():
-    result=L.spec('foot_shank',solid(),handed=True,orientation=Rot(X=90),version=2,
+    result=L.spec('foot_shank',solid(),handed=True,orientation=Rot(X=90),version=4,
         fasteners=L.HORN_FASTENERS|{'M3x20 TPU-pad screw':1,'M3 nut':1,'M3 plain washer':1},
         notes='Rear walking variant: 90 mm knee-to-pad centre, original knee horn interfaces, '
-        'long open fork, R6.3 roots and rounded taper. Full 20.8 mm depth through fork, '
-        'shaft and key; both broad faces coplanar. Requires front_contact_pad v2. '
+        'long open fork, R6.3 roots and R3 taper corners and outer fork rims. Full 20.8 mm depth through fork, '
+        'shaft and key; broad faces coplanar; horn contact, screw-bearing web and key protected. Requires front_contact_pad v2. '
         'Native -Y face down; accessible support at fork holes and nut-slot roof. '
         'Insert captive M3 nut before keyed pad, then recessed M3x20 with washer. '
-        'Exchange the complete shank at the knee for wheeled shank v2. Unprinted.')
+        'Exchange the complete shank at the knee for wheeled shank v4. Unprinted.')
     result['configurations']=('walking',)
     return result

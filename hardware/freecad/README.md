@@ -2,9 +2,93 @@
 
 [Workflow](../../docs/freecad.md) · [machine-readable manifest](manifest.json) · [migration evidence](migration/README.md)
 
-Python is authoritative. Each link below pairs a replay script with its saved document; frozen dependencies are in `sources/`. The current accepted revision is listed first; the migration benchmark remains below. The manifest is authoritative.
+Python is authoritative. Each link below pairs a replay script with its saved document; frozen dependencies are in `sources/`. The latest review revision is listed first; accepted checkpoints and the migration benchmark remain below. The manifest is authoritative.
 
 Native documents contain recomputable Part/Sketcher feature histories. Historical/vendor STEP references retain imported solids and source provenance; their original histories are unavailable.
+
+## Thigh v7 thick horn lead-ins — 2026-10-01, unprinted
+
+[Geometry and validation](../../docs/design/thigh-leadin/README.md).
+Two handed thigh pairs and four walking/review poses. All 150 earlier pairs
+remain unchanged; other printed designs retain their R3 versions.
+
+| Model | Version | Python | FreeCAD |
+|---|---|---|---|
+| `thigh_right` | v7 | [Python](parts/thigh/v7/44ed687d14e1a9e4/thigh_right.py) | [FCStd](parts/thigh/v7/44ed687d14e1a9e4/thigh_right.FCStd) |
+| `thigh_left` | v7 | [Python](parts/thigh/v7/44ed687d14e1a9e4/thigh_left.py) | [FCStd](parts/thigh/v7/44ed687d14e1a9e4/thigh_left.FCStd) |
+| `koala-walking` | — | [Python](assemblies/44ed687d14e1a9e4/koala-walking.py) | [FCStd](assemblies/44ed687d14e1a9e4/koala-walking.FCStd) |
+| `koala-walking-max-fold` | — | [Python](assemblies/44ed687d14e1a9e4/koala-walking-max-fold.py) | [FCStd](assemblies/44ed687d14e1a9e4/koala-walking-max-fold.FCStd) |
+| `koala-walking-bend-min` | — | [Python](assemblies/44ed687d14e1a9e4/koala-walking-bend-min.py) | [FCStd](assemblies/44ed687d14e1a9e4/koala-walking-bend-min.FCStd) |
+| `koala-walking-bend-max` | — | [Python](assemblies/44ed687d14e1a9e4/koala-walking-bend-max.py) | [FCStd](assemblies/44ed687d14e1a9e4/koala-walking-bend-max.FCStd) |
+
+## R3 family exterior — 2026-10-01, unprinted
+
+[Scope, exceptions and validation](../../docs/design/rounded-family-r3/README.md).
+Twenty new part pairs cover eleven changed production designs, with six
+whole-robot poses. Superseded torso v7/v8 pairs preserve their interim sources; v9
+retains the native topology and restores the cassette service plane. All 122 earlier pairs
+are retained unchanged.
+
+| Model | Version | Status | Python | FreeCAD |
+|---|---|---|---|---|
+| `root_socket_right` | v2 | current review | [Python](parts/root_socket/v2/4b63c47db7e3590d/root_socket_right.py) | [FCStd](parts/root_socket/v2/4b63c47db7e3590d/root_socket_right.FCStd) |
+| `root_socket_left` | v2 | current review | [Python](parts/root_socket/v2/4b63c47db7e3590d/root_socket_left.py) | [FCStd](parts/root_socket/v2/4b63c47db7e3590d/root_socket_left.FCStd) |
+| `thigh_right` | v6 | superseded | [Python](parts/thigh/v6/4b63c47db7e3590d/thigh_right.py) | [FCStd](parts/thigh/v6/4b63c47db7e3590d/thigh_right.FCStd) |
+| `thigh_left` | v6 | superseded | [Python](parts/thigh/v6/4b63c47db7e3590d/thigh_left.py) | [FCStd](parts/thigh/v6/4b63c47db7e3590d/thigh_left.FCStd) |
+| `shank_right` | v4 | current review | [Python](parts/shank/v4/4b63c47db7e3590d/shank_right.py) | [FCStd](parts/shank/v4/4b63c47db7e3590d/shank_right.FCStd) |
+| `shank_left` | v4 | current review | [Python](parts/shank/v4/4b63c47db7e3590d/shank_left.py) | [FCStd](parts/shank/v4/4b63c47db7e3590d/shank_left.FCStd) |
+| `foot_shank_right` | v4 | current review | [Python](parts/foot_shank/v4/4b63c47db7e3590d/foot_shank_right.py) | [FCStd](parts/foot_shank/v4/4b63c47db7e3590d/foot_shank_right.FCStd) |
+| `foot_shank_left` | v4 | current review | [Python](parts/foot_shank/v4/4b63c47db7e3590d/foot_shank_left.py) | [FCStd](parts/foot_shank/v4/4b63c47db7e3590d/foot_shank_left.FCStd) |
+| `hip_carrier_right` | v3 | current review | [Python](parts/hip_carrier/v3/4b63c47db7e3590d/hip_carrier_right.py) | [FCStd](parts/hip_carrier/v3/4b63c47db7e3590d/hip_carrier_right.FCStd) |
+| `hip_carrier_left` | v3 | current review | [Python](parts/hip_carrier/v3/4b63c47db7e3590d/hip_carrier_left.py) | [FCStd](parts/hip_carrier/v3/4b63c47db7e3590d/hip_carrier_left.FCStd) |
+| `shoulder_carrier_right` | v6 | current review | [Python](parts/shoulder_carrier/v6/4b63c47db7e3590d/shoulder_carrier_right.py) | [FCStd](parts/shoulder_carrier/v6/4b63c47db7e3590d/shoulder_carrier_right.FCStd) |
+| `shoulder_carrier_left` | v6 | current review | [Python](parts/shoulder_carrier/v6/4b63c47db7e3590d/shoulder_carrier_left.py) | [FCStd](parts/shoulder_carrier/v6/4b63c47db7e3590d/shoulder_carrier_left.FCStd) |
+| `upper_arm_right` | v4 | current review | [Python](parts/upper_arm/v4/4b63c47db7e3590d/upper_arm_right.py) | [FCStd](parts/upper_arm/v4/4b63c47db7e3590d/upper_arm_right.FCStd) |
+| `upper_arm_left` | v4 | current review | [Python](parts/upper_arm/v4/4b63c47db7e3590d/upper_arm_left.py) | [FCStd](parts/upper_arm/v4/4b63c47db7e3590d/upper_arm_left.FCStd) |
+| `forearm_right` | v5 | current review | [Python](parts/forearm/v5/4b63c47db7e3590d/forearm_right.py) | [FCStd](parts/forearm/v5/4b63c47db7e3590d/forearm_right.FCStd) |
+| `forearm_left` | v5 | current review | [Python](parts/forearm/v5/4b63c47db7e3590d/forearm_left.py) | [FCStd](parts/forearm/v5/4b63c47db7e3590d/forearm_left.FCStd) |
+| `shoulder_mount_right` | v2 | current review | [Python](parts/shoulder_mount/v2/4b63c47db7e3590d/shoulder_mount_right.py) | [FCStd](parts/shoulder_mount/v2/4b63c47db7e3590d/shoulder_mount_right.FCStd) |
+| `shoulder_mount_left` | v2 | current review | [Python](parts/shoulder_mount/v2/4b63c47db7e3590d/shoulder_mount_left.py) | [FCStd](parts/shoulder_mount/v2/4b63c47db7e3590d/shoulder_mount_left.FCStd) |
+| `torso_frame` | v9 | current review | [Python](parts/torso_frame/v9/4b63c47db7e3590d/torso_frame.py) | [FCStd](parts/torso_frame/v9/4b63c47db7e3590d/torso_frame.FCStd) |
+| `e_tray` | v2 | current review | [Python](parts/e_tray/v2/4b63c47db7e3590d/e_tray.py) | [FCStd](parts/e_tray/v2/4b63c47db7e3590d/e_tray.FCStd) |
+| `koala-walking` | — | superseded | [Python](assemblies/4b63c47db7e3590d/koala-walking.py) | [FCStd](assemblies/4b63c47db7e3590d/koala-walking.FCStd) |
+| `koala-quadruped` | — | thigh v6 snapshot | [Python](assemblies/4b63c47db7e3590d/koala-quadruped.py) | [FCStd](assemblies/4b63c47db7e3590d/koala-quadruped.FCStd) |
+| `koala-upright` | — | thigh v6 snapshot | [Python](assemblies/4b63c47db7e3590d/koala-upright.py) | [FCStd](assemblies/4b63c47db7e3590d/koala-upright.FCStd) |
+| `koala-walking-max-fold` | — | superseded | [Python](assemblies/4b63c47db7e3590d/koala-walking-max-fold.py) | [FCStd](assemblies/4b63c47db7e3590d/koala-walking-max-fold.FCStd) |
+| `koala-walking-bend-min` | — | superseded | [Python](assemblies/4b63c47db7e3590d/koala-walking-bend-min.py) | [FCStd](assemblies/4b63c47db7e3590d/koala-walking-bend-min.FCStd) |
+| `koala-walking-bend-max` | — | superseded | [Python](assemblies/4b63c47db7e3590d/koala-walking-bend-max.py) | [FCStd](assemblies/4b63c47db7e3590d/koala-walking-bend-max.FCStd) |
+| `torso_frame` | v7 | superseded | [Python](parts/torso_frame/v7/21f0d744436f45aa/torso_frame.py) | [FCStd](parts/torso_frame/v7/21f0d744436f45aa/torso_frame.FCStd) |
+| `torso_frame` | v8 | superseded | [Python](parts/torso_frame/v8/c65d304cc170e9c7/torso_frame.py) | [FCStd](parts/torso_frame/v8/c65d304cc170e9c7/torso_frame.FCStd) |
+
+## R4 family exterior — 2026-10-01, unprinted
+
+[Scope, exceptions and validation](../../docs/design/rounded-family/README.md).
+These 21 new pairs cover eight changed designs (15 handed part files) and six
+assemblies. All 101 earlier pairs remain unchanged. Accepted bend caps are retained.
+
+| Model | Version | Python | FreeCAD |
+|---|---|---|---|
+| `thigh_right` | v5 | [Python](parts/thigh/v5/0db97d8f34c2d289/thigh_right.py) | [FCStd](parts/thigh/v5/0db97d8f34c2d289/thigh_right.FCStd) |
+| `thigh_left` | v5 | [Python](parts/thigh/v5/0db97d8f34c2d289/thigh_left.py) | [FCStd](parts/thigh/v5/0db97d8f34c2d289/thigh_left.FCStd) |
+| `shank_right` | v3 | [Python](parts/shank/v3/0db97d8f34c2d289/shank_right.py) | [FCStd](parts/shank/v3/0db97d8f34c2d289/shank_right.FCStd) |
+| `shank_left` | v3 | [Python](parts/shank/v3/0db97d8f34c2d289/shank_left.py) | [FCStd](parts/shank/v3/0db97d8f34c2d289/shank_left.FCStd) |
+| `foot_shank_right` | v3 | [Python](parts/foot_shank/v3/0db97d8f34c2d289/foot_shank_right.py) | [FCStd](parts/foot_shank/v3/0db97d8f34c2d289/foot_shank_right.FCStd) |
+| `foot_shank_left` | v3 | [Python](parts/foot_shank/v3/0db97d8f34c2d289/foot_shank_left.py) | [FCStd](parts/foot_shank/v3/0db97d8f34c2d289/foot_shank_left.FCStd) |
+| `hip_carrier_right` | v2 | [Python](parts/hip_carrier/v2/0db97d8f34c2d289/hip_carrier_right.py) | [FCStd](parts/hip_carrier/v2/0db97d8f34c2d289/hip_carrier_right.FCStd) |
+| `hip_carrier_left` | v2 | [Python](parts/hip_carrier/v2/0db97d8f34c2d289/hip_carrier_left.py) | [FCStd](parts/hip_carrier/v2/0db97d8f34c2d289/hip_carrier_left.FCStd) |
+| `shoulder_carrier_right` | v5 | [Python](parts/shoulder_carrier/v5/0db97d8f34c2d289/shoulder_carrier_right.py) | [FCStd](parts/shoulder_carrier/v5/0db97d8f34c2d289/shoulder_carrier_right.FCStd) |
+| `shoulder_carrier_left` | v5 | [Python](parts/shoulder_carrier/v5/0db97d8f34c2d289/shoulder_carrier_left.py) | [FCStd](parts/shoulder_carrier/v5/0db97d8f34c2d289/shoulder_carrier_left.FCStd) |
+| `upper_arm_right` | v3 | [Python](parts/upper_arm/v3/0db97d8f34c2d289/upper_arm_right.py) | [FCStd](parts/upper_arm/v3/0db97d8f34c2d289/upper_arm_right.FCStd) |
+| `upper_arm_left` | v3 | [Python](parts/upper_arm/v3/0db97d8f34c2d289/upper_arm_left.py) | [FCStd](parts/upper_arm/v3/0db97d8f34c2d289/upper_arm_left.FCStd) |
+| `forearm_right` | v4 | [Python](parts/forearm/v4/0db97d8f34c2d289/forearm_right.py) | [FCStd](parts/forearm/v4/0db97d8f34c2d289/forearm_right.FCStd) |
+| `forearm_left` | v4 | [Python](parts/forearm/v4/0db97d8f34c2d289/forearm_left.py) | [FCStd](parts/forearm/v4/0db97d8f34c2d289/forearm_left.FCStd) |
+| `torso_frame` | v6 | [Python](parts/torso_frame/v6/0db97d8f34c2d289/torso_frame.py) | [FCStd](parts/torso_frame/v6/0db97d8f34c2d289/torso_frame.FCStd) |
+| `koala-walking` | — | [Python](assemblies/0db97d8f34c2d289/koala-walking.py) | [FCStd](assemblies/0db97d8f34c2d289/koala-walking.FCStd) |
+| `koala-quadruped` | — | [Python](assemblies/0db97d8f34c2d289/koala-quadruped.py) | [FCStd](assemblies/0db97d8f34c2d289/koala-quadruped.FCStd) |
+| `koala-upright` | — | [Python](assemblies/0db97d8f34c2d289/koala-upright.py) | [FCStd](assemblies/0db97d8f34c2d289/koala-upright.FCStd) |
+| `koala-walking-max-fold` | — | [Python](assemblies/0db97d8f34c2d289/koala-walking-max-fold.py) | [FCStd](assemblies/0db97d8f34c2d289/koala-walking-max-fold.FCStd) |
+| `koala-walking-bend-min` | — | [Python](assemblies/0db97d8f34c2d289/koala-walking-bend-min.py) | [FCStd](assemblies/0db97d8f34c2d289/koala-walking-bend-min.FCStd) |
+| `koala-walking-bend-max` | — | [Python](assemblies/0db97d8f34c2d289/koala-walking-bend-max.py) | [FCStd](assemblies/0db97d8f34c2d289/koala-walking-bend-max.FCStd) |
 
 ## Accepted 20.8 mm links — 2026-10-01
 

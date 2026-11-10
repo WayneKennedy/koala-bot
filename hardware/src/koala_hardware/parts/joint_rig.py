@@ -11,7 +11,7 @@ def build_saddle():
 
 
 def build_fork():
-    return L.spec('coupon_socket_fork',L.clevis(),orientation=Rot(Y=90),
-        notes='Production integral double fork. Flat 36.4 mm horn contact span; 3.5 mm web, 6 mm pan-head pockets and blind Back boss relief. Outer horn pad down; removable support beneath opposite cheek. Fit before full limbs.', printable='assumed')
+    return L.spec('coupon_socket_fork',L.clevis(family=False),orientation=Rot(Y=90),
+        notes='Original acceptance-rig double fork; production exteriors now use R3. Flat 36.4 mm horn contact span; 3.5 mm web, 6 mm pan-head pockets and blind Back boss relief. Outer horn pad down; removable support beneath opposite cheek. Fit before full limbs.', printable='assumed')
 
 BUILDERS=[build_saddle,build_fork]

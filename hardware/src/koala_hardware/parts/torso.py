@@ -55,9 +55,24 @@ def solid():
             part+=S._box(-46,-36,y-5,y+5,z-5,z+5)
             part+=S._box(-46,-36,min(y,-R) if y<0 else y,max(y,-R) if y<0 else R,z-5,z+5)
             part-=S._x_hole(-47,-35,y,z,P.CLEAR_HOLE_M3)
-    # Rounded exposed vertical corners of each rail/flange silhouette.
-    vertical=[e for e in part.edges().filter_by(Axis.Z) if e.length>8]
-    part=fillet(vertical,1.5)
+    from ..rounding import exterior
+    # Preserve bolt-bearing columns and cassette contact faces. The two 5 mm
+    # end plates retain their thin horizontal rims; opposed R3 rounds overlap.
+    # Cassette-to-frame contact is X=26; screw heads bear on X=36.
+    protect=S._box(26,26.15,4,36,130,170)+S._box(26,26.15,-36,-4,130,170)
+    for y,z in P.SHOULDER_CASSETTE_BOLTS:
+        for sign in (-1,1):protect+=S._x_hole(26,36,sign*y,z,8)
+    for y in (-26,26):
+        for z in (LOW+12,HIGH-12):protect+=S._x_hole(-46,-36,y,z,8)
+    for x,y in neck_space.MOUNT_XY:
+        protect+=Pos(x,y,TOP-5)*Cylinder(4,5,align=(Align.CENTER,Align.CENTER,Align.MIN))
+    vertical=lambda e:abs(e.position_at(1).Z-e.position_at(0).Z)>e.length-1e-5
+    thin=lambda e:(e.center().Z<=LOW+5.01 or e.center().Z>=TOP-5.01) and not vertical(e)
+    # The ramp-to-rail inner corner must not bulge across the cassette's
+    # X=26 lateral slide plane. Keep that concave transition unfilleted.
+    service_corner=lambda e:(abs(e.center().X-26)<.01 and abs(e.center().Z-130)<.01 and abs(e.center().Y)>36)
+    part=exterior(part,native_inputs=False,select=lambda e:not thin(e) and not service_corner(e),
+                  protect=protect,label='torso_R3')
     # The inclined pelvis plate: the rear flange's plane, rotated with the modules.
     x0,x1=P.TORSO_REAR_PLATE_X
     plate=tilt*holes(S._box(x0,x1,-F,F,LOW,LOW+5),LOW,LOW+5)
@@ -78,13 +93,14 @@ def solid():
     # installed. The unchanged root screws are fitted to each cassette on bench.
     for y,z in P.SHOULDER_CASSETTE_BOLTS:
         for sign in (-1,1):part-=S._x_hole(25,37,sign*y,z,P.CLEAR_HOLE_M3)
-    return part
+    from ..freecad_document import recomputed_part
+    return recomputed_part(part)
 
 
 def build():
-    return L.spec('torso_frame',solid(),orientation=Rot(Y=-90),version=5,
+    return L.spec('torso_frame',solid(),orientation=Rot(Y=-90),version=9,
         fasteners={},
-        notes='Rigid 150 mm hip-to-shoulder spacing; frame extended to Z183.5 around the recessed roll-first A modules. '
+        notes='R3 exterior edges; thin 5 mm plate rims and bearing seats retained. Rigid 150 mm hip-to-shoulder spacing; frame extended to Z183.5 around the recessed roll-first A modules. '
         '47 mm half-width gives a 10 mm socket-lip recess; dorsal shoulder rails taper inward for roll clearance. Front-access removable shoulder cassettes; 45 degree rear plate with open full-length driver corridors. '
         'Dorsal shoulder slot and four M3 holes reserve a removable three-STS3032M neck cartridge; final servo retention and 3-RPS linkage remain open. '
         'Dorsal face down; bed-only support under opposing rails, cap and flange roofs, removable through open cage. Unprinted.',printable='unknown')

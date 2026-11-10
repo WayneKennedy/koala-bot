@@ -1,5 +1,9 @@
 # Native FreeCAD CAD — DEC-63
 
+Current rounded exterior revision: [R3 family style](design/rounded-family-r3/README.md).
+Latest thigh update: [thick horn lead-ins, v7](design/thigh-leadin/README.md).
+
+
 Python is the source of truth. FreeCAD documents are generated, inspectable
 collaboration artefacts; carry GUI changes back into Python before releasing a
 revision. [Decision](decisions.md) · [current geometry](cad-integrated-design.md) ·
@@ -12,7 +16,7 @@ Vendor originals and frozen `reference-sources/` inputs remain required for
 reproducible Python replays. Simulation meshes remain runtime assets. Future
 STEP exports under `docs/design/` are local, ignored derivatives.
 
-Current lower-link revision and maximum-bend assemblies:
+Accepted pre-rounding lower-link checkpoint and maximum-bend assemblies:
 [20.8 mm footed links](design/flat-links/README.md).
 
 ## Build and open

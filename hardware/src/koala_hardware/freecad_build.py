@@ -113,7 +113,9 @@ def construct(meta,archive=None):
             group_name='References' if name.startswith('reference') else 'PrintedAndDriveParts'
             if group_name not in groups:groups[group_name]=d.addObject('App::DocumentObjectGroup',group_name)
             groups[group_name].addObject(obj)
-            if App.GuiUp:obj.ViewObject.ShapeColor=tuple(int(colour[i:i+2],16)/255 for i in (1,3,5))
+            if App.GuiUp:
+                view=obj.ViewObject if hasattr(obj.ViewObject,'ShapeColor') else obj.getLinkedObject().ViewObject
+                view.ShapeColor=tuple(int(colour[i:i+2],16)/255 for i in (1,3,5))
             items.append((obj,shape))
         result=d.addObject('Part::Compound','Assembly');result.Links=[o for o,s in items]
         if meta.get('bend_review'):

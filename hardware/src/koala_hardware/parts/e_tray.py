@@ -9,7 +9,10 @@ from . import links as L, torso as T
 @lru_cache
 def solid():
     part=S._box(-48,48,-44,44,0,4)
-    part=fillet(part.edges().filter_by(Axis.Z),5)
+    part=fillet(part.edges().filter_by(Axis.Z),P.FAMILY_EDGE_RADIUS)
+    # The 4 mm plate cannot carry opposing R3 rounds. R1.5 leaves a 1 mm rim.
+    edges=[e for e in part.edges() if abs(e.center().Z)<1e-6 or abs(e.center().Z-4)<1e-6]
+    part=fillet(edges,1.5)
     holes=[(y,z-(T.LOW+T.HIGH)/2) for y in (-26,26) for z in (T.LOW+12,T.HIGH-12)]
     for x,y in P.UNO_HOLES:
         x,y=x-P.UNO_BOARD[0]/2,y-P.UNO_BOARD[1]/2
@@ -29,9 +32,9 @@ def location():
 
 
 def build():
-    return L.spec('e_tray',solid(),orientation=Rot(),
+    return L.spec('e_tray',solid(),orientation=Rot(),version=2,
         fasteners={'M3x25 tray through-bolt':4,'M3 nut':8,'M3 plain washer':12,'M3x16 Uno driver-board bolt (stack to verify)':4},
-        notes='Flat tray, Uno-pattern stand-offs plus strap slots. Four 4 mm spacers to torso; rounded stand-off roots. No support intended; electronics packaging remains open.', printable='assumed')
+        notes='R3 plan corners; R1.5 rims on the 4 mm plate. Flat tray, Uno-pattern stand-offs plus strap slots. Four 4 mm spacers to torso; rounded stand-off roots. No support intended; electronics packaging remains open. Unprinted.', printable='unknown')
 
 
 def build_spacer():

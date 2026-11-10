@@ -27,3 +27,19 @@ def export_mesh(solid,path,**kwargs):
     if merged_roundoff or not np.all(keep):
         mesh.export(str(path),file_type='stl')
     return mesh
+
+
+def closed_shape_mesh(solid):
+    """Reject malformed fillet corner meshes before accepting a style feature.
+
+    Use the native mesher in memory. This screen supplements BREP validity;
+    the finer persisted manufacturing mesh still has to pass export_mesh.
+    """
+    import MeshPart
+    raw=MeshPart.meshFromShape(Shape=solid.fc,LinearDeflection=.01,
+                              AngularDeflection=.1,Relative=False)
+    vertices,faces=raw.Topology
+    mesh=trimesh.Trimesh(vertices=[tuple(v) for v in vertices],faces=faces,process=True)
+    keep=np.all(np.diff(np.sort(mesh.faces,axis=1),axis=1)!=0,axis=1)
+    mesh.update_faces(keep)
+    return bool(mesh.is_watertight and mesh.volume>0)

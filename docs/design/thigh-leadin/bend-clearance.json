@@ -1,0 +1,3596 @@
+{
+  "vendor_case_available": false,
+  "angular_reserve_deg": 2.0,
+  "signed_limits_deg": {
+    "front": [
+      -112.75,
+      112.75
+    ],
+    "rear": [
+      -22.75,
+      121.25
+    ]
+  },
+  "angle_convention": "Native X rotation from straight links; front flexion is negative, rear flexion positive.",
+  "interior_step_deg": 1.0,
+  "boundary_step_deg": 0.25,
+  "local": {
+    "front": {
+      "clear_samples": [
+        {
+          "angle_deg": -112.75,
+          "overlap_mm3": {
+            "printed_cup": 0,
+            "fallback_case": 0,
+            "ear_heads": 0
+          },
+          "printed_cup_gap_mm": 0.7563683023218344
+        },
+        {
+          "angle_deg": -111,
+          "overlap_mm3": {
+            "printed_cup": 0,
+            "fallback_case": 0,
+            "ear_heads": 0
+          },
+          "printed_cup_gap_mm": 1.3692293500217259
+        },
+        {
+          "angle_deg": -110,
+          "overlap_mm3": {
+            "printed_cup": 0,
+            "fallback_case": 0,
+            "ear_heads": 0
+          },
+          "printed_cup_gap_mm": 1.7145427688133752
+        },
+        {
+          "angle_deg": -109,
+          "overlap_mm3": {
+            "printed_cup": 0,
+            "fallback_case": 0,
+            "ear_heads": 0
+          },
+          "printed_cup_gap_mm": 2.056165980521412
+        },
+        {
+          "angle_deg": -108,
+          "overlap_mm3": {
+            "printed_cup": 0,
+            "fallback_case": 0,
+            "ear_heads": 0
+          },
+          "printed_cup_gap_mm": 2.3939949234061912
+        },
+        {
+          "angle_deg": -107,
+          "overlap_mm3": {
+            "printed_cup": 0,
+            "fallback_case": 0,
+            "ear_heads": 0
+          },
+          "printed_cup_gap_mm": 2.727926691499094
+        },
+        {
+          "angle_deg": -106,
+          "overlap_mm3": {
+            "printed_cup": 0,
+            "fallback_case": 0,
+            "ear_heads": 0
+          },
+          "printed_cup_gap_mm": 3.0578595659486836
+        },
+        {
+          "angle_deg": -105,
+          "overlap_mm3": {
+            "printed_cup": 0,
+            "fallback_case": 0,
+            "ear_heads": 0
+          },
+          "printed_cup_gap_mm": 3.3836930460052836
+        },
+        {
+          "angle_deg": -104,
+          "overlap_mm3": {
+            "printed_cup": 0,
+            "fallback_case": 0,
+            "ear_heads": 0
+          },
+          "printed_cup_gap_mm": 3.705327879634422
+        },
+        {
+          "angle_deg": -103,
+          "overlap_mm3": {
+            "printed_cup": 0,
+            "fallback_case": 0,
+            "ear_heads": 0
+          },
+          "printed_cup_gap_mm": 4.022666093750052
+        },
+        {
+          "angle_deg": -102,
+          "overlap_mm3": {
+            "printed_cup": 0,
+            "fallback_case": 0,
+            "ear_heads": 0
+          },
+          "printed_cup_gap_mm": 4.33561102405802
+        },
+        {
+          "angle_deg": -101,
+          "overlap_mm3": {
+            "printed_cup": 0,
+            "fallback_case": 0,
+            "ear_heads": 0
+          },
+          "printed_cup_gap_mm": 4.644067344500985
+        },
+        {
+          "angle_deg": -100,
+          "overlap_mm3": {
+            "printed_cup": 0,
+            "fallback_case": 0,
+            "ear_heads": 0
+          },
+          "printed_cup_gap_mm": 4.947941096295684
+        },
+        {
+          "angle_deg": -99,
+          "overlap_mm3": {
+            "printed_cup": 0,
+            "fallback_case": 0,
+            "ear_heads": 0
+          },
+          "printed_cup_gap_mm": 5.247139716553585
+        },
+        {
+          "angle_deg": -98,
+          "overlap_mm3": {
+            "printed_cup": 0,
+            "fallback_case": 0,
+            "ear_heads": 0
+          },
+          "printed_cup_gap_mm": 5.541572066476584
+        },
+        {
+          "angle_deg": -97,
+          "overlap_mm3": {
+            "printed_cup": 0,
+            "fallback_case": 0,
+            "ear_heads": 0
+          },
+          "printed_cup_gap_mm": 5.831148459118667
+        },
+        {
+          "angle_deg": -96,
+          "overlap_mm3": {
+            "printed_cup": 0,
+            "fallback_case": 0,
+            "ear_heads": 0.0
+          },
+          "printed_cup_gap_mm": 6.115780686705418
+        },
+        {
+          "angle_deg": -95,
+          "overlap_mm3": {
+            "printed_cup": 0,
+            "fallback_case": 0,
+            "ear_heads": 0.0
+          },
+          "printed_cup_gap_mm": 6.395382047503052
+        },
+        {
+          "angle_deg": -94,
+          "overlap_mm3": {
+            "printed_cup": 0,
+            "fallback_case": 0,
+            "ear_heads": 0.0
+          },
+          "printed_cup_gap_mm": 6.669867372228501
+        },
+        {
+          "angle_deg": -93,
+          "overlap_mm3": {
+            "printed_cup": 0,
+            "fallback_case": 0,
+            "ear_heads": 0.0
+          },
+          "printed_cup_gap_mm": 6.939153049992843
+        },
+        {
+          "angle_deg": -92,
+          "overlap_mm3": {
+            "printed_cup": 0,
+            "fallback_case": 0,
+            "ear_heads": 0.0
+          },
+          "printed_cup_gap_mm": 7.203157053770023
+        },
+        {
+          "angle_deg": -91,
+          "overlap_mm3": {
+            "printed_cup": 0.0,
+            "fallback_case": 0,
+            "ear_heads": 0.0
+          },
+          "printed_cup_gap_mm": 7.461798965382995
+        },
+        {
+          "angle_deg": -90,
+          "overlap_mm3": {
+            "printed_cup": 0.0,
+            "fallback_case": 0,
+            "ear_heads": 0.0
+          },
+          "printed_cup_gap_mm": 7.714999999999982
+        },
+        {
+          "angle_deg": -89,
+          "overlap_mm3": {
+            "printed_cup": 0.0,
+            "fallback_case": 0,
+            "ear_heads": 0.0
+          },
+          "printed_cup_gap_mm": 7.714999999999996
+        },
+        {
+          "angle_deg": -88,
+          "overlap_mm3": {
+            "printed_cup": 0.0,
+            "fallback_case": 0,
+            "ear_heads": 0.0
+          },
+          "printed_cup_gap_mm": 7.714999999999989
+        },
+        {
+          "angle_deg": -87,
+          "overlap_mm3": {
+            "printed_cup": 0.0,
+            "fallback_case": 0,
+            "ear_heads": 0.0
+          },
+          "printed_cup_gap_mm": 7.714999999999989
+        },
+        {
+          "angle_deg": -86,
+          "overlap_mm3": {
+            "printed_cup": 0.0,
+            "fallback_case": 0,
+            "ear_heads": 0.0
+          },
+          "printed_cup_gap_mm": 7.714999999999996
+        },
+        {
+          "angle_deg": -85,
+          "overlap_mm3": {
+            "printed_cup": 0.0,
+            "fallback_case": 0,
+            "ear_heads": 0.0
+          },
+          "printed_cup_gap_mm": 7.714999999999989
+        },
+        {
+          "angle_deg": -84,
+          "overlap_mm3": {
+            "printed_cup": 0.0,
+            "fallback_case": 0,
+            "ear_heads": 0.0
+          },
+          "printed_cup_gap_mm": 7.714999999999996
+        },
+        {
+          "angle_deg": -83,
+          "overlap_mm3": {
+            "printed_cup": 0.0,
+            "fallback_case": 0,
+            "ear_heads": 0.0
+          },
+          "printed_cup_gap_mm": 7.714999999999989
+        },
+        {
+          "angle_deg": -82,
+          "overlap_mm3": {
+            "printed_cup": 0.0,
+            "fallback_case": 0,
+            "ear_heads": 0.0
+          },
+          "printed_cup_gap_mm": 7.714999999999996
+        },
+        {
+          "angle_deg": -81,
+          "overlap_mm3": {
+            "printed_cup": 0.0,
+            "fallback_case": 0,
+            "ear_heads": 0.0
+          },
+          "printed_cup_gap_mm": 7.714999999999989
+        },
+        {
+          "angle_deg": -80,
+          "overlap_mm3": {
+            "printed_cup": 0.0,
+            "fallback_case": 0,
+            "ear_heads": 0.0
+          },
+          "printed_cup_gap_mm": 7.714999999999989
+        },
+        {
+          "angle_deg": -79,
+          "overlap_mm3": {
+            "printed_cup": 0.0,
+            "fallback_case": 0,
+            "ear_heads": 0.0
+          },
+          "printed_cup_gap_mm": 7.714999999999996
+        },
+        {
+          "angle_deg": -78,
+          "overlap_mm3": {
+            "printed_cup": 0.0,
+            "fallback_case": 0,
+            "ear_heads": 0.0
+          },
+          "printed_cup_gap_mm": 7.714999999999989
+        },
+        {
+          "angle_deg": -77,
+          "overlap_mm3": {
+            "printed_cup": 0.0,
+            "fallback_case": 0,
+            "ear_heads": 0.0
+          },
+          "printed_cup_gap_mm": 7.714999999999989
+        },
+        {
+          "angle_deg": -76,
+          "overlap_mm3": {
+            "printed_cup": 0.0,
+            "fallback_case": 0,
+            "ear_heads": 0.0
+          },
+          "printed_cup_gap_mm": 7.714999999999989
+        },
+        {
+          "angle_deg": -75,
+          "overlap_mm3": {
+            "printed_cup": 0.0,
+            "fallback_case": 0,
+            "ear_heads": 0.0
+          },
+          "printed_cup_gap_mm": 7.714999999999989
+        },
+        {
+          "angle_deg": -74,
+          "overlap_mm3": {
+            "printed_cup": 0.0,
+            "fallback_case": 0,
+            "ear_heads": 0.0
+          },
+          "printed_cup_gap_mm": 7.714999999999989
+        },
+        {
+          "angle_deg": -73,
+          "overlap_mm3": {
+            "printed_cup": 0.0,
+            "fallback_case": 0,
+            "ear_heads": 0.0
+          },
+          "printed_cup_gap_mm": 7.714999999999989
+        },
+        {
+          "angle_deg": -72,
+          "overlap_mm3": {
+            "printed_cup": 0.0,
+            "fallback_case": 0,
+            "ear_heads": 0.0
+          },
+          "printed_cup_gap_mm": 7.714999999999989
+        },
+        {
+          "angle_deg": -71,
+          "overlap_mm3": {
+            "printed_cup": 0.0,
+            "fallback_case": 0,
+            "ear_heads": 0.0
+          },
+          "printed_cup_gap_mm": 7.714999999999996
+        },
+        {
+          "angle_deg": -70,
+          "overlap_mm3": {
+            "printed_cup": 0.0,
+            "fallback_case": 0,
+            "ear_heads": 0.0
+          },
+          "printed_cup_gap_mm": 7.714999999999982
+        },
+        {
+          "angle_deg": -69,
+          "overlap_mm3": {
+            "printed_cup": 0.0,
+            "fallback_case": 0,
+            "ear_heads": 0.0
+          },
+          "printed_cup_gap_mm": 7.714999999999996
+        },
+        {
+          "angle_deg": -68,
+          "overlap_mm3": {
+            "printed_cup": 0.0,
+            "fallback_case": 0,
+            "ear_heads": 0.0
+          },
+          "printed_cup_gap_mm": 7.714999999999996
+        },
+        {
+          "angle_deg": -67,
+          "overlap_mm3": {
+            "printed_cup": 0.0,
+            "fallback_case": 0,
+            "ear_heads": 0.0
+          },
+          "printed_cup_gap_mm": 7.714999999999989
+        },
+        {
+          "angle_deg": -66,
+          "overlap_mm3": {
+            "printed_cup": 0.0,
+            "fallback_case": 0,
+            "ear_heads": 0.0
+          },
+          "printed_cup_gap_mm": 7.714999999999989
+        },
+        {
+          "angle_deg": -65,
+          "overlap_mm3": {
+            "printed_cup": 0.0,
+            "fallback_case": 0,
+            "ear_heads": 0.0
+          },
+          "printed_cup_gap_mm": 7.714999999999989
+        },
+        {
+          "angle_deg": -64,
+          "overlap_mm3": {
+            "printed_cup": 0.0,
+            "fallback_case": 0,
+            "ear_heads": 0.0
+          },
+          "printed_cup_gap_mm": 7.714999999999989
+        },
+        {
+          "angle_deg": -63,
+          "overlap_mm3": {
+            "printed_cup": 0.0,
+            "fallback_case": 0,
+            "ear_heads": 0.0
+          },
+          "printed_cup_gap_mm": 7.714999999999996
+        },
+        {
+          "angle_deg": -62,
+          "overlap_mm3": {
+            "printed_cup": 0.0,
+            "fallback_case": 0,
+            "ear_heads": 0.0
+          },
+          "printed_cup_gap_mm": 7.714999999999989
+        },
+        {
+          "angle_deg": -61,
+          "overlap_mm3": {
+            "printed_cup": 0.0,
+            "fallback_case": 0,
+            "ear_heads": 0.0
+          },
+          "printed_cup_gap_mm": 7.714999999999989
+        },
+        {
+          "angle_deg": -60,
+          "overlap_mm3": {
+            "printed_cup": 0.0,
+            "fallback_case": 0,
+            "ear_heads": 0.0
+          },
+          "printed_cup_gap_mm": 7.714999999999996
+        },
+        {
+          "angle_deg": -59,
+          "overlap_mm3": {
+            "printed_cup": 0.0,
+            "fallback_case": 0,
+            "ear_heads": 0.0
+          },
+          "printed_cup_gap_mm": 7.714999999999996
+        },
+        {
+          "angle_deg": -58,
+          "overlap_mm3": {
+            "printed_cup": 0.0,
+            "fallback_case": 0,
+            "ear_heads": 0.0
+          },
+          "printed_cup_gap_mm": 7.714999999999996
+        },
+        {
+          "angle_deg": -57,
+          "overlap_mm3": {
+            "printed_cup": 0.0,
+            "fallback_case": 0,
+            "ear_heads": 0.0
+          },
+          "printed_cup_gap_mm": 7.714999999999989
+        },
+        {
+          "angle_deg": -56,
+          "overlap_mm3": {
+            "printed_cup": 0.0,
+            "fallback_case": 0,
+            "ear_heads": 0.0
+          },
+          "printed_cup_gap_mm": 7.714999999999989
+        },
+        {
+          "angle_deg": -55,
+          "overlap_mm3": {
+            "printed_cup": 0.0,
+            "fallback_case": 0,
+            "ear_heads": 0.0
+          },
+          "printed_cup_gap_mm": 7.714999999999961
+        },
+        {
+          "angle_deg": -54,
+          "overlap_mm3": {
+            "printed_cup": 0.0,
+            "fallback_case": 0,
+            "ear_heads": 0.0
+          },
+          "printed_cup_gap_mm": 7.714999999999854
+        },
+        {
+          "angle_deg": -53,
+          "overlap_mm3": {
+            "printed_cup": 0.0,
+            "fallback_case": 0,
+            "ear_heads": 0.0
+          },
+          "printed_cup_gap_mm": 7.714999999999947
+        },
+        {
+          "angle_deg": -52,
+          "overlap_mm3": {
+            "printed_cup": 0.0,
+            "fallback_case": 0,
+            "ear_heads": 0.0
+          },
+          "printed_cup_gap_mm": 7.714999999999996
+        },
+        {
+          "angle_deg": -51,
+          "overlap_mm3": {
+            "printed_cup": 0.0,
+            "fallback_case": 0,
+            "ear_heads": 0.0
+          },
+          "printed_cup_gap_mm": 7.714999999999989
+        },
+        {
+          "angle_deg": -50,
+          "overlap_mm3": {
+            "printed_cup": 0.0,
+            "fallback_case": 0,
+            "ear_heads": 0.0
+          },
+          "printed_cup_gap_mm": 7.714999999999989
+        },
+        {
+          "angle_deg": -49,
+          "overlap_mm3": {
+            "printed_cup": 0.0,
+            "fallback_case": 0,
+            "ear_heads": 0.0
+          },
+          "printed_cup_gap_mm": 7.714999999999861
+        },
+        {
+          "angle_deg": -48,
+          "overlap_mm3": {
+            "printed_cup": 0.0,
+            "fallback_case": 0,
+            "ear_heads": 0.0
+          },
+          "printed_cup_gap_mm": 7.714999999999918
+        },
+        {
+          "angle_deg": -47,
+          "overlap_mm3": {
+            "printed_cup": 0.0,
+            "fallback_case": 0,
+            "ear_heads": 0.0
+          },
+          "printed_cup_gap_mm": 7.714999999999996
+        },
+        {
+          "angle_deg": -46,
+          "overlap_mm3": {
+            "printed_cup": 0.0,
+            "fallback_case": 0,
+            "ear_heads": 0.0
+          },
+          "printed_cup_gap_mm": 7.714999999999989
+        },
+        {
+          "angle_deg": -45,
+          "overlap_mm3": {
+            "printed_cup": 0.0,
+            "fallback_case": 0,
+            "ear_heads": 0.0
+          },
+          "printed_cup_gap_mm": 7.714999999999996
+        },
+        {
+          "angle_deg": -44,
+          "overlap_mm3": {
+            "printed_cup": 0.0,
+            "fallback_case": 0,
+            "ear_heads": 0.0
+          },
+          "printed_cup_gap_mm": 7.714999999999989
+        },
+        {
+          "angle_deg": -43,
+          "overlap_mm3": {
+            "printed_cup": 0.0,
+            "fallback_case": 0,
+            "ear_heads": 0.0
+          },
+          "printed_cup_gap_mm": 7.71499999999999
+        },
+        {
+          "angle_deg": -42,
+          "overlap_mm3": {
+            "printed_cup": 0.0,
+            "fallback_case": 0,
+            "ear_heads": 0.0
+          },
+          "printed_cup_gap_mm": 7.714999999999918
+        },
+        {
+          "angle_deg": -41,
+          "overlap_mm3": {
+            "printed_cup": 0.0,
+            "fallback_case": 0,
+            "ear_heads": 0.0
+          },
+          "printed_cup_gap_mm": 7.714999999999861
+        },
+        {
+          "angle_deg": -40,
+          "overlap_mm3": {
+            "printed_cup": 0.0,
+            "fallback_case": 0,
+            "ear_heads": 0.0
+          },
+          "printed_cup_gap_mm": 7.714999999999989
+        },
+        {
+          "angle_deg": -39,
+          "overlap_mm3": {
+            "printed_cup": 0.0,
+            "fallback_case": 0,
+            "ear_heads": 0.0
+          },
+          "printed_cup_gap_mm": 7.714999999999996
+        },
+        {
+          "angle_deg": -38,
+          "overlap_mm3": {
+            "printed_cup": 0.0,
+            "fallback_case": 0,
+            "ear_heads": 0.0
+          },
+          "printed_cup_gap_mm": 7.714999999999996
+        },
+        {
+          "angle_deg": -37,
+          "overlap_mm3": {
+            "printed_cup": 0.0,
+            "fallback_case": 0,
+            "ear_heads": 0.0
+          },
+          "printed_cup_gap_mm": 7.714999999999947
+        },
+        {
+          "angle_deg": -36,
+          "overlap_mm3": {
+            "printed_cup": 0.0,
+            "fallback_case": 0,
+            "ear_heads": 0.0
+          },
+          "printed_cup_gap_mm": 7.714999999999854
+        },
+        {
+          "angle_deg": -35,
+          "overlap_mm3": {
+            "printed_cup": 0.0,
+            "fallback_case": 0,
+            "ear_heads": 0.0
+          },
+          "printed_cup_gap_mm": 7.714999999999961
+        },
+        {
+          "angle_deg": -34,
+          "overlap_mm3": {
+            "printed_cup": 0.0,
+            "fallback_case": 0,
+            "ear_heads": 0.0
+          },
+          "printed_cup_gap_mm": 7.714999999999989
+        },
+        {
+          "angle_deg": -33,
+          "overlap_mm3": {
+            "printed_cup": 0.0,
+            "fallback_case": 0,
+            "ear_heads": 0.0
+          },
+          "printed_cup_gap_mm": 7.714999999999989
+        },
+        {
+          "angle_deg": -32,
+          "overlap_mm3": {
+            "printed_cup": 0.0,
+            "fallback_case": 0,
+            "ear_heads": 0.0
+          },
+          "printed_cup_gap_mm": 7.714999999999989
+        },
+        {
+          "angle_deg": -31,
+          "overlap_mm3": {
+            "printed_cup": 0.0,
+            "fallback_case": 0,
+            "ear_heads": 0.0
+          },
+          "printed_cup_gap_mm": 7.714999999999989
+        },
+        {
+          "angle_deg": -30,
+          "overlap_mm3": {
+            "printed_cup": 0.0,
+            "fallback_case": 0,
+            "ear_heads": 0.0
+          },
+          "printed_cup_gap_mm": 7.714999999999989
+        },
+        {
+          "angle_deg": -29,
+          "overlap_mm3": {
+            "printed_cup": 0.0,
+            "fallback_case": 0,
+            "ear_heads": 0.0
+          },
+          "printed_cup_gap_mm": 7.714999999999989
+        },
+        {
+          "angle_deg": -28,
+          "overlap_mm3": {
+            "printed_cup": 0.0,
+            "fallback_case": 0,
+            "ear_heads": 0.0
+          },
+          "printed_cup_gap_mm": 7.714999999999989
+        },
+        {
+          "angle_deg": -27,
+          "overlap_mm3": {
+            "printed_cup": 0.0,
+            "fallback_case": 0,
+            "ear_heads": 0.0
+          },
+          "printed_cup_gap_mm": 7.714999999999989
+        },
+        {
+          "angle_deg": -26,
+          "overlap_mm3": {
+            "printed_cup": 0.0,
+            "fallback_case": 0,
+            "ear_heads": 0.0
+          },
+          "printed_cup_gap_mm": 7.714999999999989
+        },
+        {
+          "angle_deg": -25,
+          "overlap_mm3": {
+            "printed_cup": 0.0,
+            "fallback_case": 0,
+            "ear_heads": 0.0
+          },
+          "printed_cup_gap_mm": 7.714999999999989
+        },
+        {
+          "angle_deg": -24,
+          "overlap_mm3": {
+            "printed_cup": 0.0,
+            "fallback_case": 0,
+            "ear_heads": 0.0
+          },
+          "printed_cup_gap_mm": 7.714999999999989
+        },
+        {
+          "angle_deg": -23,
+          "overlap_mm3": {
+            "printed_cup": 0.0,
+            "fallback_case": 0,
+            "ear_heads": 0.0
+          },
+          "printed_cup_gap_mm": 7.714999999999989
+        },
+        {
+          "angle_deg": -22,
+          "overlap_mm3": {
+            "printed_cup": 0.0,
+            "fallback_case": 0,
+            "ear_heads": 0.0
+          },
+          "printed_cup_gap_mm": 7.714999999999989
+        },
+        {
+          "angle_deg": -21,
+          "overlap_mm3": {
+            "printed_cup": 0.0,
+            "fallback_case": 0,
+            "ear_heads": 0.0
+          },
+          "printed_cup_gap_mm": 7.714999999999989
+        },
+        {
+          "angle_deg": -20,
+          "overlap_mm3": {
+            "printed_cup": 0.0,
+            "fallback_case": 0,
+            "ear_heads": 0.0
+          },
+          "printed_cup_gap_mm": 7.714999999999989
+        },
+        {
+          "angle_deg": -19,
+          "overlap_mm3": {
+            "printed_cup": 0.0,
+            "fallback_case": 0,
+            "ear_heads": 0.0
+          },
+          "printed_cup_gap_mm": 7.714999999999989
+        },
+        {
+          "angle_deg": -18,
+          "overlap_mm3": {
+            "printed_cup": 0.0,
+            "fallback_case": 0,
+            "ear_heads": 0.0
+          },
+          "printed_cup_gap_mm": 7.714999999999989
+        },
+        {
+          "angle_deg": -17,
+          "overlap_mm3": {
+            "printed_cup": 0.0,
+            "fallback_case": 0,
+            "ear_heads": 0.0
+          },
+          "printed_cup_gap_mm": 7.714999999999989
+        },
+        {
+          "angle_deg": -16,
+          "overlap_mm3": {
+            "printed_cup": 0.0,
+            "fallback_case": 0,
+            "ear_heads": 0.0
+          },
+          "printed_cup_gap_mm": 7.714999999999996
+        },
+        {
+          "angle_deg": -15,
+          "overlap_mm3": {
+            "printed_cup": 0.0,
+            "fallback_case": 0,
+            "ear_heads": 0.0
+          },
+          "printed_cup_gap_mm": 7.714999999999991
+        },
+        {
+          "angle_deg": -14,
+          "overlap_mm3": {
+            "printed_cup": 0.0,
+            "fallback_case": 0,
+            "ear_heads": 0.0
+          },
+          "printed_cup_gap_mm": 7.714999999999989
+        },
+        {
+          "angle_deg": -13,
+          "overlap_mm3": {
+            "printed_cup": 0.0,
+            "fallback_case": 0,
+            "ear_heads": 0.0
+          },
+          "printed_cup_gap_mm": 7.714999999999992
+        },
+        {
+          "angle_deg": -12,
+          "overlap_mm3": {
+            "printed_cup": 0.0,
+            "fallback_case": 0,
+            "ear_heads": 0.0
+          },
+          "printed_cup_gap_mm": 7.714999999999996
+        },
+        {
+          "angle_deg": -11,
+          "overlap_mm3": {
+            "printed_cup": 0.0,
+            "fallback_case": 0,
+            "ear_heads": 0.0
+          },
+          "printed_cup_gap_mm": 7.714999999999996
+        },
+        {
+          "angle_deg": -10,
+          "overlap_mm3": {
+            "printed_cup": 0.0,
+            "fallback_case": 0,
+            "ear_heads": 0.0
+          },
+          "printed_cup_gap_mm": 7.714999999999989
+        },
+        {
+          "angle_deg": -9,
+          "overlap_mm3": {
+            "printed_cup": 0.0,
+            "fallback_case": 0,
+            "ear_heads": 0.0
+          },
+          "printed_cup_gap_mm": 7.714999999999996
+        },
+        {
+          "angle_deg": -8,
+          "overlap_mm3": {
+            "printed_cup": 0.0,
+            "fallback_case": 0,
+            "ear_heads": 0.0
+          },
+          "printed_cup_gap_mm": 7.714999999999989
+        },
+        {
+          "angle_deg": -7,
+          "overlap_mm3": {
+            "printed_cup": 0.0,
+            "fallback_case": 0,
+            "ear_heads": 0.0
+          },
+          "printed_cup_gap_mm": 7.714999999999989
+        },
+        {
+          "angle_deg": -6,
+          "overlap_mm3": {
+            "printed_cup": 0.0,
+            "fallback_case": 0,
+            "ear_heads": 0.0
+          },
+          "printed_cup_gap_mm": 7.714999999999989
+        },
+        {
+          "angle_deg": -5,
+          "overlap_mm3": {
+            "printed_cup": 0.0,
+            "fallback_case": 0,
+            "ear_heads": 0.0
+          },
+          "printed_cup_gap_mm": 7.714999999999989
+        },
+        {
+          "angle_deg": -4,
+          "overlap_mm3": {
+            "printed_cup": 0.0,
+            "fallback_case": 0,
+            "ear_heads": 0.0
+          },
+          "printed_cup_gap_mm": 7.714999999999989
+        },
+        {
+          "angle_deg": -3,
+          "overlap_mm3": {
+            "printed_cup": 0.0,
+            "fallback_case": 0,
+            "ear_heads": 0.0
+          },
+          "printed_cup_gap_mm": 7.714999999999989
+        },
+        {
+          "angle_deg": -2,
+          "overlap_mm3": {
+            "printed_cup": 0.0,
+            "fallback_case": 0,
+            "ear_heads": 0.0
+          },
+          "printed_cup_gap_mm": 7.714999999999989
+        },
+        {
+          "angle_deg": -1,
+          "overlap_mm3": {
+            "printed_cup": 0.0,
+            "fallback_case": 0,
+            "ear_heads": 0.0
+          },
+          "printed_cup_gap_mm": 7.714999999999996
+        },
+        {
+          "angle_deg": 0,
+          "overlap_mm3": {
+            "printed_cup": 0.0,
+            "fallback_case": 0,
+            "ear_heads": 0.0
+          },
+          "printed_cup_gap_mm": 7.714999999999996
+        },
+        {
+          "angle_deg": 1,
+          "overlap_mm3": {
+            "printed_cup": 0.0,
+            "fallback_case": 0,
+            "ear_heads": 0.0
+          },
+          "printed_cup_gap_mm": 7.714999999999996
+        },
+        {
+          "angle_deg": 2,
+          "overlap_mm3": {
+            "printed_cup": 0.0,
+            "fallback_case": 0,
+            "ear_heads": 0.0
+          },
+          "printed_cup_gap_mm": 7.714999999999989
+        },
+        {
+          "angle_deg": 3,
+          "overlap_mm3": {
+            "printed_cup": 0.0,
+            "fallback_case": 0,
+            "ear_heads": 0.0
+          },
+          "printed_cup_gap_mm": 7.714999999999989
+        },
+        {
+          "angle_deg": 4,
+          "overlap_mm3": {
+            "printed_cup": 0.0,
+            "fallback_case": 0,
+            "ear_heads": 0.0
+          },
+          "printed_cup_gap_mm": 7.714999999999996
+        },
+        {
+          "angle_deg": 5,
+          "overlap_mm3": {
+            "printed_cup": 0.0,
+            "fallback_case": 0,
+            "ear_heads": 0.0
+          },
+          "printed_cup_gap_mm": 7.714999999999996
+        },
+        {
+          "angle_deg": 6,
+          "overlap_mm3": {
+            "printed_cup": 0.0,
+            "fallback_case": 0,
+            "ear_heads": 0.0
+          },
+          "printed_cup_gap_mm": 7.714999999999989
+        },
+        {
+          "angle_deg": 7,
+          "overlap_mm3": {
+            "printed_cup": 0.0,
+            "fallback_case": 0,
+            "ear_heads": 0.0
+          },
+          "printed_cup_gap_mm": 7.714999999999989
+        },
+        {
+          "angle_deg": 8,
+          "overlap_mm3": {
+            "printed_cup": 0.0,
+            "fallback_case": 0,
+            "ear_heads": 0.0
+          },
+          "printed_cup_gap_mm": 7.714999999999996
+        },
+        {
+          "angle_deg": 9,
+          "overlap_mm3": {
+            "printed_cup": 0.0,
+            "fallback_case": 0,
+            "ear_heads": 0.0
+          },
+          "printed_cup_gap_mm": 7.714999999999996
+        },
+        {
+          "angle_deg": 10,
+          "overlap_mm3": {
+            "printed_cup": 0.0,
+            "fallback_case": 0,
+            "ear_heads": 0.0
+          },
+          "printed_cup_gap_mm": 7.714999999999989
+        },
+        {
+          "angle_deg": 11,
+          "overlap_mm3": {
+            "printed_cup": 0.0,
+            "fallback_case": 0,
+            "ear_heads": 0.0
+          },
+          "printed_cup_gap_mm": 7.714999999999989
+        },
+        {
+          "angle_deg": 12,
+          "overlap_mm3": {
+            "printed_cup": 0.0,
+            "fallback_case": 0,
+            "ear_heads": 0.0
+          },
+          "printed_cup_gap_mm": 7.714999999999989
+        },
+        {
+          "angle_deg": 13,
+          "overlap_mm3": {
+            "printed_cup": 0.0,
+            "fallback_case": 0,
+            "ear_heads": 0.0
+          },
+          "printed_cup_gap_mm": 7.714999999999989
+        },
+        {
+          "angle_deg": 14,
+          "overlap_mm3": {
+            "printed_cup": 0.0,
+            "fallback_case": 0,
+            "ear_heads": 0.0
+          },
+          "printed_cup_gap_mm": 7.714999999999989
+        },
+        {
+          "angle_deg": 15,
+          "overlap_mm3": {
+            "printed_cup": 0.0,
+            "fallback_case": 0,
+            "ear_heads": 0.0
+          },
+          "printed_cup_gap_mm": 7.714999999999989
+        },
+        {
+          "angle_deg": 16,
+          "overlap_mm3": {
+            "printed_cup": 0.0,
+            "fallback_case": 0,
+            "ear_heads": 0.0
+          },
+          "printed_cup_gap_mm": 7.714999999999989
+        },
+        {
+          "angle_deg": 17,
+          "overlap_mm3": {
+            "printed_cup": 0.0,
+            "fallback_case": 0,
+            "ear_heads": 0.0
+          },
+          "printed_cup_gap_mm": 7.714999999999989
+        },
+        {
+          "angle_deg": 18,
+          "overlap_mm3": {
+            "printed_cup": 0.0,
+            "fallback_case": 0,
+            "ear_heads": 0.0
+          },
+          "printed_cup_gap_mm": 7.714999999999989
+        },
+        {
+          "angle_deg": 19,
+          "overlap_mm3": {
+            "printed_cup": 0.0,
+            "fallback_case": 0,
+            "ear_heads": 0.0
+          },
+          "printed_cup_gap_mm": 7.714999999999989
+        },
+        {
+          "angle_deg": 20,
+          "overlap_mm3": {
+            "printed_cup": 0.0,
+            "fallback_case": 0,
+            "ear_heads": 0.0
+          },
+          "printed_cup_gap_mm": 7.714999999999989
+        },
+        {
+          "angle_deg": 21,
+          "overlap_mm3": {
+            "printed_cup": 0.0,
+            "fallback_case": 0,
+            "ear_heads": 0.0
+          },
+          "printed_cup_gap_mm": 7.714999999999989
+        },
+        {
+          "angle_deg": 22,
+          "overlap_mm3": {
+            "printed_cup": 0.0,
+            "fallback_case": 0,
+            "ear_heads": 0.0
+          },
+          "printed_cup_gap_mm": 7.714999999999993
+        },
+        {
+          "angle_deg": 23,
+          "overlap_mm3": {
+            "printed_cup": 0.0,
+            "fallback_case": 0,
+            "ear_heads": 0.0
+          },
+          "printed_cup_gap_mm": 7.714999999999989
+        },
+        {
+          "angle_deg": 24,
+          "overlap_mm3": {
+            "printed_cup": 0.0,
+            "fallback_case": 0,
+            "ear_heads": 0.0
+          },
+          "printed_cup_gap_mm": 7.714999999999989
+        },
+        {
+          "angle_deg": 25,
+          "overlap_mm3": {
+            "printed_cup": 0.0,
+            "fallback_case": 0,
+            "ear_heads": 0.0
+          },
+          "printed_cup_gap_mm": 7.714999999999996
+        },
+        {
+          "angle_deg": 26,
+          "overlap_mm3": {
+            "printed_cup": 0.0,
+            "fallback_case": 0,
+            "ear_heads": 0.0
+          },
+          "printed_cup_gap_mm": 7.714999999999989
+        },
+        {
+          "angle_deg": 27,
+          "overlap_mm3": {
+            "printed_cup": 0.0,
+            "fallback_case": 0,
+            "ear_heads": 0.0
+          },
+          "printed_cup_gap_mm": 7.714999999999989
+        },
+        {
+          "angle_deg": 28,
+          "overlap_mm3": {
+            "printed_cup": 0.0,
+            "fallback_case": 0,
+            "ear_heads": 0.0
+          },
+          "printed_cup_gap_mm": 7.714999999999989
+        },
+        {
+          "angle_deg": 29,
+          "overlap_mm3": {
+            "printed_cup": 0.0,
+            "fallback_case": 0,
+            "ear_heads": 0.0
+          },
+          "printed_cup_gap_mm": 7.714999999999989
+        },
+        {
+          "angle_deg": 30,
+          "overlap_mm3": {
+            "printed_cup": 0.0,
+            "fallback_case": 0,
+            "ear_heads": 0.0
+          },
+          "printed_cup_gap_mm": 7.714999999755193
+        },
+        {
+          "angle_deg": 31,
+          "overlap_mm3": {
+            "printed_cup": 0.0,
+            "fallback_case": 0,
+            "ear_heads": 0.0
+          },
+          "printed_cup_gap_mm": 7.714999999380311
+        },
+        {
+          "angle_deg": 32,
+          "overlap_mm3": {
+            "printed_cup": 0.0,
+            "fallback_case": 0,
+            "ear_heads": 0.0
+          },
+          "printed_cup_gap_mm": 7.714999999593289
+        },
+        {
+          "angle_deg": 33,
+          "overlap_mm3": {
+            "printed_cup": 0.0,
+            "fallback_case": 0,
+            "ear_heads": 0.0
+          },
+          "printed_cup_gap_mm": 7.714999999999989
+        },
+        {
+          "angle_deg": 34,
+          "overlap_mm3": {
+            "printed_cup": 0.0,
+            "fallback_case": 0,
+            "ear_heads": 0.0
+          },
+          "printed_cup_gap_mm": 7.714999999999996
+        },
+        {
+          "angle_deg": 35,
+          "overlap_mm3": {
+            "printed_cup": 0.0,
+            "fallback_case": 0,
+            "ear_heads": 0.0
+          },
+          "printed_cup_gap_mm": 7.714999999999989
+        },
+        {
+          "angle_deg": 36,
+          "overlap_mm3": {
+            "printed_cup": 0.0,
+            "fallback_case": 0,
+            "ear_heads": 0.0
+          },
+          "printed_cup_gap_mm": 7.714999999826304
+        },
+        {
+          "angle_deg": 37,
+          "overlap_mm3": {
+            "printed_cup": 0.0,
+            "fallback_case": 0,
+            "ear_heads": 0.0
+          },
+          "printed_cup_gap_mm": 7.714999999402309
+        },
+        {
+          "angle_deg": 38,
+          "overlap_mm3": {
+            "printed_cup": 0.0,
+            "fallback_case": 0,
+            "ear_heads": 0.0
+          },
+          "printed_cup_gap_mm": 7.714999999534491
+        },
+        {
+          "angle_deg": 39,
+          "overlap_mm3": {
+            "printed_cup": 0.0,
+            "fallback_case": 0,
+            "ear_heads": 0.0
+          },
+          "printed_cup_gap_mm": 7.714999999988407
+        },
+        {
+          "angle_deg": 40,
+          "overlap_mm3": {
+            "printed_cup": 0.0,
+            "fallback_case": 0,
+            "ear_heads": 0.0
+          },
+          "printed_cup_gap_mm": 7.714999999999989
+        },
+        {
+          "angle_deg": 41,
+          "overlap_mm3": {
+            "printed_cup": 0.0,
+            "fallback_case": 0,
+            "ear_heads": 0.0
+          },
+          "printed_cup_gap_mm": 7.714999999999989
+        },
+        {
+          "angle_deg": 42,
+          "overlap_mm3": {
+            "printed_cup": 0.0,
+            "fallback_case": 0,
+            "ear_heads": 0.0
+          },
+          "printed_cup_gap_mm": 7.714999999999989
+        },
+        {
+          "angle_deg": 43,
+          "overlap_mm3": {
+            "printed_cup": 0.0,
+            "fallback_case": 0,
+            "ear_heads": 0.0
+          },
+          "printed_cup_gap_mm": 7.714999999999989
+        },
+        {
+          "angle_deg": 44,
+          "overlap_mm3": {
+            "printed_cup": 0.0,
+            "fallback_case": 0,
+            "ear_heads": 0.0
+          },
+          "printed_cup_gap_mm": 7.714999999999996
+        },
+        {
+          "angle_deg": 45,
+          "overlap_mm3": {
+            "printed_cup": 0.0,
+            "fallback_case": 0,
+            "ear_heads": 0.0
+          },
+          "printed_cup_gap_mm": 7.714999999999989
+        },
+        {
+          "angle_deg": 46,
+          "overlap_mm3": {
+            "printed_cup": 0.0,
+            "fallback_case": 0,
+            "ear_heads": 0.0
+          },
+          "printed_cup_gap_mm": 7.714999999999989
+        },
+        {
+          "angle_deg": 47,
+          "overlap_mm3": {
+            "printed_cup": 0.0,
+            "fallback_case": 0,
+            "ear_heads": 0.0
+          },
+          "printed_cup_gap_mm": 7.714999999999989
+        },
+        {
+          "angle_deg": 48,
+          "overlap_mm3": {
+            "printed_cup": 0.0,
+            "fallback_case": 0,
+            "ear_heads": 0.0
+          },
+          "printed_cup_gap_mm": 7.714999999999989
+        },
+        {
+          "angle_deg": 49,
+          "overlap_mm3": {
+            "printed_cup": 0.0,
+            "fallback_case": 0,
+            "ear_heads": 0.0
+          },
+          "printed_cup_gap_mm": 7.714999999999989
+        },
+        {
+          "angle_deg": 50,
+          "overlap_mm3": {
+            "printed_cup": 0.0,
+            "fallback_case": 0,
+            "ear_heads": 0.0
+          },
+          "printed_cup_gap_mm": 7.714999999999989
+        },
+        {
+          "angle_deg": 51,
+          "overlap_mm3": {
+            "printed_cup": 0.0,
+            "fallback_case": 0,
+            "ear_heads": 0.0
+          },
+          "printed_cup_gap_mm": 7.714999999999989
+        },
+        {
+          "angle_deg": 52,
+          "overlap_mm3": {
+            "printed_cup": 0.0,
+            "fallback_case": 0,
+            "ear_heads": 0.0
+          },
+          "printed_cup_gap_mm": 7.714999999999989
+        },
+        {
+          "angle_deg": 53,
+          "overlap_mm3": {
+            "printed_cup": 0.0,
+            "fallback_case": 0,
+            "ear_heads": 0.0
+          },
+          "printed_cup_gap_mm": 7.714999999999989
+        },
+        {
+          "angle_deg": 54,
+          "overlap_mm3": {
+            "printed_cup": 0.0,
+            "fallback_case": 0,
+            "ear_heads": 0.0
+          },
+          "printed_cup_gap_mm": 7.714999999999989
+        },
+        {
+          "angle_deg": 55,
+          "overlap_mm3": {
+            "printed_cup": 0.0,
+            "fallback_case": 0,
+            "ear_heads": 0.0
+          },
+          "printed_cup_gap_mm": 7.714999999999989
+        },
+        {
+          "angle_deg": 56,
+          "overlap_mm3": {
+            "printed_cup": 0.0,
+            "fallback_case": 0,
+            "ear_heads": 0.0
+          },
+          "printed_cup_gap_mm": 7.714999999999989
+        },
+        {
+          "angle_deg": 57,
+          "overlap_mm3": {
+            "printed_cup": 0.0,
+            "fallback_case": 0,
+            "ear_heads": 0.0
+          },
+          "printed_cup_gap_mm": 7.714999999999989
+        },
+        {
+          "angle_deg": 58,
+          "overlap_mm3": {
+            "printed_cup": 0.0,
+            "fallback_case": 0,
+            "ear_heads": 0.0
+          },
+          "printed_cup_gap_mm": 7.714999999999989
+        },
+        {
+          "angle_deg": 59,
+          "overlap_mm3": {
+            "printed_cup": 0.0,
+            "fallback_case": 0,
+            "ear_heads": 0.0
+          },
+          "printed_cup_gap_mm": 7.714999999999996
+        },
+        {
+          "angle_deg": 60,
+          "overlap_mm3": {
+            "printed_cup": 0.0,
+            "fallback_case": 0,
+            "ear_heads": 0.0
+          },
+          "printed_cup_gap_mm": 7.714999999999989
+        },
+        {
+          "angle_deg": 61,
+          "overlap_mm3": {
+            "printed_cup": 0.0,
+            "fallback_case": 0,
+            "ear_heads": 0.0
+          },
+          "printed_cup_gap_mm": 7.714999999999989
+        },
+        {
+          "angle_deg": 62,
+          "overlap_mm3": {
+            "printed_cup": 0.0,
+            "fallback_case": 0,
+            "ear_heads": 0.0
+          },
+          "printed_cup_gap_mm": 7.714999999999989
+        },
+        {
+          "angle_deg": 63,
+          "overlap_mm3": {
+            "printed_cup": 0.0,
+            "fallback_case": 0,
+            "ear_heads": 0.0
+          },
+          "printed_cup_gap_mm": 7.714999999999989
+        },
+        {
+          "angle_deg": 64,
+          "overlap_mm3": {
+            "printed_cup": 0.0,
+            "fallback_case": 0,
+            "ear_heads": 0.0
+          },
+          "printed_cup_gap_mm": 7.714999999999989
+        },
+        {
+          "angle_deg": 65,
+          "overlap_mm3": {
+            "printed_cup": 0.0,
+            "fallback_case": 0,
+            "ear_heads": 0.0
+          },
+          "printed_cup_gap_mm": 7.714999999999996
+        },
+        {
+          "angle_deg": 66,
+          "overlap_mm3": {
+            "printed_cup": 0.0,
+            "fallback_case": 0,
+            "ear_heads": 0.0
+          },
+          "printed_cup_gap_mm": 7.714999999999989
+        },
+        {
+          "angle_deg": 67,
+          "overlap_mm3": {
+            "printed_cup": 0.0,
+            "fallback_case": 0,
+            "ear_heads": 0.0
+          },
+          "printed_cup_gap_mm": 7.714999999999989
+        },
+        {
+          "angle_deg": 68,
+          "overlap_mm3": {
+            "printed_cup": 0.0,
+            "fallback_case": 0,
+            "ear_heads": 0.0
+          },
+          "printed_cup_gap_mm": 7.714999999999996
+        },
+        {
+          "angle_deg": 69,
+          "overlap_mm3": {
+            "printed_cup": 0.0,
+            "fallback_case": 0,
+            "ear_heads": 0.0
+          },
+          "printed_cup_gap_mm": 7.714999999999996
+        },
+        {
+          "angle_deg": 70,
+          "overlap_mm3": {
+            "printed_cup": 0.0,
+            "fallback_case": 0,
+            "ear_heads": 0.0
+          },
+          "printed_cup_gap_mm": 7.714999999999989
+        },
+        {
+          "angle_deg": 71,
+          "overlap_mm3": {
+            "printed_cup": 0.0,
+            "fallback_case": 0,
+            "ear_heads": 0.0
+          },
+          "printed_cup_gap_mm": 7.714999999999989
+        },
+        {
+          "angle_deg": 72,
+          "overlap_mm3": {
+            "printed_cup": 0.0,
+            "fallback_case": 0,
+            "ear_heads": 0.0
+          },
+          "printed_cup_gap_mm": 7.714999999999989
+        },
+        {
+          "angle_deg": 73,
+          "overlap_mm3": {
+            "printed_cup": 0.0,
+            "fallback_case": 0,
+            "ear_heads": 0.0
+          },
+          "printed_cup_gap_mm": 7.714999999999989
+        },
+        {
+          "angle_deg": 74,
+          "overlap_mm3": {
+            "printed_cup": 0.0,
+            "fallback_case": 0,
+            "ear_heads": 0.0
+          },
+          "printed_cup_gap_mm": 7.714999999999996
+        },
+        {
+          "angle_deg": 75,
+          "overlap_mm3": {
+            "printed_cup": 0.0,
+            "fallback_case": 0,
+            "ear_heads": 0.0
+          },
+          "printed_cup_gap_mm": 7.714999999999989
+        },
+        {
+          "angle_deg": 76,
+          "overlap_mm3": {
+            "printed_cup": 0.0,
+            "fallback_case": 0,
+            "ear_heads": 0.0
+          },
+          "printed_cup_gap_mm": 7.714999999999989
+        },
+        {
+          "angle_deg": 77,
+          "overlap_mm3": {
+            "printed_cup": 0.0,
+            "fallback_case": 0,
+            "ear_heads": 0.0
+          },
+          "printed_cup_gap_mm": 7.714999999999996
+        },
+        {
+          "angle_deg": 78,
+          "overlap_mm3": {
+            "printed_cup": 0.0,
+            "fallback_case": 0,
+            "ear_heads": 0.0
+          },
+          "printed_cup_gap_mm": 7.714999999999996
+        },
+        {
+          "angle_deg": 79,
+          "overlap_mm3": {
+            "printed_cup": 0.0,
+            "fallback_case": 0,
+            "ear_heads": 0.0
+          },
+          "printed_cup_gap_mm": 7.714999999999996
+        },
+        {
+          "angle_deg": 80,
+          "overlap_mm3": {
+            "printed_cup": 0.0,
+            "fallback_case": 0,
+            "ear_heads": 0.0
+          },
+          "printed_cup_gap_mm": 7.714999999999989
+        },
+        {
+          "angle_deg": 81,
+          "overlap_mm3": {
+            "printed_cup": 0.0,
+            "fallback_case": 0,
+            "ear_heads": 0.0
+          },
+          "printed_cup_gap_mm": 7.714999999999996
+        },
+        {
+          "angle_deg": 82,
+          "overlap_mm3": {
+            "printed_cup": 0.0,
+            "fallback_case": 0,
+            "ear_heads": 0.0
+          },
+          "printed_cup_gap_mm": 7.714999999999993
+        },
+        {
+          "angle_deg": 83,
+          "overlap_mm3": {
+            "printed_cup": 0.0,
+            "fallback_case": 0,
+            "ear_heads": 0.0
+          },
+          "printed_cup_gap_mm": 7.714999999999989
+        },
+        {
+          "angle_deg": 84,
+          "overlap_mm3": {
+            "printed_cup": 0.0,
+            "fallback_case": 0,
+            "ear_heads": 0.0
+          },
+          "printed_cup_gap_mm": 7.714999999999989
+        },
+        {
+          "angle_deg": 85,
+          "overlap_mm3": {
+            "printed_cup": 0.0,
+            "fallback_case": 0,
+            "ear_heads": 0.0
+          },
+          "printed_cup_gap_mm": 7.714999999999989
+        },
+        {
+          "angle_deg": 86,
+          "overlap_mm3": {
+            "printed_cup": 0.0,
+            "fallback_case": 0,
+            "ear_heads": 0.0
+          },
+          "printed_cup_gap_mm": 7.714999999999989
+        },
+        {
+          "angle_deg": 87,
+          "overlap_mm3": {
+            "printed_cup": 0.0,
+            "fallback_case": 0,
+            "ear_heads": 0.0
+          },
+          "printed_cup_gap_mm": 7.714999999999989
+        },
+        {
+          "angle_deg": 88,
+          "overlap_mm3": {
+            "printed_cup": 0.0,
+            "fallback_case": 0,
+            "ear_heads": 0.0
+          },
+          "printed_cup_gap_mm": 7.714999999999989
+        },
+        {
+          "angle_deg": 89,
+          "overlap_mm3": {
+            "printed_cup": 0.0,
+            "fallback_case": 0,
+            "ear_heads": 0.0
+          },
+          "printed_cup_gap_mm": 7.714999999999996
+        },
+        {
+          "angle_deg": 90,
+          "overlap_mm3": {
+            "printed_cup": 0.0,
+            "fallback_case": 0,
+            "ear_heads": 0.0
+          },
+          "printed_cup_gap_mm": 7.714999999999996
+        },
+        {
+          "angle_deg": 91,
+          "overlap_mm3": {
+            "printed_cup": 0.0,
+            "fallback_case": 0,
+            "ear_heads": 0.0
+          },
+          "printed_cup_gap_mm": 7.461798965383009
+        },
+        {
+          "angle_deg": 92,
+          "overlap_mm3": {
+            "printed_cup": 0,
+            "fallback_case": 0,
+            "ear_heads": 0.0
+          },
+          "printed_cup_gap_mm": 7.203157053770017
+        },
+        {
+          "angle_deg": 93,
+          "overlap_mm3": {
+            "printed_cup": 0,
+            "fallback_case": 0,
+            "ear_heads": 0.0
+          },
+          "printed_cup_gap_mm": 6.939153049992857
+        },
+        {
+          "angle_deg": 94,
+          "overlap_mm3": {
+            "printed_cup": 0,
+            "fallback_case": 0,
+            "ear_heads": 0.0
+          },
+          "printed_cup_gap_mm": 6.669867372228509
+        },
+        {
+          "angle_deg": 95,
+          "overlap_mm3": {
+            "printed_cup": 0,
+            "fallback_case": 0,
+            "ear_heads": 0.0
+          },
+          "printed_cup_gap_mm": 6.395382047503066
+        },
+        {
+          "angle_deg": 96,
+          "overlap_mm3": {
+            "printed_cup": 0,
+            "fallback_case": 0,
+            "ear_heads": 0.0
+          },
+          "printed_cup_gap_mm": 6.115780686705431
+        },
+        {
+          "angle_deg": 97,
+          "overlap_mm3": {
+            "printed_cup": 0,
+            "fallback_case": 0,
+            "ear_heads": 0
+          },
+          "printed_cup_gap_mm": 5.831148459118668
+        },
+        {
+          "angle_deg": 98,
+          "overlap_mm3": {
+            "printed_cup": 0,
+            "fallback_case": 0,
+            "ear_heads": 0
+          },
+          "printed_cup_gap_mm": 5.541572066476605
+        },
+        {
+          "angle_deg": 99,
+          "overlap_mm3": {
+            "printed_cup": 0,
+            "fallback_case": 0,
+            "ear_heads": 0
+          },
+          "printed_cup_gap_mm": 5.247139716553599
+        },
+        {
+          "angle_deg": 100,
+          "overlap_mm3": {
+            "printed_cup": 0,
+            "fallback_case": 0,
+            "ear_heads": 0
+          },
+          "printed_cup_gap_mm": 4.947941096295692
+        },
+        {
+          "angle_deg": 101,
+          "overlap_mm3": {
+            "printed_cup": 0,
+            "fallback_case": 0,
+            "ear_heads": 0
+          },
+          "printed_cup_gap_mm": 4.644067344501006
+        },
+        {
+          "angle_deg": 102,
+          "overlap_mm3": {
+            "printed_cup": 0,
+            "fallback_case": 0,
+            "ear_heads": 0
+          },
+          "printed_cup_gap_mm": 4.33561102405804
+        },
+        {
+          "angle_deg": 103,
+          "overlap_mm3": {
+            "printed_cup": 0,
+            "fallback_case": 0,
+            "ear_heads": 0
+          },
+          "printed_cup_gap_mm": 4.0226660937500665
+        },
+        {
+          "angle_deg": 104,
+          "overlap_mm3": {
+            "printed_cup": 0,
+            "fallback_case": 0,
+            "ear_heads": 0
+          },
+          "printed_cup_gap_mm": 3.7053278796344378
+        },
+        {
+          "angle_deg": 105,
+          "overlap_mm3": {
+            "printed_cup": 0,
+            "fallback_case": 0,
+            "ear_heads": 0
+          },
+          "printed_cup_gap_mm": 3.3836930460052916
+        },
+        {
+          "angle_deg": 106,
+          "overlap_mm3": {
+            "printed_cup": 0,
+            "fallback_case": 0,
+            "ear_heads": 0
+          },
+          "printed_cup_gap_mm": 3.057859565948707
+        },
+        {
+          "angle_deg": 107,
+          "overlap_mm3": {
+            "printed_cup": 0,
+            "fallback_case": 0,
+            "ear_heads": 0
+          },
+          "printed_cup_gap_mm": 2.7279266914991163
+        },
+        {
+          "angle_deg": 108,
+          "overlap_mm3": {
+            "printed_cup": 0,
+            "fallback_case": 0,
+            "ear_heads": 0
+          },
+          "printed_cup_gap_mm": 2.393994923406206
+        },
+        {
+          "angle_deg": 109,
+          "overlap_mm3": {
+            "printed_cup": 0,
+            "fallback_case": 0,
+            "ear_heads": 0
+          },
+          "printed_cup_gap_mm": 2.0561659805214205
+        },
+        {
+          "angle_deg": 110,
+          "overlap_mm3": {
+            "printed_cup": 0,
+            "fallback_case": 0,
+            "ear_heads": 0
+          },
+          "printed_cup_gap_mm": 1.714542768813383
+        },
+        {
+          "angle_deg": 111,
+          "overlap_mm3": {
+            "printed_cup": 0,
+            "fallback_case": 0,
+            "ear_heads": 0
+          },
+          "printed_cup_gap_mm": 1.3692293500217416
+        },
+        {
+          "angle_deg": 112,
+          "overlap_mm3": {
+            "printed_cup": 0,
+            "fallback_case": 0,
+            "ear_heads": 0
+          },
+          "printed_cup_gap_mm": 1.020330909959013
+        },
+        {
+          "angle_deg": 112.75,
+          "overlap_mm3": {
+            "printed_cup": 0,
+            "fallback_case": 0,
+            "ear_heads": 0
+          },
+          "printed_cup_gap_mm": 0.7563683023218524
+        }
+      ],
+      "boundary_samples": [
+        {
+          "angle_deg": -114.75,
+          "overlap_mm3": {
+            "printed_cup": 0,
+            "fallback_case": 0,
+            "ear_heads": 0
+          },
+          "printed_cup_gap_mm": 0.04324636017922554
+        },
+        {
+          "angle_deg": -115.0,
+          "overlap_mm3": {
+            "printed_cup": 0.009626850052435527,
+            "fallback_case": 0,
+            "ear_heads": 0
+          },
+          "printed_cup_gap_mm": 0.0
+        },
+        {
+          "angle_deg": -115.25,
+          "overlap_mm3": {
+            "printed_cup": 0.09619410455666311,
+            "fallback_case": 0,
+            "ear_heads": 0
+          },
+          "printed_cup_gap_mm": 0.0
+        },
+        {
+          "angle_deg": -115.5,
+          "overlap_mm3": {
+            "printed_cup": 0.2875726086829567,
+            "fallback_case": 0,
+            "ear_heads": 0
+          },
+          "printed_cup_gap_mm": 0.0
+        },
+        {
+          "angle_deg": 114.75,
+          "overlap_mm3": {
+            "printed_cup": 0,
+            "fallback_case": 0,
+            "ear_heads": 0
+          },
+          "printed_cup_gap_mm": 0.043246360179245144
+        },
+        {
+          "angle_deg": 115.0,
+          "overlap_mm3": {
+            "printed_cup": 0.009626813883482797,
+            "fallback_case": 0,
+            "ear_heads": 0
+          },
+          "printed_cup_gap_mm": 0.0
+        },
+        {
+          "angle_deg": 115.25,
+          "overlap_mm3": {
+            "printed_cup": 0.09619401843419481,
+            "fallback_case": 0,
+            "ear_heads": 0
+          },
+          "printed_cup_gap_mm": 0.0
+        },
+        {
+          "angle_deg": 115.5,
+          "overlap_mm3": {
+            "printed_cup": 0.28757247241506095,
+            "fallback_case": 0,
+            "ear_heads": 0
+          },
+          "printed_cup_gap_mm": 0.0
+        }
+      ]
+    },
+    "rear": {
+      "clear_samples": [
+        {
+          "angle_deg": -22.75,
+          "overlap_mm3": {
+            "printed_cup": 0,
+            "fallback_case": 0,
+            "ear_heads": 0
+          },
+          "printed_cup_gap_mm": 0.7563683023218484
+        },
+        {
+          "angle_deg": -21,
+          "overlap_mm3": {
+            "printed_cup": 0,
+            "fallback_case": 0,
+            "ear_heads": 0
+          },
+          "printed_cup_gap_mm": 1.3692293500217292
+        },
+        {
+          "angle_deg": -20,
+          "overlap_mm3": {
+            "printed_cup": 0,
+            "fallback_case": 0,
+            "ear_heads": 0
+          },
+          "printed_cup_gap_mm": 1.714542768813381
+        },
+        {
+          "angle_deg": -19,
+          "overlap_mm3": {
+            "printed_cup": 0,
+            "fallback_case": 0,
+            "ear_heads": 0
+          },
+          "printed_cup_gap_mm": 2.0561659805214254
+        },
+        {
+          "angle_deg": -18,
+          "overlap_mm3": {
+            "printed_cup": 0,
+            "fallback_case": 0,
+            "ear_heads": 0
+          },
+          "printed_cup_gap_mm": 2.393994923406202
+        },
+        {
+          "angle_deg": -17,
+          "overlap_mm3": {
+            "printed_cup": 0,
+            "fallback_case": 0,
+            "ear_heads": 0
+          },
+          "printed_cup_gap_mm": 2.727926691499103
+        },
+        {
+          "angle_deg": -16,
+          "overlap_mm3": {
+            "printed_cup": 0,
+            "fallback_case": 0,
+            "ear_heads": 0
+          },
+          "printed_cup_gap_mm": 3.057859565948687
+        },
+        {
+          "angle_deg": -15,
+          "overlap_mm3": {
+            "printed_cup": 0,
+            "fallback_case": 0,
+            "ear_heads": 0
+          },
+          "printed_cup_gap_mm": 3.3836930460052965
+        },
+        {
+          "angle_deg": -14,
+          "overlap_mm3": {
+            "printed_cup": 0,
+            "fallback_case": 0,
+            "ear_heads": 0
+          },
+          "printed_cup_gap_mm": 3.7053278796344418
+        },
+        {
+          "angle_deg": -13,
+          "overlap_mm3": {
+            "printed_cup": 0,
+            "fallback_case": 0,
+            "ear_heads": 0
+          },
+          "printed_cup_gap_mm": 4.022666093750064
+        },
+        {
+          "angle_deg": -12,
+          "overlap_mm3": {
+            "printed_cup": 0,
+            "fallback_case": 0,
+            "ear_heads": 0
+          },
+          "printed_cup_gap_mm": 4.335611024058027
+        },
+        {
+          "angle_deg": -11,
+          "overlap_mm3": {
+            "printed_cup": 0,
+            "fallback_case": 0,
+            "ear_heads": 0
+          },
+          "printed_cup_gap_mm": 4.644067344501013
+        },
+        {
+          "angle_deg": -10,
+          "overlap_mm3": {
+            "printed_cup": 0,
+            "fallback_case": 0,
+            "ear_heads": 0
+          },
+          "printed_cup_gap_mm": 4.947941096295693
+        },
+        {
+          "angle_deg": -9,
+          "overlap_mm3": {
+            "printed_cup": 0,
+            "fallback_case": 0,
+            "ear_heads": 0
+          },
+          "printed_cup_gap_mm": 5.247139716553596
+        },
+        {
+          "angle_deg": -8,
+          "overlap_mm3": {
+            "printed_cup": 0,
+            "fallback_case": 0,
+            "ear_heads": 0
+          },
+          "printed_cup_gap_mm": 5.541572066476594
+        },
+        {
+          "angle_deg": -7,
+          "overlap_mm3": {
+            "printed_cup": 0,
+            "fallback_case": 0,
+            "ear_heads": 0.0
+          },
+          "printed_cup_gap_mm": 5.831148459118667
+        },
+        {
+          "angle_deg": -6,
+          "overlap_mm3": {
+            "printed_cup": 0,
+            "fallback_case": 0,
+            "ear_heads": 0.0
+          },
+          "printed_cup_gap_mm": 6.11578068670544
+        },
+        {
+          "angle_deg": -5,
+          "overlap_mm3": {
+            "printed_cup": 0,
+            "fallback_case": 0,
+            "ear_heads": 0.0
+          },
+          "printed_cup_gap_mm": 6.395382047503069
+        },
+        {
+          "angle_deg": -4,
+          "overlap_mm3": {
+            "printed_cup": 0,
+            "fallback_case": 0,
+            "ear_heads": 0.0
+          },
+          "printed_cup_gap_mm": 6.669867372228508
+        },
+        {
+          "angle_deg": -3,
+          "overlap_mm3": {
+            "printed_cup": 0,
+            "fallback_case": 0,
+            "ear_heads": 0.0
+          },
+          "printed_cup_gap_mm": 6.93915304999285
+        },
+        {
+          "angle_deg": -2,
+          "overlap_mm3": {
+            "printed_cup": 0,
+            "fallback_case": 0,
+            "ear_heads": 0.0
+          },
+          "printed_cup_gap_mm": 7.203157053770028
+        },
+        {
+          "angle_deg": -1,
+          "overlap_mm3": {
+            "printed_cup": 0,
+            "fallback_case": 0,
+            "ear_heads": 0.0
+          },
+          "printed_cup_gap_mm": 7.461798965383002
+        },
+        {
+          "angle_deg": 0,
+          "overlap_mm3": {
+            "printed_cup": 0,
+            "fallback_case": 0,
+            "ear_heads": 0.0
+          },
+          "printed_cup_gap_mm": 7.714999999999993
+        },
+        {
+          "angle_deg": 1,
+          "overlap_mm3": {
+            "printed_cup": 0,
+            "fallback_case": 0,
+            "ear_heads": 0.0
+          },
+          "printed_cup_gap_mm": 7.7149999999999945
+        },
+        {
+          "angle_deg": 2,
+          "overlap_mm3": {
+            "printed_cup": 0,
+            "fallback_case": 0,
+            "ear_heads": 0.0
+          },
+          "printed_cup_gap_mm": 7.714999999999993
+        },
+        {
+          "angle_deg": 3,
+          "overlap_mm3": {
+            "printed_cup": 0,
+            "fallback_case": 0,
+            "ear_heads": 0.0
+          },
+          "printed_cup_gap_mm": 7.714999999999993
+        },
+        {
+          "angle_deg": 4,
+          "overlap_mm3": {
+            "printed_cup": 0,
+            "fallback_case": 0,
+            "ear_heads": 0.0
+          },
+          "printed_cup_gap_mm": 7.7149999999999945
+        },
+        {
+          "angle_deg": 5,
+          "overlap_mm3": {
+            "printed_cup": 0,
+            "fallback_case": 0,
+            "ear_heads": 0.0
+          },
+          "printed_cup_gap_mm": 7.7149999999999945
+        },
+        {
+          "angle_deg": 6,
+          "overlap_mm3": {
+            "printed_cup": 0,
+            "fallback_case": 0,
+            "ear_heads": 0.0
+          },
+          "printed_cup_gap_mm": 7.714999999999993
+        },
+        {
+          "angle_deg": 7,
+          "overlap_mm3": {
+            "printed_cup": 0,
+            "fallback_case": 0,
+            "ear_heads": 0.0
+          },
+          "printed_cup_gap_mm": 7.7149999999999945
+        },
+        {
+          "angle_deg": 8,
+          "overlap_mm3": {
+            "printed_cup": 0,
+            "fallback_case": 0,
+            "ear_heads": 0.0
+          },
+          "printed_cup_gap_mm": 7.7149999999999945
+        },
+        {
+          "angle_deg": 9,
+          "overlap_mm3": {
+            "printed_cup": 0,
+            "fallback_case": 0,
+            "ear_heads": 0.0
+          },
+          "printed_cup_gap_mm": 7.714999999999996
+        },
+        {
+          "angle_deg": 10,
+          "overlap_mm3": {
+            "printed_cup": 0,
+            "fallback_case": 0,
+            "ear_heads": 0.0
+          },
+          "printed_cup_gap_mm": 7.7149999999999945
+        },
+        {
+          "angle_deg": 11,
+          "overlap_mm3": {
+            "printed_cup": 0,
+            "fallback_case": 0,
+            "ear_heads": 0.0
+          },
+          "printed_cup_gap_mm": 7.7149999999999945
+        },
+        {
+          "angle_deg": 12,
+          "overlap_mm3": {
+            "printed_cup": 0,
+            "fallback_case": 0,
+            "ear_heads": 0.0
+          },
+          "printed_cup_gap_mm": 7.714999999999993
+        },
+        {
+          "angle_deg": 13,
+          "overlap_mm3": {
+            "printed_cup": 0,
+            "fallback_case": 0,
+            "ear_heads": 0.0
+          },
+          "printed_cup_gap_mm": 7.714999999999996
+        },
+        {
+          "angle_deg": 14,
+          "overlap_mm3": {
+            "printed_cup": 0,
+            "fallback_case": 0,
+            "ear_heads": 0.0
+          },
+          "printed_cup_gap_mm": 7.7149999999999945
+        },
+        {
+          "angle_deg": 15,
+          "overlap_mm3": {
+            "printed_cup": 0,
+            "fallback_case": 0,
+            "ear_heads": 0.0
+          },
+          "printed_cup_gap_mm": 7.714999999999993
+        },
+        {
+          "angle_deg": 16,
+          "overlap_mm3": {
+            "printed_cup": 0,
+            "fallback_case": 0,
+            "ear_heads": 0.0
+          },
+          "printed_cup_gap_mm": 7.7149999999999945
+        },
+        {
+          "angle_deg": 17,
+          "overlap_mm3": {
+            "printed_cup": 0,
+            "fallback_case": 0,
+            "ear_heads": 0.0
+          },
+          "printed_cup_gap_mm": 7.7149999999999945
+        },
+        {
+          "angle_deg": 18,
+          "overlap_mm3": {
+            "printed_cup": 0,
+            "fallback_case": 0,
+            "ear_heads": 0.0
+          },
+          "printed_cup_gap_mm": 7.7149999999999945
+        },
+        {
+          "angle_deg": 19,
+          "overlap_mm3": {
+            "printed_cup": 0,
+            "fallback_case": 0,
+            "ear_heads": 0.0
+          },
+          "printed_cup_gap_mm": 7.714999999999993
+        },
+        {
+          "angle_deg": 20,
+          "overlap_mm3": {
+            "printed_cup": 0,
+            "fallback_case": 0,
+            "ear_heads": 0.0
+          },
+          "printed_cup_gap_mm": 7.714999999999991
+        },
+        {
+          "angle_deg": 21,
+          "overlap_mm3": {
+            "printed_cup": 0,
+            "fallback_case": 0,
+            "ear_heads": 0.0
+          },
+          "printed_cup_gap_mm": 7.714999999999996
+        },
+        {
+          "angle_deg": 22,
+          "overlap_mm3": {
+            "printed_cup": 0,
+            "fallback_case": 0,
+            "ear_heads": 0.0
+          },
+          "printed_cup_gap_mm": 7.714999999999993
+        },
+        {
+          "angle_deg": 23,
+          "overlap_mm3": {
+            "printed_cup": 0,
+            "fallback_case": 0,
+            "ear_heads": 0.0
+          },
+          "printed_cup_gap_mm": 7.7149999999999945
+        },
+        {
+          "angle_deg": 24,
+          "overlap_mm3": {
+            "printed_cup": 0,
+            "fallback_case": 0,
+            "ear_heads": 0.0
+          },
+          "printed_cup_gap_mm": 7.7149999999999945
+        },
+        {
+          "angle_deg": 25,
+          "overlap_mm3": {
+            "printed_cup": 0,
+            "fallback_case": 0,
+            "ear_heads": 0.0
+          },
+          "printed_cup_gap_mm": 7.7149999999999945
+        },
+        {
+          "angle_deg": 26,
+          "overlap_mm3": {
+            "printed_cup": 0,
+            "fallback_case": 0,
+            "ear_heads": 0.0
+          },
+          "printed_cup_gap_mm": 7.714999999999993
+        },
+        {
+          "angle_deg": 27,
+          "overlap_mm3": {
+            "printed_cup": 0,
+            "fallback_case": 0,
+            "ear_heads": 0.0
+          },
+          "printed_cup_gap_mm": 7.7149999999999945
+        },
+        {
+          "angle_deg": 28,
+          "overlap_mm3": {
+            "printed_cup": 0,
+            "fallback_case": 0,
+            "ear_heads": 0.0
+          },
+          "printed_cup_gap_mm": 7.714999999999993
+        },
+        {
+          "angle_deg": 29,
+          "overlap_mm3": {
+            "printed_cup": 0,
+            "fallback_case": 0,
+            "ear_heads": 0.0
+          },
+          "printed_cup_gap_mm": 7.714999999999993
+        },
+        {
+          "angle_deg": 30,
+          "overlap_mm3": {
+            "printed_cup": 0,
+            "fallback_case": 0,
+            "ear_heads": 0.0
+          },
+          "printed_cup_gap_mm": 7.7149999999999945
+        },
+        {
+          "angle_deg": 31,
+          "overlap_mm3": {
+            "printed_cup": 0,
+            "fallback_case": 0,
+            "ear_heads": 0.0
+          },
+          "printed_cup_gap_mm": 7.7149999999999945
+        },
+        {
+          "angle_deg": 32,
+          "overlap_mm3": {
+            "printed_cup": 0,
+            "fallback_case": 0,
+            "ear_heads": 0.0
+          },
+          "printed_cup_gap_mm": 7.714999999999996
+        },
+        {
+          "angle_deg": 33,
+          "overlap_mm3": {
+            "printed_cup": 0,
+            "fallback_case": 0,
+            "ear_heads": 0.0
+          },
+          "printed_cup_gap_mm": 7.714999999999996
+        },
+        {
+          "angle_deg": 34,
+          "overlap_mm3": {
+            "printed_cup": 0,
+            "fallback_case": 0,
+            "ear_heads": 0.0
+          },
+          "printed_cup_gap_mm": 7.7149999999999945
+        },
+        {
+          "angle_deg": 35,
+          "overlap_mm3": {
+            "printed_cup": 0,
+            "fallback_case": 0,
+            "ear_heads": 0.0
+          },
+          "printed_cup_gap_mm": 7.714999999999961
+        },
+        {
+          "angle_deg": 36,
+          "overlap_mm3": {
+            "printed_cup": 0,
+            "fallback_case": 0,
+            "ear_heads": 0.0
+          },
+          "printed_cup_gap_mm": 7.7149999999998595
+        },
+        {
+          "angle_deg": 37,
+          "overlap_mm3": {
+            "printed_cup": 0,
+            "fallback_case": 0,
+            "ear_heads": 0.0
+          },
+          "printed_cup_gap_mm": 7.714999999999952
+        },
+        {
+          "angle_deg": 38,
+          "overlap_mm3": {
+            "printed_cup": 0,
+            "fallback_case": 0,
+            "ear_heads": 0.0
+          },
+          "printed_cup_gap_mm": 7.714999999999993
+        },
+        {
+          "angle_deg": 39,
+          "overlap_mm3": {
+            "printed_cup": 0,
+            "fallback_case": 0,
+            "ear_heads": 0.0
+          },
+          "printed_cup_gap_mm": 7.714999999999996
+        },
+        {
+          "angle_deg": 40,
+          "overlap_mm3": {
+            "printed_cup": 0,
+            "fallback_case": 0,
+            "ear_heads": 0.0
+          },
+          "printed_cup_gap_mm": 7.714999999999989
+        },
+        {
+          "angle_deg": 41,
+          "overlap_mm3": {
+            "printed_cup": 0,
+            "fallback_case": 0,
+            "ear_heads": 0.0
+          },
+          "printed_cup_gap_mm": 7.714999999999868
+        },
+        {
+          "angle_deg": 42,
+          "overlap_mm3": {
+            "printed_cup": 0,
+            "fallback_case": 0,
+            "ear_heads": 0.0
+          },
+          "printed_cup_gap_mm": 7.714999999999918
+        },
+        {
+          "angle_deg": 43,
+          "overlap_mm3": {
+            "printed_cup": 0,
+            "fallback_case": 0,
+            "ear_heads": 0.0
+          },
+          "printed_cup_gap_mm": 7.7149999999999945
+        },
+        {
+          "angle_deg": 44,
+          "overlap_mm3": {
+            "printed_cup": 0,
+            "fallback_case": 0,
+            "ear_heads": 0.0
+          },
+          "printed_cup_gap_mm": 7.7149999999999945
+        },
+        {
+          "angle_deg": 45,
+          "overlap_mm3": {
+            "printed_cup": 0,
+            "fallback_case": 0,
+            "ear_heads": 0.0
+          },
+          "printed_cup_gap_mm": 7.714999999999996
+        },
+        {
+          "angle_deg": 46,
+          "overlap_mm3": {
+            "printed_cup": 0,
+            "fallback_case": 0,
+            "ear_heads": 0.0
+          },
+          "printed_cup_gap_mm": 7.7149999999999945
+        },
+        {
+          "angle_deg": 47,
+          "overlap_mm3": {
+            "printed_cup": 0,
+            "fallback_case": 0,
+            "ear_heads": 0.0
+          },
+          "printed_cup_gap_mm": 7.7149999999999945
+        },
+        {
+          "angle_deg": 48,
+          "overlap_mm3": {
+            "printed_cup": 0,
+            "fallback_case": 0,
+            "ear_heads": 0.0
+          },
+          "printed_cup_gap_mm": 7.714999999999918
+        },
+        {
+          "angle_deg": 49,
+          "overlap_mm3": {
+            "printed_cup": 0,
+            "fallback_case": 0,
+            "ear_heads": 0.0
+          },
+          "printed_cup_gap_mm": 7.714999999999867
+        },
+        {
+          "angle_deg": 50,
+          "overlap_mm3": {
+            "printed_cup": 0,
+            "fallback_case": 0,
+            "ear_heads": 0.0
+          },
+          "printed_cup_gap_mm": 7.714999999999986
+        },
+        {
+          "angle_deg": 51,
+          "overlap_mm3": {
+            "printed_cup": 0,
+            "fallback_case": 0,
+            "ear_heads": 0.0
+          },
+          "printed_cup_gap_mm": 7.714999999999993
+        },
+        {
+          "angle_deg": 52,
+          "overlap_mm3": {
+            "printed_cup": 0,
+            "fallback_case": 0,
+            "ear_heads": 0.0
+          },
+          "printed_cup_gap_mm": 7.714999999999993
+        },
+        {
+          "angle_deg": 53,
+          "overlap_mm3": {
+            "printed_cup": 0,
+            "fallback_case": 0,
+            "ear_heads": 0.0
+          },
+          "printed_cup_gap_mm": 7.714999999999948
+        },
+        {
+          "angle_deg": 54,
+          "overlap_mm3": {
+            "printed_cup": 0,
+            "fallback_case": 0,
+            "ear_heads": 0.0
+          },
+          "printed_cup_gap_mm": 7.714999999999858
+        },
+        {
+          "angle_deg": 55,
+          "overlap_mm3": {
+            "printed_cup": 0,
+            "fallback_case": 0,
+            "ear_heads": 0.0
+          },
+          "printed_cup_gap_mm": 7.714999999999961
+        },
+        {
+          "angle_deg": 56,
+          "overlap_mm3": {
+            "printed_cup": 0,
+            "fallback_case": 0,
+            "ear_heads": 0.0
+          },
+          "printed_cup_gap_mm": 7.7149999999999945
+        },
+        {
+          "angle_deg": 57,
+          "overlap_mm3": {
+            "printed_cup": 0,
+            "fallback_case": 0,
+            "ear_heads": 0.0
+          },
+          "printed_cup_gap_mm": 7.714999999999993
+        },
+        {
+          "angle_deg": 58,
+          "overlap_mm3": {
+            "printed_cup": 0,
+            "fallback_case": 0,
+            "ear_heads": 0.0
+          },
+          "printed_cup_gap_mm": 7.714999999999986
+        },
+        {
+          "angle_deg": 59,
+          "overlap_mm3": {
+            "printed_cup": 0,
+            "fallback_case": 0,
+            "ear_heads": 0.0
+          },
+          "printed_cup_gap_mm": 7.714999999999996
+        },
+        {
+          "angle_deg": 60,
+          "overlap_mm3": {
+            "printed_cup": 0,
+            "fallback_case": 0,
+            "ear_heads": 0.0
+          },
+          "printed_cup_gap_mm": 7.7149999999999945
+        },
+        {
+          "angle_deg": 61,
+          "overlap_mm3": {
+            "printed_cup": 0,
+            "fallback_case": 0,
+            "ear_heads": 0.0
+          },
+          "printed_cup_gap_mm": 7.7149999999999945
+        },
+        {
+          "angle_deg": 62,
+          "overlap_mm3": {
+            "printed_cup": 0,
+            "fallback_case": 0,
+            "ear_heads": 0.0
+          },
+          "printed_cup_gap_mm": 7.7149999999999945
+        },
+        {
+          "angle_deg": 63,
+          "overlap_mm3": {
+            "printed_cup": 0,
+            "fallback_case": 0,
+            "ear_heads": 0.0
+          },
+          "printed_cup_gap_mm": 7.714999999999993
+        },
+        {
+          "angle_deg": 64,
+          "overlap_mm3": {
+            "printed_cup": 0,
+            "fallback_case": 0,
+            "ear_heads": 0.0
+          },
+          "printed_cup_gap_mm": 7.714999999999993
+        },
+        {
+          "angle_deg": 65,
+          "overlap_mm3": {
+            "printed_cup": 0,
+            "fallback_case": 0,
+            "ear_heads": 0.0
+          },
+          "printed_cup_gap_mm": 7.7149999999999945
+        },
+        {
+          "angle_deg": 66,
+          "overlap_mm3": {
+            "printed_cup": 0,
+            "fallback_case": 0,
+            "ear_heads": 0.0
+          },
+          "printed_cup_gap_mm": 7.7149999999999945
+        },
+        {
+          "angle_deg": 67,
+          "overlap_mm3": {
+            "printed_cup": 0,
+            "fallback_case": 0,
+            "ear_heads": 0.0
+          },
+          "printed_cup_gap_mm": 7.714999999999993
+        },
+        {
+          "angle_deg": 68,
+          "overlap_mm3": {
+            "printed_cup": 0,
+            "fallback_case": 0,
+            "ear_heads": 0.0
+          },
+          "printed_cup_gap_mm": 7.714999999999996
+        },
+        {
+          "angle_deg": 69,
+          "overlap_mm3": {
+            "printed_cup": 0,
+            "fallback_case": 0,
+            "ear_heads": 0.0
+          },
+          "printed_cup_gap_mm": 7.7149999999999945
+        },
+        {
+          "angle_deg": 70,
+          "overlap_mm3": {
+            "printed_cup": 0,
+            "fallback_case": 0,
+            "ear_heads": 0.0
+          },
+          "printed_cup_gap_mm": 7.7149999999999945
+        },
+        {
+          "angle_deg": 71,
+          "overlap_mm3": {
+            "printed_cup": 0,
+            "fallback_case": 0,
+            "ear_heads": 0.0
+          },
+          "printed_cup_gap_mm": 7.7149999999999945
+        },
+        {
+          "angle_deg": 72,
+          "overlap_mm3": {
+            "printed_cup": 0,
+            "fallback_case": 0,
+            "ear_heads": 0.0
+          },
+          "printed_cup_gap_mm": 7.7149999999999945
+        },
+        {
+          "angle_deg": 73,
+          "overlap_mm3": {
+            "printed_cup": 0,
+            "fallback_case": 0,
+            "ear_heads": 0.0
+          },
+          "printed_cup_gap_mm": 7.714999999999993
+        },
+        {
+          "angle_deg": 74,
+          "overlap_mm3": {
+            "printed_cup": 0,
+            "fallback_case": 0,
+            "ear_heads": 0.0
+          },
+          "printed_cup_gap_mm": 7.714999999999993
+        },
+        {
+          "angle_deg": 75,
+          "overlap_mm3": {
+            "printed_cup": 0,
+            "fallback_case": 0,
+            "ear_heads": 0.0
+          },
+          "printed_cup_gap_mm": 7.7149999999999945
+        },
+        {
+          "angle_deg": 76,
+          "overlap_mm3": {
+            "printed_cup": 0,
+            "fallback_case": 0,
+            "ear_heads": 0.0
+          },
+          "printed_cup_gap_mm": 7.7149999999999945
+        },
+        {
+          "angle_deg": 77,
+          "overlap_mm3": {
+            "printed_cup": 0,
+            "fallback_case": 0,
+            "ear_heads": 0.0
+          },
+          "printed_cup_gap_mm": 7.7149999999999945
+        },
+        {
+          "angle_deg": 78,
+          "overlap_mm3": {
+            "printed_cup": 0,
+            "fallback_case": 0,
+            "ear_heads": 0.0
+          },
+          "printed_cup_gap_mm": 7.714999999999996
+        },
+        {
+          "angle_deg": 79,
+          "overlap_mm3": {
+            "printed_cup": 0,
+            "fallback_case": 0,
+            "ear_heads": 0.0
+          },
+          "printed_cup_gap_mm": 7.714999999999996
+        },
+        {
+          "angle_deg": 80,
+          "overlap_mm3": {
+            "printed_cup": 0,
+            "fallback_case": 0,
+            "ear_heads": 0.0
+          },
+          "printed_cup_gap_mm": 7.714999999999991
+        },
+        {
+          "angle_deg": 81,
+          "overlap_mm3": {
+            "printed_cup": 0,
+            "fallback_case": 0,
+            "ear_heads": 0.0
+          },
+          "printed_cup_gap_mm": 7.7149999999999945
+        },
+        {
+          "angle_deg": 82,
+          "overlap_mm3": {
+            "printed_cup": 0,
+            "fallback_case": 0,
+            "ear_heads": 0.0
+          },
+          "printed_cup_gap_mm": 7.7149999999999945
+        },
+        {
+          "angle_deg": 83,
+          "overlap_mm3": {
+            "printed_cup": 0,
+            "fallback_case": 0,
+            "ear_heads": 0.0
+          },
+          "printed_cup_gap_mm": 7.7149999999999945
+        },
+        {
+          "angle_deg": 84,
+          "overlap_mm3": {
+            "printed_cup": 0,
+            "fallback_case": 0,
+            "ear_heads": 0.0
+          },
+          "printed_cup_gap_mm": 7.7149999999999945
+        },
+        {
+          "angle_deg": 85,
+          "overlap_mm3": {
+            "printed_cup": 0,
+            "fallback_case": 0,
+            "ear_heads": 0.0
+          },
+          "printed_cup_gap_mm": 7.714999999999993
+        },
+        {
+          "angle_deg": 86,
+          "overlap_mm3": {
+            "printed_cup": 0,
+            "fallback_case": 0,
+            "ear_heads": 0.0
+          },
+          "printed_cup_gap_mm": 7.714999999999993
+        },
+        {
+          "angle_deg": 87,
+          "overlap_mm3": {
+            "printed_cup": 0,
+            "fallback_case": 0,
+            "ear_heads": 0.0
+          },
+          "printed_cup_gap_mm": 7.714999999999993
+        },
+        {
+          "angle_deg": 88,
+          "overlap_mm3": {
+            "printed_cup": 0,
+            "fallback_case": 0,
+            "ear_heads": 0.0
+          },
+          "printed_cup_gap_mm": 7.714999999999993
+        },
+        {
+          "angle_deg": 89,
+          "overlap_mm3": {
+            "printed_cup": 0,
+            "fallback_case": 0,
+            "ear_heads": 0.0
+          },
+          "printed_cup_gap_mm": 7.7149999999999945
+        },
+        {
+          "angle_deg": 90,
+          "overlap_mm3": {
+            "printed_cup": 0,
+            "fallback_case": 0,
+            "ear_heads": 0.0
+          },
+          "printed_cup_gap_mm": 7.7149999999999945
+        },
+        {
+          "angle_deg": 91,
+          "overlap_mm3": {
+            "printed_cup": 0,
+            "fallback_case": 0,
+            "ear_heads": 0.0
+          },
+          "printed_cup_gap_mm": 7.7149999999999945
+        },
+        {
+          "angle_deg": 92,
+          "overlap_mm3": {
+            "printed_cup": 0,
+            "fallback_case": 0,
+            "ear_heads": 0.0
+          },
+          "printed_cup_gap_mm": 7.7149999999999945
+        },
+        {
+          "angle_deg": 93,
+          "overlap_mm3": {
+            "printed_cup": 0,
+            "fallback_case": 0,
+            "ear_heads": 0.0
+          },
+          "printed_cup_gap_mm": 7.714999999999993
+        },
+        {
+          "angle_deg": 94,
+          "overlap_mm3": {
+            "printed_cup": 0,
+            "fallback_case": 0,
+            "ear_heads": 0.0
+          },
+          "printed_cup_gap_mm": 7.714999999999993
+        },
+        {
+          "angle_deg": 95,
+          "overlap_mm3": {
+            "printed_cup": 0,
+            "fallback_case": 0,
+            "ear_heads": 0.0
+          },
+          "printed_cup_gap_mm": 7.7149999999999945
+        },
+        {
+          "angle_deg": 96,
+          "overlap_mm3": {
+            "printed_cup": 0,
+            "fallback_case": 0,
+            "ear_heads": 0.0
+          },
+          "printed_cup_gap_mm": 7.714999999999993
+        },
+        {
+          "angle_deg": 97,
+          "overlap_mm3": {
+            "printed_cup": 0,
+            "fallback_case": 0,
+            "ear_heads": 0.0
+          },
+          "printed_cup_gap_mm": 7.714999999999993
+        },
+        {
+          "angle_deg": 98,
+          "overlap_mm3": {
+            "printed_cup": 0,
+            "fallback_case": 0,
+            "ear_heads": 0.0
+          },
+          "printed_cup_gap_mm": 7.7149999999999945
+        },
+        {
+          "angle_deg": 99,
+          "overlap_mm3": {
+            "printed_cup": 0,
+            "fallback_case": 0,
+            "ear_heads": 0.0
+          },
+          "printed_cup_gap_mm": 7.714999999999996
+        },
+        {
+          "angle_deg": 100,
+          "overlap_mm3": {
+            "printed_cup": 0,
+            "fallback_case": 0,
+            "ear_heads": 0.0
+          },
+          "printed_cup_gap_mm": 7.7149999999999945
+        },
+        {
+          "angle_deg": 101,
+          "overlap_mm3": {
+            "printed_cup": 0,
+            "fallback_case": 0,
+            "ear_heads": 0.0
+          },
+          "printed_cup_gap_mm": 7.7149999999999945
+        },
+        {
+          "angle_deg": 102,
+          "overlap_mm3": {
+            "printed_cup": 0,
+            "fallback_case": 0,
+            "ear_heads": 0.0
+          },
+          "printed_cup_gap_mm": 7.714999999999993
+        },
+        {
+          "angle_deg": 103,
+          "overlap_mm3": {
+            "printed_cup": 0,
+            "fallback_case": 0,
+            "ear_heads": 0.0
+          },
+          "printed_cup_gap_mm": 7.714999999999996
+        },
+        {
+          "angle_deg": 104,
+          "overlap_mm3": {
+            "printed_cup": 0,
+            "fallback_case": 0,
+            "ear_heads": 0.0
+          },
+          "printed_cup_gap_mm": 7.714999999999993
+        },
+        {
+          "angle_deg": 105,
+          "overlap_mm3": {
+            "printed_cup": 0,
+            "fallback_case": 0,
+            "ear_heads": 0.0
+          },
+          "printed_cup_gap_mm": 7.7149999999999945
+        },
+        {
+          "angle_deg": 106,
+          "overlap_mm3": {
+            "printed_cup": 0,
+            "fallback_case": 0,
+            "ear_heads": 0.0
+          },
+          "printed_cup_gap_mm": 7.7149999999999945
+        },
+        {
+          "angle_deg": 107,
+          "overlap_mm3": {
+            "printed_cup": 0,
+            "fallback_case": 0,
+            "ear_heads": 0.0
+          },
+          "printed_cup_gap_mm": 7.7149999999999945
+        },
+        {
+          "angle_deg": 108,
+          "overlap_mm3": {
+            "printed_cup": 0,
+            "fallback_case": 0,
+            "ear_heads": 0.0
+          },
+          "printed_cup_gap_mm": 7.7149999999999945
+        },
+        {
+          "angle_deg": 109,
+          "overlap_mm3": {
+            "printed_cup": 0,
+            "fallback_case": 0,
+            "ear_heads": 0.0
+          },
+          "printed_cup_gap_mm": 7.357945671214146
+        },
+        {
+          "angle_deg": 110,
+          "overlap_mm3": {
+            "printed_cup": 0,
+            "fallback_case": 0,
+            "ear_heads": 0.0
+          },
+          "printed_cup_gap_mm": 6.918851065564837
+        },
+        {
+          "angle_deg": 111,
+          "overlap_mm3": {
+            "printed_cup": 0,
+            "fallback_case": 0,
+            "ear_heads": 0.0
+          },
+          "printed_cup_gap_mm": 6.4676729436001565
+        },
+        {
+          "angle_deg": 112,
+          "overlap_mm3": {
+            "printed_cup": 0,
+            "fallback_case": 0,
+            "ear_heads": 0.0
+          },
+          "printed_cup_gap_mm": 6.004548738546731
+        },
+        {
+          "angle_deg": 113,
+          "overlap_mm3": {
+            "printed_cup": 0,
+            "fallback_case": 0,
+            "ear_heads": 0.0
+          },
+          "printed_cup_gap_mm": 5.529619522523809
+        },
+        {
+          "angle_deg": 114,
+          "overlap_mm3": {
+            "printed_cup": 0,
+            "fallback_case": 0,
+            "ear_heads": 0.0
+          },
+          "printed_cup_gap_mm": 5.043029963571314
+        },
+        {
+          "angle_deg": 115,
+          "overlap_mm3": {
+            "printed_cup": 0,
+            "fallback_case": 0,
+            "ear_heads": 0.0
+          },
+          "printed_cup_gap_mm": 4.544928281582628
+        },
+        {
+          "angle_deg": 116,
+          "overlap_mm3": {
+            "printed_cup": 0,
+            "fallback_case": 0,
+            "ear_heads": 0.0
+          },
+          "printed_cup_gap_mm": 4.0354662031552735
+        },
+        {
+          "angle_deg": 117,
+          "overlap_mm3": {
+            "printed_cup": 0,
+            "fallback_case": 0,
+            "ear_heads": 0.0
+          },
+          "printed_cup_gap_mm": 3.514798915373632
+        },
+        {
+          "angle_deg": 118,
+          "overlap_mm3": {
+            "printed_cup": 0,
+            "fallback_case": 0,
+            "ear_heads": 0.0
+          },
+          "printed_cup_gap_mm": 2.9830850185373663
+        },
+        {
+          "angle_deg": 119,
+          "overlap_mm3": {
+            "printed_cup": 0,
+            "fallback_case": 0,
+            "ear_heads": 0.0
+          },
+          "printed_cup_gap_mm": 2.440486477850307
+        },
+        {
+          "angle_deg": 120,
+          "overlap_mm3": {
+            "printed_cup": 0,
+            "fallback_case": 0,
+            "ear_heads": 0.0
+          },
+          "printed_cup_gap_mm": 1.8871685740841926
+        },
+        {
+          "angle_deg": 121,
+          "overlap_mm3": {
+            "printed_cup": 0,
+            "fallback_case": 0,
+            "ear_heads": 0.0
+          },
+          "printed_cup_gap_mm": 1.323299853232605
+        },
+        {
+          "angle_deg": 121.25,
+          "overlap_mm3": {
+            "printed_cup": 0,
+            "fallback_case": 0,
+            "ear_heads": 0.0
+          },
+          "printed_cup_gap_mm": 1.1807041660861302
+        }
+      ],
+      "boundary_samples": [
+        {
+          "angle_deg": -24.75,
+          "overlap_mm3": {
+            "printed_cup": 0,
+            "fallback_case": 0,
+            "ear_heads": 0
+          },
+          "printed_cup_gap_mm": 0.043246360179250855
+        },
+        {
+          "angle_deg": -25.0,
+          "overlap_mm3": {
+            "printed_cup": 0.009626850052439802,
+            "fallback_case": 0,
+            "ear_heads": 0
+          },
+          "printed_cup_gap_mm": 0.0
+        },
+        {
+          "angle_deg": -25.25,
+          "overlap_mm3": {
+            "printed_cup": 0.09619410455755771,
+            "fallback_case": 0,
+            "ear_heads": 0
+          },
+          "printed_cup_gap_mm": 0.0
+        },
+        {
+          "angle_deg": -25.5,
+          "overlap_mm3": {
+            "printed_cup": 0.2875726086624082,
+            "fallback_case": 0,
+            "ear_heads": 0
+          },
+          "printed_cup_gap_mm": 0.0
+        },
+        {
+          "angle_deg": 123.0,
+          "overlap_mm3": {
+            "printed_cup": 0,
+            "fallback_case": 0,
+            "ear_heads": 0.0
+          },
+          "printed_cup_gap_mm": 0.16460016133322597
+        },
+        {
+          "angle_deg": 123.25,
+          "overlap_mm3": {
+            "printed_cup": 0,
+            "fallback_case": 0,
+            "ear_heads": 0.0
+          },
+          "printed_cup_gap_mm": 0.01691358198984716
+        },
+        {
+          "angle_deg": 123.5,
+          "overlap_mm3": {
+            "printed_cup": 0.2052418735152887,
+            "fallback_case": 0,
+            "ear_heads": 0.0
+          },
+          "printed_cup_gap_mm": 0.0
+        },
+        {
+          "angle_deg": 123.75,
+          "overlap_mm3": {
+            "printed_cup": 0.9670679579197686,
+            "fallback_case": 0,
+            "ear_heads": 0.0
+          },
+          "printed_cup_gap_mm": 0.0
+        }
+      ]
+    }
+  },
+  "installed": [
+    {
+      "review": "max-fold",
+      "reference": "fallback",
+      "signed_bend_deg": {
+        "front": -112.75,
+        "rear": 121.25
+      },
+      "boolean_pairs": 189
+    },
+    {
+      "review": "bend-min",
+      "reference": "fallback",
+      "signed_bend_deg": {
+        "front": -112.75,
+        "rear": -22.75
+      },
+      "boolean_pairs": 185
+    },
+    {
+      "review": "bend-max",
+      "reference": "fallback",
+      "signed_bend_deg": {
+        "front": 112.75,
+        "rear": 121.25
+      },
+      "boolean_pairs": 189
+    }
+  ],
+  "source_sha256": {
+    "__init__.py": "dddfbe0f0d9220506891f695d9ffb7afe3cfbde281ebf393b2f294c16d49764c",
+    "assembly.py": "74ac235c05b69248ab7491cd8a9da518af5d484d138e564a7a166a3a4a09ed86",
+    "audit.py": "a13f251b83f93edfe8531aa6a8c201497833ff2b2d27e9ab2cb28566ca31c75c",
+    "bend_clearance.py": "2262098452ef813db24bb47219029840b27bd601b101e91da54b6170dc73f1a5",
+    "bend_limits.py": "7aa1d452ceb8884c76ba21f3d9d449757b96289714e65f610ac0623ba95d4af3",
+    "body_plan.py": "cea7b5326dc576e1aac7b21fdb2c5966e74ebc49f62d9abea896a638ede179d3",
+    "cad.py": "53c753dca8c174bdeadd0c0ff83ff9b6c15ed1d385fcf6d97d24b8ef2c9cabf2",
+    "carrier_fork_study.py": "1f72709013c710459db3a3f8ec5c2e8f37c38fefdf5257cab0286bf3b8ee1c11",
+    "engraving.py": "d95c8dbcf1bfe483d92aedb352b86992bc89b7b025ee3bac91d7d6c6d242cf6c",
+    "export.py": "c446366aaf53ca5dac76bc1c96ea7871e754ca05d114ea2ba91bc487fb93d0b3",
+    "fasteners.py": "0d83609fa5cccd67d4558ffe7b9d108dc38949d7c8f3a2329d500301ecee52ff",
+    "freecad_build.py": "960fd9f48b48057504b924daf34347898795986afd93034e1df742cc1881c820",
+    "freecad_compare.py": "50066296b80252264ce4cbda576d2e715df489806085202ae24840b0492ddacc",
+    "freecad_document.py": "ca1b5b30b85400dbc47f2666fad600e6d5f731d66e948e5b61d7be794d01a1f6",
+    "freecad_studies.py": "14e940d946e5f9035bb21fd63038b1567e38fab41ad372816e81d3cd428d2b41",
+    "freecad_view_state.py": "88348cc5cf0762c3d0de70346c95825b1aad8e411abc611400f145ab5c497333",
+    "host_tools.py": "b2996e672712ed64bad3c3f4f237fd9481de18fc1e27d0b481c93120faaf8487",
+    "knee_packaging.py": "ac59fc9005ad7e8d4bf48743861b3073a039cb6edb07084289e1f084576b9ae2",
+    "leg_sizing.py": "6bf539fc57514b2cd582fbf6dae524226eef44a710a445c2637a28af9f875d0c",
+    "manufacturing_slices.py": "a06e678f3f6b86df2503e530699b83cbcee78bb113632616632999799294cf48",
+    "meshing.py": "2cf5d7a0ad4431cee790b713e57e8e439bf0e18a463e636d420bc30e2471e495",
+    "mjcf.py": "a294718500d550813aaeb2a6cd52c844939b2713b838999ff8a7ff4e80ad2d2c",
+    "mjcf_check.py": "c0d05d1d1b85f07169b17a66b0b7e6fd7589077e0367b967eb8e4c6100e0c814",
+    "orientation_study.py": "e9fe8ac159704471258408005b0017decae8eba3f09a414ddf536447b1fb64e6",
+    "params.py": "362953022a8cad40459c0f23b845f8485244dd6f7796e33bbe3f1516da37d2a0",
+    "part_versions.py": "d32e57c82751a7ea47867f4905321c03e8d68f42fceb5c2925fa6aac5eb9d3ae",
+    "parts/__init__.py": "da01e47be7d24f7813584b3245966444275338bfe3fe2bba598ae06788fc56e0",
+    "parts/coupons.py": "711fefcdf19f89e24aefbbe1c377bb977a1753bf13a57c081e2b1166f9ce9d22",
+    "parts/e_tray.py": "4ba8fe2a8a63e4bb58c407ee138b9c7208758f27a11ff5c603548af9df59ea21",
+    "parts/foot_shank.py": "bb9f71b2cd5c7fc47a616924c9d0ef6582cd821c78e3f24445c9e1f87418d7cc",
+    "parts/front.py": "7840455412d1c7795766bd9e411896d4d061bc3286242123f23719b7ccfc508b",
+    "parts/joint_rig.py": "916158e9a48868b3b77aeac0b7a9b494e16aae7c665f064cde9b3f909ac4be24",
+    "parts/links.py": "f79f0f8deef4937d50193ffbf0b6e09698192a4027fcb5186e23d56dc6c4c556",
+    "parts/neck_space.py": "4ee17f03c205e5c50af2edf3096a25d5507a0b4a1f547280de82e814f624d1e5",
+    "parts/pelvis.py": "815c744863d517e49923e49e33fbaeec7c570d1cb33e0a5e51a0abb1d85df3bc",
+    "parts/shoulder_mount.py": "1d74170efbdf881cad4292852c4165ef69f4ce0666dd6d06b09a8a2cac42328d",
+    "parts/torso.py": "3794416e928a1b1a43560c328316f63a4cab9f680216a58db1a9813edf0b093d",
+    "pitch_socket_tilt_study.py": "be218770d2585f3fc60c284813f0967eb80f937e8f87bb3acb8464dfc0d5549b",
+    "printability.py": "13d1b1bc326808d2849a610814a251ce2eb00c81891aa3591326ad101b076bda",
+    "rear_leg_review.py": "428bc6ad170754c97d39fdb42f383ab2c0607e13092c1fdd474fa0c39126a25f",
+    "render_views.py": "4ee91168bae108db1207f9509999e834b1b16f5e2996774d7eab163ff10955ef",
+    "root_socket_access.py": "ffa8f1aa33d843dbfb4dac7dc4831cd21f468e0be90f35f3d4dc99ffb9ccb916",
+    "rounding.py": "5a0f109d002eda08b8e9bcf35386d442607de41d9c49752ac2299e887d3c824c",
+    "rounding_review.py": "c7859f179c1452c276988e15ba4ce6b4addb66688221ee1df894313860bda5cf",
+    "servo_iface.py": "7493866968a407b4311c99f101d3206cf38766566165f33d707f9e0f060126d2",
+    "slice_remote.py": "9f600ae96122fde06d38756cbd7c49c3b62122789468f3cc6dbafe7ed8bd6239",
+    "so101_templates.py": "2eaa96cf3720e2c0a0243daf7000951ce4b2f28254f56e11a0944802c5aceb8b",
+    "travel_validation.py": "0c7495b1cb57c13c070da72e2faf080b12f26bb5a39ede14527aaf902f18cb8d",
+    "validation.py": "304f42aab726c82f3b24adcc17cc7e05dd2444b622d10de05b0963f4e3d7bdf4",
+    "viewer.py": "0d3c35c587a0204ec0795977ab4efa6187357140f722f1c002ca58618e3c3964"
+  },
+  "scope": "Local footed packages including pads/fixings/horn heads against owning cups, available case envelopes and ear heads (vendor availability recorded explicitly); whole walking robot at three endpoint combinations with fixed hips/shoulders. No continuous path, arbitrary combined joints, complete cables, floor contact or loaded validation."
+}

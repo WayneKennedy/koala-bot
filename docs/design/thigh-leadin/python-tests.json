@@ -1,0 +1,23 @@
+{
+  "run": 87,
+  "failures": [],
+  "errors": [],
+  "test_source_sha256": {
+    "hardware/tests/test_bend_limits.py": "e71f916eb6e5e8c50ca4ddd80670b88f9e3bf3fa41f07a413ab3b87a6a84c904",
+    "hardware/tests/test_body_plan.py": "a3f5480e09ce3f1565c0d3ea70ec1fe2a460c5f1c235f08675796bbf78d96cc3",
+    "hardware/tests/test_foot_shank.py": "e5cf000a3ec8f6c06fbb5648ea1475222e6fab1cd5abec43dc2fb49975d89956",
+    "hardware/tests/test_freecad.py": "5e66e6d3464ad728fd4aeb85f49b6d33659eceb123f8375b82e37d522c10f623",
+    "hardware/tests/test_front_cad.py": "e9e80266fdc53b2e601719940203da04f66e2112bf7af4b458b7e4d85f7d1c5b",
+    "hardware/tests/test_integrated_cad.py": "6b81ec2e11c06e9bc8b7eaf7a100ce352797d81ca69c90cb8c59b4b3df41e477",
+    "hardware/tests/test_joint_axes.py": "1c92f1721b5947955642c53e15070e6b1cbc61fced145cd695aaa32199ecfc0d",
+    "hardware/tests/test_leg_sizing.py": "04f23ca74ad31dddff60a5e3e4e90e8f77a18a4b0e1e789b0e3da34f31a124ea",
+    "hardware/tests/test_meshing.py": "be99be66c051105d407291de279c38575b6f7aa8b69fc75003ad71bc1c085e8e",
+    "hardware/tests/test_part_versions.py": "e98d44fd386e3d4bab79c09bf3cf876c3d54d04e85e247d00ff8a8ac31d30d7f",
+    "hardware/tests/test_printability.py": "8a259b3ff7f710659d3cfb6223c5d01b7e436943847b9e574f7739cf1466f25f",
+    "hardware/tests/test_rounding.py": "bbbb8844f9af24c192bf31251f2a52c7fa0ecaec509d9c6b92a6922d94d7f889",
+    "hardware/tests/test_shoulder_service.py": "07bc5a1605c31f402dccbfcbfdd440bc73af13b1141cbe9b0fdfaf8226ccead6",
+    "hardware/tests/test_thigh_leadin.py": "5d8dfcc7862f6e93630fa5679afa5fde02ab07a8e74ad90b65d002903436e8a5",
+    "hardware/tests/test_viewer_joint_order.cjs": "95ac5cd314fb727d005b55762502e1a5c72a3b5a8f7e1099644eaad97713e52e"
+  },
+  "execution": "Canonical generators with source/kernel-keyed cache of complete native recipes; saved documents independently reopen and fully recompute."
+}

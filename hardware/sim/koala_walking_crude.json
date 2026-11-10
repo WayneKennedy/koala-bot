@@ -2,46 +2,46 @@
  "model": "koala_walking_crude.xml",
  "pose": "walking",
  "crude": true,
- "total_g": 1683.3397569677084,
+ "total_g": 1670.5919362827162,
  "com_world_mm": [
-  82.23316967434084,
-  0.0025262521701293734,
-  139.730937637678
+  82.18967588257802,
+  0.002426683218199998,
+  139.8374918615465
  ],
  "prints_g": {
   "root_socket_right": {
-   "mass_g": 29.99420525321165,
-   "solid_g": 29.99420525321165,
+   "mass_g": 29.61656047882481,
+   "solid_g": 29.61656047882481,
    "source": "solid PETG",
    "material": "PETG"
   },
   "root_socket_left": {
-   "mass_g": 29.994205253211643,
-   "solid_g": 29.994205253211643,
+   "mass_g": 29.61656047917538,
+   "solid_g": 29.61656047917538,
    "source": "solid PETG",
    "material": "PETG"
   },
   "shoulder_mount_right": {
-   "mass_g": 20.231792194416396,
-   "solid_g": 20.231792194416396,
+   "mass_g": 19.98081252943957,
+   "solid_g": 19.98081252943957,
    "source": "solid PETG",
    "material": "PETG"
   },
   "shoulder_mount_left": {
-   "mass_g": 20.231792194416403,
-   "solid_g": 20.231792194416403,
+   "mass_g": 19.98081252943957,
+   "solid_g": 19.98081252943957,
    "source": "solid PETG",
    "material": "PETG"
   },
   "torso_frame": {
-   "mass_g": 175.93092377435497,
-   "solid_g": 175.93092377435497,
+   "mass_g": 172.54313309448963,
+   "solid_g": 172.54313309448963,
    "source": "solid PETG",
    "material": "PETG"
   },
   "e_tray": {
-   "mass_g": 42.59660946657816,
-   "solid_g": 42.59660946657816,
+   "mass_g": 42.223946073294584,
+   "solid_g": 42.223946073294584,
    "source": "solid PETG",
    "material": "PETG"
   },
@@ -52,20 +52,20 @@
    "material": "PETG"
   },
   "hip_carrier_right": {
-   "mass_g": 46.46169615459851,
-   "solid_g": 46.46169615459851,
+   "mass_g": 45.55277142117848,
+   "solid_g": 45.55277142117848,
    "source": "solid PETG",
    "material": "PETG"
   },
   "thigh_right": {
-   "mass_g": 57.81365989953451,
-   "solid_g": 57.81365989953451,
+   "mass_g": 58.182269738850614,
+   "solid_g": 58.182269738850614,
    "source": "solid PETG",
    "material": "PETG"
   },
   "foot_shank_right": {
-   "mass_g": 48.237581757623275,
-   "solid_g": 48.237581757623275,
+   "mass_g": 47.21469514207346,
+   "solid_g": 47.21469514207346,
    "source": "solid PETG",
    "material": "PETG"
   },
@@ -76,56 +76,56 @@
    "material": "TPU"
   },
   "hip_carrier_left": {
-   "mass_g": 46.461696154598535,
-   "solid_g": 46.461696154598535,
+   "mass_g": 45.55277142116319,
+   "solid_g": 45.55277142116319,
    "source": "solid PETG",
    "material": "PETG"
   },
   "thigh_left": {
-   "mass_g": 57.81365989953356,
-   "solid_g": 57.81365989953356,
+   "mass_g": 58.18226973885204,
+   "solid_g": 58.18226973885204,
    "source": "solid PETG",
    "material": "PETG"
   },
   "foot_shank_left": {
-   "mass_g": 48.23758175762327,
-   "solid_g": 48.23758175762327,
+   "mass_g": 47.21469514207348,
+   "solid_g": 47.21469514207348,
    "source": "solid PETG",
    "material": "PETG"
   },
   "shoulder_carrier_right": {
-   "mass_g": 50.789728876843895,
-   "solid_g": 50.789728876843895,
+   "mass_g": 50.34405749568255,
+   "solid_g": 50.34405749568255,
    "source": "solid PETG",
    "material": "PETG"
   },
   "upper_arm_right": {
-   "mass_g": 38.620594109283644,
-   "solid_g": 38.620594109283644,
+   "mass_g": 38.23237055376558,
+   "solid_g": 38.23237055376558,
    "source": "solid PETG",
    "material": "PETG"
   },
   "forearm_right": {
-   "mass_g": 57.086941757623265,
-   "solid_g": 57.086941757623265,
+   "mass_g": 55.9966241114384,
+   "solid_g": 55.9966241114384,
    "source": "solid PETG",
    "material": "PETG"
   },
   "shoulder_carrier_left": {
-   "mass_g": 50.789728876843895,
-   "solid_g": 50.789728876843895,
+   "mass_g": 50.34405749568823,
+   "solid_g": 50.34405749568823,
    "source": "solid PETG",
    "material": "PETG"
   },
   "upper_arm_left": {
-   "mass_g": 38.620594109283644,
-   "solid_g": 38.620594109283644,
+   "mass_g": 38.232370553765556,
+   "solid_g": 38.232370553765556,
    "source": "solid PETG",
    "material": "PETG"
   },
   "forearm_left": {
-   "mass_g": 57.086941757623215,
-   "solid_g": 57.086941757623215,
+   "mass_g": 55.99662411143833,
+   "solid_g": 55.99662411143833,
    "source": "solid PETG",
    "material": "PETG"
   }
@@ -142,43 +142,43 @@
  },
  "bodies": {
   "torso": {
-   "mass_g": 599.5654544856807,
+   "mass_g": 593.792461985732,
    "com_world_mm": [
-    94.25022928120792,
-    0.007092704695099671,
-    178.23236817976883
+    94.12435116680014,
+    0.006827296868838904,
+    178.19637629876965
    ],
    "items": {
     "pelvis_socket_right": {
-     "mass_g": 29.9942052532117,
+     "mass_g": 29.61656047882486,
      "source": "solid PETG"
     },
     "pelvis_socket_left": {
-     "mass_g": 29.994205253211693,
+     "mass_g": 29.61656047917543,
      "source": "solid PETG"
     },
     "shoulder_socket_right": {
-     "mass_g": 29.99420525321165,
+     "mass_g": 29.61656047882481,
      "source": "solid PETG"
     },
     "shoulder_mount_right": {
-     "mass_g": 20.231792194416396,
+     "mass_g": 19.98081252943957,
      "source": "solid PETG"
     },
     "shoulder_socket_left": {
-     "mass_g": 29.994205253211643,
+     "mass_g": 29.61656047917538,
      "source": "solid PETG"
     },
     "shoulder_mount_left": {
-     "mass_g": 20.231792194416403,
+     "mass_g": 19.98081252943957,
      "source": "solid PETG"
     },
     "torso_frame": {
-     "mass_g": 175.93092377435497,
+     "mass_g": 172.54313309448963,
      "source": "solid PETG"
     },
     "e_tray": {
-     "mass_g": 42.59660946657816,
+     "mass_g": 42.223946073294584,
      "source": "solid PETG"
     },
     "tray_spacer_0": {
@@ -216,15 +216,15 @@
    }
   },
   "rear_right_carrier": {
-   "mass_g": 101.46169615459851,
+   "mass_g": 100.55277142117848,
    "com_world_mm": [
-    -0.8368419785223442,
-    55.36543660655519,
-    155.98858238743597
+    -0.8310800325136027,
+    55.51379454486241,
+    156.106510819182
    ],
    "items": {
     "rear_carrier_right": {
-     "mass_g": 46.46169615459851,
+     "mass_g": 45.55277142117848,
      "source": "solid PETG"
     },
     "reference_rear_roll_servo_right": {
@@ -234,15 +234,15 @@
    }
   },
   "rear_right_upper": {
-   "mass_g": 112.81365989953451,
+   "mass_g": 113.18226973885061,
    "com_world_mm": [
-    10.342478235303055,
-    66.26635615283864,
-    104.26782366674874
+    10.584655506958816,
+    66.26630081625224,
+    104.96186994323541
    ],
    "items": {
     "rear_thigh_right": {
-     "mass_g": 57.81365989953451,
+     "mass_g": 58.182269738850614,
      "source": "solid PETG"
     },
     "reference_rear_knee_servo_right": {
@@ -252,15 +252,15 @@
    }
   },
   "rear_right_lower": {
-   "mass_g": 59.67605610037688,
+   "mass_g": 58.65316948482707,
    "com_world_mm": [
-    -35.94851585638228,
-    66.9560801723983,
-    43.625336653287846
+    -36.11259404836854,
+    66.95008861709039,
+    43.38741737852443
    ],
    "items": {
     "rear_shank_right": {
-     "mass_g": 48.237581757623275,
+     "mass_g": 47.21469514207346,
      "source": "solid PETG"
     },
     "rear_contact_pad_right": {
@@ -270,15 +270,15 @@
    }
   },
   "rear_left_carrier": {
-   "mass_g": 101.46169615459854,
+   "mass_g": 100.55277142116319,
    "com_world_mm": [
-    -0.836841978522345,
-    -55.36543660655517,
-    155.98858238743594
+    -0.8310800325144969,
+    -55.51379454486868,
+    156.1065108191824
    ],
    "items": {
     "rear_carrier_left": {
-     "mass_g": 46.461696154598535,
+     "mass_g": 45.55277142116319,
      "source": "solid PETG"
     },
     "reference_rear_roll_servo_left": {
@@ -288,15 +288,15 @@
    }
   },
   "rear_left_upper": {
-   "mass_g": 112.81365989953356,
+   "mass_g": 113.18226973885204,
    "com_world_mm": [
-    10.342478235302888,
-    -66.26635615283872,
-    104.26782366674833
+    10.58465550695829,
+    -66.26630081625215,
+    104.96186994323605
    ],
    "items": {
     "rear_thigh_left": {
-     "mass_g": 57.81365989953356,
+     "mass_g": 58.18226973885204,
      "source": "solid PETG"
     },
     "reference_rear_knee_servo_left": {
@@ -306,15 +306,15 @@
    }
   },
   "rear_left_lower": {
-   "mass_g": 59.67605610037687,
+   "mass_g": 58.65316948482709,
    "com_world_mm": [
-    -35.948515856382315,
-    -66.95608017239842,
-    43.62533665328781
+    -36.112594048368535,
+    -66.9500886170904,
+    43.38741737852443
    ],
    "items": {
     "rear_shank_left": {
-     "mass_g": 48.23758175762327,
+     "mass_g": 47.21469514207348,
      "source": "solid PETG"
     },
     "rear_contact_pad_left": {
@@ -324,15 +324,15 @@
    }
   },
   "front_right_carrier": {
-   "mass_g": 105.7897288768439,
+   "mass_g": 105.34405749568255,
    "com_world_mm": [
-    150.62176035181776,
-    83.7841299685371,
-    185.023088405589
+    150.6237993598097,
+    83.85962463192911,
+    185.01756768877274
    ],
    "items": {
     "front_carrier_right": {
-     "mass_g": 50.789728876843895,
+     "mass_g": 50.34405749568255,
      "source": "solid PETG"
     },
     "reference_front_pitch_servo_right": {
@@ -342,15 +342,15 @@
    }
   },
   "front_right_upper": {
-   "mass_g": 93.62059410928364,
+   "mass_g": 93.23237055376558,
    "com_world_mm": [
-    145.9750456920357,
-    95.8143868256079,
-    119.64757804677171
+    145.96648996031647,
+    95.81786472743204,
+    119.54245816631801
    ],
    "items": {
     "front_upper_arm_right": {
-     "mass_g": 38.620594109283644,
+     "mass_g": 38.23237055376558,
      "source": "solid PETG"
     },
     "reference_front_elbow_servo_right": {
@@ -360,15 +360,15 @@
    }
   },
   "front_right_lower": {
-   "mass_g": 68.52541610037686,
+   "mass_g": 67.435098454192,
    "com_world_mm": [
-    181.26830009678739,
-    95.77648313397309,
-    46.81806233171128
+    181.4352787595772,
+    95.77198150045635,
+    46.60122329956098
    ],
    "items": {
     "front_forearm_right": {
-     "mass_g": 57.086941757623265,
+     "mass_g": 55.9966241114384,
      "source": "solid PETG"
     },
     "front_contact_pad_right": {
@@ -378,15 +378,15 @@
    }
   },
   "front_left_carrier": {
-   "mass_g": 105.7897288768439,
+   "mass_g": 105.34405749568823,
    "com_world_mm": [
-    150.62176035181776,
-    -83.7841299685371,
-    185.02308840558896
+    150.62379935980894,
+    -83.85962463192799,
+    185.0175676887725
    ],
    "items": {
     "front_carrier_left": {
-     "mass_g": 50.789728876843895,
+     "mass_g": 50.34405749568823,
      "source": "solid PETG"
     },
     "reference_front_pitch_servo_left": {
@@ -396,15 +396,15 @@
    }
   },
   "front_left_upper": {
-   "mass_g": 93.62059410928364,
+   "mass_g": 93.23237055376555,
    "com_world_mm": [
-    145.9750456920357,
-    -95.81438682560784,
-    119.64757804677171
+    145.96648996031647,
+    -95.81786472743204,
+    119.54245816631801
    ],
    "items": {
     "front_upper_arm_left": {
-     "mass_g": 38.620594109283644,
+     "mass_g": 38.232370553765556,
      "source": "solid PETG"
     },
     "reference_front_elbow_servo_left": {
@@ -414,15 +414,15 @@
    }
   },
   "front_left_lower": {
-   "mass_g": 68.52541610037682,
+   "mass_g": 67.43509845419193,
    "com_world_mm": [
-    181.26830009678733,
-    -95.77648313397309,
-    46.81806233171129
+    181.43527875957724,
+    -95.77198150045635,
+    46.60122329956095
    ],
    "items": {
     "front_forearm_left": {
-     "mass_g": 57.086941757623215,
+     "mass_g": 55.99662411143833,
      "source": "solid PETG"
     },
     "front_contact_pad_left": {
