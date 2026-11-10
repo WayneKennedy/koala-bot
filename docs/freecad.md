@@ -6,8 +6,8 @@ Latest thigh update: [thick horn lead-ins, v7](design/thigh-leadin/README.md).
 
 Python is the source of truth. FreeCAD documents are generated, inspectable
 collaboration artefacts; carry GUI changes back into Python before releasing a
-revision. [Decision](decisions.md) · [current geometry](cad-integrated-design.md) ·
-[version/printability rules](part-design-review.md).
+revision. [Decision](memory://main/robotics/koala-bot/koala-bot-decisions) · [current geometry](memory://main/robotics/koala-bot/koala-bot-cad-integrated-design) ·
+[version/printability rules](memory://main/robotics/koala-bot/koala-bot-part-design-review).
 
 Conversion benchmark: Git `9e6ded8`, before the flat-depth lower-link
 change. Superseded STEP exports under `docs/design/` are removed from the working

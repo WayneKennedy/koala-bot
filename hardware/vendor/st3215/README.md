@@ -21,11 +21,11 @@ three case solids as the collision/clearance reference for every joint.
 Its horn stack is wrong against calipers, so the horns, idler, boss and screw
 head in the reference come from measured constants in `params.py`, not from
 this file. Nothing about retention or pockets derives from it either: pockets
-come from the SO-101 printed parts (`docs/soarm-joint-pattern.md`).
+come from the SO-101 printed parts ([*Koala Bot SO-ARM Joint Pattern*](memory://main/robotics/koala-bot/koala-bot-so-arm-joint-pattern)).
 
 ## Model against calipers (2026-09-08, cheap calipers ±0.3)
 
-Servo-face words per `docs/soarm-joint-pattern.md`: Front = drive horn, Back =
+Servo-face words per [*Koala Bot SO-ARM Joint Pattern*](memory://main/robotics/koala-bot/koala-bot-so-arm-joint-pattern): Front = drive horn, Back =
 idler and connectors, Bottom = the end it stands on. Heights from the Bottom.
 
 | Feature | This model | Measured | Verdict |

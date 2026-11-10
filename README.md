@@ -16,8 +16,8 @@ affordable, and fully documented (build video + full BOM + software).
 
 **Status:** pre-alpha — *design phase*. Mechanics, electronics, and software are
 still converging; nothing is built yet. This repo currently holds the **design
-record**. See [`docs/roadmap.md`](docs/roadmap.md) for direction and
-[`docs/open-questions.md`](docs/open-questions.md) for what's undecided.
+record**. See [*Koala Bot Roadmap*](memory://main/robotics/koala-bot/koala-bot-roadmap) for direction and
+[*Koala Bot Open Questions*](memory://main/robotics/koala-bot/koala-bot-open-questions) for what's undecided.
 
 ## What it is
 
@@ -34,7 +34,7 @@ companion** roughly the size and shape of a koala, printable in **PETG on a
 - looks at you with a 3-RPS parallel neck (yaw delegated to the mobile base).
 
 Locomotion is ground-based; a **climbing sibling** is a planned later family
-member. Full intent, morphology, and principles: [`docs/concept.md`](docs/concept.md).
+member. Full intent, morphology, and principles: [*Koala Bot Concept*](memory://main/robotics/koala-bot/koala-bot-concept).
 
 ## Repo map
 

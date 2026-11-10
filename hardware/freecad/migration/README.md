@@ -50,4 +50,4 @@ The generated walking document was opened in the installed FreeCAD GUI with
 79 visible component/reference shapes; its saved camera and visibility restored
 without manual correction. [FreeCAD viewport](walking-preview.png).
 
-[Workflow](../../../docs/freecad.md) · [CAD revision log](../../../docs/cad-integrated-design.md#revision-log)
+[Workflow](../../../docs/freecad.md) · [CAD revision log](memory://main/robotics/koala-bot/koala-bot-cad-integrated-design)

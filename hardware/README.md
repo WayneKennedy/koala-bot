@@ -7,7 +7,7 @@ below is historical. Current 2026-09-19 CAD implements
 recessed **roll → pitch → elbow** front limbs and **pitch → roll → knee** rear
 limbs, with rear ankle drives and replaceable TPU front pads. Design, assembly,
 dimensions and remaining acceptance gates:
-[cad-integrated-design.md](../docs/cad-integrated-design.md).
+[*Koala Bot CAD Integrated Design*](memory://main/robotics/koala-bot/koala-bot-cad-integrated-design).
 
 **2026-09-21:** the first build uses four TPU feet (DEC-62). `foot_shank` v1
 replaces each complete wheeled rear shank at the existing knee; the same
@@ -57,7 +57,7 @@ dependency here) and reports masses, CoM against the feet, a 3 s stand and a ren
 Full assemblies are `build/step/koala-walking.step`, `koala-quadruped.step` and `koala-upright.step`.
 Every handed print has explicit left/right files. Removed part outputs are
 pruned. The exporter regenerates the printed and fastening blocks in
-[the BOM](../docs/bom.md); never hand-edit them. Slice results count only when
+[the BOM](memory://main/robotics/koala-bot/koala-bot-bom); never hand-edit them. Slice results count only when
 their SHA-256 matches the current STL.
 
 Every structural print must be one valid solid, export a watertight positive-volume
@@ -137,7 +137,7 @@ There is no repeat-gauge/caliper prerequisite. The two `coupon_socket_*`
 designs remain available to investigate a specific new fit issue. Check the
 current assembly's insertion/removal, M2/M3 engagement, centre-head/boss
 clearance, Back washers, axial preload and real connector access. Log results
-by exact print version in [the test log](../docs/test-log.md).
+by exact print version in [the test log](memory://main/robotics/koala-bot/koala-bot-test-log).
 
 Root socket v1 is physically proven with its recorded ear-hole support caveat;
 hip carrier v1 has plate 2 slices but no recorded physical result. Continue with version-specific fitting,
@@ -159,5 +159,5 @@ layer-path images in `docs/design/manufacturing/`. It never submits a print.
 Changed torso v5, shoulder mount v1, front carrier v4, upper arm/forearm v2 and
 thigh v4 remain `unknown`; local toolpaths alone do not establish physical
 printability. Root socket v1 is `proven` with its documented caveat; unchanged
-parts retain their recorded tags. See [the part review](../docs/part-design-review.md).
+parts retain their recorded tags. See [the part review](memory://main/robotics/koala-bot/koala-bot-part-design-review).
 TPU settings are provisional until matched to the actual spool.
