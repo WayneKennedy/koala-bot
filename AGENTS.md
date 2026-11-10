@@ -1,5 +1,16 @@
 # koala-bot — Agent / contributor onboarding
 
+> **The project record moved to Basic Memory on 2026-11-10** (project `main`, folder `robotics/koala-bot/`; start at
+> the *Koala Bot* note). The README's project description, `docs/concept.md`, `architecture.md`, `roadmap.md`,
+> `backlog.md`, `decisions.md`, `open-questions.md`, `bom.md`, `sourcing.md`, `references.md`, `test-log.md`,
+> `inspiration/README.md`, every design study and review under `docs/` (`body-layout`, `cad-*`, `drive-motor-sizing`,
+> `integrated-links`, `knee-drive-packaging`, `part-design-review`, `root-servo-mounts`, `servo-wrist-loading`,
+> `soarm-joint-pattern`, `two-wheel-walking`) and every `docs/design/*` README are canonical there; the copies here were deleted on 2026-11-10 (git history keeps them).
+> This repo keeps what is about the code and artefacts: `AGENTS.md`, `CONTRIBUTING.md`, `LICENSING.md`,
+> `docs/freecad.md`, `hardware/` (CAD sources, FreeCAD revision archive, migration evidence, sim meshes),
+> `firmware/`, `software/`, and the images, STL/FCStd exports and JSON study data under `docs/design/` and
+> `docs/inspiration/`.
+
 Context for any AI agent or human working in this repository. **Most docs here
 assume an AI assistant is the primary reader.** Read this, then
 [`docs/concept.md`](docs/concept.md), before non-trivial work.
@@ -119,6 +130,18 @@ Changing DEC-16 or DEC-18 has consequences beyond this repo.
   to task* · *every part ≤ 200×200 mm* · *finish V1 end-to-end before the family*.
 
 ## Status
+
+**2026-10-01 — thigh v7 thick horn lead-ins:** both transitions extend across
+the screw pattern with deeper counterbores at unchanged bearing-seat depths.
+Removal-only thin-neck prototypes are rejected. Unknown/unprinted;
+[current geometry and validation](docs/design/thigh-leadin/README.md).
+
+**2026-10-01 — R3 family exterior:** owner corrected the R4 review to include
+curved outer horn rims and consistent inner/outer edge fillets. Current scope,
+versions, exceptions and validation are in [R3 rounding](docs/design/rounded-family-r3/README.md).
+Use `FAMILY_EDGE_RADIUS`; preserve bearing contacts, thin interfaces and accepted
+bend caps. Eleven changed production designs remain unknown/unprinted. Root
+socket v1's physical evidence is historical; the revised root socket is v2.
 
 **2026-10-01 — full-depth footed links:** owner selected forearm v3 and foot
 shank v2 at 20.8 mm depth with matching TPU pad v2; all unknown/unprinted.

@@ -1,5 +1,16 @@
 # koala-bot 🐨🤖
 
+> **The project record moved to Basic Memory on 2026-11-10** (project `main`, folder `robotics/koala-bot/`; start at
+> the *Koala Bot* note). The README's project description, `docs/concept.md`, `architecture.md`, `roadmap.md`,
+> `backlog.md`, `decisions.md`, `open-questions.md`, `bom.md`, `sourcing.md`, `references.md`, `test-log.md`,
+> `inspiration/README.md`, every design study and review under `docs/` (`body-layout`, `cad-*`, `drive-motor-sizing`,
+> `integrated-links`, `knee-drive-packaging`, `part-design-review`, `root-servo-mounts`, `servo-wrist-loading`,
+> `soarm-joint-pattern`, `two-wheel-walking`) and every `docs/design/*` README are canonical there; the copies here were deleted on 2026-11-10 (git history keeps them).
+> This repo keeps what is about the code and artefacts: `AGENTS.md`, `CONTRIBUTING.md`, `LICENSING.md`,
+> `docs/freecad.md`, `hardware/` (CAD sources, FreeCAD revision archive, migration evidence, sim meshes),
+> `firmware/`, `software/`, and the images, STL/FCStd exports and JSON study data under `docs/design/` and
+> `docs/inspiration/`.
+
 An open-source, 3D-printable family of small companion robots — nature-inspired,
 affordable, and fully documented (build video + full BOM + software).
 
